@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GROVW | Briefing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      padding: 56px 16px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    /* HERO */
+    .hero {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #cdff00;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 36px;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 em {
+      color: #cdff00;
+      font-style: normal;
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: #888;
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent 0%, rgba(205,255,0,0.4) 50%, transparent 100%);
+      margin: 40px 0;
+    }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #cdff00;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: #888;
+      margin-bottom: 8px;
+    }
+
+    label span.required {
+      color: #cdff00;
+      margin-left: 2px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      padding: 13px 16px;
+      transition: border-color 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #cdff00;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #444;
+    }
+
+    select option {
+      background: #0f0f0f;
+      color: #fff;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.6;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .section-block {
+      margin-bottom: 44px;
+    }
+
+    /* Checkbox cards */
+    .check-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .check-item {
+      position: relative;
+    }
+
+    .check-item input[type="checkbox"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .check-item label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 12px 14px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #888;
+      transition: border-color 0.2s, color 0.2s;
+      user-select: none;
+      margin-bottom: 0;
+    }
+
+    .check-item label::before {
+      content: '';
+      width: 16px;
+      height: 16px;
+      min-width: 16px;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 3px;
+      background: transparent;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .check-item input:checked + label {
+      border-color: #cdff00;
+      color: #fff;
+    }
+
+    .check-item input:checked + label::before {
+      background: #cdff00;
+      border-color: #cdff00;
+    }
+
+    /* Radio cards */
+    .radio-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 10px;
+    }
+
+    .radio-item {
+      position: relative;
+    }
+
+    .radio-item input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .radio-item label {
+      display: block;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 14px 16px;
+      cursor: pointer;
+      font-size: 14px;
+      color: #888;
+      text-align: center;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
+      user-select: none;
+      line-height: 1.4;
+      margin-bottom: 0;
+    }
+
+    .radio-item input:checked + label {
+      border-color: #cdff00;
+      color: #cdff00;
+      background: rgba(205,255,0,0.05);
+    }
+
+    .btn {
+      width: 100%;
+      background: #cdff00;
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 17px 24px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+      margin-top: 8px;
+    }
+
+    .btn:hover {
+      background: #d0ff0f;
+      transform: translateY(-1px);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #444;
+      margin-top: 20px;
+      line-height: 1.6;
+    }
+
+    .success-msg {
+      display: none;
+      text-align: center;
+      padding: 48px 24px;
+    }
+
+    .success-msg h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .success-msg p {
+      font-size: 15px;
+      color: #888;
+    }
+
+    @media (max-width: 540px) {
+      .row { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+      .check-group, .radio-group { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="hero">
+      <div class="logo">GROVW</div>
+      <h1>Vamos montar sua<br /><em>máquina de clientes.</em></h1>
+      <p>Responda em menos de 3 minutos. Com base nisso, preparo uma análise do seu potencial de captação e apresento o sistema ideal pro seu negócio.</p>
+    </div>
+
+    <form id="formBriefing" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="access_key" value="f65a41ca-f8a1-4a6e-bde4-fdeb6672298b" />
+      <input type="hidden" name="subject" value="Novo briefing | GROVW" />
+      <input type="hidden" name="from_name" value="GROVW Briefing" />
+      <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <!-- SOBRE VOCÊ -->
+      <div class="section-block">
+        <div class="section-label">01. Sobre você</div>
+
+        <div class="form-group">
+          <label>Nome completo <span class="required">*</span></label>
+          <input type="text" name="nome" placeholder="Seu nome" required />
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label>WhatsApp <span class="required">*</span></label>
+            <input type="tel" name="whatsapp" placeholder="(92) 99999-9999" required />
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" name="email" placeholder="seu@email.com" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group">
+            <label>Nome do escritório / empresa <span class="required">*</span></label>
+            <input type="text" name="empresa" placeholder="Nome do negócio" required />
+          </div>
+          <div class="form-group">
+            <label>Cidade e Estado <span class="required">*</span></label>
+            <input type="text" name="cidade_estado" placeholder="Manaus, AM" required />
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- NEGÓCIO -->
+      <div class="section-block">
+        <div class="section-label">02. Seu negócio</div>
+
+        <div class="form-group">
+          <label>Qual é a sua área de atuação? <span class="required">*</span></label>
+          <select name="area_atuacao" required>
+            <option value="" disabled selected>Selecione</option>
+            <option value="loja_iphone">Loja de iPhone / Smartphones / Eletrônicos</option>
+            <option value="infoprodutor_iphone">Influencer / Infoprodutor | nicho iPhone / tecnologia</option>
+            <option value="infoprodutor">Infoprodutor / Lançamento de curso</option>
+            <option value="adv_trabalhista">Advocacia Trabalhista</option>
+            <option value="adv_civil">Advocacia Cível</option>
+            <option value="adv_criminal">Advocacia Criminal</option>
+            <option value="adv_familia">Advocacia de Família</option>
+            <option value="adv_previdenciario">Advocacia Previdenciária</option>
+            <option value="adv_empresarial">Advocacia Empresarial</option>
+            <option value="adv_tributario">Advocacia Tributária</option>
+            <option value="adv_imobiliario">Advocacia Imobiliária</option>
+            <option value="ecommerce">E-commerce / Loja online</option>
+            <option value="outro">Outro</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>Site atual (se tiver)</label>
+          <input type="url" name="site_atual" placeholder="https://seusite.com.br" />
+        </div>
+
+        <div class="form-group">
+          <label>Você vende ou planeja vender algum infoproduto ou curso?</label>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" name="tem_infoproduto" id="ip1" value="Sim, já tenho curso ou produto digital" />
+              <label for="ip1">Sim, já tenho</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="tem_infoproduto" id="ip2" value="Estou planejando lançar" />
+              <label for="ip2">Estou planejando</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="tem_infoproduto" id="ip3" value="Não, só produto/serviço físico" />
+              <label for="ip3">Não, só físico</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Quantos clientes novos você quer captar por mês? <span class="required">*</span></label>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" name="meta_clientes" id="m1" value="1 a 3 clientes" required />
+              <label for="m1">1 a 3</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="meta_clientes" id="m2" value="4 a 8 clientes" />
+              <label for="m2">4 a 8</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="meta_clientes" id="m3" value="9 a 15 clientes" />
+              <label for="m3">9 a 15</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="meta_clientes" id="m4" value="Mais de 15" />
+              <label for="m4">Mais de 15</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- SITUAÇÃO ATUAL -->
+      <div class="section-block">
+        <div class="section-label">03. Situação atual</div>
+
+        <div class="form-group">
+          <label>Qual é o seu principal problema hoje? <span class="required">*</span></label>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" name="problema_principal" id="p1" value="Poucos clientes novos" required />
+              <label for="p1">Poucos clientes novos</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="problema_principal" id="p2" value="Clientes sem qualificação" />
+              <label for="p2">Clientes sem qualificação</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="problema_principal" id="p3" value="Dependo de indicações" />
+              <label for="p3">Dependo de indicações</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="problema_principal" id="p4" value="Nenhuma presença digital" />
+              <label for="p4">Sem presença digital</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="problema_principal" id="p5" value="Já anuncio mas não converte" />
+              <label for="p5">Já anuncio, não converte</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>O que já tentou antes? (pode marcar mais de um)</label>
+          <div class="check-group">
+            <div class="check-item">
+              <input type="checkbox" name="ja_tentou" id="jt1" value="Google Ads" />
+              <label for="jt1">Google Ads</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" name="ja_tentou" id="jt2" value="Meta Ads (Facebook/Instagram)" />
+              <label for="jt2">Meta Ads</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" name="ja_tentou" id="jt3" value="Site próprio" />
+              <label for="jt3">Site próprio</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" name="ja_tentou" id="jt4" value="Instagram orgânico" />
+              <label for="jt4">Instagram orgânico</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" name="ja_tentou" id="jt5" value="Agência de marketing" />
+              <label for="jt5">Agência de marketing</label>
+            </div>
+            <div class="check-item">
+              <input type="checkbox" name="ja_tentou" id="jt6" value="Nada ainda" />
+              <label for="jt6">Nada ainda</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <!-- INVESTIMENTO -->
+      <div class="section-block">
+        <div class="section-label">04. Investimento</div>
+
+        <div class="form-group">
+          <label>Qual faixa de investimento mensal faz sentido pra você? <span class="required">*</span></label>
+          <div class="radio-group">
+            <div class="radio-item">
+              <input type="radio" name="investimento" id="i1" value="Até R$1.500/mês" required />
+              <label for="i1">Até R$1.500/mês</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="investimento" id="i2" value="R$1.500 a R$3.000/mês" />
+              <label for="i2">R$1.500 a R$3.000/mês</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="investimento" id="i3" value="R$3.000 a R$5.000/mês" />
+              <label for="i3">R$3.000 a R$5.000/mês</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="investimento" id="i4" value="Acima de R$5.000/mês" />
+              <label for="i4">Acima de R$5.000/mês</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Qual serviço você tem interesse? <span class="required">*</span></label>
+          <div class="radio-group" style="grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));">
+            <div class="radio-item">
+              <input type="radio" name="servico_interesse" id="s1" value="1 landing page de conversão" required />
+              <label for="s1">1 landing page de conversão</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="servico_interesse" id="s2" value="3 landing pages: pacote personalizado" />
+              <label for="s2">3 landing pages: pacote personalizado</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="servico_interesse" id="s3" value="Site institucional completo" />
+              <label for="s3">Site institucional completo</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="servico_interesse" id="s4" value="Site + tráfego pago gerenciado" />
+              <label for="s4">Site + tráfego pago</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="servico_interesse" id="s5" value="Ecossistema completo (site + tráfego + IA)" />
+              <label for="s5">Ecossistema completo</label>
+            </div>
+            <div class="radio-item">
+              <input type="radio" name="servico_interesse" id="s6" value="Ainda não sei, quero um diagnóstico" />
+              <label for="s6">Quero um diagnóstico</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Quer adicionar alguma informação ou contexto?</label>
+          <textarea name="contexto_adicional" placeholder="Conta um pouco mais sobre o que você precisa, seu histórico com marketing digital, ou qualquer coisa que achar relevante..."></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Quero receber minha análise</button>
+      <p class="footer-note">
+        Seus dados são usados exclusivamente para preparar o diagnóstico.<br />
+        GROVW · grovw.com.br · WhatsApp: (92) 99192-3266
+      </p>
+
+    </form>
+
+    <div class="success-msg" id="successMsg">
+      <div class="logo">GROVW</div>
+      <h2>Briefing recebido.</h2>
+      <p>Vou analisar e entrar em contato pelo WhatsApp em até 24h com um diagnóstico do seu potencial de captação.</p>
+    </div>
+
+  </div>
+
+  <script>
+    // Máscara WhatsApp
+    document.querySelector('[name="whatsapp"]').addEventListener('input', function(e) {
+      let v = e.target.value.replace(/\D/g, '').slice(0, 11);
+      if (v.length > 2) v = '(' + v.slice(0,2) + ') ' + v.slice(2);
+      if (v.length > 10) v = v.slice(0,10) + '-' + v.slice(10);
+      e.target.value = v;
+    });
+
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+
+        if (response.ok) {
+          form.style.display = 'none';
+          document.getElementById('successMsg').style.display = 'block';
+        } else {
+          alert('Erro ao enviar. Tente novamente ou entre em contato pelo WhatsApp.');
+        }
+      } catch (err) {
+        alert('Erro de conexão. Verifique sua internet e tente novamente.');
+      }
+    }
+  </script>
+</body>
+</html>

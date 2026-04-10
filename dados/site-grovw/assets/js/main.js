@@ -87,79 +87,35 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-    // Form Submission & RD Station / Webhook Integration
+    // Form Submission — Web3Forms
     const leadForm = document.getElementById('lead-form');
     if(leadForm) {
         leadForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            
-            // Extracting values
-            const plano = document.getElementById('input-plano').value;
-            const empresa = document.getElementById('empresa').value;
-            const nome = document.getElementById('nome').value;
-            const telefone = document.getElementById('telefone').value;
-            const email = document.getElementById('email').value;
 
-            // UI Feedback
+            // Honeypot check — rejeita bots
+            if(leadForm.querySelector('[name="botcheck"]').value) return;
+
             const submitBtn = leadForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerText;
-            submitBtn.innerText = "Conectando...";
+            submitBtn.innerText = "Enviando...";
             submitBtn.classList.add('opacity-50', 'pointer-events-none');
 
-            // --- CRM INTEGRATION SETUP ---
-            // Opção A: Token Integrador Público do RD Station
-            const RD_TOKEN = ""; 
-            
-            // Opção B: URL de Webhook de Entrada do RD Station ou Zapier/Make
-            const WEBHOOK_URL = ""; 
-
             try {
-                const dataPayload = {
-                    event_type: "CONVERSION",
-                    event_family: "CDP",
-                    payload: {
-                        conversion_identifier: "grovw_lead_form",
-                        name: nome,
-                        email: email,
-                        mobile_phone: telefone,
-                        personal_phone: telefone,
-                        cf_empresa: empresa,
-                        cf_plano: plano
-                    }
-                };
+                const formData = new FormData(leadForm);
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
 
-                if (WEBHOOK_URL) {
-                    await fetch(WEBHOOK_URL, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(dataPayload)
-                    });
-                } else if (RD_TOKEN) { // Older standard endpoint if used
-                    await fetch('https://www.rdstation.com.br/api/1.2/conversions', {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({
-                            token_rdstation: RD_TOKEN,
-                            identificador: 'grovw_lead_form',
-                            nome: nome,
-                            email: email,
-                            telefone: telefone,
-                            empresa: empresa,
-                            plano_interesse: plano
-                        })
-                    });
+                if(response.ok) {
+                    window.location.href = 'https://grovw.com.br/obrigado/';
                 } else {
-                    console.log("💡 [Simulação] Nenhum Token configurado. Leads capturados:", {nome, email, telefone, empresa, plano});
-                    // Simula delay de carregamento
-                    await new Promise(r => setTimeout(r, 800));
+                    throw new Error('Erro no envio');
                 }
-
-                // Redirect on success
-                window.location.href = 'https://grovw.com.br/obrigado';
-
-            } catch (error) {
-                console.error("Erro ao conectar CRM:", error);
-                alert("Ocorreu um erro ao enviar. Por favor, tente novamente ou chame no WhatsApp.");
+            } catch(error) {
+                alert("Erro ao enviar. Tente novamente ou chame no WhatsApp.");
                 submitBtn.innerText = originalText;
                 submitBtn.classList.remove('opacity-50', 'pointer-events-none');
             }
