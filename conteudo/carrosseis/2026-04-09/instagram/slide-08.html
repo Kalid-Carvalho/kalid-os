@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Slide 08</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px;
+    background: #0D1526;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden; position: relative;
+  }
+  .glow { position: absolute; bottom: -80px; left: 50%; transform: translateX(-50%); width: 900px; height: 700px; background: radial-gradient(circle, rgba(26,86,219,0.12) 0%, transparent 65%); pointer-events: none; }
+  .top-bar { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #1A56DB 0%, rgba(26,86,219,0.2) 70%, transparent 100%); }
+
+  .header {
+    position: absolute; top: 180px; left: 88px; right: 88px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; border: 2px solid #2563EB; overflow: hidden; flex-shrink: 0; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hname { font-size: 22px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .check { width: 20px; height: 20px; background: #1A56DB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; }
+  .hhandle { font-size: 18px; color: #9BB3E8; margin-top: 3px; }
+
+  .content {
+    position: absolute; top: 0; bottom: 0; left: 88px; right: 88px;
+    display: flex; flex-direction: column; justify-content: center;
+  }
+
+  .question {
+    font-size: 56px; font-weight: 800; color: #FFFFFF;
+    line-height: 1.15; letter-spacing: -0.03em; margin-bottom: 28px;
+  }
+  .question .accent { color: #1A56DB; }
+
+  .sub {
+    font-size: 32px; font-weight: 400; color: #9BB3E8;
+    line-height: 1.55; margin-bottom: 64px;
+  }
+
+  .sep { width: 100%; height: 1px; background: #1E2E4A; margin-bottom: 56px; }
+
+  .cta-label { font-size: 22px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #1A56DB; margin-bottom: 20px; }
+  .cta-text { font-size: 40px; font-weight: 600; color: #FFFFFF; line-height: 1.4; margin-bottom: 44px; }
+  .cta-text em { font-style: normal; color: #9BB3E8; font-weight: 400; font-size: 34px; }
+
+  .cta-btn {
+    display: inline-flex; align-items: center; gap: 16px;
+    background: #1A56DB; border-radius: 10px;
+    padding: 24px 44px; width: fit-content;
+    font-size: 30px; font-weight: 700; color: #FFFFFF;
+  }
+
+  /* Bottom branding */
+  .bottom-brand {
+    position: absolute; bottom: 60px; left: 88px; right: 88px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .handle { font-size: 26px; font-weight: 600; color: #3A4D6E; }
+  .kc { width: 52px; height: 52px; background: #1A56DB; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 19px; font-weight: 700; color: #fff; }
+  .kc span { opacity: 0.75; font-weight: 400; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="top-bar"></div>
+  <div class="header">
+    <div class="avatar"><img src="../../2026-04-07/avatar.jpg" alt="K" onerror="this.style.display='none'"></div>
+    <div>
+      <div class="hname">Kalid Carvalho <div class="check">✓</div></div>
+      <div class="hhandle">@eukalidcarvalho</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <h2 class="question">
+      Quantos leads o seu<br>escritório perdeu<br>
+      <span class="accent">essa semana</span><br>
+      enquanto você dormia?
+    </h2>
+    <p class="sub">
+      Se você não sabe a resposta,<br>
+      o número é maior do que você imagina.
+    </p>
+    <div class="sep"></div>
+    <p class="cta-label">Próximo passo</p>
+    <p class="cta-text">
+      Me manda uma mensagem.<br>
+      <em>Vamos ver se faz sentido<br>pro seu escritório.</em>
+    </p>
+    <div class="cta-btn">Falar com Kalid →</div>
+  </div>
+
+  <div class="bottom-brand">
+    <span class="handle">@eukalidcarvalho</span>
+    <div class="kc">K<span>C</span></div>
+  </div>
+</body>
+</html>

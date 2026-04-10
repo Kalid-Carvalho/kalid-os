@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro do Reel — Kalid Carvalho</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Space Grotesk', sans-serif; background: #f5f7fa; color: #0A0A0A; padding: 40px 20px; }
+  .container { max-width: 800px; margin: 0 auto; background: #fff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
+  .header { background: #0D1526; padding: 32px 40px; display: flex; align-items: center; gap: 20px; }
+  .header-icon { width: 56px; height: 56px; background: #1A56DB; border-radius: 12px; display: flex; justify-content: center; align-items: center; }
+  .header-icon span { font-size: 22px; font-weight: 700; color: #fff; letter-spacing: -2px; }
+  .header-text h1 { font-size: 22px; font-weight: 700; color: #fff; }
+  .header-text p { font-size: 14px; color: #9BB3E8; margin-top: 2px; }
+  .meta { background: #1A56DB; padding: 14px 40px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .meta span { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); letter-spacing: 1px; text-transform: uppercase; }
+  .meta span strong { color: #fff; }
+  .content { padding: 40px; }
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 11px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: #1A56DB; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #1A56DB; }
+
+  /* Reel blocks */
+  .reel-block { background: #0D1526; border-radius: 12px; padding: 24px; margin-bottom: 12px; position: relative; }
+  .time-badge { position: absolute; top: -10px; left: 20px; background: #1A56DB; color: #fff; font-size: 11px; font-weight: 700; padding: 3px 12px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; }
+  .block-label { font-size: 11px; font-weight: 600; color: #9BB3E8; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; margin-top: 4px; }
+  .overlay-text { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 12px; line-height: 1.25; }
+  .script-text { font-size: 15px; color: rgba(255,255,255,0.75); line-height: 1.6; font-style: italic; }
+  .block-note { margin-top: 12px; font-size: 12px; color: #9BB3E8; border-top: 1px solid #1E2E4A; padding-top: 10px; }
+
+  /* Delivery points */
+  .point { background: #0D1526; border-radius: 10px; padding: 18px 20px; border-left: 4px solid #1A56DB; margin-bottom: 10px; }
+  .point-num { font-size: 11px; font-weight: 700; color: #1A56DB; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+  .point-overlay { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+  .point-script { font-size: 14px; color: rgba(255,255,255,0.70); font-style: italic; line-height: 1.5; }
+  .point.highlight { border-left-color: #60A5FA; }
+  .point.highlight .point-num { color: #60A5FA; }
+  .point-badge { display: inline-block; background: #1A56DB; color: #fff; font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; }
+
+  /* CTA block */
+  .cta-block { background: #1A56DB; border-radius: 12px; padding: 24px; position: relative; margin-bottom: 12px; }
+  .cta-block .time-badge { background: #0D1526; }
+  .cta-block .block-label { color: rgba(255,255,255,0.7); }
+  .cta-block .overlay-text { color: #fff; }
+  .cta-block .script-text { color: rgba(255,255,255,0.85); }
+
+  /* Caption */
+  .caption-box { background: #F0F4FF; border-radius: 10px; padding: 20px 24px; border-left: 4px solid #1A56DB; }
+  .caption-hook { font-size: 16px; font-weight: 700; color: #0D1526; margin-bottom: 14px; line-height: 1.4; }
+  .caption-item { font-size: 14px; color: #3A4D6E; line-height: 1.7; padding-left: 12px; border-left: 2px solid #C7D9FF; margin-bottom: 8px; }
+  .caption-cta { font-size: 14px; font-weight: 600; color: #1A56DB; margin-top: 14px; }
+
+  /* Hashtags */
+  .hashtag-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .hashtag { background: #F0F4FF; color: #1A56DB; font-size: 13px; font-weight: 600; padding: 5px 12px; border-radius: 20px; border: 1px solid #C7D9FF; }
+
+  /* Notes grid */
+  .notes-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .note-item { background: #F8F9FC; border-radius: 8px; padding: 12px 16px; font-size: 13px; color: #3A4D6E; line-height: 1.5; }
+  .note-item strong { color: #0D1526; display: block; margin-bottom: 2px; }
+
+  .footer { background: #0D1526; padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .footer span { font-size: 13px; color: #9BB3E8; }
+  .footer .handle { font-size: 14px; font-weight: 600; color: #1A56DB; }
+
+  @media print { body { background: #fff; padding: 0; } .container { box-shadow: none; border-radius: 0; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="header-icon"><span>KC</span></div>
+    <div class="header-text">
+      <h1>Roteiro do Reel — v3 Final</h1>
+      <p>Reels Profissionais · @eukalidcarvalho</p>
+    </div>
+  </div>
+
+  <div class="meta">
+    <span><strong>Nicho:</strong> Profissionais Liberais</span>
+    <span><strong>Objetivo:</strong> Awareness + Conversão</span>
+    <span><strong>Tom:</strong> Contrarian</span>
+    <span><strong>Duração:</strong> ~55s</span>
+    <span><strong>Data:</strong> 2026-03-26</span>
+  </div>
+
+  <div class="content">
+
+    <!-- ROTEIRO -->
+    <div class="section">
+      <div class="section-title">Roteiro</div>
+
+      <!-- Hook -->
+      <div class="reel-block">
+        <span class="time-badge">Hook · 0-3s</span>
+        <div class="block-label" style="margin-top:12px">Overlay (texto na tela)</div>
+        <div class="overlay-text">"Você espera indicação. Seu concorrente tem um sistema que traz novos clientes todo dia."</div>
+        <div class="block-label">Script falado</div>
+        <div class="script-text">"Você espera indicação. Seu concorrente tem um sistema que traz novos clientes todo dia."</div>
+        <div class="block-note">🎬 Tom sério, sem sorrir. Desacelerar nas 2 primeiras palavras, depois acelerar o ritmo.</div>
+      </div>
+
+      <!-- Setup -->
+      <div class="reel-block">
+        <span class="time-badge">Setup · 3-8s</span>
+        <div class="script-text" style="margin-top:12px">"Não é futuro. É agora. E vou te mostrar como esse sistema funciona."</div>
+      </div>
+
+      <!-- Delivery -->
+      <div class="reel-block">
+        <span class="time-badge">Delivery · 8-47s</span>
+        <div style="margin-top:14px">
+
+          <div class="point">
+            <div class="point-num">Ponto 1 · 8-15s — Tráfego</div>
+            <div class="point-overlay">R$30/dia = 1.000 pessoas certas</div>
+            <div class="point-script">"Com R$30 por dia no Google Ads, ele aparece pra mil pessoas buscando o que você oferece. Enquanto você espera indicação, ele escolhe quem te encontra."</div>
+          </div>
+
+          <div class="point">
+            <div class="point-num">Ponto 2 · 15-22s — Site</div>
+            <div class="point-overlay">Site que captura — não só apresenta</div>
+            <div class="point-script">"O site dele não é vitrine. É máquina. Captura o contato, mostra autoridade e empurra o visitante pra ação."</div>
+          </div>
+
+          <div class="point highlight">
+            <div class="point-badge">⭐ Ponto principal</div>
+            <div class="point-num">Ponto 3 · 22-42s — Ecossistema de IA</div>
+            <div class="point-overlay">IA que responde, tira dúvida e marca reunião</div>
+            <div class="point-script">"Mas o diferencial mesmo é o ecossistema de IA. O futuro cliente manda mensagem às 23h. O agente responde, tira dúvida sobre honorários, valor da consulta, do projeto — e já agenda a reunião. Tudo automático. Sem você estar online."</div>
+          </div>
+
+          <div class="point">
+            <div class="point-num">Ponto 4 · 42-47s — OAB / CFM / CAU</div>
+            <div class="point-overlay">OAB, CFM e CAU PERMITEM</div>
+            <div class="point-script">"E OAB, CFM e CAU permitem tudo isso. O que proibem é prometer resultado."</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-block">
+        <span class="time-badge">CTA · 47-55s</span>
+        <div class="block-label" style="margin-top:12px">Overlay</div>
+        <div class="overlay-text">"Me siga para mais conteúdos assim."</div>
+        <div class="block-label">Script falado</div>
+        <div class="script-text">"Me segue aqui pra mais conteúdos assim. E se você tiver interesse em montar esse sistema, me manda uma mensagem."</div>
+      </div>
+    </div>
+
+    <!-- LEGENDA -->
+    <div class="section">
+      <div class="section-title">Legenda</div>
+      <div class="caption-box">
+        <div class="caption-hook">Você espera indicação. Seu concorrente tem um sistema que traz novos clientes todo dia.</div>
+        <div class="caption-item">Tráfego pago que aparece pra quem está buscando o que você oferece.</div>
+        <div class="caption-item">Site que captura contato e mostra autoridade.</div>
+        <div class="caption-item">IA que responde, tira dúvida e marca reunião — às 23h, sem você estar online.</div>
+        <div class="caption-item">E sim: OAB, CFM e CAU permitem. O que proibem é prometer resultado.</div>
+        <div class="caption-cta">→ Me segue para mais conteúdos assim. Ou me manda uma mensagem se quiser montar esse sistema.</div>
+      </div>
+    </div>
+
+    <!-- HASHTAGS -->
+    <div class="section">
+      <div class="section-title">Hashtags</div>
+      <div class="hashtag-list">
+        <span class="hashtag">#profissionaisliberais</span>
+        <span class="hashtag">#marketingdigital</span>
+        <span class="hashtag">#trafegopago</span>
+        <span class="hashtag">#captacaodeclientes</span>
+        <span class="hashtag">#advogados</span>
+        <span class="hashtag">#medicos</span>
+        <span class="hashtag">#arquitetos</span>
+        <span class="hashtag">#agentesdia</span>
+        <span class="hashtag">#inteligenciaartificial</span>
+        <span class="hashtag">#marketingparaadvogados</span>
+        <span class="hashtag">#presencadigital</span>
+        <span class="hashtag">#googleads</span>
+        <span class="hashtag">#eukalidcarvalho</span>
+      </div>
+    </div>
+
+    <!-- PRODUÇÃO -->
+    <div class="section">
+      <div class="section-title">Notas de Produção</div>
+      <div class="notes-grid">
+        <div class="note-item"><strong>Câmera</strong>Vertical 9:16, do peito para cima</div>
+        <div class="note-item"><strong>Iluminação</strong>Natural frontal ou ring light — sem sombra</div>
+        <div class="note-item"><strong>Fundo</strong>Escritório ou neutro escuro (Bold Human)</div>
+        <div class="note-item"><strong>Roupa</strong>Camisa ou polo — profissional, direto</div>
+        <div class="note-item"><strong>Áudio</strong>Voz original + lo-fi instrumental baixo (~20%)</div>
+        <div class="note-item"><strong>Subtítulos</strong>Burned-in obrigatórios — Space Grotesk bold</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span>Reels Profissionais · Run 2026-03-26-200000 · v3 Final</span>
+    <span class="handle">@eukalidcarvalho</span>
+  </div>
+
+</div>
+</body>
+</html>

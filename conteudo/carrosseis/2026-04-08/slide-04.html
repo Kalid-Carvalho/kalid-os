@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Slide 04 — CTA</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; justify-content: center; align-items: flex-start; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Space Grotesk', sans-serif;
+    background: #0D1526;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* Background accent */
+  .bg-glow {
+    position: absolute;
+    top: -200px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 900px;
+    background: radial-gradient(circle, rgba(26,86,219,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .bg-glow-bottom {
+    position: absolute;
+    bottom: -200px;
+    right: -100px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, rgba(26,86,219,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* Top bar */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 48px;
+    position: relative;
+    z-index: 2;
+  }
+  .top-handle { font-size: 19px; font-weight: 500; color: rgba(255,255,255,0.4); }
+
+  /* Main content */
+  .main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 64px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .eyebrow {
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 24px;
+  }
+
+  .headline {
+    font-size: 76px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.02;
+    letter-spacing: -2.5px;
+    margin-bottom: 32px;
+  }
+  .headline span {
+    color: #9BB3E8;
+  }
+
+  .divider-line {
+    width: 64px;
+    height: 4px;
+    background: #1A56DB;
+    border-radius: 2px;
+    margin-bottom: 32px;
+  }
+
+  .body-text {
+    font-size: 30px;
+    color: rgba(255,255,255,0.55);
+    font-weight: 400;
+    line-height: 1.5;
+    margin-bottom: 56px;
+    max-width: 820px;
+  }
+  .body-text strong {
+    color: rgba(255,255,255,0.85);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  /* CTA box */
+  .cta-box {
+    background: rgba(26,86,219,0.1);
+    border: 1px solid rgba(26,86,219,0.35);
+    border-left: 5px solid #1A56DB;
+    border-radius: 8px;
+    padding: 36px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .cta-box-text strong {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .cta-box-text span {
+    font-size: 22px;
+    color: rgba(255,255,255,0.5);
+  }
+  .cta-arrow {
+    font-size: 42px;
+    color: #1A56DB;
+    flex-shrink: 0;
+  }
+
+  /* Bottom author */
+  .bottom {
+    padding: 0 64px 52px;
+    position: relative;
+    z-index: 2;
+    border-top: 1px solid #1E2E4A;
+    padding-top: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1A56DB;
+    border: 2px solid #2563EB;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+  }
+  .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 22px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .author-handle { font-size: 18px; color: #9BB3E8; }
+
+  .slide-num {
+    font-size: 20px;
+    color: rgba(255,255,255,0.25);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg-glow"></div>
+  <div class="bg-glow-bottom"></div>
+
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+  </div>
+
+  <div class="main">
+<div class="eyebrow">Marketing Jurídico</div>
+    <div class="headline">Seu escritório<br />merece um site<br /><span>que trabalha</span><br />por você.</div>
+    <div class="divider-line"></div>
+    <div class="body-text">
+      Faço sites de alta conversão para <strong>escritórios de advocacia.</strong><br />
+      Dentro do que a OAB permite.<br />
+      Sem virar influencer.
+    </div>
+    <div class="cta-box">
+      <div class="cta-box-text">
+        <strong>Me manda uma mensagem</strong>
+        <span>Vamos conversar sobre o seu escritório</span>
+      </div>
+      <div class="cta-arrow">→</div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div class="author">
+      <div class="avatar">
+        <img src="../2026-04-07/avatar.jpg" onerror="this.style.display='none'" />K
+      </div>
+      <div>
+        <div class="author-name">Kalid Carvalho ✓</div>
+        <div class="author-handle">@eukalidcarvalho</div>
+      </div>
+    </div>
+    <div class="slide-num">4 / 4</div>
+  </div>
+</div>
+</body>
+</html>

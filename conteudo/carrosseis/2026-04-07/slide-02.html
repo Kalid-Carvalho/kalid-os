@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Slide 02</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f0f0f0; display: flex; justify-content: center; align-items: flex-start; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    background: #f8f8f6;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Top bar */
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 52px;
+    border-bottom: 1.5px solid #e0e0dc;
+    flex-shrink: 0;
+  }
+  .top-handle { font-size: 19px; font-weight: 500; color: #999; }
+  .top-center { font-size: 19px; font-weight: 500; color: #999; }
+  .top-right { font-size: 19px; font-weight: 400; color: #bbb; }
+
+  /* Content area */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 52px 64px 0;
+  }
+
+  .slide-title {
+    font-size: 60px;
+    font-weight: 700;
+    color: #0d1526;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 36px;
+  }
+
+  .body-text {
+    font-size: 32px;
+    color: #444;
+    line-height: 1.55;
+    font-weight: 400;
+    margin-bottom: 40px;
+  }
+
+  .body-text strong {
+    color: #0d1526;
+    font-weight: 600;
+  }
+
+  /* Data box visual */
+  .data-box {
+    background: #0d1526;
+    border-radius: 16px;
+    padding: 44px 48px;
+    margin-top: auto;
+    margin-bottom: 0;
+  }
+
+  .data-label {
+    font-size: 18px;
+    font-weight: 600;
+    color: #9BB3E8;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 24px;
+  }
+
+  .data-stat {
+    font-size: 80px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 12px;
+  }
+
+  .data-desc {
+    font-size: 28px;
+    color: #9BB3E8;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  /* Bottom bar */
+  .bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 52px;
+    border-top: 1.5px solid #e0e0dc;
+    flex-shrink: 0;
+    margin-top: 40px;
+  }
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #1A56DB;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+  .avatar img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 19px; font-weight: 700; color: #0d1526; }
+  .author-handle { font-size: 16px; color: #999; }
+  .swipe { font-size: 19px; color: #999; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-center">Marketing Jurídico</span>
+    <span class="top-right">© 2026</span>
+  </div>
+
+  <div class="content">
+    <div class="slide-title">O lead chega. E some antes de você atender.</div>
+
+    <div class="body-text">
+      Quando alguém busca um advogado online, <strong>a janela de decisão é curta.</strong> O primeiro escritório a responder leva a causa. O segundo não existe.
+      <br><br>
+      A maioria dos escritórios não tem processo de resposta rápida. Nenhum bot, nenhuma automação, nenhum follow-up. O lead manda mensagem às 22h e encontra silêncio.
+    </div>
+
+    <div class="data-box">
+      <div class="data-label">Comportamento do lead</div>
+      <div class="data-stat">&lt; 5 min</div>
+      <div class="data-desc">é a janela de decisão. Depois disso, o lead já mandou mensagem para outro escritório.</div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar">
+        <img src="avatar.jpg" onerror="this.style.display='none'" />K
+      </div>
+      <div>
+        <div class="author-name">Kalid Carvalho ✓</div>
+        <div class="author-handle">@eukalidcarvalho</div>
+      </div>
+    </div>
+    <span class="swipe">Arrasta para o lado ▶</span>
+  </div>
+</div>
+</body>
+</html>

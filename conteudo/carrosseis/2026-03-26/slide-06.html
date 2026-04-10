@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 06 — A Pergunta Real</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; justify-content: center; align-items: flex-start; }
+  .canvas {
+    width: 1080px;
+    height: 1440px;
+    background: #0A0A0A;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tw-header {
+    width: 100%;
+    height: 120px;
+    background: #0A0A0A;
+    border-bottom: 1px solid #1E1E1E;
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .tw-avatar {
+    width: 60px; height: 60px;
+    border-radius: 50%;
+    background: #1A1A1A;
+    border: 2px solid #333;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .tw-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .tw-name-row { display: flex; align-items: center; gap: 8px; }
+  .tw-name { font-size: 22px; font-weight: 700; color: #FFFFFF; }
+  .tw-check { font-size: 16px; color: #4A9EFF; font-weight: 700; }
+  .tw-handle { font-size: 18px; color: #888888; }
+  .tw-menu { font-size: 24px; color: #555555; letter-spacing: 2px; }
+
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 48px 80px 100px 80px;
+    gap: 32px;
+  }
+
+  .label {
+    font-size: 14px;
+    color: #F5C842;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  .strike-text {
+    font-size: 48px;
+    color: #444444;
+    text-decoration: line-through;
+    text-decoration-color: #555555;
+    font-weight: 600;
+    line-height: 1.25;
+  }
+
+  .gap-visual {
+    height: 24px;
+  }
+
+  .impact-white {
+    font-size: 48px;
+    color: #FFFFFF;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .impact-yellow {
+    font-size: 48px;
+    color: #F5C842;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .divider-with-label {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .divider-dark {
+    width: 100%;
+    height: 1px;
+    background: #2A2A2A;
+  }
+  .system-label {
+    font-size: 14px;
+    color: #F5C842;
+    letter-spacing: 3px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  /* Formula chips */
+  .formula {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+  .chip {
+    border: 1px solid #333333;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #FFFFFF;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+  .chip-op {
+    font-size: 24px;
+    color: #F5C842;
+    font-weight: 700;
+  }
+  .chip-result {
+    border: 1px solid #F5C842;
+    padding: 10px 16px;
+    border-radius: 4px;
+    font-size: 20px;
+    color: #F5C842;
+    font-weight: 700;
+    white-space: nowrap;
+  }
+
+  .arrasta {
+    position: absolute;
+    bottom: 40px;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 20px;
+    color: #555555;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+  .watermark {
+    position: absolute;
+    bottom: 40px;
+    right: 48px;
+    font-size: 22px;
+    color: #555555;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <div class="tw-header">
+    <div class="tw-avatar"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>
+    <div class="tw-info">
+      <div class="tw-name-row">
+        <span class="tw-name">Kalid Carvalho</span>
+        <span class="tw-check">✓</span>
+      </div>
+      <div class="tw-handle">@eukalidcarvalho</div>
+    </div>
+    <div class="tw-menu">···</div>
+  </div>
+
+  <div class="main-content">
+    <div class="label">A PERGUNTA CERTA</div>
+
+    <div>
+      <div class="strike-text">IA vai substituir</div>
+      <div class="strike-text">meu negócio?</div>
+    </div>
+
+    <div class="gap-visual"></div>
+
+    <div>
+      <div class="impact-white">O concorrente que usa IA</div>
+      <div class="impact-yellow">vai roubar meus clientes?</div>
+    </div>
+
+    <div class="divider-with-label">
+      <div class="divider-dark"></div>
+      <div class="system-label">O SISTEMA</div>
+    </div>
+
+    <div class="formula">
+      <div class="chip">Site que converte</div>
+      <div class="chip-op">+</div>
+      <div class="chip">Tráfego qualificado</div>
+      <div class="chip-op">+</div>
+      <div class="chip">Agente IA</div>
+      <div class="chip-op">=</div>
+      <div class="chip-result">Máquina de clientes</div>
+    </div>
+  </div>
+
+  <div class="arrasta">ARRASTA PARA O LADO ▶</div>
+  <div class="watermark">@eukalidcarvalho</div>
+</div>
+</body>
+</html>

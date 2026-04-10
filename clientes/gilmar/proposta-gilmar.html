@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=900">
+<title>Proposta Comercial — Gilmar Araujo Advocacia</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  @page { margin: 0; size: A4; }
+
+  :root {
+    --dark:   #0D1526;
+    --blue:   #1A56DB;
+    --white:  #FFFFFF;
+    --muted:  #9BB3E8;
+    --border: #1E2E4A;
+    --card:   #111D33;
+    --ph:     1020px;
+  }
+
+  body {
+    width: 900px;
+    background: #0D1526;
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    color: var(--white);
+  }
+
+  /* ─── PÁGINA ─── */
+  .page {
+    width: 900px;
+    height: var(--ph);
+    background: var(--dark);
+    padding: 56px 72px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    page-break-after: always;
+    break-after: page;
+  }
+  .page:last-child { page-break-after: avoid; break-after: avoid; }
+
+  @media print {
+    body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .page { page-break-after: always; }
+    .page:last-child { page-break-after: avoid; }
+  }
+
+  /* ─── HEADER ─── */
+  .doc-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-bottom: 32px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 40px;
+    flex-shrink: 0;
+  }
+  .logo-name { font-size: 20px; font-weight: 700; }
+  .logo-sub  { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+  .doc-label { font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); text-align: right; }
+  .doc-date  { font-size: 13px; color: var(--muted); margin-top: 3px; text-align: right; }
+
+  /* ─── MINI HEADER (páginas internas) ─── */
+  .mini-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 36px;
+    flex-shrink: 0;
+  }
+  .mini-brand { font-size: 15px; font-weight: 700; color: var(--muted); }
+  .mini-section {
+    font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--blue); background: rgba(26,86,219,0.12);
+    border: 1px solid rgba(26,86,219,0.3); padding: 4px 12px; border-radius: 4px;
+  }
+
+  /* ─── SEÇÃO ─── */
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase;
+    color: var(--blue); margin-bottom: 12px;
+  }
+  .accent-line { width: 40px; height: 3px; background: var(--blue); border-radius: 2px; margin-bottom: 24px; }
+
+  /* ─── HERO ─── */
+  .hero-tag {
+    display: inline-block;
+    background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.3);
+    color: var(--blue); font-size: 10px; font-weight: 600;
+    letter-spacing: 3px; text-transform: uppercase; padding: 5px 14px; border-radius: 4px;
+    margin-bottom: 20px;
+  }
+  .hero-title { font-size: 38px; font-weight: 700; line-height: 1.15; letter-spacing: -0.5px; }
+  .hero-title span { color: var(--blue); }
+  .hero-sub { font-size: 16px; color: var(--muted); line-height: 1.6; margin-top: 14px; }
+
+  /* ─── DIAGNÓSTICO ─── */
+  .diag-box {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 28px 32px; flex: 1;
+  }
+  .diag-row {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 16px 0; border-bottom: 1px solid var(--border);
+  }
+  .diag-row:first-child { padding-top: 0; }
+  .diag-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .diag-dot { width: 7px; height: 7px; background: var(--blue); border-radius: 50%; margin-top: 7px; flex-shrink: 0; }
+  .diag-text { font-size: 16px; font-weight: 500; line-height: 1.5; }
+  .diag-text span { color: var(--muted); font-weight: 400; }
+
+  /* ─── ENTREGÁVEIS ─── */
+  .deliver-grid { display: flex; flex-direction: column; justify-content: space-between; flex: 1; }
+  .deliver-item {
+    display: flex; gap: 18px; align-items: center;
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 10px; padding: 22px 24px;
+  }
+  .deliver-icon {
+    width: 40px; height: 40px; background: rgba(26,86,219,0.15);
+    border: 1px solid rgba(26,86,219,0.3); border-radius: 9px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; flex-shrink: 0;
+  }
+  .deliver-title { font-size: 16px; font-weight: 700; margin-bottom: 5px; }
+  .deliver-desc  { font-size: 13px; color: var(--muted); line-height: 1.5; }
+  .deliver-badge {
+    display: inline-block; font-size: 9px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; padding: 3px 9px; border-radius: 4px; margin-top: 8px;
+  }
+  .badge-blue  { background: rgba(26,86,219,0.15); border: 1px solid rgba(26,86,219,0.3); color: var(--blue); }
+  .badge-green { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.35); color: #86EFAC; }
+
+  /* ─── PLANOS ─── */
+  .plan-card {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px 28px;
+  }
+  .plan-card.featured { background: rgba(26,86,219,0.08); border-color: var(--blue); }
+  .plan-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+  .plan-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
+  .plan-label.blue { color: var(--blue); }
+  .plan-name  { font-size: 20px; font-weight: 700; }
+  .plan-badge {
+    background: var(--blue); color: var(--white);
+    font-size: 9px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 4px; white-space: nowrap; margin-top: 2px;
+  }
+  .plan-price { font-size: 30px; font-weight: 700; margin-bottom: 4px; }
+  .plan-price .sub { font-size: 14px; font-weight: 400; color: var(--muted); }
+  .plan-price-note { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+  .plan-divider { height: 1px; background: var(--border); margin-bottom: 12px; }
+  .plan-divider.blue { background: rgba(26,86,219,0.3); }
+  .plan-item { display: flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 500; color: var(--muted); padding: 7px 0; border-bottom: 1px solid var(--border); }
+  .plan-item:last-child { border-bottom: none; }
+  .plan-item::before { content: "→"; color: var(--blue); font-weight: 700; flex-shrink: 0; }
+  .plan-item.w { color: var(--white); }
+
+  /* ─── BÔNUS / PAGAMENTO ─── */
+  .info-box {
+    border-radius: 12px; padding: 20px 28px;
+    display: flex; align-items: center; gap: 18px;
+  }
+  .bonus-box { background: rgba(234,179,8,0.07); border: 1px solid rgba(234,179,8,0.3); }
+  .pay-box   { background: var(--card); border: 1px solid var(--border); }
+  .info-icon { font-size: 26px; flex-shrink: 0; }
+  .info-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 4px; }
+  .bonus-box .info-label { color: #FDE047; }
+  .pay-box   .info-label { color: var(--blue); }
+  .info-title { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+  .info-desc  { font-size: 12px; color: var(--muted); }
+
+  /* ─── PRÓXIMOS PASSOS ─── */
+  .step-row { display: flex; align-items: flex-start; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .step-row:last-child { border-bottom: none; }
+  .step-num {
+    width: 34px; height: 34px; background: var(--blue); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px; font-weight: 700; flex-shrink: 0;
+  }
+  .step-title { font-size: 16px; font-weight: 700; margin-bottom: 3px; }
+  .step-desc  { font-size: 13px; color: var(--muted); }
+
+  /* ─── FOOTER ─── */
+  .footer {
+    border-top: 1px solid var(--border); padding-top: 24px; margin-top: auto;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .footer-brand { font-size: 17px; font-weight: 700; }
+  .footer-brand span { font-weight: 300; }
+  .footer-tag { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+  .footer-right { text-align: right; }
+  .footer-label { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 3px; }
+  .footer-phone { font-size: 17px; font-weight: 700; }
+  .footer-site  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ -->
+<!-- PÁGINA 1 — CAPA + DIAGNÓSTICO -->
+<!-- ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="doc-header">
+    <div>
+      <div class="logo-name">KALID CARVALHO</div>
+      <div class="logo-sub">Sites e Agentes de IA</div>
+    </div>
+    <div>
+      <div class="doc-label">Proposta Comercial</div>
+      <div class="doc-date">2 de abril de 2026</div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <div style="margin-bottom: 36px; flex-shrink: 0;">
+    <div class="hero-tag">Para: Dr. Gilmar Araujo · Advocacia Bancária · Manaus</div>
+    <div class="hero-title">Sistema de captação de clientes<br/>de <span>alto ticket</span> para advocacia bancária</div>
+    <div class="hero-sub">Com base na nossa conversa: você já tem 567 avaliações e um escritório consolidado. Falta o sistema que converte esse histórico em leads qualificados enquanto você conduz os processos.</div>
+  </div>
+
+  <!-- Diagnóstico -->
+  <div class="section-label">Diagnóstico — o que identificamos</div>
+  <div class="accent-line"></div>
+
+  <div class="diag-box">
+    <div class="diag-row">
+      <div class="diag-dot"></div>
+      <div class="diag-text">Captação atual via boca a boca <span>— dependente de indicação, sem previsibilidade</span></div>
+    </div>
+    <div class="diag-row">
+      <div class="diag-dot"></div>
+      <div class="diag-text">Site sem landing page focada em causas bancárias de alto ticket <span>— visitante chega e não encontra o próximo passo</span></div>
+    </div>
+    <div class="diag-row">
+      <div class="diag-dot"></div>
+      <div class="diag-text">Sem qualificação de lead antes de chegar em você <span>— tempo perdido com prospects fora do perfil</span></div>
+    </div>
+    <div class="diag-row">
+      <div class="diag-dot"></div>
+      <div class="diag-text">567 avaliações 5 estrelas no Google <span>— prova social de alto nível ainda não sendo usada como ativo de captação</span></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- PÁGINA 2 — ENTREGÁVEIS        -->
+<!-- ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="mini-header">
+    <div class="mini-brand">Kalid Carvalho</div>
+    <div class="mini-section">O que será entregue</div>
+  </div>
+
+  <div class="deliver-grid">
+
+    <div class="deliver-item">
+      <div class="deliver-icon">🎯</div>
+      <div>
+        <div class="deliver-title">Landing Page Bancária</div>
+        <div class="deliver-desc">Página de alta conversão focada em causas bancárias (revisão de contratos, dívidas, negativação indevida). Formulário qualificado por tipo de causa. CTAs diretos para WhatsApp. Construída com SEO e PageSpeed 90+ para Google Ads.</div>
+        <span class="deliver-badge badge-blue">Entrega em 7 dias úteis</span>
+      </div>
+    </div>
+
+    <div class="deliver-item">
+      <div class="deliver-icon">🤖</div>
+      <div>
+        <div class="deliver-title">Agente de IA no WhatsApp</div>
+        <div class="deliver-desc">Bot que qualifica o lead antes de chegar em você: identifica o tipo de causa, avalia viabilidade e agenda a consulta. Você só fala com quem tem caso real e perfil de alto ticket.</div>
+        <span class="deliver-badge badge-blue">Ativado junto com a LP</span>
+      </div>
+    </div>
+
+    <div class="deliver-item">
+      <div class="deliver-icon">📣</div>
+      <div>
+        <div class="deliver-title">Google Ads Gerenciado</div>
+        <div class="deliver-desc">Campanhas de pesquisa para palavras-chave de advocacia bancária em Manaus. Rastreamento de conversões configurado. Otimização mensal com relatório de performance e custo por lead.</div>
+        <span class="deliver-badge badge-green">Mensal</span>
+      </div>
+    </div>
+
+    <div class="deliver-item">
+      <div class="deliver-icon">✉️</div>
+      <div>
+        <div class="deliver-title">Email Profissional</div>
+        <div class="deliver-desc">Configuração de email @gilmararaujoadvocacia.com.br. Remove dependência de Gmail pessoal e aumenta credibilidade nas comunicações com clientes e parceiros.</div>
+        <span class="deliver-badge badge-blue">Incluso no setup</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- PÁGINA 3 — PLANOS 1 e 2       -->
+<!-- ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="mini-header">
+    <div class="mini-brand">Kalid Carvalho</div>
+    <div class="mini-section">Investimento</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px; flex: 1;">
+
+    <!-- Plano 1 -->
+    <div class="plan-card">
+      <div class="plan-top">
+        <div>
+          <div class="plan-label">Plano 1 · Entrada</div>
+          <div class="plan-name">LP Bancária + Email Profissional</div>
+        </div>
+      </div>
+      <div class="plan-price">R$ 1.400 <span class="sub">· único</span></div>
+      <div class="plan-price-note">50% na entrada · 50% na entrega · Pix ou transferência</div>
+      <div class="plan-divider"></div>
+      <div class="plan-item">Landing page bancária com formulário qualificado</div>
+      <div class="plan-item">Email @gilmararaujoadvocacia.com.br</div>
+      <div class="plan-item">CTAs de alta conversão + botão WhatsApp</div>
+      <div class="plan-item">SEO básico + PageSpeed otimizado</div>
+      <div class="plan-item">Entrega em 7 dias úteis</div>
+    </div>
+
+    <!-- Plano 2 -->
+    <div class="plan-card featured">
+      <div class="plan-top">
+        <div>
+          <div class="plan-label blue">Plano 2 · Recorrente</div>
+          <div class="plan-name">Ecossistema Autônomo</div>
+        </div>
+        <div class="plan-badge">Recomendado</div>
+      </div>
+      <div class="plan-price">R$ 3.000 <span class="sub">/ mês</span></div>
+      <div class="plan-price-note">LP bancária inclusa no 1º mês · sem setup separado</div>
+      <div class="plan-divider blue"></div>
+      <div class="plan-item w">Tudo do Plano 1 incluso</div>
+      <div class="plan-item w">Google Ads gerenciado (você coloca a verba, eu gerencio)</div>
+      <div class="plan-item w">Agente de IA no WhatsApp para qualificação de leads</div>
+      <div class="plan-item w">Rastreamento de conversões avançado</div>
+      <div class="plan-item w">Relatório mensal de performance e custo por lead</div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- PÁGINA 4 — PLANO 3 + BÔNUS    -->
+<!-- ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="mini-header">
+    <div class="mini-brand">Kalid Carvalho</div>
+    <div class="mini-section">Investimento</div>
+  </div>
+
+  <div style="display: flex; flex-direction: column; gap: 16px;">
+
+    <!-- Plano 3 -->
+    <div class="plan-card">
+      <div class="plan-top">
+        <div>
+          <div class="plan-label">Plano 3 · Completo</div>
+          <div class="plan-name">Redesign + LP + Ecossistema</div>
+        </div>
+      </div>
+      <div style="margin-bottom: 4px;">
+        <span style="font-size:26px; font-weight:700;">R$ 4.500</span>
+        <span style="font-size:14px; color:var(--muted);"> · único</span>
+        <span style="font-size:26px; font-weight:700; color:var(--blue);"> + R$ 2.000</span>
+        <span style="font-size:14px; color:var(--muted);"> / mês</span>
+      </div>
+      <div class="plan-price-note">Ecossistema com R$ 1.000 de desconto/mês em relação ao Plano 2</div>
+      <div class="plan-divider"></div>
+      <div class="plan-item">Redesign completo do site institucional</div>
+      <div class="plan-item">Landing page bancária dedicada</div>
+      <div class="plan-item">Identidade visual atualizada</div>
+      <div class="plan-item">Ecossistema Autônomo completo incluso</div>
+    </div>
+
+    <!-- Bônus -->
+    <div class="info-box bonus-box">
+      <div class="info-icon">🎁</div>
+      <div>
+        <div class="info-label">Bônus · Fechar essa semana</div>
+        <div class="info-title">30 dias de Google Ads gerenciado sem custo de gestão</div>
+        <div class="info-desc">Você coloca a verba de anúncio, eu gerencio sem cobrar gestão no 1º mês. Válido para qualquer plano fechado até sexta-feira, 04/04.</div>
+      </div>
+    </div>
+
+    <!-- Pagamento -->
+    <div class="info-box pay-box">
+      <div class="info-icon">💳</div>
+      <div>
+        <div class="info-label">Forma de pagamento</div>
+        <div class="info-title">50% na entrada · 50% na entrega</div>
+        <div class="info-desc">Pix ou transferência bancária · Sem burocracia</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ROI box -->
+  <div style="background: rgba(26,86,219,0.08); border: 1px solid rgba(26,86,219,0.25); border-radius: 12px; padding: 20px 28px;">
+    <div style="font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--blue); margin-bottom: 10px;">Por que faz sentido</div>
+    <div style="font-size: 15px; font-weight: 500; color: var(--white); line-height: 1.6;">Uma única causa bancária de alto ticket — honorários de R$ 3.000 a R$ 15.000 — paga o sistema inteiro do primeiro mês. O sistema continua captando leads enquanto você trabalha nos processos.</div>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════ -->
+<!-- PÁGINA 5 — PRÓXIMOS PASSOS    -->
+<!-- ═══════════════════════════════ -->
+<div class="page">
+
+  <div class="mini-header">
+    <div class="mini-brand">Kalid Carvalho</div>
+    <div class="mini-section">Próximos passos</div>
+  </div>
+
+  <div style="margin-bottom: 32px;">
+    <div class="section-label">O que acontece agora</div>
+    <div class="accent-line"></div>
+  </div>
+
+  <div>
+    <div class="step-row">
+      <div class="step-num">1</div>
+      <div>
+        <div class="step-title">Você escolhe o plano</div>
+        <div class="step-desc">Me responde aqui no WhatsApp qual caminho faz mais sentido pro seu momento</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">2</div>
+      <div>
+        <div class="step-title">Reunião presencial em Manaus</div>
+        <div class="step-desc">Alinhamos os detalhes da LP, o perfil de causa que você quer atrair e a estratégia de Google Ads</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">3</div>
+      <div>
+        <div class="step-title">Assinatura + entrada</div>
+        <div class="step-desc">Contrato simples, 50% de entrada e iniciamos em 24h</div>
+      </div>
+    </div>
+    <div class="step-row">
+      <div class="step-num">4</div>
+      <div>
+        <div class="step-title">LP no ar em 7 dias úteis</div>
+        <div class="step-desc">Agente de IA e Google Ads ativados junto. Sistema funcionando antes do fim do mês</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="flex: 1;"></div>
+
+  <div class="footer">
+    <div>
+      <div class="footer-brand">KALID <span>CARVALHO</span></div>
+      <div class="footer-tag">Sites e Agentes de IA</div>
+    </div>
+    <div class="footer-right">
+      <div class="footer-label">WhatsApp</div>
+      <div class="footer-phone">(92) 99192-3266</div>
+      <div class="footer-site">grovw.com.br</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

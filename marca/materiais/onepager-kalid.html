@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --dark:   #0D1526;
+    --blue:   #1A56DB;
+    --white:  #FFFFFF;
+    --muted:  #9BB3E8;
+    --border: #1E2E4A;
+    --card:   #111D33;
+  }
+
+  body {
+    width: 794px;
+    height: 1123px;
+    overflow: hidden;
+    background: var(--dark);
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+  }
+
+  /* HEADER */
+  .header {
+    padding: 32px 52px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+
+  .name { font-size: 38px; font-weight: 700; letter-spacing: -1px; line-height: 1; }
+  .name span { color: var(--blue); }
+  .tagline { font-size: 13px; color: var(--muted); margin-top: 6px; }
+
+  .contact-block { display: flex; gap: 24px; align-items: center; }
+  .contact-item { display: flex; flex-direction: column; align-items: flex-end; gap: 2px; }
+  .contact-label { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  .contact-value { font-size: 14px; font-weight: 600; }
+  .divider-v { width: 1px; height: 28px; background: var(--border); }
+
+  /* MIDDLE: skills + stack lado a lado */
+  .middle {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+
+  .col-skills {
+    flex: 1;
+    padding: 20px 28px 20px 52px;
+    border-right: 1px solid var(--border);
+  }
+
+  .col-stack {
+    flex: 1;
+    padding: 20px 52px 20px 28px;
+  }
+
+  .skill-item { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .skill-item:last-child { margin-bottom: 0; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue); margin-top: 7px; flex-shrink: 0; }
+  .skill-name { font-size: 13px; font-weight: 600; margin-bottom: 1px; }
+  .skill-desc { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 5px; padding: 4px 11px;
+    font-size: 11px; font-weight: 500; color: var(--muted);
+  }
+  .tag.blue { border-color: rgba(26,86,219,0.4); color: #93B4F8; background: rgba(26,86,219,0.08); }
+  .tag.green { border-color: rgba(16,185,129,0.3); color: #34D399; background: rgba(16,185,129,0.07); }
+
+  /* PORTFOLIO */
+  .portfolio {
+    flex: 1;
+    padding: 20px 52px 24px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .cases { display: flex; gap: 14px; flex: 1; min-height: 0; }
+
+  .case-card {
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .case-img { flex: 1; overflow: hidden; min-height: 0; }
+  .case-img img { width: 100%; height: auto; display: block; }
+
+  .case-info {
+    padding: 10px 14px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+  }
+  .case-name { font-size: 12px; font-weight: 600; }
+  .case-url  { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .badge {
+    font-size: 8px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 20px;
+    background: rgba(16,185,129,0.12); color: #34D399;
+    border: 1px solid rgba(16,185,129,0.25); flex-shrink: 0;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div>
+      <div class="name">Kalid <span>Carvalho</span></div>
+      <div class="tagline">Analista de Operações Tecnológicas &amp; Desenvolvedor Web</div>
+    </div>
+    <div class="contact-block">
+      <div class="contact-item">
+        <div class="contact-label">WhatsApp</div>
+        <div class="contact-value">(92) 99192-3266</div>
+      </div>
+      <div class="divider-v"></div>
+      <div class="contact-item">
+        <div class="contact-label">Site</div>
+        <div class="contact-value">grovw.com.br</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MIDDLE: skills + stack -->
+  <div class="middle">
+
+    <div class="col-skills">
+      <div class="label">O que eu entrego</div>
+      <div class="skill-item">
+        <div class="dot"></div>
+        <div>
+          <div class="skill-name">Sites de alta conversão</div>
+          <div class="skill-desc">LPs e sites otimizados para gerar leads qualificados</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="dot"></div>
+        <div>
+          <div class="skill-name">Infraestrutura &amp; T.I</div>
+          <div class="skill-desc">Windows Server, redes, câmeras, suporte técnico</div>
+        </div>
+      </div>
+      <div class="skill-item">
+        <div class="dot"></div>
+        <div>
+          <div class="skill-name">Tráfego &amp; Ecossistema digital</div>
+          <div class="skill-desc">Google Ads + site + automação integrados</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-stack">
+      <div class="label">Stack técnico</div>
+      <div class="tags">
+        <div class="tag green">Windows Server</div>
+        <div class="tag green">Infraestrutura T.I</div>
+        <div class="tag green">Redes &amp; Câmeras</div>
+        <div class="tag blue">WordPress</div>
+        <div class="tag blue">Elementor Pro</div>
+        <div class="tag blue">Google Ads</div>
+        <div class="tag blue">Meta Ads</div>
+        <div class="tag">SEO On-page</div>
+        <div class="tag">Analytics 4</div>
+        <div class="tag">PageSpeed 90+</div>
+        <div class="tag">Automações IA</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PORTFOLIO -->
+  <div class="portfolio">
+    <div class="label">Portfolio — sites ativos</div>
+    <div class="cases">
+
+      <div class="case-card">
+        <div class="case-img"><img src="screenshot-sanches.png?v=20" alt="Sanches"></div>
+        <div class="case-info">
+          <div>
+            <div class="case-name">Sanches &amp; Associados</div>
+            <div class="case-url">sancheseassociados.grovw.com.br</div>
+          </div>
+          <div class="badge">No ar</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-img"><img src="screenshot-buitrago.png?v=21" alt="Buitrago"></div>
+        <div class="case-info">
+          <div>
+            <div class="case-name">Buitrago &amp; Pordeus</div>
+            <div class="case-url">buitragoepordeus.grovw.com.br</div>
+          </div>
+          <div class="badge">No ar</div>
+        </div>
+      </div>
+
+      <div class="case-card">
+        <div class="case-img"><img src="screenshot-advotary.png" alt="Advotary"></div>
+        <div class="case-info">
+          <div>
+            <div class="case-name">Advotary</div>
+            <div class="case-url">advotary.grovw.com.br</div>
+          </div>
+          <div class="badge">No ar</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+</html>

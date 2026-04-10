@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Slide 01 — Cover Antes/Depois</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; justify-content: center; align-items: flex-start; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Space Grotesk', sans-serif;
+    background: #0D1526;
+  }
+
+  /* Split panels */
+  .panel {
+    position: absolute;
+    top: 0;
+    width: 540px;
+    height: 100%;
+    overflow: hidden;
+  }
+  .panel-left { left: 0; }
+  .panel-right { right: 0; }
+
+  .panel img {
+    width: 100%;
+    height: calc(100% + 60px);
+    object-fit: cover;
+    object-position: top center;
+    margin-top: -60px;
+  }
+
+  /* Overlays */
+  .panel-left::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0.45) 0%,
+      rgba(0,0,0,0.3) 40%,
+      rgba(0,0,0,0.75) 75%,
+      rgba(0,0,0,0.95) 100%
+    );
+  }
+  .panel-right::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+      rgba(13,21,38,0.35) 0%,
+      rgba(13,21,38,0.2) 40%,
+      rgba(13,21,38,0.7) 75%,
+      rgba(13,21,38,0.95) 100%
+    );
+  }
+
+  /* Divider */
+  .divider {
+    position: absolute;
+    left: 540px;
+    top: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom,
+      transparent 0%,
+      #1A56DB 20%,
+      #1A56DB 80%,
+      transparent 100%
+    );
+    z-index: 10;
+    transform: translateX(-50%);
+  }
+
+  .divider-icon {
+    position: absolute;
+    left: 50%;
+    top: 44%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    background: #1A56DB;
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: -1px;
+    border: 3px solid #0D1526;
+  }
+
+  /* Labels ANTES / DEPOIS */
+  .label {
+    position: absolute;
+    top: 100px;
+    z-index: 15;
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    padding: 8px 20px;
+    border-radius: 4px;
+  }
+  .label-antes {
+    left: 32px;
+    background: rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.15);
+  }
+  .label-depois {
+    right: 32px;
+    background: rgba(26,86,219,0.25);
+    color: #9BB3E8;
+    border: 1px solid rgba(26,86,219,0.4);
+  }
+
+  /* Top bar */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 48px;
+    z-index: 20;
+  }
+  .top-handle {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.5);
+  }
+  .top-right {
+    font-size: 20px;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* Bottom */
+  .bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0 64px 52px;
+    z-index: 20;
+  }
+
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #1A56DB;
+    border: 2px solid #2563EB;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    position: relative;
+  }
+  .avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 21px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .author-handle { font-size: 17px; color: #9BB3E8; }
+
+  .tag {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 16px;
+  }
+
+  .title {
+    font-size: 66px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.06;
+    letter-spacing: -2px;
+    margin-bottom: 24px;
+  }
+  .title span { color: #9BB3E8; }
+
+  .cta-row {
+    font-size: 21px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+
+  <!-- Split panels -->
+  <div class="panel panel-left">
+    <img src="../../../dados/redesign antigo/advotary-antigo.png" alt="Antes" />
+  </div>
+  <div class="panel panel-right">
+    <img src="../../../dados/redesign antigo/advotary-novo.png" alt="Depois" />
+  </div>
+
+  <!-- Divider -->
+  <div class="divider"></div>
+  <div class="divider-icon">VS</div>
+
+  <!-- Labels -->
+  <div class="label label-antes">Antes</div>
+  <div class="label label-depois">Depois</div>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-right">© 2026</span>
+  </div>
+
+  <!-- Bottom -->
+  <div class="bottom">
+    <div class="author">
+      <div class="avatar">
+        <img src="../2026-04-07/avatar.jpg" onerror="this.style.display='none'" />K
+      </div>
+      <div>
+        <div class="author-name">Kalid Carvalho ✓</div>
+        <div class="author-handle">@eukalidcarvalho</div>
+      </div>
+    </div>
+    <div class="tag">Redesign</div>
+    <div class="title">Mesmo escritório.<br /><span>Site diferente.</span></div>
+    <div class="cta-row">Deslize para ver o que mudou ▶</div>
+  </div>
+
+</div>
+</body>
+</html>

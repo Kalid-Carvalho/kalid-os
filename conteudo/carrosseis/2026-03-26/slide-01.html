@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Slide 01 — Hook</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; justify-content: center; align-items: flex-start; }
+  .canvas {
+    width: 1080px;
+    height: 1440px;
+    background: #0A0A0A;
+    font-family: 'Inter', sans-serif;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Twitter-style header */
+  .tw-header {
+    width: 100%;
+    height: 120px;
+    background: #0A0A0A;
+    border-bottom: 1px solid #1E1E1E;
+    display: flex;
+    align-items: center;
+    padding: 0 48px;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+  .tw-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1A1A1A;
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    font-weight: 700;
+    color: #FFFFFF;
+    flex-shrink: 0;
+  }
+  .tw-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .tw-name-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .tw-name {
+    font-size: 22px;
+    font-weight: 700;
+    color: #FFFFFF;
+  }
+  .tw-check {
+    font-size: 16px;
+    color: #4A9EFF;
+    font-weight: 700;
+  }
+  .tw-handle {
+    font-size: 18px;
+    color: #888888;
+    font-weight: 400;
+  }
+  .tw-menu {
+    font-size: 24px;
+    color: #555555;
+    letter-spacing: 2px;
+    cursor: pointer;
+  }
+
+  /* Main content */
+  .main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 80px;
+    text-align: center;
+    gap: 0;
+  }
+
+  .label-top {
+    font-size: 16px;
+    color: #F5C842;
+    letter-spacing: 4px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 40px;
+  }
+
+  .hero-title {
+    font-size: 82px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1.05;
+    letter-spacing: -2px;
+  }
+
+  .divider-yellow {
+    width: 80px;
+    height: 3px;
+    background: #F5C842;
+    margin: 40px auto;
+  }
+
+  .subtitle {
+    font-size: 34px;
+    color: #888888;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .subtitle-bold {
+    font-size: 34px;
+    color: #FFFFFF;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
+  /* Bottom arrasta */
+  .arrasta {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 20px;
+    color: #555555;
+    letter-spacing: 2px;
+    font-weight: 500;
+  }
+
+  /* Watermark */
+  .watermark {
+    position: absolute;
+    bottom: 40px;
+    right: 48px;
+    font-size: 22px;
+    color: #555555;
+    font-weight: 400;
+  }
+</style>
+</head>
+<body>
+<div class="canvas">
+  <!-- Twitter Header -->
+  <div class="tw-header">
+    <div class="tw-avatar"><img src="avatar.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:50%;" /></div>
+    <div class="tw-info">
+      <div class="tw-name-row">
+        <span class="tw-name">Kalid Carvalho</span>
+        <span class="tw-check">✓</span>
+      </div>
+      <div class="tw-handle">@eukalidcarvalho</div>
+    </div>
+    <div class="tw-menu">···</div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <div class="label-top">AVISO IMPORTANTE</div>
+
+    <div class="hero-title">IA não vai</div>
+    <div class="hero-title">fechar seu negócio.</div>
+
+    <div class="divider-yellow"></div>
+
+    <div class="subtitle">Mas o concorrente que usa</div>
+    <div class="subtitle-bold">agente de IA vai.</div>
+  </div>
+
+  <!-- ARRASTA -->
+  <div class="arrasta">ARRASTA PARA O LADO ▶</div>
+
+  <!-- Watermark -->
+  <div class="watermark">@eukalidcarvalho</div>
+</div>
+</body>
+</html>

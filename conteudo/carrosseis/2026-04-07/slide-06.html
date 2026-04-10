@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Slide 06 — Na prática</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f0f0f0; display: flex; justify-content: center; align-items: flex-start; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    background: #f8f8f6;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 52px;
+    border-bottom: 1.5px solid #e0e0dc;
+    flex-shrink: 0;
+  }
+  .top-handle { font-size: 19px; font-weight: 500; color: #999; }
+  .top-center { font-size: 19px; font-weight: 500; color: #999; }
+  .top-right { font-size: 19px; font-weight: 400; color: #bbb; }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 48px 64px 0;
+  }
+
+  .slide-title {
+    font-size: 54px;
+    font-weight: 700;
+    color: #0d1526;
+    line-height: 1.1;
+    letter-spacing: -1.5px;
+    margin-bottom: 20px;
+  }
+
+  .body-text {
+    font-size: 27px;
+    color: #666;
+    line-height: 1.45;
+    font-weight: 400;
+    margin-bottom: 32px;
+  }
+
+  .phone-wrap {
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    align-items: flex-start;
+  }
+
+  .phone-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .phone {
+    width: 488px;
+    background: #ece5dd;
+    border-radius: 28px;
+    border: 3px solid #1a1a1a;
+    overflow: hidden;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+  }
+
+  .phone-header {
+    background: #075E54;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .phone-avatar {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: #128C7E;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-size: 19px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .phone-name { color: #fff; font-size: 17px; font-weight: 600; line-height: 1.2; }
+  .phone-status { color: rgba(255,255,255,0.65); font-size: 12px; }
+
+  .chat {
+    padding: 16px 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .time-divider {
+    text-align: center;
+    font-size: 11px;
+    color: #777;
+    background: rgba(255,255,255,0.65);
+    padding: 4px 14px;
+    border-radius: 10px;
+    align-self: center;
+    margin: 2px 0 6px;
+    font-family: -apple-system, 'Segoe UI', sans-serif;
+  }
+
+  .msg {
+    max-width: 85%;
+    padding: 10px 13px 5px;
+    border-radius: 10px;
+    font-size: 15.5px;
+    line-height: 1.45;
+    color: #111;
+    font-family: -apple-system, 'Segoe UI', sans-serif;
+  }
+  .msg-time {
+    font-size: 11px;
+    color: rgba(0,0,0,0.38);
+    text-align: right;
+    margin-top: 3px;
+  }
+  .msg-in {
+    background: #fff;
+    align-self: flex-start;
+    border-top-left-radius: 2px;
+  }
+  .msg-out {
+    background: #d9fdd3;
+    align-self: flex-end;
+    border-top-right-radius: 2px;
+  }
+
+  .note {
+    font-size: 22px;
+    color: #1A56DB;
+    font-weight: 600;
+    text-align: center;
+    padding: 20px 28px;
+    background: #f0f4ff;
+    border-radius: 14px;
+    width: 488px;
+  }
+
+  .bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 52px;
+    border-top: 1.5px solid #e0e0dc;
+    flex-shrink: 0;
+    margin-top: 28px;
+  }
+  .author { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: #1A56DB; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .avatar img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 19px; font-weight: 700; color: #0d1526; }
+  .author-handle { font-size: 16px; color: #999; }
+  .swipe { font-size: 19px; color: #999; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-center">Marketing Jurídico</span>
+    <span class="top-right">© 2026</span>
+  </div>
+
+  <div class="content">
+    <div class="slide-title">Como funciona às 22h47 enquanto você dorme.</div>
+
+    <div class="body-text">
+      O agente responde, qualifica e agenda. Sem você estar online.
+    </div>
+
+    <div class="phone-wrap">
+      <div class="phone-col">
+        <div class="phone">
+          <div class="phone-header">
+            <div class="phone-avatar">E</div>
+            <div>
+              <div class="phone-name">Escritório Online</div>
+              <div class="phone-status">online agora</div>
+            </div>
+          </div>
+          <div class="chat">
+            <div class="time-divider">22:47</div>
+            <div class="msg msg-in">
+              Boa noite. Fui demitido sem justa causa essa semana e não recebi nada. O que eu faço?
+              <div class="msg-time">22:47</div>
+            </div>
+            <div class="msg msg-out">
+              Olá! Recebemos sua mensagem. Você tem carteira assinada e contrato formal de trabalho?
+              <div class="msg-time">22:47</div>
+            </div>
+            <div class="msg msg-in">
+              Sim, 3 anos de carteira assinada.
+              <div class="msg-time">22:48</div>
+            </div>
+            <div class="msg msg-out">
+              Entendido. Nosso especialista em direito trabalhista tem horário disponível amanhã às 9h. Posso confirmar?
+              <div class="msg-time">22:48</div>
+            </div>
+            <div class="msg msg-in">
+              Sim, pode confirmar!
+              <div class="msg-time">22:49</div>
+            </div>
+          </div>
+        </div>
+        <div class="note">Lead qualificado e reunião agendada em 2 minutos.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar">
+        <img src="avatar.jpg" onerror="this.style.display='none'" />K
+      </div>
+      <div>
+        <div class="author-name">Kalid Carvalho ✓</div>
+        <div class="author-handle">@eukalidcarvalho</div>
+      </div>
+    </div>
+    <span class="swipe">Arrasta para o lado ▶</span>
+  </div>
+</div>
+</body>
+</html>

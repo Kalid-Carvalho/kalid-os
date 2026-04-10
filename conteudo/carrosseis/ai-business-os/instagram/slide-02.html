@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; overflow: hidden; background: #F0F4FF; font-family: 'Space Grotesk', sans-serif; position: relative; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 72px 80px; }
+.header { display: flex; align-items: center; gap: 12px; padding-bottom: 52px; border-bottom: 1px solid #D0DBF5; flex-shrink: 0; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #2563EB; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -1px; flex-shrink: 0; }
+.avatar span { font-weight: 300; opacity: 0.8; font-size: 13px; }
+.name { font-size: 20px; font-weight: 700; color: #0A0A0A; }
+.check { color: #1A56DB; font-size: 15px; }
+.handle { font-size: 16px; color: #1A56DB; }
+.body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 44px; }
+.watermark { position: absolute; bottom: 36px; right: 52px; font-size: 20px; font-weight: 500; color: #A0B4D8; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="header">
+    <div class="avatar">K<span>C</span></div>
+    <div>
+      <div class="name">Kalid Carvalho <span class="check">✓</span></div>
+      <div class="handle">@eukalidcarvalho</div>
+    </div>
+  </div>
+  <div class="body">
+    <div style="font-size:18px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:#1A56DB;">O PROBLEMA</div>
+    <div style="font-size:50px;font-weight:700;color:#0A0A0A;line-height:1.1;letter-spacing:-0.5px;">A maioria dos negócios usa dezenas de ferramentas que não conversam entre si.</div>
+    <div style="width:1px;height:56px;background:#D0DBF5;margin-left:4px;"></div>
+    <div style="font-size:32px;font-weight:400;color:#3A5080;line-height:1.65;">WhatsApp, planilha, formulário, e-mail. Cada uma no seu canto. O dono no meio tentando conectar tudo na mão.</div>
+  </div>
+</div>
+<div class="watermark">@eukalidcarvalho</div>
+</body>
+</html>

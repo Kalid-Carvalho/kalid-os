@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Slide 04</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px;
+    background: #0D1526;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden; position: relative;
+  }
+  .glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 1000px; height: 1000px; background: radial-gradient(circle, rgba(26,86,219,0.1) 0%, transparent 65%); pointer-events: none; }
+  .top-bar { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #1A56DB 0%, rgba(26,86,219,0.2) 70%, transparent 100%); }
+
+  .header {
+    position: absolute; top: 180px; left: 88px; right: 88px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; border: 2px solid #2563EB; overflow: hidden; flex-shrink: 0; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hname { font-size: 22px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .check { width: 20px; height: 20px; background: #1A56DB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; }
+  .hhandle { font-size: 18px; color: #9BB3E8; margin-top: 3px; }
+
+  /* Data content — centered vertically */
+  .content {
+    position: absolute; top: 360px; bottom: 120px;
+    left: 88px; right: 88px;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+  }
+
+  .stat1 { text-align: center; margin-bottom: 56px; }
+  .num1 { font-size: 200px; font-weight: 800; color: #1A56DB; line-height: 1; letter-spacing: -0.06em; }
+  .desc1 { font-size: 38px; font-weight: 500; color: #FFFFFF; line-height: 1.4; max-width: 700px; text-align: center; }
+  .qualifiers { display: flex; gap: 0; margin-top: 20px; justify-content: center; }
+  .qual { font-size: 24px; color: #9BB3E8; padding: 0 20px; border-right: 1px solid #1E2E4A; }
+  .qual:last-child { border: none; }
+
+  .sep { width: 80px; height: 2px; background: #1E2E4A; margin: 48px auto; }
+
+  .stat2 { text-align: center; }
+  .label2 { font-size: 22px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9BB3E8; margin-bottom: 16px; }
+  .num2 { font-size: 110px; font-weight: 800; color: #FFFFFF; line-height: 1; letter-spacing: -0.05em; }
+  .unit2 { font-size: 46px; font-weight: 500; color: #9BB3E8; margin-top: 4px; }
+
+  .bottom { position: absolute; bottom: 52px; left: 88px; right: 88px; display: flex; justify-content: space-between; align-items: center; }
+  .slide-num { font-size: 20px; font-weight: 600; color: #1E2E4A; letter-spacing: 0.08em; }
+  .wm { font-size: 22px; font-weight: 500; color: #3A4D6E; }
+</style>
+</head>
+<body>
+  <div class="glow"></div>
+  <div class="top-bar"></div>
+  <div class="header">
+    <div class="avatar"><img src="../../2026-04-07/avatar.jpg" alt="K" onerror="this.style.display='none'"></div>
+    <div>
+      <div class="hname">Kalid Carvalho <div class="check">✓</div></div>
+      <div class="hhandle">@eukalidcarvalho</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="stat1">
+      <div class="num1">78%</div>
+      <p class="desc1">dos clientes fecham com o primeiro escritório que responde.</p>
+      <div class="qualifiers">
+        <span class="qual">não o mais barato</span>
+        <span class="qual">não o mais famoso</span>
+        <span class="qual">o primeiro</span>
+      </div>
+    </div>
+
+    <div class="sep"></div>
+
+    <div class="stat2">
+      <p class="label2">Média de resposta do mercado jurídico</p>
+      <div class="num2">42</div>
+      <p class="unit2">horas.</p>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <span class="slide-num">04 / 08</span>
+    <span class="wm">@eukalidcarvalho</span>
+  </div>
+</body>
+</html>

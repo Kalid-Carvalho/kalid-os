@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Slide 01 — Cover</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; justify-content: center; align-items: flex-start; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Space Grotesk', sans-serif;
+  }
+
+  /*
+    IMAGEM DE FUNDO — substituir pelo bg
+    Prompt sugerido (Midjourney/Ideogram):
+    "lawyer sitting alone at desk at night,
+    empty waiting room, dramatic cinematic
+    lighting, dark moody, film noir aesthetic,
+    vertical 4:5"
+  */
+  .bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('cover.png');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(0,0,0,0.1) 0%,
+      rgba(0,0,0,0) 20%,
+      rgba(0,0,0,0.1) 40%,
+      rgba(0,0,0,0.55) 58%,
+      rgba(0,0,0,0.85) 72%,
+      rgba(0,0,0,0.96) 84%,
+      #000 100%
+    );
+  }
+
+  /* Top bar */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 32px 48px;
+  }
+  .top-handle {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+  }
+  .top-center {
+    font-size: 20px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.55);
+  }
+  .top-right {
+    font-size: 20px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* Bottom content */
+  .bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 0 64px 56px;
+  }
+
+  .author {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #1A56DB;
+    border: 2.5px solid #2563EB;
+    position: relative;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .avatar img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 22px; font-weight: 700; color: #fff; line-height: 1.2; }
+  .author-handle { font-size: 18px; color: #9BB3E8; }
+
+  .title {
+    font-size: 74px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.07;
+    letter-spacing: -2px;
+    margin-bottom: 28px;
+  }
+
+  .cta-row {
+    font-size: 22px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="bg"></div>
+  <div class="overlay"></div>
+
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-center">Marketing Jurídico</span>
+    <span class="top-right">© 2026</span>
+  </div>
+
+  <div class="bottom">
+    <div class="author">
+      <div class="avatar">
+        <img src="avatar.jpg" onerror="this.style.display='none'" />K
+      </div>
+      <div>
+        <div class="author-name">Kalid Carvalho ✓</div>
+        <div class="author-handle">@eukalidcarvalho</div>
+      </div>
+    </div>
+
+    <div class="title">Por que advogados perdem clientes antes de atender.</div>
+
+    <div class="cta-row">Deslize para o lado ▶</div>
+  </div>
+</div>
+</body>
+</html>

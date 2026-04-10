@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>Kalid Carvalho — Apresentação Gilmar Araujo</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --dark:    #0D1526;
+    --blue:    #1A56DB;
+    --white:   #FFFFFF;
+    --muted:   #9BB3E8;
+    --border:  #1E2E4A;
+    --card:    #111D33;
+  }
+
+  body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: var(--dark);
+    font-family: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+    color: var(--white);
+    cursor: default;
+    user-select: none;
+  }
+
+  .slides { width: 1920px; height: 1080px; position: relative; }
+
+  .slide {
+    position: absolute;
+    top: 0; left: 0;
+    width: 1920px;
+    height: 1080px;
+    display: none;
+    flex-direction: column;
+    padding: 80px 120px;
+  }
+  .slide.active { display: flex; }
+
+  /* NAV */
+  .nav {
+    position: fixed;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+  }
+  .nav-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .nav-dot.active { background: var(--blue); width: 24px; border-radius: 4px; }
+
+  /* SLIDE COUNTER */
+  .counter {
+    position: fixed;
+    bottom: 40px;
+    right: 60px;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--muted);
+    z-index: 100;
+  }
+
+  /* BRAND HEADER (small) */
+  .brand-tag {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 56px;
+  }
+  .brand-tag .logo-text {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .brand-tag .divider { width: 1px; height: 16px; background: var(--border); }
+  .brand-tag .tag {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--blue);
+    background: rgba(26,86,219,0.12);
+    padding: 4px 12px;
+    border-radius: 4px;
+  }
+
+  /* SECTION LABEL */
+  .section-label {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 20px;
+  }
+
+  /* HERO TEXT */
+  .hero { font-size: 64px; font-weight: 700; line-height: 1.1; letter-spacing: -1px; }
+  .hero span { color: var(--blue); }
+  .heading { font-size: 40px; font-weight: 600; line-height: 1.2; }
+  .heading span { color: var(--blue); }
+  .body-text { font-size: 24px; font-weight: 500; color: var(--muted); line-height: 1.6; }
+  .caption { font-size: 18px; font-weight: 400; color: var(--muted); }
+
+  /* CARD */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 32px 36px;
+  }
+  .card-blue {
+    background: rgba(26,86,219,0.1);
+    border: 1px solid rgba(26,86,219,0.3);
+    border-radius: 12px;
+    padding: 32px 36px;
+  }
+
+  /* GRID LAYOUTS */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 28px; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 24px; }
+
+  /* TWO PANEL */
+  .panel-left { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 80px; border-right: 1px solid var(--border); }
+  .panel-right { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-left: 80px; }
+  .two-panel { display: flex; flex: 1; }
+
+  /* ICON CIRCLE */
+  .icon-circle {
+    width: 56px; height: 56px;
+    background: rgba(26,86,219,0.15);
+    border: 1px solid rgba(26,86,219,0.3);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 24px;
+    margin-bottom: 16px;
+    flex-shrink: 0;
+  }
+
+  /* PILL BADGE */
+  .badge {
+    display: inline-block;
+    background: var(--blue);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 6px;
+  }
+  .badge-red {
+    background: rgba(220,38,38,0.15);
+    border: 1px solid rgba(220,38,38,0.4);
+    color: #F87171;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 6px;
+    display: inline-block;
+  }
+  .badge-yellow {
+    background: rgba(234,179,8,0.12);
+    border: 1px solid rgba(234,179,8,0.35);
+    color: #FDE047;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 6px;
+    display: inline-block;
+  }
+  .badge-green {
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.35);
+    color: #86EFAC;
+    font-size: 13px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 6px;
+    display: inline-block;
+  }
+
+  /* BLUE LINE ACCENT */
+  .accent-line { width: 60px; height: 4px; background: var(--blue); border-radius: 2px; margin-bottom: 32px; }
+
+  /* NUMBER BIG */
+  .num-big { font-size: 80px; font-weight: 700; color: var(--blue); line-height: 1; }
+
+  /* LIST ITEM */
+  .list-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .list-item:last-child { border-bottom: none; }
+  .list-dot { width: 8px; height: 8px; background: var(--blue); border-radius: 50%; margin-top: 8px; flex-shrink: 0; }
+
+  /* GARGALO ROW */
+  .gargalo-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 14px 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+  .gargalo-row .severity { flex-shrink: 0; font-size: 18px; }
+  .gargalo-row .gargalo-text { flex: 1; font-size: 20px; font-weight: 500; color: var(--white); }
+  .gargalo-row .gargalo-impact { font-size: 16px; color: var(--muted); }
+
+  /* STEP */
+  .step-item { display: flex; gap: 24px; align-items: flex-start; }
+  .step-num {
+    width: 48px; height: 48px;
+    background: var(--blue);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700;
+    flex-shrink: 0;
+  }
+  .step-connector { width: 2px; background: var(--border); flex: 1; margin: 0 auto; }
+
+  /* PLAN CARD */
+  .plan-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 40px 36px;
+    display: flex;
+    flex-direction: column;
+  }
+  .plan-card.featured {
+    background: rgba(26,86,219,0.1);
+    border-color: var(--blue);
+  }
+  .plan-price { font-size: 40px; font-weight: 700; color: var(--white); margin: 16px 0 8px; }
+  .plan-price span { font-size: 18px; font-weight: 400; color: var(--muted); }
+  .plan-item { font-size: 18px; font-weight: 500; color: var(--muted); padding: 8px 0; border-bottom: 1px solid var(--border); display: flex; gap: 12px; align-items: center; }
+  .plan-item:last-child { border-bottom: none; }
+  .plan-item::before { content: "→"; color: var(--blue); font-weight: 700; }
+
+  /* PROGRESS BAR */
+  .progress-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--blue); border-radius: 2px; }
+
+  /* QUESTION ITEM */
+  .q-item {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 20px 24px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .q-num { font-size: 28px; font-weight: 700; color: var(--blue); flex-shrink: 0; width: 36px; }
+
+  /* LOGO TEXT */
+  .logo-display { line-height: 1; }
+  .logo-display .k { font-size: 72px; font-weight: 700; letter-spacing: -1px; }
+  .logo-display .c { font-size: 72px; font-weight: 300; letter-spacing: -1px; display: block; }
+  .logo-display .rule { width: 100%; height: 3px; background: var(--blue); margin: 8px 0; }
+  .logo-display .tag-line { font-size: 14px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--muted); }
+
+</style>
+</head>
+<body>
+
+<div class="slides">
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 1 — CAPA -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide active" id="slide-1">
+    <div style="display:flex; flex:1; align-items:center; justify-content:space-between;">
+
+      <!-- LEFT: Logo Kalid -->
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center;">
+        <div class="logo-display">
+          <span class="k">KALID</span>
+          <span class="c">CARVALHO</span>
+          <div class="rule"></div>
+          <span class="tag-line">Sites e Agentes de IA</span>
+        </div>
+        <div style="margin-top:48px;">
+          <div class="body-text" style="font-size:22px;">Apresentação Comercial</div>
+          <div style="font-size:18px; color:var(--muted); margin-top:8px;">27 de março de 2026</div>
+        </div>
+      </div>
+
+      <!-- CENTER: + -->
+      <div style="font-size:64px; font-weight:300; color:var(--border); padding:0 80px;">+</div>
+
+      <!-- RIGHT: Gilmar logo -->
+      <div style="flex:1; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;">
+        <img src="logo-gilmar.png" alt="Gilmar Araujo Advocacia"
+          style="width:160px; height:160px; object-fit:contain; border-radius:50%;"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div style="
+          display:none; width:160px; height:160px;
+          border:2px solid var(--border); border-radius:50%;
+          align-items:center; justify-content:center;
+          flex-direction:column; gap:4px;
+        ">
+          <div style="font-size:28px; font-weight:700; color:var(--blue);">GAC</div>
+          <div style="font-size:11px; font-weight:600; letter-spacing:2px; color:var(--muted);">ADVOCACIA</div>
+        </div>
+        <div style="margin-top:28px; font-size:22px; font-weight:700; color:var(--white);">Gilmar Araujo</div>
+        <div style="margin-top:4px; font-size:16px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:var(--muted);">Advocacia Bancária · Manaus</div>
+        <div style="margin-top:16px; font-size:17px; color:var(--muted);">gilmararaujoadvocacia.com.br</div>
+        <div style="margin-top:6px; font-size:17px; color:var(--muted);">⭐ 567 avaliações 5 estrelas</div>
+      </div>
+
+    </div>
+
+    <!-- bottom line -->
+    <div style="border-top:1px solid var(--border); padding-top:24px; display:flex; justify-content:space-between; align-items:center;">
+      <div style="font-size:16px; color:var(--muted);">Diagnóstico Digital · Ecossistema Autônomo · Proposta Comercial</div>
+      <div style="font-size:16px; color:var(--muted);">19h30 · 20-30 minutos</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 2 — AGENDA (reordenada: diagnóstico primeiro) -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-2">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <div class="divider"></div>
+      <span class="tag">Agenda</span>
+    </div>
+
+    <div class="section-label">Nossa conversa de hoje</div>
+    <div class="hero" style="margin-bottom:16px;">Duração: <span>20–30 min</span></div>
+    <div class="accent-line"></div>
+
+    <div class="grid-2" style="margin-top:16px; flex:1;">
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="list-item">
+          <div class="list-dot" style="margin-top:12px;"></div>
+          <div>
+            <div style="font-size:22px; font-weight:600;">Diagnóstico do seu site</div>
+            <div class="caption">O que encontramos em gilmararaujoadvocacia.com.br</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-dot" style="margin-top:12px;"></div>
+          <div>
+            <div style="font-size:22px; font-weight:600;">O Ecossistema Autônomo</div>
+            <div class="caption">Como funciona a solução</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-dot" style="margin-top:12px;"></div>
+          <div>
+            <div style="font-size:22px; font-weight:600;">O retorno sobre investimento</div>
+            <div class="caption">O cálculo de 1 causa que paga tudo</div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:16px;">
+        <div class="list-item">
+          <div class="list-dot" style="margin-top:12px;"></div>
+          <div>
+            <div style="font-size:22px; font-weight:600;">Quem é Kalid Carvalho</div>
+            <div class="caption">Posicionamento e portfólio em advocacia</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-dot" style="margin-top:12px;"></div>
+          <div>
+            <div style="font-size:22px; font-weight:600;">Conhecendo você melhor</div>
+            <div class="caption">Suas metas, desafios e urgência</div>
+          </div>
+        </div>
+        <div class="list-item">
+          <div class="list-dot" style="margin-top:12px;"></div>
+          <div>
+            <div style="font-size:22px; font-weight:600;">Planos e investimento</div>
+            <div class="caption">Proposta personalizada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 3 — DIAGNÓSTICO GILMAR (KEY SLIDE — agora 3º) -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-5">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <div class="divider"></div>
+      <span class="tag">Diagnóstico</span>
+    </div>
+
+    <div style="display:flex; gap:16px; align-items:center; margin-bottom:24px;">
+      <div class="section-label" style="margin-bottom:0;">gilmararaujoadvocacia.com.br</div>
+      <span class="badge-red">7 gargalos identificados</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; flex:1;">
+      <div>
+        <div class="gargalo-row">
+          <span class="severity">🔴</span>
+          <div class="gargalo-text">Email @gmail.com visível 3× no site</div>
+          <span class="badge-red" style="font-size:11px;">Crítico</span>
+        </div>
+        <div class="gargalo-row">
+          <span class="severity">🔴</span>
+          <div class="gargalo-text">Formulário genérico sem qualificação por tipo de causa</div>
+          <span class="badge-red" style="font-size:11px;">Crítico</span>
+        </div>
+        <div class="gargalo-row">
+          <span class="severity">🟡</span>
+          <div class="gargalo-text">CTAs genéricos — "Fale com um advogado" não converte</div>
+          <span class="badge-yellow" style="font-size:11px;">Alto</span>
+        </div>
+        <div class="gargalo-row">
+          <span class="severity">🟡</span>
+          <div class="gargalo-text">Pixel gratuito — sem rastreamento de eventos avançados</div>
+          <span class="badge-yellow" style="font-size:11px;">Alto</span>
+        </div>
+      </div>
+      <div>
+        <div class="gargalo-row">
+          <span class="severity">🟡</span>
+          <div class="gargalo-text">Sem LP dedicada para ações bancárias</div>
+          <span class="badge-yellow" style="font-size:11px;">Alto</span>
+        </div>
+        <div class="gargalo-row">
+          <span class="severity">🟠</span>
+          <div class="gargalo-text">Sem automação pós-contato — triagem manual</div>
+          <span class="badge-yellow" style="font-size:11px;">Médio</span>
+        </div>
+        <div class="gargalo-row">
+          <span class="severity">🟠</span>
+          <div class="gargalo-text">Instagram com 2 handles diferentes — 1 quebrado</div>
+          <span class="badge-yellow" style="font-size:11px;">Médio</span>
+        </div>
+        <div class="card-blue" style="margin-top:10px; padding:20px 24px;">
+          <div style="font-size:18px; font-weight:600; color:var(--white); margin-bottom:8px;">O que isso significa</div>
+          <div style="font-size:17px; color:var(--muted); line-height:1.5;">Com 567 avaliações, você já tem prova social de excelência. Esses gargalos estão impedindo que essa prova converta novos clientes.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 6 — ECOSSISTEMA AUTÔNOMO -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-6">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <div class="divider"></div>
+      <span class="tag">Solução</span>
+    </div>
+
+    <div class="section-label">Como funciona</div>
+    <div class="hero" style="font-size:52px; margin-bottom:8px;">
+      O <span>Ecossistema Autônomo</span>
+    </div>
+    <div class="body-text" style="font-size:20px; margin-bottom:40px;">Site + Tráfego + IA — sistema integrado para captação previsível de clientes</div>
+
+    <div class="grid-3" style="flex:1;">
+      <div class="card" style="display:flex; flex-direction:column; align-items:flex-start; gap:16px;">
+        <div class="num-big">01</div>
+        <div>
+          <div style="font-size:24px; font-weight:700; margin-bottom:8px;">Landing Page</div>
+          <div class="caption" style="font-size:18px; line-height:1.6;">Email profissional · LP dedicada para ações bancárias · CTAs específicos · Formulário qualificado por tipo de causa</div>
+        </div>
+        <div style="margin-top:auto;">
+          <span class="badge-green">Fase 1 · Entrada</span>
+        </div>
+      </div>
+
+      <div class="card-blue" style="display:flex; flex-direction:column; align-items:flex-start; gap:16px;">
+        <div class="num-big">02</div>
+        <div>
+          <div style="font-size:24px; font-weight:700; margin-bottom:8px;">Google Ads</div>
+          <div class="caption" style="font-size:18px; line-height:1.6;">Anúncios para quem já está buscando um advogado · Palavras-chave de intenção bancária · Rastreamento de conversões · ROAS mensurável</div>
+        </div>
+        <div style="margin-top:auto;">
+          <span class="badge">Fase 2 · Ecossistema</span>
+        </div>
+      </div>
+
+      <div class="card" style="display:flex; flex-direction:column; align-items:flex-start; gap:16px;">
+        <div class="num-big">03</div>
+        <div>
+          <div style="font-size:24px; font-weight:700; margin-bottom:8px;">Agente de IA</div>
+          <div class="caption" style="font-size:18px; line-height:1.6;">Resposta automática em minutos · Pré-qualifica o caso no WhatsApp · Agenda consultas sem intervenção humana</div>
+        </div>
+        <div style="margin-top:auto;">
+          <span class="badge">Fase 2 · Ecossistema</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:24px; text-align:center;">
+      <div style="font-size:20px; font-weight:600; color:var(--muted);">Resultado esperado: <strong style="color:var(--white);">5–12 consultas qualificadas por mês</strong> nos primeiros 60 dias</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 7 — ROI / ARGUMENTO FINANCEIRO -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-7">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <div class="divider"></div>
+      <span class="tag">ROI</span>
+    </div>
+
+    <div class="two-panel" style="flex:1;">
+      <div class="panel-left">
+        <div class="section-label">O cálculo é simples</div>
+        <div class="hero" style="font-size:52px; margin-bottom:24px;">
+          1 causa paga<br/>o sistema <span>inteiro</span>
+        </div>
+        <div class="accent-line"></div>
+        <div class="body-text" style="font-size:20px; line-height:1.7;">
+          Uma causa bancária ganha vale <strong style="color:var(--white);">R$3.000–R$10.000</strong> em honorários.<br/><br/>
+          1 cliente novo por mês já cobre qualquer investimento em marketing. O restante é resultado líquido.
+        </div>
+      </div>
+      <div class="panel-right">
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card-blue" style="text-align:center; padding:48px 32px;">
+            <div style="font-size:16px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue); margin-bottom:16px;">Honorário médio</div>
+            <div style="font-size:72px; font-weight:700; color:var(--white);">R$ 6.500</div>
+            <div class="caption" style="margin-top:8px;">por causa bancária ganha</div>
+          </div>
+          <div class="card" style="display:flex; align-items:center; justify-content:space-between; padding:28px 32px;">
+            <div style="font-size:22px; font-weight:600;">1 causa já paga o sistema</div>
+            <div style="font-size:36px; font-weight:700; color:var(--blue);">✓</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 6 — QUEM É KALID CARVALHO -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-6-kalid">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <div class="divider"></div>
+      <span class="tag">Quem sou eu</span>
+    </div>
+
+    <div class="two-panel" style="flex:1;">
+      <div class="panel-left">
+        <div class="section-label">Quem está do outro lado</div>
+        <div class="hero" style="font-size:52px; margin-bottom:16px;">
+          Kalid <span>Carvalho</span>
+        </div>
+        <div class="body-text" style="font-size:20px; line-height:1.7; margin-bottom:32px;">
+          Ajudo negócios a crescerem online — construindo sites, landing pages e sistemas de automação que trabalham enquanto o profissional foca no que sabe fazer de melhor.
+        </div>
+        <div style="display:flex; flex-direction:column; gap:12px;">
+          <div class="list-item" style="padding:12px 0;">
+            <div class="list-dot" style="margin-top:8px;"></div>
+            <div style="font-size:20px; font-weight:500;">Tenho sites ativos com escritórios de advocacia</div>
+          </div>
+          <div class="list-item" style="padding:12px 0;">
+            <div class="list-dot" style="margin-top:8px;"></div>
+            <div style="font-size:20px; font-weight:500;">Trabalho com sites, tráfego pago e automação integrados</div>
+          </div>
+          <div class="list-item" style="padding:12px 0;">
+            <div class="list-dot" style="margin-top:8px;"></div>
+            <div style="font-size:20px; font-weight:500;">Manaus é minha cidade — nossa conversa começa muito mais próxima</div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-right">
+        <div style="display:flex; flex-direction:column; gap:20px;">
+          <div class="card-blue" style="padding:32px;">
+            <div style="font-size:14px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue); margin-bottom:12px;">Metodologia</div>
+            <div style="font-size:22px; font-weight:700; margin-bottom:12px;">Ecossistema Autônomo</div>
+            <div style="font-size:17px; color:var(--muted); line-height:1.6;">Site que converte + Tráfego pago + IA no WhatsApp. Sistema que trabalha enquanto você trabalha nos processos.</div>
+          </div>
+          <div class="card" style="padding:28px;">
+            <div style="font-size:14px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:12px;">Resultado nos clientes</div>
+            <div style="display:flex; gap:32px;">
+              <div style="text-align:center;">
+                <div style="font-size:40px; font-weight:700; color:var(--blue);">+40%</div>
+                <div class="caption">leads qualificados</div>
+              </div>
+              <div style="width:1px; background:var(--border);"></div>
+              <div style="text-align:center;">
+                <div style="font-size:40px; font-weight:700; color:var(--blue);">60d</div>
+                <div class="caption">para ver resultado</div>
+              </div>
+              <div style="width:1px; background:var(--border);"></div>
+              <div style="text-align:center;">
+                <div style="font-size:40px; font-weight:700; color:var(--blue);">24h</div>
+                <div class="caption">resposta automática</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 7 — PORTFÓLIO ADVOCACIA -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-7-portfolio">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <div class="divider"></div>
+      <span class="tag">Portfólio</span>
+    </div>
+
+    <div class="section-label">Sites ativos para escritórios de advocacia</div>
+    <div class="hero" style="font-size:44px; margin-bottom:8px;">3 cases em <span>produção</span></div>
+    <div class="accent-line" style="margin-bottom:24px;"></div>
+
+    <div class="grid-3" style="flex:1; gap:24px;">
+      <!-- SANCHES -->
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:18px; font-weight:700;">Sanches &amp; Associados</div>
+          <span class="badge-green" style="font-size:11px;">No ar</span>
+        </div>
+        <div style="font-size:13px; color:var(--muted); margin-top:-4px;">sancheseassociados.grovw.com.br</div>
+        <div style="flex:1; border-radius:10px; overflow:hidden; border:1px solid var(--border); min-height:0;">
+          <img src="screenshot-sanches.png" alt="Sanches e Associados"
+            style="width:100%; height:auto; display:block;">
+        </div>
+      </div>
+
+      <!-- BUITRAGO -->
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:18px; font-weight:700;">Buitrago &amp; Pordeus</div>
+          <span class="badge-green" style="font-size:11px;">No ar</span>
+        </div>
+        <div style="font-size:13px; color:var(--muted); margin-top:-4px;">buitragoepordeus.grovw.com.br</div>
+        <div style="flex:1; border-radius:10px; overflow:hidden; border:1px solid var(--border); min-height:0;">
+          <img src="screenshot-buitrago.png" alt="Buitrago e Pordeus"
+            style="width:100%; height:auto; display:block;">
+        </div>
+      </div>
+
+      <!-- ADVOTARY -->
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div style="display:flex; align-items:center; justify-content:space-between;">
+          <div style="font-size:18px; font-weight:700;">Advotary</div>
+          <span class="badge-green" style="font-size:11px;">No ar</span>
+        </div>
+        <div style="font-size:13px; color:var(--muted); margin-top:-4px;">advotary.grovw.com.br</div>
+        <div style="flex:1; border-radius:10px; overflow:hidden; border:1px solid var(--border); min-height:0;">
+          <img src="screenshot-advotary.png" alt="Advotary"
+            style="width:100%; height:auto; display:block;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 8 — CONHECENDO VOCÊ MELHOR -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-8">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <span style="color:var(--border);">|</span>
+      <span style="color:var(--muted); font-size:16px;">grovw.com.br</span>
+    </div>
+
+    <div class="section-label" style="margin-bottom:16px;">Conhecendo você melhor</div>
+    <div class="hero" style="font-size:52px; margin-bottom:48px;">
+      Antes de recomendar qualquer coisa,<br/><span>quero entender o seu momento</span>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:28px; flex:1;">
+
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:36px 40px; display:flex; flex-direction:column; gap:16px;">
+        <div style="font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue); margin-bottom:4px;">Sobre o negócio</div>
+        <div style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:var(--blue); margin-top:10px; flex-shrink:0;"></div>
+          <div style="font-size:22px; font-weight:500; line-height:1.5;">Hoje, de onde vem a maior parte dos seus clientes?</div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:var(--blue); margin-top:10px; flex-shrink:0;"></div>
+          <div style="font-size:22px; font-weight:500; line-height:1.5;">Você tem algum processo de captação ativo, ou é majoritariamente indicação?</div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:var(--blue); margin-top:10px; flex-shrink:0;"></div>
+          <div style="font-size:22px; font-weight:500; line-height:1.5;">Qual tipo de causa você quer atrair mais?</div>
+        </div>
+      </div>
+
+      <div style="background:var(--card); border:1px solid var(--border); border-radius:16px; padding:36px 40px; display:flex; flex-direction:column; gap:16px;">
+        <div style="font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue); margin-bottom:4px;">Sobre o digital</div>
+        <div style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:var(--blue); margin-top:10px; flex-shrink:0;"></div>
+          <div style="font-size:22px; font-weight:500; line-height:1.5;">Você sabe quantas pessoas visitam seu site por mês?</div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:var(--blue); margin-top:10px; flex-shrink:0;"></div>
+          <div style="font-size:22px; font-weight:500; line-height:1.5;">Alguém já entrou em contato pelo site ou Google? Com que frequência?</div>
+        </div>
+        <div style="display:flex; align-items:flex-start; gap:16px;">
+          <div style="width:8px; height:8px; border-radius:50%; background:var(--blue); margin-top:10px; flex-shrink:0;"></div>
+          <div style="font-size:22px; font-weight:500; line-height:1.5;">O que te motivou a marcar essa conversa hoje?</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 9 — PLANOS -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-9">
+    <div class="brand-tag">
+      <span class="logo-text">Kalid Carvalho</span>
+      <div class="divider"></div>
+      <span class="tag">Planos</span>
+    </div>
+
+    <div class="section-label">Investimento</div>
+    <div class="hero" style="font-size:48px; margin-bottom:8px;">Três caminhos para <span>crescer</span></div>
+    <div class="accent-line" style="margin-bottom:28px;"></div>
+
+    <div class="grid-3" style="flex:1; gap:28px;">
+      <!-- PLANO 1 — ENTRADA -->
+      <div class="plan-card">
+        <div style="font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--muted);">Plano 1 · Entrada</div>
+        <div style="font-size:22px; font-weight:700; margin-top:8px; line-height:1.2;">LP Bancária<br/>+ Email Profissional</div>
+        <div class="plan-price" style="font-size:32px;">R$ 1.400 <span>· único</span></div>
+        <div style="font-size:13px; color:var(--muted); margin-bottom:16px;">Entrega em 7 dias úteis</div>
+        <div style="height:1px; background:var(--border); margin-bottom:16px;"></div>
+        <div class="plan-item">Email @gilmararaujoadvocacia.com.br</div>
+        <div class="plan-item">LP dedicada para ações bancárias</div>
+        <div class="plan-item">Formulário qualificado por causa</div>
+        <div class="plan-item">CTAs de alta conversão</div>
+        <div class="plan-item">Correção dos links Instagram</div>
+        <div style="margin-top:auto; padding-top:16px;">
+          <div style="font-size:15px; color:var(--muted);">✓ Resultado em dias, não meses</div>
+        </div>
+      </div>
+
+      <!-- PLANO 2 — ECOSSISTEMA (MEIO / DESTAQUE) -->
+      <div class="plan-card featured">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <div style="font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue);">Plano 2 · Recorrente</div>
+          <span class="badge" style="font-size:10px;">Recomendado</span>
+        </div>
+        <div style="font-size:22px; font-weight:700; margin-top:8px; line-height:1.2;">Ecossistema<br/>Autônomo</div>
+        <div class="plan-price" style="font-size:32px;">R$ 3.000 <span>/ mês</span></div>
+        <div style="font-size:13px; color:var(--muted); margin-bottom:16px;">LP bancária inclusa no 1º mês</div>
+        <div style="height:1px; background:rgba(26,86,219,0.3); margin-bottom:16px;"></div>
+        <div class="plan-item">Tudo do Plano 1 incluso</div>
+        <div class="plan-item">Google Ads gerenciado</div>
+        <div class="plan-item">Rastreamento de conversões avançado</div>
+        <div class="plan-item">Agente de IA no WhatsApp</div>
+        <div class="plan-item">Relatório mensal de performance</div>
+        <div style="margin-top:auto; padding-top:16px;">
+          <div style="font-size:15px; color:var(--blue);">✓ Sistema completo de captação</div>
+        </div>
+      </div>
+
+      <!-- PLANO 3 — BUNDLE (COMPLETO + DESCONTO) -->
+      <div class="plan-card" style="background:rgba(26,86,219,0.06); border-color:rgba(26,86,219,0.25);">
+        <div style="font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--muted);">Plano 3 · Completo</div>
+        <div style="font-size:22px; font-weight:700; margin-top:8px; line-height:1.2;">Redesign + LP<br/>+ Ecossistema</div>
+        <div style="margin:12px 0 4px;">
+          <div style="font-size:20px; font-weight:700; color:var(--white);">R$ 4.500 <span style="font-size:14px; font-weight:400; color:var(--muted);">· único</span></div>
+          <div style="font-size:20px; font-weight:700; color:var(--blue); margin-top:4px;">+ R$ 2.000 <span style="font-size:14px; font-weight:400; color:var(--muted);">/ mês</span></div>
+        </div>
+        <div style="font-size:13px; color:var(--muted); margin-bottom:16px;">Ecossistema com R$1.000 de desconto/mês</div>
+        <div style="height:1px; background:var(--border); margin-bottom:16px;"></div>
+        <div class="plan-item">Redesign completo do site institucional</div>
+        <div class="plan-item">LP bancária dedicada</div>
+        <div class="plan-item">Identidade visual atualizada</div>
+        <div class="plan-item">Ecossistema Autônomo incluso</div>
+        <div style="margin-top:auto; padding-top:16px;">
+          <div style="font-size:15px; color:var(--muted);">✓ Maior resultado, melhor custo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BÔNUS + PAGAMENTO -->
+    <div style="display:flex; gap:24px; margin-top:24px; align-items:stretch;">
+      <!-- BÔNUS -->
+      <div style="flex:1.5; background:rgba(234,179,8,0.08); border:1px solid rgba(234,179,8,0.3); border-radius:12px; padding:20px 28px; display:flex; align-items:center; gap:20px;">
+        <div style="font-size:32px; flex-shrink:0;">🎁</div>
+        <div>
+          <div style="font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:#FDE047; margin-bottom:6px;">Bônus — fechar hoje</div>
+          <div style="font-size:18px; font-weight:700; color:var(--white); margin-bottom:4px;">30 dias de Google Ads gerenciado grátis</div>
+          <div style="font-size:14px; color:var(--muted);">Você coloca a verba, eu gerencio sem custo no 1º mês · válido para qualquer plano fechado nessa call</div>
+        </div>
+      </div>
+      <!-- PAGAMENTO -->
+      <div style="flex:1; background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px 28px; display:flex; align-items:center; gap:20px;">
+        <div style="font-size:32px; flex-shrink:0;">💳</div>
+        <div>
+          <div style="font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue); margin-bottom:6px;">Forma de pagamento</div>
+          <div style="font-size:18px; font-weight:700; color:var(--white); margin-bottom:4px;">50% na entrada · 50% na entrega</div>
+          <div style="font-size:14px; color:var(--muted);">Pix ou transferência · Sem burocracia</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ -->
+  <!-- SLIDE 10 — FECHAMENTO -->
+  <!-- ═══════════════════════════════════════════ -->
+  <div class="slide" id="slide-10">
+    <div style="display:flex; flex:1; align-items:center; justify-content:center; flex-direction:column; text-align:center; gap:32px;">
+
+      <div class="section-label" style="text-align:center;">Próximo passo</div>
+
+      <div class="hero" style="font-size:68px; max-width:1200px; line-height:1.1;">
+        Vamos transformar seus <span>567 resultados</span> em sistema de captação?
+      </div>
+
+      <div class="body-text" style="font-size:22px; max-width:800px;">
+        Você já tem a prova. Falta o sistema que faz essa prova trabalhar para trazer novos clientes enquanto você conduz os processos.
+      </div>
+
+      <div style="display:flex; gap:24px; margin-top:16px;">
+        <div class="card" style="padding:24px 40px; text-align:center;">
+          <div style="font-size:16px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--muted); margin-bottom:8px;">WhatsApp</div>
+          <div style="font-size:24px; font-weight:700;">(92) 99192-3266</div>
+        </div>
+        <div class="card-blue" style="padding:24px 40px; text-align:center;">
+          <div style="font-size:16px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--blue); margin-bottom:8px;">Site</div>
+          <div style="font-size:24px; font-weight:700;">grovw.com.br</div>
+        </div>
+      </div>
+
+      <div style="margin-top:8px;">
+        <div class="logo-display" style="display:flex; gap:24px; align-items:center; justify-content:center;">
+          <span style="font-size:32px; font-weight:700;">KALID</span>
+          <span style="font-size:32px; font-weight:300;">CARVALHO</span>
+          <span style="font-size:18px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:var(--muted);">Sites e Agentes de IA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /slides -->
+
+<!-- NAV DOTS -->
+<div class="nav" id="nav"></div>
+<div class="counter" id="counter"></div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const nav = document.getElementById('nav');
+  const counter = document.getElementById('counter');
+  let current = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+    dot.addEventListener('click', () => goTo(i));
+    nav.appendChild(dot);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    nav.children[current].classList.remove('active');
+    current = Math.max(0, Math.min(n, slides.length - 1));
+    slides[current].classList.add('active');
+    nav.children[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+  }
+
+  goTo(0);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') goTo(current + 1);
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') goTo(current - 1);
+  });
+</script>
+</body>
+</html>

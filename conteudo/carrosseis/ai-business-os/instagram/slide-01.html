@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; overflow: hidden; background: #0D1526; font-family: 'Space Grotesk', sans-serif; position: relative; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 72px 80px; }
+.header { display: flex; align-items: center; gap: 12px; padding-bottom: 52px; border-bottom: 1px solid #1E2E4A; flex-shrink: 0; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #2563EB; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -1px; flex-shrink: 0; }
+.avatar span { font-weight: 300; opacity: 0.8; font-size: 13px; }
+.name { font-size: 20px; font-weight: 700; color: #fff; }
+.check { color: #4A90E2; font-size: 15px; }
+.handle { font-size: 16px; color: #9BB3E8; }
+.body { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 36px; }
+.watermark { position: absolute; bottom: 36px; right: 52px; font-size: 20px; font-weight: 500; color: #3A4D6E; }
+</style>
+</head>
+<body>
+<div style="position:absolute;right:0;top:220px;width:5px;height:360px;background:linear-gradient(to bottom,transparent,#1A56DB 45%,transparent);border-radius:3px 0 0 3px;"></div>
+<div class="slide">
+  <div class="header">
+    <div class="avatar">K<span>C</span></div>
+    <div>
+      <div class="name">Kalid Carvalho <span class="check">✓</span></div>
+      <div class="handle">@eukalidcarvalho</div>
+    </div>
+  </div>
+  <div class="body">
+    <div>
+      <span style="background:#111E35;border:1px solid #1E3A6E;color:#6B90CC;font-size:18px;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;padding:8px 18px;border-radius:8px;">AI SERIES &middot; EP. 01</span>
+    </div>
+    <div>
+      <div style="font-size:72px;font-weight:700;color:#FFFFFF;letter-spacing:-2px;line-height:1.0;">AI Business OS:</div>
+      <div style="font-size:50px;font-weight:600;color:#1A56DB;line-height:1.1;margin-top:8px;">o sistema operacional<br>do seu negócio</div>
+    </div>
+    <div style="width:72px;height:4px;background:#1A56DB;border-radius:2px;"></div>
+    <div style="font-size:30px;font-weight:400;color:#9BB3E8;line-height:1.6;max-width:780px;">Como usar IA pra fazer o negócio funcionar de forma autônoma</div>
+  </div>
+</div>
+<div class="watermark">@eukalidcarvalho</div>
+</body>
+</html>

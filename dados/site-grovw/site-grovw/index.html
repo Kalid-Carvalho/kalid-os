@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GROVW — Sistema de Captação Digital para Empresas</title>
+    <meta name="description" content="Site + tráfego pago + IA no WhatsApp. Sistema completo para você receber leads qualificados todo mês. Setup em 7 dias." />
+
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/tailwind-config.js"></script>
+    <link href="assets/css/style.css" rel="stylesheet" />
+</head>
+<body class="antialiased min-h-screen selection:bg-grovw-accent selection:text-black">
+    <div class="noise"></div>
+
+    <!-- NAV -->
+    <header class="fixed top-0 w-full z-50 border-b border-grovw-border bg-grovw-bg/80 backdrop-blur-md transition-all duration-300">
+        <div class="max-w-[1300px] w-full mx-auto flex justify-between items-center px-6 py-4">
+            <div class="flex items-center gap-2 group cursor-pointer hover:scale-105 transition-transform duration-500">
+                <span class="text-[10px] font-mono text-[#444] opacity-50 block group-hover:text-grovw-accent transition-colors">&lt;!--</span>
+                <div class="font-black text-2xl tracking-[0.1em] text-grovw-accent uppercase" style="font-family: 'JetBrains Mono', monospace; text-shadow: 0 0 12px rgba(205,255,0,0.5);">GROVW</div>
+                <span class="text-[10px] font-mono text-[#444] opacity-50 block group-hover:text-grovw-accent transition-colors">--&gt;</span>
+            </div>
+            <a href="https://wa.me/5592991923266?text=Olá,%20vim%20do%20site%20e%20quero%20saber%20mais%20sobre%20os%20planos." target="_blank" class="beam-button px-5 py-2.5 bg-grovw-accent text-black rounded text-xs font-bold uppercase hover:bg-grovw-accentHover transition-colors flex items-center gap-2">
+                <iconify-icon icon="ic:baseline-whatsapp" class="text-base"></iconify-icon> Conversar no WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <main class="w-full relative bg-grovw-bg overflow-hidden pt-20">
+        
+        <!-- 1. HERO -->
+        <section class="relative z-10 w-full min-h-[85vh] flex items-center border-b border-grovw-border overflow-hidden">
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop')] bg-cover bg-center brightness-50 grayscale mix-blend-luminosity z-0 opacity-20"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-grovw-bg via-grovw-bg/90 to-transparent z-10 pointer-events-none"></div>
+
+            <div class="max-w-[1300px] mx-auto w-full px-6 relative z-20 flex flex-col justify-center items-center text-center">
+                <div class="inline-block px-4 py-1.5 border border-grovw-accent/40 bg-grovw-accent/5 rounded-full text-xs font-mono uppercase text-grovw-accent backdrop-blur-md mb-8 reveal">
+                    Sistema completo · Site + Tráfego + IA
+                </div>
+                <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] text-white max-w-5xl reveal delay-100">
+                    O ecossistema que traz <br> <span class="transparent-text drop-shadow-[0_0_15px_rgba(205,255,0,0.3)]">clientes até você</span>
+                </h1>
+                <p class="max-w-3xl text-[#a0a0a0] text-lg md:text-xl mt-8 reveal delay-200">
+                    Site de alta conversão + tráfego pago + qualificação automática no WhatsApp. Um sistema integrado para você receber leads qualificados todo mês — sem depender só de indicação.
+                </p>
+                <div class="mt-12 reveal delay-300">
+                    <a href="#como-funciona" class="beam-button px-8 py-4 bg-grovw-accent text-black font-bold rounded shadow-[0_0_15px_rgba(205,255,0,0.2)] hover:bg-grovw-accentHover glow-on-hover inline-flex items-center gap-3">
+                        VER COMO FUNCIONA <iconify-icon icon="solar:arrow-right-line-duotone" class="text-xl"></iconify-icon>
+                    </a>
+                    <p class="text-xs font-mono text-[#555] mt-4 flex items-center justify-center gap-2">
+                        <span class="w-1.5 h-1.5 rounded-full bg-grovw-accent animate-pulse"></span> Setup em 7 dias · Sem fidelidade obrigatória
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PROBLEMA -->
+        <section class="w-full relative border-b border-grovw-border bg-[#0f0f0f] grid-bg-overlay py-24">
+            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+            <div class="max-w-[1300px] mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
+                <div class="reveal">
+                    <span class="text-xs font-mono text-[#555] uppercase block mb-4">O problema real</span>
+                    <h2 class="text-4xl md:text-6xl font-semibold tracking-tight text-white leading-tight">Site parado<br><span class="text-[#555]">não traz cliente.</span></h2>
+                </div>
+                <div class="reveal delay-200 flex flex-col justify-center">
+                    <p class="text-lg text-[#888888] leading-relaxed mb-8">
+                        A maioria das empresas até tem um site. Mas ele não aparece no Google, não recebe visitas e não gera contato. Acaba sendo só um cartão digital caro e parado.
+                    </p>
+                    <div class="pl-6 border-l-2 border-grovw-accent">
+                        <p class="text-lg text-white font-medium leading-relaxed">
+                            Na GROVW, o site é só a base. O sistema completo inclui tráfego configurado, rastreamento correto e qualificação automática — <span class="text-grovw-accent">para o lead chegar até você pronto para fechar.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. AUTORIDADE -->
+        <section class="w-full border-b border-grovw-border bg-grovw-bg py-24 overflow-hidden">
+            <div class="max-w-[1300px] mx-auto w-full px-6 text-center reveal">
+                <div class="w-16 h-16 mx-auto bg-[#111] border border-grovw-border rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(205,255,0,0.1)]">
+                    <iconify-icon icon="solar:shield-check-bold-duotone" class="text-3xl text-grovw-accent"></iconify-icon>
+                </div>
+                <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-8 max-w-4xl mx-auto">Sistemas de captação que entregam resultado mensurável para sua empresa</h2>
+                <div class="text-[#cccccc] text-lg font-light leading-relaxed max-w-3xl mx-auto space-y-4">
+                    <p>Escritórios de advocacia, clínicas, construtoras, prestadores de serviço. O trabalho é sempre o mesmo: montar o ecossistema que coloca o seu negócio na frente de quem já está procurando.</p>
+                    <p class="text-white font-medium">Não é só um site. É rastreamento avançado, campanhas otimizadas e automação rodando enquanto você lidera sua operação.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. DIFERENCIAIS -->
+        <section class="w-full bg-grovw-section border-b border-grovw-border py-24 relative z-10">
+            <div class="max-w-[1300px] mx-auto w-full px-6">
+                <div class="mb-16 text-center reveal">
+                    <span class="text-xs font-mono uppercase text-grovw-accent mb-2 block tracking-widest">Por que funciona</span>
+                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white">O sistema que vai além do site</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="kinetic-card flashlight-card rounded-xl border border-grovw-border p-8 bg-[#111] reveal delay-100 flex flex-col h-full">
+                        <div class="w-12 h-12 rounded bg-[#1a1a1a] border border-grovw-border flex items-center justify-center mb-6 text-grovw-accent text-2xl relative z-10"><iconify-icon icon="solar:target-bold-duotone"></iconify-icon></div>
+                        <h4 class="text-xl font-bold text-white mb-3 relative z-10">Aparece para quem já quer comprar</h4>
+                        <p class="text-[#888] text-sm leading-relaxed relative z-10">O Google Ads configurado corretamente coloca sua empresa na frente de quem já está buscando o seu serviço agora.</p>
+                    </div>
+                    <div class="kinetic-card flashlight-card rounded-xl border border-grovw-border p-8 bg-[#111] reveal delay-200 flex flex-col h-full">
+                        <div class="w-12 h-12 rounded bg-[#1a1a1a] border border-grovw-border flex items-center justify-center mb-6 text-grovw-accent text-2xl relative z-10"><iconify-icon icon="solar:mouse-circle-bold-duotone"></iconify-icon></div>
+                        <h4 class="text-xl font-bold text-white mb-3 relative z-10">Página construída para converter</h4>
+                        <p class="text-[#888] text-sm leading-relaxed relative z-10">Cada elemento do site tem função. Estrutura, CTA, formulário e velocidade de carregamento — tudo pensado para transformar visita em contato.</p>
+                    </div>
+                    <div class="kinetic-card flashlight-card rounded-xl border border-grovw-border p-8 bg-[#111] reveal delay-300 flex flex-col h-full">
+                        <div class="w-12 h-12 rounded bg-[#1a1a1a] border border-grovw-border flex items-center justify-center mb-6 text-grovw-accent text-2xl relative z-10"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+                        <h4 class="text-xl font-bold text-white mb-3 relative z-10">Lead qualificado antes de chegar em você</h4>
+                        <p class="text-[#888] text-sm leading-relaxed relative z-10">O bot no WhatsApp filtra automaticamente quem é cliente real e quem é curioso — você só fala com quem tem perfil de compra.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. PLANOS -->
+        <section id="planos" class="w-full bg-[#0A0711] border-b border-grovw-border py-24 relative overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-grovw-accent rounded-full blur-[180px] opacity-10 pointer-events-none"></div>
+            <div class="max-w-[1300px] mx-auto w-full px-6 relative z-10">
+                <div class="mb-16 text-center reveal">
+                    <span class="text-xs font-mono uppercase text-[#666] mb-2 block tracking-widest">Os Planos</span>
+                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white mb-4">Escolha onde começar</h2>
+                    <p class="text-[#888] max-w-2xl mx-auto">Sistemas prontos para a escala e complexidade do seu momento.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                    
+                    <!-- Plano 1: Entrada -->
+                    <div class="kinetic-card bg-[#0f0f0f] border border-grovw-border rounded-xl p-8 reveal flex flex-col h-full">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-white mb-2">Entrada</h3>
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-black text-white">R$ 1.400</span><span class="text-sm font-mono text-[#666]">/único</span>
+                            </div>
+                            <p class="text-xs font-mono text-grovw-accent mb-4">■ Entrega: 7 dias úteis</p>
+                            <p class="text-sm text-[#888] border-t border-grovw-border/50 pt-4"><strong>Para quem:</strong> negócio funcionando, sem presença digital estruturada — ou com site que não converte.</p>
+                        </div>
+                        <div class="flex-grow">
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Landing page de alta conversão</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Formulário qualificado por demanda</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> CTAs estratégicos</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Email profissional configurado (@)</li>
+                                <li class="flex items-start gap-3 text-sm text-white bg-grovw-accent/10 border border-grovw-accent/30 p-3 rounded-lg"><iconify-icon icon="solar:stars-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> <strong>Bônus:</strong> 30 dias de Google Ads gerenciado gratuitamente (sua verba).</li>
+                            </ul>
+                        </div>
+                        <a href="#contato" data-plano="Plano 1 - Entrada" class="btn-plano w-full py-4 bg-[#1a1a1a] hover:bg-[#222] border border-grovw-border text-white text-center flex items-center justify-center gap-2 rounded font-bold text-sm transition-colors mt-auto uppercase tracking-wide">Quero começar com o Plano 1 <iconify-icon icon="solar:arrow-right-line-duotone" class="text-lg"></iconify-icon></a>
+                    </div>
+
+                    <!-- Plano 2: Ecossistema -->
+                    <div class="scale-105 z-10 bg-[#0f0f0f] border-2 border-grovw-accent rounded-xl p-8 reveal delay-100 flex flex-col h-full shadow-[0_0_40px_rgba(205,255,0,0.15)] relative">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-grovw-accent text-black text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full flex items-center gap-1 shadow-[0_0_15px_rgba(205,255,0,0.4)]">
+                            <iconify-icon icon="solar:star-fall-bold-duotone"></iconify-icon> Recomendado
+                        </div>
+                        <div class="mb-8 mt-2">
+                            <h3 class="text-2xl font-bold text-white mb-2">Ecossistema Autônomo</h3>
+                            <div class="flex flex-col gap-1 mb-2">
+                                <span class="text-3xl font-black text-white">R$ 2.000 <span class="text-sm font-mono text-[#666] font-normal">setup</span></span>
+                                <span class="text-2xl font-black text-grovw-accent">+ R$ 3.000<span class="text-sm font-mono text-grovw-accent/70 font-normal">/mês</span></span>
+                            </div>
+                            <p class="text-xs font-mono text-[#888] mb-4">■ Entrega: setup em 7 dias</p>
+                            <p class="text-sm text-[#aaa] border-t border-grovw-border/50 pt-4"><strong>Para quem:</strong> empresário que já tentou marketing digital sem resultado — ou cliente do Plano 1 pronto para escalar.</p>
+                        </div>
+                        <div class="flex-grow">
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> LP de conversão otimizada ou nova</li>
+                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Email profissional configurado</li>
+                                <li class="flex items-start gap-3 text-sm text-white font-medium"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Google Ads: pixel, setup e campanhas</li>
+                                <li class="flex items-start gap-3 text-sm text-white font-medium bg-grovw-accent/10 p-2 rounded -mx-2 px-2"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> IA no WhatsApp para qualificação automática de leads</li>
+                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Relatório mensal de ROI em reais</li>
+                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Onboarding de 7 dias</li>
+                            </ul>
+                        </div>
+                        <a href="#contato" data-plano="Plano 2 - Ecossistema Autônomo" class="btn-plano w-full py-4 bg-grovw-accent hover:bg-grovw-accentHover text-black text-center flex items-center justify-center gap-2 rounded font-bold text-sm transition-colors mt-auto uppercase tracking-wide glow-on-hover">Quero o Ecossistema Autônomo <iconify-icon icon="solar:arrow-right-line-duotone" class="text-lg"></iconify-icon></a>
+                    </div>
+
+                    <!-- Plano 3: Completo -->
+                    <div class="kinetic-card bg-[#0f0f0f] border border-grovw-border rounded-xl p-8 reveal delay-200 flex flex-col h-full opacity-95">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-bold text-white mb-2">Setup Completo</h3>
+                            <div class="flex flex-col gap-1 mb-2">
+                                <span class="text-3xl font-black text-white">R$ 5.000 <span class="text-sm font-mono text-[#666] font-normal">setup</span></span>
+                                <span class="text-2xl font-black text-white">+ R$ 2.000<span class="text-sm font-mono text-[#666] font-normal">/mês</span></span>
+                            </div>
+                            <p class="text-xs font-mono text-grovw-accent mb-4">■ Entrega: 15 dias úteis</p>
+                            <p class="text-sm text-[#888] border-t border-grovw-border/50 pt-4"><strong>Para quem:</strong> empresa que quer o sistema completo do zero, entregue rápido com foco máximo.</p>
+                        </div>
+                        <div class="flex-grow">
+                            <ul class="space-y-4 mb-8">
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Redesign completo de Site Institucional</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> 1 LP dedicada do zero</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Google Ads + Meta Ads (Avançado)</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> IA de WhatsApp com Agendamento Agility</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Automação de Nurturing (E-mail + WhatsApp)</li>
+                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Identidade visual pro digital + Onboarding 15d</li>
+                            </ul>
+                            <div class="bg-[#1a1a1a] border-l-2 border-white p-3 text-xs text-[#888] font-mono mt-6">
+                                Nota: Fica R$ 1k/mês mais barato que o P2. Se ficar 5 meses, o setup se paga sozinho.
+                            </div>
+                        </div>
+                        <a href="#contato" data-plano="Plano 3 - Setup Completo" class="btn-plano w-full py-4 bg-[#1a1a1a] hover:bg-[#222] border border-grovw-border text-white text-center flex items-center justify-center gap-2 rounded font-bold text-sm transition-colors mt-6 uppercase tracking-wide">Quero o Setup Completo <iconify-icon icon="solar:arrow-right-line-duotone" class="text-lg"></iconify-icon></a>
+                    </div>
+
+                </div>
+                
+                <div class="mt-12 text-center reveal delay-300 border border-grovw-accent/20 bg-[#111] p-6 rounded-lg max-w-4xl mx-auto">
+                    <p class="text-sm text-[#aaa]">
+                        <strong class="text-white">Todos os planos entregam o mesmo resultado:</strong> leads qualificados chegando até o seu negócio — não só visitas, mas contatos com intenção real de compra.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. COMO FUNCIONA -->
+        <section id="como-funciona" class="w-full bg-grovw-section border-b border-grovw-border py-24 relative overflow-hidden">
+            <div class="max-w-[1300px] mx-auto w-full px-6 relative z-10">
+                <div class="mb-16 reveal text-center">
+                    <span class="text-xs font-mono uppercase text-[#555] mb-2 block tracking-widest">Processo</span>
+                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white">Simples, direto e sem enrolação</h2>
+                </div>
+                <div class="max-w-3xl mx-auto space-y-8 relative z-10">
+                    <!-- Step 1 -->
+                    <div class="flex items-start gap-6 reveal group">
+                        <div class="w-12 h-12 rounded-full border-2 border-[#333] flex items-center justify-center font-mono font-bold text-[#555] group-hover:border-grovw-accent group-hover:text-grovw-accent group-hover:bg-grovw-accent/10 transition-colors flex-shrink-0">1</div>
+                        <div>
+                            <h4 class="text-white text-xl font-bold mb-2">Briefing</h4>
+                            <p class="text-[#888888] text-sm md:text-base">Mergulho no seu negócio: objetivo comercial, público comprador ideal e o que diferencia você da concorrência.</p>
+                        </div>
+                    </div>
+                    <!-- Line -->
+                    <div class="w-px h-12 bg-gradient-to-b from-grovw-accent/50 to-transparent ml-[23px] reveal delay-100"></div>
+                    <!-- Step 2 -->
+                    <div class="flex items-start gap-6 reveal delay-100 group">
+                        <div class="w-12 h-12 rounded-full border-2 border-[#333] flex items-center justify-center font-mono font-bold text-[#555] group-hover:border-grovw-accent group-hover:text-grovw-accent group-hover:bg-grovw-accent/10 transition-colors flex-shrink-0">2</div>
+                        <div>
+                            <h4 class="text-white text-xl font-bold mb-2">Construção</h4>
+                            <p class="text-[#888888] text-sm md:text-base">Site ou LP desenvolvido com foco em conversão. Design premium, carregamento rápido (90%+ no PageSpeed) e rastreamento.</p>
+                        </div>
+                    </div>
+                    <!-- Line -->
+                    <div class="w-px h-12 bg-gradient-to-b from-grovw-accent/50 to-transparent ml-[23px] reveal delay-200"></div>
+                    <!-- Step 3 -->
+                    <div class="flex items-start gap-6 reveal delay-200 group">
+                        <div class="w-12 h-12 rounded-full border-2 border-[#333] flex items-center justify-center font-mono font-bold text-[#555] group-hover:border-grovw-accent group-hover:text-grovw-accent group-hover:bg-grovw-accent/10 transition-colors flex-shrink-0">3</div>
+                        <div>
+                            <h4 class="text-white text-xl font-bold mb-2">Tráfego ativado</h4>
+                            <p class="text-[#888888] text-sm md:text-base">Campanhas no Google Ads (e Meta) no ar. Pixel de eventos avançados, não só pageview bobo.</p>
+                        </div>
+                    </div>
+                    <!-- Line -->
+                    <div class="w-px h-12 bg-gradient-to-b from-grovw-accent/50 to-transparent ml-[23px] reveal delay-300"></div>
+                    <!-- Step 4 -->
+                    <div class="flex items-start gap-6 reveal delay-300 group">
+                        <div class="w-12 h-12 rounded-full bg-grovw-accent flex items-center justify-center text-black font-bold text-xl flex-shrink-0 shadow-[0_0_15px_rgba(205,255,0,0.4)]">
+                            <iconify-icon icon="solar:fire-bold-duotone"></iconify-icon>
+                        </div>
+                        <div>
+                            <h4 class="text-white text-xl font-bold mb-2">Leads chegando</h4>
+                            <p class="text-[#888888] text-sm md:text-base">O sistema roda. Leads qualificados entram com nome, contato e contexto de compra. Você foca em fechar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. PORTFÓLIO -->
+        <section class="w-full bg-[#0A0711] border-b border-grovw-border py-24">
+            <div class="max-w-[1300px] mx-auto w-full px-6 text-center">
+                <div class="mb-16 reveal">
+                    <span class="text-xs font-mono uppercase text-[#555] mb-2 block tracking-widest">Cases</span>
+                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white mb-4">Projetos que já ajudaram empresas a crescer</h2>
+                    <p class="text-[#888] max-w-2xl mx-auto">Cada projeto é construído com foco em conversão, performance e experiência do usuário.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="kinetic-card rounded-xl border border-grovw-border overflow-hidden group bg-[#111] reveal">
+                        <div class="h-56 overflow-hidden relative"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=2426&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" alt="Projeto"></div>
+                        <div class="p-6 text-left"><div class="text-[10px] font-mono text-grovw-accent uppercase mb-2">Energia Solar</div><h4 class="text-white font-bold text-lg">SolarTech Sul</h4></div>
+                    </div>
+                    <div class="kinetic-card rounded-xl border border-grovw-border overflow-hidden group bg-[#111] reveal delay-100">
+                        <div class="h-56 overflow-hidden relative"><img src="https://images.unsplash.com/photo-1555421689-491a97ff2040?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" alt="Projeto"></div>
+                        <div class="p-6 text-left"><div class="text-[10px] font-mono text-grovw-accent uppercase mb-2">Escritórios</div><h4 class="text-white font-bold text-lg">Advocacia Martins</h4></div>
+                    </div>
+                    <div class="kinetic-card rounded-xl border border-grovw-border overflow-hidden group bg-[#111] reveal delay-200">
+                        <div class="h-56 overflow-hidden relative"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" alt="Projeto"></div>
+                        <div class="p-6 text-left"><div class="text-[10px] font-mono text-grovw-accent uppercase mb-2">SaaS e Tech</div><h4 class="text-white font-bold text-lg">Nexus Systems</h4></div>
+                    </div>
+                </div>
+                <button class="mt-12 text-[#888] text-sm uppercase font-bold tracking-widest hover:text-white transition-colors border-b border-[#555] hover:border-white pb-1 select-none pointer-events-none">Portfólio em expansão viva</button>
+            </div>
+        </section>
+
+        <!-- 8. PROVA SOCIAL -->
+        <section class="w-full bg-grovw-section border-b border-grovw-border py-24">
+            <div class="max-w-[1300px] mx-auto w-full px-6">
+                <div class="text-center mb-16 reveal"><h2 class="text-4xl font-medium tracking-tight text-white">Quem já confiou na GROVW</h2></div>
+                <div class="max-w-4xl mx-auto flashlight-card rounded-xl border border-grovw-border p-12 text-center reveal flex flex-col items-center">
+                    <iconify-icon icon="solar:chat-square-quote-bold-duotone" class="text-4xl text-grovw-accent mb-6 opacity-80"></iconify-icon>
+                    <p class="text-[#ddd] text-xl md:text-2xl leading-relaxed font-light mb-8 italic">"O site ficou extremamente profissional e estruturado para vendas. Começamos a receber contatos agendando nossos serviços logo nos primeiros dias. Atendimento direto e sem enrolação."</p>
+                    <div><span class="text-white font-bold block text-sm">Marcos Almeida</span><span class="text-[10px] font-mono tracking-widest text-[#666] uppercase">Sócio-Diretor · Almeida Consultoria</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. OFERTA -->
+        <section class="w-full bg-[#111] border-b border-grovw-border py-24 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-grovw-accent/5 via-transparent to-transparent pointer-events-none"></div>
+            <div class="max-w-4xl mx-auto text-center px-6 relative z-10 reveal">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white text-black font-black uppercase text-[10px] tracking-widest rounded mb-8 animate-pulse">Bônus Incluído</div>
+                <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">Comece com <span class="text-grovw-accent">vantagem real</span></h2>
+                <p class="text-xl text-[#aaa] font-light mb-8 leading-relaxed">Fechando qualquer plano agora, você já sai com o sistema rodando — sem precisar contratar tráfego separado, configurar pixel por conta própria ou depender de 3 fornecedores diferentes.<br><br><strong>Tudo em um lugar, com uma pessoa responsável pelo resultado.</strong></p>
+                <a href="#planos" class="beam-button px-10 py-5 bg-white text-black font-bold uppercase rounded hover:bg-gray-200 transition-colors inline-block tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.2)] glow-on-hover">Quero começar agora</a>
+            </div>
+        </section>
+
+        <!-- 10. SOBRE -->
+        <section class="w-full bg-grovw-bg border-b border-grovw-border py-24">
+            <div class="max-w-[1300px] mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+                <div class="reveal">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-16 h-16 rounded-full bg-grovw-accent text-black flex items-center justify-center font-black text-2xl shadow-[0_0_20px_rgba(205,255,0,0.3)]">KC</div>
+                        <div><h3 class="text-2xl font-bold text-white">Kalid Carvalho</h3><span class="text-grovw-accent font-mono text-sm tracking-widest uppercase">Performance Digital</span></div>
+                    </div>
+                </div>
+                <div class="reveal delay-100 space-y-6">
+                    <span class="text-xs font-mono uppercase text-[#666] mb-2 block tracking-widest border-b border-[#333] pb-2 inline-block">Quem faz isso</span>
+                    <h2 class="text-4xl font-medium tracking-tight text-white">Isso é construído por uma pessoa — não por uma agência</h2>
+                    <p class="text-[#888] text-lg leading-relaxed font-light">Sou Kalid Carvalho, especialista em performance digital com base em Manaus. Opero solo por escolha: <strong class="text-white font-medium">cada projeto que entra é meu e fica meu até entregar resultado.</strong></p>
+                    <p class="text-[#888] text-lg leading-relaxed font-light">Especialista na montagem completa de ecossistemas de captação para escritórios, clínicas, construtoras e prestadores de serviço. Entrego site, tráfego e automação — sem terceirizar o que importa.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 11. CTA FINAL / FORM -->
+        <footer id="contato" class="w-full bg-[#0A0711] pt-32 pb-12 relative overflow-hidden border-t border-grovw-border scroll-mt-20">
+            <div class="max-w-[1300px] mx-auto w-full px-6 mb-24 reveal">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
+                    <div class="flex flex-col">
+                        <h2 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6">Vamos montar <br> o seu sistema?</h2>
+                        <p class="text-xl text-[#888] font-light mb-12">Preencha os dados abaixo. Kalid entra em contato em até 24h para entender o seu negócio e indicar o melhor caminho.</p>
+                        <div class="flex items-start gap-4 p-5 bg-[#111] border border-grovw-border rounded-lg inline-flex w-fit">
+                            <iconify-icon icon="solar:shield-check-bold-duotone" class="text-3xl text-grovw-accent flex-shrink-0"></iconify-icon>
+                            <div><span class="text-sm font-bold text-white block">Diagnóstico Gratuito</span><span class="text-xs font-mono text-[#777]">15 minutos · Sem compromisso</span></div>
+                        </div>
+                    </div>
+                    <div class="bg-[#111] rounded-xl border border-grovw-border p-8 relative shadow-2xl">
+                        <form id="lead-form" class="space-y-5">
+                            <div class="relative group/input">
+                                <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Plano de Interesse (Pré-selecionado)</label>
+                                <input type="text" id="input-plano" readonly value="Aguardando Seleção nos Cards" class="w-full bg-[#050505] border-2 border-grovw-accent/40 rounded px-4 py-3 text-sm text-grovw-accent font-bold focus:outline-none transition-all peer cursor-default shadow-[inset_0_0_10px_rgba(0,0,0,0.5)]">
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="relative group/input">
+                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Nome da Empresa</label>
+                                    <input type="text" placeholder="Grovw Inc" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
+                                </div>
+                                <div class="relative group/input">
+                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Seu Nome</label>
+                                    <input type="text" placeholder="John Doe" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                                <div class="relative group/input">
+                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">WhatsApp / Celular</label>
+                                    <input type="tel" placeholder="(00) 00000-0000" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
+                                </div>
+                                <div class="relative group/input">
+                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Seu Email Corporativo</label>
+                                    <input type="email" placeholder="email@empresa.com" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
+                                </div>
+                            </div>
+                            <label class="flex items-start gap-3 mt-4 cursor-pointer group">
+                                <div class="relative flex items-center justify-center mt-0.5 flex-shrink-0">
+                                    <input type="checkbox" class="peer appearance-none w-5 h-5 border border-grovw-border rounded bg-[#1a1a1a] checked:bg-grovw-accent transition-all cursor-pointer" required>
+                                    <iconify-icon icon="solar:check-read-bold-duotone" class="absolute text-black text-sm opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"></iconify-icon>
+                                </div>
+                                <span class="text-xs text-[#777] leading-tight select-none pt-0.5">Concordo em compartilhar meus dados para contato comercial da GROVW, conforme a <a href="#" class="text-white underline hover:text-grovw-accent">Política de Privacidade (LGPD)</a>.</span>
+                            </label>
+                            <button type="button" class="beam-button w-full mt-6 py-4 bg-grovw-accent text-black font-bold text-sm tracking-wide rounded uppercase hover:bg-grovw-accentHover shadow-[0_0_15px_rgba(205,255,0,0.2)]">Enviar Para Análise</button>
+                            <p class="text-center text-[10px] font-mono text-[#555] mt-3 uppercase tracking-widest">Seus dados estão 100% seguros.</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FOOTER BASE -->
+            <div class="max-w-[1300px] mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-grovw-border/50 pt-10 text-center md:text-left align-middle items-center">
+                <div class="flex flex-col md:items-start items-center">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-[10px] font-mono text-[#444] opacity-50 block">&lt;!--</span>
+                        <div class="font-black text-3xl tracking-[0.1em] text-grovw-accent uppercase leading-none" style="font-family: 'JetBrains Mono', monospace; text-shadow: 0 0 15px rgba(205,255,0,0.4);">GROVW</div>
+                        <span class="text-[10px] font-mono text-[#444] opacity-50 block">--&gt;</span>
+                    </div>
+                    <span class="text-xs text-[#888] font-mono mt-1">// Sistema de captação digital focado em resultado.</span>
+                </div>
+                <div class="md:text-right flex flex-col md:items-end gap-1">
+                    <div class="text-xs text-[#666] flex gap-4 justify-center md:justify-end mb-2">
+                        <a href="#" class="hover:text-grovw-accent transition-colors">Política de Privacidade</a>
+                        <a href="#" class="hover:text-grovw-accent transition-colors">Termos de Uso</a>
+                    </div>
+                    <span class="text-xs font-mono text-[#555]">© 2026 GROVW · Todos os direitos reservados.</span>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- FLOATING ACTIONS -->
+    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-[100] items-center">
+        <!-- Back to Top Button -->
+        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="back-to-top" class="w-10 h-10 bg-[#1a1a1a] border border-grovw-border text-grovw-accent rounded-full flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:scale-110 hover:bg-grovw-accent hover:text-black transition-all duration-300 cursor-pointer opacity-0 translate-y-4 pointer-events-none" title="Voltar ao topo">
+            <iconify-icon icon="solar:alt-arrow-up-line-duotone"></iconify-icon>
+        </button>
+
+        <!-- Standard WhatsApp -->
+        <a href="https://wa.me/5592991923266?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20quero%20saber%20mais%20sobre%20os%20planos." target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_15px_rgba(37,211,102,0.4)] hover:scale-110 hover:brightness-110 transition-all duration-300 cursor-pointer">
+            <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon>
+        </a>
+    </div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>

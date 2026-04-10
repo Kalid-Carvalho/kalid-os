@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #111;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .banner {
+      width: 1584px;
+      height: 396px;
+      background: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 80px 60px 380px;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Inter', sans-serif;
+    }
+
+    /* Grade de fundo sutil */
+    .banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(205, 255, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(205, 255, 0, 0.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    /* Glow lateral direito */
+    .banner::after {
+      content: '';
+      position: absolute;
+      right: -100px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(205, 255, 0, 0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 1;
+    }
+
+    .logo {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 64px;
+      font-weight: 700;
+      color: #cdff00;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .tagline {
+      font-size: 22px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.65);
+      letter-spacing: 0.3px;
+    }
+
+    .tagline span {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .right {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      z-index: 1;
+      align-items: flex-end;
+    }
+
+    .pilares {
+      display: flex;
+      gap: 12px;
+    }
+
+    .pilar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(205, 255, 0, 0.07);
+      border: 1px solid rgba(205, 255, 0, 0.2);
+      border-radius: 6px;
+      padding: 10px 18px;
+    }
+
+    .pilar-dot {
+      width: 6px;
+      height: 6px;
+      background: #cdff00;
+      border-radius: 50%;
+    }
+
+    .pilar-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.85);
+      letter-spacing: 0.5px;
+    }
+
+    .cta {
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 0.3px;
+    }
+
+    .cta span {
+      color: #cdff00;
+      font-weight: 600;
+    }
+
+    /* Linha decorativa */
+    .divider {
+      position: absolute;
+      left: 50%;
+      top: 20%;
+      height: 60%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, rgba(205, 255, 0, 0.15), transparent);
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <div class="divider"></div>
+
+    <div class="left">
+      <div class="logo">GROVW</div>
+      <div class="tagline">
+        <span>Sistema completo</span> de captação<br>para pequenas e médias empresas
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="pilares">
+        <div class="pilar">
+          <div class="pilar-dot"></div>
+          <span class="pilar-label">Sites que convertem</span>
+        </div>
+        <div class="pilar">
+          <div class="pilar-dot"></div>
+          <span class="pilar-label">Tráfego pago</span>
+        </div>
+        <div class="pilar">
+          <div class="pilar-dot"></div>
+          <span class="pilar-label">Automação com IA</span>
+        </div>
+      </div>
+      <div class="cta">grovw.com.br &nbsp;·&nbsp; <span>@eukalidcarvalho</span></div>
+    </div>
+  </div>
+</body>
+</html>

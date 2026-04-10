@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Slide 03</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px;
+    background: #F0F4FF; /* FUNDO CLARO — contraste */
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden; position: relative;
+  }
+  .top-bar { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #1A56DB 0%, rgba(26,86,219,0.2) 70%, transparent 100%); }
+
+  .header {
+    position: absolute; top: 180px; left: 88px; right: 88px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0;
+    background: #1A56DB; display: flex; align-items: center;
+    justify-content: center; font-size: 22px; font-weight: 700; color: white;
+  }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hname { font-size: 22px; font-weight: 700; color: #0A0A0A; display: flex; align-items: center; gap: 8px; }
+  .check { width: 20px; height: 20px; background: #1A56DB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; }
+  .hhandle { font-size: 18px; color: #4A6EA8; margin-top: 3px; }
+
+  .content { position: absolute; top: 360px; left: 88px; right: 88px; }
+
+  .action-text {
+    font-size: 38px; font-weight: 500; color: #3A4D6E;
+    line-height: 1.6; margin-bottom: 64px;
+  }
+  .action-text strong { color: #0A0A0A; font-weight: 700; }
+
+  /* Silence — big impactful element */
+  .silence-block {
+    background: #0D1526;
+    border-radius: 16px;
+    padding: 56px 60px;
+    margin-bottom: 56px;
+  }
+  .silence-label {
+    font-size: 20px; font-weight: 600; letter-spacing: 0.14em;
+    text-transform: uppercase; color: #6B9BF0; margin-bottom: 20px;
+  }
+  .silence-word {
+    font-size: 96px; font-weight: 800; color: #FFFFFF;
+    line-height: 1; letter-spacing: -0.04em; margin-bottom: 24px;
+  }
+  .silence-desc {
+    font-size: 30px; font-weight: 400; color: #9BB3E8; line-height: 1.5;
+  }
+
+  .closing {
+    font-size: 38px; font-weight: 600; color: #0A0A0A; line-height: 1.4;
+  }
+  .closing em { font-style: normal; color: #4A6EA8; font-weight: 400; }
+
+  .bottom { position: absolute; bottom: 52px; left: 88px; right: 88px; display: flex; justify-content: space-between; align-items: center; }
+  .slide-num { font-size: 20px; font-weight: 600; color: #B8C8E8; letter-spacing: 0.08em; }
+  .wm { font-size: 22px; font-weight: 500; color: #9BB3E8; }
+</style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="header">
+    <div class="avatar"><img src="../../2026-04-07/avatar.jpg" alt="K" onerror="this.style.display='none'"></div>
+    <div>
+      <div class="hname">Kalid Carvalho <div class="check">✓</div></div>
+      <div class="hhandle">@eukalidcarvalho</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <p class="action-text">
+      Ele clicou no site. <strong>Leu a página. Gostou.</strong><br>
+      Encontrou o botão de contato e mandou uma mensagem.
+    </p>
+
+    <div class="silence-block">
+      <p class="silence-label">O que veio depois</p>
+      <div class="silence-word">Silêncio.</div>
+      <p class="silence-desc">
+        Nenhuma resposta automática.<br>
+        Nenhum "recebemos seu contato".<br>
+        Nada.
+      </p>
+    </div>
+
+    <p class="closing">
+      Ele ficou olhando a tela<br>
+      <em>por alguns minutos.</em>
+    </p>
+  </div>
+
+  <div class="bottom">
+    <span class="slide-num">03 / 08</span>
+    <span class="wm">@eukalidcarvalho</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Slide 07</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px; height: 1350px;
+    background: #0D1526;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow: hidden; position: relative;
+  }
+  .top-bar { position: absolute; top: 0; left: 0; right: 0; height: 5px; background: linear-gradient(90deg, #1A56DB 0%, rgba(26,86,219,0.2) 70%, transparent 100%); }
+
+  .header {
+    position: absolute; top: 180px; left: 88px; right: 88px;
+    display: flex; align-items: center; gap: 20px;
+  }
+  .avatar { width: 64px; height: 64px; border-radius: 50%; border: 2px solid #2563EB; overflow: hidden; flex-shrink: 0; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; }
+  .avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hname { font-size: 22px; font-weight: 700; color: #fff; display: flex; align-items: center; gap: 8px; }
+  .check { width: 20px; height: 20px; background: #1A56DB; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; color: white; }
+  .hhandle { font-size: 18px; color: #9BB3E8; margin-top: 3px; }
+
+  .content { position: absolute; top: 360px; left: 88px; right: 88px; }
+
+  .label { font-size: 21px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: #1A56DB; margin-bottom: 16px; }
+  .title { font-size: 44px; font-weight: 800; color: #FFFFFF; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 48px; }
+
+  /* WhatsApp mockup do agente */
+  .whatsapp-phone {
+    background: #111B21;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid #2A3942;
+    margin-bottom: 36px;
+  }
+  .wa-header {
+    background: #202C33; padding: 14px 20px;
+    display: flex; align-items: center; gap: 14px;
+    border-bottom: 1px solid #2A3942;
+  }
+  .wa-avatar {
+    width: 44px; height: 44px; border-radius: 50%; background: #1A56DB;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 700; color: white; flex-shrink: 0;
+  }
+  .wa-name { font-size: 19px; font-weight: 600; color: #E9EDEF; }
+  .wa-status { font-size: 14px; color: #00A884; }
+  .wa-body { padding: 18px; display: flex; flex-direction: column; gap: 10px; background: #0B141A; }
+
+  .msg-out { align-self: flex-end; background: #005C4B; border-radius: 12px 12px 4px 12px; padding: 12px 16px; max-width: 85%; }
+  .msg-out-text { font-size: 22px; color: #E9EDEF; line-height: 1.4; }
+  .msg-time-out { font-size: 13px; color: #8696A0; text-align: right; margin-top: 5px; }
+
+  .msg-in { align-self: flex-start; background: #202C33; border-radius: 12px 12px 12px 4px; padding: 12px 16px; max-width: 88%; }
+  .msg-in-text { font-size: 22px; color: #E9EDEF; line-height: 1.4; }
+  .msg-in-sub { font-size: 14px; color: #00A884; margin-top: 6px; font-weight: 600; }
+  .msg-time-in { font-size: 13px; color: #8696A0; text-align: right; margin-top: 5px; display: flex; align-items: center; gap: 4px; }
+  .check-read { color: #53BDEB; }
+
+  .booked { align-self: flex-start; background: rgba(0,168,132,0.12); border: 1px solid rgba(0,168,132,0.35); border-radius: 10px; padding: 10px 16px; font-size: 19px; font-weight: 600; color: #00A884; }
+
+  .result-box {
+    background: rgba(26,86,219,0.1); border: 1px solid rgba(26,86,219,0.3);
+    border-radius: 12px; padding: 28px 32px;
+    font-size: 30px; font-weight: 600; color: #FFFFFF; line-height: 1.5;
+  }
+  .result-box em { font-style: normal; color: #9BB3E8; font-weight: 400; font-size: 26px; }
+
+  .bottom { position: absolute; bottom: 52px; left: 88px; right: 88px; display: flex; justify-content: space-between; }
+  .slide-num { font-size: 20px; font-weight: 600; color: #1E2E4A; letter-spacing: 0.08em; }
+  .wm { font-size: 22px; font-weight: 500; color: #3A4D6E; }
+</style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="header">
+    <div class="avatar"><img src="../../2026-04-07/avatar.jpg" alt="K" onerror="this.style.display='none'"></div>
+    <div>
+      <div class="hname">Kalid Carvalho <div class="check">✓</div></div>
+      <div class="hhandle">@eukalidcarvalho</div>
+    </div>
+  </div>
+
+  <div class="content">
+    <p class="label">Com o agente de IA</p>
+    <h2 class="title">O mesmo lead.<br>O resultado diferente.</h2>
+
+    <div class="whatsapp-phone">
+      <div class="wa-header">
+        <div class="wa-avatar">IA</div>
+        <div>
+          <div class="wa-name">Escritório Dr. Rafael</div>
+          <div class="wa-status">Agente online — responde em segundos</div>
+        </div>
+      </div>
+      <div class="wa-body">
+        <div class="msg-out">
+          <div class="msg-out-text">Boa noite, preciso de ajuda urgente com bloqueio de conta</div>
+          <div class="msg-time-out">22:14</div>
+        </div>
+        <div class="msg-in">
+          <div class="msg-in-text">Boa noite! Pode me contar o que aconteceu? Vou verificar a disponibilidade do Dr. Rafael.</div>
+          <div class="msg-in-sub">Respondido em 28 segundos</div>
+          <div class="msg-time-in">22:14 <span class="check-read">✓✓</span></div>
+        </div>
+        <div class="msg-out">
+          <div class="msg-out-text">Banco corporativo, é urgente pra amanhã de manhã</div>
+          <div class="msg-time-out">22:17</div>
+        </div>
+        <div class="booked">Reunião agendada: amanhã às 09h — confirmado</div>
+      </div>
+    </div>
+
+    <div class="result-box">
+      Você acorda com reunião marcada.<br>
+      <em>Sem perder o lead. Sem estar online.</em>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <span class="slide-num">07 / 08</span>
+    <span class="wm">@eukalidcarvalho</span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+  @page { size: A4; margin: 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 794px;
+    min-height: 1123px;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: row;
+    background: #FFFFFF;
+    overflow: visible;
+  }
+
+  /* SIDEBAR */
+  .sidebar {
+    width: 220px;
+    min-height: 1123px;
+    background: #0D1526;
+    padding: 36px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    flex-shrink: 0;
+  }
+
+  /* FOTO */
+  .photo-area {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    border: 2px solid #1A56DB;
+    background: #1A2540;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .photo-area img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo-placeholder {
+    font-size: 9px;
+    color: #9BB3E8;
+    text-align: center;
+    line-height: 1.4;
+    padding: 4px;
+  }
+
+  .sidebar-divider {
+    width: 32px;
+    height: 2px;
+    background: #1A56DB;
+    border-radius: 2px;
+  }
+
+  .sidebar-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    color: #9BB3E8;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  .contact-label {
+    font-size: 9px;
+    font-weight: 600;
+    color: #9BB3E8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .contact-value {
+    font-size: 11px;
+    font-weight: 400;
+    color: #FFFFFF;
+    line-height: 1.4;
+    word-break: break-all;
+  }
+
+  .lang-item {
+    margin-bottom: 5px;
+  }
+
+  .lang-name {
+    font-size: 12px;
+    font-weight: 500;
+    color: #FFFFFF;
+  }
+
+  .lang-level {
+    font-size: 10px;
+    color: #9BB3E8;
+  }
+
+  .edu-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    margin-bottom: 12px;
+  }
+
+  .edu-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .edu-badge {
+    font-size: 9px;
+    font-weight: 600;
+    color: #1A56DB;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(26, 86, 219, 0.15);
+    border: 1px solid rgba(26, 86, 219, 0.3);
+    padding: 2px 6px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+
+  .edu-course {
+    font-size: 11px;
+    font-weight: 600;
+    color: #FFFFFF;
+    line-height: 1.3;
+  }
+
+  .edu-institution {
+    font-size: 10px;
+    color: #9BB3E8;
+  }
+
+  .edu-period {
+    font-size: 10px;
+    color: #9BB3E8;
+  }
+
+  /* MAIN */
+  .main {
+    flex: 1;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background: #FFFFFF;
+  }
+
+  .main-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #1A56DB;
+  }
+
+  .main-name {
+    font-size: 30px;
+    font-weight: 700;
+    color: #0D1526;
+    letter-spacing: -0.5px;
+    line-height: 1.1;
+  }
+
+  .main-title {
+    font-size: 12px;
+    font-weight: 400;
+    color: #1A56DB;
+    margin-top: 4px;
+  }
+
+  .section-title {
+    font-size: 10px;
+    font-weight: 700;
+    color: #1A56DB;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    padding-bottom: 7px;
+    border-bottom: 1px solid #E8EEF8;
+    margin-bottom: 10px;
+  }
+
+  .summary-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: #0D1526;
+    line-height: 1.65;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+
+  .skill-tag {
+    background: #F0F4FF;
+    color: #1A56DB;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 3px 9px;
+    border-radius: 4px;
+    border: 1px solid #C7D9F8;
+    line-height: 1.4;
+  }
+
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exp-item {
+    display: flex;
+    gap: 10px;
+  }
+
+  .exp-dot-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4px;
+    flex-shrink: 0;
+  }
+
+  .exp-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #1A56DB;
+    flex-shrink: 0;
+  }
+
+  .exp-line {
+    width: 1px;
+    flex: 1;
+    background: #E8EEF8;
+    margin-top: 4px;
+    min-height: 16px;
+  }
+
+  .exp-content {
+    flex: 1;
+    padding-bottom: 2px;
+  }
+
+  .exp-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: #0D1526;
+    line-height: 1.3;
+  }
+
+  .exp-meta {
+    font-size: 10px;
+    color: #9BB3E8;
+    margin-top: 1px;
+    line-height: 1.4;
+  }
+
+  .exp-bullets {
+    margin-top: 4px;
+    padding-left: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .exp-bullets li {
+    font-size: 11px;
+    color: #4B5563;
+    line-height: 1.45;
+    padding-left: 12px;
+    position: relative;
+  }
+
+  .exp-bullets li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #9BB3E8;
+  }
+
+  .proj-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .proj-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .proj-name {
+    font-size: 12px;
+    font-weight: 600;
+    color: #0D1526;
+  }
+
+  .proj-name span {
+    color: #1A56DB;
+  }
+
+  .proj-desc {
+    font-size: 11px;
+    color: #4B5563;
+    line-height: 1.45;
+  }
+</style>
+</head>
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <!-- FOTO -->
+    <div style="display:flex; flex-direction:column; align-items:center; gap:0;">
+      <div class="photo-area">
+        <img src="foto.jpg" alt="Kalid Carvalho">
+      </div>
+      <div class="sidebar-divider" style="margin-top:20px;"></div>
+    </div>
+
+    <!-- CONTATO -->
+    <div>
+      <div class="sidebar-section-label">Contato</div>
+      <div class="contact-item">
+        <div class="contact-row">
+          <span class="contact-label">WhatsApp</span>
+          <span class="contact-value">+55 92 99192-3266</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">LinkedIn</span>
+          <span class="contact-value">linkedin.com/in/kalidcarvalho</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Site</span>
+          <span class="contact-value">grovw.com.br</span>
+        </div>
+        <div class="contact-row">
+          <span class="contact-label">Local</span>
+          <span class="contact-value">Manaus, AM — Brasil</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- IDIOMAS -->
+    <div>
+      <div class="sidebar-section-label">Idiomas</div>
+      <div class="lang-item">
+        <div class="lang-name">Português</div>
+        <div class="lang-level">Nativo</div>
+      </div>
+      <div class="lang-item">
+        <div class="lang-name">Inglês</div>
+        <div class="lang-level">Intermediário (leitura técnica)</div>
+      </div>
+    </div>
+
+    <!-- FORMAÇÃO -->
+    <div>
+      <div class="sidebar-section-label">Formação</div>
+
+      <div class="edu-item">
+        <div class="edu-badge">Em andamento</div>
+        <div class="edu-course">Pós-Graduação em Gestão de T.I</div>
+        <div class="edu-institution">Estácio</div>
+        <div class="edu-period">2026 – cursando</div>
+      </div>
+
+      <div class="edu-item">
+        <div class="edu-course">Tecnólogo em Análise e Desenvolvimento de Sistemas</div>
+        <div class="edu-institution">Estácio</div>
+        <div class="edu-period">2023 – 2025</div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main">
+
+    <div class="main-header">
+      <div class="main-name">Kalid Carvalho</div>
+      <div class="main-title">Web Designer · Gestão de Tráfego · Analista de T.I · Automação com IA</div>
+    </div>
+
+    <div>
+      <div class="section-title">Sobre</div>
+      <p class="summary-text">
+        Profissional de T.I com 7 anos de experiência em suporte e infraestrutura, especializado em criação de sites de alta performance, campanhas de tráfego pago e automação com IA. Entrego desde a infraestrutura técnica até o site que converte — tudo integrado, sem depender de terceiros.
+      </p>
+    </div>
+
+    <div>
+      <div class="section-title">Skills Técnicas</div>
+      <div class="skills-grid">
+        <span class="skill-tag">WordPress</span>
+        <span class="skill-tag">Elementor</span>
+        <span class="skill-tag">HTML / CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Figma</span>
+        <span class="skill-tag">Google Ads</span>
+        <span class="skill-tag">Meta Ads</span>
+        <span class="skill-tag">Core Web Vitals</span>
+        <span class="skill-tag">SEO Técnico</span>
+        <span class="skill-tag">Automação</span>
+        <span class="skill-tag">Typebot</span>
+        <span class="skill-tag">Agentes de IA</span>
+        <span class="skill-tag">Windows Server</span>
+        <span class="skill-tag">Active Directory</span>
+        <span class="skill-tag">Fortigate FW</span>
+        <span class="skill-tag">Virtualização</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Experiência</div>
+      <div class="exp-list">
+
+        <div class="exp-item">
+          <div class="exp-dot-col">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">Analista de Sistemas de T.I</div>
+            <div class="exp-meta">Crocs, Inc. &nbsp;·&nbsp; out/2024 – mar/2026 &nbsp;·&nbsp; 1a 6m &nbsp;·&nbsp; Manaus, AM</div>
+            <ul class="exp-bullets">
+              <li>Administração e suporte aos sistemas CIGAM Gestão e F360 Finanças</li>
+              <li>Implementação de melhorias em sistemas, organização de processos e políticas de T.I</li>
+              <li>Gestão de infraestrutura corporativa: redes, servidores, endpoints e permissões</li>
+              <li>Suporte técnico nível 2: resolução de incidentes e atendimento ao usuário</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot-col">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">Técnico de Informática JR</div>
+            <div class="exp-meta">Universidade Paulista (UNIP) &nbsp;·&nbsp; mai/2024 – out/2024 &nbsp;·&nbsp; 6m</div>
+            <ul class="exp-bullets">
+              <li>Manutenção de computadores e administração de servidores</li>
+              <li>Suporte ao corpo docente e administrativo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot-col">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">Assistente de T.I</div>
+            <div class="exp-meta">Fundação Universitas (F.UEA) &nbsp;·&nbsp; abr/2021 – ago/2022 &nbsp;·&nbsp; 1a 5m</div>
+            <ul class="exp-bullets">
+              <li>Administração de redes, Active Directory e Fortigate Firewall</li>
+              <li>Gestão do site institucional em WordPress + Elementor</li>
+              <li>Administração de VoIP PABX, backup e suporte ao sistema Conveniar</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot-col">
+            <div class="exp-dot"></div>
+            <div class="exp-line"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">Técnico de Informática JR</div>
+            <div class="exp-meta">Masa Molds &amp; Plastics &nbsp;·&nbsp; nov/2018 – abr/2021 &nbsp;·&nbsp; 2a 6m</div>
+            <ul class="exp-bullets">
+              <li>Suporte de hardware, SO e ferramentas de escritório</li>
+              <li>Manutenção, inventário e administração de Windows Server</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-dot-col">
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-content">
+            <div class="exp-role">Aprendiz de Informática</div>
+            <div class="exp-meta">Flex &nbsp;·&nbsp; out/2016 – out/2018 &nbsp;·&nbsp; 2a 1m</div>
+            <ul class="exp-bullets">
+              <li>HelpDesk e suporte ao usuário administrativo</li>
+              <li>Manutenção de equipamentos e inventário de TI</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div>
+      <div class="section-title">Projetos &amp; Diferenciais</div>
+      <div class="proj-list">
+        <div class="proj-item">
+          <div class="proj-name"><span>GROVW</span> — Sites que Vendem</div>
+          <div class="proj-desc">Sistema completo de aquisição de leads para PMEs: LP de alta conversão + Google Ads + IA no WhatsApp (Typebot + Cal.com) + automação de processos. Resultado: leads qualificados com intenção real de compra.</div>
+        </div>
+        <div class="proj-item">
+          <div class="proj-name"><span>Core Web Vitals 90%+</span></div>
+          <div class="proj-desc">Entrega de LPs com PageSpeed Score acima de 90 — reduz CPC no Google Ads e aumenta taxa de conversão. Stack: HTML/CSS/JS customizado via Antigravity.</div>
+        </div>
+        <div class="proj-item">
+          <div class="proj-name"><span>Squads de IA</span> — Multi-agente com Claude/MCP</div>
+          <div class="proj-desc">Criação de sistemas de agentes autônomos para automação de produção de conteúdo, design e prospecção — integrando Claude, Playwright e automação de fluxos.</div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

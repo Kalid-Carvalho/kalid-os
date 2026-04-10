@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; overflow: hidden; background: #0D1526; font-family: 'Space Grotesk', sans-serif; position: relative; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 72px 80px; }
+.header { display: flex; align-items: center; gap: 12px; padding-bottom: 52px; border-bottom: 1px solid #1E2E4A; flex-shrink: 0; }
+.avatar { width: 56px; height: 56px; border-radius: 50%; border: 2px solid #2563EB; background: #1A56DB; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 700; color: #fff; letter-spacing: -1px; flex-shrink: 0; }
+.avatar span { font-weight: 300; opacity: 0.8; font-size: 13px; }
+.name { font-size: 20px; font-weight: 700; color: #fff; }
+.check { color: #4A90E2; font-size: 15px; }
+.handle { font-size: 16px; color: #9BB3E8; }
+.body { flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 48px; text-align: center; }
+.watermark { position: absolute; bottom: 36px; right: 52px; font-size: 20px; font-weight: 500; color: #3A4D6E; }
+</style>
+</head>
+<body>
+<div style="position:absolute;bottom:-120px;right:-120px;width:560px;height:560px;border-radius:50%;border:1px solid #1E2E4A;opacity:0.5;"></div>
+<div style="position:absolute;bottom:-180px;right:-180px;width:780px;height:780px;border-radius:50%;border:1px solid #162040;opacity:0.3;"></div>
+<div class="slide">
+  <div class="header">
+    <div class="avatar">K<span>C</span></div>
+    <div>
+      <div class="name">Kalid Carvalho <span class="check">✓</span></div>
+      <div class="handle">@eukalidcarvalho</div>
+    </div>
+  </div>
+  <div class="body">
+    <div style="width:96px;height:96px;background:#1A56DB;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:700;color:#fff;letter-spacing:-2px;">K<span style="font-weight:300;opacity:0.8;font-size:26px;">C</span></div>
+    <div>
+      <div style="font-size:44px;font-weight:700;color:#FFFFFF;line-height:1.2;letter-spacing:-0.5px;">Estou documentando esse processo aqui.</div>
+      <div style="font-size:34px;font-weight:400;color:#9BB3E8;line-height:1.5;margin-top:20px;">Se quiser acompanhar cada etapa, me segue.</div>
+    </div>
+    <div style="width:72px;height:2px;background:#1E2E4A;"></div>
+    <div style="font-size:52px;font-weight:700;color:#1A56DB;letter-spacing:-0.5px;">@eukalidcarvalho</div>
+    <div style="background:#111E35;border:1px solid #1E3A6E;border-radius:12px;padding:28px 40px;max-width:740px;">
+      <div style="font-size:22px;font-weight:400;color:#9BB3E8;line-height:1.65;">Próximos posts: como cada peça desse sistema funciona na prática.</div>
+    </div>
+  </div>
+</div>
+<div class="watermark">@eukalidcarvalho</div>
+</body>
+</html>
