@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Plano Alexandre Neto — @alexandreneto.english</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Space Grotesk', sans-serif;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .deck {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+  }
+
+  .slide {
+    display: none;
+    width: 1280px;
+    height: 720px;
+    background: #0D1526;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide.active { display: flex; }
+
+  /* Elementos decorativos */
+  .slide::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(26,86,219,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .slide::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #1A56DB, transparent);
+  }
+
+  /* Barra de progresso */
+  .progress-bar {
+    position: absolute;
+    top: 0; left: 0;
+    height: 3px;
+    background: #1A56DB;
+    transition: width 0.3s ease;
+    z-index: 100;
+  }
+
+  /* Navegação */
+  .nav {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    z-index: 100;
+  }
+
+  .nav button {
+    background: rgba(26,86,219,0.2);
+    border: 1px solid rgba(26,86,219,0.4);
+    color: #9BB3E8;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
+
+  .nav button:hover {
+    background: rgba(26,86,219,0.4);
+    color: #fff;
+    border-color: #1A56DB;
+  }
+
+  .slide-counter {
+    color: #9BB3E8;
+    font-size: 13px;
+    font-weight: 500;
+    min-width: 60px;
+    text-align: center;
+  }
+
+  /* Dot indicators */
+  .dots {
+    position: absolute;
+    bottom: 28px;
+    right: 48px;
+    display: flex;
+    gap: 6px;
+    z-index: 100;
+  }
+
+  .dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #1E2E4A;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .dot.active {
+    background: #1A56DB;
+    width: 20px;
+    border-radius: 3px;
+  }
+
+  /* Handle watermark */
+  .handle {
+    position: absolute;
+    bottom: 28px;
+    left: 48px;
+    color: #3A4D6E;
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 100;
+  }
+
+  /* =====================
+     SLIDE 1 — CAPA
+  ===================== */
+  #slide-1 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  #slide-1 .tag {
+    background: rgba(26,86,219,0.15);
+    border: 1px solid rgba(26,86,219,0.4);
+    color: #9BB3E8;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 6px 16px;
+    border-radius: 6px;
+    margin-bottom: 32px;
+  }
+
+  #slide-1 h1 {
+    font-size: 72px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.05;
+    margin-bottom: 20px;
+  }
+
+  #slide-1 h1 span {
+    color: #1A56DB;
+  }
+
+  #slide-1 .sub {
+    font-size: 22px;
+    font-weight: 400;
+    color: #9BB3E8;
+    margin-bottom: 48px;
+  }
+
+  #slide-1 .handle-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(26,86,219,0.1);
+    border: 1px solid rgba(26,86,219,0.3);
+    padding: 12px 24px;
+    border-radius: 8px;
+  }
+
+  #slide-1 .handle-badge .dot-live {
+    width: 8px; height: 8px;
+    background: #1A56DB;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  #slide-1 .handle-badge span {
+    color: #9BB3E8;
+    font-size: 18px;
+    font-weight: 500;
+  }
+
+  /* =====================
+     SLIDE 2 — POSICIONAMENTO
+  ===================== */
+  #slide-2 {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  #slide-2 .left {
+    width: 480px;
+    background: rgba(26,86,219,0.06);
+    border-right: 1px solid #1E2E4A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 56px;
+  }
+
+  #slide-2 .left .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 24px;
+  }
+
+  #slide-2 .left h2 {
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+  }
+
+  #slide-2 .left h2 em {
+    color: #1A56DB;
+    font-style: normal;
+  }
+
+  #slide-2 .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 56px;
+    gap: 28px;
+  }
+
+  .info-block {
+    border-left: 4px solid #1A56DB;
+    padding-left: 20px;
+  }
+
+  .info-block .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 8px;
+  }
+
+  .info-block p {
+    font-size: 18px;
+    font-weight: 500;
+    color: #E2EAF8;
+    line-height: 1.5;
+  }
+
+  /* =====================
+     SLIDE 3 — OFERTAS
+  ===================== */
+  #slide-3 {
+    flex-direction: column;
+    padding: 56px 72px;
+  }
+
+  #slide-3 .slide-title {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 16px;
+  }
+
+  #slide-3 h2 {
+    font-size: 40px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 48px;
+  }
+
+  .offers-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .offer-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid #1E2E4A;
+    border-radius: 8px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .offer-card.featured {
+    border-color: rgba(26,86,219,0.5);
+    background: rgba(26,86,219,0.08);
+  }
+
+  .offer-card .phase {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #9BB3E8;
+  }
+
+  .offer-card.featured .phase { color: #1A56DB; }
+
+  .offer-card h3 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .offer-card .price {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1A56DB;
+    line-height: 1;
+  }
+
+  .offer-card .price span {
+    font-size: 16px;
+    color: #9BB3E8;
+    font-weight: 400;
+  }
+
+  .offer-card .desc {
+    font-size: 15px;
+    color: #9BB3E8;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  .offer-card .badge {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: #1A56DB;
+    color: #fff;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 4px;
+  }
+
+  /* =====================
+     SLIDE 4 — META
+  ===================== */
+  #slide-4 {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px;
+  }
+
+  #slide-4 .slide-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 24px;
+  }
+
+  #slide-4 h2 {
+    font-size: 38px;
+    font-weight: 600;
+    color: #9BB3E8;
+    margin-bottom: 16px;
+  }
+
+  #slide-4 .big-number {
+    font-size: 100px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  #slide-4 .big-number span {
+    color: #1A56DB;
+  }
+
+  #slide-4 .sub {
+    font-size: 20px;
+    color: #9BB3E8;
+    margin-bottom: 48px;
+  }
+
+  .meta-breakdown {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .meta-item {
+    background: rgba(26,86,219,0.08);
+    border: 1px solid rgba(26,86,219,0.3);
+    border-radius: 8px;
+    padding: 20px 32px;
+    text-align: center;
+  }
+
+  .meta-item .val {
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .meta-item .lbl {
+    font-size: 13px;
+    color: #9BB3E8;
+    margin-top: 4px;
+  }
+
+  .meta-item .plus {
+    font-size: 28px;
+    font-weight: 700;
+    color: #1A56DB;
+    align-self: center;
+  }
+
+  /* =====================
+     SLIDE 5 — FUNIL
+  ===================== */
+  #slide-5 {
+    flex-direction: column;
+    padding: 52px 72px;
+  }
+
+  #slide-5 .slide-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 12px;
+  }
+
+  #slide-5 h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+
+  .funnel-steps {
+    display: flex;
+    gap: 0;
+    flex: 1;
+    align-items: center;
+  }
+
+  .funnel-step {
+    flex: 1;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #1E2E4A;
+    border-radius: 8px;
+    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    position: relative;
+  }
+
+  .funnel-step.mid {
+    border-color: rgba(26,86,219,0.35);
+    background: rgba(26,86,219,0.05);
+  }
+
+  .funnel-arrow {
+    font-size: 28px;
+    color: #1A56DB;
+    padding: 0 12px;
+    flex-shrink: 0;
+  }
+
+  .funnel-step .step-num {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1A56DB;
+  }
+
+  .funnel-step h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .funnel-step ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .funnel-step ul li {
+    font-size: 15px;
+    color: #9BB3E8;
+    padding-left: 16px;
+    position: relative;
+    line-height: 1.4;
+  }
+
+  .funnel-step ul li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: #1A56DB;
+  }
+
+  /* =====================
+     SLIDE 6 — CRONOGRAMA
+  ===================== */
+  #slide-6 {
+    flex-direction: column;
+    padding: 52px 72px;
+  }
+
+  #slide-6 .slide-title {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 12px;
+  }
+
+  #slide-6 h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 40px;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    padding: 24px 0;
+    border-bottom: 1px solid #1E2E4A;
+  }
+
+  .timeline-item:last-child { border-bottom: none; }
+
+  .timeline-phase {
+    width: 160px;
+    flex-shrink: 0;
+  }
+
+  .timeline-phase .months {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: #1A56DB;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .timeline-phase .phase-name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .timeline-dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: #1A56DB;
+    flex-shrink: 0;
+    margin-top: 6px;
+    box-shadow: 0 0 12px rgba(26,86,219,0.5);
+  }
+
+  .timeline-content {
+    flex: 1;
+  }
+
+  .timeline-content p {
+    font-size: 17px;
+    color: #9BB3E8;
+    line-height: 1.5;
+  }
+
+  .timeline-content strong {
+    color: #E2EAF8;
+  }
+
+  /* =====================
+     SLIDE 7 — PRÓXIMOS PASSOS
+  ===================== */
+  #slide-7 {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  #slide-7 .left {
+    width: 400px;
+    background: rgba(26,86,219,0.08);
+    border-right: 1px solid #1E2E4A;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 64px 52px;
+  }
+
+  #slide-7 .left .label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 20px;
+  }
+
+  #slide-7 .left h2 {
+    font-size: 44px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.15;
+  }
+
+  #slide-7 .left p {
+    font-size: 17px;
+    color: #9BB3E8;
+    margin-top: 20px;
+    line-height: 1.6;
+  }
+
+  #slide-7 .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 56px 52px;
+    gap: 16px;
+  }
+
+  .step-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid #1E2E4A;
+    border-radius: 8px;
+  }
+
+  .step-num-badge {
+    width: 32px; height: 32px;
+    border-radius: 6px;
+    background: rgba(26,86,219,0.2);
+    border: 1px solid rgba(26,86,219,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #1A56DB;
+    flex-shrink: 0;
+  }
+
+  .step-item p {
+    font-size: 16px;
+    color: #E2EAF8;
+    line-height: 1.4;
+    padding-top: 4px;
+  }
+
+  .step-item p span {
+    color: #9BB3E8;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- Barra de progresso -->
+  <div class="progress-bar" id="progress"></div>
+
+  <!-- SLIDE 1 — CAPA -->
+  <div class="slide active" id="slide-1">
+    <div class="tag">Estratégia de crescimento</div>
+    <h1>Seu plano<br><span>de negócio digital.</span></h1>
+    <p class="sub">Construído para quem quer trabalhar menos ensinando<br>e ganhar mais por isso.</p>
+    <div class="handle-badge">
+      <div class="dot-live"></div>
+      <span>@alexandreneto.english</span>
+    </div>
+    <div class="handle">Kalid Carvalho — GROVW</div>
+  </div>
+
+  <!-- SLIDE 2 — POSICIONAMENTO -->
+  <div class="slide" id="slide-2">
+    <div class="left">
+      <div class="label">Posicionamento</div>
+      <h2>Inglês técnico para <em>devs que travam</em> na hora de falar.</h2>
+    </div>
+    <div class="right">
+      <div class="info-block">
+        <div class="label">Para quem</div>
+        <p>Devs, analistas e profissionais de tecnologia nível A1/B1 que precisam do inglês no trabalho.</p>
+      </div>
+      <div class="info-block">
+        <div class="label">A dor</div>
+        <p>Sabe ler em inglês, mas na reunião, na entrevista ou com o cliente gringo — trava. O vocabulário técnico some.</p>
+      </div>
+      <div class="info-block">
+        <div class="label">A promessa</div>
+        <p>Comunicar com clareza no seu contexto profissional, com vocabulário do seu dia a dia real.</p>
+      </div>
+      <div class="info-block">
+        <div class="label">Diferencial</div>
+        <p>Aula que se adapta ao aluno. Sem turma, sem apostila engessada. Acesso direto ao professor.</p>
+      </div>
+    </div>
+    <div class="handle">@alexandreneto.english</div>
+  </div>
+
+  <!-- SLIDE 3 — OFERTAS -->
+  <div class="slide" id="slide-3">
+    <div class="slide-title">Escada de ofertas</div>
+    <h2>Três produtos. Um cresce enquanto o outro trabalha.</h2>
+    <div class="offers-grid">
+      <div class="offer-card featured">
+        <div class="badge">Agora</div>
+        <div class="phase">Produto 1</div>
+        <h3>Aula Individual<br>Premium</h3>
+        <div class="price">R$550<span>/mês</span></div>
+        <p class="desc">3–4 alunos. Acesso direto, acompanhamento próximo, vocabulário da área do aluno.</p>
+      </div>
+      <div class="offer-card featured">
+        <div class="badge">Mês 3–4</div>
+        <div class="phase">Produto 2</div>
+        <h3>Mentoria<br>em Grupo</h3>
+        <div class="price">R$220<span>/mês</span></div>
+        <p class="desc">10–15 pessoas. 1 encontro/semana. Menos horas, mais alunos, mais receita.</p>
+      </div>
+      <div class="offer-card">
+        <div class="phase">Produto 3</div>
+        <h3>Curso Gravado<br>EAD</h3>
+        <div class="price">R$397<span> único</span></div>
+        <p class="desc">Inglês para devs. Grava uma vez, vende sempre. Renda passiva após a audiência criada.</p>
+      </div>
+    </div>
+    <div class="handle">@alexandreneto.english</div>
+  </div>
+
+  <!-- SLIDE 4 — META -->
+  <div class="slide" id="slide-4">
+    <div class="slide-label">A meta</div>
+    <h2>De onde você está para onde vai chegar.</h2>
+    <div class="big-number">R$<span>3.850</span></div>
+    <p class="sub">por mês — com menos de 5 horas de aula por semana</p>
+    <div class="meta-breakdown">
+      <div class="meta-item">
+        <div class="val">3 individuais</div>
+        <div class="lbl">x R$550 = R$1.650</div>
+      </div>
+      <div class="meta-item" style="background:transparent;border:none;padding:0 8px;">
+        <div class="plus">+</div>
+      </div>
+      <div class="meta-item">
+        <div class="val">1 grupo (10 pax)</div>
+        <div class="lbl">x R$220 = R$2.200</div>
+      </div>
+      <div class="meta-item" style="background:transparent;border:none;padding:0 8px;">
+        <div class="plus">=</div>
+      </div>
+      <div class="meta-item" style="border-color:rgba(26,86,219,0.5);background:rgba(26,86,219,0.1);">
+        <div class="val" style="color:#1A56DB;">R$3.850</div>
+        <div class="lbl">por mês</div>
+      </div>
+    </div>
+    <div class="handle">@alexandreneto.english</div>
+  </div>
+
+  <!-- SLIDE 5 — FUNIL -->
+  <div class="slide" id="slide-5">
+    <div class="slide-title">Como funciona o funil</div>
+    <h2>Conteúdo atrai. Aula experimental converte.</h2>
+    <div class="funnel-steps">
+      <div class="funnel-step">
+        <div class="step-num">Topo</div>
+        <h3>Conteúdo</h3>
+        <ul>
+          <li>Reels curtos no Instagram</li>
+          <li>Vídeos no YouTube</li>
+          <li>Vocabulário técnico por nicho</li>
+          <li>Erros comuns de devs em inglês</li>
+        </ul>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step mid">
+        <div class="step-num">Meio</div>
+        <h3>Qualificação</h3>
+        <ul>
+          <li>Bio com CTA direto</li>
+          <li>Landing page simples</li>
+          <li>Depoimento do aluno (A2 em 4 meses)</li>
+          <li>Stories com resultados</li>
+        </ul>
+      </div>
+      <div class="funnel-arrow">→</div>
+      <div class="funnel-step">
+        <div class="step-num">Fundo</div>
+        <h3>Conversão</h3>
+        <ul>
+          <li>Aula experimental gratuita</li>
+          <li>Diagnóstico do aluno (45 min)</li>
+          <li>Proposta no final da aula</li>
+          <li>Fechamento pelo WhatsApp</li>
+        </ul>
+      </div>
+    </div>
+    <div class="handle">@alexandreneto.english</div>
+  </div>
+
+  <!-- SLIDE 6 — CRONOGRAMA -->
+  <div class="slide" id="slide-6">
+    <div class="slide-title">Cronograma</div>
+    <h2>Três fases. Cada uma com um objetivo claro.</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-phase">
+          <div class="months">Mês 1–2</div>
+          <div class="phase-name">Presença</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <p>Criar @alexandreneto.english no Instagram e YouTube. Montar landing page. <strong>Subir ticket individual para R$550.</strong> Fechar 3–4 alunos premium com o público atual (indicações + novo posicionamento).</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">
+          <div class="months">Mês 3–4</div>
+          <div class="phase-name">Grupo</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <p>Audiência aquecida pelo conteúdo. <strong>Lançar primeira turma de mentoria em grupo.</strong> Meta: 10 pessoas a R$220/mês. Uma hora por semana de aula, receita recorrente previsível.</p>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-phase">
+          <div class="months">Mês 5–6</div>
+          <div class="phase-name">Curso</div>
+        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-content">
+          <p>Validar os temas que mais performaram no conteúdo. <strong>Gravar o curso "Inglês para Devs".</strong> Lançar para a audiência já construída. Renda passiva a partir daí.</p>
+        </div>
+      </div>
+    </div>
+    <div class="handle">@alexandreneto.english</div>
+  </div>
+
+  <!-- SLIDE 7 — PRÓXIMOS PASSOS -->
+  <div class="slide" id="slide-7">
+    <div class="left">
+      <div class="label">Próximos passos</div>
+      <h2>O que começa agora.</h2>
+      <p>Tudo que precisa ser feito nos próximos 15 dias para o plano sair do papel.</p>
+    </div>
+    <div class="right">
+      <div class="step-item">
+        <div class="step-num-badge">1</div>
+        <p>Criar perfis <strong>@alexandreneto.english</strong> no Instagram e YouTube<br><span>Define a presença e o canal de captação</span></p>
+      </div>
+      <div class="step-item">
+        <div class="step-num-badge">2</div>
+        <p>Montar <strong>landing page de captação</strong> com depoimento e link para aula gratuita<br><span>Destino do tráfego orgânico</span></p>
+      </div>
+      <div class="step-item">
+        <div class="step-num-badge">3</div>
+        <p>Publicar os <strong>primeiros 3 Reels</strong> no Instagram com vocabulário para devs<br><span>Início da construção de audiência</span></p>
+      </div>
+      <div class="step-item">
+        <div class="step-num-badge">4</div>
+        <p>Ajustar ticket dos alunos atuais para <strong>R$550/mês</strong> com o novo posicionamento<br><span>Aumenta receita imediata sem esforço extra</span></p>
+      </div>
+    </div>
+    <div class="handle">@alexandreneto.english</div>
+  </div>
+
+  <!-- Navegação -->
+  <div class="nav">
+    <button onclick="prevSlide()">← Anterior</button>
+    <span class="slide-counter" id="counter">1 / 7</span>
+    <button onclick="nextSlide()">Próximo →</button>
+  </div>
+
+  <!-- Dots -->
+  <div class="dots" id="dots"></div>
+
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+
+  // Criar dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goTo(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goTo(index) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = index;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + total;
+    progress.style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  function nextSlide() {
+    if (current < total - 1) goTo(current + 1);
+  }
+
+  function prevSlide() {
+    if (current > 0) goTo(current - 1);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') nextSlide();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prevSlide();
+  });
+
+  // Init progress
+  progress.style.width = (1 / total * 100) + '%';
+</script>
+
+</body>
+</html>
