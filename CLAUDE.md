@@ -99,6 +99,28 @@ Não perguntar se a correção for óbvia de contexto imediato (ex: "na verdade 
 
 ---
 
+## Manter contexto atualizado
+
+Ao terminar uma tarefa que mudou algo relevante no projeto (novo cliente, nova skill, mudança de foco, novo processo, ferramenta instalada, estrutura de pastas alterada), perguntar:
+
+> "Isso mudou algo no teu contexto. Quer que eu atualize os arquivos de memória?"
+
+Se sim, identificar o que precisa atualizar:
+
+- **Novo cliente, serviço, ferramenta, equipe** → `_contexto/empresa.md`
+- **Mudança de prioridade ou foco** → `_contexto/estrategia.md`
+- **Correção de tom ou estilo** → `_contexto/preferencias.md`
+- **Nova pasta, regra de organização, skill criada** → `CLAUDE.md`
+- **Mudança visual (cores, fontes, logo)** → `marca/design-guide.md`
+
+Mostrar o que vai mudar antes de salvar. Não reformatar o arquivo inteiro, só adicionar ou editar a linha relevante.
+
+Quando NÃO perguntar: tarefas pontuais, perguntas simples, mudanças já salvas pelo bloco "Aprender com correções".
+
+Dica: se não sabe se algo mudou, rode /atualizar pra uma varredura completa.
+
+---
+
 ## Criação de skills
 
 Quando o usuário pedir pra criar uma nova skill:
