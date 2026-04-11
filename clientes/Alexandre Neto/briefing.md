@@ -22,6 +22,17 @@
 
 ---
 
+## Posicionamento definido (11/04/2026)
+
+**Nicho:** Devs e profissionais de tecnologia (programadores, analistas, QA, product)
+**Fase futura:** expandir para outros nichos (contabilidade, aviação, etc.) após audiência construída em tech
+**Dor:** Sabe ler inglês mas trava na hora de falar — reunião, entrevista, cliente internacional
+**Promessa:** Comunicar com clareza em inglês no contexto de trabalho, com vocabulário técnico da área
+**Handle:** @alexandreneto.english (Instagram e YouTube)
+**Headline:** "Inglês técnico para devs que travam na hora de falar."
+
+---
+
 ## Produto e posicionamento
 
 ### Oferta principal
