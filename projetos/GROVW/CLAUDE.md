@@ -1,7 +1,22 @@
-# Site GROVW — Claude Code OS
+# GROVW — Claude Code OS
 
-## O que é esse projeto
-Site principal da GROVW (grovw.com.br). HTML puro com CSS inline + JS vanilla. Sem framework, sem build step. Uma página única de captação + páginas auxiliares (`/privacidade`, `/termos`, `/obrigado`, `/briefings`).
+## O que é essa pasta
+Todos os projetos digitais da GROVW (grovw.com.br). HTML puro com CSS inline + JS vanilla. Sem framework, sem build step.
+
+```
+GROVW/
+├── CLAUDE.md                   ← este arquivo
+├── site-grovw/                 ← site principal de captação
+├── links-grovw/                ← página de links (linktree)
+├── formulario-briefing.html    ← formulário de qualificação de leads
+└── formulario-contrato.html    ← coleta de dados para emissão de contrato
+```
+
+---
+
+## Projeto: site-grovw
+
+Site principal da GROVW (grovw.com.br). Uma página única de captação + páginas auxiliares (`/privacidade`, `/termos`, `/obrigado`, `/briefings`).
 
 **Arquivo principal de trabalho:** `index.html` (versão atual em produção) e `index-v2.html` (redesign em review).
 
@@ -107,11 +122,88 @@ Ver checklist completo em `ARQUITETURA.md`.
 
 ---
 
-## Páginas auxiliares
+## Páginas auxiliares (site-grovw)
 
 | URL | Arquivo local |
 |---|---|
-| `/privacidade/` | `_raiz/privacidade/index.html` |
-| `/termos/` | `_raiz/termos/index.html` |
-| `/obrigado/` | `_raiz/obrigado/index.html` |
-| `/briefings/alexandreneto/` | `briefings/alexandreneto/index.html` |
+| `/privacidade/` | `site-grovw/_raiz/privacidade/index.html` |
+| `/termos/` | `site-grovw/_raiz/termos/index.html` |
+| `/obrigado/` | `site-grovw/_raiz/obrigado/index.html` |
+| `/briefings/alexandreneto/` | `site-grovw/briefings/alexandreneto/index.html` |
+
+---
+
+## Projeto: links-grovw
+
+**Arquivo:** `links-grovw/index.html`
+**URL em produção:** não definida (usar como grovw.com.br/links ou bio de rede social)
+**Propósito:** página de links estilo Linktree para bio de Instagram/LinkedIn
+
+**Estrutura:**
+- Logo GROVW em JetBrains Mono limão
+- Bio: "Site + tráfego pago + IA no WhatsApp..."
+- Badge "Disponível" com pulse animado
+- Botão primário: WhatsApp → `wa.me/5592984627621` (fundo limão)
+- Botão secundário: link para `grovw.com.br`
+- Ícones sociais: Instagram, LinkedIn, YouTube — **hrefs ainda em `#`, precisam ser preenchidos**
+
+**Dependências externas (diferente dos outros arquivos):**
+- Usa Tailwind CDN + `assets/js/tailwind-config.js`
+- Usa `assets/css/style.css` do site principal
+- Ao editar, manter compatibilidade com as classes Tailwind customizadas (`grovw-accent`, `grovw-border`, etc.)
+
+**O que falta:**
+- Preencher hrefs dos ícones sociais (Instagram, LinkedIn, YouTube)
+
+---
+
+## Projeto: formulario-briefing.html
+
+**Arquivo:** `formulario-briefing.html`
+**URL sugerida:** `grovw.com.br/briefing/` (sobe na raiz do servidor)
+**Propósito:** qualificação de leads — preenchido pelo prospect antes da call ou como alternativa ao WhatsApp
+
+**Estrutura do formulário:**
+- Seção 01 — Sobre você: nome, WhatsApp, área de atuação
+- Seção 02 — Sobre o negócio: situação atual, maior dificuldade, o que já tentou, meta de leads/mês, verba disponível
+- Checkboxes visuais (cards clicáveis) e radio groups para seleção de opções
+
+**Técnico:**
+- Self-contained (CSS inline, sem dependência externa)
+- Web3Forms — `access_key: f65a41ca-f8a1-4a6e-bde4-fdeb6672298b`
+- Subject: `"Novo briefing — GROVW"`
+- Botcheck honeypot presente — nunca remover
+- Estado de sucesso embutido no HTML (ocultar form, mostrar `.success-msg`)
+
+---
+
+## Projeto: formulario-contrato.html
+
+**Arquivo:** `formulario-contrato.html`
+**URL sugerida:** `grovw.com.br/contrato/` (sobe na raiz do servidor)
+**Propósito:** coleta de dados do cliente após fechamento — alimenta geração do contrato
+
+**Estrutura do formulário:**
+- Seção 01 — Dados Pessoais: nome completo, CPF/CNPJ, data de nascimento, email, WhatsApp
+- Seção 02 — Endereço: CEP, estado, logradouro, bairro, cidade, número, complemento
+- Seção 03 — Escritório/Empresa: nome da empresa, segmento
+
+**Nota importante no topo do form:**
+> "Use os dados exatamente como constam no CPF ou CNPJ. Endereço completo com CEP facilita emissão no mesmo dia."
+
+**Técnico:**
+- Self-contained (CSS inline, sem dependência externa)
+- Web3Forms — `access_key: f65a41ca-f8a1-4a6e-bde4-fdeb6672298b`
+- Subject: `"Dados de contrato — GROVW"`
+- Botcheck honeypot presente — nunca remover
+- Estado de sucesso embutido (`.success-msg`)
+
+---
+
+## Web3Forms — access key unificada
+
+Todos os formulários usam a mesma chave:
+```
+f65a41ca-f8a1-4a6e-bde4-fdeb6672298b
+```
+Respostas chegam no email vinculado à conta Web3Forms de Kalid.
