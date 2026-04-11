@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f0f0f0; display: flex; justify-content: center; align-items: flex-start; }
+  .slide {
+    width: 1080px; height: 1350px;
+    background: #f8f8f6;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 30px 52px; border-bottom: 1.5px solid #e0e0dc; flex-shrink: 0;
+  }
+  .top-handle { font-size: 19px; font-weight: 500; color: #999; }
+  .top-center { font-size: 19px; font-weight: 500; color: #999; }
+  .top-right { font-size: 19px; font-weight: 400; color: #bbb; }
+
+  .content {
+    flex: 1;
+    display: flex; flex-direction: column;
+    padding: 56px 64px 48px;
+    gap: 0;
+  }
+
+  .top-group {
+    display: flex; flex-direction: column; gap: 36px;
+    margin-bottom: 36px;
+  }
+
+  .scenario {
+    background: #0D1526; border-radius: 12px;
+    padding: 48px 52px;
+  }
+  .scenario-text { font-size: 34px; font-weight: 500; line-height: 1.55; color: #fff; }
+
+  .body-text { font-size: 36px; font-weight: 400; color: #444; line-height: 1.6; }
+  .body-text strong { color: #0D1526; font-weight: 700; }
+
+  .stat-box {
+    flex: 1;
+    background: #1A56DB; border-radius: 12px;
+    padding: 0 52px;
+    display: flex; align-items: center; gap: 36px;
+    min-height: 200px;
+  }
+  .stat-number {
+    font-size: 108px; font-weight: 700; color: #fff;
+    line-height: 1; flex-shrink: 0; letter-spacing: -4px;
+  }
+  .stat-desc { font-size: 30px; font-weight: 500; color: rgba(255,255,255,0.85); line-height: 1.45; }
+  .stat-desc strong { color: #fff; }
+
+  .bottom-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 52px; border-top: 1.5px solid #e0e0dc; flex-shrink: 0;
+  }
+  .author { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: #1A56DB;
+    position: relative; overflow: hidden; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: #fff;
+  }
+  .avatar img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 19px; font-weight: 700; color: #0D1526; }
+  .author-handle { font-size: 16px; color: #999; }
+  .swipe { font-size: 19px; color: #999; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-center">Marketing Jurídico</span>
+    <span class="top-right">© 2026</span>
+  </div>
+  <div class="content">
+    <div class="top-group">
+      <div class="scenario">
+        <div class="scenario-text">A reunião correu bem. O cliente fez perguntas, você respondeu tudo com precisão. Ele agradeceu. Saiu satisfeito.</div>
+      </div>
+      <div class="body-text">
+        Uma semana depois, <strong>silêncio.</strong><br>
+        O caso foi parar em outro escritório.
+      </div>
+    </div>
+    <div class="stat-box" style="margin-top: auto;">
+      <div class="stat-number">78%</div>
+      <div class="stat-desc">dos clientes fecham com o <strong>primeiro escritório que responde.</strong> Não o mais barato. Não o mais famoso.</div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar"><img src="../../2026-04-07/avatar.jpg" onerror="this.style.display='none'" />K</div>
+      <div><div class="author-name">Kalid Carvalho ✓</div><div class="author-handle">@eukalidcarvalho</div></div>
+    </div>
+    <span class="swipe">Arrasta para o lado ▶</span>
+  </div>
+</div>
+</body>
+</html>

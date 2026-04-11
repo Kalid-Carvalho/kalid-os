@@ -1,7 +1,7 @@
 # Kalid Carvalho — Claude Code OS
 
 ## O que é esse workspace
-Workspace principal de Kalid Carvalho — opera GROVW (agência de performance digital) e a marca pessoal "Kalid Carvalho | Sites e Agentes de IA". Tudo passa por aqui: conteúdo, clientes, propostas, automações e desenvolvimento.
+Workspace principal de Kalid Carvalho — opera GROVW (agência de performance digital) e a marca pessoal "Kalid Carvalho | Builder". Tudo passa por aqui: conteúdo, clientes, propostas, automações e desenvolvimento.
 
 **Estrutura de pastas:**
 - `clientes/` — pasta por cliente com briefing e proposta
@@ -15,13 +15,14 @@ Workspace principal de Kalid Carvalho — opera GROVW (agência de performance d
 - `templates/ferramentas/catalogo.md` — APIs e ferramentas disponíveis
 
 ## Sobre o negócio
-Kalid opera solo. Vende sistemas de captação digital para PMEs brasileiras pela GROVW (sites + tráfego + IA). Foco atual: fechar clientes no setor de advocacia. Paralelamente, constrói audiência como criador de conteúdo e aprende criação de apps.
+Kalid opera solo. Vende sistemas de captação digital para PMEs brasileiras pela GROVW (sites + tráfego + IA). Foco atual: fechar clientes no setor de advocacia. Paralelamente, constrói audiência como criador de conteúdo de IA no YouTube e Instagram (@kalidcarvalho) e aprende criação de apps com Claude.
 
 ## O que mais fazemos aqui
 - Criação de sites de alta conversão (WordPress/Elementor e Antigravity)
 - Configuração e gestão de tráfego pago (Google Ads + Meta Ads)
 - Automações com IA (N8N, Typebot, Cal.com, agentes Claude)
-- Conteúdo para redes sociais (@eukalidcarvalho — carrosséis, reels)
+- Conteúdo tech para @kalidcarvalho (sites, apps, IA — criador de conteúdo pessoal)
+- Conteúdo jurídico para @eukalidcarvalho (marketing para advogados — canal de nicho GROVW)
 - Prospecção ativa (email frio + follow-up)
 - Propostas comerciais
 
@@ -29,7 +30,16 @@ Kalid opera solo. Vende sistemas de captação digital para PMEs brasileiras pel
 Atende clientes externos. Nicho atual: advocacia (escritórios de pequeno e médio porte). Ticket médio: R$1.400–R$5.000 setup + recorrência.
 
 ## Tom de voz
-Direto, assertivo, parceiro de negócios. Dados antes de adjetivos. Sem hype. Vocabulário: "sistema", "máquina de clientes", "conversão", "qualificado", "previsível". Ver `_contexto/preferencias.md` para lista completa.
+Direto, assertivo, parceiro de negócios. Dados antes de adjetivos. Sem hype. Vocabulário: "sistema", "máquina de clientes", "conversão", "qualificado", "previsível".
+
+Nunca usar: travessões, bullet points desnecessários, emojis (exceto em reels/posts motivacionais), explicações óbvias, promessas absolutas, enrolação.
+
+Design systems por marca:
+- GROVW: preto, limão, Inter
+- @kalidcarvalho | Builder (Bold Human): azul escuro #1A56DB, Space Grotesk
+- @eukalidcarvalho: mesmo design system Bold Human, conteúdo focado em advocacia
+
+Ver `_contexto/preferencias.md` para lista completa.
 
 ## Ferramentas conectadas
 N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright
@@ -43,10 +53,14 @@ No início de toda conversa, ler os seguintes arquivos (se existirem e estiverem
 1. `_contexto/empresa.md` — quem é o usuário, o que faz, como funciona o negócio
 2. `_contexto/preferencias.md` — tom de voz, estilo de escrita, o que evitar
 3. `_contexto/estrategia.md` — foco atual, prioridades, o que pode esperar
+4. `_contexto/persona-advogado.md` — perfil detalhado do público-alvo (dores, objeções, vocabulário)
+5. `_contexto/fontes-referencia.md` — referências de alto nível por canal (@eukalidcarvalho, @kalidcarvalho, GROVW): pessoas-chave, blogs e portais que ditam o ritmo de cada mercado
 
 Usar essas informações como base pra qualquer resposta ou decisão. Ao sugerir prioridades, formatos ou abordagens, considerar o foco atual descrito em `estrategia.md`.
 
 Para qualquer tarefa visual (carrossel, proposta, slide, landing page), consultar `marca/design-guide.md` como referência de estilo.
+
+Para qualquer tarefa de conteúdo (carrossel, roteiro, post, vídeo, newsletter), consultar `_contexto/fontes-referencia.md` pra calibrar o ângulo e o nível das referências por canal.
 
 Não é necessário listar o que foi lido nem confirmar a leitura. Apenas usar o contexto naturalmente.
 

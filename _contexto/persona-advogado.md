@@ -7,9 +7,9 @@
 **Nome fictício:** Dr. Rafael / Dra. Camila
 **Idade:** 28 a 38 anos
 **Tempo de OAB:** 3 a 8 anos
-**Regime:** Autônomo ou sócio de escritório pequeno (1 a 3 pessoas)
+**Regime:** Autônomo ou sócio de escritório pequeno (1 a 10 pessoas)
 **Localização:** Capitais e cidades médias do Brasil
-**Renda atual:** R$3.000 a R$7.000/mês (mas quer dobrar isso)
+**Renda atual:** R$5.000 a R$12.000/mês (mas quer dobrar isso)
 **Áreas mais comuns:** Família e Sucessões, Trabalhista, Consumidor, Previdenciário, Criminal
 
 ---

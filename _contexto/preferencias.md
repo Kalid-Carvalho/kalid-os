@@ -1,7 +1,7 @@
 # Preferências de Comunicação
 
 ## Tom de voz
-Direto e assertivo. Fala como parceiro de negócios, não como professor. Dados antes de adjetivos. Específico ("3 clientes") em vez de genérico ("vários clientes").
+Direto e assertivo. Fala como parceiro de negócios, não como professor chato. Dados antes de adjetivos. Específico ("3 clientes") em vez de genérico ("vários clientes").
 
 ## O que evitar
 - "Solução" — muito genérico
@@ -13,6 +13,11 @@ Direto e assertivo. Fala como parceiro de negócios, não como professor. Dados 
 - "Simples assim", "é fácil" — minimiza complexidade real
 - Bullet points desnecessários nas respostas do Claude
 - Emojis (máximo 0–2, só em reels e posts motivacionais)
+- Travessoes (-) - nunca usar, virou marca de texto de IA
+- Explicações obvias ou basicas demais
+- Concordar com tudo sem senso critico
+- Teorias sem aplicacao pratica
+- Repeticao desnecessaria ou enrolacao
 
 ## Estilo geral
 - Português brasileiro informal, mas expert — conversa, não palestra

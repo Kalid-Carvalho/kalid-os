@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contrato + Proposta | GROVW</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent: #cdff00;
+      --black: #000;
+      --surface: #0a0a0a;
+      --border: rgba(255,255,255,0.08);
+      --text: #fff;
+      --muted: #666;
+    }
+
+    body {
+      background: var(--black);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* PRINT */
+    @media print {
+      body { background: #fff; color: #000; }
+      .no-print { display: none !important; }
+      .page { box-shadow: none; border: none; max-width: 100%; }
+      .accent { color: #000; }
+      .tag { background: #eee; color: #000; border: 1px solid #ccc; }
+      .section-title { color: #000; border-color: #ccc; }
+      .clause-block { border-color: #ddd; background: #f9f9f9; }
+      .budget-table th { background: #eee; color: #000; }
+      .budget-table td { border-color: #ddd; }
+      .total-row { background: #eee; color: #000; }
+      .sign-line { border-color: #000; }
+      .header-bar { background: #000; }
+      .divider { background: #ccc; }
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* HEADER */
+    .header-bar {
+      background: #000;
+      border-bottom: 2px solid var(--accent);
+      padding: 32px 48px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .logo-mark {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+    }
+
+    .header-meta {
+      text-align: right;
+      font-size: 12px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .header-meta strong {
+      color: var(--text);
+      display: block;
+      font-size: 13px;
+    }
+
+    /* BODY */
+    .doc-body {
+      padding: 48px;
+    }
+
+    /* DOC TITLE */
+    .doc-title {
+      margin-bottom: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .doc-title .tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(205,255,0,0.07);
+      border: 1px solid rgba(205,255,0,0.2);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 16px;
+    }
+
+    .doc-title h1 {
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .doc-title p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* PARTIES GRID */
+    .parties-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .party-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 20px 24px;
+    }
+
+    .party-card .party-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+    }
+
+    .party-card strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .party-card p {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* SCOPE BLOCK */
+    .scope-block {
+      background: rgba(205,255,0,0.04);
+      border: 1px solid rgba(205,255,0,0.2);
+      border-left: 3px solid var(--accent);
+      border-radius: 6px;
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    .scope-block .scope-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+
+    .scope-block h2 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .scope-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .scope-items li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 13px;
+    }
+
+    .scope-items li::before {
+      content: '+';
+      color: var(--accent);
+      font-weight: 700;
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* SECTION */
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      margin-top: 32px;
+      margin-bottom: 20px;
+    }
+
+    .clause-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 12px;
+    }
+
+    .clause-block strong {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .clause-block p {
+      font-size: 13px;
+      color: #bbb;
+      line-height: 1.7;
+    }
+
+    .clause-block p + p {
+      margin-top: 8px;
+    }
+
+    /* BUDGET TABLE */
+    .budget-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+      font-size: 13px;
+    }
+
+    .budget-table th {
+      background: #111;
+      color: var(--accent);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .budget-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: #ccc;
+      vertical-align: top;
+    }
+
+    .budget-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .budget-table .item-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .total-row {
+      background: rgba(205,255,0,0.06);
+      border: 1px solid rgba(205,255,0,0.2);
+      border-radius: 6px;
+      padding: 16px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .total-row span:first-child {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .total-row strong {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .payment-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .payment-note strong {
+      color: var(--text);
+    }
+
+    /* INCLUSIONS / EXCLUSIONS */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 20px;
+    }
+
+    .inc-block {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 20px;
+    }
+
+    .inc-block .inc-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .inc-block.green .inc-label { color: var(--accent); }
+    .inc-block.red .inc-label { color: #ff5555; }
+
+    .inc-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .inc-block ul li {
+      font-size: 12px;
+      color: #bbb;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .inc-block.green ul li::before { content: '+'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+    .inc-block.red ul li::before { content: 'x'; color: #ff5555; font-weight: 700; flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
+
+    /* MATERIAL */
+    .material-list {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+
+    .material-list .ml-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .material-list ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .material-list ul li {
+      font-size: 12px;
+      color: #bbb;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .material-list ul li::before {
+      content: '>';
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+      flex-shrink: 0;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 40px 0;
+    }
+
+    /* SIGNATURES */
+    .sign-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-top: 48px;
+    }
+
+    .sign-block {
+      text-align: center;
+    }
+
+    .sign-line {
+      border-top: 1px solid var(--muted);
+      padding-top: 12px;
+      margin-top: 48px;
+    }
+
+    .sign-line strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .sign-line p {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 2px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* FOOTER */
+    .doc-footer {
+      margin-top: 48px;
+      padding: 24px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--muted);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* PRINT BUTTON */
+    .print-bar {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99;
+    }
+
+    .btn-print {
+      background: var(--accent);
+      color: #000;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      box-shadow: 0 4px 20px rgba(205,255,0,0.3);
+    }
+
+    .btn-print:hover { background: #d9ff2a; }
+
+    .accent { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      .doc-body { padding: 24px; }
+      .header-bar { padding: 24px; flex-direction: column; gap: 16px; align-items: flex-start; }
+      .parties-grid, .two-col, .sign-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header-bar">
+    <div>
+      <div class="logo-mark">GROVW</div>
+      <div style="font-size:11px;color:#555;font-family:'JetBrains Mono',monospace;margin-top:4px;">Sites & Performance Digital</div>
+    </div>
+    <div class="header-meta">
+      <strong>CONTRATO + PROPOSTA</strong>
+      Manaus, AM · <span id="doc-date"></span>
+      <br>comercial@grovw.com.br · (92) 99969-3466
+    </div>
+  </div>
+
+  <div class="doc-body">
+
+    <!-- TITLE -->
+    <div class="doc-title">
+      <div class="tag">Prestacao de Servicos Digitais</div>
+      <h1>Contrato de Criacao de<br><span class="accent">Paginas de Alta Conversao</span></h1>
+      <p>Este documento formaliza a prestacao de servicos entre as partes abaixo identificadas, conforme escopo e condicoes descritas.</p>
+    </div>
+
+    <!-- PARTIES -->
+    <div class="parties-grid">
+      <div class="party-card">
+        <div class="party-role">Contratada</div>
+        <strong>63.814.406 KALID CARVALHO DA SILVA</strong>
+        <p>
+          CNPJ: 63.814.406/0001-28<br>
+          Rua Jose Tadros, 371 - Santo Antonio<br>
+          Manaus, AM - CEP 69.029-510<br>
+          comercial@grovw.com.br
+        </p>
+      </div>
+      <div class="party-card">
+        <div class="party-role">Contratante</div>
+        <strong>LUAN MANZOLI</strong>
+        <p>
+          CPF/CNPJ: [___________________]<br>
+          Endereco: [___________________]<br>
+          Cidade/UF: [___________________]<br>
+          WhatsApp: [___________________]
+        </p>
+      </div>
+    </div>
+
+    <!-- SCOPE -->
+    <div class="scope-block">
+      <div class="scope-label">Objeto do Contrato - Escopo Contratado</div>
+      <h2>1 Pagina de Links + 2 Landing Pages + 2 Paginas de Obrigado</h2>
+      <ul class="scope-items">
+        <li><strong>Pagina de Links</strong> - Pagina personalizada com links para servicos, redes sociais e contatos. Estilo premium, mobile-first.</li>
+        <li><strong>Landing Page 01</strong> - Pagina de alta conversao para os servicos da agencia (nicho de loja de iPhone). Estrutura completa: hero, beneficios, cases, prova social, CTA e formulario de captura.</li>
+        <li><strong>Landing Page 02</strong> - Pagina de alta conversao para venda da mentoria. Estrutura completa com ancora de venda, oferta, depoimentos e checkout.</li>
+        <li><strong>Pagina de Obrigado 01</strong> - Confirmacao de lead para LP da agencia.</li>
+        <li><strong>Pagina de Obrigado 02</strong> - Confirmacao de compra/lead para LP da mentoria.</li>
+      </ul>
+    </div>
+
+    <!-- BUDGET -->
+    <div class="section-title">Proposta Comercial</div>
+
+    <table class="budget-table">
+      <thead>
+        <tr>
+          <th>Qt</th>
+          <th>Item</th>
+          <th>Descricao</th>
+          <th style="text-align:right">Valor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td class="item-name">Pagina de Links</td>
+          <td>Design personalizado, mobile-first, links ilimitados</td>
+          <td style="text-align:right">Incluso</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="item-name">Landing Pages</td>
+          <td>Alta conversao, pixel integrado, formulario de captura</td>
+          <td style="text-align:right">Incluso</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td class="item-name">Paginas de Obrigado</td>
+          <td>Com redirecionamento pos-conversao configurado</td>
+          <td style="text-align:right">Incluso</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td class="item-name">Publicacao e configuracao</td>
+          <td>Upload no servidor, dominio, SSL e testes de funcionamento</td>
+          <td style="text-align:right">Incluso</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-row">
+      <span>Valor total do projeto</span>
+      <strong>R$ 2.000,00</strong>
+    </div>
+
+    <div class="payment-note">
+      <strong>Forma de pagamento:</strong><br>
+      <strong>Pix:</strong> 50% na entrada (R$ 1.000,00) + 50% na entrega (R$ 1.000,00).<br>
+      <strong>Cartao de credito:</strong> Valor integral de R$ 2.074,00 em ate 4x. Taxas e encargos por conta do contratante.<br>
+      <br>
+      <span>Previsao de entrega: 14 dias uteis a contar do pagamento da entrada e envio dos materiais pelo cliente.</span>
+    </div>
+
+    <!-- INCLUSIONS -->
+    <div class="section-title">Incluso e Nao Incluso</div>
+
+    <div class="two-col">
+      <div class="inc-block green">
+        <div class="inc-label">Incluso no projeto</div>
+        <ul>
+          <li>Integracao de pixel (Meta/Google)</li>
+          <li>Formulario de captura de leads</li>
+          <li>Versao mobile responsiva</li>
+          <li>Publicacao no servidor</li>
+          <li>2 rodadas de ajustes visuais</li>
+          <li>Garantia de 60 dias pos-entrega</li>
+          <li>Suporte por 30 dias (horario comercial)</li>
+        </ul>
+      </div>
+      <div class="inc-block red">
+        <div class="inc-label">Nao incluso</div>
+        <ul>
+          <li>Producao de fotos ou videos</li>
+          <li>Textos e copywriting das paginas</li>
+          <li>Gestao de trafego pago</li>
+          <li>Hospedagem e dominio (custo do cliente)</li>
+          <li>Manutencao apos periodo de garantia</li>
+          <li>Integracoes com sistemas de pagamento</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- MATERIAL DO CLIENTE -->
+    <div class="material-list">
+      <div class="ml-label">Material a ser fornecido pelo cliente</div>
+      <ul>
+        <li>Logo em arquivo digital (formato vetorial ou PNG em alta resolucao)</li>
+        <li>Textos finalizados em portugues para cada pagina</li>
+        <li>Fotos, imagens e videos pertinentes ao conteudo</li>
+        <li>Acesso ao servidor/hospedagem (ou indicacao de onde publicar)</li>
+        <li>Links de redes sociais e canais de atendimento</li>
+      </ul>
+    </div>
+
+    <!-- CONTRACT CLAUSES -->
+    <div class="section-title">Clausulas do Contrato</div>
+
+    <div class="clause-block">
+      <strong>Clausula 1 - Do Objeto</strong>
+      <p>E objeto do presente contrato a prestacao do servico de desenvolvimento de paginas digitais de alta conversao conforme escopo descrito neste documento e acordado em call realizada entre as partes.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 2 - Obrigacoes do Contratante</strong>
+      <p>O contratante devera fornecer todos os materiais necessarios (textos, imagens, logos e acessos) dentro de 7 dias uteis apos a assinatura deste contrato e pagamento da entrada. O prazo de entrega fica pausado enquanto aguarda materiais pendentes.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 3 - Obrigacoes da Contratada</strong>
+      <p>E obrigacao da contratada o desenvolvimento e publicacao dos servicos conforme escopo definido, respeitando o prazo acordado. A contratada nao se responsabiliza por atrasos originados pela falta de entrega de materiais por parte do contratante.</p>
+      <p>O contratante e livre para sugerir conteudo informativo de suas paginas, sendo integralmente responsavel pelos efeitos provenientes dessas informacoes, respondendo civil e criminalmente por atos contrarios a lei, propaganda enganosa ou violacao de direitos autorais.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 4 - Ajustes e Alteracoes</strong>
+      <p>Estao incluidas ate 2 rodadas de ajustes visuais durante o desenvolvimento. Cada solicitacao deve ser enviada por escrito (email ou WhatsApp) com todos os pontos de uma vez. Mudancas de escopo, novas funcionalidades ou alteracoes estruturais apos aprovacao serao orcadas separadamente.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 5 - Preco e Pagamento</strong>
+      <p>O servico sera remunerado pelo valor total descrito na proposta comercial deste documento. O inicio do projeto ocorre apos confirmacao do pagamento da entrada e assinatura deste contrato. Em caso de pagamento via cartao de credito, as taxas e encargos sao de responsabilidade do contratante.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 6 - Inadimplemento</strong>
+      <p>Em caso de inadimplemento quanto ao pagamento da parcela final, incidira multa de 2%, juros de mora de 1% ao mes e correcao monetaria sobre o valor em aberto. A entrega do projeto fica condicionada ao pagamento integral.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 7 - Rescisao pelo Contratante</strong>
+      <p>Em caso de rescisao por parte do contratante antes da finalizacao do projeto, este devera pagar multa de 55% sobre o valor restante a ser pago a contratada. O valor de entrada ja pago nao sera reembolsado.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 8 - Rescisao pela Contratada</strong>
+      <p>Em caso de impossibilidade de cumprimento por parte da contratada, esta devera ressarcir ao contratante os valores ja pagos integralmente.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 9 - Garantia e Suporte</strong>
+      <p>Durante 30 dias corridos apos a entrega, estao cobertas correcoes de bugs e ajustes tecnicos necessarios. Manutencoes evolutivas nao estao contempladas neste periodo.</p>
+      <p>O suporte ao uso e gratuito por 30 dias apos a entrega, realizado exclusivamente por contato digital em horario comercial (9h as 18h). Apos este periodo, o suporte sera cobrado por hora tecnica.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 10 - Vigencia</strong>
+      <p>O presente contrato vigorara ate o termino das atividades contratadas, contadas a partir do pagamento da entrada. O termino pressupoe a publicacao definitiva das paginas no servidor indicado pelo contratante.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 11 - Vinculo Trabalhista</strong>
+      <p>Fica compactuada a total inexistencia de vinculo trabalhista entre as partes, inclusive obrigacoes previdenciarias e encargos sociais.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 12 - Responsabilidade por Terceiros</strong>
+      <p>Por ser executado em ambiente aberto (internet) e de interdependencia entre sistemas de terceiros, a contratada fica isenta de responsabilidades sobre falhas que servicos de terceiros possam apresentar.</p>
+    </div>
+
+    <div class="clause-block">
+      <strong>Clausula 13 - Foro</strong>
+      <p>Para dirimir quaisquer controversias oriundas do presente contrato, as partes elegem o foro da comarca de Manaus, AM.</p>
+    </div>
+
+    <!-- SIGNATURES -->
+    <div class="divider"></div>
+
+    <p style="font-size:12px;color:var(--muted);text-align:center;margin-bottom:8px;">Por estarem de acordo com os termos acima, as partes assinam o presente instrumento.</p>
+    <p style="font-size:12px;color:var(--muted);text-align:center;">Manaus, <span id="sign-date"></span></p>
+
+    <div class="sign-grid">
+      <div class="sign-block">
+        <div class="sign-line">
+          <strong>Kalid Carvalho da Silva</strong>
+          <p>CONTRATADA · CNPJ 63.814.406/0001-28</p>
+          <p>GROVW - Sites & Performance</p>
+        </div>
+      </div>
+      <div class="sign-block">
+        <div class="sign-line">
+          <strong>LUAN MANZOLI</strong>
+          <p>CONTRATANTE · CPF/CNPJ [_________]</p>
+          <p>&nbsp;</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="doc-footer">
+    <span>GROVW - Sites & Performance Digital</span>
+    <span>grovw.com.br · comercial@grovw.com.br</span>
+  </div>
+
+</div>
+
+<!-- PRINT BUTTON -->
+<div class="print-bar no-print">
+  <button class="btn-print" onclick="window.print()">Imprimir / Salvar PDF</button>
+</div>
+
+<script>
+  const now = new Date();
+  const opts = { day: '2-digit', month: 'long', year: 'numeric' };
+  const dateStr = now.toLocaleDateString('pt-BR', opts);
+  document.getElementById('doc-date').textContent = dateStr;
+  document.getElementById('sign-date').textContent = dateStr;
+</script>
+
+</body>
+</html>

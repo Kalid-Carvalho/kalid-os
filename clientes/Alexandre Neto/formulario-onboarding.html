@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onboarding — Alexandre Neto</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #000;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      padding: 40px 16px 80px;
+    }
+
+    .wrapper {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    .header {
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding-bottom: 32px;
+      margin-bottom: 48px;
+    }
+
+    .label-top {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #cdff00;
+      margin-bottom: 16px;
+    }
+
+    .header h1 {
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .header p {
+      font-size: 14px;
+      color: #888;
+      line-height: 1.6;
+      max-width: 540px;
+    }
+
+    /* Seções */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #cdff00;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(205,255,0,0.2);
+    }
+
+    /* Campo */
+    .field {
+      margin-bottom: 24px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e0e0e0;
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+
+    label span.hint {
+      display: block;
+      font-weight: 400;
+      font-size: 12px;
+      color: #555;
+      margin-top: 3px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 4px;
+      color: #fff;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      padding: 12px 14px;
+      outline: none;
+      transition: border-color 0.15s;
+      appearance: none;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: rgba(205,255,0,0.5);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 96px;
+    }
+
+    select option { background: #111; }
+
+    /* Checkbox / Radio group */
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .options.inline { flex-direction: row; flex-wrap: wrap; gap: 10px; }
+
+    .option-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: #0f0f0f;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 4px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      font-size: 13px;
+      color: #ccc;
+    }
+
+    .option-item input { width: auto; padding: 0; background: transparent; border: none; }
+
+    .option-item:has(input:checked) {
+      border-color: rgba(205,255,0,0.6);
+      color: #fff;
+    }
+
+    /* Grid 2 cols */
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    @media (max-width: 500px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* Divider */
+    hr { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 40px 0; }
+
+    /* Submit */
+    .submit-area {
+      text-align: center;
+      padding-top: 16px;
+    }
+
+    button[type="submit"] {
+      background: #cdff00;
+      color: #000;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      border: none;
+      border-radius: 4px;
+      padding: 14px 40px;
+      cursor: pointer;
+      transition: background 0.15s, transform 0.1s;
+      width: 100%;
+      max-width: 340px;
+    }
+
+    button[type="submit"]:hover { background: #d0ff0f; transform: translateY(-1px); }
+
+    .submit-note {
+      font-size: 12px;
+      color: #444;
+      margin-top: 12px;
+    }
+
+    /* Sucesso */
+    #success-msg {
+      display: none;
+      background: #0f0f0f;
+      border: 1px solid rgba(205,255,0,0.4);
+      border-radius: 4px;
+      padding: 24px;
+      text-align: center;
+      margin-top: 24px;
+    }
+
+    #success-msg h3 { font-size: 18px; color: #cdff00; margin-bottom: 8px; }
+    #success-msg p { font-size: 13px; color: #888; }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="header">
+    <div class="label-top">Formulário de Onboarding</div>
+    <h1>Vamos entender seu negócio</h1>
+    <p>Preencha com calma — quanto mais detalhes você trouxer, mais certeiro vai ser o plano de funil que vou montar pra você.</p>
+  </div>
+
+  <form id="onboarding-form">
+
+    <!-- 1. PERFIL -->
+    <div class="section">
+      <div class="section-title">01 — Perfil</div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label>Nome completo</label>
+          <input type="text" name="nome" placeholder="Alexandre Neto" required />
+        </div>
+        <div class="field">
+          <label>WhatsApp</label>
+          <input type="tel" name="whatsapp" placeholder="(XX) 9XXXX-XXXX" />
+        </div>
+      </div>
+
+      <div class="field">
+        <label>E-mail</label>
+        <input type="email" name="email" placeholder="seu@email.com" />
+      </div>
+
+      <div class="field">
+        <label>Cidade / Estado</label>
+        <input type="text" name="cidade" placeholder="Ex: São Paulo, SP" />
+      </div>
+    </div>
+
+    <!-- 2. NEGÓCIO ATUAL -->
+    <div class="section">
+      <div class="section-title">02 — Negócio atual</div>
+
+      <div class="field">
+        <label>
+          Descreva o que você oferece hoje
+          <span class="hint">Formato das aulas, duração, frequência, como funciona a experiência do aluno.</span>
+        </label>
+        <textarea name="oferta_atual" placeholder="Ex: Aulas individuais de inglês para área de tecnologia, 1h por semana, foco em comunicação profissional e vocabulário técnico..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>
+          Quantos alunos ativos você tem hoje?
+        </label>
+        <input type="number" name="alunos_ativos" placeholder="Ex: 8" min="0" />
+      </div>
+
+      <div class="field">
+        <label>
+          Qual o ticket atual das suas aulas?
+          <span class="hint">Valor por aula avulsa, pacote mensal ou outra forma que você usa.</span>
+        </label>
+        <input type="text" name="ticket" placeholder="Ex: R$120/aula ou R$400/mês (4 aulas)" />
+      </div>
+
+      <div class="field">
+        <label>Como seus alunos chegam até você hoje?</label>
+        <div class="options">
+          <label class="option-item"><input type="checkbox" name="captacao" value="indicacao" /> Indicação de alunos atuais</label>
+          <label class="option-item"><input type="checkbox" name="captacao" value="instagram" /> Instagram</label>
+          <label class="option-item"><input type="checkbox" name="captacao" value="youtube" /> YouTube</label>
+          <label class="option-item"><input type="checkbox" name="captacao" value="linkedin" /> LinkedIn</label>
+          <label class="option-item"><input type="checkbox" name="captacao" value="grupos" /> Grupos (WhatsApp, Telegram, Discord)</label>
+          <label class="option-item"><input type="checkbox" name="captacao" value="ads" /> Tráfego pago (Google ou Meta Ads)</label>
+          <label class="option-item"><input type="checkbox" name="captacao" value="outro" /> Outro</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>
+          Tem site, landing page ou link de agendamento?
+          <span class="hint">Cola os links se tiver, ou escreve "não tenho ainda".</span>
+        </label>
+        <input type="text" name="links_atuais" placeholder="Ex: notion.so/alexandre, calendly.com/..." />
+      </div>
+    </div>
+
+    <!-- 3. ALUNO IDEAL -->
+    <div class="section">
+      <div class="section-title">03 — Aluno ideal</div>
+
+      <div class="field">
+        <label>
+          Quem é o aluno que você quer atrair?
+          <span class="hint">Profissão, nível de inglês atual, o que ele quer alcançar. Quanto mais específico, melhor.</span>
+        </label>
+        <textarea name="aluno_ideal" placeholder="Ex: Desenvolvedor com 3+ anos de experiência, inglês básico/intermediário, quer conseguir emprego em empresa estrangeira ou trabalhar como freelancer internacional..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>
+          Qual a maior dor ou bloqueio desse aluno?
+          <span class="hint">O que impede ele de aprender inglês ou de usar no trabalho hoje?</span>
+        </label>
+        <textarea name="dor_aluno" placeholder="Ex: Sabe gramática mas trava na hora de falar, medo de errar em reunião com cliente estrangeiro, nunca teve contexto técnico nas aulas tradicionais..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>
+          Qual a transformação real que você entrega?
+          <span class="hint">O "antes e depois" do aluno que passa pelo seu método.</span>
+        </label>
+        <textarea name="transformacao" placeholder="Ex: De mudo em reunião para conseguindo conduzir calls com cliente estrangeiro em 6 meses..."></textarea>
+      </div>
+    </div>
+
+    <!-- 4. DIFERENCIAL -->
+    <div class="section">
+      <div class="section-title">04 — Diferencial e posicionamento</div>
+
+      <div class="field">
+        <label>
+          Por que alguém escolheria você e não um curso grande (Wizard, Open English, etc.)?
+          <span class="hint">O que você faz de diferente que esses cursos não fazem?</span>
+        </label>
+        <textarea name="diferencial" placeholder="Ex: Foco 100% em inglês técnico/profissional, aulas individuais adaptadas ao contexto do aluno, sem método genérico, aprende o vocabulário que vai usar de verdade..."></textarea>
+      </div>
+
+      <div class="field">
+        <label>
+          Tem algum resultado concreto de aluno que você pode mostrar?
+          <span class="hint">Conquistas, feedback, depoimentos — mesmo que informais.</span>
+        </label>
+        <textarea name="resultados" placeholder="Ex: Aluno conseguiu emprego em startup americana depois de 4 meses, outro passou em entrevista técnica na primeira tentativa..."></textarea>
+      </div>
+    </div>
+
+    <!-- 5. PRODUTOS E EXPANSÃO -->
+    <div class="section">
+      <div class="section-title">05 — Produtos e expansão</div>
+
+      <div class="field">
+        <label>Quais produtos você quer ter no futuro?</label>
+        <div class="options">
+          <label class="option-item"><input type="checkbox" name="produtos_futuros" value="aula_individual" /> Aula individual (já tenho — continuar)</label>
+          <label class="option-item"><input type="checkbox" name="produtos_futuros" value="mentoria" /> Mentoria semanal em grupo</label>
+          <label class="option-item"><input type="checkbox" name="produtos_futuros" value="curso_gravado" /> Curso gravado / EAD</label>
+          <label class="option-item"><input type="checkbox" name="produtos_futuros" value="comunidade" /> Comunidade / assinatura</label>
+          <label class="option-item"><input type="checkbox" name="produtos_futuros" value="imersao" /> Imersão / bootcamp intensivo</label>
+          <label class="option-item"><input type="checkbox" name="produtos_futuros" value="b2b" /> Treinamento para empresas (B2B)</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>
+          Qual produto você quer lançar primeiro?
+          <span class="hint">Não precisa estar pronto — qual seria o próximo passo natural?</span>
+        </label>
+        <textarea name="produto_prioridade" placeholder="Ex: Curso gravado de inglês para devs, R$297, foco em comunicação em reuniões e documentação técnica..."></textarea>
+      </div>
+    </div>
+
+    <!-- 6. CONTEÚDO E PRESENÇA -->
+    <div class="section">
+      <div class="section-title">06 — Conteúdo e presença digital</div>
+
+      <div class="field">
+        <label>Tem alguma presença digital hoje? Se sim, quais?</label>
+        <div class="options">
+          <label class="option-item"><input type="checkbox" name="presenca" value="instagram" /> Instagram</label>
+          <label class="option-item"><input type="checkbox" name="presenca" value="youtube" /> YouTube</label>
+          <label class="option-item"><input type="checkbox" name="presenca" value="tiktok" /> TikTok</label>
+          <label class="option-item"><input type="checkbox" name="presenca" value="linkedin" /> LinkedIn</label>
+          <label class="option-item"><input type="checkbox" name="presenca" value="nenhuma" /> Nenhuma ainda</label>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>
+          Handles ou links das redes (se tiver)
+        </label>
+        <input type="text" name="handles" placeholder="Ex: @alexandre.ingles, youtube.com/..." />
+      </div>
+
+      <div class="field">
+        <label>
+          Já produz conteúdo? Com que frequência?
+          <span class="hint">Pode ser esporádico, regular ou zero — sem julgamento.</span>
+        </label>
+        <select name="frequencia_conteudo">
+          <option value="">Selecione</option>
+          <option value="nao_produzo">Não produzo conteúdo ainda</option>
+          <option value="esporadico">Esporádico (quando sobra tempo)</option>
+          <option value="1_por_semana">1x por semana</option>
+          <option value="2_3_semana">2-3x por semana</option>
+          <option value="diario">Diário</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>
+          Tem equipamento para gravar vídeos?
+          <span class="hint">Câmera, microfone, iluminação — o que você já tem.</span>
+        </label>
+        <input type="text" name="equipamento" placeholder="Ex: Gravo pelo celular, sem microfone externo ainda, vou comprar tripé" />
+      </div>
+    </div>
+
+    <!-- 7. METAS -->
+    <div class="section">
+      <div class="section-title">07 — Metas e prazo</div>
+
+      <div class="field">
+        <label>
+          Quantos alunos você quer ter em 6 meses?
+        </label>
+        <input type="number" name="meta_alunos" placeholder="Ex: 20" min="1" />
+      </div>
+
+      <div class="field">
+        <label>
+          Qual faturamento mensal você quer atingir em 6 meses?
+        </label>
+        <input type="text" name="meta_faturamento" placeholder="Ex: R$5.000/mês" />
+      </div>
+
+      <div class="field">
+        <label>
+          Quanto tempo por semana você consegue dedicar ao negócio (além das aulas)?
+          <span class="hint">Criação de conteúdo, reuniões, estratégia — o que sobra fora do horário de aula.</span>
+        </label>
+        <select name="tempo_disponivel">
+          <option value="">Selecione</option>
+          <option value="ate_2h">Até 2 horas por semana</option>
+          <option value="3_5h">3 a 5 horas por semana</option>
+          <option value="6_10h">6 a 10 horas por semana</option>
+          <option value="mais_10h">Mais de 10 horas por semana</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>
+          Tem orçamento disponível para tráfego pago?
+          <span class="hint">Mesmo que pequeno — isso ajuda a definir o timing do funil.</span>
+        </label>
+        <select name="orcamento_trafego">
+          <option value="">Selecione</option>
+          <option value="zero">Não tenho agora, 100% orgânico</option>
+          <option value="ate_300">Até R$300/mês</option>
+          <option value="300_600">R$300 a R$600/mês</option>
+          <option value="600_mais">Acima de R$600/mês</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- 8. LIVRE -->
+    <div class="section">
+      <div class="section-title">08 — Livre</div>
+
+      <div class="field">
+        <label>
+          O que mais você acha importante eu saber antes de montar o plano?
+          <span class="hint">Qualquer coisa que não coube nas perguntas acima.</span>
+        </label>
+        <textarea name="livre" style="min-height: 120px;" placeholder="Pode ser sobre seu histórico, tentativas anteriores, medos, expectativas, ideias..."></textarea>
+      </div>
+    </div>
+
+    <!-- Submit -->
+    <div class="submit-area">
+      <button type="submit">Enviar formulário</button>
+      <p class="submit-note">Suas respostas vão direto pro Kalid. Nada é público.</p>
+    </div>
+
+    <div id="success-msg">
+      <h3>Recebido!</h3>
+      <p>Vou analisar suas respostas e já te mando o próximo passo.</p>
+    </div>
+
+  </form>
+
+</div>
+
+<script>
+  // Coleta todos os campos e gera um resumo em texto para copiar / enviar via WhatsApp / email
+  document.getElementById('onboarding-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = new FormData(form);
+    const lines = [];
+
+    lines.push('=== ONBOARDING — ALEXANDRE NETO ===\n');
+
+    const labels = {
+      nome: 'Nome',
+      whatsapp: 'WhatsApp',
+      email: 'E-mail',
+      cidade: 'Cidade',
+      oferta_atual: 'Oferta atual',
+      alunos_ativos: 'Alunos ativos',
+      ticket: 'Ticket',
+      links_atuais: 'Links atuais',
+      aluno_ideal: 'Aluno ideal',
+      dor_aluno: 'Dor do aluno',
+      transformacao: 'Transformação entregue',
+      diferencial: 'Diferencial',
+      resultados: 'Resultados de alunos',
+      produto_prioridade: 'Produto prioritário',
+      handles: 'Handles / redes',
+      frequencia_conteudo: 'Frequência de conteúdo',
+      equipamento: 'Equipamento',
+      meta_alunos: 'Meta de alunos (6m)',
+      meta_faturamento: 'Meta de faturamento (6m)',
+      tempo_disponivel: 'Tempo disponível/semana',
+      orcamento_trafego: 'Orçamento tráfego',
+      livre: 'Observações livres',
+    };
+
+    const checkboxGroups = ['captacao', 'produtos_futuros', 'presenca'];
+    const checkboxValues = {};
+    checkboxGroups.forEach(g => { checkboxValues[g] = []; });
+
+    for (const [key, value] of data.entries()) {
+      if (checkboxGroups.includes(key)) {
+        checkboxValues[key].push(value);
+      }
+    }
+
+    for (const [key, label] of Object.entries(labels)) {
+      const val = data.get(key);
+      if (val) lines.push(`${label}: ${val}`);
+    }
+
+    lines.push(`\nFormas de captação: ${checkboxValues.captacao.join(', ') || '—'}`);
+    lines.push(`Produtos futuros: ${checkboxValues.produtos_futuros.join(', ') || '—'}`);
+    lines.push(`Presença digital: ${checkboxValues.presenca.join(', ') || '—'}`);
+
+    const resultado = lines.join('\n');
+
+    // Copia pro clipboard
+    navigator.clipboard.writeText(resultado).catch(() => {});
+
+    // Esconde form, mostra sucesso
+    form.style.display = 'none';
+    const msg = document.getElementById('success-msg');
+    msg.style.display = 'block';
+
+    console.log(resultado); // fallback: ver no console
+  });
+</script>
+
+</body>
+</html>

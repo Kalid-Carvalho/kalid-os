@@ -13,6 +13,7 @@ description: >
 
 - **Contexto do negócio:** `_contexto/empresa.md`
 - **Tom de voz:** `_contexto/preferencias.md`
+- **Fontes de referência por canal:** `_contexto/fontes-referencia.md` — ler para calibrar o ângulo e as referências do conteúdo conforme o canal (@eukalidcarvalho, @kalidcarvalho ou GROVW)
 
 ---
 

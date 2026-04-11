@@ -1,67 +1,101 @@
-nome;escritorio;especialidade;email;whatsapp;tem_site;canal_abordagem;status;data_contato;data_followup;resposta;observacao
-Patricio;Patricio e Maclayd Advogados;Cível / Trabalhista;patriciomaclayd@manausadvogados.com.br;;sim;email;email enviado;26/03/2026;;;
-Amanda Dias Simoes;ADS Advocacia;Trabalhista / Família;amanda@adsdo.com.br;;sim;email;email enviado;26/03/2026;;;
-Marcela Paulo;Marcela Paulo Advocacia;Consumidor / Trabalhista;advogada@marcelapaulo.com.br;;sim;email;email enviado;26/03/2026;;;
-Danielly Galvao;DG Advocacia;Previdenciário;contato@daniellygalvao.com.br;;sim;email;email enviado;26/03/2026;;;
-Luiz Maio;LM Advogados;Previdenciário / Trabalhista;contato@lmaioadvogados.com.br;;sim;email;email enviado;26/03/2026;;;
-Gilmar Araujo;Gilmar Araujo da Costa;Consumidor / Bancário;gac.advogado89@gmail.com;;sim;email;email enviado;26/03/2026;;;
-Higino;ASJUR;Empresarial / Tributário;controladoria@asjur.com.br;;sim;email;email enviado;29/03/2026;;;
-Germano;Andrade GC Advogados;Zona Franca / Imobiliário;germano@andradegc.com.br;;sim;email;email enviado;29/03/2026;;;
-Wilker Amaral;Wilker Amaral Advogado;Previdenciário / Consumidor;wilkeramaraladv@gmail.com;;sim;email;email enviado;29/03/2026;;;
-Alecrim & Costa;Alecrim & Costa Advogados;Full Service;adm@alecrimcosta.com;;sim;email;email enviado;29/03/2026;;;
-Sonia Valerio;Sonia Valerio Advocacia;Família / Sucessões;sonia@soniavalerio.com.br;;sim;email;email enviado;29/03/2026;;;
-Pedro;Medina Ribeiro & Aguiar;Empresarial / Imobiliário;Pedro@medinaeribeiro.com;;sim;email;email enviado;29/03/2026;;;
-Dalimar Silva;Dra. Dalimar Silva;Família / Imobiliário;adv.dalimarsilva@gmail.com;;sim;email;email enviado;29/03/2026;;;
-Juliana Rodrigues;Juliana Rodrigues Advocacia;Trabalhista / Consumidor;julianasouzarodrigues.adv@gmail.com;;sim;email;email enviado;29/03/2026;;;
-Ribeiro & Feitoza;Ribeiro & Feitoza Advogados;Geral;contato@ribeiroefeitozaadvogados.com.br;;sim;email;email enviado;30/03/2026;;;
-Furtado Maia;Furtado Maia Advocacia;Consumidor / Trabalhista;furtadomaia@gmail.com;;sim;email;email enviado;30/03/2026;;;
-Andre;FM&V Advocacia;Empresarial / Trabalhista;andre@fmvadv.com.br;;sim;email;email enviado;30/03/2026;;;
-Jessica;Simonetti e Paiva;Penal / Empresarial;fg@simonettiepaiva.com.br;;sim;email;email enviado;30/03/2026;;;
-Lucas;Bezerra & Dantas Advocacia;Bancário / Consumidor;bezerralucasadv@gmail.com;;sim;email;email enviado;30/03/2026;;;
-Molina;Molina Advogados;Previdenciário / Consumidor;molina@molinaadvogado.adv.br;;sim;email;email enviado;30/03/2026;;;
-Juliana Coimbra;Coimbra Garcia Advogados;Empresarial / Família;julianacoimbragarcia@coimbragarcia.adv.br;;sim;email;email enviado;30/03/2026;;;
-San Barbosa;San Barbosa Advocacia;Estratégica / Empresarial;contato@sanbarbosa.adv.br;;sim;email;email enviado;30/03/2026;;;
-Jorge;Martinho & Nunes Advogados;Tributário / Empresarial;jorge.martinho@martinhoenunes.com.br;;sim;email;email enviado;30/03/2026;;;
-Nelson;Ale Advocacia;Geral;dr.nelsonalejr@gmail.com;;sim;email;email enviado;30/03/2026;;;
-Kelson Souza;Kelson Souza & Advogados;Cível / Previdenciário;kelsonsouza@hotmail.com;;sim;email;email enviado;30/03/2026;;;
-Fabio;Brandao Ozores Advogados;Tributário / ESG;fsandrade@ozoresadv.com.br;;sim;email;email enviado;30/03/2026;;;
-Michel;Sadala & Sena Advogados;Geral;michel@senaadvogados.com;;sim;email;email enviado;30/03/2026;;;
-Bruno;Amoedo Advogados;Família / Imobiliário;amoedoadvogados@gmail.com;;sim;email;email enviado;30/03/2026;;;
-Walisson Daniel;Wallison Advogados;Imobiliário;daniel@wadvocacia.com.br;(92) 99120-1622;sim;email + whatsapp;aguardando followup;30/03/2026;;;Abordagem WhatsApp 02/04 - sem resposta
-Nascimento Peixoto;Nascimento Peixoto Advogados;Criminal;nascimentopeixotoadvogados@gmail.com;;sim;email;email enviado;30/03/2026;;;
-CQB Advogados;CQB Advogados;Empresarial / Cível;contato@cqbaadvogados.com.br;;sim;email;email enviado;30/03/2026;;;
-Rapp Sousa;Rapp Sousa Advocacia;Geral;contato@rappsousa.adv.br;;sim;email;email enviado;30/03/2026;;;
-Alves e Advogados;Alves e Advogados;Empresarial / Tributário;escritoriojuridico@alveseadvogados.com.br;;sim;email;email enviado;30/03/2026;;;
-GRM Advogados;GRM Advogados;Zona Franca;contato@grm.com.br;;sim;email;email enviado;30/03/2026;;;
-Edson Rosas;Edson Rosas Advocacia;Geral;edson@edsonrosasadvocacia.com.br;;sim;linkedin + whatsapp;a contatar;;;;
-Tadeuza Lanhellas;Tadeuza Almeida Lanhellas;Societária;tadeuza@lanhellasadvocacia.com.br;;sim;linkedin + whatsapp;a contatar;;;;
-Ricardo Pinheiro;Ricardo Pinheiro & Pinheiro;Geral;ricardopinheiro.adv@gmail.com;;sim;linkedin + whatsapp;a contatar;;;;
-Paulo Felipe;Saraiva Sociedade de Advogados;Empresarial;paulofelipe@saraivasadvogados.com.br;;sim;linkedin + whatsapp;a contatar;;;;
-Rocha & Stone;Rocha & Stone Advogados;Cível / Imobiliário;rocha.stone.advogados@gmail.com;;sim;linkedin + whatsapp;a contatar;;;;
-Vanessa Janine;Escritório Dra. Vanessa Janine;Família / Cível;adv.vanessarochas@gmail.com;;sim;linkedin + whatsapp;a contatar;;;;
-Marcia Costa;Márcia Costa Advocacia;Imobiliário;marciacosta541adv@gmail.com;;sim;linkedin + whatsapp;a contatar;;;;
-Thiago Alves;Thiago Alves Advocacia;Família / Divórcio;thiago.salves.adv@gmail.com;;sim;linkedin + whatsapp;a contatar;;;;
-Moises Campelo;Campelo e Herculano Advocacia;Geral;moises@moisescampelloadvogados.com;;sim;linkedin + whatsapp;a contatar;;;;
-Erica Mesquita;Erica Mesquita Advogados;Previdenciário;adv.ericamesquita@gmail.com;;sim;linkedin + whatsapp;a contatar;;;;
-Breno Rodrigues;Breno Rodrigues Advogados;Trabalhista;breno.jus@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Davi Fontenele;Davi Fontenele & Aguiar;Geral;davi_advogado@outlook.com;;nao;whatsapp + email;a contatar;;;;
-Tarciso Freire;Tarciso Freire Advocacia;Geral;advogadofreire2014@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Ricardo Silveira;Ricardo Silveira Advogados;Geral;ricardo.adv.silveira@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Luiz Araujo;Luiz Araujo & Gonzaga;Geral;araujogonzaga.adv@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Ribeiro & Farias;Ribeiro & Farias Advogados;Geral;ribeiroefariasadvocacia@hotmail.com;;nao;whatsapp + email;a contatar;;;;
-Thiago Oliveira;Thiago & Oliveira Advogados;Geral;advthiagocampos@hotmail.com;;nao;whatsapp + email;a contatar;;;;
-Lima Leite;Lima Leite Advogados;Geral;rc_assessoriageral@hotmail.com;;nao;whatsapp + email;a contatar;;;;
-Salomao Viana;Salomão & Viana Advogados;Geral;mcojr1@hotmail.com;;nao;whatsapp + email;a contatar;;;;
-Evila Moura;Evila Moura Advogados;Geral;evilacamilamoura@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Mitoso Costa;Mitoso & Costa Advogados;Geral;adm@acoassociados.com;;nao;whatsapp + email;a contatar;;;;
-Souza Advocacia;Souza Advocacia;Geral;oliveira.souza.adv@hotmail.com;;nao;whatsapp + email;a contatar;;;;
-Joao Anjos;Joao Anjos Advocacia;Bancário / Família / Consumidor;prviegas@hotmail.com;;nao;whatsapp + email;a contatar;;;;
-OSSUOSKY;OSSUOSKY Advogados;Geral;ossuoskyadvogados@gmail.com;;nao;instagram + email;a contatar;;;;
-Cezar;Farias Ribeiro Advogados Associados;Geral;cezarjus@hotmail.com;;nao;whatsapp + email;a contatar;;;;
-Ellen Estefany;Ellen Estefany Advocacia;Consumidor / Família;ellen.estefan@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Sara Sousa;Sara Sousa - Dir. do Consumidor;Consumidor;advsarasousa@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Cavalcante Santana;Cavalcante Santana;Geral;cavalcantesantanacs@gmail.com;;nao;whatsapp + email;a contatar;;;;
-Fabio Bandeira;Bandeira Advogados;Geral;fabio.bandeira@bandeiraebarbirato.com.br;;nao;whatsapp + email;a contatar;;;;
-Fernanda Farache;Fernanda Farache Advocacia;Geral;luciana@access-contabil.com.br;;nao;whatsapp + email;a contatar;;;;
-Tamer Braga;Tamer & Braga;Trabalhista / Previdenciário;;;nao;whatsapp;a contatar;;;;Só WhatsApp - buscar número
-Carvalho Lima;Carvalho Lima Advocacia;Geral;;;nao;instagram / whatsapp;a contatar;;;;Só WhatsApp - buscar pelo Instagram
+nome;escritorio;especialidade;email;tipo_email;whatsapp;site;canal_abordagem;status;data_contato;data_followup;resposta;observacao
+Patricio;Patricio e Maclayd Advogados;Cível / Trabalhista;patriciomaclayd@manausadvogados.com.br;pessoal;;sim;email;sem resposta;26/03/2026;;;
+Amanda Dias Simoes;ADS Advocacia;Trabalhista / Família;amanda@adsdo.com.br;pessoal;;sim;email;sem resposta;26/03/2026;;;
+Marcela Paulo;Marcela Paulo Advocacia;Consumidor / Trabalhista;advogada@marcelapaulo.com.br;empresa;;sim;email;sem resposta;26/03/2026;;;
+Danielly Galvao;DG Advocacia;Previdenciário;contato@daniellygalvao.com.br;genérico;;sim;email;sem resposta;26/03/2026;;;Email genérico - buscar pessoal
+Luiz Maio;LM Advogados;Previdenciário / Trabalhista;contato@lmaioadvogados.com.br;genérico;;sim;email;sem resposta;26/03/2026;;;Email genérico - buscar pessoal
+Gilmar Araujo;Gilmar Araujo da Costa;Consumidor / Bancário;gac.advogado89@gmail.com;pessoal;;sim;email;sem resposta;26/03/2026;;;
+Higino;ASJUR;Empresarial / Tributário;controladoria@asjur.com.br;genérico;;sim;email;sem resposta;29/03/2026;;;Email genérico - buscar pessoal
+Germano;Andrade GC Advogados;Zona Franca / Imobiliário;germano@andradegc.com.br;pessoal;(92) 2126-4649;andradegc.com.br;email;email bounced;29/03/2026;;;Email bounceou - buscar email correto via LinkedIn
+Wilker Amaral;Wilker Amaral Advogado;Previdenciário / Consumidor;wilkeramaraladv@gmail.com;pessoal;;sim;email;sem resposta;29/03/2026;;;
+Alecrim & Costa;Alecrim & Costa Advogados;Full Service;adm@alecrimcosta.com;genérico;;sim;email;sem resposta;29/03/2026;;;Email genérico - buscar pessoal
+Sonia Valerio;Sonia Valerio Advocacia;Família / Sucessões;sonia@soniavalerio.com.br;pessoal;;sim;email;sem resposta;29/03/2026;;;
+Pedro;Medina Ribeiro & Aguiar;Empresarial / Imobiliário;Pedro@medinaeribeiro.com;pessoal;(92) 98422-6686;medinaeribeiro.com;email;sem resposta;29/03/2026;;;
+Dalimar Silva;Dra. Dalimar Silva;Família / Imobiliário;adv.dalimarsilva@gmail.com;pessoal;(92) 98610-5058;dalimaradvogada.com.br;email;sem resposta;29/03/2026;;;
+Juliana Rodrigues;Juliana Rodrigues Advocacia;Trabalhista / Consumidor;julianasouzarodrigues.adv@gmail.com;pessoal;(92) 98230-1415;julianarodriguesadv.com.br;email;sem resposta;29/03/2026;;;
+Ribeiro & Feitoza;Ribeiro & Feitoza Advogados;Geral;contato@ribeiroefeitozaadvogados.com.br;genérico;(92) 99147-9179;ribeiroefeitozaadvogados.com.br;email;sem resposta;30/03/2026;;;Email genérico - buscar pessoal via LinkedIn
+Furtado Maia;Furtado Maia Advocacia;Consumidor / Trabalhista;furtadomaia@gmail.com;empresa;(92) 98170-5376;furtadomaia.adv.br;email;sem resposta;30/03/2026;;;
+Andre;FM&V Advocacia;Empresarial / Trabalhista;andre@fmvadv.com.br;pessoal;(92) 98199-0023;fmvadv.com.br;email;sem resposta;30/03/2026;;;
+Jessica;Simonetti e Paiva;Penal / Empresarial;fg@simonettiepaiva.com.br;pessoal;(92) 3584-4432;simonettiepaiva.com.br;email;sem resposta;30/03/2026;;;
+Lucas;Bezerra & Dantas Advocacia;Bancário / Consumidor;bezerralucasadv@gmail.com;pessoal;(92) 99347-6202;bezerraedantasadv.com.br;email;sem resposta;30/03/2026;;;
+Molina;Molina Advogados;Previdenciário / Consumidor;molina@molinaadvogado.adv.br;pessoal;(92) 3347-6207;molinaadvogado.adv.br;email;sem resposta;30/03/2026;;;
+Juliana Coimbra;Coimbra Garcia Advogados;Empresarial / Família;julianacoimbragarcia@coimbragarcia.adv.br;pessoal;(92) 3236-2939;coimbragarcia.adv.br;email;sem resposta;30/03/2026;;;
+San Barbosa;San Barbosa Advocacia;Estratégica / Empresarial;contato@sanbarbosa.adv.br;genérico;(92) 99457-9861;sanbarbosa.adv.br;email;sem resposta;30/03/2026;;;Email genérico - buscar pessoal via LinkedIn / Instagram
+Jorge;Martinho & Nunes Advogados;Tributário / Empresarial;jorge.martinho@martinhoenunes.com.br;pessoal;(92) 3304-4415;martinhoenunes.com.br;email;sem resposta;30/03/2026;;;
+Nelson;Ale Advocacia;Geral;dr.nelsonalejr@gmail.com;pessoal;(92) 99516-7490;aleadvocacia.adv.br;email;sem resposta;30/03/2026;;;
+Kelson Souza;Kelson Souza & Advogados;Cível / Previdenciário;kelsonsouza@hotmail.com;pessoal;(92) 98477-2834;kelsonsouzaadv.com.br;email;sem resposta;30/03/2026;;;
+Fabio;Brandao Ozores Advogados;Tributário / ESG;fsandrade@ozoresadv.com.br;pessoal;(92) 3347-8115;ozoresadv.com.br;email;sem resposta;30/03/2026;;;
+Michel;Sadala & Sena Advogados;Geral;michel@senaadvogados.com;pessoal;(92) 99284-0141;senaadvogados.com;email;sem resposta;30/03/2026;;;
+Bruno;Amoedo Advogados;Família / Imobiliário;amoedoadvogados@gmail.com;empresa;(92) 98169-9226;amoedoadv.com.br;email;sem resposta;30/03/2026;;;
+Walisson Daniel;Wallison Advogados;Imobiliário;daniel@wadvocacia.com.br;pessoal;(92) 99120-1622;wadvocacia.com.br;email + whatsapp;sem resposta;30/03/2026;02/04/2026;;Abordagem WhatsApp 02/04 - sem resposta
+Nascimento Peixoto;Nascimento Peixoto Advogados;Criminal;nascimentopeixotoadvogados@gmail.com;empresa;(61) 99426-7511;nascimentopeixotoadvogados.com.br;email;sem resposta;30/03/2026;;;
+CQB Advogados;CQB Advogados;Empresarial / Cível;contato@cqbaadvogados.com.br;genérico;(92) 99416-1634;cqbadvogados.com.br;email;sem resposta;30/03/2026;;;Email genérico - buscar pessoal via LinkedIn
+Rapp Sousa;Rapp Sousa Advocacia;Geral;contato@rappsousa.adv.br;genérico;(92) 98195-8294;rappsousa.adv.br;email;sem resposta;30/03/2026;;;Email genérico - 7 areas sem diferenciacao - potencial alto
+Alves e Advogados;Alves e Advogados;Empresarial / Tributário;escritoriojuridico@alveseadvogados.com.br;genérico;(92) 99154-8778;alveseadvogados.com.br;email;sem resposta;30/03/2026;;;Email genérico - SSL expirado URGENTE
+GRM Advogados;GRM Advogados;Zona Franca;contato@grm.com.br;genérico;(92) 3213-7275;grm.com.br;email;sem resposta;30/03/2026;;;Email genérico - nicho ZFM - buscar decisor no LinkedIn
+Edson Rosas;Edson Rosas Advocacia;Geral;edson@edsonrosasadvocacia.com.br;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Tadeuza Lanhellas;Tadeuza Almeida Lanhellas;Societária;tadeuza@lanhellasadvocacia.com.br;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Ricardo Pinheiro;Ricardo Pinheiro & Pinheiro;Geral;ricardopinheiro.adv@gmail.com;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Paulo Felipe;Saraiva Sociedade de Advogados;Empresarial;paulofelipe@saraivasadvogados.com.br;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Rocha & Stone;Rocha & Stone Advogados;Cível / Imobiliário;rocha.stone.advogados@gmail.com;empresa;;sim;linkedin + whatsapp;a contatar;;;;
+Vanessa Janine;Escritório Dra. Vanessa Janine;Família / Cível;adv.vanessarochas@gmail.com;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Marcia Costa;Márcia Costa Advocacia;Imobiliário;marciacosta541adv@gmail.com;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Thiago Alves;Thiago Alves Advocacia;Família / Divórcio;thiago.salves.adv@gmail.com;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Moises Campelo;Campelo e Herculano Advocacia;Geral;moises@moisescampelloadvogados.com;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Erica Mesquita;Erica Mesquita Advogados;Previdenciário;adv.ericamesquita@gmail.com;pessoal;;sim;linkedin + whatsapp;a contatar;;;;
+Breno Rodrigues;Breno Rodrigues Advogados;Trabalhista;breno.jus@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Davi Fontenele;Davi Fontenele & Aguiar;Geral;davi_advogado@outlook.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Tarciso Freire;Tarciso Freire Advocacia;Geral;advogadofreire2014@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Ricardo Silveira;Ricardo Silveira Advogados;Geral;ricardo.adv.silveira@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Luiz Araujo;Luiz Araujo & Gonzaga;Geral;araujogonzaga.adv@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Ribeiro & Farias;Ribeiro & Farias Advogados;Geral;ribeiroefariasadvocacia@hotmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Thiago Oliveira;Thiago & Oliveira Advogados;Geral;advthiagocampos@hotmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Lima Leite;Lima Leite Advogados;Geral;rc_assessoriageral@hotmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Salomao Viana;Salomão & Viana Advogados;Geral;mcojr1@hotmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Evila Moura;Evila Moura Advogados;Geral;evilacamilamoura@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Mitoso Costa;Mitoso & Costa Advogados;Geral;adm@acoassociados.com;genérico;;nao;whatsapp + email;a contatar;;;;Email genérico
+Souza Advocacia;Souza Advocacia;Geral;oliveira.souza.adv@hotmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Joao Anjos;Joao Anjos Advocacia;Bancário / Família / Consumidor;prviegas@hotmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+OSSUOSKY;OSSUOSKY Advogados;Geral;ossuoskyadvogados@gmail.com;empresa;;nao;instagram + email;a contatar;;;;
+Cezar;Farias Ribeiro Advogados Associados;Geral;cezarjus@hotmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Ellen Estefany;Ellen Estefany Advocacia;Consumidor / Família;ellen.estefan@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Sara Sousa;Sara Sousa - Dir. do Consumidor;Consumidor;advsarasousa@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Cavalcante Santana;Cavalcante Santana;Geral;cavalcantesantanacs@gmail.com;pessoal;;nao;whatsapp + email;a contatar;;;;
+Fabio Bandeira;Bandeira Advogados;Geral;fabio.bandeira@bandeiraebarbirato.com.br;pessoal;;nao;whatsapp + email;a contatar;;;;
+Fernanda Farache;Fernanda Farache Advocacia;Geral;luciana@access-contabil.com.br;genérico;;nao;whatsapp + email;a contatar;;;;Email nao e do escritorio - verificar email correto
+Tamer Braga;Tamer & Braga;Trabalhista / Previdenciário;;sem email;;nao;whatsapp;a contatar;;;;Buscar numero WhatsApp
+Carvalho Lima;Carvalho Lima Advocacia;Geral;;sem email;;nao;instagram / whatsapp;a contatar;;;;Buscar pelo Instagram
+Viana & Barbosa;Viana & Barbosa Advogados;Geral;;sem email;;vianaebarbosaadvogados.com.br;whatsapp;a contatar;;;;Site com tela branca - oferecer correcao + novo site. Buscar via LinkedIn / OAB-AM
+Oliveira Advocacia;Oliveira Advocacia & Consultoria;Previdenciário / Família;;sem email;(92) 98249-1054;oliveiraconsultoriaadv.com.br;whatsapp;a contatar;;;;Sem email publico - buscar via LinkedIn / OAB-AM
+VLV Advogados;VLV Advogados;Criminal / Bancário;contato@vlvadvogados.com;genérico;(92) 3878-3787;vlvadvogados.com;email;a contatar;;;;Site estava 403 - verificar se voltou antes de contatar
+Fernanda Amazonas;Dra. Fernanda Amazonas;Cível;;sem email;(92) 92001-7674;fernandaamazonas.com.br;whatsapp;a contatar;;;;Site offline - criar novo site + Ecossistema
+Pedro Moura;Pedro Moura Advogado;Previdenciário;contato@pedromouraadv.com.br;genérico;(91) 98010-6585;pedromouraadv.com.br;email;a contatar;;;;Belém-PA - email genérico
+Alessandro Costa;Costa Serra Advocacia;Previdenciário / Trabalhista / Consumidor;alessandrocosta.adv@hotmail.com;pessoal;(91) 4141-1105;costaserra.adv.br;email;a contatar;;;;Belém-PA
+Jader Dias;Jader Dias Advogados Associados;Trabalhista / Previdenciário / Servidores;contato@jaderdias.com.br;genérico;(91) 98169-8362;jaderdias.com.br;email;a contatar;;;;Belém-PA - email genérico
+Machado;Machado Advogados Associados;Consumidor / Empresarial / Imobiliário;escritorio@machadoeassociados.adv.br;genérico;(91) 98446-9567;machadoeassociados.adv.br;email;a contatar;;;;Belém-PA - email genérico
+Humberto Costa;Humberto Costa Advocacia;Previdenciário;contato@hscadvocacia.com.br;genérico;(91) 98425-8917;;email;a contatar;;;;Belém-PA - email genérico
+Penner;Penner Advocacia Belém;Trabalhista / Previdenciário / Imobiliário;belem@penneradvocacia.com.br;genérico;(91) 3212-8165;penner.adv.br;email;a contatar;;;;Belém-PA - email genérico
+Eduardo San;Moura Montalvão Advogados;Cível / Trabalhista / Família / Ambiental;eduardo.san@pop.com.br;pessoal;(91) 98867-5140;mouramontalvao.adv.br;email;a contatar;;;;Belém-PA
+Leite Cardoso;Leite Cardoso Advogados;Empresarial / Trabalhista / Tributário;leitecardoso@leitecardoso.com.br;empresa;(91) 3085-2022;leitecardoso.com.br;email;a contatar;;;;Belém-PA
+Nicolau Waris;Nicolau Waris Advocacia;Trabalhista / Cível;contato@nicolauwaris.adv.br;genérico;(91) 98383-8684;nicolauwaris.adv.br;email;a contatar;;;;Belém-PA - email genérico
+Andrade;Andrade & Cortes Advogados;Trabalhista / Previdenciário / Cível;contato@andradecortes.adv.br;genérico;(91) 98365-5080;andradecortes.adv.br;email;a contatar;;;;Belém-PA - email genérico
+Priscila Souza;Priscila Souza Advocacia Previdenciária;Previdenciário;dpo@priscilasouza.adv.br;genérico;;priscilasouza.adv.br;email;a contatar;;;;Belém-PA - email genérico
+Eder Palheta;Eder Palheta Advocacia;Trabalhista;eder@palheta.adv.br;pessoal;(91) 98120-6998;ederpalheta.adv.br;email;a contatar;;;;Belém-PA
+Paulo Moraes;Paulo Moraes Advogados;Trabalhista / Criminal / Família / Consumidor;pauloarthur.adv@gmail.com;pessoal;(91) 8121-9881;escritorio.paulomoraes.adv.br;email;a contatar;;;;Belém-PA
+Gadelha Alves;Gadelha Alves Advogados;Família / Sucessões;gadelhaalves.advs@gmail.com;empresa;(91) 98296-0787;gadelhaalves.adv.br;email;a contatar;;;;Belém-PA
+Alvaro Carneiro;Álvaro Carneiro Advocacia;Família / Imobiliário / Extrajudicial;advocacia@carneirocardoso.adv.br;genérico;(91) 98482-2507;carneirocardoso.adv.br;email;a contatar;;;;Belém-PA - email genérico
+Aguila;Águila Advogados Associados;Tributário / Empresarial;contato@aguilaadvogados.com;genérico;(91) 98407-6702;aguilaadvogados.com;email;a contatar;;;;Belém-PA - email genérico
+Figueiredo Sena;Corrêa Figueiredo Ribeiro & Sena;Geral / Administrativo;figueiredoesena.adv@gmail.com;pessoal;(91) 98338-9709;advogadospara.com;email;a contatar;;;;Belém-PA
+Reis Brandão;Reis Brandão Advogados Associados;Geral;attorney01@reisbrandaoadvogados.com.br;genérico;(91) 3222-4153;reisbrandaoadvogados.com.br;email;a contatar;;;;Belém-PA - email genérico
+Puga Lima;Puga & Lima Advocacia;Trabalhista / Bancário / Empresarial / Família;contato@pugalimaadvocacia.com.br;genérico;(91) 98454-6000;pugalimaadvocacia.com.br;email;a contatar;;;;Belém-PA - email genérico
+Vitorino Murta;Vitorino e Murta Advogados;Bancário / Consumidor;contato@vitorinoemurta.com.br;genérico;(31) 3347-0444;vitorinoemurta.com.br;email;a contatar;;;;Belém-PA - email genérico
+Mattos Mota;Mattos Mota Advogados;Consumidor / Trabalhista;contato@mattosmota.com.br;genérico;;mattosmota.com.br;email;a contatar;;;;Belém-PA - email genérico
+Gustavo Fonseca;Fonseca Brasil Advogados;Trabalhista / Geral;gustavo@fonsecabrasil.com.br;pessoal;(91) 3212-4678;fonsecabrasil.com.br;email;a contatar;;;;Belém-PA
+Calandrini;Thiago Calandrini Advogados;Geral;atendimentocalandriniadv@gmail.com;empresa;;thiagocalandriniadv.com.br;email;sem resposta;02/04/2026;;;GMass 02/04 - Manaus
+Nicolas;Luis Alberto Advocacia;Geral;nicolas.advogado@outlook.com;pessoal;;luisalbertadv.com.br;email;sem resposta;02/04/2026;;;GMass 02/04 - Manaus
+Jean;BV Advocacia;Geral;contato@bvaa.adv.br;genérico;;;email;sem resposta;02/04/2026;;;GMass 02/04 - email genérico - Manaus
+Lima Lopes;Lima e Lopes Advocacia;Geral;contato@lopesaa.adv.br;genérico;;limaelopes.adv.br;email;sem resposta;02/04/2026;;;GMass 02/04 - email genérico - Manaus
+Mendes;Mendes Mota Advogados;Geral;cpc@mendesmota.com;genérico;;mendesmota.com.br;email;sem resposta;02/04/2026;;;GMass 02/04 - Manaus
+Negreiros;Negreiros Advogados;Geral;verticeconsultoria.am@gmail.com;empresa;;negreirosadvogados.com;email;sem resposta;02/04/2026;;;GMass 02/04 - Manaus
+Alexandro;Vieira Alves Advocacia;Geral;alexandrovieira.adv@gmail.com;pessoal;;vieiraalvesadvocacia.com.br;email;sem resposta;02/04/2026;;;GMass 02/04 - Manaus
+AP Advogados;AP Advogados;Geral;contato@apadvogados.com.br;genérico;;;email;sem resposta;02/04/2026;;;GMass 02/04 - email genérico - Manaus

@@ -106,21 +106,19 @@ Me manda uma mensagem. Vamos ver se faz sentido pro seu escritório.
 
 ## Legenda
 
-O lead ideal entrou no seu site ontem à noite.
+Advogado, essa semana você perdeu pelo menos um cliente enquanto dormia.
 
-Era urgência real. Precisava de advogado. Encontrou o seu escritório no Google.
+Mas quando o sistema está no ar, é diferente.
 
-Mandou mensagem. Esperou. Silêncio.
+Era quinta-feira. 23h47. Um lead entrou no site, mandou mensagem e recebeu resposta em menos de 1 minuto.
 
-22 minutos depois, o segundo resultado do Google tinha respondido, qualificado e agendado.
+Às 8h da manhã seguinte, tinha uma reunião qualificada na agenda.
 
-Você viu a mensagem às 9h da manhã.
+O advogado nem sabia que o contato tinha acontecido enquanto ele dormia.
 
-78% dos clientes fecham com o primeiro que responde. A média do mercado jurídico é de 42 horas.
+Esse é o único resultado que importa: acordar com pipeline. Não com mensagens não respondidas.
 
-O problema não é falta de cliente. É que o sistema que captura e responde não existe ainda.
-
-Me manda uma mensagem se quiser entender como funciona.
+Se você quer entender como montar esse sistema pro seu escritório, me chama no direct.
 
 ---
 

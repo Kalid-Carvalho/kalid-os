@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; justify-content: center; align-items: flex-start; }
+
+  .slide {
+    width: 1080px;
+    height: 1350px;
+    background: #0d1526;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 52px;
+    border-bottom: 1.5px solid #1E2E4A;
+    flex-shrink: 0;
+  }
+  .top-handle { font-size: 19px; font-weight: 500; color: #4a6080; }
+  .top-center { font-size: 19px; font-weight: 500; color: #4a6080; }
+  .top-right { font-size: 19px; font-weight: 400; color: #3a4d60; }
+
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 60px 72px;
+    gap: 0;
+  }
+
+  .eyebrow {
+    font-size: 18px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #1A56DB;
+    margin-bottom: 36px;
+  }
+
+  .cta-title {
+    font-size: 66px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.08;
+    letter-spacing: -2px;
+    margin-bottom: 40px;
+  }
+
+  .cta-body {
+    font-size: 30px;
+    color: #9BB3E8;
+    line-height: 1.55;
+    font-weight: 400;
+    margin-bottom: 60px;
+    max-width: 880px;
+  }
+
+  .btn {
+    background: #1A56DB;
+    color: #fff;
+    font-size: 28px;
+    font-weight: 600;
+    padding: 26px 56px;
+    border-radius: 8px;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+
+  .follow-cta {
+    font-size: 24px;
+    color: #4a6080;
+    font-weight: 400;
+  }
+  .follow-cta strong { color: #9BB3E8; }
+
+  .bottom-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 52px;
+    border-top: 1.5px solid #1E2E4A;
+    flex-shrink: 0;
+  }
+  .author { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: #1A56DB; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: #fff; flex-shrink: 0;
+  }
+  .avatar img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 19px; font-weight: 700; color: #fff; }
+  .author-handle { font-size: 16px; color: #4a6080; }
+  .watermark { font-size: 18px; color: #3A4D6E; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-center">Marketing Jurídico</span>
+    <span class="top-right">© 2026</span>
+  </div>
+
+  <div class="content">
+    <div class="eyebrow">Próximo passo</div>
+    <div class="cta-title">A consulta precisa terminar com um caminho, não com uma porta aberta.</div>
+    <div class="cta-body">
+      Se quiser conversar sobre como estruturar captação e qualificação pro seu escritório, me chama no direct.
+    </div>
+    <div class="btn">Me manda uma mensagem</div>
+    <div class="follow-cta">Ou me segue para mais conteúdo assim — <strong>@eukalidcarvalho</strong></div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar">
+        <img src="../../2026-04-07/avatar.jpg" onerror="this.style.display='none'" />K
+      </div>
+      <div>
+        <div class="author-name">Kalid Carvalho ✓</div>
+        <div class="author-handle">@eukalidcarvalho</div>
+      </div>
+    </div>
+    <span class="watermark">@eukalidcarvalho</span>
+  </div>
+</div>
+</body>
+</html>

@@ -296,8 +296,11 @@
       <p>Responda em menos de 3 minutos. Com base nisso, preparo uma análise do seu potencial de captação e apresento o sistema ideal pro seu negócio.</p>
     </div>
 
-    <!-- FORMSPREE: troque "SEU_ID_AQUI" pelo ID gerado em formspree.io -->
-    <form id="formBriefing" action="https://formspree.io/f/SEU_ID_AQUI" method="POST" onsubmit="handleSubmit(event)">
+    <form id="formBriefing" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="access_key" value="f65a41ca-f8a1-4a6e-bde4-fdeb6672298b" />
+      <input type="hidden" name="subject" value="Novo briefing — GROVW" />
+      <input type="hidden" name="from_name" value="GROVW Briefing" />
+      <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
 
       <!-- SOBRE VOCÊ -->
       <div class="section-block">

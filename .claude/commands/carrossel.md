@@ -15,6 +15,7 @@ description: >
 - **Identidade visual:** `marca/design-guide.md` — LER ANTES de criar qualquer HTML
 - **Contexto do negócio:** `_contexto/empresa.md`
 - **Tom de voz:** `_contexto/preferencias.md`
+- **Fontes de referência por canal:** `_contexto/fontes-referencia.md` — LER na Fase 0 para calibrar o ângulo e as referências do conteúdo
 - **Playwright CLI:** `npx playwright screenshot` para renderizar HTMLs em PNG. Se nunca usou, rodar uma vez: `npx playwright install chromium`
 
 ## Input
@@ -24,9 +25,39 @@ O usuário fornece:
 - Número do episódio ou série (se aplicável)
 - Foto pra capa (opcional — se não fornecer, cria capa sem foto)
 
+Se o usuário não informar a marca/canal, perguntar antes de continuar:
+
+> "Esse carrossel é pra qual canal? @eukalidcarvalho (marketing jurídico), @kalidcarvalho (IA e tech) ou GROVW (performance digital)?"
+
 ---
 
-## Workflow em 3 Fases
+## Design system por canal
+
+| Canal | Fundo | Destaque | Fontes | Tom do conteúdo |
+|---|---|---|---|---|
+| @eukalidcarvalho | #0D1526 | #1A56DB | Space Grotesk | Marketing jurídico, dores do advogado, captação de clientes |
+| @kalidcarvalho | #0D1526 | #1A56DB | Space Grotesk | IA, apps, Claude, criação digital, builder mindset |
+| GROVW | #000000 | #cdff00 | Inter + JetBrains Mono | Performance digital, tráfego pago, conversão, PMEs |
+
+Aplicar o design system correto na Fase 2 (Visual). Se o `marca/design-guide.md` tiver as definições de cada marca, usar como referência principal.
+
+---
+
+## Workflow em 4 Fases
+
+### Fase 0 — Pesquisa (quando o input for um tema, não texto pronto)
+
+1. Perguntar: "Quer que eu pesquise dados atuais sobre esse tema antes de escrever?"
+2. Se sim, usar WebSearch com buscas como:
+   - `"[tema]" dados estatísticas 2025`
+   - `"[tema]" Brasil advogados (ou setor relevante)`
+   - `"[tema]" estudo pesquisa site:jusbrasil.com.br OR site:conjur.com.br OR site:g1.globo.com`
+3. Extrair: números reais, fatos contraintuitivos, tendências recentes, citações de autoridade
+4. Usar esses dados como base pro texto — preferir dados concretos a afirmações genéricas
+
+Se o input já for texto pronto ou link, pular essa fase.
+
+---
 
 ### Fase 1 — Texto
 
@@ -34,17 +65,23 @@ O usuário fornece:
 2. Ler `_contexto/empresa.md` pra entender o contexto e o público
 3. Se o input for um link, usar WebFetch pra buscar o conteúdo
 4. Definir o ângulo do carrossel: educacional, oportunidade, contrário, provocativo ou inspiracional
-5. Escrever 8-10 slides seguindo o fluxo:
-   - **Slide 1 (Capa):** 3 opções de título (max 8 palavras cada) + subtítulo — o usuário escolhe antes de continuar
-   - **Slides 2-3 (Contexto):** o que é / por que importa
-   - **Slides 4-7 (Desenvolvimento):** um insight por slide, opinião clara
-   - **Slide 8-9 (Implicação):** "o que isso muda pra quem tá lendo?"
-   - **Slide final (CTA):** chamada pra ação + menção ao canal/marca
+5. Escrever 8-10 slides seguindo o **fluxo de curiosidade**:
+   - **Slide 1 (Capa — abrir o loop):** título que gera uma pergunta na cabeça de quem vê, sem responder. 3 opções de título (max 8 palavras cada) + subtítulo — o usuário escolhe antes de continuar
+   - **Slides 2-3 (Tensão):** aprofundar o problema ou a contradição. Não resolver ainda. Fazer o leitor sentir que precisa continuar
+   - **Slides 4-6 (Desenvolvimento):** um insight por slide com dado ou exemplo concreto. Cada slide termina com uma virada ou pergunta implícita que puxa pro próximo
+   - **Slide 7-8 (Virada):** o ponto central do carrossel — o insight que muda a perspectiva. O momento em que o loop começa a fechar
+   - **Slide 9 (Implicação):** "o que isso muda pra quem tá lendo?" — consequência prática
+   - **Slide final (CTA — fechar o loop):** entregar a conclusão + chamada pra ação. O leitor deve sentir que chegou em algum lugar
+
+**Regra do loop de curiosidade:**
+- A capa abre uma tensão ("por que X acontece?", "o erro que 90% comete", "o que ninguém te conta sobre X")
+- Os slides do meio sustentam a tensão sem resolver — cada um entrega um pedaço, não o todo
+- O slide de virada entrega o insight principal
+- O CTA fecha com a resposta + próximo passo
 
 **Tom do texto:**
 - Frases longas e naturais (2-4 frases por slide), não bullet points disfarçados
 - Frases curtas e picotadas ficam com cara de IA — evitar
-- Manter o curiosity gap entre slides, mas dentro de cada slide o texto deve fluir
 - Seguir as regras de `_contexto/preferencias.md` (sem travessões se indicado, etc)
 
 6. Salvar o texto em `conteudo/carrosseis/[tema]/carousel-text.md`

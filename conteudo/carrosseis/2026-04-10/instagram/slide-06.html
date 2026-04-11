@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #f0f0f0; display: flex; justify-content: center; align-items: flex-start; }
+  .slide {
+    width: 1080px; height: 1350px;
+    background: #f8f8f6;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 30px 52px; border-bottom: 1.5px solid #e0e0dc; flex-shrink: 0;
+  }
+  .top-handle { font-size: 19px; font-weight: 500; color: #999; }
+  .top-center { font-size: 19px; font-weight: 500; color: #999; }
+  .top-right { font-size: 19px; font-weight: 400; color: #bbb; }
+
+  .content {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 56px 64px 48px;
+  }
+
+  .header-block { display: flex; flex-direction: column; gap: 20px; }
+  .gap-label { display: inline-flex; align-items: center; gap: 12px; }
+  .gap-number { font-size: 19px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #1A56DB; }
+  .gap-line { width: 36px; height: 2px; background: #ddd; }
+  .gap-tag { font-size: 19px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #bbb; }
+  .slide-title { font-size: 56px; font-weight: 700; color: #0D1526; line-height: 1.1; letter-spacing: -1.5px; }
+  .divider { width: 100%; height: 1.5px; background: #e0e0dc; }
+
+  /* Progress bars */
+  .bars-wrap { display: flex; flex-direction: column; gap: 36px; flex: 1; justify-content: center; }
+  .bar-row { display: flex; flex-direction: column; gap: 16px; }
+  .bar-header { display: flex; justify-content: space-between; align-items: center; }
+  .bar-name { font-size: 28px; font-weight: 600; color: #0D1526; }
+  .bar-pct { font-size: 32px; font-weight: 700; }
+  .pct-full { color: #0D1526; }
+  .pct-zero { color: #e0534a; }
+  .bar-bg { width: 100%; height: 56px; background: #e8e8e4; border-radius: 100px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 100px; }
+  .fill-value { background: #0D1526; width: 100%; }
+  .fill-zero { background: transparent; width: 0%; }
+
+  .body-text { font-size: 31px; font-weight: 400; color: #444; line-height: 1.6; }
+
+  .consequence {
+    background: #0D1526; border-radius: 10px;
+    padding: 40px 52px;
+    font-size: 33px; font-weight: 600; color: #fff; line-height: 1.5;
+  }
+  .consequence span { color: #9BB3E8; }
+
+  .bottom-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 52px; border-top: 1.5px solid #e0e0dc; flex-shrink: 0;
+  }
+  .author { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: #1A56DB;
+    position: relative; overflow: hidden; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: #fff;
+  }
+  .avatar img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 19px; font-weight: 700; color: #0D1526; }
+  .author-handle { font-size: 16px; color: #999; }
+  .swipe { font-size: 19px; color: #999; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-center">Marketing Jurídico</span>
+    <span class="top-right">© 2026</span>
+  </div>
+  <div class="content">
+    <div class="header-block">
+      <div class="gap-label">
+        <span class="gap-number">Gap 03</span>
+        <div class="gap-line"></div>
+        <span class="gap-tag">Valor antes do fechamento</span>
+      </div>
+      <div class="slide-title">Você entregou valor antes de fechar.</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="bars-wrap">
+      <div class="bar-row">
+        <div class="bar-header">
+          <div class="bar-name">Valor entregue na consulta</div>
+          <div class="bar-pct pct-full">100%</div>
+        </div>
+        <div class="bar-bg"><div class="bar-fill fill-value"></div></div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-header">
+          <div class="bar-name">Contrato assinado</div>
+          <div class="bar-pct pct-zero">0%</div>
+        </div>
+        <div class="bar-bg"><div class="bar-fill fill-zero"></div></div>
+      </div>
+    </div>
+
+    <div class="body-text">
+      O cliente saiu com informação suficiente pra sentir que entende a situação. Agora ele pode "pensar melhor", "consultar a família", "ver outras opções".
+    </div>
+
+    <div class="consequence">
+      Na prática, <span>não decidir é uma decisão contra você.</span>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar"><img src="../../2026-04-07/avatar.jpg" onerror="this.style.display='none'" />K</div>
+      <div><div class="author-name">Kalid Carvalho ✓</div><div class="author-handle">@eukalidcarvalho</div></div>
+    </div>
+    <span class="swipe">Arrasta para o lado ▶</span>
+  </div>
+</div>
+</body>
+</html>

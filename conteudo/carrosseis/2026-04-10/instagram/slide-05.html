@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; justify-content: center; align-items: flex-start; }
+  .slide {
+    width: 1080px; height: 1350px;
+    background: #0D1526;
+    font-family: 'Space Grotesk', sans-serif;
+    display: flex; flex-direction: column;
+    overflow: hidden;
+  }
+  .top-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 30px 52px; border-bottom: 1.5px solid #1E2E4A; flex-shrink: 0;
+  }
+  .top-handle { font-size: 19px; font-weight: 500; color: #4a6080; }
+  .top-center { font-size: 19px; font-weight: 500; color: #4a6080; }
+  .top-right { font-size: 19px; font-weight: 400; color: #3a4d60; }
+
+  .content {
+    flex: 1; display: flex; flex-direction: column;
+    justify-content: space-between;
+    padding: 56px 72px 48px;
+  }
+
+  .header-block { display: flex; flex-direction: column; gap: 20px; }
+  .gap-label { display: inline-flex; align-items: center; gap: 12px; }
+  .gap-number { font-size: 19px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #1A56DB; }
+  .gap-line { width: 36px; height: 2px; background: #1E2E4A; }
+  .gap-tag { font-size: 19px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #3a4d60; }
+  .slide-title { font-size: 56px; font-weight: 700; color: #fff; line-height: 1.1; letter-spacing: -1.5px; }
+  .divider { width: 100%; height: 1.5px; background: #1E2E4A; }
+
+  /* Waiting diagram */
+  .waiting-diagram {
+    display: flex; align-items: stretch; justify-content: space-between; gap: 24px;
+  }
+  .person-block {
+    flex: 1; background: #111D35; border-radius: 12px;
+    padding: 40px 32px;
+    display: flex; flex-direction: column; align-items: center; gap: 20px;
+  }
+  .person-icon {
+    width: 88px; height: 88px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; font-size: 40px;
+  }
+  .icon-adv { background: #0D1526; border: 2px solid #1A56DB; }
+  .icon-cli { background: #0D1526; border: 2px solid #3a4d60; }
+  .person-name { font-size: 26px; font-weight: 700; color: #fff; text-align: center; }
+  .person-thought {
+    background: #0D1526; border-radius: 8px; padding: 18px 20px;
+    font-size: 23px; font-weight: 500; color: #9BB3E8;
+    text-align: center; line-height: 1.4; width: 100%;
+  }
+
+  .center-col {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; gap: 10px; flex-shrink: 0; width: 80px;
+  }
+  .arr { font-size: 28px; color: #1E2E4A; }
+  .arr-flipped { transform: scaleX(-1); display: inline-block; }
+  .esp-label { font-size: 16px; font-weight: 600; color: #2a3d5a; text-transform: uppercase; letter-spacing: 0.08em; text-align: center; }
+
+  .callout {
+    background: #111D35; border-left: 5px solid #1A56DB;
+    border-radius: 0 10px 10px 0; padding: 36px 48px;
+    font-size: 33px; font-weight: 600; color: #fff; line-height: 1.45;
+  }
+
+  .bottom-bar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 24px 52px; border-top: 1.5px solid #1E2E4A; flex-shrink: 0;
+  }
+  .author { display: flex; align-items: center; gap: 14px; }
+  .avatar {
+    width: 48px; height: 48px; border-radius: 50%; background: #1A56DB;
+    position: relative; overflow: hidden; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px; font-weight: 700; color: #fff;
+  }
+  .avatar img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+  .author-name { font-size: 19px; font-weight: 700; color: #fff; }
+  .author-handle { font-size: 16px; color: #4a6080; }
+  .swipe { font-size: 19px; color: #4a6080; font-weight: 500; }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="top-bar">
+    <span class="top-handle">@eukalidcarvalho</span>
+    <span class="top-center">Marketing Jurídico</span>
+    <span class="top-right">© 2026</span>
+  </div>
+  <div class="content">
+    <div class="header-block">
+      <div class="gap-label">
+        <span class="gap-number">Gap 02</span>
+        <div class="gap-line"></div>
+        <span class="gap-tag">Quem se move primeiro</span>
+      </div>
+      <div class="slide-title">Ninguém definiu quem se move primeiro.</div>
+      <div class="divider"></div>
+    </div>
+
+    <div class="waiting-diagram">
+      <div class="person-block">
+        <div class="person-icon icon-adv">⚖️</div>
+        <div class="person-name">Advogado</div>
+        <div class="person-thought">"Se ele quiser, ele me liga."</div>
+      </div>
+      <div class="center-col">
+        <span class="arr">→</span>
+        <span class="arr arr-flipped">→</span>
+        <span class="esp-label">esperando</span>
+      </div>
+      <div class="person-block">
+        <div class="person-icon icon-cli">👤</div>
+        <div class="person-name">Cliente</div>
+        <div class="person-thought">"Acho que ele vai me mandar uma proposta."</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      Quem não define o próximo movimento, perde o cliente para quem definiu.
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar"><img src="../../2026-04-07/avatar.jpg" onerror="this.style.display='none'" />K</div>
+      <div><div class="author-name">Kalid Carvalho ✓</div><div class="author-handle">@eukalidcarvalho</div></div>
+    </div>
+    <span class="swipe">Arrasta para o lado ▶</span>
+  </div>
+</div>
+</body>
+</html>

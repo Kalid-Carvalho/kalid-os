@@ -1,7 +1,7 @@
 # Contexto da Empresa — Kalid Carvalho
 
 **Nome:** Kalid Carvalho
-**Negócio:** GROVW (grovw.com.br) + Kalid Carvalho | Sites e Agentes de IA
+**Negócio:** GROVW (grovw.com.br) + Kalid Carvalho | Builder
 **O que faz:** Criação de sites de alta conversão + tráfego pago (Google Ads e Meta Ads) + automações com IA (WhatsApp bots, agentes, integrações N8N) para pequenas e médias empresas brasileiras
 **Perfil:** freelancer / solopreneur
 **Atende clientes:** Sim — foco atual em advocacia (escritórios de pequeno e médio porte)
@@ -21,11 +21,16 @@ Agência de performance digital. Vende sistema completo de captação de cliente
 
 **Design system GROVW:** Dark tech — fundo preto #000000, accent limão #cdff00, Inter + JetBrains Mono, estilo Digital Architect
 
-### Kalid Carvalho | Sites e Agentes de IA
-Marca pessoal. Conteúdo educativo sobre sites, performance e IA para empreendedores.
-Canal: @eukalidcarvalho
+### Kalid Carvalho | Builder
+Marca pessoal de tech. Conteúdo sobre sites, apps e IA para criadores e empreendedores digitais.
+Canal: @kalidcarvalho
 
 **Design system pessoal:** Bold Human — fundo #0D1526, accent azul #1A56DB, Space Grotesk, estilo tech com presença humana
+
+### @eukalidcarvalho
+Canal de nicho focado em marketing jurídico para advogados. Gera leads para a GROVW.
+Público: advogados autônomos e sócios de escritórios pequenos (1 a 10 pessoas).
+Conteúdo: captação de clientes, sistema digital para escritório, tráfego pago jurídico.
 
 ## Contexto adicional
 - Prospecção ativa no setor de advocacia (prioridade atual)
