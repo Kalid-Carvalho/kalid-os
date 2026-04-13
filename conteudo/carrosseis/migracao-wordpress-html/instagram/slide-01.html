@@ -51,47 +51,186 @@
 
     .center-visual {
       position: absolute;
-      top: 72px;
-      left: 0; right: 0;
-      height: 680px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 44px;
+      top: 86px;
+      left: 60px; right: 60px;
+      height: 640px;
       z-index: 5;
     }
 
-    .tech-pill {
-      padding: 26px 56px;
-      border-radius: 8px;
-      font-size: 38px;
+    /* Browser mockup */
+    .browser {
+      width: 100%;
+      height: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .browser-bar {
+      height: 52px;
+      background: #1a1a1a;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+      gap: 16px;
+      flex-shrink: 0;
+    }
+
+    .browser-dots {
+      display: flex; gap: 8px;
+    }
+
+    .dot { width: 14px; height: 14px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #28c840; }
+
+    .browser-url {
+      flex: 1;
+      height: 30px;
+      background: #2a2a2a;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      padding: 0 14px;
+      font-family: 'Space Grotesk', monospace;
+      font-size: 16px;
+      color: #888;
+    }
+
+    .url-lock { color: #4CAF50; margin-right: 8px; font-size: 14px; }
+    .url-text { color: #ccc; }
+
+    /* GROVW site preview inside browser */
+    .site-content {
+      flex: 1;
+      background: #000000;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Nav */
+    .site-nav {
+      height: 48px;
+      background: rgba(0,0,0,0.9);
+      border-bottom: 1px solid rgba(205,255,0,0.15);
+      display: flex;
+      align-items: center;
+      padding: 0 32px;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+
+    .site-logo {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 20px;
       font-weight: 700;
-      letter-spacing: -0.5px;
-      line-height: 1;
+      color: #cdff00;
+      letter-spacing: 2px;
     }
 
-    .pill-out {
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.2);
-      text-decoration: line-through;
-      text-decoration-thickness: 2px;
+    .site-nav-links {
+      display: flex; gap: 24px;
     }
 
-    .arrow {
-      font-size: 52px;
-      color: #1A56DB;
+    .site-nav-link {
+      font-size: 13px;
+      color: #888;
+    }
+
+    /* Hero */
+    .site-hero {
+      padding: 32px 32px 0;
+      flex: 1;
+    }
+
+    .site-tag {
+      font-size: 12px;
+      font-weight: 600;
+      color: #cdff00;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .site-headline {
+      font-size: 42px;
       font-weight: 700;
-      line-height: 1;
-    }
-
-    .pill-in {
-      background: rgba(26, 86, 219, 0.12);
-      border: 1.5px solid rgba(26, 86, 219, 0.5);
       color: #FFFFFF;
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 18px;
     }
 
-    .pill-in .accent { color: #6B9FFF; }
+    .site-headline span { color: #cdff00; }
+
+    .site-sub {
+      font-size: 16px;
+      color: #888;
+      line-height: 1.5;
+      margin-bottom: 28px;
+      max-width: 480px;
+    }
+
+    .site-cta {
+      display: inline-block;
+      background: #cdff00;
+      color: #000;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 28px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
+    }
+
+    /* Scroll fade */
+    .site-fade {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 100px;
+      background: linear-gradient(transparent, #000000);
+    }
+
+    /* Scroll bar */
+    .scroll-bar {
+      position: absolute;
+      right: 4px;
+      top: 0; bottom: 0;
+      width: 4px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 4px;
+    }
+
+    .scroll-thumb {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 35%;
+      background: rgba(255,255,255,0.2);
+      border-radius: 4px;
+    }
+
+    /* GROVW badge */
+    .grovw-badge {
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #cdff00;
+      color: #000;
+      font-size: 18px;
+      font-weight: 700;
+      padding: 8px 24px;
+      border-radius: 4px;
+      letter-spacing: 2px;
+      white-space: nowrap;
+      z-index: 20;
+    }
 
     .bottom-content {
       position: absolute;
@@ -166,9 +305,38 @@
   </div>
 
   <div class="center-visual">
-    <div class="tech-pill pill-out">WordPress</div>
-    <div class="arrow">→</div>
-    <div class="tech-pill pill-in">HTML + <span class="accent">Claude Code</span></div>
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+        </div>
+        <div class="browser-url">
+          <span class="url-lock">🔒</span>
+          <span class="url-text">grovw.com.br</span>
+        </div>
+      </div>
+      <div class="site-content">
+        <div class="site-nav">
+          <div class="site-logo">GROVW</div>
+          <div class="site-nav-links">
+            <span class="site-nav-link">Como funciona</span>
+            <span class="site-nav-link">Planos</span>
+            <span class="site-nav-link">Contato</span>
+          </div>
+        </div>
+        <div class="site-hero">
+          <div class="site-tag">Site + Tráfego + IA</div>
+          <div class="site-headline">Clientes qualificados.<br><span>Todo dia.</span><br>Sem depender<br>de indicação.</div>
+          <div class="site-sub">Sistema completo de captação digital para empresas que querem crescer de forma previsível.</div>
+          <div class="site-cta">Quero mais clientes →</div>
+        </div>
+        <div class="site-fade"></div>
+        <div class="scroll-bar"><div class="scroll-thumb"></div></div>
+      </div>
+    </div>
+    <div class="grovw-badge">GROVW — Site próprio</div>
   </div>
 
   <div class="bottom-content">
