@@ -6,8 +6,8 @@
 # ─────────────────────────────────────────────
 
 VPS="root@191.101.234.242"
-KEY="$HOME/.ssh/grovw_vps"
-BASE="$HOME/Downloads/KalidCarvalho-os/projetos/Grovw - Sites & Performance"
+KEY="/c/Users/kalid/.ssh/grovw_vps"
+BASE="/c/Users/kalid/Downloads/KalidCarvalho-os/projetos/Grovw - Sites & Performance"
 
 SSH_OPTS="-i $KEY -o StrictHostKeyChecking=no"
 
@@ -37,11 +37,19 @@ deploy_links() {
   echo "✓ grovw.com.br/links atualizado"
 }
 
+promote_v2() {
+  echo "→ Promovendo v2 para produção..."
+  scp $SSH_OPTS "$BASE/site-grovw/index-v2.html" $VPS:/var/www/grovw/index.html
+  ssh $SSH_OPTS $VPS "chown www-data:www-data /var/www/grovw/index.html"
+  echo "✓ grovw.com.br agora serve o v2"
+}
+
 case "$1" in
-  grovw)  deploy_grovw ;;
-  v2)     deploy_v2 ;;
-  kalid)  deploy_kalid ;;
-  links)  deploy_links ;;
+  grovw)      deploy_grovw ;;
+  v2)         deploy_v2 ;;
+  kalid)      deploy_kalid ;;
+  links)      deploy_links ;;
+  promote-v2) promote_v2 ;;
   all)
     deploy_grovw
     deploy_v2
@@ -56,6 +64,7 @@ case "$1" in
     echo "  v2     → sobe index-v2 para grovw.com.br/v2"
     echo "  kalid  → sobe kalidcarvalho.com/links"
     echo "  links  → sobe grovw.com.br/links"
-    echo "  all    → sobe tudo"
+    echo "  all        → sobe tudo"
+    echo "  promote-v2 → coloca o v2 como página principal do grovw.com.br"
     ;;
 esac
