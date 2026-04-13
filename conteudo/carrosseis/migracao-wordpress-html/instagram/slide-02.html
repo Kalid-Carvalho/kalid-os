@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: #F0F4FF;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      height: 72px;
+      display: flex; align-items: center;
+      padding: 0 60px;
+      border-bottom: 1px solid #D0DBEF;
+      flex-shrink: 0;
+    }
+
+    .top-bar span {
+      font-size: 16px; font-weight: 600;
+      color: #8BA4CC; letter-spacing: 2.5px; text-transform: uppercase;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 56px 60px 40px;
+      gap: 0;
+    }
+
+    .label {
+      font-size: 16px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .heading {
+      font-size: 52px; font-weight: 700;
+      color: #0A0A0A; line-height: 1.08; letter-spacing: -1.5px;
+      margin-bottom: 20px;
+    }
+
+    .body-text {
+      font-size: 30px; font-weight: 400;
+      color: #4A6490; line-height: 1.55;
+      margin-bottom: 52px;
+    }
+
+    .stack {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      flex: 1;
+      justify-content: space-between;
+    }
+
+    .stack-row {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .stack-pill {
+      flex: 1;
+      padding: 24px 32px;
+      border-radius: 8px;
+      font-size: 28px; font-weight: 700;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+
+    .pill-main {
+      background: #0D1526;
+      color: #FFFFFF;
+    }
+
+    .pill-dep {
+      background: #FFFFFF;
+      border: 1px solid #D0DBEF;
+      color: #4A6490;
+    }
+
+    .pill-last {
+      background: #FFFFFF;
+      border: 1px dashed #D0DBEF;
+      color: #9BB3C8;
+      font-size: 24px;
+    }
+
+    .badge {
+      font-size: 18px; font-weight: 600;
+      padding: 6px 14px; border-radius: 4px;
+      letter-spacing: 1px;
+    }
+
+    .badge-core { background: #1A56DB; color: white; }
+    .badge-plugin { background: #E8EEF8; color: #4A6490; }
+
+    .arrow-down {
+      font-size: 28px; color: #C8D4E8;
+      text-align: center; width: 40px; flex-shrink: 0;
+    }
+
+    .callout {
+      background: #FFF8E1;
+      border-left: 4px solid #F59E0B;
+      padding: 22px 28px;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .callout-text {
+      font-size: 26px; font-weight: 500;
+      color: #78450A; line-height: 1.4;
+    }
+
+    .bottom-bar {
+      height: 100px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px;
+      border-top: 1px solid #D0DBEF;
+      flex-shrink: 0;
+    }
+
+    .author { display: flex; align-items: center; gap: 14px; }
+
+    .avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%; border: 2px solid #2563EB;
+      background: #1A56DB;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+
+    .author-name { font-size: 20px; font-weight: 700; color: #0A0A0A; line-height: 1.2; }
+    .author-handle { font-size: 16px; color: #8BA4CC; }
+
+    .next { font-size: 18px; font-weight: 600; color: #8BA4CC; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <span>@kalidcarvalho · IA e Tech · © 2026</span>
+  </div>
+
+  <div class="content">
+    <div class="label">Como estava</div>
+    <div class="heading">Site em WordPress.<br>Stack pesada.</div>
+    <div class="body-text">Cada ajuste dependia de plugin.<br>Cada plugin dependia de atualização.</div>
+
+    <div class="stack">
+      <div class="stack-row">
+        <div class="stack-pill pill-main">
+          WordPress
+          <span class="badge badge-core">Core</span>
+        </div>
+      </div>
+
+      <div class="arrow-down" style="padding-left:20px;">↓</div>
+
+      <div class="stack-row">
+        <div class="stack-pill pill-dep">
+          Elementor Pro
+          <span class="badge badge-plugin">Page Builder</span>
+        </div>
+      </div>
+
+      <div class="arrow-down" style="padding-left:20px;">↓</div>
+
+      <div class="stack-row">
+        <div class="stack-pill pill-dep">
+          WP Rocket
+          <span class="badge badge-plugin">Cache</span>
+        </div>
+      </div>
+
+      <div class="arrow-down" style="padding-left:20px;">↓</div>
+
+      <div class="stack-row">
+        <div class="stack-pill pill-last">
+          + plugins de formulário, SEO, segurança...
+        </div>
+      </div>
+
+      <div class="callout">
+        <div class="callout-text">Pra um site de captação solo, era overhead demais.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar">K</div>
+      <div>
+        <div class="author-name">Kalid Carvalho</div>
+        <div class="author-handle">@kalidcarvalho</div>
+      </div>
+    </div>
+    <div class="next">Arrasta ▶</div>
+  </div>
+</body>
+</html>

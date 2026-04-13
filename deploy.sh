@@ -14,6 +14,9 @@ SSH_OPTS="-i $KEY -o StrictHostKeyChecking=no"
 deploy_grovw() {
   echo "→ Subindo site-grovw (site principal)..."
   scp $SSH_OPTS "$BASE/site-grovw/index.html" $VPS:/var/www/grovw/index.html
+  echo "  → Subindo assets/img..."
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/grovw/assets/img"
+  scp $SSH_OPTS -r "$BASE/site-grovw/assets/img" $VPS:/var/www/grovw/assets/
   echo "✓ grovw.com.br atualizado"
 }
 

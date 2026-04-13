@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: #0D1526;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26, 86, 219, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26, 86, 219, 0.06) 1px, transparent 1px);
+      background-size: 54px 54px;
+    }
+
+    .bg-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, #0D1526 0%, transparent 30%, transparent 55%, #0D1526 85%);
+    }
+
+    .top-bar {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      padding: 0 60px;
+      border-bottom: 1px solid #1E2E4A;
+      z-index: 10;
+    }
+
+    .top-bar span {
+      font-size: 16px;
+      font-weight: 600;
+      color: #3A4D6E;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .center-visual {
+      position: absolute;
+      top: 72px;
+      left: 0; right: 0;
+      height: 680px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 44px;
+      z-index: 5;
+    }
+
+    .tech-pill {
+      padding: 26px 56px;
+      border-radius: 8px;
+      font-size: 38px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .pill-out {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.2);
+      text-decoration: line-through;
+      text-decoration-thickness: 2px;
+    }
+
+    .arrow {
+      font-size: 52px;
+      color: #1A56DB;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .pill-in {
+      background: rgba(26, 86, 219, 0.12);
+      border: 1.5px solid rgba(26, 86, 219, 0.5);
+      color: #FFFFFF;
+    }
+
+    .pill-in .accent { color: #6B9FFF; }
+
+    .bottom-content {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0 60px 64px;
+      z-index: 10;
+    }
+
+    .divider {
+      height: 1px;
+      background: #1E2E4A;
+      margin-bottom: 40px;
+    }
+
+    .profile-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .avatar {
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      border: 2px solid #2563EB;
+      background: #1A56DB;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+
+    .profile-name {
+      font-size: 22px; font-weight: 700; color: #FFFFFF; line-height: 1.2;
+    }
+
+    .profile-handle {
+      font-size: 18px; font-weight: 400; color: #9BB3E8;
+    }
+
+    .tag {
+      display: inline-block;
+      background: rgba(26,86,219,0.15);
+      border: 1px solid rgba(26,86,219,0.35);
+      color: #9BB3E8;
+      font-size: 16px; font-weight: 600;
+      letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 8px 18px; border-radius: 4px;
+      margin-bottom: 24px;
+    }
+
+    .title {
+      font-size: 74px; font-weight: 700;
+      color: #FFFFFF;
+      line-height: 1.06; letter-spacing: -2px;
+      margin-bottom: 32px;
+    }
+
+    .title .accent { color: #1A56DB; }
+
+    .swipe {
+      font-size: 18px; font-weight: 500;
+      color: #3A4D6E; letter-spacing: 1px;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-fade"></div>
+
+  <div class="top-bar">
+    <span>@kalidcarvalho · IA e Tech · © 2026</span>
+  </div>
+
+  <div class="center-visual">
+    <div class="tech-pill pill-out">WordPress</div>
+    <div class="arrow">→</div>
+    <div class="tech-pill pill-in">HTML + <span class="accent">Claude Code</span></div>
+  </div>
+
+  <div class="bottom-content">
+    <div class="divider"></div>
+    <div class="profile-row">
+      <div class="avatar">K</div>
+      <div>
+        <div class="profile-name">Kalid Carvalho</div>
+        <div class="profile-handle">@kalidcarvalho</div>
+      </div>
+    </div>
+    <div class="tag">Building</div>
+    <div class="title">Meu site saiu<br>do <span class="accent">WordPress</span>.<br>Claude Code<br>entrou.</div>
+    <div class="swipe">Deslize para ver como foi ▶</div>
+  </div>
+</body>
+</html>

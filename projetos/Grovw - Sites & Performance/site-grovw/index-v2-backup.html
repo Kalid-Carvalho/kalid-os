@@ -5,8 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GROVW | Sistema de Captação Digital</title>
   <meta name="description" content="Site + tráfego pago + IA no WhatsApp. Sistema completo para você receber leads qualificados todo mês. Setup em 14 dias." />
-  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <link rel="shortcut icon" href="assets/img/favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -21,28 +19,24 @@
       --accent: #cdff00;
       --accent-dim: rgba(205,255,0,0.08);
       --accent-border: rgba(205,255,0,0.25);
-      --border: rgba(255,255,255,0.11);
-      --border2: rgba(255,255,255,0.18);
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.12);
       --text: #ffffff;
-      --text-muted: #888888;
-      --text-dim: #aaaaaa;
+      --text-muted: #666666;
+      --text-dim: #888888;
       --font: 'Inter', sans-serif;
       --mono: 'JetBrains Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html {
-      scroll-behavior: smooth;
-      overflow-x: hidden;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      max-width: 100%;
       cursor: none;
     }
 
@@ -347,111 +341,109 @@
       color: #444;
     }
 
-    /* BROWSER MOCKUP */
-    .browser-mock {
+    /* SYSTEM DIAGRAM */
+    .system-diagram {
+      background: var(--surface);
+      border: 1px solid var(--border2);
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.15);
-      overflow: hidden;
-      box-shadow: 0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04), 0 0 60px rgba(205,255,0,0.05);
-      background: #111;
+      padding: 32px;
       position: relative;
     }
-    .browser-bar {
-      background: #1c1c1c;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
-      padding: 10px 16px;
+    .system-diagram::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--accent-border) 0%, transparent 50%, var(--accent-border) 100%);
+      z-index: -1;
+    }
+
+    .diagram-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .diagram-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .diagram-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .diagram-item:hover {
+      border-color: var(--accent-border);
+      background: rgba(205,255,0,0.04);
+      transform: translateX(4px);
+    }
+
+    .diagram-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .diagram-item-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .diagram-item-text span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .diagram-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 20px;
+    }
+    .diagram-connector::before {
+      content: '';
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent-border), transparent);
+      margin-left: 36px;
+    }
+
+    .diagram-result {
+      margin-top: 20px;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, rgba(205,255,0,0.08), rgba(205,255,0,0.03));
+      border: 1px solid var(--accent-border);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       gap: 12px;
     }
-    .browser-dots {
-      display: flex;
-      gap: 6px;
-      flex-shrink: 0;
-    }
-    .browser-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-    .browser-url {
-      flex: 1;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 4px;
-      padding: 5px 12px;
-      font-family: var(--mono);
-      font-size: 10px;
-      color: #555;
-    }
-    /* SLIDER */
-    .browser-slider {
-      position: relative;
-      height: 340px;
-      overflow: hidden;
-    }
-    .slider-track {
-      display: flex;
-      height: 100%;
-      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
-      will-change: transform;
-    }
-    .slide-item {
-      min-width: 100%;
-      height: 100%;
-      flex-shrink: 0;
-    }
-    .slide-item img {
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top;
-    }
-    .slider-dots {
-      position: absolute;
-      bottom: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 6px;
-      z-index: 10;
-    }
-    .sdot {
-      width: 6px;
-      height: 6px;
-      border-radius: 3px;
-      background: rgba(255,255,255,0.25);
-      border: none;
-      cursor: pointer;
-      padding: 0;
-      transition: all 0.35s ease;
-    }
-    .sdot.active {
-      width: 20px;
-      background: var(--accent);
-    }
-    .browser-footer {
-      padding: 12px 20px;
-      background: #141414;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      min-height: 44px;
-      align-items: center;
-    }
-    .browser-pill {
-      font-family: var(--mono);
-      font-size: 9px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: var(--accent);
-      background: rgba(205,255,0,0.08);
-      border: 1px solid rgba(205,255,0,0.2);
-      border-radius: 100px;
-      padding: 4px 10px;
-    }
+    .diagram-result-icon { font-size: 20px; color: var(--accent); }
+    .diagram-result strong { font-size: 13px; font-weight: 700; color: var(--accent); display: block; }
+    .diagram-result span { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
 
     /* ─── MARQUEE ───────────────────────────────────────────── */
     .marquee-strip {
@@ -682,7 +674,7 @@
     }
 
     .portfolio-img {
-      height: 260px;
+      height: 220px;
       overflow: hidden;
       position: relative;
     }
@@ -691,12 +683,12 @@
       height: 100%;
       object-fit: cover;
       object-position: top;
-      filter: grayscale(0.15) brightness(0.8);
+      filter: grayscale(1) brightness(0.5);
       transition: all 0.6s ease;
     }
     .portfolio-card:hover .portfolio-img img {
-      filter: grayscale(0) brightness(1.0);
-      transform: scale(1.04);
+      filter: grayscale(0) brightness(0.8);
+      transform: scale(1.05);
     }
 
     .portfolio-info {
@@ -1336,8 +1328,6 @@
       .footer-links { flex-wrap: wrap; justify-content: center; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .hero-title { font-size: 44px; }
-      .browser-slider { height: 220px; }
-      .browser-mock { max-width: 100%; }
     }
   </style>
 </head>
@@ -1413,36 +1403,39 @@
           </div>
         </div>
 
-        <div class="browser-mock reveal d2">
-          <div class="browser-bar">
-            <div class="browser-dots">
-              <div class="browser-dot" style="background:#ff5f57;"></div>
-              <div class="browser-dot" style="background:#ffbd2e;"></div>
-              <div class="browser-dot" style="background:#28ca41;"></div>
+        <div class="system-diagram reveal d2">
+          <div class="diagram-label">// sistema grovw</div>
+          <div class="diagram-items">
+            <div class="diagram-item">
+              <div class="diagram-icon"><iconify-icon icon="solar:monitor-smartphone-bold-duotone"></iconify-icon></div>
+              <div class="diagram-item-text">
+                <strong>Landing Page</strong>
+                <span>Alta conversão · Veloz · Rastreada</span>
+              </div>
             </div>
-            <div class="browser-url" id="sliderUrl">advotary.grovw.com.br</div>
+            <div class="diagram-connector"></div>
+            <div class="diagram-item">
+              <div class="diagram-icon"><iconify-icon icon="solar:target-bold-duotone"></iconify-icon></div>
+              <div class="diagram-item-text">
+                <strong>Tráfego Pago</strong>
+                <span>Google Ads · Meta Ads · Pixel avançado</span>
+              </div>
+            </div>
+            <div class="diagram-connector"></div>
+            <div class="diagram-item">
+              <div class="diagram-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+              <div class="diagram-item-text">
+                <strong>IA no WhatsApp</strong>
+                <span>Qualificação automática · 24h/7d</span>
+              </div>
+            </div>
           </div>
-          <div class="browser-slider" id="heroSlider">
-            <div class="slider-track" id="sliderTrack">
-              <div class="slide-item">
-                <img src="assets/img/advotary.png" alt="Advotary Advocacia" loading="eager" />
-              </div>
-              <div class="slide-item">
-                <img src="assets/img/justice.png" alt="Justice Advocacia" loading="lazy" />
-              </div>
-              <div class="slide-item">
-                <img src="assets/img/buitragoepordeus.png" alt="Buitrago e Pordeus" loading="lazy" />
-              </div>
+          <div class="diagram-result">
+            <div class="diagram-result-icon"><iconify-icon icon="solar:user-check-rounded-bold-duotone"></iconify-icon></div>
+            <div>
+              <strong>Lead qualificado</strong>
+              <span>Nome · Contato · Contexto de compra</span>
             </div>
-            <div class="slider-dots">
-              <button class="sdot active" onclick="heroSlide(0)" aria-label="Slide 1"></button>
-              <button class="sdot" onclick="heroSlide(1)" aria-label="Slide 2"></button>
-              <button class="sdot" onclick="heroSlide(2)" aria-label="Slide 3"></button>
-            </div>
-          </div>
-          <div class="browser-footer" id="sliderFooter">
-            <span class="browser-pill">Advotary Advocacia</span>
-            <span class="browser-pill">Site + Google Ads</span>
           </div>
         </div>
       </div>
@@ -1593,7 +1586,7 @@
       <div class="portfolio-grid reveal d1">
         <a href="https://advotary.grovw.com.br/" target="_blank" class="portfolio-card">
           <div class="portfolio-img">
-            <img src="assets/img/advotary.png" alt="Advotary Advocacia" loading="lazy" />
+            <img src="/assets/img/advotary.png" alt="Advotary Advocacia" loading="lazy" />
             <div class="portfolio-arrow"><iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon></div>
           </div>
           <div class="portfolio-info">
@@ -1604,7 +1597,7 @@
         </a>
         <a href="https://sancheseassociados.grovw.com.br/" target="_blank" class="portfolio-card">
           <div class="portfolio-img">
-            <img src="assets/img/justice.png" alt="Justice Advocacia" loading="lazy" />
+            <img src="/assets/img/justice.png" alt="Justice Advocacia" loading="lazy" />
             <div class="portfolio-arrow"><iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon></div>
           </div>
           <div class="portfolio-info">
@@ -1615,7 +1608,7 @@
         </a>
         <a href="https://buitragoepordeus.grovw.com.br/" target="_blank" class="portfolio-card">
           <div class="portfolio-img">
-            <img src="assets/img/buitragoepordeus.png" alt="Buitrago e Pordeus" loading="lazy" />
+            <img src="/assets/img/buitragoepordeus.png" alt="Buitrago e Pordeus" loading="lazy" />
             <div class="portfolio-arrow"><iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon></div>
           </div>
           <div class="portfolio-info">
@@ -1758,8 +1751,8 @@
           <div style="width:48px;height:48px;background:var(--surface);border:1px dashed var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
             <iconify-icon icon="solar:user-plus-rounded-line-duotone" style="font-size:20px;color:var(--text-muted);"></iconify-icon>
           </div>
-          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#555;">Próximo case</span>
-          <p style="font-size:13px;color:#444;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
+          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#333;">Próximo case</span>
+          <p style="font-size:13px;color:#2a2a2a;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
         </div>
 
         <!-- CARD VAGO 2 -->
@@ -1767,8 +1760,8 @@
           <div style="width:48px;height:48px;background:var(--surface);border:1px dashed var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
             <iconify-icon icon="solar:user-plus-rounded-line-duotone" style="font-size:20px;color:var(--text-muted);"></iconify-icon>
           </div>
-          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#555;">Próximo case</span>
-          <p style="font-size:13px;color:#444;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
+          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#333;">Próximo case</span>
+          <p style="font-size:13px;color:#2a2a2a;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
         </div>
 
         <!-- CARD VAGO 3 -->
@@ -1776,8 +1769,8 @@
           <div style="width:48px;height:48px;background:var(--surface);border:1px dashed var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
             <iconify-icon icon="solar:user-plus-rounded-line-duotone" style="font-size:20px;color:var(--text-muted);"></iconify-icon>
           </div>
-          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#555;">Próximo case</span>
-          <p style="font-size:13px;color:#444;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
+          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#333;">Próximo case</span>
+          <p style="font-size:13px;color:#2a2a2a;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
         </div>
 
       </div>
@@ -2020,50 +2013,6 @@
         btn.textContent = 'Erro. Tente novamente.';
         btn.disabled = false;
       }
-    });
-
-    // ── HERO SLIDER
-    const heroSlides = [
-      { url: 'advotary.grovw.com.br',          pills: ['Advotary Advocacia', 'Site + Google Ads'] },
-      { url: 'sancheseassociados.grovw.com.br', pills: ['Sanches & Associados', 'Site + Meta Ads'] },
-      { url: 'buitragoepordeus.grovw.com.br',   pills: ['Buitrago & Pordeus', 'Site + Google Ads'] },
-    ];
-    let heroIdx = 0;
-    let heroTimer;
-
-    function heroSlide(n) {
-      heroIdx = (n + heroSlides.length) % heroSlides.length;
-      document.getElementById('sliderTrack').style.transform = `translateX(-${heroIdx * 100}%)`;
-      document.querySelectorAll('.sdot').forEach((d, i) => d.classList.toggle('active', i === heroIdx));
-      document.getElementById('sliderUrl').textContent = heroSlides[heroIdx].url;
-      document.getElementById('sliderFooter').innerHTML = heroSlides[heroIdx].pills.map(p => `<span class="browser-pill">${p}</span>`).join('');
-      clearInterval(heroTimer);
-      heroTimer = setInterval(() => heroSlide(heroIdx + 1), 3800);
-    }
-
-    // Autoplay
-    heroTimer = setInterval(() => heroSlide(heroIdx + 1), 3800);
-
-    // Touch swipe — previne scroll horizontal da página durante swipe no slider
-    let touchX0 = 0, touchY0 = 0;
-    const sliderEl = document.getElementById('heroSlider');
-    sliderEl.addEventListener('touchstart', e => {
-      touchX0 = e.touches[0].clientX;
-      touchY0 = e.touches[0].clientY;
-    }, { passive: true });
-    sliderEl.addEventListener('touchmove', e => {
-      const dx = Math.abs(e.touches[0].clientX - touchX0);
-      const dy = Math.abs(e.touches[0].clientY - touchY0);
-      if (dx > dy) e.preventDefault(); // swipe horizontal: bloqueia scroll da página
-    }, { passive: false });
-    sliderEl.addEventListener('touchend', e => {
-      const diff = touchX0 - e.changedTouches[0].clientX;
-      if (Math.abs(diff) > 40) heroSlide(heroIdx + (diff > 0 ? 1 : -1));
-    }, { passive: true });
-
-    // Pausar autoplay quando o usuário interage com os dots
-    document.querySelectorAll('.sdot').forEach((d, i) => {
-      d.addEventListener('click', () => heroSlide(i));
     });
 
     // ── FLASHLIGHT EFFECT ON CARDS
