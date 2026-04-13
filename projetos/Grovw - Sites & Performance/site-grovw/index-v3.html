@@ -378,23 +378,62 @@
       font-size: 10px;
       color: #555;
     }
-    .browser-img {
+    /* SLIDER */
+    .browser-slider {
+      position: relative;
+      height: 340px;
+      overflow: hidden;
+    }
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+      will-change: transform;
+    }
+    .slide-item {
+      min-width: 100%;
+      height: 100%;
+      flex-shrink: 0;
+    }
+    .slide-item img {
       display: block;
       width: 100%;
-      height: 340px;
+      height: 100%;
       object-fit: cover;
       object-position: top;
-      transition: transform 8s ease;
     }
-    .browser-mock:hover .browser-img {
-      transform: translateY(-30%);
+    .slider-dots {
+      position: absolute;
+      bottom: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 6px;
+      z-index: 10;
+    }
+    .sdot {
+      width: 6px;
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.25);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: all 0.35s ease;
+    }
+    .sdot.active {
+      width: 20px;
+      background: var(--accent);
     }
     .browser-footer {
       padding: 12px 20px;
       background: #141414;
       border-top: 1px solid rgba(255,255,255,0.06);
       display: flex;
-      gap: 20px;
+      gap: 10px;
+      flex-wrap: wrap;
+      min-height: 44px;
+      align-items: center;
     }
     .browser-pill {
       font-family: var(--mono);
@@ -1291,6 +1330,8 @@
       .footer-links { flex-wrap: wrap; justify-content: center; }
       .stats-grid { grid-template-columns: 1fr 1fr; }
       .hero-title { font-size: 44px; }
+      .browser-slider { height: 220px; }
+      .browser-mock { max-width: 100%; }
     }
   </style>
 </head>
@@ -1373,13 +1414,29 @@
               <div class="browser-dot" style="background:#ffbd2e;"></div>
               <div class="browser-dot" style="background:#28ca41;"></div>
             </div>
-            <div class="browser-url">advotary.grovw.com.br</div>
+            <div class="browser-url" id="sliderUrl">advotary.grovw.com.br</div>
           </div>
-          <img class="browser-img" src="assets/img/advotary.png" alt="Site Advotary — GROVW" />
-          <div class="browser-footer">
-            <span class="browser-pill">Landing Page</span>
-            <span class="browser-pill">Google Ads</span>
-            <span class="browser-pill">IA WhatsApp</span>
+          <div class="browser-slider" id="heroSlider">
+            <div class="slider-track" id="sliderTrack">
+              <div class="slide-item">
+                <img src="assets/img/advotary.png" alt="Advotary Advocacia" loading="eager" />
+              </div>
+              <div class="slide-item">
+                <img src="assets/img/justice.png" alt="Justice Advocacia" loading="lazy" />
+              </div>
+              <div class="slide-item">
+                <img src="assets/img/buitragoepordeus.png" alt="Buitrago e Pordeus" loading="lazy" />
+              </div>
+            </div>
+            <div class="slider-dots">
+              <button class="sdot active" onclick="heroSlide(0)" aria-label="Slide 1"></button>
+              <button class="sdot" onclick="heroSlide(1)" aria-label="Slide 2"></button>
+              <button class="sdot" onclick="heroSlide(2)" aria-label="Slide 3"></button>
+            </div>
+          </div>
+          <div class="browser-footer" id="sliderFooter">
+            <span class="browser-pill">Advotary Advocacia</span>
+            <span class="browser-pill">Site + Google Ads</span>
           </div>
         </div>
       </div>
@@ -1957,6 +2014,42 @@
         btn.textContent = 'Erro. Tente novamente.';
         btn.disabled = false;
       }
+    });
+
+    // ── HERO SLIDER
+    const heroSlides = [
+      { url: 'advotary.grovw.com.br',          pills: ['Advotary Advocacia', 'Site + Google Ads'] },
+      { url: 'sancheseassociados.grovw.com.br', pills: ['Sanches & Associados', 'Site + Meta Ads'] },
+      { url: 'buitragoepordeus.grovw.com.br',   pills: ['Buitrago & Pordeus', 'Site + Google Ads'] },
+    ];
+    let heroIdx = 0;
+    let heroTimer;
+
+    function heroSlide(n) {
+      heroIdx = (n + heroSlides.length) % heroSlides.length;
+      document.getElementById('sliderTrack').style.transform = `translateX(-${heroIdx * 100}%)`;
+      document.querySelectorAll('.sdot').forEach((d, i) => d.classList.toggle('active', i === heroIdx));
+      document.getElementById('sliderUrl').textContent = heroSlides[heroIdx].url;
+      document.getElementById('sliderFooter').innerHTML = heroSlides[heroIdx].pills.map(p => `<span class="browser-pill">${p}</span>`).join('');
+      clearInterval(heroTimer);
+      heroTimer = setInterval(() => heroSlide(heroIdx + 1), 3800);
+    }
+
+    // Autoplay
+    heroTimer = setInterval(() => heroSlide(heroIdx + 1), 3800);
+
+    // Touch swipe
+    let touchX0 = 0;
+    const sliderEl = document.getElementById('heroSlider');
+    sliderEl.addEventListener('touchstart', e => { touchX0 = e.touches[0].clientX; }, { passive: true });
+    sliderEl.addEventListener('touchend', e => {
+      const diff = touchX0 - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) heroSlide(heroIdx + (diff > 0 ? 1 : -1));
+    }, { passive: true });
+
+    // Pausar autoplay quando o usuário interage com os dots
+    document.querySelectorAll('.sdot').forEach((d, i) => {
+      d.addEventListener('click', () => heroSlide(i));
     });
 
     // ── FLASHLIGHT EFFECT ON CARDS
