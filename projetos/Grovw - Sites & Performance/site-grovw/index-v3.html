@@ -30,13 +30,17 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
 
     body {
       font-family: var(--font);
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
+      max-width: 100%;
       cursor: none;
     }
 
@@ -2038,10 +2042,18 @@
     // Autoplay
     heroTimer = setInterval(() => heroSlide(heroIdx + 1), 3800);
 
-    // Touch swipe
-    let touchX0 = 0;
+    // Touch swipe — previne scroll horizontal da página durante swipe no slider
+    let touchX0 = 0, touchY0 = 0;
     const sliderEl = document.getElementById('heroSlider');
-    sliderEl.addEventListener('touchstart', e => { touchX0 = e.touches[0].clientX; }, { passive: true });
+    sliderEl.addEventListener('touchstart', e => {
+      touchX0 = e.touches[0].clientX;
+      touchY0 = e.touches[0].clientY;
+    }, { passive: true });
+    sliderEl.addEventListener('touchmove', e => {
+      const dx = Math.abs(e.touches[0].clientX - touchX0);
+      const dy = Math.abs(e.touches[0].clientY - touchY0);
+      if (dx > dy) e.preventDefault(); // swipe horizontal: bloqueia scroll da página
+    }, { passive: false });
     sliderEl.addEventListener('touchend', e => {
       const diff = touchX0 - e.changedTouches[0].clientX;
       if (Math.abs(diff) > 40) heroSlide(heroIdx + (diff > 0 ? 1 : -1));
