@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: #F0F4FF;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      height: 72px;
+      display: flex; align-items: center;
+      padding: 0 60px;
+      border-bottom: 1px solid #D0DBEF;
+      flex-shrink: 0;
+    }
+
+    .top-bar span {
+      font-size: 16px; font-weight: 600;
+      color: #8BA4CC; letter-spacing: 2.5px; text-transform: uppercase;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 56px 60px 40px;
+    }
+
+    .label {
+      font-size: 16px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .heading {
+      font-size: 52px; font-weight: 700;
+      color: #0A0A0A; line-height: 1.08; letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .body-text {
+      font-size: 28px; font-weight: 400;
+      color: #4A6490; line-height: 1.55;
+      margin-bottom: 52px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .step {
+      background: #FFFFFF;
+      border: 1px solid #D0DBEF;
+      border-radius: 12px;
+      padding: 32px 36px;
+      display: flex;
+      align-items: flex-start;
+      gap: 28px;
+      flex: 1;
+    }
+
+    .step-num {
+      font-size: 52px; font-weight: 700;
+      color: #1A56DB; line-height: 1;
+      flex-shrink: 0;
+      min-width: 56px;
+    }
+
+    .step-content { }
+
+    .step-title {
+      font-size: 30px; font-weight: 700;
+      color: #0A0A0A; line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 24px; font-weight: 400;
+      color: #4A6490; line-height: 1.5;
+    }
+
+    .step-highlight {
+      display: inline-block;
+      background: rgba(26,86,219,0.08);
+      border: 1px solid rgba(26,86,219,0.2);
+      color: #1A56DB;
+      font-size: 20px; font-weight: 600;
+      padding: 5px 14px; border-radius: 4px;
+      margin-top: 12px;
+    }
+
+    .bottom-bar {
+      height: 100px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px;
+      border-top: 1px solid #D0DBEF;
+      flex-shrink: 0;
+    }
+
+    .author { display: flex; align-items: center; gap: 14px; }
+
+    .avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%; border: 2px solid #2563EB;
+      background: #1A56DB;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+
+    .author-name { font-size: 20px; font-weight: 700; color: #0A0A0A; line-height: 1.2; }
+    .author-handle { font-size: 16px; color: #8BA4CC; }
+    .next { font-size: 18px; font-weight: 600; color: #8BA4CC; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <span>@kalidcarvalho · IA e Tech · © 2026</span>
+  </div>
+
+  <div class="content">
+    <div class="label">O processo</div>
+    <div class="heading">Como o Claude Code<br>entrou no build.</div>
+    <div class="body-text">Não é só pedir pra IA fazer. É um processo com controle em cada etapa.</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">01</div>
+        <div class="step-content">
+          <div class="step-title">Descrevi a seção</div>
+          <div class="step-desc">Estrutura, propósito, o que precisa aparecer. Contexto suficiente pra o Claude entender o objetivo.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">02</div>
+        <div class="step-content">
+          <div class="step-title">Enviei o design system</div>
+          <div class="step-desc">Cores, fontes, tokens, estilo. Entrava em todo prompt. Resultado visualmente consistente do hero ao footer.</div>
+          <span class="step-highlight">Prompts específicos por componente</span>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">03</div>
+        <div class="step-content">
+          <div class="step-title">Revisei e ajustei</div>
+          <div class="step-desc">O Claude escreveu o código. Eu controlei cada decisão. Nenhuma seção foi ao ar sem revisão.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar">K</div>
+      <div>
+        <div class="author-name">Kalid Carvalho</div>
+        <div class="author-handle">@kalidcarvalho</div>
+      </div>
+    </div>
+    <div class="next">Arrasta ▶</div>
+  </div>
+</body>
+</html>

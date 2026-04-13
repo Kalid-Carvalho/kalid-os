@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1080px;
+      height: 1350px;
+      background: #F0F4FF;
+      font-family: 'Space Grotesk', sans-serif;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top-bar {
+      height: 72px;
+      display: flex; align-items: center;
+      padding: 0 60px;
+      border-bottom: 1px solid #D0DBEF;
+      flex-shrink: 0;
+    }
+
+    .top-bar span {
+      font-size: 16px; font-weight: 600;
+      color: #8BA4CC; letter-spacing: 2.5px; text-transform: uppercase;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 56px 60px 40px;
+    }
+
+    .label {
+      font-size: 16px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 2px; text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .heading {
+      font-size: 52px; font-weight: 700;
+      color: #0A0A0A; line-height: 1.08; letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .body-text {
+      font-size: 28px; font-weight: 400;
+      color: #4A6490; line-height: 1.55;
+      margin-bottom: 48px;
+    }
+
+    .results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .result-card {
+      background: #FFFFFF;
+      border: 1px solid #D0DBEF;
+      border-radius: 12px;
+      padding: 36px 32px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .result-stat {
+      font-size: 64px; font-weight: 700;
+      color: #1A56DB; line-height: 1;
+      letter-spacing: -2px;
+      margin-bottom: 12px;
+    }
+
+    .result-label {
+      font-size: 26px; font-weight: 600;
+      color: #0A0A0A; line-height: 1.3;
+      margin-bottom: 10px;
+    }
+
+    .result-desc {
+      font-size: 22px; font-weight: 400;
+      color: #4A6490; line-height: 1.4;
+    }
+
+    .bottom-bar {
+      height: 100px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 60px;
+      border-top: 1px solid #D0DBEF;
+      flex-shrink: 0;
+    }
+
+    .author { display: flex; align-items: center; gap: 14px; }
+
+    .avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%; border: 2px solid #2563EB;
+      background: #1A56DB;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; font-weight: 700; color: white;
+      flex-shrink: 0;
+    }
+
+    .author-name { font-size: 20px; font-weight: 700; color: #0A0A0A; line-height: 1.2; }
+    .author-handle { font-size: 16px; color: #8BA4CC; }
+    .next { font-size: 18px; font-weight: 600; color: #8BA4CC; letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <span>@kalidcarvalho · IA e Tech · © 2026</span>
+  </div>
+
+  <div class="content">
+    <div class="label">Resultado</div>
+    <div class="heading">Site no ar.<br>Zero plugin.</div>
+    <div class="body-text">O que ficou melhor depois da migração.</div>
+
+    <div class="results">
+      <div class="result-card">
+        <div class="result-stat">0</div>
+        <div class="result-label">Plugins ativos</div>
+        <div class="result-desc">Sem atualização pra fazer. Sem dependência pra manter.</div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-stat">&lt;5'</div>
+        <div class="result-label">Deploy completo</div>
+        <div class="result-desc">FTP direto. Sem build step, sem processo complicado.</div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-stat">R$0</div>
+        <div class="result-label">Taxa de formulário</div>
+        <div class="result-desc">Formulário próprio integrado. Sem custo por envio.</div>
+      </div>
+
+      <div class="result-card">
+        <div class="result-stat">100%</div>
+        <div class="result-label">Controle do código</div>
+        <div class="result-desc">Qualquer ajuste feito direto no HTML, sem intermediário.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-bar">
+    <div class="author">
+      <div class="avatar">K</div>
+      <div>
+        <div class="author-name">Kalid Carvalho</div>
+        <div class="author-handle">@kalidcarvalho</div>
+      </div>
+    </div>
+    <div class="next">Arrasta ▶</div>
+  </div>
+</body>
+</html>
