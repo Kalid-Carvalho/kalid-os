@@ -1,499 +1,2032 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="scroll-smooth dark">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
-    <!-- SEO Básico -->
-    <title>GROVW | Sistema de Captação Digital para Empresas</title>
-    <meta name="description" content="Site + tráfego pago + IA no WhatsApp. Sistema completo para você receber leads qualificados todo mês. Setup em 7 dias." />
-    <meta name="keywords" content="captação de leads, tráfego pago, google ads, criação de sites, automação whatsapp, agência de marketing digital, kalid carvalho, grovw, landing page de conversão" />
-    <meta name="author" content="Kalid Carvalho" />
-    <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://grovw.com.br/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GROVW | Sistema de Captação Digital</title>
+  <meta name="description" content="Site + tráfego pago + IA no WhatsApp. Sistema completo para você receber leads qualificados todo mês. Setup em 14 dias." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
 
-    <!-- Open Graph / Meta / WhatsApp / LinkedIn -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://grovw.com.br/" />
-    <meta property="og:title" content="GROVW | Sistema de Captação Digital para Empresas" />
-    <meta property="og:description" content="Site + tráfego pago + IA no WhatsApp. Sistema completo para você receber leads qualificados todo mês. Setup em 7 dias." />
-    <meta property="og:image" content="https://grovw.com.br/assets/img/og-image.jpg" />
+  <style>
+    :root {
+      --bg: #000000;
+      --bg2: #0a0a0a;
+      --bg3: #111111;
+      --surface: #161616;
+      --accent: #cdff00;
+      --accent-dim: rgba(205,255,0,0.08);
+      --accent-border: rgba(205,255,0,0.25);
+      --border: rgba(255,255,255,0.07);
+      --border2: rgba(255,255,255,0.12);
+      --text: #ffffff;
+      --text-muted: #666666;
+      --text-dim: #888888;
+      --font: 'Inter', sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://grovw.com.br/" />
-    <meta property="twitter:title" content="GROVW | Sistema de Captação Digital para Empresas" />
-    <meta property="twitter:description" content="Site + tráfego pago + IA no WhatsApp. Sistema completo para você receber leads qualificados todo mês. Setup em 7 dias." />
-    <meta property="twitter:image" content="https://grovw.com.br/assets/img/og-image.jpg" />
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
-    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    html { scroll-behavior: smooth; }
 
-    <!-- Preconnect / Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect" />
-    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      cursor: none;
+    }
 
-    <!-- Assets / Scripts -->
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" defer></script>
-    <link rel="preload" as="style" href="assets/css/final.css">
-    <link href="assets/css/final.css" rel="stylesheet" />
-    <link href="assets/css/style.css" rel="stylesheet" />
+    /* CUSTOM CURSOR */
+    .cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+      mix-blend-mode: difference;
+    }
+    .cursor-ring {
+      position: fixed;
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(205,255,0,0.5);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: all 0.15s ease;
+    }
+    body:hover .cursor { opacity: 1; }
+
+    /* NOISE TEXTURE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.4;
+    }
+
+    /* ─── SCROLLBAR ─────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
+
+    /* ─── UTILITIES ─────────────────────────────────────────── */
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+    .mono { font-family: var(--mono); }
+    .accent { color: var(--accent); }
+
+    .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    /* ─── REVEAL ANIMATION ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; }
+    .reveal.d4 { transition-delay: 0.4s; }
+
+    /* ─── NAVIGATION ────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      border-bottom: 1px solid var(--border);
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+    }
+    .nav-logo-comment { font-family: var(--mono); font-size: 10px; color: #333; }
+    .nav-logo-text {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-shadow: 0 0 20px rgba(205,255,0,0.4);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .btn-nav {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 20px;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    .btn-nav:hover { background: #d0ff0f; transform: translateY(-1px); box-shadow: 0 4px 20px rgba(205,255,0,0.3); }
+
+    .hamburger { display: none; background: none; border: none; color: var(--text); font-size: 22px; cursor: pointer; }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 64px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(205,255,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(205,255,0,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+      pointer-events: none;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(ellipse, rgba(205,255,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 480px;
+      gap: 64px;
+      align-items: center;
+      padding: 80px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border: 1px solid var(--accent-border);
+      background: var(--accent-dim);
+      border-radius: 100px;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+
+    .hero-title {
+      font-size: clamp(52px, 6vw, 88px);
+      font-weight: 900;
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
+    }
+    .hero-title .outline {
+      -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+      color: transparent;
+    }
+    .hero-title .lit {
+      color: var(--accent);
+      text-shadow: 0 0 60px rgba(205,255,0,0.2);
+    }
+
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      max-width: 480px;
+      margin-bottom: 44px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+    .btn-primary:hover::before { transform: translateX(100%); }
+    .btn-primary:hover { box-shadow: 0 0 30px rgba(205,255,0,0.35); transform: translateY(-2px); }
+
+    .btn-ghost {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .btn-ghost:hover { color: var(--text); }
+
+    .hero-meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: #444;
+    }
+
+    /* SYSTEM DIAGRAM */
+    .system-diagram {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 32px;
+      position: relative;
+    }
+    .system-diagram::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 13px;
+      background: linear-gradient(135deg, var(--accent-border) 0%, transparent 50%, var(--accent-border) 100%);
+      z-index: -1;
+    }
+
+    .diagram-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .diagram-items {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .diagram-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.3s;
+      cursor: default;
+    }
+    .diagram-item:hover {
+      border-color: var(--accent-border);
+      background: rgba(205,255,0,0.04);
+      transform: translateX(4px);
+    }
+
+    .diagram-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .diagram-item-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+    .diagram-item-text span {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+
+    .diagram-connector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 20px;
+    }
+    .diagram-connector::before {
+      content: '';
+      width: 1px;
+      height: 100%;
+      background: linear-gradient(to bottom, var(--accent-border), transparent);
+      margin-left: 36px;
+    }
+
+    .diagram-result {
+      margin-top: 20px;
+      padding: 14px 20px;
+      background: linear-gradient(135deg, rgba(205,255,0,0.08), rgba(205,255,0,0.03));
+      border: 1px solid var(--accent-border);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .diagram-result-icon { font-size: 20px; color: var(--accent); }
+    .diagram-result strong { font-size: 13px; font-weight: 700; color: var(--accent); display: block; }
+    .diagram-result span { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+
+    /* ─── MARQUEE ───────────────────────────────────────────── */
+    .marquee-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      overflow: hidden;
+      height: 48px;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: marquee 25s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 40px;
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+    .marquee-item .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+    .marquee-item strong { color: var(--accent); font-weight: 700; }
+
+    /* ─── SECTION BASE ──────────────────────────────────────── */
+    section {
+      border-bottom: 1px solid var(--border);
+    }
+    .section-pad { padding: 120px 0; }
+
+    .section-header {
+      margin-bottom: 64px;
+    }
+    .section-header.center { text-align: center; }
+
+    .section-title {
+      font-size: clamp(36px, 4vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-top: 16px;
+    }
+
+    /* ─── PROBLEM SECTION ───────────────────────────────────── */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .problem-left h2 {
+      font-size: clamp(56px, 6vw, 88px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+    }
+    .problem-left h2 .muted { color: #2a2a2a; }
+
+    .problem-quote {
+      border-left: 3px solid var(--accent);
+      padding: 20px 24px;
+      background: var(--accent-dim);
+      border-radius: 0 8px 8px 0;
+      margin-top: 32px;
+    }
+    .problem-quote p {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.6;
+    }
+    .problem-quote p em { color: var(--accent); font-style: normal; }
+
+    .problem-right p {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+    .problem-right p strong { color: var(--text); font-weight: 600; }
+
+    /* ─── STATS ROW ─────────────────────────────────────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 48px;
+    }
+
+    .stat-item {
+      padding: 32px 24px;
+      background: var(--bg2);
+      text-align: center;
+    }
+    .stat-item strong {
+      display: block;
+      font-size: 40px;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-item span {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: block;
+    }
+
+    /* ─── PROCESS ───────────────────────────────────────────── */
+    .process-section { background: var(--bg2); }
+
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .step {
+      padding: 48px 32px;
+      background: var(--bg3);
+      position: relative;
+      transition: background 0.3s;
+    }
+    .step:hover { background: var(--surface); }
+
+    .step-number {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .step-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .step h4 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .step p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.7;
+    }
+
+    .step.active {
+      background: rgba(205,255,0,0.05);
+      border-color: var(--accent-border);
+    }
+    .step.active .step-icon {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000;
+    }
+    .step.active .step-number { color: var(--accent); }
+
+    /* ─── PORTFOLIO ─────────────────────────────────────────── */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .portfolio-card {
+      position: relative;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: var(--bg3);
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.3s, transform 0.3s;
+      group: true;
+    }
+    .portfolio-card:hover {
+      border-color: var(--accent-border);
+      transform: translateY(-4px);
+    }
+
+    .portfolio-img {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .portfolio-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+      filter: grayscale(1) brightness(0.5);
+      transition: all 0.6s ease;
+    }
+    .portfolio-card:hover .portfolio-img img {
+      filter: grayscale(0) brightness(0.8);
+      transform: scale(1.05);
+    }
+
+    .portfolio-info {
+      padding: 24px;
+    }
+    .portfolio-tag {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .portfolio-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+    .portfolio-info p { font-size: 12px; color: var(--text-muted); line-height: 1.6; }
+
+    .portfolio-arrow {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000;
+      font-size: 14px;
+      opacity: 0;
+      transform: scale(0.7);
+      transition: all 0.3s;
+    }
+    .portfolio-card:hover .portfolio-arrow { opacity: 1; transform: scale(1); }
+
+    /* ─── PRICING ───────────────────────────────────────────── */
+    .pricing-section { background: var(--bg2); }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .price-card {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px 32px;
+      position: relative;
+      transition: border-color 0.3s;
+    }
+    .price-card:hover { border-color: var(--border2); }
+
+    .price-card.featured {
+      background: var(--surface);
+      border-color: var(--accent);
+      box-shadow: 0 0 60px rgba(205,255,0,0.08), inset 0 1px 0 rgba(205,255,0,0.15);
+    }
+
+    .price-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--accent);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      padding: 5px 16px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .price-plan {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 16px;
+    }
+
+    .price-name { font-size: 22px; font-weight: 800; margin-bottom: 20px; }
+
+    .price-amount {
+      padding: 20px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 28px;
+    }
+    .price-main {
+      font-size: 36px;
+      font-weight: 900;
+      letter-spacing: -0.02em;
+      line-height: 1;
+    }
+    .price-main sub {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-family: var(--mono);
+      vertical-align: baseline;
+    }
+    .price-recurring {
+      margin-top: 8px;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent);
+      letter-spacing: -0.02em;
+    }
+    .price-recurring sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(205,255,0,0.6);
+      font-family: var(--mono);
+      vertical-align: baseline;
+    }
+
+    .price-delivery {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+
+    .price-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+    .price-features li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 13px;
+      color: #bbb;
+      line-height: 1.5;
+    }
+    .price-features li iconify-icon {
+      color: var(--accent);
+      font-size: 16px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .price-features li.highlight {
+      color: var(--text);
+      font-weight: 600;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      padding: 10px 12px;
+      border-radius: 6px;
+      margin: 4px 0;
+    }
+
+    .price-cta {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      text-decoration: none;
+      border-radius: 6px;
+      transition: all 0.25s;
+    }
+    .price-cta.default {
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      color: var(--text);
+    }
+    .price-cta.default:hover { border-color: var(--accent-border); }
+    .price-cta.main {
+      background: var(--accent);
+      color: #000;
+    }
+    .price-cta.main:hover { box-shadow: 0 0 25px rgba(205,255,0,0.3); }
+
+    /* PRICING NOTE */
+    .pricing-note {
+      margin-top: 24px;
+      padding: 20px 28px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      text-align: center;
+      font-size: 14px;
+      color: var(--text-dim);
+    }
+    .pricing-note strong { color: var(--text); }
+
+    /* ─── TESTIMONIAL ───────────────────────────────────────── */
+    .testimonial-inner {
+      max-width: 760px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .quote-mark {
+      font-size: 80px;
+      line-height: 1;
+      color: var(--accent);
+      opacity: 0.3;
+      font-family: Georgia, serif;
+      margin-bottom: -20px;
+    }
+    .testimonial-text {
+      font-size: 22px;
+      font-weight: 400;
+      line-height: 1.6;
+      color: #ddd;
+      font-style: italic;
+      margin-bottom: 32px;
+    }
+    .testimonial-author strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    .testimonial-author span {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+
+    /* ─── ABOUT ─────────────────────────────────────────────── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .about-avatar {
+      width: 80px;
+      height: 80px;
+      background: var(--accent);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+      color: #000;
+      margin-bottom: 24px;
+      box-shadow: 0 0 30px rgba(205,255,0,0.2);
+    }
+
+    .about-name { font-size: 28px; font-weight: 800; margin-bottom: 4px; }
+    .about-role {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 32px;
+    }
+
+    .about-text {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+    .about-text strong { color: var(--text); font-weight: 600; }
+
+    .about-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+    .about-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      padding: 6px 14px;
+      border: 1px solid var(--border2);
+      border-radius: 100px;
+      color: var(--text-muted);
+    }
+
+    .about-visual {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    .about-stat-row {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-stat {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .about-stat:last-child { border-bottom: none; }
+    .about-stat-label {
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+    }
+    .about-stat-value {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+    .about-stat-value.accent { color: var(--accent); }
+
+    /* ─── CTA FINAL ─────────────────────────────────────────── */
+    .cta-section {
+      background: var(--bg2);
+      overflow: hidden;
+      position: relative;
+      padding: 160px 0;
+    }
+    .cta-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px;
+      height: 300px;
+      background: radial-gradient(ellipse, rgba(205,255,0,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .cta-left h2 {
+      font-size: clamp(64px, 8vw, 112px);
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 0.9;
+      margin-bottom: 36px;
+    }
+    .cta-left p {
+      font-size: 18px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 40px;
+      max-width: 480px;
+    }
+
+    .cta-guarantee {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .cta-guarantee iconify-icon { font-size: 24px; color: var(--accent); flex-shrink: 0; }
+    .cta-guarantee strong { font-size: 13px; font-weight: 700; display: block; margin-bottom: 2px; }
+    .cta-guarantee span { font-family: var(--mono); font-size: 10px; color: var(--text-muted); }
+
+    /* CONTACT FORM */
+    .form-card {
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      padding: 40px;
+    }
+
+    .form-group { margin-bottom: 20px; }
+
+    .form-label {
+      display: block;
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-family: var(--font);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 3px rgba(205,255,0,0.06);
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+    .form-input[readonly] {
+      color: var(--accent);
+      font-weight: 700;
+      font-family: var(--mono);
+      font-size: 12px;
+      cursor: default;
+      border-color: var(--accent-border);
+    }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-check {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin: 20px 0;
+    }
+    .form-check input {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+      accent-color: var(--accent);
+      margin-top: 2px;
+      cursor: pointer;
+    }
+    .form-check label {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      cursor: pointer;
+    }
+    .form-check label a { color: var(--text); }
+
+    .form-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.25s;
+    }
+    .form-submit:hover { background: #d0ff0f; box-shadow: 0 0 25px rgba(205,255,0,0.25); }
+
+    .form-footer {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #333;
+      margin-top: 16px;
+    }
+
+    /* SUCCESS STATE */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px;
+    }
+    .form-success.show { display: block; }
+    .form-success iconify-icon { font-size: 48px; color: var(--accent); margin-bottom: 16px; display: block; }
+    .form-success h3 { font-size: 22px; font-weight: 800; margin-bottom: 8px; }
+    .form-success p { color: var(--text-dim); font-size: 14px; }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      background: var(--bg);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .footer-logo-text {
+      font-family: var(--mono);
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-shadow: 0 0 15px rgba(205,255,0,0.3);
+    }
+    .footer-copy {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+    }
+    .footer-links a {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text-muted);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ─── FLOATING ACTIONS ──────────────────────────────────── */
+    .floating {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      align-items: center;
+      z-index: 200;
+    }
+
+    .float-top {
+      width: 40px;
+      height: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 18px;
+      cursor: pointer;
+      transition: all 0.25s;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+    }
+    .float-top.visible { opacity: 1; pointer-events: all; transform: translateY(0); }
+    .float-top:hover { background: var(--accent); color: #000; }
+
+    .float-wa {
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+      transition: all 0.25s;
+    }
+    .float-wa:hover { transform: scale(1.1); }
+
+    /* ─── MOBILE MENU ───────────────────────────────────────── */
+    .mobile-menu {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.97);
+      z-index: 99;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      transform: translateX(100%);
+      transition: transform 0.4s ease;
+    }
+    .mobile-menu.open { transform: translateX(0); }
+    .mobile-menu a {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--accent); }
+
+    /* ─── RESPONSIVE ────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .container { padding: 0 24px; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+      .system-diagram { max-width: 480px; }
+      .problem-grid { grid-template-columns: 1fr; gap: 40px; }
+      .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .cta-inner { grid-template-columns: 1fr; gap: 48px; }
+      .process-steps { grid-template-columns: 1fr 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .price-card.featured { transform: scale(1); }
+      .portfolio-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section-pad { padding: 72px 0; }
+      .nav-links { display: none; }
+      .btn-nav { display: none; }
+      .hamburger { display: flex; }
+      .process-steps { grid-template-columns: 1fr; }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+      .footer-links { flex-wrap: wrap; justify-content: center; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .hero-title { font-size: 44px; }
+    }
+  </style>
 </head>
-<body class="antialiased min-h-screen selection:bg-grovw-accent selection:text-black">
-    <div class="noise"></div>
+<body>
 
-    <!-- NAV -->
-    <header class="fixed top-0 w-full z-50 border-b border-grovw-border bg-grovw-bg/80 backdrop-blur-md transition-all duration-300">
-        <div class="max-w-[1300px] w-full mx-auto flex justify-between items-center px-6 py-4 relative z-[60]">
-            <div class="flex items-center gap-2 group cursor-pointer hover:scale-105 transition-transform duration-500">
-                <span class="text-[10px] font-mono text-[#444] opacity-50 block group-hover:text-grovw-accent transition-colors">&lt;!--</span>
-                <div class="font-black text-2xl tracking-[0.1em] text-grovw-accent uppercase" style="font-family: 'JetBrains Mono', monospace; text-shadow: 0 0 12px rgba(205,255,0,0.5);">GROVW</div>
-                <span class="text-[10px] font-mono text-[#444] opacity-50 block group-hover:text-grovw-accent transition-colors">--&gt;</span>
-            </div>
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
 
-            <!-- DESKTOP MENU -->
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#como-funciona" class="text-xs font-bold text-[#888] hover:text-white transition-colors uppercase tracking-widest relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-px after:-bottom-1 after:left-0 after:bg-grovw-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Processo</a>
-                <a href="#planos" class="text-xs font-bold text-[#888] hover:text-white transition-colors uppercase tracking-widest relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-px after:-bottom-1 after:left-0 after:bg-grovw-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Planos</a>
-                <a href="#contato" class="text-xs font-bold text-[#888] hover:text-white transition-colors uppercase tracking-widest relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-px after:-bottom-1 after:left-0 after:bg-grovw-accent after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left">Contato</a>
-            </nav>
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#casos" onclick="closeMobile()">Cases</a>
+    <a href="#processo" onclick="closeMobile()">Processo</a>
+    <a href="#planos" onclick="closeMobile()">Planos</a>
+    <a href="#contato" onclick="closeMobile()">Contato</a>
+    <a href="https://wa.me/5592984627621?text=Olá,%20vim%20do%20site%20GROVW." target="_blank"
+       style="color: #cdff00; margin-top: 8px; font-size: 18px; display:flex; align-items:center; gap:8px">
+      <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon> WhatsApp
+    </a>
+  </div>
 
-            <div class="flex items-center gap-4">
-                <a href="https://wa.me/5592984627621?text=Olá,%20vim%20do%20site%20e%20quero%20saber%20mais%20sobre%20os%20planos." target="_blank" class="beam-button hidden md:flex px-5 py-2.5 bg-grovw-accent text-black rounded text-xs font-bold uppercase hover:bg-grovw-accentHover transition-colors items-center gap-2">
-                    <iconify-icon icon="ic:baseline-whatsapp" class="text-base"></iconify-icon> Atendimento
-                </a>
-                
-                <!-- MOBILE MENU BUTTON -->
-                <button id="mobile-menu-btn" class="md:hidden text-white text-2xl flex items-center justify-center relative z-[60]">
-                    <iconify-icon icon="solar:hamburger-menu-linear" id="menu-icon" class="transition-transform duration-300"></iconify-icon>
-                </button>
-            </div>
-        </div>
-
-        <!-- MOBILE MENU OVERLAY -->
-        <div id="mobile-menu" class="fixed inset-0 bg-[#0A0711] z-[50] flex flex-col justify-center items-center gap-8 translate-x-full transition-transform duration-500 md:hidden">
-            <a href="#como-funciona" class="mobile-link text-2xl font-bold text-white uppercase tracking-widest hover:text-grovw-accent transition-colors">Processo</a>
-            <a href="#planos" class="mobile-link text-2xl font-bold text-white uppercase tracking-widest hover:text-grovw-accent transition-colors">Planos</a>
-            <a href="#contato" class="mobile-link text-2xl font-bold text-white uppercase tracking-widest hover:text-grovw-accent transition-colors">Contato</a>
-            
-            <a href="https://wa.me/5592984627621?text=Olá,%20vim%20do%20site%20e%20quero%20saber%20mais%20sobre%20os%20planos." target="_blank" class="beam-button mt-8 px-8 py-4 bg-grovw-accent text-black rounded text-sm font-bold uppercase flex items-center gap-2">
-                <iconify-icon icon="ic:baseline-whatsapp" class="text-xl"></iconify-icon> Falar no WhatsApp
-            </a>
-        </div>
-    </header>
-
-    <main class="w-full relative bg-grovw-bg overflow-hidden pt-20">
-        
-        <!-- 1. HERO -->
-        <section class="relative z-10 w-full min-h-[85vh] flex items-center border-b border-grovw-border overflow-hidden">
-            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=50&w=1920&auto=format,compress')] bg-cover bg-center brightness-50 grayscale mix-blend-luminosity z-0 opacity-20"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-grovw-bg via-grovw-bg/90 to-transparent z-10 pointer-events-none"></div>
-
-            <div class="max-w-[1300px] mx-auto w-full px-6 relative z-20 flex flex-col justify-center items-center text-center">
-                <div class="inline-block px-4 py-1.5 border border-grovw-accent/40 bg-grovw-accent/5 rounded-full text-xs font-mono uppercase text-grovw-accent backdrop-blur-md mb-8 reveal">
-                    Sistema completo · Site + Tráfego + IA
-                </div>
-                <h1 class="text-5xl md:text-8xl font-black tracking-tighter leading-[0.9] text-white max-w-5xl reveal delay-100">
-                    O ecossistema que traz <br> <span class="transparent-text drop-shadow-[0_0_15px_rgba(205,255,0,0.3)]">clientes até você</span>
-                </h1>
-                <p class="max-w-3xl text-[#a0a0a0] text-lg md:text-xl mt-8 reveal delay-200">
-                    Site de alta conversão + tráfego pago + qualificação automática no WhatsApp. Um sistema integrado para você receber leads qualificados todo mês, sem depender só de indicação.
-                </p>
-                <div class="mt-12 reveal delay-300">
-                    <a href="#como-funciona" class="beam-button px-8 py-4 bg-grovw-accent text-black font-bold rounded shadow-[0_0_15px_rgba(205,255,0,0.2)] hover:bg-grovw-accentHover glow-on-hover inline-flex items-center gap-3">
-                        VER COMO FUNCIONA <iconify-icon icon="solar:arrow-right-line-duotone" class="text-xl"></iconify-icon>
-                    </a>
-                    <p class="text-xs font-mono text-[#555] mt-4 flex items-center justify-center gap-2">
-                        <span class="w-1.5 h-1.5 rounded-full bg-grovw-accent animate-pulse"></span> Setup em 7 dias · Sem fidelidade obrigatória
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 2. PROBLEMA -->
-        <section class="w-full relative border-b border-grovw-border bg-[#0f0f0f] grid-bg-overlay py-24">
-            <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-red-500/5 blur-[120px] rounded-full pointer-events-none"></div>
-            <div class="max-w-[1300px] mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10">
-                <div class="reveal">
-                    <span class="text-xs font-mono text-[#555] uppercase block mb-4">O problema real</span>
-                    <h2 class="text-4xl md:text-6xl font-semibold tracking-tight text-white leading-tight">Site parado<br><span class="text-[#555]">não traz cliente.</span></h2>
-                </div>
-                <div class="reveal delay-200 flex flex-col justify-center">
-                    <p class="text-lg text-[#888888] leading-relaxed mb-8">
-                        A maioria das empresas até tem um site. Mas ele não aparece no Google, não recebe visitas e não gera contato. Acaba sendo só um cartão digital caro e parado.
-                    </p>
-                    <div class="pl-6 border-l-2 border-grovw-accent">
-                        <p class="text-lg text-white font-medium leading-relaxed">
-                            Na GROVW, o site é só a base. O sistema completo inclui tráfego configurado, rastreamento correto e qualificação automática, <span class="text-grovw-accent">para o lead chegar até você pronto para fechar.</span>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. AUTORIDADE -->
-        <section class="w-full border-b border-grovw-border bg-grovw-bg py-24 overflow-hidden">
-            <div class="max-w-[1300px] mx-auto w-full px-6 text-center reveal">
-                <div class="w-16 h-16 mx-auto bg-[#111] border border-grovw-border rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(205,255,0,0.1)]">
-                    <iconify-icon icon="solar:shield-check-bold-duotone" class="text-3xl text-grovw-accent"></iconify-icon>
-                </div>
-                <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-8 max-w-4xl mx-auto">Sistemas de captação que entregam resultado mensurável para sua empresa</h2>
-                <div class="text-[#cccccc] text-lg font-light leading-relaxed max-w-3xl mx-auto space-y-4">
-                    <p>Escritórios de advocacia, clínicas, construtoras, prestadores de serviço. O trabalho é sempre o mesmo: montar o ecossistema que coloca o seu negócio na frente de quem já está procurando.</p>
-                    <p class="text-white font-medium">Não é só um site. É rastreamento avançado, campanhas otimizadas e automação rodando enquanto você lidera sua operação.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4. PORTFÓLIO -->
-        <section id="portfolio" class="w-full bg-[#0A0711] border-b border-grovw-border py-24 scroll-mt-20">
-            <div class="max-w-[1300px] mx-auto w-full px-6 text-center">
-                <div class="mb-16 reveal">
-                    <div class="inline-block px-4 py-1.5 border border-grovw-accent/40 bg-grovw-accent/5 rounded-full text-xs font-mono uppercase text-grovw-accent backdrop-blur-md mb-4 tracking-widest">
-                        Cases
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white mb-4">Projetos que já ajudaram empresas a crescer</h2>
-                    <p class="text-[#888] max-w-2xl mx-auto">Cada projeto é construído com foco em conversão, performance e experiência do usuário.</p>
-                </div>
-                <!-- GRID DE CASES -->
-                <div id="portfolio-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8 text-left max-w-[1300px] mx-auto reveal delay-200">
-                    <!-- Case 1: Advotary -->
-                    <a href="https://advotary.grovw.com.br/" target="_blank" class="portfolio-item kinetic-card min-w-[300px] md:min-w-0 rounded-xl border border-grovw-border overflow-hidden group bg-[#111] flex flex-col cursor-pointer" data-category="advogados">
-                        <div class="h-56 overflow-hidden relative"><img src="assets/img/advotary.png" loading="lazy" decoding="async" class="w-full h-full object-cover object-top grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" alt="Projeto Advotary"></div>
-                        <div class="p-6 text-left relative"><div class="absolute top-6 right-6 text-grovw-accent opacity-0 group-hover:opacity-100 transition-opacity"><iconify-icon icon="solar:arrow-right-up-linear" class="text-2xl"></iconify-icon></div><div class="text-[10px] font-mono text-grovw-accent uppercase mb-2">Advogados</div><h4 class="text-white font-bold text-lg">Advotary Advocacia</h4><p class="text-xs text-[#888] mt-2 line-clamp-2">Proteção jurídica de alto nível e gestão estratégica para decisões de grande impacto.</p></div>
-                    </a>
-                    
-                    <!-- Case 2: Justice Advocacia -->
-                    <a href="https://sancheseassociados.grovw.com.br/" target="_blank" class="portfolio-item kinetic-card min-w-[300px] md:min-w-0 rounded-xl border border-grovw-border overflow-hidden group bg-[#111] flex flex-col cursor-pointer delay-100" data-category="advogados">
-                        <div class="h-56 overflow-hidden relative"><img src="assets/img/justice.png" loading="lazy" decoding="async" class="w-full h-full object-cover object-top grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" alt="Projeto Justice Advocacia"></div>
-                        <div class="p-6 text-left relative"><div class="absolute top-6 right-6 text-grovw-accent opacity-0 group-hover:opacity-100 transition-opacity"><iconify-icon icon="solar:arrow-right-up-linear" class="text-2xl"></iconify-icon></div><div class="text-[10px] font-mono text-grovw-accent uppercase mb-2">Advogados</div><h4 class="text-white font-bold text-lg">Justice Advocacia</h4><p class="text-xs text-[#888] mt-2 line-clamp-2">Plataforma digital combinando rigor técnico e agilidade com foco corporativo.</p></div>
-                    </a>
-                    
-                    <!-- Case 3: Buitrago & Pordeus -->
-                    <a href="https://buitragoepordeus.grovw.com.br/" target="_blank" class="portfolio-item kinetic-card min-w-[300px] md:min-w-0 rounded-xl border border-grovw-border overflow-hidden group bg-[#111] flex flex-col cursor-pointer delay-200" data-category="advogados">
-                        <div class="h-56 overflow-hidden relative"><img src="assets/img/buitragoepordeus.png" loading="lazy" decoding="async" class="w-full h-full object-cover object-top grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 group-hover:scale-110" alt="Projeto Buitrago e Pordeus"></div>
-                        <div class="p-6 text-left relative"><div class="absolute top-6 right-6 text-grovw-accent opacity-0 group-hover:opacity-100 transition-opacity"><iconify-icon icon="solar:arrow-right-up-linear" class="text-2xl"></iconify-icon></div><div class="text-[10px] font-mono text-grovw-accent uppercase mb-2">Advogados</div><h4 class="text-white font-bold text-lg">Buitrago & Pordeus</h4><p class="text-xs text-[#888] mt-2 line-clamp-2">Posicionamento moderno para sociedade com 19 anos de experiência analítica.</p></div>
-                    </a>
-                </div>
-
-                <button class="mt-12 text-[#888] text-sm uppercase font-bold tracking-widest hover:text-white transition-colors border-b border-[#555] hover:border-white pb-1 select-none pointer-events-none">Portfólio em expansão viva</button>
-            </div>
-        </section>
-
-        <!-- 5. DIFERENCIAIS -->
-        <section class="w-full bg-grovw-section border-b border-grovw-border py-24 relative z-10">
-            <div class="max-w-[1300px] mx-auto w-full px-6">
-                <div class="mb-16 text-center reveal">
-                    <span class="text-xs font-mono uppercase text-grovw-accent mb-2 block tracking-widest">Por que funciona</span>
-                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white">O sistema que vai além do site</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="kinetic-card flashlight-card rounded-xl border border-grovw-border p-8 bg-[#111] reveal delay-100 flex flex-col h-full">
-                        <div class="w-12 h-12 rounded bg-[#1a1a1a] border border-grovw-border flex items-center justify-center mb-6 text-grovw-accent text-2xl relative z-10"><iconify-icon icon="solar:target-bold-duotone"></iconify-icon></div>
-                        <h4 class="text-xl font-bold text-white mb-3 relative z-10">Aparece para quem já quer comprar</h4>
-                        <p class="text-[#888] text-sm leading-relaxed relative z-10">O Google Ads configurado corretamente coloca sua empresa na frente de quem já está buscando o seu serviço agora.</p>
-                    </div>
-                    <div class="kinetic-card flashlight-card rounded-xl border border-grovw-border p-8 bg-[#111] reveal delay-200 flex flex-col h-full">
-                        <div class="w-12 h-12 rounded bg-[#1a1a1a] border border-grovw-border flex items-center justify-center mb-6 text-grovw-accent text-2xl relative z-10"><iconify-icon icon="solar:mouse-circle-bold-duotone"></iconify-icon></div>
-                        <h4 class="text-xl font-bold text-white mb-3 relative z-10">Página construída para converter</h4>
-                        <p class="text-[#888] text-sm leading-relaxed relative z-10">Cada elemento do site tem função. Estrutura, CTA, formulário e velocidade de carregamento: tudo pensado para transformar visita em contato.</p>
-                    </div>
-                    <div class="kinetic-card flashlight-card rounded-xl border border-grovw-border p-8 bg-[#111] reveal delay-300 flex flex-col h-full">
-                        <div class="w-12 h-12 rounded bg-[#1a1a1a] border border-grovw-border flex items-center justify-center mb-6 text-grovw-accent text-2xl relative z-10"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
-                        <h4 class="text-xl font-bold text-white mb-3 relative z-10">Lead qualificado antes de chegar em você</h4>
-                        <p class="text-[#888] text-sm leading-relaxed relative z-10">O bot no WhatsApp filtra automaticamente quem é cliente real e quem é curioso. Você só fala com quem tem perfil de compra.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 5. COMO FUNCIONA -->
-        <section id="como-funciona" class="w-full bg-grovw-section border-b border-grovw-border py-24 relative overflow-hidden">
-            <div class="max-w-[1300px] mx-auto w-full px-6 relative z-10">
-                <div class="mb-16 reveal text-center">
-                    <span class="text-xs font-mono uppercase text-[#555] mb-2 block tracking-widest">Processo</span>
-                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white">Simples, direto e sem enrolação</h2>
-                </div>
-                <div class="max-w-3xl mx-auto space-y-8 relative z-10">
-                    <!-- Step 1 -->
-                    <div class="flex items-start gap-6 reveal group">
-                        <div class="w-12 h-12 rounded-full border-2 border-[#333] flex items-center justify-center font-mono font-bold text-[#555] group-hover:border-grovw-accent group-hover:text-grovw-accent group-hover:bg-grovw-accent/10 transition-colors flex-shrink-0">1</div>
-                        <div>
-                            <h4 class="text-white text-xl font-bold mb-2">Briefing</h4>
-                            <p class="text-[#888888] text-sm md:text-base">Mergulho no seu negócio: objetivo comercial, público comprador ideal e o que diferencia você da concorrência.</p>
-                        </div>
-                    </div>
-                    <!-- Line -->
-                    <div class="w-px h-12 bg-gradient-to-b from-grovw-accent/50 to-transparent ml-[23px] reveal delay-100"></div>
-                    <!-- Step 2 -->
-                    <div class="flex items-start gap-6 reveal delay-100 group">
-                        <div class="w-12 h-12 rounded-full border-2 border-[#333] flex items-center justify-center font-mono font-bold text-[#555] group-hover:border-grovw-accent group-hover:text-grovw-accent group-hover:bg-grovw-accent/10 transition-colors flex-shrink-0">2</div>
-                        <div>
-                            <h4 class="text-white text-xl font-bold mb-2">Construção</h4>
-                            <p class="text-[#888888] text-sm md:text-base">Site ou LP desenvolvido com foco em conversão. Design premium, carregamento rápido (90%+ no PageSpeed) e rastreamento.</p>
-                        </div>
-                    </div>
-                    <!-- Line -->
-                    <div class="w-px h-12 bg-gradient-to-b from-grovw-accent/50 to-transparent ml-[23px] reveal delay-200"></div>
-                    <!-- Step 3 -->
-                    <div class="flex items-start gap-6 reveal delay-200 group">
-                        <div class="w-12 h-12 rounded-full border-2 border-[#333] flex items-center justify-center font-mono font-bold text-[#555] group-hover:border-grovw-accent group-hover:text-grovw-accent group-hover:bg-grovw-accent/10 transition-colors flex-shrink-0">3</div>
-                        <div>
-                            <h4 class="text-white text-xl font-bold mb-2">Tráfego ativado</h4>
-                            <p class="text-[#888888] text-sm md:text-base">Campanhas no Google Ads (e Meta) no ar. Pixel de eventos avançados, não só pageview bobo.</p>
-                        </div>
-                    </div>
-                    <!-- Line -->
-                    <div class="w-px h-12 bg-gradient-to-b from-grovw-accent/50 to-transparent ml-[23px] reveal delay-300"></div>
-                    <!-- Step 4 -->
-                    <div class="flex items-start gap-6 reveal delay-300 group">
-                        <div class="w-12 h-12 rounded-full bg-grovw-accent flex items-center justify-center text-black font-bold text-xl flex-shrink-0 shadow-[0_0_15px_rgba(205,255,0,0.4)]">
-                            <iconify-icon icon="solar:fire-bold-duotone"></iconify-icon>
-                        </div>
-                        <div>
-                            <h4 class="text-white text-xl font-bold mb-2">Leads chegando</h4>
-                            <p class="text-[#888888] text-sm md:text-base">O sistema roda. Leads qualificados entram com nome, contato e contexto de compra. Você foca em fechar.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 6. PLANOS -->
-        <section id="planos" class="w-full bg-[#0A0711] border-b border-grovw-border py-24 relative overflow-hidden">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-grovw-accent rounded-full blur-[180px] opacity-10 pointer-events-none"></div>
-            <div class="max-w-[1300px] mx-auto w-full px-6 relative z-10">
-                <div class="mb-16 text-center reveal">
-                    <span class="text-xs font-mono uppercase text-[#666] mb-2 block tracking-widest">Os Planos</span>
-                    <h2 class="text-4xl md:text-5xl font-medium tracking-tight text-white mb-4">Escolha onde começar</h2>
-                    <p class="text-[#888] max-w-2xl mx-auto">Sistemas prontos para a escala e complexidade do seu momento.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-
-                    <!-- Plano 1: Entrada -->
-                    <div class="kinetic-card bg-[#0f0f0f] border border-grovw-border rounded-xl p-8 reveal flex flex-col h-full">
-                        <div class="mb-8">
-                            <h3 class="text-2xl font-bold text-white mb-2">Entrada</h3>
-                            <div class="flex items-baseline gap-2 mb-2">
-                                <span class="text-3xl font-black text-white">R$ 1.400</span><span class="text-sm font-mono text-[#666]">/único</span>
-                            </div>
-                            <p class="text-xs font-mono text-grovw-accent mb-4">■ Entrega: 7 dias úteis</p>
-                            <p class="text-sm text-[#888] border-t border-grovw-border/50 pt-4"><strong>Para quem:</strong> negócio funcionando, sem presença digital estruturada, ou com site que não converte.</p>
-                        </div>
-                        <div class="flex-grow">
-                            <ul class="space-y-4 mb-8">
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Landing page de alta conversão</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Formulário qualificado por demanda</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> CTAs estratégicos</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Email profissional configurado (@)</li>
-                                <li class="flex items-start gap-3 text-sm text-white bg-grovw-accent/10 border border-grovw-accent/30 p-3 rounded-lg"><iconify-icon icon="solar:stars-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> <strong>Bônus:</strong> 30 dias de Google Ads gerenciado gratuitamente (sua verba).</li>
-                            </ul>
-                        </div>
-                        <a href="#contato" data-plano="Plano 1 - Entrada" class="btn-plano w-full py-4 bg-[#1a1a1a] hover:bg-[#222] border border-grovw-border text-white text-center flex items-center justify-center gap-2 rounded font-bold text-sm transition-colors mt-auto uppercase tracking-wide">Quero começar com o Plano 1 <iconify-icon icon="solar:arrow-right-line-duotone" class="text-lg"></iconify-icon></a>
-                    </div>
-
-                    <!-- Plano 2: Ecossistema -->
-                    <div class="scale-105 z-10 bg-[#0f0f0f] border-2 border-grovw-accent rounded-xl p-8 reveal delay-100 flex flex-col h-full shadow-[0_0_40px_rgba(205,255,0,0.15)] relative">
-                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-grovw-accent text-black text-xs font-bold uppercase tracking-widest py-1.5 px-4 rounded-full flex items-center gap-1 shadow-[0_0_15px_rgba(205,255,0,0.4)]">
-                            <iconify-icon icon="solar:star-fall-bold-duotone"></iconify-icon> Recomendado
-                        </div>
-                        <div class="mb-8 mt-2">
-                            <h3 class="text-2xl font-bold text-white mb-2">Ecossistema Autônomo</h3>
-                            <div class="flex flex-col gap-1 mb-2">
-                                <span class="text-3xl font-black text-white">R$ 2.000 <span class="text-sm font-mono text-[#666] font-normal">setup</span></span>
-                                <span class="text-2xl font-black text-grovw-accent">+ R$ 3.000<span class="text-sm font-mono text-grovw-accent/70 font-normal">/mês</span></span>
-                            </div>
-                            <p class="text-xs font-mono text-[#888] mb-4">■ Entrega: setup em 7 dias</p>
-                            <p class="text-sm text-[#aaa] border-t border-grovw-border/50 pt-4"><strong>Para quem:</strong> empresário que já tentou marketing digital sem resultado, ou cliente do Plano 1 pronto para escalar.</p>
-                        </div>
-                        <div class="flex-grow">
-                            <ul class="space-y-4 mb-8">
-                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> LP de conversão otimizada ou nova</li>
-                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Email profissional configurado</li>
-                                <li class="flex items-start gap-3 text-sm text-white font-medium"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Google Ads: pixel, setup e campanhas</li>
-                                <li class="flex items-start gap-3 text-sm text-white font-medium bg-grovw-accent/10 p-2 rounded -mx-2 px-2"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> IA no WhatsApp para qualificação automática de leads</li>
-                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Relatório mensal de ROI em reais</li>
-                                <li class="flex items-start gap-3 text-sm text-[#eee]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Onboarding de 7 dias</li>
-                            </ul>
-                        </div>
-                        <a href="#contato" data-plano="Plano 2 - Ecossistema Autônomo" class="btn-plano w-full py-4 bg-grovw-accent hover:bg-grovw-accentHover text-black text-center flex items-center justify-center gap-2 rounded font-bold text-sm transition-colors mt-auto uppercase tracking-wide glow-on-hover">Quero o Ecossistema Autônomo <iconify-icon icon="solar:arrow-right-line-duotone" class="text-lg"></iconify-icon></a>
-                    </div>
-
-                    <!-- Plano 3: Completo -->
-                    <div class="kinetic-card bg-[#0f0f0f] border border-grovw-border rounded-xl p-8 reveal delay-200 flex flex-col h-full opacity-95">
-                        <div class="mb-8">
-                            <h3 class="text-2xl font-bold text-white mb-2">Setup Completo</h3>
-                            <div class="flex flex-col gap-1 mb-2">
-                                <span class="text-3xl font-black text-white">R$ 5.000 <span class="text-sm font-mono text-[#666] font-normal">setup</span></span>
-                                <span class="text-2xl font-black text-white">+ R$ 2.000<span class="text-sm font-mono text-[#666] font-normal">/mês</span></span>
-                            </div>
-                            <p class="text-xs font-mono text-grovw-accent mb-4">■ Entrega: 15 dias úteis</p>
-                            <p class="text-sm text-[#888] border-t border-grovw-border/50 pt-4"><strong>Para quem:</strong> empresa que quer o sistema completo do zero, entregue rápido com foco máximo.</p>
-                        </div>
-                        <div class="flex-grow">
-                            <ul class="space-y-4 mb-8">
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Redesign completo de Site Institucional</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> 1 LP dedicada do zero</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Google Ads + Meta Ads (Avançado)</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> IA de WhatsApp com Agendamento Agility</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Automação de Nurturing (E-mail + WhatsApp)</li>
-                                <li class="flex items-start gap-3 text-sm text-[#ccc]"><iconify-icon icon="solar:check-circle-bold-duotone" class="text-grovw-accent text-lg mt-0.5 flex-shrink-0"></iconify-icon> Identidade visual pro digital + Onboarding 15d</li>
-                            </ul>
-                            <div class="bg-[#1a1a1a] border-l-2 border-white p-3 text-xs text-[#888] font-mono mt-6">
-                                Nota: Fica R$ 1k/mês mais barato que o P2. Se ficar 5 meses, o setup se paga sozinho.
-                            </div>
-                        </div>
-                        <a href="#contato" data-plano="Plano 3 - Setup Completo" class="btn-plano w-full py-4 bg-[#1a1a1a] hover:bg-[#222] border border-grovw-border text-white text-center flex items-center justify-center gap-2 rounded font-bold text-sm transition-colors mt-6 uppercase tracking-wide">Quero o Setup Completo <iconify-icon icon="solar:arrow-right-line-duotone" class="text-lg"></iconify-icon></a>
-                    </div>
-
-                </div>
-
-                <div class="mt-12 text-center reveal delay-300 border border-grovw-accent/20 bg-[#111] p-6 rounded-lg max-w-4xl mx-auto">
-                    <p class="text-sm text-[#aaa]">
-                        <strong class="text-white">Todos os planos entregam o mesmo resultado:</strong> leads qualificados chegando até o seu negócio: não só visitas, mas contatos com intenção real de compra.
-                    </p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- 8. PROVA SOCIAL -->
-        <section class="w-full bg-grovw-section border-b border-grovw-border py-24">
-            <div class="max-w-[1300px] mx-auto w-full px-6">
-                <div class="text-center mb-16 reveal"><h2 class="text-4xl font-medium tracking-tight text-white">Quem já confiou na GROVW</h2></div>
-                <div class="max-w-4xl mx-auto flashlight-card rounded-xl border border-grovw-border p-12 text-center reveal flex flex-col items-center">
-                    <iconify-icon icon="solar:chat-square-quote-bold-duotone" class="text-4xl text-grovw-accent mb-6 opacity-80"></iconify-icon>
-                    <p class="text-[#ddd] text-xl md:text-2xl leading-relaxed font-light mb-8 italic">"O site ficou extremamente profissional e estruturado para vendas. Começamos a receber contatos agendando nossos serviços logo nos primeiros dias. Atendimento direto e sem enrolação."</p>
-                    <div><span class="text-white font-bold block text-sm">Marcos Almeida</span><span class="text-[10px] font-mono tracking-widest text-[#666] uppercase">Sócio-Diretor · Almeida Consultoria</span></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 9. OFERTA -->
-        <section class="w-full bg-[#111] border-b border-grovw-border py-24 relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-grovw-accent/5 via-transparent to-transparent pointer-events-none"></div>
-            <div class="max-w-4xl mx-auto text-center px-6 relative z-10 reveal">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white text-black font-black uppercase text-[10px] tracking-widest rounded mb-8 animate-pulse">Bônus Incluído</div>
-                <h2 class="text-5xl md:text-6xl font-bold tracking-tight text-white mb-6">Comece com <span class="text-grovw-accent">vantagem real</span></h2>
-                <p class="text-xl text-[#aaa] font-light mb-8 leading-relaxed">Fechando qualquer plano agora, você já sai com o sistema rodando, sem precisar contratar tráfego separado, configurar pixel por conta própria ou depender de 3 fornecedores diferentes.<br><br><strong>Tudo em um lugar, com uma pessoa responsável pelo resultado.</strong></p>
-                <a href="#contato" class="beam-button px-10 py-5 bg-white text-black font-bold uppercase rounded hover:bg-gray-200 transition-colors inline-block tracking-wide shadow-[0_0_20px_rgba(255,255,255,0.2)] glow-on-hover">Quero começar agora</a>
-            </div>
-        </section>
-
-        <!-- 10. SOBRE -->
-        <section class="w-full bg-grovw-bg border-b border-grovw-border py-24">
-            <div class="max-w-[1300px] mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <div class="flex items-center gap-4 mb-8">
-                        <div class="w-16 h-16 rounded-full bg-grovw-accent text-black flex items-center justify-center font-black text-2xl shadow-[0_0_20px_rgba(205,255,0,0.3)]">KC</div>
-                        <div><h3 class="text-2xl font-bold text-white">Kalid Carvalho</h3><span class="text-grovw-accent font-mono text-sm tracking-widest uppercase">Performance Digital</span></div>
-                    </div>
-                </div>
-                <div class="reveal delay-100 space-y-6">
-                    <span class="text-xs font-mono uppercase text-[#666] mb-2 block tracking-widest border-b border-[#333] pb-2 inline-block">Quem faz isso</span>
-                    <h2 class="text-4xl font-medium tracking-tight text-white">Isso é construído por uma pessoa, não por uma agência</h2>
-                    <p class="text-[#888] text-lg leading-relaxed font-light">Sou Kalid Carvalho, especialista em performance digital com base em Manaus. Opero solo por escolha: <strong class="text-white font-medium">cada projeto que entra é meu e fica meu até entregar resultado.</strong></p>
-                    <p class="text-[#888] text-lg leading-relaxed font-light">Especialista na montagem completa de ecossistemas de captação para escritórios, clínicas, construtoras e prestadores de serviço. Entrego site, tráfego e automação, sem terceirizar o que importa.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 11. CTA FINAL / FORM -->
-        <footer id="contato" class="w-full bg-[#0A0711] pt-32 pb-12 relative overflow-hidden border-t border-grovw-border scroll-mt-20">
-            <div class="max-w-[1300px] mx-auto w-full px-6 mb-24 reveal">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24 items-center">
-                    <div class="flex flex-col">
-                        <h2 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-6">Vamos montar <br> o seu sistema?</h2>
-                        <p class="text-xl text-[#888] font-light mb-12">Preencha os dados abaixo. Kalid entra em contato em até 24h para entender o seu negócio e indicar o melhor caminho.</p>
-                        <div class="flex items-start gap-4 p-5 bg-[#111] border border-grovw-border rounded-lg inline-flex w-fit">
-                            <iconify-icon icon="solar:shield-check-bold-duotone" class="text-3xl text-grovw-accent flex-shrink-0"></iconify-icon>
-                            <div><span class="text-sm font-bold text-white block">Diagnóstico Gratuito</span><span class="text-xs font-mono text-[#777]">15 minutos · Sem compromisso</span></div>
-                        </div>
-                    </div>
-                    <div class="bg-[#111] rounded-xl border border-grovw-border p-8 relative shadow-2xl">
-                        <form id="lead-form" class="space-y-5">
-                            <input type="hidden" name="access_key" value="f65a41ca-f8a1-4a6e-bde4-fdeb6672298b" />
-                            <input type="hidden" name="subject" value="Novo lead | GROVW Site" />
-                            <input type="hidden" name="from_name" value="GROVW Site" />
-                            <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
-                            <div class="relative group/input">
-                                <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Plano de Interesse (Pré-selecionado)</label>
-                                <input type="text" id="input-plano" name="plano" readonly value="Aguardando Seleção nos Cards" class="w-full bg-[#050505] border-2 border-grovw-accent/40 rounded px-4 py-3 text-sm text-grovw-accent font-bold focus:outline-none transition-all peer cursor-default shadow-[inset_0_0_10px_rgba(0,0,0,0.5)]">
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div class="relative group/input">
-                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Nome da Empresa</label>
-                                    <input type="text" id="empresa" name="empresa" placeholder="Grovw Inc" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
-                                </div>
-                                <div class="relative group/input">
-                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Seu Nome</label>
-                                    <input type="text" id="nome" name="nome" placeholder="John Doe" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                                <div class="relative group/input">
-                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">WhatsApp / Celular</label>
-                                    <input type="tel" id="telefone" name="mobile_phone" placeholder="(00) 00000-0000" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
-                                </div>
-                                <div class="relative group/input">
-                                    <label class="text-[10px] uppercase font-mono text-[#888] mb-1.5 block tracking-widest">Seu Email Corporativo</label>
-                                    <input type="email" id="email" name="email" placeholder="email@empresa.com" class="w-full bg-[#1a1a1a] border border-grovw-border rounded px-4 py-3 text-sm text-white focus:outline-none focus:border-grovw-accent transition-all" required>
-                                </div>
-                            </div>
-                            <label class="flex items-start gap-3 mt-4 cursor-pointer group">
-                                <div class="relative flex items-center justify-center mt-0.5 flex-shrink-0">
-                                    <input type="checkbox" class="peer appearance-none w-5 h-5 border border-grovw-border rounded bg-[#1a1a1a] checked:bg-grovw-accent transition-all cursor-pointer" required>
-                                    <iconify-icon icon="solar:check-read-bold-duotone" class="absolute text-black text-sm opacity-0 peer-checked:opacity-100 pointer-events-none transition-opacity"></iconify-icon>
-                                </div>
-                                <span class="text-xs text-[#777] leading-tight select-none pt-0.5">Concordo em compartilhar meus dados para contato comercial da GROVW, conforme a <a href="/privacidade/" target="_blank" class="text-white underline hover:text-grovw-accent">Política de Privacidade (LGPD)</a>.</span>
-                            </label>
-                            <button type="submit" class="beam-button w-full mt-6 py-4 bg-grovw-accent text-black font-bold text-sm tracking-wide rounded uppercase hover:bg-grovw-accentHover shadow-[0_0_15px_rgba(205,255,0,0.2)]">Enviar Para Análise</button>
-                            <p class="text-center text-[10px] font-mono text-[#555] mt-3 uppercase tracking-widest">Seus dados estão 100% seguros.</p>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-            <!-- FOOTER BASE -->
-            <div class="max-w-[1300px] mx-auto w-full px-6 grid grid-cols-1 md:grid-cols-2 gap-6 border-t border-grovw-border/50 pt-10 text-center md:text-left align-middle items-center">
-                <div class="flex flex-col md:items-start items-center">
-                    <div class="flex items-center gap-2 mb-2">
-                        <span class="text-[10px] font-mono text-[#444] opacity-50 block">&lt;!--</span>
-                        <div class="font-black text-3xl tracking-[0.1em] text-grovw-accent uppercase leading-none" style="font-family: 'JetBrains Mono', monospace; text-shadow: 0 0 15px rgba(205,255,0,0.4);">GROVW</div>
-                        <span class="text-[10px] font-mono text-[#444] opacity-50 block">--&gt;</span>
-                    </div>
-                    <span class="text-xs text-[#888] font-mono mt-1">// Sistema de captação digital focado em resultado.</span>
-                </div>
-                <div class="md:text-right flex flex-col md:items-end gap-1">
-                    <div class="text-xs text-[#666] flex gap-4 justify-center md:justify-end mb-2">
-                        <a href="/privacidade/" class="hover:text-grovw-accent transition-colors">Política de Privacidade</a>
-                        <a href="/termos/" class="hover:text-grovw-accent transition-colors">Termos de Uso</a>
-                    </div>
-                    <span class="text-xs font-mono text-[#555]">© 2026 GROVW · Todos os direitos reservados.</span>
-                </div>
-            </div>
-        </footer>
-    </main>
-
-    <!-- FLOATING ACTIONS -->
-    <div class="fixed bottom-6 right-6 flex flex-col gap-3 z-[100] items-center">
-        <!-- Back to Top Button -->
-        <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" id="back-to-top" class="w-10 h-10 bg-[#1a1a1a] border border-grovw-border text-grovw-accent rounded-full flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] hover:scale-110 hover:bg-grovw-accent hover:text-black transition-all duration-300 cursor-pointer opacity-0 translate-y-4 pointer-events-none" title="Voltar ao topo">
-            <iconify-icon icon="solar:alt-arrow-up-line-duotone"></iconify-icon>
-        </button>
-
-        <!-- Standard WhatsApp -->
-        <a href="https://wa.me/5592984627621?text=Ol%C3%A1%2C%20vim%20do%20site%20e%20quero%20saber%20mais%20sobre%20os%20planos." target="_blank" rel="noopener noreferrer" class="w-14 h-14 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-[0_4px_15px_rgba(37,211,102,0.4)] hover:scale-110 hover:brightness-110 transition-all duration-300 cursor-pointer">
-            <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon>
-        </a>
+  <!-- NAV -->
+  <nav>
+    <div class="container nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="nav-logo-comment">&lt;!--</span>
+        <span class="nav-logo-text">GROVW</span>
+        <span class="nav-logo-comment">--&gt;</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#casos">Cases</a></li>
+        <li><a href="#processo">Processo</a></li>
+        <li><a href="#planos">Planos</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <a href="https://wa.me/5592984627621?text=Olá,%20vim%20do%20site%20GROVW." target="_blank" class="btn-nav">
+        <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon> Atendimento
+      </a>
+      <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <iconify-icon icon="solar:hamburger-menu-linear"></iconify-icon>
+      </button>
     </div>
+  </nav>
 
-    <script src="assets/js/main.js?v=3.0" defer></script>
+  <!-- ═══════════════════════════════════════════ HERO -->
+  <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <div>
+          <div class="hero-badge reveal">
+            <span class="hero-badge-dot"></span>
+            Sistema completo · Site + Tráfego + IA
+          </div>
+          <h1 class="hero-title reveal d1">
+            O sistema que<br>
+            traz <span class="lit">clientes</span><br>
+            <span class="outline">até você</span>
+          </h1>
+          <p class="hero-sub reveal d2">
+            Landing page de conversão, tráfego pago configurado e qualificação automática no WhatsApp. Um ecossistema integrado para gerar leads com intenção de compra, todo mês.
+          </p>
+          <div class="hero-actions reveal d3">
+            <a href="#processo" class="btn-primary">
+              Ver como funciona <iconify-icon icon="solar:arrow-right-line-duotone"></iconify-icon>
+            </a>
+            <a href="#planos" class="btn-ghost">Ver planos →</a>
+          </div>
+          <div class="hero-meta reveal d4">
+            <span>■</span>
+            <span>Setup em 14 dias · Sem fidelidade obrigatória · Resultado mensurável</span>
+          </div>
+        </div>
+
+        <div class="system-diagram reveal d2">
+          <div class="diagram-label">// sistema grovw</div>
+          <div class="diagram-items">
+            <div class="diagram-item">
+              <div class="diagram-icon"><iconify-icon icon="solar:monitor-smartphone-bold-duotone"></iconify-icon></div>
+              <div class="diagram-item-text">
+                <strong>Landing Page</strong>
+                <span>Alta conversão · Veloz · Rastreada</span>
+              </div>
+            </div>
+            <div class="diagram-connector"></div>
+            <div class="diagram-item">
+              <div class="diagram-icon"><iconify-icon icon="solar:target-bold-duotone"></iconify-icon></div>
+              <div class="diagram-item-text">
+                <strong>Tráfego Pago</strong>
+                <span>Google Ads · Meta Ads · Pixel avançado</span>
+              </div>
+            </div>
+            <div class="diagram-connector"></div>
+            <div class="diagram-item">
+              <div class="diagram-icon"><iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon></div>
+              <div class="diagram-item-text">
+                <strong>IA no WhatsApp</strong>
+                <span>Qualificação automática · 24h/7d</span>
+              </div>
+            </div>
+          </div>
+          <div class="diagram-result">
+            <div class="diagram-result-icon"><iconify-icon icon="solar:user-check-rounded-bold-duotone"></iconify-icon></div>
+            <div>
+              <strong>Lead qualificado</strong>
+              <span>Nome · Contato · Contexto de compra</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track" id="marqueeTrack">
+      <div class="marquee-item"><span class="dot"></span> Google Ads · Meta Ads</div>
+      <div class="marquee-item"><span class="dot"></span> Setup em 14 dias úteis</div>
+      <div class="marquee-item"><span class="dot"></span> IA de qualificação</div>
+      <div class="marquee-item"><span class="dot"></span> Sem fidelidade obrigatória</div>
+      <div class="marquee-item"><span class="dot"></span> Resultado mensurável em reais</div>
+      <div class="marquee-item"><span class="dot"></span> Advocacia · Clínicas · Serviços</div>
+      <div class="marquee-item"><span class="dot"></span> PageSpeed 90+</div>
+      <div class="marquee-item"><span class="dot"></span> Lead qualificado · todo mês</div>
+      <div class="marquee-item"><span class="dot"></span> Google Ads · Meta Ads</div>
+      <div class="marquee-item"><span class="dot"></span> Setup em 14 dias úteis</div>
+      <div class="marquee-item"><span class="dot"></span> Google Ads · Meta Ads</div>
+      <div class="marquee-item"><span class="dot"></span> IA de qualificação</div>
+      <div class="marquee-item"><span class="dot"></span> Sem fidelidade obrigatória</div>
+      <div class="marquee-item"><span class="dot"></span> Resultado mensurável em reais</div>
+      <div class="marquee-item"><span class="dot"></span> Advocacia · Clínicas · Serviços</div>
+      <div class="marquee-item"><span class="dot"></span> PageSpeed 90+</div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════ PROBLEMA -->
+  <section class="section-pad" style="background: var(--bg2);">
+    <div class="container">
+      <div class="problem-grid">
+        <div class="reveal">
+          <span class="label" style="color:#444; display:block; margin-bottom:20px;">// o problema real</span>
+          <h2>
+            Site parado<br>
+            <span class="muted">não traz</span><br>
+            cliente.
+          </h2>
+          <div class="problem-quote reveal d2">
+            <p>A maioria das empresas tem site. Mas ele não aparece no Google, não recebe visita e não gera contato. É um cartão digital caro <em>sem retorno.</em></p>
+          </div>
+        </div>
+        <div class="reveal d2">
+          <p>Na GROVW, o site é só a base. O sistema completo inclui tráfego configurado, rastreamento correto e qualificação automática, para o lead chegar até você <strong>pronto para fechar.</strong></p>
+          <p>Não é só tráfego. É rastreamento avançado, campanhas otimizadas e automação rodando enquanto você lidera sua operação.</p>
+
+          <div class="stats-grid reveal d3">
+            <div class="stat-item">
+              <strong>7d</strong>
+              <span>Setup completo</span>
+            </div>
+            <div class="stat-item">
+              <strong>90<sup>+</sup></strong>
+              <span>PageSpeed</span>
+            </div>
+            <div class="stat-item">
+              <strong>3x</strong>
+              <span>Mais conversão</span>
+            </div>
+            <div class="stat-item">
+              <strong>24h</strong>
+              <span>IA ativa</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PROCESSO -->
+  <section id="processo" class="section-pad process-section scroll-mt-20">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="label">// como funciona</span>
+        <h2 class="section-title" style="margin-top:16px;">Simples. Direto.<br>Sem enrolação.</h2>
+      </div>
+      <div class="process-steps reveal d1">
+        <div class="step">
+          <span class="step-number">01 ——</span>
+          <div class="step-icon"><iconify-icon icon="solar:document-text-bold-duotone"></iconify-icon></div>
+          <h4>Briefing</h4>
+          <p>Mergulhamos no seu negócio: objetivo comercial, público comprador ideal e o que diferencia você da concorrência.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">02 ——</span>
+          <div class="step-icon"><iconify-icon icon="solar:code-bold-duotone"></iconify-icon></div>
+          <h4>Construção</h4>
+          <p>Landing page ou site desenvolvido com foco em conversão. Design premium, velocidade e rastreamento avançado.</p>
+        </div>
+        <div class="step">
+          <span class="step-number">03 ——</span>
+          <div class="step-icon"><iconify-icon icon="solar:target-bold-duotone"></iconify-icon></div>
+          <h4>Tráfego Ativado</h4>
+          <p>Campanhas no Google e Meta no ar. Pixel de eventos avançados, não só pageview. Otimização contínua.</p>
+        </div>
+        <div class="step active">
+          <span class="step-number">04 ——</span>
+          <div class="step-icon"><iconify-icon icon="solar:fire-bold-duotone"></iconify-icon></div>
+          <h4>Leads Chegando</h4>
+          <p>O sistema roda. Leads qualificados entram com nome, contato e contexto de compra. Você foca em fechar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ DIFERENCIAIS -->
+  <section class="section-pad" style="background: var(--bg2); border-bottom: 1px solid var(--border);">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="label">// por que funciona</span>
+        <h2 class="section-title" style="margin-top:16px;">O sistema que vai<br>além do site</h2>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:16px;" class="reveal d1">
+        <div style="padding:40px 32px; background:var(--bg3); border:1px solid var(--border); border-radius:10px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='rgba(205,255,0,0.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+          <div style="width:48px;height:48px;background:var(--bg);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);margin-bottom:20px;">
+            <iconify-icon icon="solar:target-bold-duotone"></iconify-icon>
+          </div>
+          <h4 style="font-size:17px;font-weight:700;margin-bottom:12px;">Aparece para quem quer comprar</h4>
+          <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">O Google Ads configurado corretamente coloca sua empresa na frente de quem já está buscando o seu serviço agora.</p>
+        </div>
+        <div style="padding:40px 32px; background:var(--bg3); border:1px solid var(--border); border-radius:10px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='rgba(205,255,0,0.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+          <div style="width:48px;height:48px;background:var(--bg);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);margin-bottom:20px;">
+            <iconify-icon icon="solar:mouse-circle-bold-duotone"></iconify-icon>
+          </div>
+          <h4 style="font-size:17px;font-weight:700;margin-bottom:12px;">Página construída para converter</h4>
+          <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">Cada elemento tem função: estrutura, CTA, formulário e velocidade. Tudo pensado para transformar visita em contato.</p>
+        </div>
+        <div style="padding:40px 32px; background:var(--bg3); border:1px solid var(--border); border-radius:10px; transition: border-color 0.3s;" onmouseover="this.style.borderColor='rgba(205,255,0,0.25)'" onmouseout="this.style.borderColor='rgba(255,255,255,0.07)'">
+          <div style="width:48px;height:48px;background:var(--bg);border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:22px;color:var(--accent);margin-bottom:20px;">
+            <iconify-icon icon="solar:bolt-bold-duotone"></iconify-icon>
+          </div>
+          <h4 style="font-size:17px;font-weight:700;margin-bottom:12px;">Lead qualificado antes de chegar</h4>
+          <p style="font-size:13px;color:var(--text-dim);line-height:1.7;">O bot no WhatsApp filtra quem é cliente real e quem é curioso. Você só fala com quem tem perfil de compra.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ CASOS -->
+  <section id="casos" class="section-pad scroll-mt-20" style="background:var(--bg);">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="label">// portfólio</span>
+        <h2 class="section-title" style="margin-top:16px;">Projetos que já ajudaram<br>empresas a crescer</h2>
+        <p class="section-sub" style="max-width:500px;">Cada projeto construído com foco em conversão, performance e experiência do usuário.</p>
+      </div>
+      <div class="portfolio-grid reveal d1">
+        <a href="https://advotary.grovw.com.br/" target="_blank" class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="/assets/img/advotary.png" alt="Advotary Advocacia" loading="lazy" />
+            <div class="portfolio-arrow"><iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon></div>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-tag">Advocacia</span>
+            <h4>Advotary Advocacia</h4>
+            <p>Proteção jurídica de alto nível e gestão estratégica para decisões de grande impacto.</p>
+          </div>
+        </a>
+        <a href="https://sancheseassociados.grovw.com.br/" target="_blank" class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="/assets/img/justice.png" alt="Justice Advocacia" loading="lazy" />
+            <div class="portfolio-arrow"><iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon></div>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-tag">Advocacia</span>
+            <h4>Justice Advocacia</h4>
+            <p>Plataforma digital combinando rigor técnico e agilidade com foco corporativo.</p>
+          </div>
+        </a>
+        <a href="https://buitragoepordeus.grovw.com.br/" target="_blank" class="portfolio-card">
+          <div class="portfolio-img">
+            <img src="/assets/img/buitragoepordeus.png" alt="Buitrago e Pordeus" loading="lazy" />
+            <div class="portfolio-arrow"><iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon></div>
+          </div>
+          <div class="portfolio-info">
+            <span class="portfolio-tag">Advocacia</span>
+            <h4>Buitrago & Pordeus</h4>
+            <p>Posicionamento moderno para sociedade com 19 anos de experiência analítica.</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ PLANOS -->
+  <section id="planos" class="section-pad pricing-section scroll-mt-20">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="label">// planos</span>
+        <h2 class="section-title" style="margin-top:16px;">Escolha onde começar</h2>
+        <p class="section-sub">Sistemas prontos para a escala e complexidade do seu momento.</p>
+      </div>
+      <div class="pricing-grid reveal d1">
+
+        <!-- PLANO 1 -->
+        <div class="price-card">
+          <div class="price-plan">Plano 01</div>
+          <div class="price-name">Entrada</div>
+          <div class="price-amount">
+            <div class="price-main">R$ 1.400<sub> /único</sub></div>
+          </div>
+          <div class="price-delivery">■ Entrega: 14 dias úteis</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;"><strong style="color:var(--text-dim)">Para quem:</strong> negócio funcionando, sem presença digital estruturada, ou com site que não converte.</p>
+          <ul class="price-features">
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Landing page de alta conversão</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Formulário qualificado por demanda</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> CTAs estratégicos</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Email profissional (@)</li>
+            <li class="highlight"><iconify-icon icon="solar:stars-bold-duotone"></iconify-icon> Bônus: 30 dias Google Ads gerenciado</li>
+          </ul>
+          <a href="#contato" data-plano="Plano 1 - Entrada" class="price-cta default btn-plano">Quero o Plano 1 →</a>
+        </div>
+
+        <!-- PLANO 2 - FEATURED -->
+        <div class="price-card featured">
+          <div class="price-badge">⚡ Recomendado</div>
+          <div class="price-plan" style="color:var(--accent)">Plano 02</div>
+          <div class="price-name">Ecossistema Autônomo</div>
+          <div class="price-amount" style="border-color:rgba(205,255,0,0.15)">
+            <div class="price-main">R$ 2.000<sub> setup</sub></div>
+            <div class="price-recurring">+ R$ 3.000<sub>/mês</sub></div>
+          </div>
+          <div class="price-delivery">■ Setup em 14 dias úteis</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;"><strong style="color:var(--text-dim)">Para quem:</strong> empresário que já tentou marketing digital sem resultado, ou cliente do Plano 1 pronto para escalar.</p>
+          <ul class="price-features">
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> LP de conversão otimizada ou nova</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Email profissional configurado</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Google Ads: pixel, setup e campanhas</li>
+            <li class="highlight"><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> IA no WhatsApp — qualificação automática</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Relatório mensal de ROI em reais</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Onboarding completo 14 dias</li>
+          </ul>
+          <a href="#contato" data-plano="Plano 2 - Ecossistema Autônomo" class="price-cta main btn-plano">Quero o Ecossistema →</a>
+        </div>
+
+        <!-- PLANO 3 -->
+        <div class="price-card">
+          <div class="price-plan">Plano 03</div>
+          <div class="price-name">Setup Completo</div>
+          <div class="price-amount">
+            <div class="price-main">R$ 5.000<sub> setup</sub></div>
+            <div style="margin-top:6px;font-size:22px;font-weight:800;letter-spacing:-0.02em;">+ R$ 2.000<sub style="font-size:12px;font-weight:400;color:var(--text-muted);font-family:var(--mono);vertical-align:baseline;">/mês</sub></div>
+          </div>
+          <div class="price-delivery">■ Entrega: 15 dias úteis</div>
+          <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.6;"><strong style="color:var(--text-dim)">Para quem:</strong> empresa que quer o sistema completo do zero, entregue rápido com foco máximo.</p>
+          <ul class="price-features">
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Redesign completo site institucional</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> 1 LP dedicada do zero</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Google Ads + Meta Ads avançado</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> IA de WhatsApp com agendamento</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Automação de nurturing</li>
+            <li><iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon> Identidade visual pro digital</li>
+          </ul>
+          <div style="font-family:var(--mono);font-size:10px;color:var(--text-muted);padding:12px;background:var(--bg2);border-left:2px solid var(--border2);margin-bottom:24px;">Fica R$ 1k/mês mais barato que o P2. Em 5 meses, o setup se paga.</div>
+          <a href="#contato" data-plano="Plano 3 - Setup Completo" class="price-cta default btn-plano">Quero o Setup Completo →</a>
+        </div>
+
+      </div>
+      <div class="pricing-note reveal d2">
+        <strong>Todos os planos entregam o mesmo resultado:</strong> leads qualificados com intenção real de compra chegando até o seu negócio — não só visitas.
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ DEPOIMENTOS -->
+  <section class="section-pad" style="background:var(--bg2);">
+    <div class="container">
+      <div class="section-header center reveal">
+        <span class="label">// clientes</span>
+        <h2 class="section-title" style="margin-top:16px;">Quem já montou<br>o sistema</h2>
+      </div>
+      <div style="display:grid; grid-template-columns: repeat(3,1fr); gap:16px;" class="reveal d1">
+
+        <!-- DEPOIMENTO REAL -->
+        <div style="grid-column: 1 / -1; background:var(--bg3); border:1px solid var(--accent-border); border-radius:12px; padding:48px; position:relative; overflow:hidden;">
+          <div style="position:absolute;top:0;right:0;width:300px;height:300px;background:radial-gradient(ellipse,rgba(205,255,0,0.04) 0%,transparent 70%);pointer-events:none;"></div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;">
+            <div>
+              <div style="display:flex; gap:4px; margin-bottom:24px;">
+                <iconify-icon icon="solar:star-bold" style="color:var(--accent);font-size:18px;"></iconify-icon>
+                <iconify-icon icon="solar:star-bold" style="color:var(--accent);font-size:18px;"></iconify-icon>
+                <iconify-icon icon="solar:star-bold" style="color:var(--accent);font-size:18px;"></iconify-icon>
+                <iconify-icon icon="solar:star-bold" style="color:var(--accent);font-size:18px;"></iconify-icon>
+                <iconify-icon icon="solar:star-bold" style="color:var(--accent);font-size:18px;"></iconify-icon>
+              </div>
+              <p style="font-size:20px; font-weight:400; line-height:1.7; color:#ddd; font-style:italic; margin-bottom:32px;">"O site ficou extremamente profissional e estruturado para vendas. Começamos a receber contatos agendando nossos serviços logo nos primeiros dias. Atendimento direto e sem enrolação."</p>
+              <div style="display:flex; align-items:center; gap:16px;">
+                <div style="width:48px;height:48px;background:var(--accent);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:900;color:#000;font-size:16px;flex-shrink:0;">MA</div>
+                <div>
+                  <strong style="display:block;font-size:15px;font-weight:700;">Marcos Almeida</strong>
+                  <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);">Sócio-Diretor · Almeida Consultoria</span>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:16px;">
+              <div style="padding:20px 24px; background:var(--bg); border:1px solid var(--border); border-radius:8px;">
+                <span style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);display:block;margin-bottom:8px;">Resultado</span>
+                <strong style="font-size:22px;font-weight:900;color:var(--accent);">+12 leads</strong>
+                <span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);display:block;margin-top:4px;">nos primeiros 30 dias</span>
+              </div>
+              <div style="padding:20px 24px; background:var(--bg); border:1px solid var(--border); border-radius:8px;">
+                <span style="font-family:var(--mono);font-size:9px;text-transform:uppercase;letter-spacing:0.15em;color:var(--text-muted);display:block;margin-bottom:8px;">Serviço contratado</span>
+                <strong style="font-size:15px;font-weight:700;color:var(--text);">Ecossistema Autônomo</strong>
+                <span style="font-family:var(--mono);font-size:10px;color:var(--text-muted);display:block;margin-top:4px;">Site + Google Ads + IA WhatsApp</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD VAGO 1 -->
+        <div style="padding:40px 32px; background:var(--bg3); border:1px solid var(--border); border-radius:12px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:200px;">
+          <div style="width:48px;height:48px;background:var(--surface);border:1px dashed var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+            <iconify-icon icon="solar:user-plus-rounded-line-duotone" style="font-size:20px;color:var(--text-muted);"></iconify-icon>
+          </div>
+          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#333;">Próximo case</span>
+          <p style="font-size:13px;color:#2a2a2a;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
+        </div>
+
+        <!-- CARD VAGO 2 -->
+        <div style="padding:40px 32px; background:var(--bg3); border:1px solid var(--border); border-radius:12px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:200px;">
+          <div style="width:48px;height:48px;background:var(--surface);border:1px dashed var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+            <iconify-icon icon="solar:user-plus-rounded-line-duotone" style="font-size:20px;color:var(--text-muted);"></iconify-icon>
+          </div>
+          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#333;">Próximo case</span>
+          <p style="font-size:13px;color:#2a2a2a;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
+        </div>
+
+        <!-- CARD VAGO 3 -->
+        <div style="padding:40px 32px; background:var(--bg3); border:1px solid var(--border); border-radius:12px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; min-height:200px;">
+          <div style="width:48px;height:48px;background:var(--surface);border:1px dashed var(--border2);border-radius:50%;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">
+            <iconify-icon icon="solar:user-plus-rounded-line-duotone" style="font-size:20px;color:var(--text-muted);"></iconify-icon>
+          </div>
+          <span style="font-family:var(--mono);font-size:10px;text-transform:uppercase;letter-spacing:0.15em;color:#333;">Próximo case</span>
+          <p style="font-size:13px;color:#2a2a2a;margin-top:8px;line-height:1.6;">Pode ser o seu negócio aqui.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ SOBRE -->
+  <section class="section-pad" style="background:var(--bg2);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="reveal">
+          <div class="about-avatar">KC</div>
+          <div class="about-name">Kalid Carvalho</div>
+          <div class="about-role">Performance Digital · Manaus, AM</div>
+          <p class="about-text">Especialista na montagem de ecossistemas de captação. <strong>Opero solo por escolha:</strong> cada projeto que entra é meu e fica meu até entregar resultado.</p>
+          <p class="about-text">Escritórios de advocacia, clínicas, construtoras e prestadores de serviço. O trabalho é sempre o mesmo: montar o sistema que coloca o seu negócio na frente de quem já está procurando.</p>
+          <div class="about-tags">
+            <span class="about-tag">Google Ads</span>
+            <span class="about-tag">Meta Ads</span>
+            <span class="about-tag">WordPress</span>
+            <span class="about-tag">N8N</span>
+            <span class="about-tag">IA WhatsApp</span>
+            <span class="about-tag">Antigravity</span>
+          </div>
+        </div>
+        <div class="about-visual reveal d2">
+          <div class="label" style="margin-bottom:24px;">// como funciona comigo</div>
+          <div class="about-stat-row">
+            <div class="about-stat">
+              <span class="about-stat-label">Modelo de trabalho</span>
+              <span class="about-stat-value accent">Solo</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-label">Dedicação por projeto</span>
+              <span class="about-stat-value">Total</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-label">Atendimento</span>
+              <span class="about-stat-value" style="font-size:14px;">WhatsApp direto</span>
+            </div>
+            <div class="about-stat">
+              <span class="about-stat-label">Resultado entregue</span>
+              <span class="about-stat-value accent">Mensurável</span>
+            </div>
+          </div>
+          <a href="https://wa.me/5592984627621?text=Olá,%20vim%20do%20site%20GROVW." target="_blank" style="display:flex;align-items:center;gap:10px;margin-top:28px;padding:14px 20px;background:var(--accent);color:#000;text-decoration:none;border-radius:6px;font-family:var(--mono);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;transition:all 0.25s;" onmouseover="this.style.boxShadow='0 0 25px rgba(205,255,0,0.3)'" onmouseout="this.style.boxShadow='none'">
+            <iconify-icon icon="ic:baseline-whatsapp" style="font-size:18px;"></iconify-icon>
+            Falar com Kalid agora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ CTA + FORM -->
+  <section id="contato" class="section-pad cta-section scroll-mt-20">
+    <div class="cta-glow"></div>
+    <div class="container">
+      <div class="cta-inner">
+        <div class="reveal">
+          <h2>Vamos montar<br>o seu<br><span style="color:var(--accent)">sistema?</span></h2>
+          <p>Preencha os dados ao lado. Kalid entra em contato em até 24h para entender o seu negócio e indicar o melhor caminho.</p>
+          <div class="cta-guarantee">
+            <iconify-icon icon="solar:shield-check-bold-duotone"></iconify-icon>
+            <div>
+              <strong>Diagnóstico Gratuito</strong>
+              <span>15 minutos · Sem compromisso · Resultado concreto</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card reveal d2">
+          <form id="leadForm">
+            <input type="hidden" name="access_key" value="f65a41ca-f8a1-4a6e-bde4-fdeb6672298b" />
+            <input type="hidden" name="subject" value="Novo lead | GROVW Site" />
+            <input type="hidden" name="from_name" value="GROVW Site" />
+            <input type="text" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+
+            <div class="form-group">
+              <label class="form-label">Plano de interesse</label>
+              <input type="text" id="inputPlano" name="plano" readonly value="Aguardando seleção nos cards" class="form-input" />
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Nome da empresa</label>
+                <input type="text" name="empresa" placeholder="Grovw Inc" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Seu nome</label>
+                <input type="text" name="nome" placeholder="João Silva" class="form-input" required />
+              </div>
+            </div>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">WhatsApp</label>
+                <input type="tel" name="mobile_phone" placeholder="(00) 00000-0000" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label class="form-label">Seu melhor e-mail</label>
+                <input type="email" name="email" placeholder="seu@email.com" class="form-input" required />
+              </div>
+            </div>
+
+            <div class="form-check">
+              <input type="checkbox" id="lgpd" required />
+              <label for="lgpd">Concordo em compartilhar meus dados para contato comercial da GROVW, conforme a <a href="/privacidade/" target="_blank">Política de Privacidade (LGPD)</a>.</label>
+            </div>
+
+            <button type="submit" class="form-submit">Enviar para análise →</button>
+            <div class="form-footer">Seus dados estão 100% seguros.</div>
+          </form>
+
+          <div class="form-success" id="formSuccess">
+            <iconify-icon icon="solar:check-circle-bold-duotone"></iconify-icon>
+            <h3>Recebemos seu contato!</h3>
+            <p>Kalid entra em contato em até 24h. Fique de olho no WhatsApp.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════ FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <div>
+        <div class="footer-logo">
+          <span class="nav-logo-comment" style="font-family:var(--mono);font-size:10px;color:#333;">&lt;!--</span>
+          <span class="footer-logo-text">GROVW</span>
+          <span class="nav-logo-comment" style="font-family:var(--mono);font-size:10px;color:#333;">--&gt;</span>
+        </div>
+        <div class="footer-copy" style="margin-top:6px;">// Sistema de captação digital focado em resultado.</div>
+      </div>
+      <div class="footer-links">
+        <a href="/privacidade/">Privacidade</a>
+        <a href="/termos/">Termos</a>
+      </div>
+      <div class="footer-copy">© 2026 GROVW · Todos os direitos reservados.</div>
+    </div>
+  </footer>
+
+  <!-- FLOATING -->
+  <div class="floating">
+    <button class="float-top" id="floatTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Topo">
+      <iconify-icon icon="solar:alt-arrow-up-line-duotone"></iconify-icon>
+    </button>
+    <a href="https://wa.me/5592984627621?text=Olá,%20vim%20do%20site%20GROVW." target="_blank" rel="noopener" class="float-wa">
+      <iconify-icon icon="ic:baseline-whatsapp"></iconify-icon>
+    </a>
+  </div>
+
+  <script>
+    // ── CURSOR
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      cursor.style.left = mx + 'px';
+      cursor.style.top = my + 'px';
+    });
+
+    function animateRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) *.12;
+      ring.style.left = rx + 'px';
+      ring.style.top = ry + 'px';
+      requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    document.querySelectorAll('a, button').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.width = '6px';
+        cursor.style.height = '6px';
+        ring.style.width = '56px';
+        ring.style.height = '56px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.width = '10px';
+        cursor.style.height = '10px';
+        ring.style.width = '40px';
+        ring.style.height = '40px';
+      });
+    });
+
+    // ── REVEAL ON SCROLL
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    reveals.forEach(r => obs.observe(r));
+
+    // ── SCROLL BEHAVIOR
+    window.addEventListener('scroll', () => {
+      const floatTop = document.getElementById('floatTop');
+      if (window.scrollY > 400) floatTop.classList.add('visible');
+      else floatTop.classList.remove('visible');
+    });
+
+    // ── PLAN SELECTION
+    document.querySelectorAll('.btn-plano').forEach(btn => {
+      btn.addEventListener('click', e => {
+        const plano = btn.dataset.plano;
+        if (plano) document.getElementById('inputPlano').value = plano;
+      });
+    });
+
+    // ── MOBILE MENU
+    function toggleMobile() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+    function closeMobile() {
+      document.getElementById('mobileMenu').classList.remove('open');
+    }
+
+    // ── FORM SUBMIT
+    document.getElementById('leadForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('.form-submit');
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          body: new FormData(this)
+        });
+        if (res.ok) {
+          this.style.display = 'none';
+          document.getElementById('formSuccess').classList.add('show');
+        } else {
+          btn.textContent = 'Erro. Tente novamente.';
+          btn.disabled = false;
+        }
+      } catch {
+        btn.textContent = 'Erro. Tente novamente.';
+        btn.disabled = false;
+      }
+    });
+
+    // ── FLASHLIGHT EFFECT ON CARDS
+    document.querySelectorAll('.portfolio-card, .step, .price-card').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(205,255,0,0.04) 0%, transparent 60%), var(--bg3)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.background = '';
+      });
+    });
+  </script>
 </body>
 </html>
