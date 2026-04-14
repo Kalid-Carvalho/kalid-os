@@ -26,8 +26,13 @@ Cliente
 - [ ] Página de Obrigado 01
 - [ ] Página de Obrigado 02
 
+## Dados do contratante
+- Nome completo: LUAN BIANCARDI MANZOLI FERREIRA
+- CNPJ: 55.404.822/0001-20
+- Email: luanmanzoli@luanmanzoli.com.br
+- WhatsApp: (27) 99942-9510
+
 ## Pendências
-- [ ] CPF ou CNPJ
 - [ ] Endereço completo com CEP
 - [ ] Logo em arquivo vetorial ou PNG alta resolução
 - [ ] Textos de cada página
