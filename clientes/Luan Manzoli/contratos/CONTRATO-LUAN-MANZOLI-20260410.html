@@ -27,19 +27,18 @@
 
     /* PRINT */
     @media print {
-      body { background: #fff; color: #000; }
       .no-print { display: none !important; }
       .page { box-shadow: none; border: none; max-width: 100%; }
-      .accent { color: #000; }
-      .tag { background: #eee; color: #000; border: 1px solid #ccc; }
-      .section-title { color: #000; border-color: #ccc; }
-      .clause-block { border-color: #ddd; background: #f9f9f9; }
-      .budget-table th { background: #eee; color: #000; }
-      .budget-table td { border-color: #ddd; }
-      .total-row { background: #eee; color: #000; }
-      .sign-line { border-color: #000; }
-      .header-bar { background: #000; }
-      .divider { background: #ccc; }
+      .clause-block { break-inside: avoid; page-break-inside: avoid; }
+      .party-card { break-inside: avoid; page-break-inside: avoid; }
+      .scope-block { break-inside: avoid; page-break-inside: avoid; }
+      .two-col { break-inside: avoid; page-break-inside: avoid; }
+      .inc-block { break-inside: avoid; page-break-inside: avoid; }
+      .total-row { break-inside: avoid; page-break-inside: avoid; }
+      .payment-note { break-inside: avoid; page-break-inside: avoid; }
+      .sign-grid { break-inside: avoid; page-break-inside: avoid; }
+      .material-list { break-inside: avoid; page-break-inside: avoid; }
+      .budget-table { break-inside: avoid; page-break-inside: avoid; }
     }
 
     .page {
