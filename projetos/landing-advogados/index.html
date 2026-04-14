@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de Captação para Advogados | Kalid Carvalho</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue: #1A56DB;
+      --blue-light: #3B6FE8;
+      --bg: #0D1117;
+      --bg-card: #161B22;
+      --bg-card2: #1C2230;
+      --text: #E6EDF3;
+      --text-muted: #8B949E;
+      --border: #21262D;
+      --green: #2EA043;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section { padding: 72px 0; }
+
+    /* HERO */
+    .hero {
+      padding: 80px 0 64px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(26, 86, 219, 0.15);
+      border: 1px solid rgba(26, 86, 219, 0.4);
+      color: #6B9BF7;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 4px;
+      margin-bottom: 28px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 6vw, 42px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 20px;
+      color: #FFFFFF;
+    }
+
+    .hero h1 span {
+      color: var(--blue-light);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      max-width: 560px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--blue);
+      color: #FFFFFF;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      padding: 16px 32px;
+      border-radius: 6px;
+      text-decoration: none;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      width: 100%;
+      text-align: center;
+    }
+
+    .btn-primary:hover { background: var(--blue-light); }
+
+    .hero-note {
+      margin-top: 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-align: center;
+    }
+
+    /* DOR */
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .pain h2 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .pain p {
+      color: var(--text-muted);
+      font-size: 17px;
+      margin-bottom: 16px;
+    }
+
+    .pain p strong {
+      color: var(--text);
+    }
+
+    .pain-list {
+      list-style: none;
+      margin-top: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .pain-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      font-size: 15px;
+      color: var(--text-muted);
+    }
+
+    .pain-list li::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: #E84040;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+
+    /* DIAGNOSTICO */
+    .diagnostico { border-top: 1px solid var(--border); }
+
+    .diagnostico h2 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+      line-height: 1.3;
+    }
+
+    .diagnostico p {
+      color: var(--text-muted);
+      font-size: 17px;
+      margin-bottom: 32px;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 44px;
+      width: 2px;
+      height: calc(100% - 12px);
+      background: var(--border);
+    }
+
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: rgba(26, 86, 219, 0.15);
+      border: 1px solid rgba(26, 86, 219, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      color: #6B9BF7;
+      flex-shrink: 0;
+    }
+
+    .step-content {
+      padding-bottom: 32px;
+    }
+
+    .step-content h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+
+    /* PARA QUEM */
+    .para-quem { border-top: 1px solid var(--border); }
+
+    .para-quem h2 {
+      font-size: clamp(20px, 4vw, 26px);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 24px;
+    }
+
+    .check-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+
+    .check-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 16px;
+      color: var(--text-muted);
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+      background: rgba(46, 160, 67, 0.15);
+      border: 1px solid rgba(46, 160, 67, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .check-icon svg {
+      width: 10px;
+      height: 10px;
+      fill: none;
+      stroke: #2EA043;
+      stroke-width: 2.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .not-for {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    .not-for strong {
+      color: var(--text);
+      display: block;
+      margin-bottom: 4px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* FORMULARIO */
+    .formulario { border-top: 1px solid var(--border); }
+
+    .formulario h2 {
+      font-size: clamp(22px, 4vw, 30px);
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 10px;
+    }
+
+    .formulario > .container > p {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 36px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15px;
+      color: var(--text);
+      transition: border-color 0.2s;
+      outline: none;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: #4A5568;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B949E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    select option {
+      background: var(--bg-card2);
+      color: var(--text);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .form-submit {
+      margin-top: 28px;
+    }
+
+    /* OBRIGADO */
+    #obrigado {
+      display: none;
+      min-height: 80vh;
+      align-items: center;
+    }
+
+    #obrigado.active {
+      display: flex;
+    }
+
+    .obrigado-box {
+      text-align: center;
+      padding: 64px 0;
+    }
+
+    .obrigado-icon {
+      width: 64px;
+      height: 64px;
+      background: rgba(46, 160, 67, 0.15);
+      border: 1px solid rgba(46, 160, 67, 0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 28px;
+    }
+
+    .obrigado-icon svg {
+      width: 28px;
+      height: 28px;
+      fill: none;
+      stroke: #2EA043;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .obrigado-box h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: #FFFFFF;
+      margin-bottom: 16px;
+    }
+
+    .obrigado-box p {
+      font-size: 17px;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin: 0 auto 12px;
+    }
+
+    .obrigado-box .detail {
+      font-size: 14px;
+      color: #4A5568;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+      text-align: center;
+    }
+
+    footer p {
+      font-size: 13px;
+      color: #4A5568;
+    }
+
+    footer a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    footer a:hover { color: var(--text); }
+
+    @media (max-width: 480px) {
+      section { padding: 56px 0; }
+      .hero { padding: 60px 0 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- PÁGINA PRINCIPAL -->
+<div id="pagina-principal">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="badge">Diagnóstico Gratuito</div>
+      <h1>Pare de depender de indicação.<br><span>Seu escritório pode captar clientes de forma previsível.</span></h1>
+      <p>Uma conversa de 30 minutos para entender o que está travando a captação do seu escritório e o que pode mudar nos próximos 30 dias, dentro do que a OAB permite.</p>
+      <a href="#formulario" class="btn-primary">Quero meu diagnóstico gratuito</a>
+      <p class="hero-note">Sem compromisso de compra. Vagas limitadas por semana.</p>
+    </div>
+  </section>
+
+  <!-- DOR -->
+  <section class="pain">
+    <div class="container">
+      <p class="section-label">O problema</p>
+      <h2>Você é bom no que faz. O problema é que os clientes não chegam de forma previsível.</h2>
+      <p>Todo mês é uma incógnita. Você depende de indicação, da sua rede estar ativa, da sorte. Quando ela esfria, o caixa sente.</p>
+      <p>E quando tentou resolver isso por conta própria, não funcionou como esperava.</p>
+      <ul class="pain-list">
+        <li>Criou Instagram, postou por duas semanas e parou porque não apareceu resultado</li>
+        <li>Rodou tráfego pago e recebeu leads que não tinham perfil ou intenção de contratar</li>
+        <li>Contratou agência que entregou um site bonito mas nenhum cliente novo</li>
+        <li>Tem receio de fazer algo que a OAB possa questionar</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- DIAGNÓSTICO -->
+  <section class="diagnostico">
+    <div class="container">
+      <p class="section-label">O diagnóstico</p>
+      <h2>Uma call de 30 minutos para mapear o que está limitando a captação do seu escritório.</h2>
+      <p>Não é uma apresentação de serviços. É uma análise real da sua situação atual e do que faz sentido pra você especificamente.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <h3>Você preenche o formulário</h3>
+            <p>Três perguntas sobre sua área, sua cidade e sua maior dificuldade hoje. Leva menos de 2 minutos.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <h3>Entramos em contato em até 24h</h3>
+            <p>Confirmamos o horário da call e enviamos uma confirmação no WhatsApp ou email.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <h3>Diagnóstico na call</h3>
+            <p>Analisamos juntos o que está travando a captação e o que pode ser feito de forma prática, dentro do que a OAB permite.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM -->
+  <section class="para-quem">
+    <div class="container">
+      <p class="section-label">Para quem é</p>
+      <h2>Esse diagnóstico é pra você se...</h2>
+      <ul class="check-list">
+        <li>
+          <span class="check-icon">
+            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
+          </span>
+          Você é advogado autônomo ou tem um escritório de até 10 pessoas
+        </li>
+        <li>
+          <span class="check-icon">
+            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
+          </span>
+          A maior parte dos seus clientes vem de indicação e você quer mudar isso
+        </li>
+        <li>
+          <span class="check-icon">
+            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
+          </span>
+          Você quer clientes qualificados, não qualquer lead de formulário
+        </li>
+        <li>
+          <span class="check-icon">
+            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
+          </span>
+          Você quer um sistema que funcione sem precisar postar todo dia
+        </li>
+      </ul>
+      <div class="not-for">
+        <strong>Não é pra você se:</strong>
+        Você está procurando um curso de marketing jurídico ou quer gerenciar a captação por conta própria. Atendo escritórios que querem terceirizar esse processo por completo.
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section class="formulario" id="formulario">
+    <div class="container">
+      <p class="section-label">Agendar diagnóstico</p>
+      <h2>Preencha abaixo para garantir sua vaga.</h2>
+      <p>Analiso cada resposta antes da call. Quanto mais preciso você for, mais útil a conversa vai ser.</p>
+
+      <form id="form-diagnostico" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="SEU_ACCESS_KEY_AQUI" />
+        <input type="hidden" name="subject" value="Novo diagnóstico — kalidcarvalho.com/advogados" />
+        <input type="hidden" name="redirect" value="" />
+        <input type="checkbox" name="botcheck" style="display:none" />
+
+        <div class="form-group">
+          <label for="nome">Nome completo</label>
+          <input type="text" id="nome" name="nome" placeholder="Dr. Rafael Souza" required />
+        </div>
+
+        <div class="form-group">
+          <label for="area">Área de atuação</label>
+          <select id="area" name="area" required>
+            <option value="" disabled selected>Selecione sua área principal</option>
+            <option>Direito de Família e Sucessões</option>
+            <option>Direito Trabalhista</option>
+            <option>Direito do Consumidor</option>
+            <option>Direito Previdenciário</option>
+            <option>Direito Criminal</option>
+            <option>Direito Civil</option>
+            <option>Direito Empresarial</option>
+            <option>Outra</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="cidade">Cidade</label>
+          <input type="text" id="cidade" name="cidade" placeholder="São Paulo, SP" required />
+        </div>
+
+        <div class="form-group">
+          <label for="dificuldade">Qual é sua maior dificuldade com captação hoje?</label>
+          <textarea id="dificuldade" name="dificuldade" placeholder="Ex: dependo só de indicação e o volume é imprevisível..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="origem">Como você chegou até aqui?</label>
+          <select id="origem" name="origem" required>
+            <option value="" disabled selected>Selecione</option>
+            <option>Instagram @eukalidcarvalho</option>
+            <option>Google</option>
+            <option>Indicação</option>
+            <option>Outro</option>
+          </select>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn-primary">Quero meu diagnóstico gratuito</button>
+          <p class="hero-note" style="margin-top:12px;">Sem compromisso de compra. Respondemos em até 24h úteis.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <p>Kalid Carvalho &mdash; <a href="https://kalidcarvalho.com" target="_blank">kalidcarvalho.com</a></p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- PÁGINA DE OBRIGADO -->
+<div id="obrigado">
+  <div class="container">
+    <div class="obrigado-box">
+      <div class="obrigado-icon">
+        <svg viewBox="0 0 28 28"><polyline points="4,14 10,20 24,7"/></svg>
+      </div>
+      <h2>Diagnóstico solicitado.</h2>
+      <p>Recebi sua solicitação. Vou entrar em contato em até 24 horas úteis para confirmar o horário da call.</p>
+      <p class="detail">Fique de olho no seu WhatsApp ou email.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.getElementById('form-diagnostico');
+  const pagina = document.getElementById('pagina-principal');
+  const obrigado = document.getElementById('obrigado');
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.textContent = 'Enviando...';
+    btn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, { method: 'POST', body: data });
+      const json = await res.json();
+
+      if (json.success) {
+        pagina.style.display = 'none';
+        obrigado.classList.add('active');
+        window.scrollTo(0, 0);
+      } else {
+        btn.textContent = 'Erro ao enviar. Tente novamente.';
+        btn.disabled = false;
+      }
+    } catch (err) {
+      btn.textContent = 'Erro ao enviar. Tente novamente.';
+      btn.disabled = false;
+    }
+  });
+</script>
+
+</body>
+</html>
