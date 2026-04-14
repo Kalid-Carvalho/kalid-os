@@ -4,454 +4,689 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Diagnóstico de Captação para Advogados | Kalid Carvalho</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  <meta name="description" content="Pare de depender de indicação. Diagnóstico gratuito para advogados que querem um sistema de captação previsível, dentro do que a OAB permite." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
 
+  <style>
     :root {
-      --blue: #1A56DB;
-      --blue-light: #3B6FE8;
-      --bg: #0D1117;
-      --bg-card: #161B22;
-      --bg-card2: #1C2230;
-      --text: #E6EDF3;
-      --text-muted: #8B949E;
-      --border: #21262D;
-      --green: #2EA043;
+      --bg:           #000000;
+      --bg2:          #0a0a0a;
+      --bg3:          #111111;
+      --surface:      #161616;
+      --accent:       #cdff00;
+      --accent-dim:   rgba(205,255,0,0.07);
+      --accent-border:rgba(205,255,0,0.22);
+      --border:       rgba(255,255,255,0.09);
+      --border2:      rgba(255,255,255,0.15);
+      --text:         #ffffff;
+      --text-muted:   #888888;
+      --text-dim:     #aaaaaa;
+      --font:         'Inter', sans-serif;
+      --mono:         'JetBrains Mono', monospace;
     }
 
-    html { scroll-behavior: smooth; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
 
     body {
-      font-family: 'Space Grotesk', sans-serif;
+      font-family: var(--font);
       background: var(--bg);
       color: var(--text);
-      line-height: 1.6;
-      font-size: 16px;
+      overflow-x: hidden;
     }
 
-    /* LAYOUT */
-    .container {
-      max-width: 680px;
-      margin: 0 auto;
-      padding: 0 24px;
+    /* NOISE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.35;
     }
 
-    section { padding: 72px 0; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); }
 
-    /* HERO */
+    /* ─── LAYOUT ─── */
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .mono { font-family: var(--mono); }
+
+    .label {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+    }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal.d1 { transition-delay: 0.1s; }
+    .reveal.d2 { transition-delay: 0.2s; }
+    .reveal.d3 { transition-delay: 0.3s; }
+
+    /* ─── HERO ─── */
     .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       padding: 80px 0 64px;
       border-bottom: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
     }
 
-    .badge {
-      display: inline-block;
-      background: rgba(26, 86, 219, 0.15);
-      border: 1px solid rgba(26, 86, 219, 0.4);
-      color: #6B9BF7;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(205,255,0,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(205,255,0,0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+
+    .hero-glow {
+      position: absolute;
+      top: 10%;
+      right: -20%;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(ellipse, rgba(205,255,0,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 40px 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       padding: 6px 14px;
-      border-radius: 4px;
+      border: 1px solid var(--accent-border);
+      background: var(--accent-dim);
+      border-radius: 100px;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--accent);
+      margin-bottom: 36px;
+    }
+
+    .hero-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.25; }
+    }
+
+    .hero-title {
+      font-size: clamp(40px, 8vw, 76px);
+      font-weight: 900;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
       margin-bottom: 28px;
     }
 
-    .hero h1 {
-      font-size: clamp(28px, 6vw, 42px);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
-      color: #FFFFFF;
+    .hero-title .outline {
+      -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+      color: transparent;
     }
 
-    .hero h1 span {
-      color: var(--blue-light);
+    .hero-title .lit {
+      color: var(--accent);
+      text-shadow: 0 0 60px rgba(205,255,0,0.18);
     }
 
-    .hero p {
-      font-size: 18px;
-      color: var(--text-muted);
-      margin-bottom: 36px;
+    .hero-sub {
+      font-size: 17px;
+      color: var(--text-dim);
+      line-height: 1.75;
       max-width: 560px;
+      margin-bottom: 44px;
     }
 
     .btn-primary {
-      display: inline-block;
-      background: var(--blue);
-      color: #FFFFFF;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 16px 32px;
-      border-radius: 6px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 18px 36px;
+      background: var(--accent);
+      color: #000;
+      font-family: var(--mono);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
       text-decoration: none;
+      border-radius: 4px;
       border: none;
       cursor: pointer;
-      transition: background 0.2s;
-      width: 100%;
-      text-align: center;
+      transition: all 0.25s;
+      position: relative;
+      overflow: hidden;
     }
 
-    .btn-primary:hover { background: var(--blue-light); }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.2) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .btn-primary:hover::before { transform: translateX(100%); }
+    .btn-primary:hover {
+      box-shadow: 0 0 30px rgba(205,255,0,0.35);
+      transform: translateY(-2px);
+    }
 
     .hero-note {
-      margin-top: 12px;
-      font-size: 13px;
-      color: var(--text-muted);
-      text-align: center;
+      margin-top: 16px;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #444;
     }
 
-    /* DOR */
-    .section-label {
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.1em;
+    /* ─── MARQUEE ─── */
+    .marquee-strip {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg2);
+      overflow: hidden;
+      height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 40px;
+      font-family: var(--mono);
+      font-size: 10px;
       text-transform: uppercase;
+      letter-spacing: 0.18em;
       color: var(--text-muted);
+    }
+
+    .marquee-item .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .marquee-item strong { color: var(--accent); }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 96px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 5vw, 50px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
       margin-bottom: 20px;
     }
 
-    .pain h2 {
-      font-size: clamp(22px, 4vw, 30px);
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 24px;
-      line-height: 1.3;
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      max-width: 560px;
     }
 
-    .pain p {
-      color: var(--text-muted);
-      font-size: 17px;
-      margin-bottom: 16px;
+    /* ─── PROBLEMA ─── */
+    .problema-bg { background: var(--bg2); }
+
+    .quote-block {
+      border-left: 2px solid var(--accent);
+      padding: 20px 24px;
+      background: var(--accent-dim);
+      border-radius: 0 6px 6px 0;
+      margin: 36px 0;
     }
 
-    .pain p strong {
+    .quote-block p {
+      font-size: 16px;
+      font-weight: 600;
+      line-height: 1.65;
       color: var(--text);
     }
 
-    .pain-list {
-      list-style: none;
-      margin-top: 32px;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+    .quote-block p em {
+      color: var(--accent);
+      font-style: normal;
     }
 
-    .pain-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: var(--bg-card);
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
       border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 16px;
-      font-size: 15px;
-      color: var(--text-muted);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 40px;
     }
 
-    .pain-list li::before {
-      content: '';
-      width: 6px;
-      height: 6px;
-      background: #E84040;
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-top: 8px;
+    .pain-item {
+      padding: 28px 24px;
+      background: var(--bg3);
+      transition: background 0.25s;
     }
 
-    /* DIAGNOSTICO */
-    .diagnostico { border-top: 1px solid var(--border); }
+    .pain-item:hover { background: var(--surface); }
 
-    .diagnostico h2 {
-      font-size: clamp(22px, 4vw, 30px);
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 16px;
-      line-height: 1.3;
+    .pain-item .pi-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: 0.15em;
+      margin-bottom: 12px;
+      display: block;
     }
 
-    .diagnostico p {
-      color: var(--text-muted);
-      font-size: 17px;
-      margin-bottom: 32px;
+    .pain-item p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
     }
 
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
+    .pain-item p strong { color: var(--text); font-weight: 600; }
+
+    /* ─── COMO FUNCIONA ─── */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 48px;
     }
 
-    .step {
-      display: flex;
-      gap: 20px;
+    .step-card {
+      padding: 40px 28px;
+      background: var(--bg3);
+      transition: background 0.25s;
       position: relative;
     }
 
-    .step:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      left: 19px;
-      top: 44px;
-      width: 2px;
-      height: calc(100% - 12px);
-      background: var(--border);
+    .step-card:hover { background: var(--surface); }
+
+    .step-card.active-step {
+      background: rgba(205,255,0,0.04);
     }
 
-    .step-num {
-      width: 40px;
-      height: 40px;
-      background: rgba(26, 86, 219, 0.15);
-      border: 1px solid rgba(26, 86, 219, 0.4);
-      border-radius: 50%;
+    .step-card.active-step .step-icon-box {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #000;
+    }
+
+    .step-card.active-step .s-num { color: var(--accent); }
+
+    .s-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      color: var(--text-muted);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .step-icon-box {
+      width: 44px;
+      height: 44px;
+      background: var(--bg);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 18px;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .step-card h4 {
+      font-size: 15px;
       font-weight: 700;
-      color: #6B9BF7;
-      flex-shrink: 0;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
     }
 
-    .step-content {
-      padding-bottom: 32px;
+    .step-card p {
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.75;
     }
 
-    .step-content h3 {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 6px;
-    }
+    /* ─── PARA QUEM ─── */
+    .para-quem-bg { background: var(--bg2); }
 
-    .step-content p {
-      font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 0;
-    }
-
-    /* PARA QUEM */
-    .para-quem { border-top: 1px solid var(--border); }
-
-    .para-quem h2 {
-      font-size: clamp(20px, 4vw, 26px);
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 24px;
-    }
-
-    .check-list {
-      list-style: none;
+    .check-grid {
       display: flex;
       flex-direction: column;
       gap: 12px;
-      margin-bottom: 28px;
+      margin-top: 40px;
     }
 
-    .check-list li {
+    .check-row {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
-      font-size: 16px;
-      color: var(--text-muted);
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      transition: border-color 0.2s;
     }
+
+    .check-row:hover { border-color: var(--accent-border); }
 
     .check-icon {
       width: 20px;
       height: 20px;
-      background: rgba(46, 160, 67, 0.15);
-      border: 1px solid rgba(46, 160, 67, 0.4);
-      border-radius: 50%;
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
+      border-radius: 4px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      margin-top: 2px;
+      margin-top: 1px;
     }
 
     .check-icon svg {
       width: 10px;
       height: 10px;
       fill: none;
-      stroke: #2EA043;
+      stroke: var(--accent);
       stroke-width: 2.5;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .not-for {
-      background: var(--bg-card);
+    .check-row span {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+
+    .not-for-box {
+      margin-top: 24px;
+      padding: 18px 20px;
+      background: var(--bg3);
       border: 1px solid var(--border);
       border-radius: 6px;
-      padding: 16px 20px;
+    }
+
+    .not-for-box .nf-label {
+      font-family: var(--mono);
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .not-for-box p {
       font-size: 14px;
       color: var(--text-muted);
+      line-height: 1.65;
     }
 
-    .not-for strong {
-      color: var(--text);
-      display: block;
-      margin-bottom: 4px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
+    /* ─── FORMULARIO ─── */
+    .form-wrap {
+      margin-top: 48px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
     }
 
-    /* FORMULARIO */
-    .formulario { border-top: 1px solid var(--border); }
-
-    .formulario h2 {
-      font-size: clamp(22px, 4vw, 30px);
-      font-weight: 700;
-      color: #FFFFFF;
-      margin-bottom: 10px;
+    .form-header {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    .formulario > .container > p {
-      color: var(--text-muted);
-      font-size: 16px;
-      margin-bottom: 36px;
+    .fh-dots { display: flex; gap: 6px; }
+
+    .fh-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
     }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+    .form-body { padding: 32px 28px; }
+
+    .form-group { margin-bottom: 20px; }
 
     label {
       display: block;
-      font-size: 14px;
-      font-weight: 500;
-      color: var(--text);
-      margin-bottom: 8px;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--text-muted);
+      margin-bottom: 10px;
     }
 
     input, select, textarea {
       width: 100%;
-      background: var(--bg-card);
-      border: 1px solid var(--border);
+      background: var(--bg);
+      border: 1px solid var(--border2);
       border-radius: 6px;
       padding: 14px 16px;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 15px;
+      font-family: var(--font);
+      font-size: 14px;
       color: var(--text);
-      transition: border-color 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s;
       outline: none;
       appearance: none;
       -webkit-appearance: none;
     }
 
-    input::placeholder, textarea::placeholder {
-      color: #4A5568;
-    }
-
+    input::placeholder, textarea::placeholder { color: #333; }
     input:focus, select:focus, textarea:focus {
-      border-color: var(--blue);
+      border-color: var(--accent-border);
+      box-shadow: 0 0 0 3px rgba(205,255,0,0.06);
     }
 
     select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B949E' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23666' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
-      background-position: right 16px center;
-      padding-right: 40px;
+      background-position: right 14px center;
+      padding-right: 38px;
       cursor: pointer;
     }
 
-    select option {
-      background: var(--bg-card2);
-      color: var(--text);
+    select option { background: #111; color: var(--text); }
+    textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit { margin-top: 28px; }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+      font-size: 12px;
     }
 
-    textarea {
-      resize: vertical;
-      min-height: 100px;
+    .form-disclaimer {
+      margin-top: 14px;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #333;
+      text-align: center;
     }
 
-    .form-submit {
-      margin-top: 28px;
-    }
-
-    /* OBRIGADO */
+    /* ─── OBRIGADO ─── */
     #obrigado {
       display: none;
-      min-height: 80vh;
+      min-height: 100svh;
       align-items: center;
+      justify-content: center;
     }
 
-    #obrigado.active {
-      display: flex;
-    }
+    #obrigado.active { display: flex; }
 
-    .obrigado-box {
+    .obrigado-inner {
       text-align: center;
-      padding: 64px 0;
+      padding: 80px 24px;
+      max-width: 540px;
+      margin: 0 auto;
     }
 
-    .obrigado-icon {
+    .obrigado-check {
       width: 64px;
       height: 64px;
-      background: rgba(46, 160, 67, 0.15);
-      border: 1px solid rgba(46, 160, 67, 0.4);
+      background: var(--accent-dim);
+      border: 1px solid var(--accent-border);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 28px;
+      margin: 0 auto 32px;
     }
 
-    .obrigado-icon svg {
-      width: 28px;
-      height: 28px;
+    .obrigado-check svg {
+      width: 26px;
+      height: 26px;
       fill: none;
-      stroke: #2EA043;
+      stroke: var(--accent);
       stroke-width: 2;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
 
-    .obrigado-box h2 {
-      font-size: 28px;
-      font-weight: 700;
-      color: #FFFFFF;
+    .obrigado-inner h2 {
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      letter-spacing: -0.025em;
       margin-bottom: 16px;
     }
 
-    .obrigado-box p {
-      font-size: 17px;
-      color: var(--text-muted);
-      max-width: 420px;
-      margin: 0 auto 12px;
+    .obrigado-inner h2 span { color: var(--accent); }
+
+    .obrigado-inner p {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 10px;
     }
 
-    .obrigado-box .detail {
-      font-size: 14px;
-      color: #4A5568;
+    .obrigado-inner .mono-note {
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #444;
+      margin-top: 28px;
     }
 
-    /* FOOTER */
+    /* ─── FOOTER ─── */
     footer {
-      border-top: 1px solid var(--border);
       padding: 32px 0;
-      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-logo {
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: var(--accent);
     }
 
     footer p {
-      font-size: 13px;
-      color: #4A5568;
+      font-family: var(--mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #333;
     }
 
-    footer a {
-      color: var(--text-muted);
-      text-decoration: none;
-    }
+    footer a { color: #555; text-decoration: none; }
+    footer a:hover { color: var(--text-muted); }
 
-    footer a:hover { color: var(--text); }
-
-    @media (max-width: 480px) {
-      section { padding: 56px 0; }
-      .hero { padding: 60px 0 48px; }
+    /* ─── MOBILE ─── */
+    @media (max-width: 640px) {
+      section { padding: 72px 0; }
+      .hero { min-height: auto; padding: 100px 0 64px; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      footer .container { flex-direction: column; align-items: flex-start; }
     }
   </style>
 </head>
@@ -462,167 +697,233 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
     <div class="container">
-      <div class="badge">Diagnóstico Gratuito</div>
-      <h1>Pare de depender de indicação.<br><span>Seu escritório pode captar clientes de forma previsível.</span></h1>
-      <p>Uma conversa de 30 minutos para entender o que está travando a captação do seu escritório e o que pode mudar nos próximos 30 dias, dentro do que a OAB permite.</p>
-      <a href="#formulario" class="btn-primary">Quero meu diagnóstico gratuito</a>
-      <p class="hero-note">Sem compromisso de compra. Vagas limitadas por semana.</p>
+      <div class="hero-inner">
+        <div class="hero-badge reveal">
+          <span class="hero-badge-dot"></span>
+          Diagnóstico Gratuito — Advocacia
+        </div>
+        <h1 class="hero-title reveal d1">
+          Pare de depender<br>
+          <span class="outline">de indicação.</span><br>
+          <span class="lit">Capte clientes</span><br>
+          <span class="outline">todo mês.</span>
+        </h1>
+        <p class="hero-sub reveal d2">
+          Um diagnóstico de 30 minutos para entender o que está travando a captação do seu escritório e o que pode mudar nos próximos 30 dias, dentro do que a OAB permite.
+        </p>
+        <div class="reveal d3">
+          <a href="#formulario" class="btn-primary">
+            Quero meu diagnóstico gratuito
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+          </a>
+          <p class="hero-note">Sem compromisso de compra. Vagas limitadas por semana.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- DOR -->
-  <section class="pain">
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="dot"></span> Captação Previsível</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Lead Qualificado</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Dentro da OAB</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Sem Depender de Indicação</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Sistema de Captação</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Escritório Previsível</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Google Ads + Meta Ads</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Advocacia Digital</strong></div>
+      <!-- duplicados para loop -->
+      <div class="marquee-item"><span class="dot"></span> Captação Previsível</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Lead Qualificado</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Dentro da OAB</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Sem Depender de Indicação</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Sistema de Captação</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Escritório Previsível</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Google Ads + Meta Ads</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Advocacia Digital</strong></div>
+    </div>
+  </div>
+
+  <!-- PROBLEMA -->
+  <section class="problema-bg">
     <div class="container">
-      <p class="section-label">O problema</p>
-      <h2>Você é bom no que faz. O problema é que os clientes não chegam de forma previsível.</h2>
-      <p>Todo mês é uma incógnita. Você depende de indicação, da sua rede estar ativa, da sorte. Quando ela esfria, o caixa sente.</p>
-      <p>E quando tentou resolver isso por conta própria, não funcionou como esperava.</p>
-      <ul class="pain-list">
-        <li>Criou Instagram, postou por duas semanas e parou porque não apareceu resultado</li>
-        <li>Rodou tráfego pago e recebeu leads que não tinham perfil ou intenção de contratar</li>
-        <li>Contratou agência que entregou um site bonito mas nenhum cliente novo</li>
-        <li>Tem receio de fazer algo que a OAB possa questionar</li>
-      </ul>
+      <span class="section-tag reveal">// O problema</span>
+      <h2 class="section-title reveal d1">Você é bom no que faz.<br>O problema é a previsibilidade.</h2>
+      <div class="quote-block reveal d2">
+        <p>Todo mês é uma incógnita. Você depende de indicação, da sua rede estar ativa, da sorte. <em>Quando ela esfria, o caixa sente.</em></p>
+      </div>
+      <p class="section-sub reveal d2" style="margin-bottom:0">Quando tentou resolver por conta própria, não funcionou como esperava.</p>
+      <div class="pain-grid reveal d3">
+        <div class="pain-item">
+          <span class="pi-num">01</span>
+          <p>Criou Instagram, postou por <strong>duas semanas e parou</strong> porque não apareceu resultado.</p>
+        </div>
+        <div class="pain-item">
+          <span class="pi-num">02</span>
+          <p>Rodou tráfego pago e recebeu <strong>leads que não tinham perfil</strong> nem intenção de contratar.</p>
+        </div>
+        <div class="pain-item">
+          <span class="pi-num">03</span>
+          <p>Contratou agência que entregou <strong>site bonito mas nenhum cliente</strong> novo.</p>
+        </div>
+        <div class="pain-item">
+          <span class="pi-num">04</span>
+          <p>Tem receio de <strong>fazer algo que a OAB</strong> possa questionar.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- DIAGNÓSTICO -->
-  <section class="diagnostico">
+  <!-- COMO FUNCIONA -->
+  <section>
     <div class="container">
-      <p class="section-label">O diagnóstico</p>
-      <h2>Uma call de 30 minutos para mapear o que está limitando a captação do seu escritório.</h2>
-      <p>Não é uma apresentação de serviços. É uma análise real da sua situação atual e do que faz sentido pra você especificamente.</p>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <div class="step-content">
-            <h3>Você preenche o formulário</h3>
-            <p>Três perguntas sobre sua área, sua cidade e sua maior dificuldade hoje. Leva menos de 2 minutos.</p>
+      <span class="section-tag reveal">// Como funciona</span>
+      <h2 class="section-title reveal d1">O diagnóstico</h2>
+      <p class="section-sub reveal d2">Uma conversa de 30 minutos para mapear o que está limitando a captação do seu escritório. Não é apresentação de serviços. É análise real da sua situação.</p>
+      <div class="steps-grid reveal d3">
+        <div class="step-card">
+          <span class="s-num">01 —</span>
+          <div class="step-icon-box">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="14" height="12" rx="2"/><path d="M6 3V1M12 3V1M2 7h14"/></svg>
           </div>
+          <h4>Você preenche o formulário</h4>
+          <p>Quatro perguntas sobre seu escritório, sua área e sua maior dificuldade hoje. Leva menos de 2 minutos.</p>
         </div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <div class="step-content">
-            <h3>Entramos em contato em até 24h</h3>
-            <p>Confirmamos o horário da call e enviamos uma confirmação no WhatsApp ou email.</p>
+        <div class="step-card active-step">
+          <span class="s-num">02 —</span>
+          <div class="step-icon-box">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3H3a1 1 0 00-1 1v9a1 1 0 001 1h6l3 2v-2h3a1 1 0 001-1V4a1 1 0 00-1-1z"/></svg>
           </div>
+          <h4>Confirmamos em até 24h</h4>
+          <p>Analisamos sua resposta e entramos em contato pelo WhatsApp ou email para confirmar o horário.</p>
         </div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <div class="step-content">
-            <h3>Diagnóstico na call</h3>
-            <p>Analisamos juntos o que está travando a captação e o que pode ser feito de forma prática, dentro do que a OAB permite.</p>
+        <div class="step-card">
+          <span class="s-num">03 —</span>
+          <div class="step-icon-box">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="9" r="7"/><path d="M9 5v4l3 2"/></svg>
           </div>
+          <h4>Call de diagnóstico</h4>
+          <p>30 minutos. Analisamos o que está travando a captação e o que faz sentido pra você, dentro do que a OAB permite.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- PARA QUEM -->
-  <section class="para-quem">
+  <section class="para-quem-bg">
     <div class="container">
-      <p class="section-label">Para quem é</p>
-      <h2>Esse diagnóstico é pra você se...</h2>
-      <ul class="check-list">
-        <li>
-          <span class="check-icon">
-            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
-          </span>
-          Você é advogado autônomo ou tem um escritório de até 10 pessoas
-        </li>
-        <li>
-          <span class="check-icon">
-            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
-          </span>
-          A maior parte dos seus clientes vem de indicação e você quer mudar isso
-        </li>
-        <li>
-          <span class="check-icon">
-            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
-          </span>
-          Você quer clientes qualificados, não qualquer lead de formulário
-        </li>
-        <li>
-          <span class="check-icon">
-            <svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg>
-          </span>
-          Você quer um sistema que funcione sem precisar postar todo dia
-        </li>
-      </ul>
-      <div class="not-for">
-        <strong>Não é pra você se:</strong>
-        Você está procurando um curso de marketing jurídico ou quer gerenciar a captação por conta própria. Atendo escritórios que querem terceirizar esse processo por completo.
+      <span class="section-tag reveal">// Para quem é</span>
+      <h2 class="section-title reveal d1">Esse diagnóstico é pra você se...</h2>
+      <div class="check-grid reveal d2">
+        <div class="check-row">
+          <span class="check-icon"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
+          <span>Você é advogado autônomo ou tem um escritório de até 10 pessoas</span>
+        </div>
+        <div class="check-row">
+          <span class="check-icon"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
+          <span>A maior parte dos seus clientes vem de indicação e você quer mudar isso</span>
+        </div>
+        <div class="check-row">
+          <span class="check-icon"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
+          <span>Você quer clientes qualificados, não qualquer lead de formulário</span>
+        </div>
+        <div class="check-row">
+          <span class="check-icon"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1"/></svg></span>
+          <span>Você quer um sistema que funcione sem precisar postar todo dia</span>
+        </div>
+      </div>
+      <div class="not-for-box reveal d3">
+        <span class="nf-label">Não é pra você se:</span>
+        <p>Você está procurando curso de marketing jurídico ou quer gerenciar a captação por conta própria. Atendo escritórios que querem terceirizar esse processo por completo.</p>
       </div>
     </div>
   </section>
 
-  <!-- FORMULÁRIO -->
-  <section class="formulario" id="formulario">
+  <!-- FORMULARIO -->
+  <section id="formulario">
     <div class="container">
-      <p class="section-label">Agendar diagnóstico</p>
-      <h2>Preencha abaixo para garantir sua vaga.</h2>
-      <p>Analiso cada resposta antes da call. Quanto mais preciso você for, mais útil a conversa vai ser.</p>
+      <span class="section-tag reveal">// Agendar diagnóstico</span>
+      <h2 class="section-title reveal d1">Garanta sua vaga.</h2>
+      <p class="section-sub reveal d2">Analiso cada resposta antes da call. Quanto mais preciso você for, mais útil a conversa vai ser.</p>
 
-      <form id="form-diagnostico" action="https://api.web3forms.com/submit" method="POST">
-        <input type="hidden" name="access_key" value="SEU_ACCESS_KEY_AQUI" />
-        <input type="hidden" name="subject" value="Novo diagnóstico — kalidcarvalho.com/advogados" />
-        <input type="hidden" name="redirect" value="" />
-        <input type="checkbox" name="botcheck" style="display:none" />
-
-        <div class="form-group">
-          <label for="nome">Nome completo</label>
-          <input type="text" id="nome" name="nome" placeholder="Dr. Rafael Souza" required />
+      <div class="form-wrap reveal d3">
+        <div class="form-header">
+          <div class="fh-dots">
+            <div class="fh-dot" style="background:#ff5f57"></div>
+            <div class="fh-dot" style="background:#febc2e"></div>
+            <div class="fh-dot" style="background:#28c840"></div>
+          </div>
+          <span style="font-family:var(--mono);font-size:11px;color:#444;margin-left:8px;">diagnostico.form</span>
         </div>
+        <div class="form-body">
+          <form id="form-diagnostico" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="f65a41ca-f8a1-4a6e-bde4-fdeb6672298b" />
+            <input type="hidden" name="subject" value="Novo diagnóstico — kalidcarvalho.com/advogados" />
+            <input type="checkbox" name="botcheck" style="display:none" />
 
-        <div class="form-group">
-          <label for="area">Área de atuação</label>
-          <select id="area" name="area" required>
-            <option value="" disabled selected>Selecione sua área principal</option>
-            <option>Direito de Família e Sucessões</option>
-            <option>Direito Trabalhista</option>
-            <option>Direito do Consumidor</option>
-            <option>Direito Previdenciário</option>
-            <option>Direito Criminal</option>
-            <option>Direito Civil</option>
-            <option>Direito Empresarial</option>
-            <option>Outra</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" name="nome" placeholder="Dr. Rafael Souza" required />
+            </div>
 
-        <div class="form-group">
-          <label for="cidade">Cidade</label>
-          <input type="text" id="cidade" name="cidade" placeholder="São Paulo, SP" required />
-        </div>
+            <div class="form-group">
+              <label for="area">Área de atuação</label>
+              <select id="area" name="area" required>
+                <option value="" disabled selected>Selecione sua área principal</option>
+                <option>Direito de Família e Sucessões</option>
+                <option>Direito Trabalhista</option>
+                <option>Direito do Consumidor</option>
+                <option>Direito Previdenciário</option>
+                <option>Direito Criminal</option>
+                <option>Direito Civil</option>
+                <option>Direito Empresarial</option>
+                <option>Outra</option>
+              </select>
+            </div>
 
-        <div class="form-group">
-          <label for="dificuldade">Qual é sua maior dificuldade com captação hoje?</label>
-          <textarea id="dificuldade" name="dificuldade" placeholder="Ex: dependo só de indicação e o volume é imprevisível..." required></textarea>
-        </div>
+            <div class="form-group">
+              <label for="cidade">Cidade</label>
+              <input type="text" id="cidade" name="cidade" placeholder="São Paulo, SP" required />
+            </div>
 
-        <div class="form-group">
-          <label for="origem">Como você chegou até aqui?</label>
-          <select id="origem" name="origem" required>
-            <option value="" disabled selected>Selecione</option>
-            <option>Instagram @eukalidcarvalho</option>
-            <option>Google</option>
-            <option>Indicação</option>
-            <option>Outro</option>
-          </select>
-        </div>
+            <div class="form-group">
+              <label for="dificuldade">Qual é sua maior dificuldade com captação hoje?</label>
+              <textarea id="dificuldade" name="dificuldade" placeholder="Ex: dependo só de indicação e o volume é imprevisível..." required></textarea>
+            </div>
 
-        <div class="form-submit">
-          <button type="submit" class="btn-primary">Quero meu diagnóstico gratuito</button>
-          <p class="hero-note" style="margin-top:12px;">Sem compromisso de compra. Respondemos em até 24h úteis.</p>
+            <div class="form-group">
+              <label for="origem">Como você chegou até aqui?</label>
+              <select id="origem" name="origem" required>
+                <option value="" disabled selected>Selecione</option>
+                <option>Instagram @eukalidcarvalho</option>
+                <option>Google</option>
+                <option>Indicação</option>
+                <option>Outro</option>
+              </select>
+            </div>
+
+            <div class="form-submit">
+              <button type="submit" class="btn-primary btn-full">
+                Quero meu diagnóstico gratuito
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+              </button>
+              <p class="form-disclaimer">Sem compromisso de compra. Respondemos em até 24h úteis.</p>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
   </section>
 
   <!-- FOOTER -->
   <footer>
     <div class="container">
-      <p>Kalid Carvalho &mdash; <a href="https://kalidcarvalho.com" target="_blank">kalidcarvalho.com</a></p>
+      <span class="footer-logo">KALID CARVALHO</span>
+      <p><a href="https://kalidcarvalho.com" target="_blank">kalidcarvalho.com</a> &nbsp;/&nbsp; <a href="https://instagram.com/eukalidcarvalho" target="_blank">@eukalidcarvalho</a></p>
     </div>
   </footer>
 
@@ -630,19 +931,26 @@
 
 <!-- PÁGINA DE OBRIGADO -->
 <div id="obrigado">
-  <div class="container">
-    <div class="obrigado-box">
-      <div class="obrigado-icon">
-        <svg viewBox="0 0 28 28"><polyline points="4,14 10,20 24,7"/></svg>
-      </div>
-      <h2>Diagnóstico solicitado.</h2>
-      <p>Recebi sua solicitação. Vou entrar em contato em até 24 horas úteis para confirmar o horário da call.</p>
-      <p class="detail">Fique de olho no seu WhatsApp ou email.</p>
+  <div class="obrigado-inner">
+    <div class="obrigado-check">
+      <svg viewBox="0 0 26 26"><polyline points="4,13 10,19 22,6"/></svg>
     </div>
+    <h2>Diagnóstico<br><span>solicitado.</span></h2>
+    <p>Recebi sua solicitação. Vou entrar em contato em até 24 horas úteis para confirmar o horário da call.</p>
+    <p>Fique de olho no seu WhatsApp ou email.</p>
+    <p class="mono-note">Kalid Carvalho &mdash; kalidcarvalho.com/advogados</p>
   </div>
 </div>
 
 <script>
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Form submit
   const form = document.getElementById('form-diagnostico');
   const pagina = document.getElementById('pagina-principal');
   const obrigado = document.getElementById('obrigado');
@@ -650,28 +958,26 @@
   form.addEventListener('submit', async function(e) {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Enviando...';
+    const original = btn.innerHTML;
+    btn.innerHTML = 'Enviando...';
     btn.disabled = true;
 
     try {
-      const data = new FormData(form);
-      const res = await fetch(form.action, { method: 'POST', body: data });
+      const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
       const json = await res.json();
-
       if (json.success) {
         pagina.style.display = 'none';
         obrigado.classList.add('active');
         window.scrollTo(0, 0);
       } else {
-        btn.textContent = 'Erro ao enviar. Tente novamente.';
+        btn.innerHTML = 'Erro ao enviar. Tente novamente.';
         btn.disabled = false;
       }
-    } catch (err) {
-      btn.textContent = 'Erro ao enviar. Tente novamente.';
+    } catch {
+      btn.innerHTML = original;
       btn.disabled = false;
     }
   });
 </script>
-
 </body>
 </html>
