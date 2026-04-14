@@ -33,22 +33,31 @@ deploy_links() {
   echo "✓ grovw.com.br/links atualizado"
 }
 
+deploy_diagnostico() {
+  echo "→ Subindo landing page de diagnóstico..."
+  scp $SSH_OPTS "$HOME/Downloads/KalidCarvalho-os/projetos/landing-advogados/index-gold.html" $VPS:/var/www/kalid/diagnostico/index.html
+  echo "✓ kalidcarvalho.com/diagnostico atualizado"
+}
+
 case "$1" in
-  grovw)  deploy_grovw ;;
-  kalid)  deploy_kalid ;;
-  links)  deploy_links ;;
+  grovw)        deploy_grovw ;;
+  kalid)        deploy_kalid ;;
+  links)        deploy_links ;;
+  diagnostico)  deploy_diagnostico ;;
   all)
     deploy_grovw
     deploy_kalid
     deploy_links
+    deploy_diagnostico
     ;;
   *)
     echo "Uso: bash deploy.sh [target]"
     echo ""
     echo "Targets disponíveis:"
-    echo "  grovw  → sobe site principal grovw.com.br"
-    echo "  kalid  → sobe kalidcarvalho.com/links"
-    echo "  links  → sobe grovw.com.br/links"
-    echo "  all    → sobe tudo"
+    echo "  grovw        → sobe site principal grovw.com.br"
+    echo "  kalid        → sobe kalidcarvalho.com/links"
+    echo "  links        → sobe grovw.com.br/links"
+    echo "  diagnostico  → sobe kalidcarvalho.com/diagnostico"
+    echo "  all          → sobe tudo"
     ;;
 esac
