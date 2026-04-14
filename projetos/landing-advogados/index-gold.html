@@ -378,6 +378,7 @@
       gap: 72px;
       align-items: start;
     }
+    .prob-cols > * { min-width: 0; }
 
     @media (max-width: 860px) {
       .prob-cols { grid-template-columns: 1fr; gap: 48px; }
@@ -390,6 +391,7 @@
       gap: 72px;
       align-items: start;
     }
+    .steps-cols > * { min-width: 0; }
 
     @media (max-width: 860px) {
       .steps-cols { grid-template-columns: 1fr; gap: 48px; }
@@ -402,9 +404,92 @@
       gap: 72px;
       align-items: start;
     }
+    .quem-cols > * { min-width: 0; }
 
     @media (max-width: 860px) {
       .quem-cols { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ─── SOBRE ─── */
+    .about-card {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 0;
+      border: 1px solid var(--blue-border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--blue-dim);
+    }
+    .about-card > * { min-width: 0; }
+
+    .about-left {
+      padding: 40px 36px;
+      border-right: 1px solid var(--blue-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-name {
+      font-family: var(--serif);
+      font-size: clamp(32px, 4vw, 52px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+    }
+
+    .about-name em {
+      display: block;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--blue-light);
+    }
+
+    .about-role {
+      display: inline-block;
+      margin-top: 20px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-dim);
+      border: 1px solid var(--sep);
+      border-radius: 100px;
+      padding: 5px 14px;
+    }
+
+    .about-right {
+      padding: 40px 36px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .about-p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .about-p strong { color: var(--text); font-weight: 600; }
+
+    .about-accent {
+      padding: 16px 20px;
+      background: rgba(201,168,76,0.06);
+      border-left: 2px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      font-size: 14px;
+      font-style: italic;
+      font-family: var(--serif);
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 720px) {
+      .about-card { grid-template-columns: 1fr; }
+      .about-left { border-right: none; border-bottom: 1px solid var(--blue-border); }
     }
 
     /* Pull quote */
