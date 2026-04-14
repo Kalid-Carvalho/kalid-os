@@ -55,7 +55,7 @@
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--blue); }
 
-    .container { max-width: 740px; margin: 0 auto; padding: 0 28px; }
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 28px; }
 
     /* ── REVEAL ── */
     .r {
@@ -155,11 +155,16 @@
     .hero-content {
       position: relative;
       z-index: 2;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .hero-rule {
       height: 1px;
-      background: linear-gradient(90deg, var(--blue) 0%, rgba(26,86,219,0.2) 60%, transparent 100%);
+      width: 100%;
+      background: linear-gradient(90deg, transparent 0%, var(--blue) 50%, transparent 100%);
       margin-bottom: 40px;
     }
 
@@ -209,25 +214,26 @@
     .underline-draw.drawn::after { width: 100%; }
 
     .hero-bottom {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: end;
-      gap: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      width: 100%;
     }
 
     .hero-sub {
       font-size: 16px;
       color: var(--text-muted);
       line-height: 1.75;
-      max-width: 440px;
+      max-width: 560px;
+      text-align: center;
     }
 
     .hero-cta-group {
       display: flex;
       flex-direction: column;
-      align-items: flex-end;
+      align-items: center;
       gap: 10px;
-      flex-shrink: 0;
     }
 
     .btn-cta {
@@ -258,7 +264,7 @@
       font-size: 11px;
       color: var(--text-dim);
       letter-spacing: 0.04em;
-      text-align: right;
+      text-align: center;
     }
 
     /* ─── STRIP ─── */
@@ -756,9 +762,7 @@
     @media (max-width: 600px) {
       section { padding: 64px 0; }
       .hero { padding-bottom: 56px; }
-      .hero-bottom { grid-template-columns: 1fr; gap: 28px; }
-      .hero-cta-group { align-items: flex-start; }
-      .hero-note { text-align: left; }
+      .hero-title { font-size: clamp(38px, 10vw, 56px); }
       footer .container { flex-direction: column; align-items: flex-start; }
     }
   </style>
