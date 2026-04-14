@@ -620,12 +620,12 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      margin-top: 40px;
+      width: 100%;
     }
 
     .check-item {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 14px;
       padding: 15px 18px;
       background: var(--bg3);
@@ -633,7 +633,10 @@
       border-radius: 6px;
       font-size: 15px;
       color: var(--text-muted);
+      line-height: 1.5;
       transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .check-item:hover {
@@ -648,6 +651,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      margin-top: 2px;
     }
 
     .check-mark svg {
@@ -660,11 +664,18 @@
       stroke-linejoin: round;
     }
 
+    .check-text {
+      flex: 1;
+      min-width: 0;
+    }
+
     .not-for {
-      margin-top: 14px;
+      margin-top: 10px;
       padding: 16px 18px;
       border: 1px solid var(--sep);
       border-radius: 6px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     .not-for-tag {
@@ -1054,19 +1065,19 @@
           <div class="check-list r d2">
             <div class="check-item">
               <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-              Você é advogado autônomo ou tem um escritório de até 10 pessoas
+              <span class="check-text">Você é advogado autônomo ou tem um escritório de até 10 pessoas</span>
             </div>
             <div class="check-item">
               <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-              A maior parte dos seus clientes vem de indicação e você quer mudar isso
+              <span class="check-text">A maior parte dos seus clientes vem de indicação e você quer mudar isso</span>
             </div>
             <div class="check-item">
               <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-              Você quer clientes qualificados, não qualquer lead de formulário
+              <span class="check-text">Você quer clientes qualificados, não qualquer lead de formulário</span>
             </div>
             <div class="check-item">
               <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-              Você quer um sistema que funcione sem precisar postar todo dia
+              <span class="check-text">Você quer um sistema que funcione sem precisar postar todo dia</span>
             </div>
           </div>
 
