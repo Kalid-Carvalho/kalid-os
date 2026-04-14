@@ -3,13 +3,13 @@ const path = require('path');
 const fs = require('fs');
 const { execSync } = require('child_process');
 
-const FFMPEG = 'C:/Users/kalid/AppData/Local/ms-playwright/ffmpeg-1011/ffmpeg-win64.exe';
+const FFMPEG = 'C:/Users/kalid/AppData/Local/Microsoft/WinGet/Packages/Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe/ffmpeg-8.1-full_build/bin/ffmpeg.exe';
 
 (async () => {
   const slideUrl = 'file:///' + path.resolve(__dirname, 'slide-07.html').replace(/\\/g, '/');
   const outputDir = __dirname;
   const tempPath = path.join(outputDir, 'slide-07-temp.webm');
-  const finalPath = path.join(outputDir, 'slide-07.webm');
+  const finalPath = path.join(outputDir, 'slide-07.mp4');
 
   console.log('Abrindo slide-07.html...');
 
@@ -109,14 +109,14 @@ const FFMPEG = 'C:/Users/kalid/AppData/Local/ms-playwright/ffmpeg-1011/ffmpeg-wi
 
   try {
     execSync(
-      `"${FFMPEG}" -i "${tempPath}" ${trimFlag} -vf "crop=1080:1290:0:0" -c:v libvpx -b:v 1M -y "${finalPath}"`,
+      `"${FFMPEG}" -i "${tempPath}" ${trimFlag} -vf "crop=1080:1290:0:0" -c:v libx264 -preset fast -crf 18 -pix_fmt yuv420p -movflags +faststart -y "${finalPath}"`,
       { encoding: 'utf8' }
     );
     fs.unlinkSync(tempPath);
-    console.log('Vídeo final salvo em: slide-07.webm');
+    console.log('Vídeo final salvo em: slide-07.mp4');
   } catch (e) {
     // Fallback sem re-encode
-    fs.renameSync(tempPath, finalPath);
+    fs.renameSync(tempPath, finalPath.replace('.mp4', '.webm'));
     console.log('Vídeo salvo (sem crop): slide-07.webm');
     console.log('Erro ffmpeg:', e.message?.slice(0, 200));
   }
