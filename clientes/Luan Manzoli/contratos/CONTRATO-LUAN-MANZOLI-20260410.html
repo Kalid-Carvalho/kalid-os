@@ -55,6 +55,8 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      break-after: avoid;
+      page-break-after: avoid;
     }
 
     .logo-mark {
@@ -88,6 +90,8 @@
       margin-bottom: 40px;
       padding-bottom: 24px;
       border-bottom: 1px solid var(--border);
+      break-after: avoid;
+      page-break-after: avoid;
     }
 
     .doc-title .tag {
@@ -745,10 +749,6 @@
 
 </div>
 
-<!-- PRINT BUTTON -->
-<div class="print-bar no-print">
-  <button class="btn-print" onclick="window.print()">Imprimir / Salvar PDF</button>
-</div>
 
 <script>
   const now = new Date();
