@@ -238,7 +238,7 @@
       font-size: 16px;
       color: var(--text-muted);
       line-height: 1.75;
-      max-width: 560px;
+      max-width: 640px;
       text-align: left;
     }
 
@@ -368,13 +368,48 @@
       font-size: 16px;
       color: var(--text-muted);
       line-height: 1.75;
-      margin-bottom: 48px;
-      max-width: 520px;
+      margin-bottom: 0;
+    }
+
+    /* Two-column layout for prob section */
+    .prob-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .prob-cols { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* Two-column layout for steps section */
+    .steps-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .steps-cols { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* Two-column layout for para quem */
+    .quem-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+
+    @media (max-width: 860px) {
+      .quem-cols { grid-template-columns: 1fr; gap: 48px; }
     }
 
     /* Pull quote */
     .pull-quote {
-      margin: 0 0 48px;
+      margin: 0 0 36px;
       padding: 0 0 0 24px;
       border-left: 2px solid var(--blue);
     }
@@ -398,7 +433,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
-      margin-top: 48px;
+      align-content: start;
     }
 
     .pain-card {
@@ -845,33 +880,35 @@
   <section class="prob-bg">
     <div class="container">
       <p class="label r">O problema</p>
-      <h2 class="prob-headline r d1">
-        Você é bom no que faz.<br>
-        O problema é <em>a previsibilidade.</em>
-      </h2>
-
-      <div class="pull-quote r d2">
-        <p>Todo mês é uma incógnita. Você depende de indicação, da sua rede estar ativa, da sorte. <em>Quando ela esfria, o caixa sente.</em></p>
-      </div>
-
-      <p class="prob-sub r d2">Quando tentou resolver por conta própria, não funcionou como esperava.</p>
-
-      <div class="pain-grid r d3">
-        <div class="pain-card">
-          <span class="pain-num">01 —</span>
-          <p>Criou Instagram, postou por <strong>duas semanas e parou</strong> porque não apareceu resultado.</p>
+      <div class="prob-cols">
+        <div class="prob-left">
+          <h2 class="prob-headline r d1">
+            Você é bom no que faz.<br>
+            O problema é <em>a previsibilidade.</em>
+          </h2>
+          <div class="pull-quote r d2">
+            <p>Todo mês é uma incógnita. Você depende de indicação, da sua rede estar ativa, da sorte. <em>Quando ela esfria, o caixa sente.</em></p>
+          </div>
+          <p class="prob-sub r d2">Quando tentou resolver por conta própria, não funcionou como esperava.</p>
         </div>
-        <div class="pain-card">
-          <span class="pain-num">02 —</span>
-          <p>Rodou tráfego pago e recebeu <strong>leads sem perfil</strong> nem intenção de contratar.</p>
-        </div>
-        <div class="pain-card">
-          <span class="pain-num">03 —</span>
-          <p>Contratou agência que entregou <strong>site bonito mas nenhum cliente</strong> novo.</p>
-        </div>
-        <div class="pain-card">
-          <span class="pain-num">04 —</span>
-          <p>Tem receio de fazer algo que <strong>a OAB possa questionar.</strong></p>
+
+        <div class="pain-grid r d3">
+          <div class="pain-card">
+            <span class="pain-num">01 —</span>
+            <p>Criou Instagram, postou por <strong>duas semanas e parou</strong> porque não apareceu resultado.</p>
+          </div>
+          <div class="pain-card">
+            <span class="pain-num">02 —</span>
+            <p>Rodou tráfego pago e recebeu <strong>leads sem perfil</strong> nem intenção de contratar.</p>
+          </div>
+          <div class="pain-card">
+            <span class="pain-num">03 —</span>
+            <p>Contratou agência que entregou <strong>site bonito mas nenhum cliente</strong> novo.</p>
+          </div>
+          <div class="pain-card">
+            <span class="pain-num">04 —</span>
+            <p>Tem receio de fazer algo que <strong>a OAB possa questionar.</strong></p>
+          </div>
         </div>
       </div>
     </div>
@@ -881,29 +918,37 @@
   <section>
     <div class="container">
       <p class="label r">Como funciona</p>
-      <h2 class="prob-headline r d1" style="font-size:clamp(30px,5vw,50px); margin-bottom:16px;">O diagnóstico</h2>
-      <p class="prob-sub r d2">Uma conversa de 30 minutos para mapear o que está limitando a captação do seu escritório. Não é apresentação de serviços. É análise real da sua situação.</p>
+      <div class="steps-cols">
+        <div class="steps-left">
+          <h2 class="prob-headline r d1" style="font-size:clamp(30px,5vw,50px); margin-bottom:24px;">O diagnóstico</h2>
+          <p class="prob-sub r d2" style="margin-bottom:32px;">Uma conversa de 30 minutos para mapear o que está limitando a captação do seu escritório. Não é apresentação de serviços. É análise real da sua situação.</p>
+          <a href="#formulario" class="btn-cta r d3" style="display:inline-flex;">
+            Quero meu diagnóstico
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+          </a>
+        </div>
 
-      <div class="steps-wrap r d3">
-        <div class="step-item">
-          <span class="step-n">1</span>
-          <div class="step-body">
-            <h4>Você preenche o formulário</h4>
-            <p>Quatro perguntas sobre seu escritório, sua área e sua maior dificuldade hoje. Leva menos de 2 minutos.</p>
+        <div class="steps-wrap r d3">
+          <div class="step-item">
+            <span class="step-n">1</span>
+            <div class="step-body">
+              <h4>Você preenche o formulário</h4>
+              <p>Quatro perguntas sobre seu escritório, sua área e sua maior dificuldade hoje. Leva menos de 2 minutos.</p>
+            </div>
           </div>
-        </div>
-        <div class="step-item highlighted">
-          <span class="step-n">2</span>
-          <div class="step-body">
-            <h4>Confirmamos em até 24h</h4>
-            <p>Analisamos sua resposta e entramos em contato pelo WhatsApp para confirmar o horário da call.</p>
+          <div class="step-item highlighted">
+            <span class="step-n">2</span>
+            <div class="step-body">
+              <h4>Confirmamos em até 24h</h4>
+              <p>Analisamos sua resposta e entramos em contato pelo WhatsApp para confirmar o horário da call.</p>
+            </div>
           </div>
-        </div>
-        <div class="step-item">
-          <span class="step-n">3</span>
-          <div class="step-body">
-            <h4>Call de diagnóstico</h4>
-            <p>30 minutos. Analisamos o que está travando a captação e o que faz sentido pra você, dentro do que a OAB permite.</p>
+          <div class="step-item">
+            <span class="step-n">3</span>
+            <div class="step-body">
+              <h4>Call de diagnóstico</h4>
+              <p>30 minutos. Analisamos o que está travando a captação e o que faz sentido pra você, dentro do que a OAB permite.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -914,30 +959,37 @@
   <section class="prob-bg">
     <div class="container">
       <p class="label r">Para quem é</p>
-      <h2 class="prob-headline r d1" style="font-size:clamp(28px,4.5vw,46px); margin-bottom:16px;">Esse diagnóstico é pra você se...</h2>
+      <div class="quem-cols">
+        <div class="quem-left">
+          <h2 class="prob-headline r d1" style="font-size:clamp(28px,4.5vw,46px); margin-bottom:24px;">Esse diagnóstico<br>é pra você se...</h2>
+          <p class="prob-sub r d2">Trabalho com escritórios que estão prontos para estruturar um sistema real de captação — não uma estratégia improvisada.</p>
+        </div>
 
-      <div class="check-list r d2">
-        <div class="check-item">
-          <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-          Você é advogado autônomo ou tem um escritório de até 10 pessoas
-        </div>
-        <div class="check-item">
-          <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-          A maior parte dos seus clientes vem de indicação e você quer mudar isso
-        </div>
-        <div class="check-item">
-          <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-          Você quer clientes qualificados, não qualquer lead de formulário
-        </div>
-        <div class="check-item">
-          <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
-          Você quer um sistema que funcione sem precisar postar todo dia
-        </div>
-      </div>
+        <div class="quem-right">
+          <div class="check-list r d2">
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              Você é advogado autônomo ou tem um escritório de até 10 pessoas
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              A maior parte dos seus clientes vem de indicação e você quer mudar isso
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              Você quer clientes qualificados, não qualquer lead de formulário
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              Você quer um sistema que funcione sem precisar postar todo dia
+            </div>
+          </div>
 
-      <div class="not-for r d3">
-        <span class="not-for-tag">Não é pra você se:</span>
-        <p>Você está procurando curso de marketing jurídico ou quer gerenciar a captação por conta própria. Atendo escritórios que querem terceirizar esse processo por completo.</p>
+          <div class="not-for r d3">
+            <span class="not-for-tag">Não é pra você se:</span>
+            <p>Você está procurando curso de marketing jurídico ou quer gerenciar a captação por conta própria. Atendo escritórios que querem terceirizar esse processo por completo.</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
