@@ -11,19 +11,19 @@
 
   <style>
     :root {
-      --bg:           #0D1526;
-      --bg2:          #0A1020;
-      --bg3:          #111D33;
-      --surface:      #162040;
-      --blue:         #1A56DB;
-      --blue-light:   #2D6AEF;
-      --blue-dim:     rgba(26, 86, 219, 0.12);
-      --blue-border:  rgba(26, 86, 219, 0.35);
-      --text:         #FFFFFF;
-      --text-muted:   #9BB3E8;
-      --text-dim:     #6B82AD;
-      --separator:    #1E2E4A;
-      --font:         'Space Grotesk', sans-serif;
+      --bg:            #0D1526;
+      --bg2:           #0A1020;
+      --bg3:           #111D33;
+      --surface:       #162040;
+      --blue:          #1A56DB;
+      --blue-light:    #4B7BF5;
+      --blue-dim:      rgba(26,86,219,0.10);
+      --blue-border:   rgba(26,86,219,0.32);
+      --text:          #FFFFFF;
+      --text-muted:    #9BB3E8;
+      --text-dim:      #5A7299;
+      --separator:     #1E2E4A;
+      --font:          'Space Grotesk', sans-serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,18 +36,29 @@
       overflow-x: hidden;
     }
 
+    /* NOISE */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.3;
+    }
+
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
     ::-webkit-scrollbar-thumb { background: var(--blue); }
 
     /* ─── LAYOUT ─── */
-    .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+    .container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
 
     /* ─── REVEAL ─── */
     .reveal {
       opacity: 0;
-      transform: translateY(18px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transform: translateY(20px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
     }
     .reveal.visible { opacity: 1; transform: translateY(0); }
     .reveal.d1 { transition-delay: 0.1s; }
@@ -56,38 +67,56 @@
 
     /* ─── HERO ─── */
     .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       padding: 96px 0 80px;
       border-bottom: 1px solid var(--separator);
       position: relative;
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    /* grid de fundo */
+    .hero-grid {
       position: absolute;
-      top: -20%;
-      right: -15%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(ellipse, rgba(26,86,219,0.14) 0%, transparent 65%);
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(26,86,219,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,86,219,0.06) 1px, transparent 1px);
+      background-size: 56px 56px;
       pointer-events: none;
     }
 
-    .hero-inner { position: relative; z-index: 2; }
+    .hero-glow {
+      position: absolute;
+      top: 5%;
+      right: -20%;
+      width: 650px;
+      height: 650px;
+      background: radial-gradient(ellipse, rgba(26,86,219,0.13) 0%, transparent 65%);
+      pointer-events: none;
+    }
 
-    .badge {
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      padding: 40px 0;
+    }
+
+    .hero-badge {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 6px 14px;
       border: 1px solid var(--blue-border);
       background: var(--blue-dim);
-      border-radius: 8px;
-      font-size: 12px;
+      border-radius: 100px;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #6B9BF7;
+      letter-spacing: 0.12em;
+      color: var(--blue-light);
       margin-bottom: 36px;
     }
 
@@ -102,24 +131,31 @@
 
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
+      50% { opacity: 0.25; }
     }
 
     .hero-title {
-      font-size: clamp(38px, 7vw, 64px);
+      font-size: clamp(42px, 8vw, 76px);
       font-weight: 700;
-      line-height: 1.08;
-      letter-spacing: -0.025em;
-      margin-bottom: 24px;
+      line-height: 0.97;
+      letter-spacing: -0.03em;
+      margin-bottom: 28px;
     }
 
-    .hero-title .accent { color: var(--blue-light); }
+    .hero-title .outline {
+      -webkit-text-stroke: 1px rgba(155,179,232,0.3);
+      color: transparent;
+    }
+
+    .hero-title .lit {
+      color: var(--blue-light);
+    }
 
     .hero-sub {
       font-size: 17px;
       color: var(--text-muted);
       line-height: 1.75;
-      max-width: 560px;
+      max-width: 520px;
       margin-bottom: 44px;
     }
 
@@ -127,7 +163,7 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 16px 32px;
+      padding: 17px 34px;
       background: var(--blue);
       color: #fff;
       font-family: var(--font);
@@ -138,38 +174,96 @@
       border: none;
       cursor: pointer;
       transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
     }
 
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.15) 50%, transparent 60%);
+      transform: translateX(-100%);
+      transition: transform 0.4s ease;
+    }
+
+    .btn-primary:hover::before { transform: translateX(100%); }
     .btn-primary:hover {
       background: var(--blue-light);
       transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(26,86,219,0.35);
+      box-shadow: 0 8px 28px rgba(26,86,219,0.4);
     }
 
     .hero-note {
       margin-top: 14px;
-      font-size: 13px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
       color: var(--text-dim);
     }
 
+    /* ─── MARQUEE ─── */
+    .marquee-strip {
+      border-top: 1px solid var(--separator);
+      border-bottom: 1px solid var(--separator);
+      background: var(--bg2);
+      overflow: hidden;
+      height: 44px;
+      display: flex;
+      align-items: center;
+    }
+
+    .marquee-track {
+      display: flex;
+      animation: marquee 24s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 0 36px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-dim);
+    }
+
+    .marquee-item .dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      flex-shrink: 0;
+    }
+
+    .marquee-item strong { color: var(--text-muted); }
+
     /* ─── SECTION BASE ─── */
-    section { padding: 88px 0; border-bottom: 1px solid var(--separator); }
+    section { padding: 96px 0; border-bottom: 1px solid var(--separator); }
 
     .section-tag {
       display: block;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.16em;
       color: var(--blue-light);
       margin-bottom: 18px;
     }
 
     .section-title {
-      font-size: clamp(28px, 5vw, 44px);
+      font-size: clamp(30px, 5vw, 48px);
       font-weight: 700;
-      letter-spacing: -0.02em;
-      line-height: 1.1;
+      letter-spacing: -0.025em;
+      line-height: 1.07;
       margin-bottom: 18px;
     }
 
@@ -180,9 +274,11 @@
       max-width: 560px;
     }
 
-    /* ─── QUOTE BLOCK ─── */
+    /* ─── PROBLEMA ─── */
+    .bg-alt { background: var(--bg2); }
+
     .quote-block {
-      border-left: 4px solid var(--blue);
+      border-left: 3px solid var(--blue);
       padding: 18px 22px;
       background: var(--blue-dim);
       border-radius: 0 8px 8px 0;
@@ -193,15 +289,13 @@
       font-size: 16px;
       font-weight: 600;
       line-height: 1.65;
-      color: var(--text);
     }
 
     .quote-block p em {
-      color: #6B9BF7;
+      color: var(--blue-light);
       font-style: normal;
     }
 
-    /* ─── PAIN GRID ─── */
     .pain-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -224,11 +318,11 @@
     .pain-item .pi-num {
       font-size: 11px;
       font-weight: 600;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--blue-light);
       margin-bottom: 10px;
       display: block;
-      text-transform: uppercase;
     }
 
     .pain-item p {
@@ -240,8 +334,6 @@
     .pain-item p strong { color: var(--text); font-weight: 600; }
 
     /* ─── STEPS ─── */
-    .steps-bg { background: var(--bg2); }
-
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -261,17 +353,8 @@
 
     .step-card:hover { background: var(--surface); }
 
-    .step-card.active-step {
-      background: var(--blue-dim);
-      border-color: var(--blue-border);
-    }
-
-    .step-card.active-step .step-icon {
-      background: var(--blue);
-      border-color: var(--blue);
-      color: #fff;
-    }
-
+    .step-card.active-step { background: var(--blue-dim); }
+    .step-card.active-step .step-icon { background: var(--blue); border-color: var(--blue); color: #fff; }
     .step-card.active-step .s-num { color: var(--blue-light); }
 
     .s-num {
@@ -297,18 +380,8 @@
       margin-bottom: 18px;
     }
 
-    .step-card h4 {
-      font-size: 15px;
-      font-weight: 700;
-      margin-bottom: 10px;
-      letter-spacing: -0.01em;
-    }
-
-    .step-card p {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.75;
-    }
+    .step-card h4 { font-size: 15px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+    .step-card p { font-size: 13px; color: var(--text-muted); line-height: 1.75; }
 
     /* ─── PARA QUEM ─── */
     .check-grid {
@@ -354,14 +427,10 @@
       stroke-linejoin: round;
     }
 
-    .check-row span {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
+    .check-row span { font-size: 15px; color: var(--text-muted); line-height: 1.55; }
 
     .not-for-box {
-      margin-top: 20px;
+      margin-top: 16px;
       padding: 16px 18px;
       background: var(--bg3);
       border: 1px solid var(--separator);
@@ -378,11 +447,7 @@
       display: block;
     }
 
-    .not-for-box p {
-      font-size: 14px;
-      color: var(--text-dim);
-      line-height: 1.65;
-    }
+    .not-for-box p { font-size: 14px; color: var(--text-dim); line-height: 1.65; }
 
     /* ─── FORM ─── */
     .form-wrap {
@@ -394,7 +459,7 @@
     }
 
     .form-header {
-      padding: 14px 20px;
+      padding: 12px 18px;
       background: var(--surface);
       border-bottom: 1px solid var(--separator);
       display: flex;
@@ -403,21 +468,10 @@
     }
 
     .fh-dots { display: flex; gap: 6px; }
-
-    .fh-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-    }
-
-    .fh-label {
-      font-size: 12px;
-      color: var(--text-dim);
-      margin-left: 6px;
-    }
+    .fh-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .fh-label { font-size: 12px; color: var(--text-dim); margin-left: 6px; }
 
     .form-body { padding: 28px 24px; }
-
     .form-group { margin-bottom: 18px; }
 
     label {
@@ -445,15 +499,14 @@
       -webkit-appearance: none;
     }
 
-    input::placeholder, textarea::placeholder { color: #2A3D5A; }
-
+    input::placeholder, textarea::placeholder { color: #243450; }
     input:focus, select:focus, textarea:focus {
       border-color: var(--blue-border);
       box-shadow: 0 0 0 3px rgba(26,86,219,0.08);
     }
 
     select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%236B82AD' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%235A7299' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 14px center;
       padding-right: 38px;
@@ -516,6 +569,7 @@
       font-weight: 700;
       letter-spacing: -0.025em;
       margin-bottom: 16px;
+      line-height: 1.1;
     }
 
     .obrigado-inner h2 span { color: var(--blue-light); }
@@ -530,15 +584,14 @@
     .obrigado-inner .detail {
       margin-top: 24px;
       font-size: 12px;
-      color: var(--text-dim);
-      text-transform: uppercase;
+      font-weight: 600;
       letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
     }
 
     /* ─── FOOTER ─── */
-    footer {
-      padding: 28px 0;
-    }
+    footer { padding: 28px 0; }
 
     footer .container {
       display: flex;
@@ -551,24 +604,20 @@
     .footer-logo {
       font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       color: var(--text-muted);
     }
 
     .footer-logo span { color: var(--blue-light); }
 
-    footer p {
-      font-size: 12px;
-      color: var(--text-dim);
-    }
-
+    footer p { font-size: 12px; color: var(--text-dim); }
     footer a { color: var(--text-dim); text-decoration: none; }
     footer a:hover { color: var(--text-muted); }
 
     /* ─── MOBILE ─── */
     @media (max-width: 620px) {
       section { padding: 64px 0; }
-      .hero { padding: 80px 0 64px; }
+      .hero { min-height: auto; padding: 88px 0 64px; }
       .pain-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr; }
       footer .container { flex-direction: column; align-items: flex-start; }
@@ -582,16 +631,19 @@
 
   <!-- HERO -->
   <section class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
     <div class="container">
       <div class="hero-inner">
-        <div class="badge reveal">
+        <div class="hero-badge reveal">
           <span class="badge-dot"></span>
-          Diagnóstico Gratuito para Advogados
+          Diagnóstico Gratuito — Advocacia
         </div>
         <h1 class="hero-title reveal d1">
           Pare de depender<br>
-          de indicação.<br>
-          <span class="accent">Capte clientes todo mês.</span>
+          <span class="outline">de indicação.</span><br>
+          <span class="lit">Capte clientes</span><br>
+          <span class="outline">todo mês.</span>
         </h1>
         <p class="hero-sub reveal d2">
           Um diagnóstico de 30 minutos para entender o que está travando a captação do seu escritório e o que pode mudar nos próximos 30 dias, dentro do que a OAB permite.
@@ -607,8 +659,30 @@
     </div>
   </section>
 
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <div class="marquee-item"><span class="dot"></span> Captação Previsível</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Lead Qualificado</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Dentro da OAB</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Sem Depender de Indicação</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Sistema de Captação</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Escritório Previsível</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Google Ads + Meta Ads</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Advocacia Digital</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Captação Previsível</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Lead Qualificado</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Dentro da OAB</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Sem Depender de Indicação</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Sistema de Captação</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Escritório Previsível</strong></div>
+      <div class="marquee-item"><span class="dot"></span> Google Ads + Meta Ads</div>
+      <div class="marquee-item"><span class="dot"></span> <strong>Advocacia Digital</strong></div>
+    </div>
+  </div>
+
   <!-- PROBLEMA -->
-  <section>
+  <section class="bg-alt">
     <div class="container">
       <span class="section-tag reveal">O problema</span>
       <h2 class="section-title reveal d1">Você é bom no que faz.<br>O problema é a previsibilidade.</h2>
@@ -638,7 +712,7 @@
   </section>
 
   <!-- COMO FUNCIONA -->
-  <section class="steps-bg">
+  <section>
     <div class="container">
       <span class="section-tag reveal">Como funciona</span>
       <h2 class="section-title reveal d1">O diagnóstico</h2>
@@ -673,7 +747,7 @@
   </section>
 
   <!-- PARA QUEM -->
-  <section>
+  <section class="bg-alt">
     <div class="container">
       <span class="section-tag reveal">Para quem é</span>
       <h2 class="section-title reveal d1">Esse diagnóstico é pra você se...</h2>
@@ -696,14 +770,14 @@
         </div>
       </div>
       <div class="not-for-box reveal d3">
-        <span class="nf-label">Nao e pra voce se:</span>
+        <span class="nf-label">Não é pra você se:</span>
         <p>Você está procurando curso de marketing jurídico ou quer gerenciar a captação por conta própria. Atendo escritórios que querem terceirizar esse processo por completo.</p>
       </div>
     </div>
   </section>
 
   <!-- FORMULARIO -->
-  <section id="formulario" style="background: var(--bg2);">
+  <section id="formulario">
     <div class="container">
       <span class="section-tag reveal">Agendar diagnóstico</span>
       <h2 class="section-title reveal d1">Garanta sua vaga.</h2>
@@ -730,13 +804,13 @@
             </div>
 
             <div class="form-group">
-              <label for="area">Area de atuacao</label>
+              <label for="area">Área de atuação</label>
               <select id="area" name="area" required>
-                <option value="" disabled selected>Selecione sua area principal</option>
-                <option>Direito de Familia e Sucessoes</option>
+                <option value="" disabled selected>Selecione sua área principal</option>
+                <option>Direito de Família e Sucessões</option>
                 <option>Direito Trabalhista</option>
                 <option>Direito do Consumidor</option>
-                <option>Direito Previdenciario</option>
+                <option>Direito Previdenciário</option>
                 <option>Direito Criminal</option>
                 <option>Direito Civil</option>
                 <option>Direito Empresarial</option>
@@ -746,31 +820,31 @@
 
             <div class="form-group">
               <label for="cidade">Cidade</label>
-              <input type="text" id="cidade" name="cidade" placeholder="Sao Paulo, SP" required />
+              <input type="text" id="cidade" name="cidade" placeholder="São Paulo, SP" required />
             </div>
 
             <div class="form-group">
-              <label for="dificuldade">Qual e sua maior dificuldade com captacao hoje?</label>
-              <textarea id="dificuldade" name="dificuldade" placeholder="Ex: dependo so de indicacao e o volume e imprevisivel..." required></textarea>
+              <label for="dificuldade">Qual é sua maior dificuldade com captação hoje?</label>
+              <textarea id="dificuldade" name="dificuldade" placeholder="Ex: dependo só de indicação e o volume é imprevisível..." required></textarea>
             </div>
 
             <div class="form-group">
-              <label for="origem">Como voce chegou ate aqui?</label>
+              <label for="origem">Como você chegou até aqui?</label>
               <select id="origem" name="origem" required>
                 <option value="" disabled selected>Selecione</option>
                 <option>Instagram @eukalidcarvalho</option>
                 <option>Google</option>
-                <option>Indicacao</option>
+                <option>Indicação</option>
                 <option>Outro</option>
               </select>
             </div>
 
             <div class="form-group" style="margin-bottom:0">
               <button type="submit" class="btn-primary btn-full">
-                Quero meu diagnostico gratuito
+                Quero meu diagnóstico gratuito
                 <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
               </button>
-              <p class="form-disclaimer">Sem compromisso de compra. Respondemos em ate 24h uteis.</p>
+              <p class="form-disclaimer">Sem compromisso de compra. Respondemos em até 24h úteis.</p>
             </div>
           </form>
         </div>
@@ -788,14 +862,14 @@
 
 </div>
 
-<!-- PÁGINA DE OBRIGADO -->
+<!-- OBRIGADO -->
 <div id="obrigado">
   <div class="obrigado-inner">
     <div class="obrigado-check">
       <svg viewBox="0 0 26 26"><polyline points="4,13 10,19 22,6"/></svg>
     </div>
-    <h2>Diagnostico<br><span>solicitado.</span></h2>
-    <p>Recebi sua solicitacao. Vou entrar em contato em ate 24 horas uteis para confirmar o horario da call.</p>
+    <h2>Diagnóstico<br><span>solicitado.</span></h2>
+    <p>Recebi sua solicitação. Vou entrar em contato em até 24 horas úteis para confirmar o horário da call.</p>
     <p>Fique de olho no seu WhatsApp ou email.</p>
     <p class="detail">kalidcarvalho.com/advogados</p>
   </div>
@@ -818,7 +892,6 @@
     const orig = btn.innerHTML;
     btn.innerHTML = 'Enviando...';
     btn.disabled = true;
-
     try {
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
       const json = await res.json();
