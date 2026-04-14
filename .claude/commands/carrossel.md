@@ -117,6 +117,77 @@ Salvar PNGs em `conteudo/carrosseis/[tema]/instagram/`.
 
 ---
 
+### Fase 2.5 — Slides de vídeo (opcional)
+
+Quando o usuário quiser um slide com vídeo rodando (ex: demo de site, app, automação):
+
+1. Criar o slide HTML normalmente com um `<video>` tag na área de destaque:
+   ```html
+   <video class="site-video" autoplay muted loop playsinline>
+     <source src="../nome-do-video.webm" type="video/webm">
+     <source src="../nome-do-video.mp4" type="video/mp4">
+   </video>
+   ```
+2. O usuário coloca o arquivo de vídeo na pasta raiz do carrossel (ex: `conteudo/carrosseis/[tema]/`)
+3. Criar o script de gravação `gravar-slide-XX.js` na pasta `instagram/`:
+
+   ```javascript
+   const { chromium } = require('../../../../node_modules/playwright');
+   const path = require('path');
+   const fs = require('fs');
+
+   (async () => {
+     const slideUrl = 'file:///' + path.resolve(__dirname, 'slide-XX.html').replace(/\\/g, '/');
+     const browser = await chromium.launch();
+     const context = await browser.newContext({
+       viewport: { width: 1080, height: 1350 },
+       recordVideo: { dir: __dirname, size: { width: 1080, height: 1350 } }
+     });
+     const page = await context.newPage();
+     await page.goto(slideUrl, { waitUntil: 'networkidle' });
+
+     // Esconder badges e indicadores de gravação
+     await page.addStyleTag({
+       content: `.live-badge { display: none !important; } [data-playwright-recording] { display: none !important; }`
+     });
+
+     // Remover loop — vídeo toca até o final
+     await page.evaluate(() => {
+       const video = document.querySelector('.site-video');
+       if (video) { video.removeAttribute('loop'); video.play(); }
+     });
+
+     console.log('Aguardando o vídeo terminar...');
+     await page.waitForFunction(() => {
+       const v = document.querySelector('.site-video');
+       return !v || v.ended;
+     }, { timeout: 180000 });
+
+     await page.waitForTimeout(500);
+     const videoPath = await page.video().path();
+     await context.close();
+     await browser.close();
+
+     const finalPath = path.join(__dirname, 'slide-XX.webm');
+     if (fs.existsSync(finalPath)) fs.unlinkSync(finalPath);
+     fs.renameSync(videoPath, finalPath);
+     console.log('Vídeo salvo: slide-XX.webm');
+   })();
+   ```
+
+4. Rodar o script:
+   ```bash
+   cd conteudo/carrosseis/[tema]/instagram && PLAYWRIGHT_BROWSERS_PATH="C:/Users/kalid/AppData/Local/ms-playwright" node gravar-slide-XX.js
+   ```
+
+**Regras do slide de vídeo:**
+- Esconder badges visuais (ex: "AO VIVO") via `addStyleTag` no script — não no HTML
+- Remover `loop` do vídeo antes de gravar pra capturar do início ao fim
+- O resultado é um `.webm` que vai como slide de vídeo no carrossel do Instagram
+- Instagram aceita mistura de PNG + vídeo no mesmo carrossel
+
+---
+
 ### Fase 3 — Versão TikTok (opcional)
 
 Após finalizar o Instagram, perguntar:
@@ -136,10 +207,14 @@ Se sim:
 
 ```
 conteudo/carrosseis/[tema]/
-  carousel-text.md          ← texto aprovado + legenda sugerida
+  carousel-text.md               ← texto aprovado + legenda sugerida
+  nome-do-video.webm             ← vídeo fonte (se houver slide de vídeo)
+  avatar.png                     ← foto do perfil
   instagram/
     slide-01.html → slide-01.png
     slide-02.html → slide-02.png
+    slide-XX.html → slide-XX.webm  ← slide de vídeo (se houver)
+    gravar-slide-XX.js             ← script de gravação (se houver)
     ...
   tiktok/ (se solicitado)
     slide-01.html → slide-01.png
