@@ -18,12 +18,20 @@ Pasta de produção de conteúdo para os dois canais: @kalidcarvalho (IA e tech)
 - Design: mesmo sistema Bold Human, linguagem jurídica
 
 ## Estrutura de pastas
-- `carrosseis/` — HTMLs e PNGs por data de postagem
-- `reels/` — roteiros e referências por data
-- `roteiros/` — roteiros de vídeo YouTube
-- `youtube/` — materiais de suporte para vídeos
-- `linkedin/` — posts e artigos
-- `newsletters/` — edições da newsletter
+
+```
+conteudo/
+├── eukalidcarvalho/       ← tudo do @eukalidcarvalho (advocacia)
+│   ├── carrosseis/        ← HTMLs e PNGs por data (YYYY-MM-DD/)
+│   ├── reels/             ← roteiros e referências por data
+│   └── planejamento/      ← calendários de conteúdo
+│
+└── kalidcarvalho/         ← tudo do @kalidcarvalho (IA e tech)
+    ├── carrosseis/
+    ├── roteiros/          ← roteiros LinkedIn e YouTube
+    ├── youtube/           ← materiais de suporte para vídeos
+    └── linkedin/          ← posts e artigos
+```
 
 ## Regras
 - Nomear pastas de carrossel por data: `YYYY-MM-DD/`
