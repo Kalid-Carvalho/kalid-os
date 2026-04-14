@@ -25,20 +25,24 @@
       line-height: 1.7;
     }
 
+    /* PAGE BREAK CONTROL */
+    .clause-block { break-inside: avoid; page-break-inside: avoid; }
+    .party-card { break-inside: avoid; page-break-inside: avoid; }
+    .scope-block { break-inside: avoid; page-break-inside: avoid; }
+    .parties-grid { break-inside: avoid; page-break-inside: avoid; }
+    .two-col { break-inside: avoid; page-break-inside: avoid; }
+    .inc-block { break-inside: avoid; page-break-inside: avoid; }
+    .total-row { break-inside: avoid; page-break-inside: avoid; }
+    .payment-note { break-inside: avoid; page-break-inside: avoid; }
+    .sign-grid { break-inside: avoid; page-break-inside: avoid; }
+    .material-list { break-inside: avoid; page-break-inside: avoid; }
+    .budget-table { break-inside: avoid; page-break-inside: avoid; }
+    .budget-table thead { break-after: avoid; page-break-after: avoid; }
+    .doc-footer { break-inside: avoid; page-break-inside: avoid; }
+
     /* PRINT */
     @media print {
       .no-print { display: none !important; }
-      .page { box-shadow: none; border: none; max-width: 100%; }
-      .clause-block { break-inside: avoid; page-break-inside: avoid; }
-      .party-card { break-inside: avoid; page-break-inside: avoid; }
-      .scope-block { break-inside: avoid; page-break-inside: avoid; }
-      .two-col { break-inside: avoid; page-break-inside: avoid; }
-      .inc-block { break-inside: avoid; page-break-inside: avoid; }
-      .total-row { break-inside: avoid; page-break-inside: avoid; }
-      .payment-note { break-inside: avoid; page-break-inside: avoid; }
-      .sign-grid { break-inside: avoid; page-break-inside: avoid; }
-      .material-list { break-inside: avoid; page-break-inside: avoid; }
-      .budget-table { break-inside: avoid; page-break-inside: avoid; }
     }
 
     .page {
