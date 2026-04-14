@@ -36,6 +36,8 @@ deploy_links() {
 deploy_diagnostico() {
   echo "→ Subindo landing page de diagnóstico..."
   scp $SSH_OPTS "$HOME/Downloads/KalidCarvalho-os/projetos/landing-advogados/index-gold.html" $VPS:/var/www/kalid/diagnostico/index.html
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/diagnostico/obrigado"
+  scp $SSH_OPTS "$HOME/Downloads/KalidCarvalho-os/projetos/landing-advogados/obrigado/index.html" $VPS:/var/www/kalid/diagnostico/obrigado/index.html
   echo "✓ kalidcarvalho.com/diagnostico atualizado"
 }
 
