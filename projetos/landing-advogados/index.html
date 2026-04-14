@@ -381,47 +381,47 @@
     }
 
     /* Pain items */
-    .pain-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1px;
-      background: var(--sep);
-      border: 1px solid var(--sep);
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
-    .pain-row {
+    .pain-grid {
       display: grid;
-      grid-template-columns: 48px 1fr;
-      background: var(--bg3);
-      transition: background 0.2s;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 48px;
     }
 
-    .pain-row:hover { background: var(--surface); }
+    .pain-card {
+      background: var(--bg3);
+      border: 1px solid var(--sep);
+      border-radius: 10px;
+      padding: 24px 22px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .pain-card:hover {
+      border-color: var(--blue-border);
+      background: var(--surface);
+    }
 
     .pain-num {
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-family: var(--serif);
-      font-size: 22px;
+      font-size: 13px;
       font-style: italic;
       color: var(--blue-light);
-      border-right: 1px solid var(--sep);
-      padding: 20px 0;
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
     }
 
-    .pain-text {
-      padding: 20px 20px 20px 20px;
+    .pain-card p {
       font-size: 14px;
       color: var(--text-muted);
-      line-height: 1.65;
-      display: flex;
-      align-items: center;
+      line-height: 1.7;
     }
 
-    .pain-text strong { color: var(--text); font-weight: 600; }
+    .pain-card p strong { color: var(--text); font-weight: 600; }
+
+    @media (max-width: 520px) {
+      .pain-grid { grid-template-columns: 1fr; }
+    }
 
     /* ─── STEPS ─── */
     .steps-wrap {
@@ -844,22 +844,22 @@
 
       <p class="prob-sub r d2">Quando tentou resolver por conta própria, não funcionou como esperava.</p>
 
-      <div class="pain-list r d3">
-        <div class="pain-row">
-          <span class="pain-num">1</span>
-          <span class="pain-text">Criou Instagram, postou por <strong>duas semanas e parou</strong> porque não apareceu resultado.</span>
+      <div class="pain-grid r d3">
+        <div class="pain-card">
+          <span class="pain-num">01 —</span>
+          <p>Criou Instagram, postou por <strong>duas semanas e parou</strong> porque não apareceu resultado.</p>
         </div>
-        <div class="pain-row">
-          <span class="pain-num">2</span>
-          <span class="pain-text">Rodou tráfego pago e recebeu <strong>leads que não tinham perfil</strong> nem intenção de contratar.</span>
+        <div class="pain-card">
+          <span class="pain-num">02 —</span>
+          <p>Rodou tráfego pago e recebeu <strong>leads sem perfil</strong> nem intenção de contratar.</p>
         </div>
-        <div class="pain-row">
-          <span class="pain-num">3</span>
-          <span class="pain-text">Contratou agência que entregou <strong>site bonito mas nenhum cliente</strong> novo.</span>
+        <div class="pain-card">
+          <span class="pain-num">03 —</span>
+          <p>Contratou agência que entregou <strong>site bonito mas nenhum cliente</strong> novo.</p>
         </div>
-        <div class="pain-row">
-          <span class="pain-num">4</span>
-          <span class="pain-text">Tem receio de <strong>fazer algo que a OAB</strong> possa questionar.</span>
+        <div class="pain-card">
+          <span class="pain-num">04 —</span>
+          <p>Tem receio de fazer algo que <strong>a OAB possa questionar.</strong></p>
         </div>
       </div>
     </div>
