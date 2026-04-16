@@ -1,0 +1,2988 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NexusFlow | Automate Instantly</title>
+<!-- Babel Standalone for client-side JSX transformation -->
+<script src="assets/babel_b7b6cb480006.js"></script>
+<!-- Tailwind CSS -->
+<script src="assets/resource_3fa48481346f.es"></script>
+<!-- Iconify Web Component Runtime -->
+<script src="assets/iconify-icon_7dfa06d0e22a.js"></script>
+<!-- GSAP Runtime -->
+<script src="assets/gsap_5a2a3eb0b359.js"></script>
+<script src="assets/ScrollTrigger_c8f1698c3c32.js"></script>
+<!-- Import Map for ESM Dependencies -->
+<script type="importmap">
+      {
+        "imports": {
+          "react": "https://esm.sh/react@18.3.1?dev",
+          "react/": "https://esm.sh/react@18.3.1&dev/",
+          "react-dom": "https://esm.sh/react-dom@18.3.1?dev",
+          "react-dom/": "https://esm.sh/react-dom@18.3.1&dev/",
+          "react-dom/client": "https://esm.sh/react-dom@18.3.1/client?dev",
+          "three": "https://esm.sh/three@0.177.0",
+          "three/": "https://esm.sh/three@0.177.0/",
+          "lucide-react": "https://esm.sh/lucide-react@0.462.0?external=react,react-dom",
+          "unicornstudio-react": "https://esm.sh/unicornstudio-react@2.1.4-1?external=react,react-dom"
+        }
+      }
+    </script>
+<!-- Load ESM Modules and Expose Globally -->
+<script type="module">
+      // DEBUG flag - set to false for production to silence logs
+      const DEBUG = false;
+      window.__PREVIEW_DEBUG = DEBUG;
+      window.__externalESMModules =
+        window.__externalESMModules || Object.create(null);
+      const getExternalModuleDefault = (loadedModule) => {
+        if (!loadedModule) {
+          return loadedModule;
+        }
+
+        if (
+          (typeof loadedModule === "object" ||
+            typeof loadedModule === "function") &&
+          Object.prototype.hasOwnProperty.call(loadedModule, "default")
+        ) {
+          return loadedModule.default;
+        }
+
+        if (
+          loadedModule?.gsap &&
+          typeof loadedModule.gsap.context === "function"
+        ) {
+          return loadedModule.gsap;
+        }
+
+        return loadedModule;
+      };
+      const normalizeExternalModule = (loadedModule) => ({
+        ...(loadedModule || {}),
+        default: getExternalModuleDefault(loadedModule),
+        __esModule: true,
+      });
+      const createGsapModule = () =>
+        normalizeExternalModule({
+          ...(window.gsap || {}),
+          default: window.gsap,
+          gsap: window.gsap,
+          ScrollTrigger: window.ScrollTrigger,
+        });
+      const createGsapScrollTriggerModule = () =>
+        normalizeExternalModule({
+          ...(window.ScrollTrigger || {}),
+          default: window.ScrollTrigger,
+          ScrollTrigger: window.ScrollTrigger,
+          gsap: window.gsap,
+        });
+      const PREVIEW_SOURCE_PATH_ATTRIBUTE = "data-aura-source-path";
+      const PREVIEW_SOURCE_LINE_ATTRIBUTE = "data-aura-source-line";
+      const PREVIEW_SOURCE_COLUMN_ATTRIBUTE = "data-aura-source-column";
+      const PREVIEW_COMPONENT_NAME_ATTRIBUTE = "data-aura-component-name";
+      const PREVIEW_SOURCE_TAG_ATTRIBUTE = "data-aura-source-tag";
+      const PREVIEW_GENERIC_COMPONENT_TAGS = new Set([
+        "Component",
+        "Tag",
+        "Element",
+      ]);
+      const normalizePreviewSourcePath = (value) => {
+        if (typeof value !== "string") {
+          return null;
+        }
+
+        const normalized = value.replace(/^\/+/, "").trim();
+        return normalized || null;
+      };
+      const normalizePreviewComponentName = (value) => {
+        if (typeof value !== "string") {
+          return null;
+        }
+
+        let normalized = value.trim();
+        if (!normalized) {
+          return null;
+        }
+
+        const wrappedNameMatch = normalized.match(
+          /^(?:ForwardRef|Memo)\((.+)\)$/,
+        );
+        if (wrappedNameMatch?.[1]) {
+          normalized = wrappedNameMatch[1].trim();
+        }
+
+        if (
+          normalized.endsWith("WithRef") &&
+          normalized.length > "WithRef".length
+        ) {
+          normalized = normalized.slice(0, -"WithRef".length).trim();
+        }
+
+        if (!normalized || /^anonymous$/i.test(normalized)) {
+          return null;
+        }
+
+        return normalized;
+      };
+      const getPreviewCurrentOwnerType = (ReactModule) =>
+        ReactModule?.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED
+          ?.ReactCurrentOwner?.current?.type || null;
+      const getPreviewOwnerComponentName = (ReactModule) => {
+        const ownerType = getPreviewCurrentOwnerType(ReactModule);
+
+        if (!ownerType || typeof ownerType === "string") {
+          return null;
+        }
+
+        if (typeof ownerType === "function") {
+          return normalizePreviewComponentName(
+            ownerType.displayName || ownerType.name || "",
+          );
+        }
+
+        if (typeof ownerType === "object") {
+          return normalizePreviewComponentName(
+            ownerType.displayName ||
+              ownerType.name ||
+              ownerType.render?.displayName ||
+              ownerType.render?.name ||
+              ownerType.type?.displayName ||
+              ownerType.type?.name ||
+              "",
+          );
+        }
+
+        return null;
+      };
+      const getPreviewModuleSource = (filePath) => {
+        const modules = window.__auraPreviewModules;
+
+        if (!modules || typeof modules !== "object") {
+          return "";
+        }
+
+        return typeof modules[filePath] === "string" ? modules[filePath] : "";
+      };
+      const readPreviewJsxSourceTag = (filePath, lineNumber, columnNumber) => {
+        if (!filePath || !Number.isFinite(lineNumber) || lineNumber <= 0) {
+          return null;
+        }
+
+        const sourceText = getPreviewModuleSource(filePath);
+        if (!sourceText) {
+          return null;
+        }
+
+        const lines = sourceText.split(/\r?\n/);
+        const startLineIndex = Math.max(0, lineNumber - 1);
+        const snippet = lines
+          .slice(startLineIndex, Math.min(lines.length, startLineIndex + 4))
+          .join("\n");
+
+        if (!snippet) {
+          return null;
+        }
+
+        const baseOffset =
+          Number.isFinite(columnNumber) && columnNumber > 0
+            ? columnNumber - 1
+            : 0;
+        const searchStart = Math.max(0, baseOffset - 32);
+        const searchEnd = Math.min(snippet.length, baseOffset + 160);
+        const searchText = snippet.slice(searchStart, searchEnd);
+        const jsxTagPattern =
+          /<\s*([A-Za-z_$][\w$]*(?:\.[A-Za-z_$][\w$]*)*)/g;
+        let bestMatch = null;
+        let match = null;
+
+        while ((match = jsxTagPattern.exec(searchText)) !== null) {
+          const distance = Math.abs(match.index + searchStart - baseOffset);
+
+          if (!bestMatch || distance < bestMatch.distance) {
+            bestMatch = {
+              tagName: match[1],
+              distance,
+            };
+          }
+        }
+
+        return bestMatch?.tagName || null;
+      };
+      const isIntrinsicPreviewTagMatch = (jsxTag, type) => {
+        if (typeof type !== "string" || typeof jsxTag !== "string") {
+          return false;
+        }
+
+        const normalizedTag = jsxTag.trim();
+        if (!normalizedTag || !/^[a-z]/.test(normalizedTag)) {
+          return false;
+        }
+
+        return normalizedTag.toLowerCase() === String(type).toLowerCase();
+      };
+      const resolvePreviewComponentLabel = ({ type, source, ReactModule }) => {
+        const normalizedFilePath = normalizePreviewSourcePath(
+          source?.fileName || source?.filename || source?.file,
+        );
+        const lineNumber =
+          typeof source?.lineNumber === "number" &&
+          Number.isFinite(source.lineNumber)
+            ? source.lineNumber
+            : null;
+        const columnNumber =
+          typeof source?.columnNumber === "number" &&
+          Number.isFinite(source.columnNumber)
+            ? source.columnNumber
+            : null;
+        const jsxSourceTag =
+          normalizedFilePath && lineNumber
+            ? readPreviewJsxSourceTag(
+                normalizedFilePath,
+                lineNumber,
+                columnNumber,
+              )
+            : null;
+        const ownerComponentName = getPreviewOwnerComponentName(ReactModule);
+        let componentLabel = null;
+
+        if (jsxSourceTag && !isIntrinsicPreviewTagMatch(jsxSourceTag, type)) {
+          componentLabel = PREVIEW_GENERIC_COMPONENT_TAGS.has(jsxSourceTag)
+            ? ownerComponentName || jsxSourceTag
+            : jsxSourceTag;
+        }
+
+        if (
+          !componentLabel &&
+          !jsxSourceTag &&
+          ownerComponentName &&
+          typeof type === "string" &&
+          ownerComponentName.toLowerCase() !== String(type).toLowerCase()
+        ) {
+          componentLabel = ownerComponentName;
+        }
+
+        return {
+          componentLabel,
+          jsxSourceTag,
+          normalizedFilePath,
+          lineNumber,
+          columnNumber,
+        };
+      };
+      const createReactSourceAttributeBridge = (ReactModule) => {
+        if (
+          !ReactModule ||
+          typeof ReactModule.createElement !== "function"
+        ) {
+          return ReactModule;
+        }
+
+        const originalCreateElement = ReactModule.createElement.bind(
+          ReactModule,
+        );
+        const bridgedReactModule = {
+          ...ReactModule,
+        };
+
+        bridgedReactModule.createElement = function auraPreviewCreateElement(
+          type,
+          props,
+          ...children
+        ) {
+          if (!props || typeof props !== "object") {
+            return originalCreateElement(type, props, ...children);
+          }
+
+          const source = props.__source;
+          const nextProps = { ...props };
+          delete nextProps.__source;
+          delete nextProps.__self;
+
+          if (typeof type === "string") {
+            const previewLabelMeta = resolvePreviewComponentLabel({
+              type,
+              source,
+              ReactModule,
+            });
+            const normalizedFilePath = previewLabelMeta.normalizedFilePath;
+
+            if (normalizedFilePath) {
+              nextProps[PREVIEW_SOURCE_PATH_ATTRIBUTE] = normalizedFilePath;
+            }
+
+            if (
+              source &&
+              typeof source.lineNumber === "number" &&
+              Number.isFinite(source.lineNumber)
+            ) {
+              nextProps[PREVIEW_SOURCE_LINE_ATTRIBUTE] = String(
+                source.lineNumber,
+              );
+            }
+
+            if (
+              source &&
+              typeof source.columnNumber === "number" &&
+              Number.isFinite(source.columnNumber)
+            ) {
+              nextProps[PREVIEW_SOURCE_COLUMN_ATTRIBUTE] = String(
+                source.columnNumber,
+              );
+            }
+
+            if (previewLabelMeta.componentLabel) {
+              nextProps[PREVIEW_COMPONENT_NAME_ATTRIBUTE] =
+                previewLabelMeta.componentLabel;
+            }
+
+            if (previewLabelMeta.jsxSourceTag) {
+              nextProps[PREVIEW_SOURCE_TAG_ATTRIBUTE] =
+                previewLabelMeta.jsxSourceTag;
+            }
+          }
+
+          return originalCreateElement(type, nextProps, ...children);
+        };
+
+        bridgedReactModule.default = bridgedReactModule;
+        bridgedReactModule.__auraSourceBridgeInstalled = true;
+        return bridgedReactModule;
+      };
+      function createMissingExternalPlaceholder(specifier) {
+        const ReactModule = window.__reactESM || window.React;
+        let placeholderProxy = null;
+
+        const placeholderTarget = function AuraMissingExternalDependency(
+          firstArg,
+        ) {
+          if (
+            ReactModule &&
+            firstArg &&
+            typeof firstArg === "object" &&
+            !Array.isArray(firstArg)
+          ) {
+            return ReactModule.createElement(ReactModule.Fragment, null);
+          }
+
+          return placeholderProxy;
+        };
+
+        placeholderProxy = new Proxy(placeholderTarget, {
+          apply(target, thisArg, args) {
+            const firstArg = Array.isArray(args) ? args[0] : undefined;
+
+            if (
+              ReactModule &&
+              firstArg &&
+              typeof firstArg === "object" &&
+              !Array.isArray(firstArg)
+            ) {
+              return ReactModule.createElement(ReactModule.Fragment, null);
+            }
+
+            return placeholderProxy;
+          },
+          construct() {
+            return placeholderProxy;
+          },
+          get(target, prop) {
+            if (prop === "__esModule") {
+              return true;
+            }
+
+            if (prop === "default") {
+              return placeholderProxy;
+            }
+
+            if (prop === "then") {
+              return undefined;
+            }
+
+            if (prop === Symbol.toPrimitive) {
+              return () => "";
+            }
+
+            if (prop === "toString") {
+              return () => `[Missing external module: ${specifier}]`;
+            }
+
+            return placeholderProxy;
+          },
+        });
+
+        return placeholderProxy;
+      }
+      function createMissingExternalModuleShim(specifier, error) {
+        const fallbackValue = createMissingExternalPlaceholder(specifier);
+        const shimTarget = {
+          __esModule: true,
+          __auraPreserveModuleProxy: true,
+          __auraMissingExternalSpecifier: specifier,
+          __auraMissingExternalMessage:
+            error instanceof Error ? error.message : String(error || ""),
+          default: fallbackValue,
+        };
+
+        return new Proxy(shimTarget, {
+          get(target, prop) {
+            if (prop in target) {
+              return target[prop];
+            }
+
+            return fallbackValue;
+          },
+        });
+      }
+      const createIconifyReactShim = () => {
+        const ReactModule = window.__reactESM || window.React;
+
+        const renderIcon = (
+          { inline, hFlip, vFlip, flip, children, ...restProps },
+          ref,
+        ) => {
+          const nextProps = {
+            ...restProps,
+            ref,
+          };
+
+          if (inline) {
+            nextProps.inline = true;
+          }
+
+          if (hFlip) {
+            nextProps["h-flip"] = true;
+          }
+
+          if (vFlip) {
+            nextProps["v-flip"] = true;
+          }
+
+          if (flip) {
+            nextProps.flip = flip;
+          }
+
+          return ReactModule.createElement("iconify-icon", nextProps, children);
+        };
+
+        const Icon = ReactModule.forwardRef((props, ref) =>
+          renderIcon(props || {}, ref),
+        );
+        const InlineIcon = ReactModule.forwardRef((props, ref) =>
+          renderIcon({ ...(props || {}), inline: true }, ref),
+        );
+        const loadIcons = async () => [];
+        const addCollection = () => {};
+        const addIcon = () => {};
+
+        return normalizeExternalModule({
+          Icon,
+          InlineIcon,
+          loadIcons,
+          addCollection,
+          addIcon,
+          default: Icon,
+        });
+      };
+
+      if (DEBUG) console.log("🚀 Loading ESM dependencies...");
+
+      try {
+        // Load all dependencies in parallel
+        const [
+          reactModule,
+          reactDomModule,
+          reactDomClientModule,
+          lucideModule,
+          unicornModule,
+        ] = await Promise.all([
+          import("react"),
+          import("react-dom"),
+          import("react-dom/client"),
+          import("lucide-react"),
+          import("unicornstudio-react"),
+        ]);
+
+        // Expose to global scope for require() function
+        const bridgedReactModule =
+          createReactSourceAttributeBridge(reactModule);
+        window.__reactESM = bridgedReactModule;
+        window.__reactDomESM = reactDomModule;
+        window.__reactDomClientESM = reactDomClientModule;
+        window.__lucideReactESM = lucideModule;
+        window.__unicornStudioESM = unicornModule;
+        window.__externalESMModules.react =
+          normalizeExternalModule(bridgedReactModule);
+        window.__externalESMModules["react-dom"] =
+          normalizeExternalModule(reactDomModule);
+        window.__externalESMModules["react-dom/client"] =
+          normalizeExternalModule(reactDomClientModule);
+        window.__externalESMModules["lucide-react"] =
+          normalizeExternalModule(lucideModule);
+        window.__externalESMModules["unicornstudio-react"] =
+          normalizeExternalModule(unicornModule);
+        window.__iconifyReactESM = createIconifyReactShim();
+        window.__externalESMModules["@iconify/react"] =
+          window.__iconifyReactESM;
+        if (window.gsap) {
+          window.__gsapESM = createGsapModule();
+          window.__externalESMModules.gsap = window.__gsapESM;
+        }
+        if (window.ScrollTrigger) {
+          window.__gsapScrollTriggerESM = createGsapScrollTriggerModule();
+          window.__externalESMModules["gsap/ScrollTrigger"] =
+            window.__gsapScrollTriggerESM;
+        }
+
+        // Backward compatibility - expose as UMD-style globals
+        window.React = bridgedReactModule;
+        window.ReactDOM = reactDomModule;
+        window.LucideReact = lucideModule;
+        window.UnicornScene = unicornModule.default || unicornModule;
+
+        if (DEBUG)
+          console.log("✅ ESM modules loaded:", {
+            React: !!window.__reactESM,
+            ReactDOM: !!window.__reactDomESM,
+            ReactDOMClient: !!window.__reactDomClientESM,
+            LucideReact: !!window.__lucideReactESM,
+            LucideExports: Object.keys(lucideModule).length,
+            UnicornStudio: !!window.__unicornStudioESM,
+          });
+
+        // Signal ready
+        window.__esmDepsReady = true;
+        window.dispatchEvent(new Event("esm-deps-ready"));
+      } catch (error) {
+        console.error("❌ Failed to load ESM dependencies:", error);
+        window.dispatchEvent(new Event("esm-deps-error"));
+      }
+    </script>
+<style>
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: #ffffff;
+        color: #111827;
+        font-family:
+          -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+          "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      #root {
+        width: 100%;
+        height: 100vh;
+      }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.overflow-x-hidden{overflow-x:hidden}.scroll-smooth{scroll-behavior:smooth}.bg-\[\#0a0a0a\]{--tw-bg-opacity:1;background-color:rgb(10 10 10 / var(--tw-bg-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.selection\:bg-orange-500\/30 *::selection{background-color:rgb(249 115 22 / 0.3)}.selection\:text-orange-200 *::selection{--tw-text-opacity:1;color:rgb(254 215 170 / var(--tw-text-opacity, 1))}.selection\:bg-orange-500\/30::selection{background-color:rgb(249 115 22 / 0.3)}.selection\:text-orange-200::selection{--tw-text-opacity:1;color:rgb(254 215 170 / var(--tw-text-opacity, 1))}</style><link data-aura-preview-head="true" href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" data-aura-preview-head="true" href="https://fonts.gstatic.com" rel="preconnect"/><link data-aura-preview-head="true" href="assets/css2_19fd9cc6b396.css" rel="stylesheet"/><style data-scroll-fix="true">
+        /* Scroll fixes for offline viewing */
+        html, body {
+            overflow: auto !important;
+            overflow-x: hidden !important;
+            height: auto !important;
+            min-height: 100% !important;
+            scroll-behavior: auto !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* Force visibility - many sites use JS animations for initial display */
+        body, .wrapper, main, #__next, #app, .page, .content {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+        
+        /* Disable loader/preloader overlays */
+        .loader, .preloader, .loading, [class*="loader"], [class*="preloader"] {
+            display: none !important;
+            opacity: 0 !important;
+        }
+        
+        /* Show elements that might be hidden for animation */
+        .word-inner, .char, .line, [data-aos], [data-scroll],
+        .hero-text span, .hero-fade, [class*="hero"] span {
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
+        }
+        
+        /* Reset Tailwind animation utility classes */
+        .translate-y-full, .translate-x-full, .-translate-y-full, .-translate-x-full,
+        .translate-y-1\/2, .-translate-y-1\/2, .translate-y-\[100\%\], .translate-y-\[110\%\] {
+            transform: none !important;
+        }
+        
+        /* Force visibility on common hidden-for-animation patterns */
+        .opacity-0, [class*="opacity-0"] {
+            opacity: 1 !important;
+        }
+        
+        /* Reset scale transforms used for animations */
+        .scale-0, .scale-50, .scale-75 {
+            transform: none !important;
+        }
+        
+        html.lenis, html.lenis-smooth, 
+        body.lenis, body.lenis-smooth,
+        .lenis-wrapper, .lenis-content,
+        [data-lenis-prevent], [data-scroll-container] {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        
+        /* Fix flex containers that might cut off content */
+        body.flex.items-center,
+        body.flex.justify-center {
+            align-items: flex-start !important;
+            min-height: 100vh;
+            height: auto !important;
+        }
+        
+        /* Ensure main content scrolls */
+        main, #__next, #__nuxt, #app, .main-content {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        </style></head>
+<body class="selection:bg-orange-500/30 selection:text-orange-200 bg-[#0a0a0a] text-white overflow-x-hidden antialiased">
+<div id="root"></div>
+<script>
+      // Use DEBUG flag from module script
+      const DEBUG = window.__PREVIEW_DEBUG || false;
+      window.__externalESMModules =
+        window.__externalESMModules || Object.create(null);
+      const PREVIEW_REFRESH_PATH_STORAGE_KEY = "__aura_preview_refresh_path__";
+      const PREVIEW_SANDBOX_FALLBACK_URL = "/preview-sandbox-v2.html";
+      let pendingRefreshPath = null;
+      window.__AURA_PREVIEW_ROUTE_PATH =
+        window.__AURA_PREVIEW_ROUTE_PATH || "/";
+      window.__AURA_PREVIEW_PRECOMPILED =
+        window.__AURA_PREVIEW_PRECOMPILED === true;
+
+      if (DEBUG)
+        console.log("🎬 Preview sandbox v2 loaded (client-side bundler)");
+
+      // Module system
+      const __modules = {};
+      const __cache = {};
+      window.__auraPreviewModules = __modules;
+      const getExternalModuleDefault = (loadedModule) => {
+        if (!loadedModule) {
+          return loadedModule;
+        }
+
+        if (
+          (typeof loadedModule === "object" ||
+            typeof loadedModule === "function") &&
+          Object.prototype.hasOwnProperty.call(loadedModule, "default")
+        ) {
+          return loadedModule.default;
+        }
+
+        if (
+          loadedModule?.gsap &&
+          typeof loadedModule.gsap.context === "function"
+        ) {
+          return loadedModule.gsap;
+        }
+
+        return loadedModule;
+      };
+      const normalizeExternalModule = (loadedModule) => ({
+        ...(loadedModule || {}),
+        default: getExternalModuleDefault(loadedModule),
+        __esModule: true,
+      });
+      const createGsapModule = () =>
+        normalizeExternalModule({
+          ...(window.gsap || {}),
+          default: window.gsap,
+          gsap: window.gsap,
+          ScrollTrigger: window.ScrollTrigger,
+        });
+      const createGsapScrollTriggerModule = () =>
+        normalizeExternalModule({
+          ...(window.ScrollTrigger || {}),
+          default: window.ScrollTrigger,
+          ScrollTrigger: window.ScrollTrigger,
+          gsap: window.gsap,
+        });
+      function createMissingExternalPlaceholder(specifier) {
+        const ReactModule = window.__reactESM || window.React;
+        let placeholderProxy = null;
+
+        const placeholderTarget = function AuraMissingExternalDependency(
+          firstArg,
+        ) {
+          if (
+            ReactModule &&
+            firstArg &&
+            typeof firstArg === "object" &&
+            !Array.isArray(firstArg)
+          ) {
+            return ReactModule.createElement(ReactModule.Fragment, null);
+          }
+
+          return placeholderProxy;
+        };
+
+        placeholderProxy = new Proxy(placeholderTarget, {
+          apply(target, thisArg, args) {
+            const firstArg = Array.isArray(args) ? args[0] : undefined;
+
+            if (
+              ReactModule &&
+              firstArg &&
+              typeof firstArg === "object" &&
+              !Array.isArray(firstArg)
+            ) {
+              return ReactModule.createElement(ReactModule.Fragment, null);
+            }
+
+            return placeholderProxy;
+          },
+          construct() {
+            return placeholderProxy;
+          },
+          get(target, prop) {
+            if (prop === "__esModule") {
+              return true;
+            }
+
+            if (prop === "default") {
+              return placeholderProxy;
+            }
+
+            if (prop === "then") {
+              return undefined;
+            }
+
+            if (prop === Symbol.toPrimitive) {
+              return () => "";
+            }
+
+            if (prop === "toString") {
+              return () => `[Missing external module: ${specifier}]`;
+            }
+
+            return placeholderProxy;
+          },
+        });
+
+        return placeholderProxy;
+      }
+
+      function createMissingExternalModuleShim(specifier, error) {
+        const fallbackValue = createMissingExternalPlaceholder(specifier);
+        const shimTarget = {
+          __esModule: true,
+          __auraPreserveModuleProxy: true,
+          __auraMissingExternalSpecifier: specifier,
+          __auraMissingExternalMessage:
+            error instanceof Error ? error.message : String(error || ""),
+          default: fallbackValue,
+        };
+
+        return new Proxy(shimTarget, {
+          get(target, prop) {
+            if (prop in target) {
+              return target[prop];
+            }
+
+            return fallbackValue;
+          },
+        });
+      }
+
+      function createSplinePreviewFallback(props) {
+        const ReactModule = window.__reactESM || window.React;
+        const fallbackStyle = {
+          width: "100%",
+          height: "100%",
+          minHeight: "100%",
+          display: "block",
+          pointerEvents: "none",
+          background: "transparent",
+          ...(props && typeof props.style === "object" ? props.style : {}),
+        };
+
+        return ReactModule.createElement("div", {
+          className: props?.className,
+          style: fallbackStyle,
+          "aria-hidden": "true",
+          "data-aura-spline-fallback": "true",
+          title: "Spline scene unavailable in preview",
+        });
+      }
+
+      function createSafeSplineReactModule(loadedModule) {
+        const ReactModule = window.__reactESM || window.React;
+        const OriginalSpline = loadedModule?.default || loadedModule;
+
+        if (
+          !ReactModule ||
+          !OriginalSpline ||
+          typeof ReactModule.createElement !== "function" ||
+          typeof ReactModule.Component !== "function" ||
+          typeof ReactModule.forwardRef !== "function"
+        ) {
+          return loadedModule;
+        }
+
+        class AuraSplinePreviewBoundary extends ReactModule.Component {
+          constructor(props) {
+            super(props);
+            this.state = { error: null };
+          }
+
+          static getDerivedStateFromError(error) {
+            return { error };
+          }
+
+          componentDidCatch(error) {
+            console.warn(
+              "Spline scene failed to load in Aura preview; rendering a fallback.",
+              error,
+            );
+          }
+
+          render() {
+            if (this.state.error) {
+              return createSplinePreviewFallback(this.props.fallbackProps);
+            }
+
+            return this.props.children;
+          }
+        }
+
+        const SafeSpline = ReactModule.forwardRef((props, ref) =>
+          ReactModule.createElement(
+            AuraSplinePreviewBoundary,
+            { fallbackProps: props },
+            ReactModule.createElement(OriginalSpline, { ...props, ref }),
+          ),
+        );
+
+        SafeSpline.displayName = "AuraSafeSplinePreview";
+
+        return {
+          ...(loadedModule || {}),
+          default: SafeSpline,
+          __esModule: true,
+        };
+      }
+      const EXTERNAL_MODULE_VERSION_MAP = {
+        react: "18.3.1",
+        "react-dom": "18.3.1",
+        "react-spring": "10.0.3",
+        "@react-spring/web": "10.0.3",
+        "@react-spring/core": "10.0.3",
+        "@react-spring/animated": "10.0.3",
+        "@react-spring/shared": "10.0.3",
+        "@react-spring/types": "10.0.3",
+        "lucide-react": "0.462.0",
+        "unicornstudio-react": "2.1.4-1",
+        "@splinetool/react-spline": "4.1.0",
+        "@splinetool/runtime": "1.12.81",
+        gsap: "3.12.7",
+        recharts: "2.12.7",
+        "framer-motion": "11.11.17",
+        "react-router-dom": "6.28.0",
+        clsx: "2.1.1",
+        "tailwind-merge": "2.5.4",
+        "class-variance-authority": "0.7.1",
+        "@radix-ui/react-slot": "1.1.1",
+      };
+      const BUNDLED_EXTERNAL_MODULE_ROOTS = new Set(["recharts"]);
+      const REACT_SPRING_INTERNAL_TYPES_PREFIX = "@react-spring/types/";
+      const BARE_IMPORT_PATTERN =
+        /(?:import\s+[^'"]*?\s+from\s+|import\s+|export\s+[^'"]*?\s+from\s+|import\s*\(\s*|require\s*\(\s*)["']([^"']+)["']/g;
+
+      function getPackageRoot(specifier) {
+        if (!specifier) {
+          return "";
+        }
+
+        if (specifier.startsWith("@")) {
+          const [scope, name] = specifier.split("/");
+          return scope && name ? `${scope}/${name}` : specifier;
+        }
+
+        return specifier.split("/")[0] || specifier;
+      }
+
+      function isBareImport(specifier) {
+        return (
+          !!specifier &&
+          !specifier.startsWith(".") &&
+          !specifier.startsWith("/") &&
+          !specifier.startsWith("@/") &&
+          !specifier.startsWith("~/") &&
+          !specifier.startsWith("src/") &&
+          !specifier.startsWith("http://") &&
+          !specifier.startsWith("https://") &&
+          !specifier.startsWith("data:")
+        );
+      }
+
+      function normalizeExternalSpecifier(specifier) {
+        if (typeof specifier !== "string") {
+          return specifier;
+        }
+
+        if (specifier.startsWith(REACT_SPRING_INTERNAL_TYPES_PREFIX)) {
+          return "@react-spring/types";
+        }
+
+        return specifier;
+      }
+
+      function shouldBundleExternalModule(packageRoot) {
+        return (
+          BUNDLED_EXTERNAL_MODULE_ROOTS.has(packageRoot) ||
+          packageRoot === "react-spring" ||
+          packageRoot.startsWith("@react-spring/")
+        );
+      }
+
+      function getExternalModuleUrl(specifier) {
+        const normalizedSpecifier = normalizeExternalSpecifier(specifier);
+
+        if (normalizedSpecifier === "react") {
+          return "https://esm.sh/react@18.3.1?dev";
+        }
+
+        if (normalizedSpecifier === "react-dom") {
+          return "https://esm.sh/react-dom@18.3.1?dev";
+        }
+
+        if (normalizedSpecifier === "react-dom/client") {
+          return "https://esm.sh/react-dom@18.3.1/client?dev";
+        }
+
+        if (normalizedSpecifier === "three") {
+          return "https://esm.sh/three@0.177.0";
+        }
+
+        if (normalizedSpecifier === "@react-three/fiber") {
+          return "https://esm.sh/@react-three/fiber@8.15.0?external=react,react-dom,three";
+        }
+
+        if (
+          normalizedSpecifier === "@splinetool/react-spline" ||
+          normalizedSpecifier.startsWith("@splinetool/react-spline/")
+        ) {
+          const versionedSpecifier = normalizedSpecifier.replace(
+            "@splinetool/react-spline",
+            `@splinetool/react-spline@${EXTERNAL_MODULE_VERSION_MAP["@splinetool/react-spline"]}`,
+          );
+          const splineRuntimeDependency = `@splinetool/runtime@${EXTERNAL_MODULE_VERSION_MAP["@splinetool/runtime"]}`;
+
+          return `https://esm.sh/${versionedSpecifier}?external=${encodeURIComponent("react,react-dom")}&deps=${encodeURIComponent(splineRuntimeDependency)}`;
+        }
+
+        const packageRoot = getPackageRoot(normalizedSpecifier);
+        const version = EXTERNAL_MODULE_VERSION_MAP[packageRoot];
+        const versionedSpecifier = version
+          ? normalizedSpecifier.replace(
+              packageRoot,
+              `${packageRoot}@${version}`,
+            )
+          : normalizedSpecifier;
+        const queryParts = [];
+
+        if (shouldBundleExternalModule(packageRoot)) {
+          queryParts.push("bundle");
+        }
+
+        queryParts.push(`external=${encodeURIComponent("react,react-dom")}`);
+
+        return `https://esm.sh/${versionedSpecifier}?${queryParts.join("&")}`;
+      }
+
+      function getExternalModuleAliases(specifier) {
+        const aliases = new Set();
+        const normalizedSpecifier = normalizeExternalSpecifier(specifier);
+        const packageRoot = getPackageRoot(normalizedSpecifier);
+
+        aliases.add(specifier);
+        aliases.add(normalizedSpecifier);
+        if (normalizedSpecifier === packageRoot) {
+          aliases.add(packageRoot);
+        }
+
+        return [...aliases].filter(Boolean);
+      }
+
+      function getExternalModuleFromCache(specifier) {
+        for (const alias of getExternalModuleAliases(specifier)) {
+          if (
+            window.__externalESMModules &&
+            window.__externalESMModules[alias]
+          ) {
+            return window.__externalESMModules[alias];
+          }
+        }
+
+        return null;
+      }
+
+      function storeExternalModule(specifier, loadedModule) {
+        const normalizedModule =
+          loadedModule && loadedModule.__auraPreserveModuleProxy
+            ? loadedModule
+            : normalizeExternalModule(loadedModule);
+
+        for (const alias of getExternalModuleAliases(specifier)) {
+          window.__externalESMModules[alias] = normalizedModule;
+        }
+
+        return normalizedModule;
+      }
+
+      function collectBareImports(modules) {
+        const imports = new Set();
+
+        Object.entries(modules || {}).forEach(([path, code]) => {
+          const isScriptLikeModule =
+            path === "__bundle__" || /\.(jsx?|tsx?|mjs|cjs)$/i.test(path);
+
+          if (!isScriptLikeModule || typeof code !== "string") {
+            return;
+          }
+
+          for (const match of code.matchAll(BARE_IMPORT_PATTERN)) {
+            const specifier = match[1];
+
+            if (isBareImport(specifier)) {
+              imports.add(specifier);
+            }
+          }
+        });
+
+        return [...imports];
+      }
+
+      async function preloadExternalModules(specifiers) {
+        const externalImports = [...new Set(specifiers)]
+          .filter(isBareImport)
+          .filter((specifier) => !getExternalModuleFromCache(specifier));
+
+        window.__lastExternalImports = externalImports;
+
+        if (externalImports.length === 0) {
+          return;
+        }
+
+        await Promise.all(
+          externalImports.map(async (specifier) => {
+            const normalizedSpecifier = normalizeExternalSpecifier(specifier);
+            const packageRoot = getPackageRoot(normalizedSpecifier);
+
+            if (packageRoot === "@iconify/react") {
+              const iconifyModule =
+                window.__iconifyReactESM ||
+                normalizeExternalModule({
+                  Icon: (props) => window.React.createElement("span", props),
+                  InlineIcon: (props) =>
+                    window.React.createElement("span", props),
+                  default: (props) => window.React.createElement("span", props),
+                });
+
+              window.__iconifyReactESM = iconifyModule;
+              storeExternalModule(specifier, iconifyModule);
+              return;
+            }
+
+            if (packageRoot === "iconify-icon") {
+              storeExternalModule(
+                specifier,
+                normalizeExternalModule({
+                  default: {},
+                }),
+              );
+              return;
+            }
+
+            if (packageRoot === "gsap") {
+              const gsapModule =
+                normalizedSpecifier === "gsap/ScrollTrigger"
+                  ? window.__gsapScrollTriggerESM ||
+                    createGsapScrollTriggerModule()
+                  : window.__gsapESM || createGsapModule();
+
+              if (normalizedSpecifier === "gsap/ScrollTrigger") {
+                window.__gsapScrollTriggerESM = gsapModule;
+              } else {
+                window.__gsapESM = gsapModule;
+              }
+              storeExternalModule(specifier, gsapModule);
+              return;
+            }
+
+            const moduleUrl = getExternalModuleUrl(specifier);
+            try {
+              const loadedModule = await import(moduleUrl);
+              storeExternalModule(
+                specifier,
+                packageRoot === "@splinetool/react-spline"
+                  ? createSafeSplineReactModule(loadedModule)
+                  : loadedModule,
+              );
+            } catch (error) {
+              console.warn(
+                `⚠️ Falling back to a missing-module shim for external import "${specifier}"`,
+                error,
+              );
+              storeExternalModule(
+                specifier,
+                createMissingExternalModuleShim(specifier, error),
+              );
+            }
+          }),
+        );
+
+        window.__loadedExternalImports = Object.keys(
+          window.__externalESMModules,
+        );
+      }
+
+      function getPreviewLocationPath() {
+        const pathname = window.location.pathname || "/";
+
+        if (pathname === "/preview-sandbox-v2.html") {
+          return null;
+        }
+
+        return `${pathname}${window.location.search || ""}${window.location.hash || ""}`;
+      }
+
+      function readStoredRefreshPath() {
+        try {
+          const storedPath = window.sessionStorage.getItem(
+            PREVIEW_REFRESH_PATH_STORAGE_KEY,
+          );
+          if (storedPath) {
+            window.sessionStorage.removeItem(PREVIEW_REFRESH_PATH_STORAGE_KEY);
+            return storedPath;
+          }
+        } catch (error) {
+          if (DEBUG)
+            console.warn("Unable to read stored preview refresh path", error);
+        }
+
+        return null;
+      }
+
+      function storeRefreshPath(path) {
+        const normalizedPath =
+          typeof path === "string" && path.trim()
+            ? path.trim()
+            : getPreviewLocationPath();
+
+        if (!normalizedPath) {
+          return;
+        }
+
+        try {
+          window.sessionStorage.setItem(
+            PREVIEW_REFRESH_PATH_STORAGE_KEY,
+            normalizedPath,
+          );
+        } catch (error) {
+          if (DEBUG)
+            console.warn("Unable to store preview refresh path", error);
+        }
+      }
+
+      function restorePendingRefreshPath() {
+        if (!pendingRefreshPath) {
+          return false;
+        }
+
+        const nextPath = pendingRefreshPath;
+        pendingRefreshPath = null;
+
+        try {
+          applyPreviewPath(nextPath, {
+            notifyParent: false,
+            dispatchPopstate: true,
+          });
+          return true;
+        } catch (error) {
+          console.warn("Unable to restore preview path after refresh", error);
+          return false;
+        }
+      }
+
+      function notifyParentOfLocationChange() {
+        const path = getPreviewLocationPath();
+
+        if (!path) {
+          return;
+        }
+
+        window.parent.postMessage(
+          {
+            type: "LOCATION_CHANGE",
+            path,
+          },
+          "*",
+        );
+      }
+
+      function normalizePreviewPath(path) {
+        if (typeof path !== "string" || !path.trim()) {
+          return "/";
+        }
+
+        try {
+          const parsed = new URL(path, window.location.origin);
+          const normalizedPathname =
+            parsed.pathname.replace(/\/+/g, "/").replace(/\/$/, "") || "/";
+
+          return `${normalizedPathname}${parsed.search}${parsed.hash}`;
+        } catch (error) {
+          const trimmedPath = path.trim();
+          return trimmedPath.startsWith("/") ? trimmedPath : `/${trimmedPath}`;
+        }
+      }
+
+      function findPreviewHashTarget(hash) {
+        if (typeof hash !== "string" || !hash.startsWith("#")) {
+          return null;
+        }
+
+        const decodedHash = decodeURIComponent(hash.slice(1));
+        if (!decodedHash) {
+          return null;
+        }
+
+        const targetById = document.getElementById(decodedHash);
+        if (targetById) {
+          return targetById;
+        }
+
+        const escapedHash =
+          window.CSS && typeof window.CSS.escape === "function"
+            ? window.CSS.escape(decodedHash)
+            : decodedHash.replace(/["\\]/g, "\\$&");
+
+        try {
+          return document.querySelector(`[name="${escapedHash}"]`);
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function scrollPreviewHashIntoView(hash, remainingAttempts = 24) {
+        if (typeof hash !== "string" || !hash.startsWith("#")) {
+          return;
+        }
+
+        const target = findPreviewHashTarget(hash);
+        if (target) {
+          target.scrollIntoView({ block: "start", inline: "nearest" });
+          return;
+        }
+
+        if (remainingAttempts <= 0) {
+          return;
+        }
+
+        window.requestAnimationFrame(() => {
+          scrollPreviewHashIntoView(hash, remainingAttempts - 1);
+        });
+      }
+
+      function getPreviewAnchorNavigationPath(anchor) {
+        if (!(anchor instanceof HTMLAnchorElement)) {
+          return null;
+        }
+
+        const rawHref = anchor.getAttribute("href");
+        if (typeof rawHref !== "string") {
+          return null;
+        }
+
+        const trimmedHref = rawHref.trim();
+        if (!trimmedHref || trimmedHref === "#") {
+          return null;
+        }
+
+        if (
+          /^(javascript|mailto|tel|data|blob):/i.test(trimmedHref) ||
+          anchor.hasAttribute("download")
+        ) {
+          return null;
+        }
+
+        if (anchor.target && anchor.target.toLowerCase() !== "_self") {
+          return null;
+        }
+
+        if (typeof anchor.rel === "string" && /\bexternal\b/i.test(anchor.rel)) {
+          return null;
+        }
+
+        try {
+          const targetUrl = new URL(anchor.href, window.location.href);
+          if (targetUrl.origin !== window.location.origin) {
+            return null;
+          }
+
+          const lastPathSegment =
+            targetUrl.pathname.split("/").filter(Boolean).pop() || "";
+          const looksLikeStaticAsset =
+            /\.[a-z0-9]{1,8}$/i.test(lastPathSegment) &&
+            !/\.html?$/i.test(lastPathSegment);
+
+          if (looksLikeStaticAsset) {
+            return null;
+          }
+
+          return `${targetUrl.pathname || "/"}${targetUrl.search}${targetUrl.hash}`;
+        } catch (error) {
+          return null;
+        }
+      }
+
+      function applyPreviewPath(path, options = {}) {
+        const normalizedPath = normalizePreviewPath(path);
+        const notifyParent = options.notifyParent !== false;
+        const dispatchPopstate = options.dispatchPopstate === true;
+        const dispatchHashchange = options.dispatchHashchange === true;
+        const historyMode = options.historyMode === "push" ? "push" : "replace";
+        const scrollToHash = options.scrollToHash === true;
+        const currentPath = `${window.location.pathname || "/"}${window.location.search || ""}${window.location.hash || ""}`;
+        const currentUrl = new URL(currentPath, window.location.origin);
+        const nextUrl = new URL(normalizedPath, window.location.origin);
+
+        window.__AURA_PREVIEW_ROUTE_PATH = normalizedPath;
+
+        if (currentPath !== normalizedPath) {
+          try {
+            const historyMethod =
+              historyMode === "push" ? "pushState" : "replaceState";
+
+            window.history[historyMethod](
+              window.history.state,
+              "",
+              normalizedPath,
+            );
+          } catch (error) {
+            console.warn("Unable to apply preview path", error);
+          }
+        }
+
+        if (dispatchPopstate) {
+          window.dispatchEvent(new PopStateEvent("popstate"));
+        }
+
+        if (dispatchHashchange && currentUrl.hash !== nextUrl.hash) {
+          if (typeof HashChangeEvent === "function") {
+            window.dispatchEvent(
+              new HashChangeEvent("hashchange", {
+                oldURL: currentUrl.toString(),
+                newURL: nextUrl.toString(),
+              }),
+            );
+          } else {
+            window.dispatchEvent(new Event("hashchange"));
+          }
+        }
+
+        if (scrollToHash && nextUrl.hash) {
+          window.requestAnimationFrame(() => {
+            scrollPreviewHashIntoView(nextUrl.hash);
+          });
+        }
+
+        if (notifyParent) {
+          window.requestAnimationFrame(notifyParentOfLocationChange);
+        }
+
+        return normalizedPath;
+      }
+
+      if (!window.__auraPreviewLocationBridgeInstalled) {
+        const wrapHistoryMethod = (methodName) => {
+          const originalMethod = window.history[methodName].bind(
+            window.history,
+          );
+
+          window.history[methodName] = (...args) => {
+            const result = originalMethod(...args);
+            window.requestAnimationFrame(notifyParentOfLocationChange);
+            return result;
+          };
+        };
+
+        wrapHistoryMethod("pushState");
+        wrapHistoryMethod("replaceState");
+
+        window.addEventListener("popstate", () => {
+          window.requestAnimationFrame(notifyParentOfLocationChange);
+        });
+
+        window.addEventListener("hashchange", () => {
+          window.requestAnimationFrame(notifyParentOfLocationChange);
+        });
+
+        document.addEventListener("click", (event) => {
+          if (
+            event.defaultPrevented ||
+            event.button !== 0 ||
+            event.metaKey ||
+            event.ctrlKey ||
+            event.shiftKey ||
+            event.altKey ||
+            !(event.target instanceof Element)
+          ) {
+            return;
+          }
+
+          const anchor = event.target.closest("a[href]");
+          const nextPath = getPreviewAnchorNavigationPath(anchor);
+
+          if (!nextPath) {
+            return;
+          }
+
+          const nextUrl = new URL(
+            normalizePreviewPath(nextPath),
+            window.location.origin,
+          );
+
+          event.preventDefault();
+          applyPreviewPath(nextPath, {
+            notifyParent: false,
+            dispatchPopstate: true,
+            dispatchHashchange: nextUrl.hash !== (window.location.hash || ""),
+            historyMode: "push",
+            scrollToHash: true,
+          });
+        });
+
+        window.__auraPreviewLocationBridgeInstalled = true;
+      }
+
+      function extractErrorLocationFromStack(stack) {
+        if (typeof stack !== "string" || !stack.trim()) {
+          return null;
+        }
+
+        const stackLines = stack.split("\n");
+        const patterns = [
+          /((?:src|app|pages|components|lib|utils)\/[^:\s)]+\.(?:jsx?|tsx?|mjs|cjs)):(\d+):(\d+)/,
+          /at\s+([^:\s)]+\.(?:jsx?|tsx?|mjs|cjs)):(\d+):(\d+)/,
+          /([^:\s)]+\.(?:jsx?|tsx?|mjs|cjs)):(\d+):(\d+)/,
+        ];
+
+        for (const stackLine of stackLines) {
+          for (const pattern of patterns) {
+            const match = stackLine.match(pattern);
+            if (!match) {
+              continue;
+            }
+
+            return {
+              source: normalizeProjectModulePath(match[1]),
+              line: Number(match[2]),
+              column: Number(match[3]),
+            };
+          }
+        }
+
+        return null;
+      }
+
+      function getModuleSnippet(source, line) {
+        const normalizedSource = normalizeProjectModulePath(source);
+        const moduleContent = __modules[normalizedSource];
+
+        if (
+          !normalizedSource ||
+          typeof moduleContent !== "string" ||
+          !Number.isFinite(line)
+        ) {
+          return null;
+        }
+
+        const lines = moduleContent.split(/\r?\n/);
+        const targetLine = Math.max(1, Math.min(lines.length, Number(line)));
+        const startLine = Math.max(1, targetLine - 1);
+        const endLine = Math.min(lines.length, targetLine + 1);
+        const snippetLines = [];
+
+        for (let currentLine = startLine; currentLine <= endLine; currentLine += 1) {
+          const marker = currentLine === targetLine ? ">" : " ";
+          snippetLines.push(
+            `${marker} ${String(currentLine).padStart(3, " ")} | ${lines[currentLine - 1] || ""}`,
+          );
+        }
+
+        return snippetLines.join("\n");
+      }
+
+      function buildErrorPayload(title, error, options = {}) {
+        const baseMessage =
+          error instanceof Error
+            ? error.message
+            : typeof error === "string"
+              ? error
+              : String(error || options.message || "Preview error");
+        const stack =
+          typeof options.stack === "string"
+            ? options.stack
+            : error instanceof Error
+              ? error.stack
+              : undefined;
+        const explicitLoc =
+          error &&
+          typeof error === "object" &&
+          error.loc &&
+          typeof error.loc === "object"
+            ? error.loc
+            : null;
+        const stackLoc = extractErrorLocationFromStack(stack);
+        const source =
+          normalizeProjectModulePath(options.source) ||
+          normalizeProjectModulePath(explicitLoc?.filename) ||
+          normalizeProjectModulePath(stackLoc?.source) ||
+          null;
+        const line =
+          Number.isFinite(options.line)
+            ? Number(options.line)
+            : Number.isFinite(explicitLoc?.line)
+              ? Number(explicitLoc.line)
+              : Number.isFinite(stackLoc?.line)
+                ? Number(stackLoc.line)
+                : null;
+        const column =
+          Number.isFinite(options.column)
+            ? Number(options.column)
+            : Number.isFinite(explicitLoc?.column)
+              ? Number(explicitLoc.column) + 1
+              : Number.isFinite(stackLoc?.column)
+                ? Number(stackLoc.column)
+                : null;
+        const snippet =
+          typeof options.snippet === "string"
+            ? options.snippet
+            : source && line
+              ? getModuleSnippet(source, line)
+              : null;
+
+        return {
+          title,
+          error: baseMessage,
+          stack,
+          source,
+          line,
+          column,
+          snippet,
+        };
+      }
+
+      function attachErrorPayload(error, payload) {
+        if (!error || typeof error !== "object") {
+          return error;
+        }
+
+        error.__auraPreviewErrorPayload = payload;
+        return error;
+      }
+
+      function getAttachedErrorPayload(error) {
+        if (
+          error &&
+          typeof error === "object" &&
+          error.__auraPreviewErrorPayload &&
+          typeof error.__auraPreviewErrorPayload === "object"
+        ) {
+          return error.__auraPreviewErrorPayload;
+        }
+
+        return null;
+      }
+
+      function notifyParentOfRenderError(payload) {
+        try {
+          window.parent.postMessage(
+            {
+              type: "RENDER_ERROR",
+              ...payload,
+            },
+            "*",
+          );
+        } catch (error) {
+          console.error("Unable to notify parent about preview error", error);
+        }
+      }
+
+      // Error logging (console only - parent UI renders the status)
+      function showError(title, message, stack, details = {}) {
+        console.error("❌", title);
+        console.error("Message:", message);
+        if (details.source) {
+          const location = `${details.source}:${details.line || "?"}:${details.column || "?"}`;
+          console.error("Location:", location);
+        }
+        if (details.snippet) {
+          console.error("Snippet:\n" + details.snippet);
+        }
+        if (stack) {
+          console.error("Stack:", stack);
+        }
+      }
+
+      function normalizeProjectModulePath(path) {
+        if (typeof path !== "string") {
+          return "";
+        }
+
+        return path
+          .replace(/[?#].*$/, "")
+          .replace(/^\/+/, "")
+          .replace(/\\/g, "/")
+          .replace(/\/+/g, "/")
+          .trim();
+      }
+
+      function resolveModuleCandidatePath(path, modules = __modules) {
+        const normalizedPath = normalizeProjectModulePath(path);
+        if (!normalizedPath) {
+          return null;
+        }
+
+        const candidates = normalizedPath.match(/\.[a-z0-9]+$/i)
+          ? [normalizedPath]
+          : [
+              normalizedPath,
+              `${normalizedPath}.jsx`,
+              `${normalizedPath}.js`,
+              `${normalizedPath}.tsx`,
+              `${normalizedPath}.ts`,
+              `${normalizedPath}.css`,
+              `${normalizedPath}.scss`,
+              `${normalizedPath}.sass`,
+              `${normalizedPath}.less`,
+              `${normalizedPath}/index.jsx`,
+              `${normalizedPath}/index.js`,
+              `${normalizedPath}/index.tsx`,
+              `${normalizedPath}/index.ts`,
+              `${normalizedPath}/index.css`,
+              `${normalizedPath}/index.scss`,
+              `${normalizedPath}/index.sass`,
+              `${normalizedPath}/index.less`,
+            ];
+
+        for (const candidate of candidates) {
+          if (Object.prototype.hasOwnProperty.call(modules, candidate)) {
+            return candidate;
+          }
+        }
+
+        return null;
+      }
+
+      function resolveProjectModulePath(specifier, modules = __modules) {
+        if (typeof specifier !== "string" || !specifier.trim()) {
+          return null;
+        }
+
+        const normalizedSpecifier = normalizeProjectModulePath(specifier);
+        if (!normalizedSpecifier) {
+          return null;
+        }
+
+        const candidateBases = [];
+        const addCandidateBase = (value) => {
+          const normalizedValue = normalizeProjectModulePath(value);
+          if (!normalizedValue || candidateBases.includes(normalizedValue)) {
+            return;
+          }
+
+          candidateBases.push(normalizedValue);
+        };
+
+        if (
+          normalizedSpecifier.startsWith("@/") ||
+          normalizedSpecifier.startsWith("~/")
+        ) {
+          const projectRelativePath = normalizedSpecifier.slice(2);
+          addCandidateBase(projectRelativePath);
+          addCandidateBase(`src/${projectRelativePath}`);
+        } else if (specifier.startsWith("/")) {
+          addCandidateBase(normalizedSpecifier);
+          addCandidateBase(`src/${normalizedSpecifier}`);
+        } else if (normalizedSpecifier.startsWith("src/")) {
+          addCandidateBase(normalizedSpecifier);
+        } else {
+          return null;
+        }
+
+        for (const basePath of candidateBases) {
+          const resolvedPath = resolveModuleCandidatePath(basePath, modules);
+          if (resolvedPath) {
+            return resolvedPath;
+          }
+        }
+
+        return null;
+      }
+
+      // Resolve module path
+      function resolveModulePath(fromPath, importPath) {
+        // External packages
+        if (!importPath.startsWith(".")) {
+          return resolveProjectModulePath(importPath) || importPath;
+        }
+
+        // Relative import
+        const fromDir = fromPath.split("/").slice(0, -1).join("/");
+        const parts = importPath.split("/");
+        const dirParts = fromDir ? fromDir.split("/") : [];
+
+        for (const part of parts) {
+          if (part === "..") {
+            dirParts.pop();
+          } else if (part !== ".") {
+            dirParts.push(part);
+          }
+        }
+
+        const resolved = dirParts.join("/");
+
+        return resolveModuleCandidatePath(resolved) || resolved;
+      }
+
+      function resolveRenderableModuleExport(loadedModule) {
+        if (typeof loadedModule === "function") {
+          return loadedModule;
+        }
+
+        if (loadedModule && typeof loadedModule.default === "function") {
+          return loadedModule.default;
+        }
+
+        if (loadedModule && typeof loadedModule === "object") {
+          const firstFunctionExport = Object.values(loadedModule).find(
+            (value) => typeof value === "function",
+          );
+
+          if (typeof firstFunctionExport === "function") {
+            return firstFunctionExport;
+          }
+        }
+
+        return loadedModule;
+      }
+
+      // Require implementation (ESM-aware)
+      function require(modulePath) {
+        const resolvedLocalModulePath = resolveProjectModulePath(modulePath);
+        if (resolvedLocalModulePath) {
+          modulePath = resolvedLocalModulePath;
+        }
+
+        // Check cache
+        if (__cache[modulePath]) {
+          return __cache[modulePath];
+        }
+
+        const cachedExternalModule = getExternalModuleFromCache(modulePath);
+        if (cachedExternalModule) {
+          return cachedExternalModule;
+        }
+
+        // External dependencies (ESM modules)
+        if (modulePath === "react") {
+          if (!window.__reactESM) {
+            console.error("❌ React ESM module not loaded");
+            throw new Error("React ESM module not loaded");
+          }
+          return window.__reactESM;
+        }
+
+        if (modulePath === "react-dom") {
+          if (!window.__reactDomESM) {
+            console.error("❌ ReactDOM ESM module not loaded");
+            throw new Error("ReactDOM ESM module not loaded");
+          }
+          return window.__reactDomESM;
+        }
+
+        if (modulePath === "react-dom/client") {
+          if (!window.__reactDomClientESM) {
+            console.error("❌ ReactDOM client ESM module not loaded");
+            throw new Error("ReactDOM client ESM module not loaded");
+          }
+          return window.__reactDomClientESM;
+        }
+
+        if (modulePath === "lucide-react") {
+          if (!window.__lucideReactESM) {
+            console.warn(
+              "⚠️ lucide-react ESM module not yet loaded, using fallback placeholder icons",
+            );
+            // Return a Proxy that returns placeholder components for any icon
+            return new Proxy(
+              {},
+              {
+                get: function (target, iconName) {
+                  // Return a placeholder React component for any icon
+                  return function PlaceholderIcon(props) {
+                    return window.React.createElement(
+                      "svg",
+                      {
+                        ...props,
+                        xmlns: "http://www.w3.org/2000/svg",
+                        width: props.width || props.size || 24,
+                        height: props.height || props.size || 24,
+                        viewBox: "0 0 24 24",
+                        fill: "none",
+                        stroke: "currentColor",
+                        strokeWidth: "2",
+                        strokeLinecap: "round",
+                        strokeLinejoin: "round",
+                        className: props.className,
+                      },
+                      window.React.createElement("circle", {
+                        cx: "12",
+                        cy: "12",
+                        r: "10",
+                      }),
+                    );
+                  };
+                },
+              },
+            );
+          }
+          return window.__lucideReactESM;
+        }
+
+        if (modulePath === "unicornstudio-react") {
+          if (!window.__unicornStudioESM) {
+            console.warn(
+              "⚠️ unicornstudio-react ESM module not yet loaded, using fallback placeholder",
+            );
+            // Return a placeholder component that shows loading state
+            const Placeholder = (props) => {
+              return window.React.createElement(
+                "div",
+                {
+                  style: {
+                    width: "100%",
+                    height: "100vh",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    background:
+                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    color: "white",
+                    fontSize: "14px",
+                  },
+                },
+                "Loading Unicorn Studio scene...",
+              );
+            };
+            return {
+              default: Placeholder,
+              UnicornScene: Placeholder,
+              __esModule: true,
+            };
+          }
+          // Return ESM module with proper exports
+          return {
+            default:
+              window.__unicornStudioESM.default || window.__unicornStudioESM,
+            UnicornScene:
+              window.__unicornStudioESM.default || window.__unicornStudioESM,
+            __esModule: true,
+          };
+        }
+
+        if (modulePath === "@iconify/react") {
+          if (!window.__iconifyReactESM) {
+            window.__iconifyReactESM = normalizeExternalModule({
+              Icon: (props) => window.React.createElement("span", props),
+              InlineIcon: (props) => window.React.createElement("span", props),
+              default: (props) => window.React.createElement("span", props),
+            });
+          }
+
+          return window.__iconifyReactESM;
+        }
+
+        // Find module
+        const moduleCode = __modules[modulePath];
+        if (!moduleCode) {
+          throw new Error(`Module not found: ${modulePath}`);
+        }
+
+        // Transform and execute
+        try {
+          // Skip transformation for CSS files - they're already injected via injectCSS()
+          if (modulePath.endsWith(".css")) {
+            if (DEBUG)
+              console.log(
+                "⏩ Skipping Babel transform for CSS file:",
+                modulePath,
+              );
+            return { default: "", __esModule: true };
+          }
+
+          if (modulePath.endsWith(".json")) {
+            const parsedJson = JSON.parse(moduleCode);
+            __cache[modulePath] = {
+              default: parsedJson,
+              ...(
+                parsedJson &&
+                typeof parsedJson === "object" &&
+                !Array.isArray(parsedJson)
+                  ? parsedJson
+                  : {}
+              ),
+              __esModule: true,
+            };
+            return __cache[modulePath];
+          }
+
+          // Create module context
+          const module = { exports: {} };
+          const exports = module.exports;
+
+          if (window.__AURA_PREVIEW_PRECOMPILED === true) {
+            const executableCode = `${moduleCode}\n//# sourceURL=${modulePath}`;
+            const factory = eval(executableCode);
+
+            if (typeof factory !== "function") {
+              throw new Error(
+                `Precompiled module "${modulePath}" did not evaluate to an executable factory`,
+              );
+            }
+
+            const evaluated = factory(
+              module,
+              exports,
+              require,
+              window.React,
+              window.ReactDOM,
+            );
+            __cache[modulePath] = evaluated || module.exports;
+            return __cache[modulePath];
+          }
+
+          // Transform JSX/TypeScript to JavaScript using Babel
+          const transformed = Babel.transform(moduleCode, {
+            presets: [
+              ["env", { modules: "commonjs" }],
+              ["react", { runtime: "classic", development: true }],
+              "typescript",
+            ],
+            filename: modulePath,
+          }).code;
+
+          // Debug: Log transformed code for UnicornScene component
+          if (
+            DEBUG &&
+            (modulePath.includes("UnicornMaskedBackground") ||
+              modulePath.includes("UnicornStudioBackground"))
+          ) {
+            console.log("🔍 Transformed code for", modulePath);
+            console.log(transformed);
+          }
+
+          // Resolve relative imports in the transformed code
+          const resolvedCode = transformed.replace(
+            /require\s*\(\s*['"]([^'"]+)['"]\s*\)/g,
+            (match, importPath) => {
+              const resolved = resolveModulePath(modulePath, importPath);
+              return `require('${resolved}')`;
+            },
+          );
+
+          // Execute in module scope
+          const executableCode = `${resolvedCode}\n//# sourceURL=${modulePath}`;
+          const factory = new Function(
+            "module",
+            "exports",
+            "require",
+            "React",
+            "ReactDOM",
+            executableCode,
+          );
+          factory(module, exports, require, window.React, window.ReactDOM);
+
+          // Cache the full module namespace so named exports stay available.
+          __cache[modulePath] = module.exports;
+          return __cache[modulePath];
+        } catch (error) {
+          console.error(`Error loading module ${modulePath}:`, error);
+          const payload = buildErrorPayload(
+            `Module Load Error: ${modulePath}`,
+            error,
+            {
+              source: modulePath,
+            },
+          );
+          throw attachErrorPayload(error, payload);
+        }
+      }
+
+      // Cache React root instance (create once, reuse for re-renders)
+      let __reactRoot = null;
+      pendingRefreshPath = readStoredRefreshPath();
+
+      const MANAGED_PREVIEW_HEAD_ATTR = "data-aura-preview-head";
+      const TAILWIND_CONFIG_FILE_PATTERN =
+        /(?:^|\/)tailwind\.config\.(?:[cm]?[jt]sx?)$/i;
+      const PREVIEW_FONT_CLASS_TO_GOOGLE_FONT = {
+        "font-inter": "Inter:wght@300;400;500;600;700;800;900",
+        "font-geist": "Geist:wght@300;400;500;600;700",
+        "font-ibm-sans": "IBM+Plex+Sans:wght@300;400;500;600;700",
+        "font-ibm-serif": "IBM+Plex+Serif:wght@300;400;500;600;700",
+        "font-ibm-mono": "IBM+Plex+Mono:wght@300;400;500;600;700",
+        "font-roboto": "Roboto:wght@300;400;500;600;700",
+        "font-montserrat": "Montserrat:wght@300;400;500;600;700",
+        "font-poppins": "Poppins:wght@300;400;500;600;700",
+        "font-playfair": "Playfair+Display:wght@400;500;600;700;900",
+        "font-instrument-serif": "Instrument+Serif:wght@400;500;600;700",
+        "font-merriweather": "Merriweather:wght@300;400;700;900",
+        "font-bricolage": "Bricolage+Grotesque:wght@300;400;500;600;700",
+        "font-jakarta": "Plus+Jakarta+Sans:wght@300;400;500;600;700;800",
+        "font-manrope": "Manrope:wght@300;400;500;600;700;800",
+        "font-space-grotesk": "Space+Grotesk:wght@300;400;500;600;700",
+        "font-work-sans": "Work+Sans:wght@300;400;500;600;700;800",
+        "font-pt-serif": "PT+Serif:wght@400;700",
+        "font-geist-mono": "Geist+Mono:wght@300;400;500;600;700",
+        "font-space-mono": "Space+Mono:wght@400;700",
+        "font-quicksand": "Quicksand:wght@300;400;500;600;700",
+        "font-nunito": "Nunito:wght@300;400;500;600;700;800",
+        "font-newsreader": "Newsreader:opsz,wght@6..72,400..800",
+        "font-google-sans-flex": "Google+Sans+Flex:wght@400;500;600;700",
+        "font-oswald": "Oswald:wght@300;400;500;600;700",
+        "font-dm-sans": "DM+Sans:wght@300;400;500;600;700",
+        "font-cormorant": "Cormorant+Garamond:wght@300;400;500;600;700",
+      };
+      const PREVIEW_FONT_CLASS_TO_CSS = {
+        "font-inter":
+          ".font-inter { font-family: 'Inter', sans-serif !important; }",
+        "font-geist":
+          ".font-geist { font-family: 'Geist', sans-serif !important; }",
+        "font-ibm-sans":
+          ".font-ibm-sans { font-family: 'IBM Plex Sans', sans-serif !important; }",
+        "font-ibm-serif":
+          ".font-ibm-serif { font-family: 'IBM Plex Serif', serif !important; }",
+        "font-ibm-mono":
+          ".font-ibm-mono { font-family: 'IBM Plex Mono', monospace !important; }",
+        "font-roboto":
+          ".font-roboto { font-family: 'Roboto', sans-serif !important; }",
+        "font-montserrat":
+          ".font-montserrat { font-family: 'Montserrat', sans-serif !important; }",
+        "font-poppins":
+          ".font-poppins { font-family: 'Poppins', sans-serif !important; }",
+        "font-playfair":
+          ".font-playfair { font-family: 'Playfair Display', serif !important; }",
+        "font-instrument-serif":
+          ".font-instrument-serif { font-family: 'Instrument Serif', serif !important; }",
+        "font-merriweather":
+          ".font-merriweather { font-family: 'Merriweather', serif !important; }",
+        "font-bricolage":
+          ".font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }",
+        "font-jakarta":
+          ".font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }",
+        "font-manrope":
+          ".font-manrope { font-family: 'Manrope', sans-serif !important; }",
+        "font-space-grotesk":
+          ".font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }",
+        "font-work-sans":
+          ".font-work-sans { font-family: 'Work Sans', sans-serif !important; }",
+        "font-pt-serif":
+          ".font-pt-serif { font-family: 'PT Serif', serif !important; }",
+        "font-geist-mono":
+          ".font-geist-mono { font-family: 'Geist Mono', monospace !important; }",
+        "font-space-mono":
+          ".font-space-mono { font-family: 'Space Mono', monospace !important; }",
+        "font-quicksand":
+          ".font-quicksand { font-family: 'Quicksand', sans-serif !important; }",
+        "font-nunito":
+          ".font-nunito { font-family: 'Nunito', sans-serif !important; }",
+        "font-newsreader":
+          ".font-newsreader { font-family: 'Newsreader', serif !important; }",
+        "font-google-sans-flex":
+          ".font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }",
+        "font-oswald":
+          ".font-oswald { font-family: 'Oswald', sans-serif !important; }",
+        "font-dm-sans":
+          ".font-dm-sans { font-family: 'DM Sans', sans-serif !important; }",
+        "font-cormorant":
+          ".font-cormorant { font-family: 'Cormorant Garamond', serif !important; }",
+      };
+      const MANAGED_PREVIEW_FONT_ATTR = "data-aura-preview-font";
+      const DEFAULT_TAILWIND_FONT_FAMILIES = {
+        sans: ["ui-sans-serif", "system-ui", "sans-serif"],
+        serif: [
+          "ui-serif",
+          "Georgia",
+          "Cambria",
+          '"Times New Roman"',
+          "Times",
+          "serif",
+        ],
+        mono: [
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "Monaco",
+          "Consolas",
+          '"Liberation Mono"',
+          '"Courier New"',
+          "monospace",
+        ],
+      };
+
+      function escapeRegExp(value) {
+        return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      }
+
+      function isPlainObject(value) {
+        return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+      }
+
+      function isAbsoluteHttpUrl(value) {
+        if (typeof value !== "string" || !value.trim()) {
+          return false;
+        }
+
+        try {
+          const resolvedUrl = new URL(value, window.location.origin);
+          return (
+            resolvedUrl.protocol === "http:" ||
+            resolvedUrl.protocol === "https:"
+          );
+        } catch (error) {
+          return false;
+        }
+      }
+
+      function shouldCopyHeadLink(linkElement) {
+        const relValue = (linkElement.getAttribute("rel") || "").toLowerCase();
+        const hrefValue = linkElement.getAttribute("href") || "";
+
+        if (!relValue || !hrefValue || !isAbsoluteHttpUrl(hrefValue)) {
+          return false;
+        }
+
+        const relTokens = relValue.split(/\s+/).filter(Boolean);
+
+        if (relTokens.includes("stylesheet")) {
+          return true;
+        }
+
+        return relTokens.some((token) =>
+          [
+            "preconnect",
+            "dns-prefetch",
+            "preload",
+            "prefetch",
+            "modulepreload",
+          ].includes(token),
+        );
+      }
+
+      function waitForHeadLinkLoad(linkElement) {
+        return new Promise((resolve) => {
+          const finish = () => {
+            linkElement.removeEventListener("load", finish);
+            linkElement.removeEventListener("error", finish);
+            resolve();
+          };
+
+          if (linkElement.rel === "stylesheet" && linkElement.sheet) {
+            resolve();
+            return;
+          }
+
+          linkElement.addEventListener("load", finish, { once: true });
+          linkElement.addEventListener("error", finish, { once: true });
+          window.setTimeout(finish, 2500);
+        });
+      }
+
+      function collectPreviewFontClasses(modules) {
+        const detectedClasses = new Set();
+        const moduleContents = Object.values(modules || {}).filter(
+          (content) => typeof content === "string" && content.trim(),
+        );
+
+        Object.keys(PREVIEW_FONT_CLASS_TO_CSS).forEach((fontClass) => {
+          const classPattern = new RegExp(
+            `(^|[^A-Za-z0-9_-])${escapeRegExp(fontClass)}(?=$|[^A-Za-z0-9_-])`,
+          );
+
+          if (moduleContents.some((content) => classPattern.test(content))) {
+            detectedClasses.add(fontClass);
+          }
+        });
+
+        return Array.from(detectedClasses);
+      }
+
+      function hasHeadLinkWithHrefSubstring(substring) {
+        return Array.from(document.head.querySelectorAll("link")).some((link) =>
+          (link.getAttribute("href") || "").includes(substring),
+        );
+      }
+
+      function hasFontUtilityStyle(fontClass) {
+        return Array.from(document.head.querySelectorAll("style")).some(
+          (style) =>
+            (style.textContent || "").includes(`.${fontClass} { font-family:`),
+        );
+      }
+
+      function findTailwindConfigModule(modules) {
+        const configPath = Object.keys(modules || {}).find((path) =>
+          TAILWIND_CONFIG_FILE_PATTERN.test(path),
+        );
+
+        if (!configPath) {
+          return null;
+        }
+
+        const configSource = modules[configPath];
+        if (typeof configSource !== "string" || !configSource.trim()) {
+          return null;
+        }
+
+        return {
+          path: configPath,
+          source: configSource,
+        };
+      }
+
+      function createTailwindConfigRequire() {
+        const defaultTheme = {
+          fontFamily: DEFAULT_TAILWIND_FONT_FAMILIES,
+        };
+        const tailwindPlugin = (...args) => ({
+          handler: typeof args[0] === "function" ? args[0] : null,
+        });
+        tailwindPlugin.withOptions = () => tailwindPlugin;
+
+        return (specifier) => {
+          if (specifier === "tailwindcss/defaultTheme") {
+            return {
+              ...defaultTheme,
+              default: defaultTheme,
+              fontFamily: defaultTheme.fontFamily,
+            };
+          }
+
+          if (specifier === "tailwindcss/plugin") {
+            return {
+              default: tailwindPlugin,
+              withOptions: tailwindPlugin.withOptions,
+            };
+          }
+
+          return {};
+        };
+      }
+
+      function evaluateTailwindConfig(source, modulePath) {
+        if (typeof source !== "string" || !source.trim()) {
+          return null;
+        }
+
+        try {
+          const transformed = Babel.transform(source, {
+            presets: [["env", { modules: "commonjs" }], "typescript"],
+            filename: modulePath || "tailwind.config.js",
+          }).code;
+
+          const module = { exports: {} };
+          const exports = module.exports;
+          const require = createTailwindConfigRequire();
+          const factory = new Function(
+            "module",
+            "exports",
+            "require",
+            `${transformed}\nreturn module.exports;`,
+          );
+          const evaluated = factory(module, exports, require);
+
+          if (isPlainObject(evaluated?.default)) {
+            return evaluated.default;
+          }
+
+          if (isPlainObject(evaluated)) {
+            return evaluated;
+          }
+        } catch (error) {
+          console.warn(
+            "Failed to evaluate Tailwind config for preview font utilities",
+            error,
+          );
+        }
+
+        return null;
+      }
+
+      function collectTailwindFontFamilyTokens(value) {
+        if (typeof value === "string") {
+          return value
+            .split(",")
+            .map((token) => token.trim())
+            .filter(Boolean);
+        }
+
+        if (!Array.isArray(value)) {
+          return [];
+        }
+
+        return value.flatMap((entry) => {
+          if (typeof entry === "string") {
+            return entry.trim() ? [entry.trim()] : [];
+          }
+
+          if (Array.isArray(entry)) {
+            return collectTailwindFontFamilyTokens(entry);
+          }
+
+          return [];
+        });
+      }
+
+      function extractTailwindFontUtilityCss(modules) {
+        const configModule = findTailwindConfigModule(modules);
+        if (!configModule) {
+          return "";
+        }
+
+        const config = evaluateTailwindConfig(
+          configModule.source,
+          configModule.path,
+        );
+        if (!isPlainObject(config)) {
+          return "";
+        }
+
+        const theme = isPlainObject(config.theme) ? config.theme : {};
+        const baseFontFamily = isPlainObject(theme.fontFamily)
+          ? theme.fontFamily
+          : {};
+        const extendedFontFamily = isPlainObject(theme.extend?.fontFamily)
+          ? theme.extend.fontFamily
+          : {};
+        const mergedFontFamilies = {
+          ...baseFontFamily,
+          ...extendedFontFamily,
+        };
+
+        return Object.entries(mergedFontFamilies)
+          .map(([key, value]) => {
+            if (!/^[A-Za-z0-9_-]+$/.test(key)) {
+              return "";
+            }
+
+            const fontTokens = collectTailwindFontFamilyTokens(value);
+            if (fontTokens.length === 0) {
+              return "";
+            }
+
+            return `.font-${key} { font-family: ${fontTokens.join(", ")} !important; }`;
+          })
+          .filter(Boolean)
+          .join("\n");
+      }
+
+      function syncTailwindFontUtilities(modules) {
+        const tailwindFontUtilityCss = extractTailwindFontUtilityCss(modules);
+        if (!tailwindFontUtilityCss) {
+          return;
+        }
+
+        const fontStyle = document.createElement("style");
+        fontStyle.setAttribute(MANAGED_PREVIEW_HEAD_ATTR, "true");
+        fontStyle.setAttribute(
+          MANAGED_PREVIEW_FONT_ATTR,
+          "tailwind-config-font-utilities",
+        );
+        fontStyle.textContent = tailwindFontUtilityCss;
+        document.head.appendChild(fontStyle);
+      }
+
+      async function syncPreviewFontUtilities(modules) {
+        const detectedFontClasses = collectPreviewFontClasses(modules);
+        if (detectedFontClasses.length === 0) {
+          return;
+        }
+
+        const pendingFontLoads = [];
+
+        if (!hasHeadLinkWithHrefSubstring("fonts.googleapis.com")) {
+          const preconnectGoogle = document.createElement("link");
+          preconnectGoogle.rel = "preconnect";
+          preconnectGoogle.href = "https://fonts.googleapis.com";
+          preconnectGoogle.setAttribute(MANAGED_PREVIEW_HEAD_ATTR, "true");
+          preconnectGoogle.setAttribute(
+            MANAGED_PREVIEW_FONT_ATTR,
+            "preconnect-googleapis",
+          );
+          document.head.appendChild(preconnectGoogle);
+        }
+
+        if (!hasHeadLinkWithHrefSubstring("fonts.gstatic.com")) {
+          const preconnectGstatic = document.createElement("link");
+          preconnectGstatic.rel = "preconnect";
+          preconnectGstatic.href = "https://fonts.gstatic.com";
+          preconnectGstatic.setAttribute("crossorigin", "");
+          preconnectGstatic.setAttribute(MANAGED_PREVIEW_HEAD_ATTR, "true");
+          preconnectGstatic.setAttribute(
+            MANAGED_PREVIEW_FONT_ATTR,
+            "preconnect-gstatic",
+          );
+          document.head.appendChild(preconnectGstatic);
+        }
+
+        detectedFontClasses.forEach((fontClass) => {
+          const googleFontSpec = PREVIEW_FONT_CLASS_TO_GOOGLE_FONT[fontClass];
+          const fontUtilityCss = PREVIEW_FONT_CLASS_TO_CSS[fontClass];
+
+          if (
+            googleFontSpec &&
+            !hasHeadLinkWithHrefSubstring(`family=${googleFontSpec}`)
+          ) {
+            const fontLink = document.createElement("link");
+            fontLink.rel = "stylesheet";
+            fontLink.href = `https://fonts.googleapis.com/css2?family=${googleFontSpec}&display=swap`;
+            fontLink.setAttribute(MANAGED_PREVIEW_HEAD_ATTR, "true");
+            fontLink.setAttribute(MANAGED_PREVIEW_FONT_ATTR, fontClass);
+            document.head.appendChild(fontLink);
+            pendingFontLoads.push(waitForHeadLinkLoad(fontLink));
+          }
+
+          if (fontUtilityCss && !hasFontUtilityStyle(fontClass)) {
+            const fontStyle = document.createElement("style");
+            fontStyle.setAttribute(MANAGED_PREVIEW_HEAD_ATTR, "true");
+            fontStyle.setAttribute(
+              MANAGED_PREVIEW_FONT_ATTR,
+              `${fontClass}-style`,
+            );
+            fontStyle.textContent = fontUtilityCss;
+            document.head.appendChild(fontStyle);
+          }
+        });
+
+        if (pendingFontLoads.length > 0) {
+          await Promise.allSettled(pendingFontLoads);
+        }
+      }
+
+      function resetManagedPreviewHead() {
+        document
+          .querySelectorAll(`[${MANAGED_PREVIEW_HEAD_ATTR}="true"]`)
+          .forEach((element) => element.remove());
+      }
+
+      function syncBodyShell(sourceBody) {
+        const nextClassName = sourceBody?.getAttribute("class") || "";
+        const nextStyle = sourceBody?.getAttribute("style") || "";
+        const nextDir = sourceBody?.getAttribute("dir") || "";
+
+        if (nextClassName) {
+          document.body.setAttribute("class", nextClassName);
+        } else {
+          document.body.removeAttribute("class");
+        }
+
+        if (nextStyle) {
+          document.body.setAttribute("style", nextStyle);
+        } else {
+          document.body.removeAttribute("style");
+        }
+
+        if (nextDir) {
+          document.body.setAttribute("dir", nextDir);
+        } else {
+          document.body.removeAttribute("dir");
+        }
+      }
+
+      function syncDocumentElementShell(sourceDocumentElement) {
+        const requestedLang =
+          sourceDocumentElement?.getAttribute("lang") || "en";
+        const nextClassName =
+          sourceDocumentElement?.getAttribute("class") || "";
+        const nextStyle =
+          sourceDocumentElement?.getAttribute("style") || "";
+        const nextDir = sourceDocumentElement?.getAttribute("dir") || "";
+
+        document.documentElement.setAttribute("lang", requestedLang);
+
+        if (nextClassName) {
+          document.documentElement.setAttribute("class", nextClassName);
+        } else {
+          document.documentElement.removeAttribute("class");
+        }
+
+        if (nextStyle) {
+          document.documentElement.setAttribute("style", nextStyle);
+        } else {
+          document.documentElement.removeAttribute("style");
+        }
+
+        if (nextDir) {
+          document.documentElement.setAttribute("dir", nextDir);
+        } else {
+          document.documentElement.removeAttribute("dir");
+        }
+      }
+
+      async function syncPreviewDocumentShell(modules) {
+        resetManagedPreviewHead();
+
+        const htmlSource =
+          modules["index.html"] || modules["public/index.html"] || "";
+
+        if (typeof htmlSource !== "string" || !htmlSource.trim()) {
+          document.title = "Preview Sandbox";
+          syncDocumentElementShell(null);
+          syncBodyShell(null);
+          return;
+        }
+
+        const parsedDocument = new DOMParser().parseFromString(
+          htmlSource,
+          "text/html",
+        );
+        const requestedTitle = parsedDocument.title?.trim();
+        const pendingHeadLoads = [];
+
+        document.title = requestedTitle || "Preview Sandbox";
+        syncDocumentElementShell(parsedDocument.documentElement);
+
+        Array.from(parsedDocument.head.children).forEach((node) => {
+          const tagName = node.tagName.toLowerCase();
+
+          if (tagName === "title") {
+            return;
+          }
+
+          if (tagName === "style") {
+            const clonedStyle = node.cloneNode(true);
+            clonedStyle.setAttribute(MANAGED_PREVIEW_HEAD_ATTR, "true");
+            document.head.appendChild(clonedStyle);
+            return;
+          }
+
+          if (tagName === "link" && shouldCopyHeadLink(node)) {
+            const clonedLink = node.cloneNode(true);
+            clonedLink.setAttribute(MANAGED_PREVIEW_HEAD_ATTR, "true");
+            document.head.appendChild(clonedLink);
+
+            pendingHeadLoads.push(waitForHeadLinkLoad(clonedLink));
+          }
+        });
+
+        syncBodyShell(parsedDocument.body);
+
+        if (pendingHeadLoads.length > 0) {
+          await Promise.allSettled(pendingHeadLoads);
+        }
+      }
+
+      const GENERIC_FONT_FAMILIES = new Set([
+        "serif",
+        "sans-serif",
+        "monospace",
+        "cursive",
+        "fantasy",
+        "system-ui",
+        "ui-serif",
+        "ui-sans-serif",
+        "ui-monospace",
+        "emoji",
+        "math",
+        "fangsong",
+        "inherit",
+        "initial",
+        "unset",
+      ]);
+
+      function extractFontFamilyNames(fontFamilyValue) {
+        if (typeof fontFamilyValue !== "string" || !fontFamilyValue.trim()) {
+          return [];
+        }
+
+        return fontFamilyValue
+          .split(",")
+          .map((family) => family.trim().replace(/^['"]+|['"]+$/g, ""))
+          .filter((family) => {
+            if (!family) {
+              return false;
+            }
+
+            return !GENERIC_FONT_FAMILIES.has(family.toLowerCase());
+          });
+      }
+
+      function collectRenderedFontFamilies(rootElement) {
+        if (!rootElement || typeof window.getComputedStyle !== "function") {
+          return [];
+        }
+
+        const families = new Set();
+        const elements = [rootElement, ...rootElement.querySelectorAll("*")];
+
+        elements.forEach((element) => {
+          try {
+            const computedStyles = window.getComputedStyle(element);
+            extractFontFamilyNames(computedStyles.fontFamily).forEach(
+              (family) => families.add(family),
+            );
+          } catch (error) {
+            // Ignore detached nodes or style resolution edge cases.
+          }
+        });
+
+        return Array.from(families);
+      }
+
+      async function waitForRenderedFonts(rootElement, timeoutMs = 4500) {
+        if (!document.fonts?.load || !rootElement) {
+          return;
+        }
+
+        const renderedFamilies = collectRenderedFontFamilies(rootElement);
+        if (renderedFamilies.length === 0) {
+          return;
+        }
+
+        const fontLoadPromise = Promise.allSettled(
+          renderedFamilies.map((family) =>
+            document.fonts.load(`1em "${family}"`),
+          ),
+        );
+
+        await Promise.race([
+          fontLoadPromise,
+          new Promise((resolve) => window.setTimeout(resolve, timeoutMs)),
+        ]);
+
+        await new Promise((resolve) => requestAnimationFrame(() => resolve()));
+      }
+
+      // Render app
+      function renderApp(mainModule) {
+        try {
+          const loadedModule = require(mainModule);
+          const App = resolveRenderableModuleExport(loadedModule);
+          const rootElement = document.getElementById("root");
+
+          if (typeof App !== "function") {
+            throw new Error(
+              `Main module "${mainModule}" does not export a renderable React component`,
+            );
+          }
+
+          // Create root only once, reuse for subsequent renders (React 18 best practice)
+          if (!__reactRoot) {
+            __reactRoot = window.__reactDomClientESM.createRoot(rootElement);
+            if (DEBUG)
+              console.log(
+                "✅ React root created (will be reused for hot reloads)",
+              );
+          }
+
+          // Render app (reuses existing root)
+          __reactRoot.render(window.React.createElement(App));
+
+          if (DEBUG) console.log("✅ App rendered successfully");
+        } catch (error) {
+          console.error("❌ Render error:", error);
+          const payload = buildErrorPayload("Render Error", error, {
+            source: mainModule,
+          });
+          throw attachErrorPayload(error, payload);
+        }
+      }
+
+      // Inject CSS files into the document head
+      function injectCSS(cssContent) {
+        // Remove old custom CSS if exists
+        const oldStyle = document.getElementById("custom-styles");
+        if (oldStyle) {
+          oldStyle.remove();
+        }
+
+        // Create new style element
+        const style = document.createElement("style");
+        style.id = "custom-styles";
+        style.textContent = cssContent;
+        document.head.appendChild(style);
+        if (DEBUG) console.log("💅 CSS injected");
+      }
+
+      // Listen for messages from parent
+      window.addEventListener("message", (event) => {
+        const message = event.data;
+
+        // Handle refresh message (like Sandpack does)
+        if (message.type === "REFRESH") {
+          if (DEBUG) console.log("🔄 Received refresh message - reloading...");
+          storeRefreshPath(message.path);
+
+          let nextSandboxUrl = PREVIEW_SANDBOX_FALLBACK_URL;
+
+          if (
+            typeof message.sandboxUrl === "string" &&
+            message.sandboxUrl.trim()
+          ) {
+            nextSandboxUrl = message.sandboxUrl;
+          }
+
+          document.location.replace(nextSandboxUrl);
+          return;
+        }
+
+        if (message.type === "NAVIGATE") {
+          if (typeof message.path === "string" && message.path.trim()) {
+            applyPreviewPath(message.path, {
+              notifyParent: true,
+              dispatchPopstate: true,
+            });
+          }
+          return;
+        }
+
+        // Handle file updates
+        if (message.type === "UPDATE_MODULES") {
+          (async () => {
+            try {
+              if (DEBUG)
+                console.log("📦 Received modules update", {
+                  fileCount: Object.keys(message.modules).length,
+                  mainModule: message.mainModule,
+                });
+
+              // Save scroll position BEFORE any DOM changes (for scroll preservation)
+              const savedScrollX = window.scrollX || window.pageXOffset || 0;
+              const savedScrollY = window.scrollY || window.pageYOffset || 0;
+
+              // Clear cache
+              Object.keys(__cache).forEach((key) => delete __cache[key]);
+              window.__AURA_PREVIEW_PRECOMPILED = message.precompiled === true;
+
+              // Replace modules so deleted files stop resolving in the sandbox
+              Object.keys(__modules).forEach((path) => {
+                if (
+                  !Object.prototype.hasOwnProperty.call(message.modules, path)
+                ) {
+                  delete __modules[path];
+                }
+              });
+              Object.assign(__modules, message.modules);
+
+              if (typeof message.path === "string" && message.path.trim()) {
+                applyPreviewPath(message.path, {
+                  notifyParent: false,
+                  dispatchPopstate: false,
+                });
+              }
+
+              await syncPreviewDocumentShell(message.modules);
+
+              const bareImports = Array.isArray(message.externalImports)
+                ? message.externalImports
+                : collectBareImports(message.modules);
+              await preloadExternalModules(bareImports);
+
+              // Inject CSS files (src/index.css, etc.)
+              const cssFiles = Object.keys(message.modules).filter((path) =>
+                path.endsWith(".css"),
+              );
+              if (cssFiles.length > 0) {
+                const allCSS = cssFiles
+                  .map((path) => message.modules[path])
+                  .join("\n\n");
+                injectCSS(allCSS);
+              }
+
+              await syncPreviewFontUtilities(message.modules);
+              syncTailwindFontUtilities(message.modules);
+
+              // Render
+              renderApp(message.mainModule);
+
+              const renderedRoot =
+                document.getElementById("root") || document.body;
+              await waitForRenderedFonts(renderedRoot);
+
+              // Restore scroll position after React completes render (use requestAnimationFrame for perfect timing)
+              requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                  restorePendingRefreshPath();
+                  window.scrollTo(savedScrollX, savedScrollY);
+                  notifyParentOfLocationChange();
+                  if (DEBUG)
+                    console.log("✅ Restored scroll position:", {
+                      x: savedScrollX,
+                      y: savedScrollY,
+                    });
+                });
+              });
+
+              // Notify parent
+              window.parent.postMessage(
+                {
+                  type: "RENDER_COMPLETE",
+                  success: true,
+                },
+                "*",
+              );
+            } catch (error) {
+              console.error("❌ Module preload/render error:", error);
+              const payload =
+                getAttachedErrorPayload(error) ||
+                buildErrorPayload("Preview Error", error, {
+                  source: message.mainModule,
+                });
+              showError(
+                payload.title,
+                payload.error || "Failed to render preview",
+                payload.stack,
+                payload,
+              );
+              notifyParentOfRenderError(payload);
+            }
+          })();
+        }
+      });
+
+      // Wait for ESM dependencies to load before notifying parent
+      function waitForDependencies() {
+        return new Promise((resolve) => {
+          // Check if already loaded
+          if (window.__esmDepsReady && window.Babel) {
+            if (DEBUG) console.log("✅ All dependencies already loaded");
+            resolve();
+            return;
+          }
+
+          let attempts = 0;
+          const maxAttempts = 100; // 5 seconds max wait
+
+          const checkDependencies = () => {
+            attempts++;
+
+            // Wait for ESM deps + Babel
+            if (window.__esmDepsReady && window.Babel) {
+              if (DEBUG)
+                console.log("✅ Essential dependencies loaded", {
+                  React: !!window.__reactESM,
+                  ReactDOM: !!window.__reactDomESM,
+                  ReactDOMClient: !!window.__reactDomClientESM,
+                  LucideReact: !!window.__lucideReactESM,
+                  LucideExports: window.__lucideReactESM
+                    ? Object.keys(window.__lucideReactESM).length
+                    : 0,
+                  UnicornStudio: !!window.__unicornStudioESM,
+                  Babel: !!window.Babel,
+                });
+              resolve();
+            } else if (attempts >= maxAttempts) {
+              if (DEBUG)
+                console.warn(
+                  "⚠️ Some dependencies not loaded after timeout, proceeding anyway",
+                  {
+                    esmDepsReady: !!window.__esmDepsReady,
+                    Babel: !!window.Babel,
+                  },
+                );
+              resolve();
+            } else {
+              setTimeout(checkDependencies, 50);
+            }
+          };
+
+          checkDependencies();
+        });
+      }
+
+      // Track ready acknowledgment at global scope so event listener can access it
+      let readyAcknowledged = false;
+
+      // Stop retrying when parent sends UPDATE_MODULES
+      window.addEventListener("message", (event) => {
+        if (event.data.type === "UPDATE_MODULES") {
+          if (DEBUG)
+            console.log(
+              "✅ Parent acknowledged - stopping SANDBOX_READY retries",
+            );
+          readyAcknowledged = true;
+        }
+      });
+
+      // Notify parent that sandbox is ready (after dependencies load)
+      waitForDependencies().then(() => {
+        if (DEBUG) console.log("✅ Sandbox ready - sending SANDBOX_READY");
+        let retryCount = 0;
+        const MAX_RETRIES = 5; // Reduced from 20 to 5
+
+        const sendReadyMessage = () => {
+          if (!readyAcknowledged && retryCount < MAX_RETRIES) {
+            if (DEBUG)
+              console.log(
+                `📤 Sending SANDBOX_READY (attempt ${retryCount + 1}/${MAX_RETRIES})`,
+              );
+            window.parent.postMessage({ type: "SANDBOX_READY" }, "*");
+            retryCount++;
+
+            if (retryCount < MAX_RETRIES) {
+              setTimeout(sendReadyMessage, 100);
+            }
+          } else if (readyAcknowledged) {
+            if (DEBUG)
+              console.log("✅ SANDBOX_READY acknowledged, stopping retries");
+          }
+        };
+
+        sendReadyMessage();
+      });
+
+      // Global error handling
+      window.onerror = function (message, source, lineno, colno, error) {
+        const payload = buildErrorPayload(
+          "Runtime Error",
+          error || message,
+          {
+            source,
+            line: lineno,
+            column: colno,
+          },
+        );
+        console.error("❌ Runtime Error");
+        showError(payload.title, payload.error, payload.stack, payload);
+        notifyParentOfRenderError(payload);
+        return true;
+      };
+
+      window.onunhandledrejection = function (event) {
+        const payload = buildErrorPayload(
+          "Unhandled Promise Rejection",
+          event.reason,
+        );
+        console.error("❌ Unhandled Promise Rejection");
+        showError(payload.title, payload.error, payload.stack, payload);
+        notifyParentOfRenderError(payload);
+      };
+    </script>
+</body></html>

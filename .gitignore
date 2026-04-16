@@ -29,3 +29,9 @@ desktop.ini
 *.key
 *.p12
 *.pfx
+
+# Videos grandes (excedem limite do GitHub)
+*.mp4
+*.mov
+*.avi
+*.mkv

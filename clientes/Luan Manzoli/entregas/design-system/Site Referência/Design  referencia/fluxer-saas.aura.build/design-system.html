@@ -1,0 +1,1627 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+<script id="aura-supabase-token-firewall">(function () {
+  if (window.__AURA_SUPABASE_FIREWALL__) return;
+  window.__AURA_SUPABASE_FIREWALL__ = true;
+
+  var SUPABASE_HOST = "hoirqrkdgbmvpwutwuwj.supabase.co";
+  var BLOCKED_KEY_PATTERNS = [
+    /^sb-[a-z0-9-]+-auth-token$/i,
+    /^supabase\.auth\.token$/i
+  ];
+
+  function isBlockedStorageKey(key) {
+    if (typeof key !== "string") return false;
+    for (var i = 0; i < BLOCKED_KEY_PATTERNS.length; i++) {
+      if (BLOCKED_KEY_PATTERNS[i].test(key)) return true;
+    }
+    return false;
+  }
+
+  function toAbsoluteUrl(input) {
+    try {
+      return new URL(input, window.location.href);
+    } catch {
+      return null;
+    }
+  }
+
+  function isSupabaseDestination(input) {
+    var parsed = toAbsoluteUrl(input);
+    if (!parsed) return false;
+    if (SUPABASE_HOST && parsed.host === SUPABASE_HOST) return true;
+    return parsed.host.endsWith(".supabase.co");
+  }
+
+  function pathLooksSensitive(input) {
+    var parsed = toAbsoluteUrl(input);
+    if (!parsed) return false;
+    return /^\/(auth|rest|functions)\/v1\//.test(parsed.pathname || "");
+  }
+
+  function headersContainAuth(headersLike) {
+    if (!headersLike) return false;
+
+    try {
+      if (typeof Headers !== "undefined" && headersLike instanceof Headers) {
+        return !!(headersLike.get("authorization") || headersLike.get("apikey"));
+      }
+    } catch {}
+
+    if (Array.isArray(headersLike)) {
+      for (var i = 0; i < headersLike.length; i++) {
+        var pair = headersLike[i] || [];
+        var name = String(pair[0] || "").toLowerCase();
+        if (name === "authorization" || name === "apikey") return true;
+      }
+      return false;
+    }
+
+    if (typeof headersLike === "object") {
+      var keys = Object.keys(headersLike);
+      for (var j = 0; j < keys.length; j++) {
+        var k = keys[j].toLowerCase();
+        if (k === "authorization" || k === "apikey") return true;
+      }
+    }
+    return false;
+  }
+
+  function requestLooksSensitive(input, init, extraHeaders) {
+    var url = "";
+    try {
+      if (typeof input === "string") {
+        url = input;
+      } else if (input && typeof input.url === "string") {
+        url = input.url;
+      }
+    } catch {}
+
+    var headers =
+      (init && init.headers) ||
+      (input && input.headers) ||
+      extraHeaders ||
+      null;
+    var hasAuthHeaders = headersContainAuth(headers);
+    if (hasAuthHeaders) return true;
+
+    if (!url) return false;
+    if (isSupabaseDestination(url) && pathLooksSensitive(url)) return true;
+    return false;
+  }
+
+  function patchStorage(storage, storageName) {
+    if (!storage) return;
+    var proto = Object.getPrototypeOf(storage);
+    if (!proto || proto.__auraSupabaseFirewallPatched) return;
+
+    var rawGetItem = proto.getItem;
+    var rawSetItem = proto.setItem;
+    var rawRemoveItem = proto.removeItem;
+    var rawClear = proto.clear;
+    var rawKey = proto.key;
+    var rawLengthDescriptor = Object.getOwnPropertyDescriptor(proto, "length");
+    var rawLengthGet = rawLengthDescriptor && rawLengthDescriptor.get;
+
+    function getRawLength(instance) {
+      try {
+        if (rawLengthGet) return Number(rawLengthGet.call(instance) || 0);
+      } catch {}
+      try {
+        return Number(instance.length || 0);
+      } catch {}
+      return 0;
+    }
+
+    function getVisibleKeys(instance) {
+      var visible = [];
+      var total = getRawLength(instance);
+      for (var i = 0; i < total; i++) {
+        var currentKey = rawKey.call(instance, i);
+        if (currentKey && !isBlockedStorageKey(currentKey)) {
+          visible.push(currentKey);
+        }
+      }
+      return visible;
+    }
+
+    function maskBlockedKeyProperty(instance, keyName) {
+      if (!keyName || !isBlockedStorageKey(keyName)) return;
+      try {
+        Object.defineProperty(instance, keyName, {
+          configurable: true,
+          enumerable: false,
+          get: function () {
+            return null;
+          },
+          set: function () {
+            return true;
+          }
+        });
+      } catch {}
+    }
+
+    function syncBlockedKeyProperties(instance) {
+      var total = getRawLength(instance);
+      for (var i = 0; i < total; i++) {
+        var k = rawKey.call(instance, i);
+        if (k) maskBlockedKeyProperty(instance, k);
+      }
+    }
+
+    proto.getItem = function (key) {
+      syncBlockedKeyProperties(this);
+      if (isBlockedStorageKey(String(key))) return null;
+      return rawGetItem.call(this, key);
+    };
+
+    proto.setItem = function (key, value) {
+      if (isBlockedStorageKey(String(key))) return;
+      return rawSetItem.call(this, key, value);
+    };
+
+    proto.removeItem = function (key) {
+      if (isBlockedStorageKey(String(key))) return;
+      return rawRemoveItem.call(this, key);
+    };
+
+    proto.clear = function () {
+      if (typeof rawClear !== "function") return;
+
+      // Preserve blocked keys across clear() to prevent auth token/session wipe.
+      var preservedBlockedEntries = [];
+      var total = getRawLength(this);
+      for (var i = 0; i < total; i++) {
+        var blockedKey = rawKey.call(this, i);
+        if (blockedKey && isBlockedStorageKey(blockedKey)) {
+          preservedBlockedEntries.push([
+            blockedKey,
+            rawGetItem.call(this, blockedKey),
+          ]);
+        }
+      }
+
+      rawClear.call(this);
+
+      for (var j = 0; j < preservedBlockedEntries.length; j++) {
+        var entry = preservedBlockedEntries[j];
+        var key = entry[0];
+        var value = entry[1];
+        if (typeof key === "string" && typeof value === "string") {
+          rawSetItem.call(this, key, value);
+        }
+      }
+
+      syncBlockedKeyProperties(this);
+    };
+
+    proto.key = function (index) {
+      syncBlockedKeyProperties(this);
+      var visible = getVisibleKeys(this);
+      return visible[index] || null;
+    };
+
+    try {
+      Object.defineProperty(proto, "length", {
+        configurable: true,
+        enumerable: false,
+        get: function () {
+          syncBlockedKeyProperties(this);
+          return getVisibleKeys(this).length;
+        }
+      });
+    } catch {}
+
+    var proxyStorage = null;
+    try {
+      proxyStorage = new Proxy(storage, {
+        get: function (target, prop) {
+          if (typeof prop === "string" && isBlockedStorageKey(prop)) return null;
+          if (prop === "length") return getVisibleKeys(target).length;
+          if (prop === "key") {
+            return function (index) {
+              var visible = getVisibleKeys(target);
+              return visible[index] || null;
+            };
+          }
+          if (prop === "clear") {
+            return function () {
+              if (typeof rawClear !== "function") return;
+
+              var preservedBlockedEntries = [];
+              var total = getRawLength(target);
+              for (var i = 0; i < total; i++) {
+                var blockedKey = rawKey.call(target, i);
+                if (blockedKey && isBlockedStorageKey(blockedKey)) {
+                  preservedBlockedEntries.push([
+                    blockedKey,
+                    rawGetItem.call(target, blockedKey),
+                  ]);
+                }
+              }
+
+              rawClear.call(target);
+
+              for (var j = 0; j < preservedBlockedEntries.length; j++) {
+                var entry = preservedBlockedEntries[j];
+                var key = entry[0];
+                var value = entry[1];
+                if (typeof key === "string" && typeof value === "string") {
+                  rawSetItem.call(target, key, value);
+                }
+              }
+
+              syncBlockedKeyProperties(target);
+            };
+          }
+
+          var value = target[prop];
+          if (typeof value === "function") return value.bind(target);
+          return value;
+        },
+        set: function (target, prop, value) {
+          if (typeof prop === "string" && isBlockedStorageKey(prop)) return true;
+          target[prop] = value;
+          return true;
+        },
+        has: function (target, prop) {
+          if (typeof prop === "string" && isBlockedStorageKey(prop)) return false;
+          return prop in target;
+        },
+        deleteProperty: function (target, prop) {
+          if (typeof prop === "string" && isBlockedStorageKey(prop)) return true;
+          try {
+            delete target[prop];
+          } catch {}
+          return true;
+        },
+        ownKeys: function (target) {
+          return getVisibleKeys(target);
+        },
+        getOwnPropertyDescriptor: function (target, prop) {
+          if (typeof prop === "string" && isBlockedStorageKey(prop)) {
+            return undefined;
+          }
+          if (prop === "length") {
+            return {
+              configurable: true,
+              enumerable: false,
+              value: getVisibleKeys(target).length,
+              writable: false
+            };
+          }
+          return Object.getOwnPropertyDescriptor(target, prop);
+        }
+      });
+    } catch {}
+
+    try {
+      if (proxyStorage) {
+        Object.defineProperty(window, storageName, {
+          configurable: true,
+          enumerable: true,
+          get: function () {
+            return proxyStorage;
+          }
+        });
+      }
+    } catch {}
+
+    syncBlockedKeyProperties(storage);
+    proto.__auraSupabaseFirewallPatched = true;
+  }
+
+  function patchCookieAccess() {
+    try {
+      var cookieDescriptor = Object.getOwnPropertyDescriptor(Document.prototype, "cookie");
+      if (!cookieDescriptor || !cookieDescriptor.configurable) return;
+
+      Object.defineProperty(document, "cookie", {
+        configurable: true,
+        enumerable: false,
+        get: function () {
+          return "";
+        },
+        set: function () {
+          return true;
+        }
+      });
+    } catch {}
+  }
+
+  function patchFetch() {
+    if (typeof window.fetch !== "function") return;
+    var rawFetch = window.fetch.bind(window);
+    window.fetch = function (input, init) {
+      if (requestLooksSensitive(input, init, null)) {
+        return Promise.reject(new Error("Blocked by Aura security policy"));
+      }
+      return rawFetch(input, init);
+    };
+  }
+
+  function patchXHR() {
+    if (typeof XMLHttpRequest === "undefined") return;
+    var rawOpen = XMLHttpRequest.prototype.open;
+    var rawSetHeader = XMLHttpRequest.prototype.setRequestHeader;
+    var rawSend = XMLHttpRequest.prototype.send;
+
+    XMLHttpRequest.prototype.open = function (method, url) {
+      this.__auraRequestUrl = String(url || "");
+      this.__auraHeaders = {};
+      return rawOpen.apply(this, arguments);
+    };
+
+    XMLHttpRequest.prototype.setRequestHeader = function (name, value) {
+      if (!this.__auraHeaders) this.__auraHeaders = {};
+      this.__auraHeaders[String(name || "").toLowerCase()] = String(value || "");
+      return rawSetHeader.apply(this, arguments);
+    };
+
+    XMLHttpRequest.prototype.send = function () {
+      if (requestLooksSensitive(this.__auraRequestUrl || "", null, this.__auraHeaders || null)) {
+        throw new Error("Blocked by Aura security policy");
+      }
+      return rawSend.apply(this, arguments);
+    };
+  }
+
+  function patchBeacon() {
+    if (typeof navigator.sendBeacon !== "function") return;
+    var rawBeacon = navigator.sendBeacon.bind(navigator);
+    navigator.sendBeacon = function (url, data) {
+      if (requestLooksSensitive(url, null, null)) return false;
+      return rawBeacon(url, data);
+    };
+  }
+
+  function patchWebSocket() {
+    if (typeof WebSocket === "undefined") return;
+    var RawWebSocket = WebSocket;
+    window.WebSocket = function (url, protocols) {
+      if (requestLooksSensitive(String(url || ""), null, null)) {
+        throw new Error("Blocked by Aura security policy");
+      }
+      return new RawWebSocket(url, protocols);
+    };
+    window.WebSocket.prototype = RawWebSocket.prototype;
+  }
+
+  patchStorage(window.localStorage, "localStorage");
+  patchStorage(window.sessionStorage, "sessionStorage");
+  patchCookieAccess();
+  patchFetch();
+  patchXHR();
+  patchBeacon();
+  patchWebSocket();
+})();</script><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Fluxer - The internet is your canvas</title>
+<script src="assets/lucide_latest_2eebd0ebe8c2.es"></script>
+<script src="assets/resource_3fa48481346f.es">
+lucide.createIcons();
+const plans = {
+mini: { title: "Mini Site", price: "$5", features: ["Custom Domain", "Home & 404 Pages", "1,000 Visitors"] },
+basic: { title: "Basic Site", price: "$15", features: ["Unlimited Pages", "Password Protection", "10,000 Visitors"] },
+pro: { title: "Pro Site", price: "$30", features: ["Analytics", "Staging & Versions", "200,000 Visitors"] }
+};
+function setPlan(plan) {
+// Update Buttons
+document.querySelectorAll('section button[id^="btn-"]').forEach(btn => {
+btn.className = "w-full text-left p-4 rounded-lg border border-white/[0.06] text-white/60 hover:text-white hover:bg-white/[0.02] transition-all group";
+// remove highlight
+if(btn.querySelector('.absolute')) btn.querySelector('.absolute').remove();
+if(btn.querySelector('.w-2.h-2')) btn.querySelector('.w-2.h-2').remove();
+});
+const activeBtn = document.getElementById('btn-' + plan);
+activeBtn.className = "w-full text-left p-4 rounded-lg bg-white/[0.04] border border-orange-500/40 text-white transition-all group relative overflow-hidden";
+activeBtn.insertAdjacentHTML('afterbegin', '<div class="absolute inset-0 bg-orange-500/5"></div>');
+activeBtn.querySelector('div.flex').insertAdjacentHTML('beforeend', '<span class="w-2 h-2 rounded-full bg-orange-500 shadow-[0_0_8px_rgba(249,115,22,0.8)]"></span>');
+// Update SVG Lines
+['mini', 'basic', 'pro'].forEach(p => {
+const path = document.getElementById('path-' + p);
+if(p === plan) {
+path.setAttribute('stroke', '#F97316');
+path.setAttribute('class', 'animate-flow');
+} else {
+path.setAttribute('stroke', 'rgba(255,255,255,0.1)');
+path.setAttribute('class', '');
+}
+});
+// Update Text
+document.getElementById('plan-title').textContent = plans[plan].title;
+document.getElementById('plan-price').textContent = plans[plan].price;
+const featureList = document.getElementById('plan-features');
+featureList.innerHTML = '';
+plans[plan].features.forEach(f => {
+featureList.insertAdjacentHTML('beforeend', `
+<li class="flex items-center gap-3 text-sm text-white/80">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-orange-400"><path d="M20 6 9 17l-5-5"/></svg>
+${f}
+</li>
+`);
+});
+}
+</script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="assets/css2_19fd9cc6b396.css" rel="stylesheet"/>
+<style>
+:root {
+--bg-page: #0B0C0E;
+--glass-border: rgba(255, 255, 255, 0.08);
+--glass-surface: rgba(255, 255, 255, 0.03);
+--accent-glow: rgba(249, 115, 22, 0.4);
+}
+body {
+font-family: 'Inter', sans-serif;
+background-color: var(--bg-page);
+color: #EDEDED;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+/* Subtle Grid Background */
+.linear-grid {
+background-size: 40px 40px;
+background-image: linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+mask-image: radial-gradient(circle at center, black 40%, transparent 100%);
+}
+/* Linear-style Card */
+.linear-card {
+background: rgba(255, 255, 255, 0.02);
+border: 1px solid var(--glass-border);
+transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.linear-card:hover {
+border-color: rgba(255, 255, 255, 0.15);
+}
+/* Shine Effect for Buttons */
+.shine-button {
+position: relative;
+overflow: hidden;
+}
+.shine-button::after {
+content: '';
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+transition: 0.5s;
+}
+.shine-button:hover::after {
+left: 100%;
+}
+/* Animations */
+@keyframes fadeUp {
+from { opacity: 0; transform: translateY(10px); filter: blur(4px); }
+to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+.animate-fade-up {
+animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+@keyframes flow-line {
+to { stroke-dashoffset: -20; }
+}
+.animate-flow {
+animation: flow-line 1s linear infinite;
+}
+/* Hide Scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+</style>
+<script src="assets/resource_3fa48481346f.es"></script>
+<script src="assets/iconify-icon_e19829e7f0e8.js"></script>
+<link href="assets/css2_86e10c4bcbd4.css" id="all-fonts-link-font-geist" rel="stylesheet"/><style id="all-fonts-style-font-geist">
+.font-geist { font-family: 'Geist', sans-serif !important; }
+</style><link href="assets/css2_0fc20595ebff.css" id="all-fonts-link-font-roboto" rel="stylesheet"/><style id="all-fonts-style-font-roboto">
+.font-roboto { font-family: 'Roboto', sans-serif !important; }
+</style><link href="assets/css2_23afcbef9bdd.css" id="all-fonts-link-font-montserrat" rel="stylesheet"/><style id="all-fonts-style-font-montserrat">
+.font-montserrat { font-family: 'Montserrat', sans-serif !important; }
+</style><link href="assets/css2_82ced711bf49.css" id="all-fonts-link-font-poppins" rel="stylesheet"/><style id="all-fonts-style-font-poppins">
+.font-poppins { font-family: 'Poppins', sans-serif !important; }
+</style><link href="assets/css2_fa22aa91016e.css" id="all-fonts-link-font-playfair" rel="stylesheet"/><style id="all-fonts-style-font-playfair">
+.font-playfair { font-family: 'Playfair Display', serif !important; }
+</style><link href="assets/css2_2b2d87bc82d8.css" id="all-fonts-link-font-instrument-serif" rel="stylesheet"/><style id="all-fonts-style-font-instrument-serif">
+.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }
+</style><link href="assets/css2_4fef849c83da.css" id="all-fonts-link-font-merriweather" rel="stylesheet"/><style id="all-fonts-style-font-merriweather">
+.font-merriweather { font-family: 'Merriweather', serif !important; }
+</style><link href="assets/css2_a7b22b336fe1.css" id="all-fonts-link-font-bricolage" rel="stylesheet"/><style id="all-fonts-style-font-bricolage">
+.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }
+</style><link href="assets/css2_0b2072b66163.css" id="all-fonts-link-font-jakarta" rel="stylesheet"/><style id="all-fonts-style-font-jakarta">
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }
+</style><link href="assets/css2_9b8bf743d4a8.css" id="all-fonts-link-font-manrope" rel="stylesheet"/><style id="all-fonts-style-font-manrope">
+.font-manrope { font-family: 'Manrope', sans-serif !important; }
+</style><link href="assets/css2_8e191ef32247.css" id="all-fonts-link-font-space-grotesk" rel="stylesheet"/><style id="all-fonts-style-font-space-grotesk">
+.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }
+</style><link href="assets/css2_70fd47a02eed.css" id="all-fonts-link-font-work-sans" rel="stylesheet"/><style id="all-fonts-style-font-work-sans">
+.font-work-sans { font-family: 'Work Sans', sans-serif !important; }
+</style><link href="assets/css2_b52fc18295f8.css" id="all-fonts-link-font-pt-serif" rel="stylesheet"/><style id="all-fonts-style-font-pt-serif">
+.font-pt-serif { font-family: 'PT Serif', serif !important; }
+</style><link href="assets/css2_62759cd015bd.css" id="all-fonts-link-font-geist-mono" rel="stylesheet"/><style id="all-fonts-style-font-geist-mono">
+.font-geist-mono { font-family: 'Geist Mono', monospace !important; }
+</style><link href="assets/css2_f495c2faa2a6.css" id="all-fonts-link-font-space-mono" rel="stylesheet"/><style id="all-fonts-style-font-space-mono">
+.font-space-mono { font-family: 'Space Mono', monospace !important; }
+</style><link href="assets/css2_6f16cdd6fd9f.css" id="all-fonts-link-font-quicksand" rel="stylesheet"/><style id="all-fonts-style-font-quicksand">
+.font-quicksand { font-family: 'Quicksand', sans-serif !important; }
+</style><link href="assets/css2_94cb6f0c406a.css" id="all-fonts-link-font-nunito" rel="stylesheet"/><style id="all-fonts-style-font-nunito">
+.font-nunito { font-family: 'Nunito', sans-serif !important; }
+</style><link href="assets/css2_6c160a0c4e6f.css" id="all-fonts-link-font-newsreader" rel="stylesheet"/><style id="all-fonts-style-font-newsreader">
+.font-newsreader { font-family: 'Newsreader', serif !important; }
+</style><link href="assets/css2_bd407d5ceb4b.css" id="all-fonts-link-font-google-sans-flex" rel="stylesheet"/><style id="all-fonts-style-font-google-sans-flex">
+.font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }
+</style><link href="assets/css2_176e25227b5e.css" id="all-fonts-link-font-oswald" rel="stylesheet"/><style id="all-fonts-style-font-oswald">
+.font-oswald { font-family: 'Oswald', sans-serif !important; }
+</style><link href="assets/css2_e5ca562f8909.css" id="all-fonts-link-font-dm-sans" rel="stylesheet"/><style id="all-fonts-style-font-dm-sans">
+.font-dm-sans { font-family: 'DM Sans', sans-serif !important; }
+</style><link href="assets/css2_bd311904ea29.css" id="all-fonts-link-font-cormorant" rel="stylesheet"/><style id="all-fonts-style-font-cormorant">.font-cormorant { font-family: 'Cormorant Garamond', serif !important; }</style><style id="border-gradient-shared-style">
+[style*="--border-gradient"]::before {
+content: "";
+position: absolute;
+inset: 0;
+padding: 1px;
+border-radius: var(--border-radius-before, inherit);
+-webkit-mask: linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+background: var(--border-gradient);
+pointer-events: none;
+}</style><!-- aura-ga4-start -->
+<script async="" src="assets/js_19c0e2c2c8a8.js"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style data-scroll-fix="true">
+        /* Scroll fixes for offline viewing */
+        html, body {
+            overflow: auto !important;
+            overflow-x: hidden !important;
+            height: auto !important;
+            min-height: 100% !important;
+            scroll-behavior: auto !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+        
+        /* Force visibility - many sites use JS animations for initial display */
+        body, .wrapper, main, #__next, #app, .page, .content {
+            opacity: 1 !important;
+            visibility: visible !important;
+            transform: none !important;
+        }
+        
+        /* Disable loader/preloader overlays */
+        .loader, .preloader, .loading, [class*="loader"], [class*="preloader"] {
+            display: none !important;
+            opacity: 0 !important;
+        }
+        
+        /* Show elements that might be hidden for animation */
+        .word-inner, .char, .line, [data-aos], [data-scroll],
+        .hero-text span, .hero-fade, [class*="hero"] span {
+            opacity: 1 !important;
+            transform: none !important;
+            visibility: visible !important;
+        }
+        
+        /* Reset Tailwind animation utility classes */
+        .translate-y-full, .translate-x-full, .-translate-y-full, .-translate-x-full,
+        .translate-y-1\/2, .-translate-y-1\/2, .translate-y-\[100\%\], .translate-y-\[110\%\] {
+            transform: none !important;
+        }
+        
+        /* Force visibility on common hidden-for-animation patterns */
+        .opacity-0, [class*="opacity-0"] {
+            opacity: 1 !important;
+        }
+        
+        /* Reset scale transforms used for animations */
+        .scale-0, .scale-50, .scale-75 {
+            transform: none !important;
+        }
+        
+        html.lenis, html.lenis-smooth, 
+        body.lenis, body.lenis-smooth,
+        .lenis-wrapper, .lenis-content,
+        [data-lenis-prevent], [data-scroll-container] {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        
+        /* Fix flex containers that might cut off content */
+        body.flex.items-center,
+        body.flex.justify-center {
+            align-items: flex-start !important;
+            min-height: 100vh;
+            height: auto !important;
+        }
+        
+        /* Ensure main content scrolls */
+        main, #__next, #__nuxt, #app, .main-content {
+            overflow: visible !important;
+            height: auto !important;
+        }
+        </style></head>
+<body class="min-h-screen selection:bg-orange-500/30 relative no-scrollbar">
+
+
+<!-- Background (copied from index) -->
+<div class="fixed inset-0 z-[-1] pointer-events-none bg-[#0B0C0E]">
+    <div class="absolute inset-0 linear-grid"></div>
+</div>
+
+<nav class="fixed border-white/[0.06] supports-[backdrop-filter]:bg-[#0B0C0E]/60 bg-[#0B0C0E]/80 w-full z-50 border-b top-0 backdrop-blur-xl">
+<div class="flex h-14 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+<div class="flex gap-x-2 gap-y-2 items-center" onclick="window.location.href='/home'" role="button">
+<div class="relative flex items-center justify-center w-6 h-6">
+<svg class="w-5 h-5 text-orange-400/90" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path class="" d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+</svg>
+</div>
+<span class="text-sm font-medium text-white/90 tracking-tight">
+        Fluxer
+      </span>
+</div>
+<!-- Desktop Menu -->
+<div class="hidden md:flex items-center gap-6">
+<!-- Products Dropdown -->
+<div class="relative group">
+<button class="flex gap-1.5 text-[13px] hover:text-white transition-colors focus:outline-none text-white/60 pt-4 pb-4 gap-x-1.5 gap-y-1.5 items-center" data-dropdown-trigger="products-dropdown">
+          Products
+          <svg class="opacity-50 transition-transform duration-200" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path class="" d="m6 9 6 6 6-6"></path></svg>
+</button>
+<div class="invisible opacity-0 translate-y-2 absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[340px] transition-all duration-200 ease-out z-50" data-dropdown-content="" id="products-dropdown">
+<div class="bg-[#0E0F11] border border-white/[0.08] rounded-xl shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] p-2 backdrop-blur-3xl overflow-hidden ring-1 ring-white/[0.05]">
+<div class="grid gap-0.5">
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Fluxer AI</span>
+<span class="text-[12px] text-white/50 leading-snug">Design at the speed of thought</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="3"></rect>
+<path d="M3 9h18"></path>
+<path d="M9 21V9"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Visual Editor</span>
+<span class="text-[12px] text-white/50 leading-snug">Total design freedom</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Team Work</span>
+<span class="text-[12px] text-white/50 leading-snug">Comment, review, and approve</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+<path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path>
+<path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">CMS</span>
+<span class="text-[12px] text-white/50 leading-snug">Flexible content modeling</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242"></path>
+<path d="M12 12v9"></path>
+<path d="m16 16-4-4-4 4"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Global Hosting</span>
+<span class="text-[12px] text-white/50 leading-snug">Edge network deployment</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<circle cx="11" cy="11" r="8"></circle>
+<path d="m21 21-4.3-4.3"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">SEO &amp; Social</span>
+<span class="text-[12px] text-white/50 leading-snug">Fine-tune your visibility</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Templates Dropdown -->
+<div class="relative group">
+<button class="flex text-[13px] hover:text-white transition-colors focus:outline-none text-white/60 pt-4 pb-4 gap-x-1.5 gap-y-1.5 items-center" data-dropdown-trigger="templates-dropdown">
+          Resources
+          <svg class="transition-transform duration-200 opacity-50 w-[12px] h-[12px]" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg">
+<path class="" d="m6 9 6 6 6-6"></path>
+</svg>
+</button>
+<div class="invisible opacity-0 translate-y-2 absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[320px] transition-all duration-200 ease-out z-50" data-dropdown-content="" id="templates-dropdown">
+<div class="bg-[#0E0F11] border border-white/[0.08] rounded-xl shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] p-2 backdrop-blur-3xl overflow-hidden ring-1 ring-white/[0.05]">
+<div class="grid gap-0.5">
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path>
+<path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path>
+<path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"></path>
+<path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Startup</span>
+<span class="text-[12px] text-white/50 leading-snug">Launch your business</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<rect height="14" rx="2" ry="2" width="20" x="2" y="7"></rect>
+<path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Agency</span>
+<span class="text-[12px] text-white/50 leading-snug">For creative teams</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+<circle cx="12" cy="7" r="4"></circle>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Marketplace</span>
+<span class="text-[12px] text-white/50 leading-snug">Templates and Components</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Resources Dropdown -->
+<div class="relative group">
+<button class="flex gap-1.5 text-[13px] hover:text-white transition-colors focus:outline-none text-white/60 pt-4 pb-4 gap-x-1.5 gap-y-1.5 items-center" data-dropdown-trigger="resources-dropdown">
+          Solutions
+          <svg class="opacity-50 transition-transform duration-200" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<div class="invisible opacity-0 translate-y-2 absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[320px] transition-all duration-200 ease-out z-50" data-dropdown-content="" id="resources-dropdown">
+<div class="bg-[#0E0F11] border border-white/[0.08] rounded-xl shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] p-2 backdrop-blur-3xl overflow-hidden ring-1 ring-white/[0.05]">
+<div class="grid gap-0.5">
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Blog</span>
+<span class="text-[12px] text-white/50 leading-snug">Latest updates &amp; stories</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<circle cx="12" cy="12" r="4"></circle>
+<line x1="4.93" x2="9.17" y1="4.93" y2="9.17"></line>
+<line x1="14.83" x2="19.07" y1="14.83" y2="19.07"></line>
+<line x1="14.83" x2="19.07" y1="9.17" y2="4.93"></line>
+<line x1="14.83" x2="9.17" y1="14.83" y2="19.07"></line>
+<line x1="4.93" x2="9.17" y1="19.07" y2="14.83"></line>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Help Center</span>
+<span class="text-[12px] text-white/50 leading-snug">Everything you need to know</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<circle cx="12" cy="12" r="10"></circle>
+<polygon points="10 8 16 12 10 16 10 8"></polygon>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Tutorials</span>
+<span class="text-[12px] text-white/50 leading-snug">Learn how to build</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Community Dropdown -->
+<div class="relative group">
+<button class="flex text-[13px] hover:text-white transition-colors focus:outline-none text-white/60 pt-4 pb-4 gap-x-1.5 gap-y-1.5 items-center" data-dropdown-trigger="community-dropdown">
+          Community
+          <svg class="opacity-50 transition-transform duration-200" fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="12" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<div class="invisible opacity-0 translate-y-2 absolute top-full left-1/2 -translate-x-1/2 pt-2 w-[320px] transition-all duration-200 ease-out z-50" data-dropdown-content="" id="community-dropdown">
+<div class="bg-[#0E0F11] border border-white/[0.08] rounded-xl shadow-[0_20px_40px_-12px_rgba(0,0,0,0.8)] p-2 backdrop-blur-3xl overflow-hidden ring-1 ring-white/[0.05]">
+<div class="grid gap-0.5">
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Discord</span>
+<span class="text-[12px] text-white/50 leading-snug">Chat with the community</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Twitter</span>
+<span class="text-[12px] text-white/50 leading-snug">Follow for updates</span>
+</div>
+</a>
+<a class="flex items-start gap-3 p-2.5 rounded-lg hover:bg-white/[0.04] transition-colors group" href="#">
+<div class="w-9 h-9 rounded-lg bg-white/[0.06] border border-white/[0.04] flex items-center justify-center text-white shrink-0 group-hover:bg-white/[0.1] transition-colors">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="18" xmlns="http://www.w3.org/2000/svg">
+<rect height="18" rx="2" ry="2" width="18" x="3" y="4"></rect>
+<line x1="16" x2="16" y1="2" y2="6"></line>
+<line x1="8" x2="8" y1="2" y2="6"></line>
+<line x1="3" x2="21" y1="10" y2="10"></line>
+</svg>
+</div>
+<div class="flex flex-col gap-0.5">
+<span class="text-[13px] font-medium text-white group-hover:text-white">Events</span>
+<span class="text-[12px] text-white/50 leading-snug">Meetups and workshops</span>
+</div>
+</a>
+</div>
+</div>
+</div>
+</div>
+<a class="text-[13px] hover:text-white transition-colors text-white/60" href="#">
+        Pricing
+      </a>
+</div>
+<!-- Right Actions -->
+<div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+<a class="hidden sm:block text-[13px] hover:text-white transition-colors text-white/60" href="#">
+        Log in
+      </a>
+<!-- Mobile Menu Button -->
+<button class="md:hidden text-white/60 hover:text-white transition-colors focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+<svg class="w-6 h-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
+</button>
+</div>
+</div>
+<!-- Mobile Menu Dropdown -->
+<div class="hidden md:hidden border-t border-white/[0.06] bg-[#0B0C0E] max-h-[80vh] overflow-y-auto" id="mobile-menu">
+<div class="px-6 py-4 space-y-4">
+<!-- Products Mobile -->
+<div class="space-y-3">
+<button class="flex items-center justify-between w-full text-sm font-medium text-white/80" onclick="document.getElementById('mobile-products').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+          Products
+          <svg class="transition-transform duration-200 text-white/40" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<div class="hidden pl-4 space-y-3 border-l border-white/10 ml-2" id="mobile-products">
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Fluxer AI</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Visual Editor</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Team Work</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">CMS</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Global Hosting</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">SEO &amp; Social</a>
+</div>
+</div>
+<!-- Resources Mobile -->
+<div class="space-y-3">
+<button class="flex items-center justify-between w-full text-sm font-medium text-white/80" onclick="document.getElementById('mobile-resources').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+          Resources
+          <svg class="transition-transform duration-200 text-white/40" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<div class="hidden pl-4 space-y-3 border-l border-white/10 ml-2" id="mobile-resources">
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Startup</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Agency</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Marketplace</a>
+</div>
+</div>
+<!-- Solutions Mobile -->
+<div class="space-y-3">
+<button class="flex items-center justify-between w-full text-sm font-medium text-white/80" onclick="document.getElementById('mobile-solutions').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+          Solutions
+          <svg class="transition-transform duration-200 text-white/40" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<div class="hidden pl-4 space-y-3 border-l border-white/10 ml-2" id="mobile-solutions">
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Blog</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Help Center</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Tutorials</a>
+</div>
+</div>
+<!-- Community Mobile -->
+<div class="space-y-3">
+<button class="flex items-center justify-between w-full text-sm font-medium text-white/80" onclick="document.getElementById('mobile-community').classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')">
+          Community
+          <svg class="transition-transform duration-200 text-white/40" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16" xmlns="http://www.w3.org/2000/svg"><path d="m6 9 6 6 6-6"></path></svg>
+</button>
+<div class="hidden pl-4 space-y-3 border-l border-white/10 ml-2" id="mobile-community">
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Discord</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Twitter</a>
+<a class="block text-sm text-white/60 hover:text-white transition-colors" href="#">Events</a>
+</div>
+</div>
+<a class="block text-sm font-medium text-white/80 py-2 hover:text-white transition-colors" href="#">Pricing</a>
+<div class="pt-4 border-t border-white/10">
+<a class="block w-full py-2.5 text-center text-sm font-medium text-white bg-white/10 rounded-lg hover:bg-white/20 transition-colors" href="#">Log in</a>
+</div>
+</div>
+</div>
+<script>
+    document.addEventListener('click', function(e) {
+          const trigger = e.target.closest('[data-dropdown-trigger]');
+          const activeDropdown = document.querySelector('[data-dropdown-content]:not(.invisible)');
+          
+          if (trigger) {
+            const targetId = trigger.dataset.dropdownTrigger;
+            const targetContent = document.getElementById(targetId);
+            
+            if (activeDropdown && activeDropdown !== targetContent) {
+              activeDropdown.classList.add('invisible', 'opacity-0', 'translate-y-2');
+              activeDropdown.classList.remove('visible', 'opacity-100', 'translate-y-0');
+              const activeTriggerIcon = document.querySelector(`[data-dropdown-trigger="${activeDropdown.id.replace('-content','').replace('-dropdown','-dropdown')}"] svg`);
+              if(activeTriggerIcon) activeTriggerIcon.style.transform = 'rotate(0deg)';
+            }
+            
+            const isClosed = targetContent.classList.contains('invisible');
+            if (isClosed) {
+              targetContent.classList.remove('invisible', 'opacity-0', 'translate-y-2');
+              targetContent.classList.add('visible', 'opacity-100', 'translate-y-0');
+              trigger.querySelector('svg').style.transform = 'rotate(180deg)';
+            } else {
+              targetContent.classList.add('invisible', 'opacity-0', 'translate-y-2');
+              targetContent.classList.remove('visible', 'opacity-100', 'translate-y-0');
+              trigger.querySelector('svg').style.transform = 'rotate(0deg)';
+            }
+          } else if (activeDropdown && !e.target.closest('[data-dropdown-content]')) {
+            activeDropdown.classList.add('invisible', 'opacity-0', 'translate-y-2');
+            activeDropdown.classList.remove('visible', 'opacity-100', 'translate-y-0');
+            const activeTrigger = document.querySelector(`button[data-dropdown-trigger="${activeDropdown.id}"]`);
+            if(activeTrigger) activeTrigger.querySelector('svg').style.transform = 'rotate(0deg)';
+          }
+        });
+  </script>
+</nav>
+
+<!-- Hero Section -->
+<main class="z-10 max-w-7xl mr-auto ml-auto pt-32 pr-6 pb-20 pl-6 relative">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 gap-x-16 gap-y-16 items-center">
+<!-- Left: Text -->
+<div class="flex flex-col animate-fade-up opacity-0 items-start">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] mb-8">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+</span>
+<span class="text-xs font-medium text-orange-400/90 tracking-tight">
+              Version 1.0
+            </span>
+</div>
+<h1 class="text-5xl lg:text-7xl font-medium tracking-tight text-white mb-6 leading-[1.1]">
+            Fluxer Design
+            <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-200 via-orange-400 to-amber-500">
+              System.
+            </span>
+</h1>
+<p class="text-lg text-white/60 max-w-lg mb-10 leading-relaxed font-light">
+            The foundational pattern library and design tokens for Fluxer. Explore typography, colors, components, and motion all in one place.
+          </p>
+<div class="flex flex-wrap items-center gap-4">
+<button class="shine-button h-12 px-8 rounded-full bg-[#EBEBEB] text-[#0B0C0E] text-[15px] font-medium hover:bg-white transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]">
+              View Components
+            </button>
+<button class="h-12 px-8 rounded-full border border-white/[0.08] bg-transparent text-white/80 text-[15px] font-medium hover:bg-white/[0.04] transition-colors flex items-center gap-2">
+              View Documentation
+              <svg class="lucide lucide-play-circle text-white/40 ml-2" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="16">
+<circle cx="12" cy="12" r="10"></circle>
+<polygon points="10 8 16 12 10 16 10 8"></polygon>
+</svg>
+</button>
+</div>
+</div>
+<!-- Right: Stylized Card -->
+<div class="relative opacity-0 animate-fade-up delay-2">
+<!-- Outer Glow -->
+<div class="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-transparent blur-[60px] rounded-full opacity-40"></div>
+<!-- Card Container -->
+<div class="relative w-full max-w-md ml-auto bg-[#131418] rounded-2xl border border-white/[0.08] p-6 shadow-2xl shadow-black/50 overflow-hidden">
+<div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+<!-- Card Header -->
+<div class="relative z-10 flex justify-between items-start mb-8">
+<div class="">
+<div class="text-[13px] text-white/40 font-medium mb-1 uppercase tracking-wider">
+                  OPTIMIZATION
+                </div>
+<h3 class="text-xl text-white font-medium tracking-tight">
+                  Site Performance
+                </h3>
+</div>
+<div class="px-2 py-1 bg-orange-500/10 border border-orange-500/20 rounded text-[11px] font-medium text-orange-400 flex items-center gap-1.5">
+<svg aria-hidden="true" class="lucide lucide-check-circle-2 w-3 h-3" data-lucide="check-circle-2" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                100
+              </div>
+</div>
+<!-- Chart Visualization -->
+<div class="relative z-10 h-32 w-full mb-8">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 200 100">
+<defs>
+<lineargradient id="glowGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#F97316" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#F97316" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path class="drop-shadow-[0_0_10px_rgba(249,115,22,0.5)]" d="M0 80 C 40 80, 50 60, 80 50 C 110 40, 130 20, 160 15 C 180 10, 190 5, 200 0" fill="none" stroke="#F97316" stroke-linecap="round" stroke-width="2"></path>
+<path class="" d="M0 80 C 40 80, 50 60, 80 50 C 110 40, 130 20, 160 15 C 180 10, 190 5, 200 0 V 100 H 0 Z" fill="url(#glowGradient)" stroke="none"></path>
+</svg>
+<!-- Data Points -->
+<div class="absolute top-0 right-0 w-3 h-3 bg-[#131418] border-2 border-orange-500 rounded-full shadow-[0_0_15px_rgba(249,115,22,1)]"></div>
+</div>
+<!-- List Items -->
+<div class="relative z-10 space-y-3">
+<div class="flex items-center justify-between p-3 rounded-lg bg-white/[0.03] border border-white/[0.04]">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]"></div>
+<span class="text-[13px] text-white/80">
+                    Lighthouse Score
+                  </span>
+</div>
+<span class="text-[13px] font-medium text-white">100</span>
+</div>
+<div class="flex items-center justify-between p-3 rounded-lg bg-white/[0.03] border border-white/[0.04]">
+<div class="flex items-center gap-3">
+<div class="w-2 h-2 rounded-full shadow-[0_0_8px_rgba(59,130,246,0.4)] bg-orange-500"></div>
+<span class="text-[13px] text-white/80">
+                    First Contentful Paint
+                  </span>
+</div>
+<span class="text-[13px] font-medium text-white">0.2s</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+
+
+<!-- Design System Navigation -->
+<div class="sticky top-14 z-40 bg-[#0B0C0E]/90 backdrop-blur-md border-b border-white/[0.06] py-3">
+    <div class="max-w-7xl mx-auto px-6 flex items-center gap-6 overflow-x-auto no-scrollbar text-sm font-medium">
+        <a href="#typography" class="text-white/60 hover:text-orange-400 transition-colors whitespace-nowrap">1. Typography</a>
+        <a href="#colors" class="text-white/60 hover:text-orange-400 transition-colors whitespace-nowrap">2. Colors & Surfaces</a>
+        <a href="#components" class="text-white/60 hover:text-orange-400 transition-colors whitespace-nowrap">3. UI Components</a>
+        <a href="#layout" class="text-white/60 hover:text-orange-400 transition-colors whitespace-nowrap">4. Layout & Spacing</a>
+        <a href="#motion" class="text-white/60 hover:text-orange-400 transition-colors whitespace-nowrap">5. Motion & Interaction</a>
+        <a href="#icons" class="text-white/60 hover:text-orange-400 transition-colors whitespace-nowrap">6. Icons</a>
+    </div>
+</div>
+
+<!-- 1. Typography -->
+<section id="typography" class="max-w-7xl mx-auto py-24 px-6">
+    <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] mb-6">
+            <span class="text-xs font-medium text-orange-400/90 tracking-tight">01. Typography</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">Typography System</h2>
+        <p class="text-lg font-light text-white/60 max-w-2xl">The font families, sizes, and weights used across the application to establish hierarchy.</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-6 border-t border-white/[0.06] pt-8">
+        <!-- Heading 1 -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/[0.06]">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wider">Heading 1</span>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h1 class="text-5xl lg:text-7xl font-medium tracking-tight text-white leading-[1.1]">Heading 1</h1>
+            </div>
+            <div class="w-full md:w-1/4 text-right">
+                <span class="text-sm text-white/40 font-mono">48px / 1.1</span>
+            </div>
+        </div>
+        
+        <!-- Heading 2 -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/[0.06]">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wider">Heading 2</span>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white">Heading 2</h2>
+            </div>
+            <div class="w-full md:w-1/4 text-right">
+                <span class="text-sm text-white/40 font-mono">36px / 1.2</span>
+            </div>
+        </div>
+
+        <!-- Heading 3 -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/[0.06]">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wider">Heading 3</span>
+            </div>
+            <div class="w-full md:w-1/2">
+                <h3 class="text-xl text-white font-medium">Heading 3</h3>
+            </div>
+            <div class="w-full md:w-1/4 text-right">
+                <span class="text-sm text-white/40 font-mono">20px / 1.5</span>
+            </div>
+        </div>
+
+        <!-- Paragraph Large -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/[0.06]">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wider">Paragraph L</span>
+            </div>
+            <div class="w-full md:w-1/2">
+                <p class="text-lg text-white/60 leading-relaxed font-light">The quick brown fox jumps over the lazy dog. Fluxer brings your entire team into a shared workspace.</p>
+            </div>
+            <div class="w-full md:w-1/4 text-right">
+                <span class="text-sm text-white/40 font-mono">18px / 1.6</span>
+            </div>
+        </div>
+
+        <!-- Paragraph Medium -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/[0.06]">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wider">Paragraph M</span>
+            </div>
+            <div class="w-full md:w-1/2">
+                <p class="text-sm text-white/60 leading-relaxed">The quick brown fox jumps over the lazy dog. Customize your site for every region.</p>
+            </div>
+            <div class="w-full md:w-1/4 text-right">
+                <span class="text-sm text-white/40 font-mono">14px / 1.5</span>
+            </div>
+        </div>
+
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/[0.06]">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wider">Paragraph S</span>
+            </div>
+            <div class="w-full md:w-1/2">
+                <p class="text-xs text-white/50 leading-relaxed">The quick brown fox jumps over the lazy dog. This is small body text.</p>
+            </div>
+            <div class="w-full md:w-1/4 text-right">
+                <span class="text-sm text-white/40 font-mono">12px / 1.5</span>
+            </div>
+        </div>
+        
+        <!-- Gradient Text -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between py-6 border-b border-white/[0.06]">
+            <div class="w-full md:w-1/4 mb-4 md:mb-0">
+                <span class="text-sm font-medium text-white/40 uppercase tracking-wider">Gradient Text</span>
+            </div>
+            <div class="w-full md:w-1/2">
+                <span class="text-3xl font-medium text-transparent bg-clip-text bg-gradient-to-r from-orange-200 via-orange-400 to-amber-500">Gradient Highlight</span>
+            </div>
+            <div class="w-full md:w-1/4 text-right">
+                <span class="text-sm text-white/40 font-mono">N/A</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Colors & Surfaces -->
+<section id="colors" class="max-w-7xl mx-auto py-24 px-6 border-t border-white/[0.06]">
+    <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] mb-6">
+            <span class="text-xs font-medium text-orange-400/90 tracking-tight">02. Colors & Surfaces</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">Color Palette & Surfaces</h2>
+        <p class="text-lg font-light text-white/60 max-w-2xl">Backgrounds, borders, and gradients used for depth and contrast.</p>
+    </div>
+
+    <!-- Backgrounds -->
+    <h3 class="text-xl text-white font-medium mb-6">Backgrounds & Surfaces</h3>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-[#0B0C0E] border border-white/[0.08] shadow-lg flex items-end p-3"><span class="text-xs text-white/60 font-mono">#0B0C0E</span></div>
+            <div class="text-sm font-medium text-white">Page Background</div>
+        </div>
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-[#131418] border border-white/[0.08] shadow-lg flex items-end p-3"><span class="text-xs text-white/60 font-mono">#131418</span></div>
+            <div class="text-sm font-medium text-white">Card Raised Surface</div>
+        </div>
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-white/[0.02] border border-white/[0.06] shadow-lg flex items-end p-3"><span class="text-xs text-white/60 font-mono">white/[0.02]</span></div>
+            <div class="text-sm font-medium text-white">Linear Card Surface</div>
+        </div>
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-[#0E0F11] border border-white/[0.08] shadow-lg flex items-end p-3"><span class="text-xs text-white/60 font-mono">#0E0F11</span></div>
+            <div class="text-sm font-medium text-white">Dropdown Surface</div>
+        </div>
+    </div>
+
+    <!-- Accents -->
+    <h3 class="text-xl text-white font-medium mb-6">Accents & Gradients</h3>
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-orange-500 shadow-[0_0_15px_rgba(249,115,22,0.5)] flex items-end p-3"><span class="text-xs text-black/60 font-mono">#F97316</span></div>
+            <div class="text-sm font-medium text-white">Primary Orange</div>
+        </div>
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-gradient-to-tr from-orange-500/20 to-transparent flex items-end p-3 border border-white/[0.04]"><span class="text-xs text-white/60 font-mono">from-orange-500/20</span></div>
+            <div class="text-sm font-medium text-white">Orange Glow Gradient</div>
+        </div>
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-purple-500 flex items-end p-3"><span class="text-xs text-white/60 font-mono">#A855F7</span></div>
+            <div class="text-sm font-medium text-white">Purple Accent</div>
+        </div>
+        <div class="space-y-3">
+            <div class="w-full h-32 rounded-xl bg-emerald-500 flex items-end p-3"><span class="text-xs text-black/60 font-mono">#10B981</span></div>
+            <div class="text-sm font-medium text-white">Success / Active</div>
+        </div>
+    </div>
+    
+    <!-- Borders & Dividers -->
+    <h3 class="text-xl text-white font-medium mb-6">Borders</h3>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="p-6 rounded-xl bg-[#0B0C0E] border border-white/[0.06]">
+            <div class="text-sm font-medium text-white mb-2">Subtle Border</div>
+            <div class="text-xs text-white/50 font-mono">border-white/[0.06]</div>
+        </div>
+        <div class="p-6 rounded-xl bg-[#0B0C0E] border border-white/[0.08]">
+            <div class="text-sm font-medium text-white mb-2">Component Border</div>
+            <div class="text-xs text-white/50 font-mono">border-white/[0.08]</div>
+        </div>
+        <div class="p-6 rounded-xl bg-[#0B0C0E] border border-orange-500/30">
+            <div class="text-sm font-medium text-white mb-2">Active/Focus Border</div>
+            <div class="text-xs text-white/50 font-mono">border-orange-500/30</div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. UI Components -->
+<section id="components" class="max-w-7xl mx-auto py-24 px-6 border-t border-white/[0.06]">
+    <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] mb-6">
+            <span class="text-xs font-medium text-orange-400/90 tracking-tight">03. UI Components</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">Component Library</h2>
+        <p class="text-lg font-light text-white/60 max-w-2xl">Interactive elements including buttons, inputs, and cards.</p>
+    </div>
+
+    <!-- Buttons -->
+    <div class="mb-16">
+        <h3 class="text-xl text-white font-medium mb-6">Buttons</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="p-8 border border-white/[0.06] rounded-xl flex items-center justify-center gap-6 bg-white/[0.01]">
+                <button class="shine-button h-12 px-8 rounded-full bg-[#EBEBEB] text-[#0B0C0E] text-[15px] font-medium hover:bg-white transition-colors shadow-[0_0_20px_rgba(255,255,255,0.15)]">Primary Light</button>
+            </div>
+            
+            <div class="p-8 border border-white/[0.06] rounded-xl flex items-center justify-center gap-6 bg-white/[0.01]">
+                <button class="h-12 px-8 rounded-full border border-white/[0.08] bg-transparent text-white/80 text-[15px] font-medium hover:bg-white/[0.04] transition-colors flex items-center gap-2">
+                    Secondary Outline
+                    <svg class="lucide lucide-play-circle text-white/40 ml-2" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="16"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                </button>
+            </div>
+            
+            <div class="p-8 border border-white/[0.06] rounded-xl flex flex-col items-center justify-center gap-6 bg-white/[0.01]">
+                <div class="flex gap-4 items-center">
+                    <button class="bg-orange-600 text-[11px] font-medium text-white px-3 py-1.5 rounded hover:bg-orange-700 transition-colors shadow-lg shadow-orange-900/20">
+                        Primary Default
+                    </button>
+                    <button class="bg-orange-600 text-[11px] font-medium text-white px-3 py-1.5 rounded hover:bg-orange-700 transition-colors shadow-lg shadow-orange-900/20 opacity-50 cursor-not-allowed">
+                        Disabled Action
+                    </button>
+                </div>
+            </div>
+            
+            <div class="p-8 border border-white/[0.06] rounded-xl flex flex-col items-center justify-center gap-6 bg-white/[0.01]">
+                <div class="flex gap-4">
+                    <button class="p-1.5 rounded bg-white/[0.1] text-white"><svg class="lucide lucide-mouse-pointer-2" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><path d="m12 6 2-2h6a2 2 0 0 1 2 2v13.5"></path><path d="m14.7 15.3 4.1 4.1a2 2 0 0 1-2.8 2.8l-4.1-4.1"></path><path d="m8.97 19.9-2.2 2.3a2.02 2.02 0 0 1-2.83 0l-1.2-1.23a2 2 0 0 1 0-2.83l2.3-2.2"></path><path d="m9.7 13.7 2.3 2.3a2 2 0 0 0 2.8 0L21 9.8a2 2 0 0 0 0-2.83L17 3"></path></svg></button>
+                    <button class="p-1.5 rounded hover:bg-white/[0.04] text-white/40"><svg class="lucide lucide-layout-template" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><rect height="7" rx="1" width="18" x="3" y="3"></rect><rect height="7" rx="1" width="9" x="3" y="14"></rect><rect height="7" rx="1" width="5" x="16" y="14"></rect></svg></button>
+                    <button class="p-1.5 rounded hover:bg-white/[0.04] text-white/40"><svg class="lucide lucide-type" fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14"><line x1="4" x2="20" y1="6" y2="6"></line><line x1="9" x2="15" y1="6" y2="6"></line><line x1="12" x2="12" y1="6" y2="21"></line></svg></button>
+                </div>
+                <span class="text-xs text-white/40">Icon Buttons (Active / Default / Hover)</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inputs -->
+    <div class="mb-16">
+        <h3 class="text-xl text-white font-medium mb-6">Inputs</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01]">
+                <div class="relative group max-w-sm mx-auto">
+                    <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-white/20 group-focus-within:text-white/40 transition-colors" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+                    <input class="w-full bg-white/[0.03] border border-transparent focus:border-white/[0.08] hover:bg-white/[0.05] rounded-md py-1.5 pl-8 pr-2 text-[12px] text-white placeholder-white/20 focus:outline-none transition-all" placeholder="Search component..." type="text"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cards & Containers -->
+    <div class="mb-16">
+        <h3 class="text-xl text-white font-medium mb-6">Cards</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Linear Card -->
+            <div class="linear-card rounded-xl p-8 relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-orange-500/5 blur-[80px] rounded-full group-hover:bg-orange-500/10 transition-colors duration-500"></div>
+                <div class="relative z-10">
+                    <div class="w-10 h-10 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center mb-6 text-orange-400">
+                        <svg fill="none" height="20" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="20"><path d="M12 2v4"></path><path d="m16.2 7.8 2.9-2.9"></path><path d="M18 12h4"></path></svg>
+                    </div>
+                    <h3 class="text-xl text-white font-medium mb-2">Linear Card</h3>
+                    <p class="text-sm text-white/60 mb-6 font-light">Used for features and primary value props. Hover state changes border and glow intensity.</p>
+                </div>
+            </div>
+            
+            <!-- Raised Card -->
+            <div class="w-full bg-[#131418] rounded-2xl border border-white/[0.08] p-6 shadow-2xl shadow-black/50 overflow-hidden relative group">
+                <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20"></div>
+                <div class="relative z-10 flex justify-between items-start mb-4">
+                    <div>
+                        <div class="text-[13px] text-white/40 font-medium mb-1 uppercase tracking-wider">Stats Widget</div>
+                        <h3 class="text-xl text-white font-medium">Raised Surface Card</h3>
+                    </div>
+                    <div class="px-2 py-1 bg-orange-500/10 border border-orange-500/20 rounded text-[11px] font-medium text-orange-400 flex items-center gap-1.5">
+                        <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                        100
+                    </div>
+                </div>
+                <p class="relative z-10 text-sm font-light text-white/60">Features a shadow and textured background noise. Ideal for floating widgets or metrics.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Tags / Badges -->
+    <div>
+        <h3 class="text-xl text-white font-medium mb-6">Tags & Badges</h3>
+        <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01] flex flex-wrap gap-6 items-center">
+            <!-- Status Badge -->
+            <div class="px-2 py-1 bg-orange-500/10 border border-orange-500/20 rounded text-[11px] font-medium text-orange-400 flex items-center gap-1.5">
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                100 Score
+            </div>
+            
+            <!-- Live Badge -->
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02]">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-orange-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                </span>
+                <span class="text-[11px] font-medium tracking-tight uppercase text-orange-400">Now in Beta</span>
+            </div>
+            
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02]">
+                <span class="relative flex h-2 w-2">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span class="text-xs font-medium text-white/90 tracking-tight">Live connection established</span>
+            </div>
+            
+            <!-- Small Tag -->
+            <div class="bg-[#0B0C0E] border border-white/10 px-1.5 py-0.5 rounded text-[9px] text-white/80 font-mono shadow-lg">
+                EN
+            </div>
+            
+            <div class="bg-[#0B0C0E] border border-orange-500/30 px-1.5 py-0.5 rounded text-[9px] text-orange-400 font-mono shadow-lg">
+                JP
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Layout & Spacing -->
+<section id="layout" class="max-w-7xl mx-auto py-24 px-6 border-t border-white/[0.06]">
+    <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] mb-6">
+            <span class="text-xs font-medium text-orange-400/90 tracking-tight">04. Layout & Spacing</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">Layout Patterns</h2>
+        <p class="text-lg font-light text-white/60 max-w-2xl">Standard container widths, padding, and grid structures used across the site.</p>
+    </div>
+
+    <!-- Layout Grid Examples -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center mb-16 p-8 border border-white/[0.06] rounded-xl bg-white/[0.01]">
+        <div class="h-48 rounded bg-white/[0.02] border border-white/[0.1] border-dashed flex items-center justify-center">
+            <span class="text-white/40 text-sm font-mono">1/2 Column (lg:grid-cols-2)</span>
+        </div>
+        <div class="h-48 rounded bg-white/[0.02] border border-white/[0.1] border-dashed flex items-center justify-center">
+            <span class="text-white/40 text-sm font-mono">1/2 Column (lg:grid-cols-2)</span>
+        </div>
+    </div>
+    
+    <!-- Bento Grid Layout -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 p-8 border border-white/[0.06] rounded-xl bg-white/[0.01]">
+        <div class="md:col-span-2 h-48 rounded bg-white/[0.02] border border-white/[0.1] border-dashed flex flex-col items-center justify-center">
+            <span class="text-white/40 text-sm font-mono">md:col-span-2</span>
+            <span class="text-white/30 text-xs">Features Bento Large</span>
+        </div>
+        <div class="h-48 rounded bg-white/[0.02] border border-white/[0.1] border-dashed flex flex-col items-center justify-center">
+            <span class="text-white/40 text-sm font-mono">md:col-span-1</span>
+            <span class="text-white/30 text-xs">Features Bento Small</span>
+        </div>
+    </div>
+</section>
+
+<!-- 5. Motion & Interaction -->
+<section id="motion" class="max-w-7xl mx-auto py-24 px-6 border-t border-white/[0.06]">
+    <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] mb-6">
+            <span class="text-xs font-medium text-orange-400/90 tracking-tight">05. Motion</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">Motion & Interaction</h2>
+        <p class="text-lg font-light text-white/60 max-w-2xl">CSS animations, hover states, and transitions that make the interface feel alive.</p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Fade Up Entrance -->
+        <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01] flex flex-col items-center text-center">
+            <div class="w-full h-24 mb-6 flex items-center justify-center relative bg-white/[0.02] rounded-lg">
+                <div class="px-4 py-2 bg-white/10 rounded animate-fade-up text-sm font-medium text-white">.animate-fade-up</div>
+            </div>
+            <h4 class="text-white font-medium mb-2">Fade Up Entrance</h4>
+            <p class="text-xs text-white/50">Used for hero text and staggered entrances across the site.</p>
+        </div>
+        
+        <!-- Hover Transform -->
+        <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01] flex flex-col items-center text-center group cursor-pointer">
+            <div class="w-full h-24 mb-6 flex items-center justify-center relative bg-white/[0.02] rounded-lg">
+                <div class="w-10 h-10 bg-orange-500/20 rounded border border-orange-500/50 group-hover:-translate-y-2 group-hover:scale-110 transition-transform duration-300"></div>
+            </div>
+            <h4 class="text-white font-medium mb-2">Hover Transform</h4>
+            <p class="text-xs text-white/50">Translation and scale transitions on hover (group-hover:translate).</p>
+        </div>
+        
+        <!-- Flow Line Animation -->
+        <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01] flex flex-col items-center text-center overflow-hidden">
+            <div class="w-full h-24 mb-6 flex items-center justify-center relative bg-white/[0.02] rounded-lg">
+                <svg width="100%" height="20" class="overflow-visible">
+                    <path class="animate-flow" d="M0,10 L200,10" stroke="#F97316" stroke-width="2" stroke-dasharray="10 10" fill="none"></path>
+                </svg>
+            </div>
+            <h4 class="text-white font-medium mb-2">Flowing Line</h4>
+            <p class="text-xs text-white/50">Used connecting pipes and interactive wiring graphics.</p>
+        </div>
+
+        <!-- Pulse Indicator -->
+        <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01] flex flex-col items-center text-center">
+            <div class="w-full h-24 mb-6 flex items-center justify-center relative bg-white/[0.02] rounded-lg">
+                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_5px_rgba(34,197,94,0.5)] animate-pulse"></div>
+            </div>
+            <h4 class="text-white font-medium mb-2">Pulse</h4>
+            <p class="text-xs text-white/50">Used for pulsing indicators and active status dots.</p>
+        </div>
+
+        <!-- Marquee -->
+        <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01] flex flex-col items-center text-center overflow-hidden">
+            <div class="w-full h-24 mb-6 flex items-center relative bg-white/[0.02] rounded-lg">
+                <style>
+                    @keyframes marquee-demo {
+                        0% { transform: translateX(0); }
+                        100% { transform: translateX(-50%); }
+                    }
+                    .animate-marquee-demo { animation: marquee-demo 5s linear infinite; }
+                </style>
+                <div class="flex gap-4 animate-marquee-demo whitespace-nowrap will-change-transform">
+                    <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-xs text-white/70">.animate-[marquee...]</span>
+                    <span class="px-2 py-1 bg-white/5 border border-white/10 rounded text-xs text-white/70">.animate-[marquee...]</span>
+                </div>
+            </div>
+            <h4 class="text-white font-medium mb-2">Marquee</h4>
+            <p class="text-xs text-white/50">Used for the testimonials carousel to auto-scroll content.</p>
+        </div>
+
+        <!-- Spin Loader -->
+        <div class="p-8 border border-white/[0.06] rounded-xl bg-white/[0.01] flex flex-col items-center text-center">
+            <div class="w-full h-24 mb-6 flex items-center justify-center relative bg-white/[0.02] rounded-lg">
+                <div class="absolute w-12 h-12 rounded-full border border-white/[0.05] animate-[spin_3s_linear_infinite]">
+                    <div class="w-3 h-3 bg-white/20 rounded-full absolute -top-1.5 -left-1.5"></div>
+                </div>
+            </div>
+            <h4 class="text-white font-medium mb-2">Spin / Orbit</h4>
+            <p class="text-xs text-white/50">Used for localization orbits and background decorations.</p>
+        </div>
+    </div>
+</section>
+
+<!-- 6. Icons -->
+<section id="icons" class="max-w-7xl mx-auto py-24 px-6 border-t border-white/[0.06]">
+    <div class="mb-12">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.08] bg-white/[0.02] mb-6">
+            <span class="text-xs font-medium text-orange-400/90 tracking-tight">06. Icons</span>
+        </div>
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-white mb-4">Iconography System</h2>
+        <p class="text-lg font-light text-white/60 max-w-2xl">Line icons used primarily for interface controls and features. Built with Lucide/Iconify.</p>
+    </div>
+    
+    <div class="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-10 gap-6">
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="24"><path d="M12 2v4"></path><path d="m16.2 7.8 2.9-2.9"></path><path d="M18 12h4"></path></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="24"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="24" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="24"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"></path></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="20" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="20"><rect height="18" rx="2" width="18" x="3" y="3"></rect><path d="M3 9h18"></path></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="20" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="20"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="20" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="10"></circle><path d="M12 6v6l4 2"></path></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="20" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="20"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="group-hover:scale-110 transition-transform" fill="none" height="20" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="20"><circle cx="12" cy="12" r="10"></circle><path d="m4.93 4.93 14.14 14.14"></path></svg>
+        </div>
+        <div class="aspect-square rounded border border-white/[0.06] bg-white/[0.02] flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer group">
+            <svg class="lucide lucide-mouse-pointer-2 group-hover:scale-110 transition-transform" fill="none" height="24" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" width="24"><path d="m12 6 2-2h6a2 2 0 0 1 2 2v13.5"></path><path d="m14.7 15.3 4.1 4.1a2 2 0 0 1-2.8 2.8l-4.1-4.1"></path><path d="m8.97 19.9-2.2 2.3a2.02 2.02 0 0 1-2.83 0l-1.2-1.23a2 2 0 0 1 0-2.83l2.3-2.2"></path><path d="m9.7 13.7 2.3 2.3a2 2 0 0 0 2.8 0L21 9.8a2 2 0 0 0 0-2.83L17 3"></path></svg>
+        </div>
+    </div>
+</section>
+
+
+
+<script>
+if (typeof lucide !== 'undefined' && lucide.createIcons) {
+    lucide.createIcons();
+}
+
+// Smooth scroll inside the page navbar
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if(target) {
+            target.scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+    });
+});
+</script>
+</body>
+</html>
