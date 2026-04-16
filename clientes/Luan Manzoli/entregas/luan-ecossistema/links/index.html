@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luan Manzoli</title>
+    <!-- Tailwind CSS (via CDN para desenvolvimento rápido) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0A0A0A',
+                            neon: '#00FF00',
+                            white: '#FFFFFF',
+                            gray: '#1C1C1E',
+                            darkgray: '#121212'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Outfit"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Globals CSS (onde temos as classes de hover, animacoes e font global) -->
+    <link rel="stylesheet" href="../css/globals.css">
+</head>
+<body class="bg-brand-black text-brand-white antialiased min-h-screen flex flex-col items-center">
+
+    <main class="w-full max-w-lg px-4 py-12 pb-24 flex flex-col items-center">
+        <!-- HEADER / PERFIL -->
+        <div class="flex flex-col items-center mb-10 text-center">
+            <!-- Foto de Perfil -->
+            <div class="h-24 w-24 rounded-full border-2 border-brand-neon bg-brand-gray mb-4 overflow-hidden border-glow relative flex shadow-[0_0_15px_rgba(0,255,0,0.4)]">
+                <img src="../assets/images/perfil_luan.jpg" alt="Luan Manzoli" class="w-full h-full object-cover">
+            </div>
+            <h1 class="text-2xl font-bold tracking-tight">Luan Manzoli</h1>
+        </div>
+
+        <!-- BANNERS -->
+        <div class="w-full space-y-6">
+            
+            <!-- BANNER 1: AGÊNCIA -->
+            <a href="#" class="block relative w-full h-44 rounded-2xl overflow-hidden card-hover group border border-brand-white/10 decoration-none">
+                <!-- Fundo gerado por IA -->
+                <img src="../assets/images/bg_agencia.png" alt="Fundo Agência" class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 group-hover:opacity-60 transition-opacity duration-300">
+                <!-- Gradiente Dark sobre o fundo -->
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/90 to-transparent z-10"></div>
+                <!-- Conteúdo -->
+                <div class="relative z-20 h-full p-6 flex flex-col justify-center w-2/3">
+                    <p class="text-[10px] uppercase tracking-widest text-brand-neon font-bold mb-1">Escale suas Vendas</p>
+                    <h2 class="text-xl font-bold leading-tight mb-2">Conheça a <span class="text-brand-neon">NextAds</span></h2>
+                    <p class="text-xs text-brand-white/80 line-clamp-2">Gestão de Tráfego e Estratégia de Vendas para lojas de iPhones.</p>
+                </div>
+            </a>
+
+            <!-- BANNER 2: MENTORIA -->
+            <a href="#" class="block relative w-full h-44 rounded-2xl overflow-hidden card-hover group border border-brand-white/10 decoration-none">
+                <!-- Fundo gerado por IA -->
+                <img src="../assets/images/bg_mentoria.png" alt="Fundo Mentoria" class="absolute inset-0 w-full h-full object-cover z-0 opacity-40 group-hover:opacity-60 transition-opacity duration-300">
+                <!-- Gradiente Dark sobre o fundo -->
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/90 to-transparent z-10"></div>
+                <!-- Conteúdo -->
+                <div class="relative z-20 h-full p-6 flex flex-col justify-center w-2/3">
+                    <p class="text-[10px] uppercase tracking-widest text-brand-neon font-bold mb-1">Conteúdo Premium</p>
+                    <h2 class="text-xl font-bold leading-tight mb-2">Mentoria Completa</h2>
+                    <p class="text-xs text-brand-white/80 line-clamp-2">Aprenda o método exato para triplicar seu faturamento mensal.</p>
+                </div>
+            </a>
+
+            <!-- BANNER 3: CONTATO -->
+            <a href="#" class="block relative w-full h-44 rounded-2xl overflow-hidden card-hover group border border-brand-white/10 decoration-none">
+                <!-- Fundo gerado por IA -->
+                <img src="../assets/images/bg_contato.png" alt="Fundo WhatsApp" class="absolute inset-0 w-full h-full object-cover z-0 opacity-50 group-hover:opacity-70 transition-opacity duration-300">
+                <!-- Gradiente Dark sobre o fundo -->
+                <div class="absolute inset-0 bg-gradient-to-r from-brand-black via-brand-black/90 to-transparent z-10"></div>
+                <!-- Conteúdo -->
+                <div class="relative z-20 h-full p-6 flex flex-col justify-center w-2/3">
+                    <p class="text-[10px] uppercase tracking-widest text-brand-neon font-bold mb-1">Acesso Direto</p>
+                    <h2 class="text-xl font-bold leading-tight mb-2">Fale com minha Equipe</h2>
+                    <p class="text-xs text-brand-white/80 line-clamp-2">Tire suas dúvidas ou agende uma consultoria diretamente pelo WhatsApp.</p>
+                </div>
+            </a>
+
+        </div>
+
+        <footer class="mt-12 text-center text-xs text-brand-white/40">
+            <p>&copy; 2026 Luan Manzoli. Todos os direitos reservados.</p>
+        </footer>
+    </main>
+
+</body>
+</html>
