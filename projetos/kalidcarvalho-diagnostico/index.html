@@ -7,7 +7,7 @@
   <meta name="description" content="Uma conversa de 30 minutos para entender onde está o gargalo da sua captação B2B e se faz sentido construirmos isso juntos." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -26,6 +26,7 @@
       --sep:         #152035;
       --mono:        'JetBrains Mono', monospace;
       --sans:        'Inter', system-ui, sans-serif;
+      --display:     'Instrument Serif', Georgia, serif;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -126,14 +127,14 @@
     }
 
     .hero-title {
-      font-family: var(--sans);
+      font-family: var(--display);
       font-size: clamp(52px, 9vw, 96px);
-      font-weight: 900; line-height: 0.93; letter-spacing: -0.04em;
+      font-weight: 400; line-height: 0.97; letter-spacing: -0.01em;
       margin-bottom: 48px;
     }
 
     .hero-title .ln { display: block; }
-    .hero-title .ln-muted { color: var(--text-muted); font-weight: 300; font-style: italic; }
+    .hero-title .ln-muted { color: var(--text-muted); font-weight: 400; font-style: italic; }
     .hero-title .ln-accent { color: var(--blue-light); }
 
     .underline-draw { position: relative; display: inline; }
@@ -209,10 +210,10 @@
     }
 
     .prob-headline {
-      font-family: var(--sans); font-size: clamp(32px, 5.5vw, 60px);
-      font-weight: 800; line-height: 1.02; letter-spacing: -0.03em; margin-bottom: 32px;
+      font-family: var(--display); font-size: clamp(32px, 5.5vw, 60px);
+      font-weight: 400; line-height: 1.05; letter-spacing: -0.01em; margin-bottom: 32px;
     }
-    .prob-headline em { font-style: italic; font-weight: 300; color: var(--text-muted); }
+    .prob-headline em { font-style: italic; font-weight: 400; color: var(--text-muted); }
 
     .prob-sub {
       font-size: 16px; color: var(--text-muted); line-height: 1.8; margin-bottom: 0;
@@ -248,7 +249,7 @@
     }
     .steps-left {}
     .sec-headline {
-      font-family: var(--sans); font-weight: 800; letter-spacing: -0.03em;
+      font-family: var(--display); font-weight: 400; letter-spacing: -0.01em;
       line-height: 1.05; color: var(--text);
     }
 
