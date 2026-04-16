@@ -17,10 +17,15 @@ Agência de performance digital — **pivotada em abril/2026** do nicho de advoc
 **Posicionamento novo:** "Engenharia de Vendas" e "Aceleração de MRR/LTV" — não vende "marketing", vende máquina de vendas automatizada.
 **Promessa principal:** "Aceleramos o faturamento de empresas de TI, SaaS e Infraestrutura construindo máquinas de vendas automatizadas."
 
-**Oferta principal (Setup Cavalo de Troia):**
-- Ecossistema de Vendas: Landing Page de alta conversão (WordPress/Elementor) + Setup Google Ads + Automação de filtragem/webhook no n8n conectada ao CRM/WhatsApp do cliente
-- Ticket alvo: R$3.000 a R$5.000 (pagamento rápido, entrega em 15 dias)
-- Upsell: gestão de tráfego R$2.000 a R$3.000/mês após validação da máquina
+**Escada de produtos GROVW TI B2B:**
+
+| Produto | Preço | Entrega | O que é |
+|---|---|---|---|
+| Plano de Captação Documentado | R$600 | 48h | Blueprint personalizado: estrutura da LP, palavras-chave, fluxo de automação e estimativa de investimento em tráfego. Downsell que vira pré-venda do setup. |
+| Automação de Lead | R$1.000 | 3–5 dias | Fluxo n8n: lead do formulário/ad → WhatsApp comercial + planilha de controle. Para quem já tem LP e Ads mas perde lead no processo. |
+| Landing Page de Captação | R$1.500 | 7 dias | LP de alta conversão (WordPress/Elementor ou HTML). Para quem já tem tráfego mas o site não converte. |
+| Sistema de Captação B2B | R$3.500 | 15 dias | LP + Google Ads configurado + automação n8n completa. Produto principal. |
+| Gestão de Captação | R$2.000–R$3.000/mês | Recorrente | Gestão de tráfego + otimização de copy + relatório mensal de leads. Upsell após o setup. |
 
 **Design system GROVW:** Dark tech — fundo preto #000000, accent limão #cdff00, Inter + JetBrains Mono, estilo Digital Architect (alinhado com estética tech B2B)
 

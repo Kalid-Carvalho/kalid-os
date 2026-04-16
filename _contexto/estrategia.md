@@ -3,8 +3,13 @@
 ## Fase
 Pivotagem e tração inicial — mudança de nicho executada em abril/2026. Foco em fazer caixa rápido e validar o novo posicionamento com os primeiros clientes.
 
+## Produto principal
+Sistema de Captação B2B — R$3.500 (LP + Google Ads + automação n8n, entrega 15 dias)
+Downsells: Plano de Captação R$600 | Automação de Lead R$1.000 | Landing Page R$1.500
+Upsell: Gestão de Captação R$2.000–R$3.000/mês
+
 ## Prioridade principal
-1. Fazer caixa rápido: fechar projetos de Setup (R$3.000–R$5.000) no nicho de TI B2B e Infraestrutura
+1. Fazer caixa rápido: fechar o Sistema de Captação B2B (R$3.500) no nicho de TI B2B e Infraestrutura
 2. Prospectar via LinkedIn e Cold Email — foco inicial em Manaus (Polo Industrial) para reuniões presenciais
 3. Pivotar o @eukalidcarvalho para Engenharia de Vendas B2B (build in public, conteúdo técnico)
 4. Aprender criação de apps com Claude Code (skill em desenvolvimento)
