@@ -19,8 +19,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
-  <!-- Iconify for brand logos in carousel -->
-  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 
   <!-- Tailwind Config — matching Design System tokens -->
   <script>
@@ -128,6 +126,23 @@
     -webkit-backface-visibility:hidden;
     perspective:1000px;
     will-change:transform;
+  }
+
+  /* Carousel icon sizing + hover */
+  .carousel-icon{
+    width:40px;height:40px;
+    flex-shrink:0;
+    opacity:0.3;
+    transition:all 0.3s ease;
+    pointer-events:auto;
+  }
+  @media(min-width:1024px){
+    .carousel-icon{width:72px;height:72px}
+  }
+  .carousel-icon:hover{
+    opacity:0.9;
+    transform:scale(1.15);
+    filter:brightness(0) saturate(100%) invert(42%) sepia(95%) saturate(1500%) hue-rotate(360deg) brightness(105%) contrast(101%);
   }
 
   @keyframes beam-fall{
@@ -377,7 +392,7 @@
   <div class="absolute bottom-[10%] left-[15%] w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.06)_0%,transparent_70%)] pointer-events-none z-0"></div>
   <div class="absolute top-[60%] right-[30%] w-[300px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.04)_0%,transparent_70%)] pointer-events-none z-0"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-16 pb-10 lg:pt-20 lg:pb-12 w-full">
+  <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-4 pb-10 lg:pt-20 lg:pb-12 w-full">
     
     <!-- ═══ LEFT COLUMN: Copy & CTA ═══ -->
     <div class="flex flex-col justify-center hero-content">
@@ -413,7 +428,7 @@
       <div class="hero-proof flex items-center gap-2 text-sm text-white/40">
         <span class="text-[#FF6A00] text-base">⚡</span>
         <span class="font-secondary text-[13px]">
-          Mais de <strong class="text-white/60 counter-highlight">R$ XX Milhões</strong> gerenciados em anúncios para Lojas Apple.
+          Mais de <strong class="text-white/60 counter-highlight">R$ 2 Milhões</strong> gerenciados em anúncios para Lojas Apple.
         </span>
       </div>
 
@@ -434,42 +449,20 @@
       </div>
     </div>
 
-    <!-- ═══ RIGHT COLUMN: Image Placeholder ═══ -->
-    <div class="hero-image flex items-center justify-center relative">
+    <!-- ═══ RIGHT COLUMN: Image ═══ -->
+    <div class="hero-image flex items-center justify-center relative order-first lg:order-last">
       <!-- Glow behind image -->
       <div class="image-glow"></div>
       
       <!-- Image Container -->
       <div class="hero-image-placeholder relative" style="animation:float 6s ease-in-out infinite">
-        <!-- Inner visual elements for the placeholder -->
-        <div class="absolute inset-0 flex flex-col items-center justify-center z-10 p-8">
-          <!-- Logo mark -->
-          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#FF6A00] to-[#FF8C00] flex items-center justify-center mb-6 shadow-2xl" style="animation:pulse-glow 3s ease-in-out infinite">
-            <span class="text-black font-extrabold text-2xl tracking-tighter font-primary">N</span>
-          </div>
-          <span class="text-white/40 text-sm font-semibold tracking-widest uppercase font-primary">NEXTADS</span>
-          <span class="text-white/20 text-xs mt-2 font-secondary">600 × 600</span>
-          
-          <!-- Decorative grid dots -->
-          <div class="absolute bottom-6 right-6 grid grid-cols-3 gap-1.5 opacity-20">
-            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
-            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
-          </div>
-
-          <!-- Decorative line top-left -->
-          <div class="absolute top-6 left-6 flex items-center gap-2 opacity-20">
-            <div class="w-8 h-[1px] bg-gradient-to-r from-[#FF6A00] to-transparent"></div>
-            <div class="w-2 h-2 border border-[#FF6A00]/50 rounded-full"></div>
-          </div>
-        </div>
-
+        <!-- Real client photo -->
+        <img 
+          src="../referencias-luan/fotos-clientes/IMG_5978.JPG" 
+          alt="Especialista NEXTADS em ação" 
+          class="absolute inset-0 w-full h-full object-cover object-top z-10 rounded-xl"
+        />
+        
         <!-- Beam border effect on the left -->
         <div class="beam-border-v"></div>
       </div>
@@ -486,55 +479,55 @@
   
   <!-- Row 1: LTR -->
   <div class="flex overflow-hidden w-full mb-6">
-    <div class="marquee-track-smooth gap-20 lg:gap-28" style="animation:marquee 40s linear infinite;">
-      <iconify-icon icon="simple-icons:apple" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:google" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:meta" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:stripe" class="text-6xl lg:text-8xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:nvidia" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:vercel" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:figma" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:notion" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:linear" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:shopify" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+    <div class="marquee-track-smooth gap-16 lg:gap-24" style="animation:marquee 20s linear infinite;">
+      <img src="https://api.iconify.design/simple-icons/apple.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/google.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/meta.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/stripe.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/nvidia.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/vercel.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/figma.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/notion.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/linear.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/shopify.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
       <!-- Duplicate for seamless loop -->
-      <iconify-icon icon="simple-icons:apple" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:google" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:meta" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:stripe" class="text-6xl lg:text-8xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:nvidia" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:vercel" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:figma" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:notion" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:linear" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:shopify" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <img src="https://api.iconify.design/simple-icons/apple.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/google.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/meta.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/stripe.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/nvidia.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/vercel.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/figma.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/notion.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/linear.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/shopify.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
     </div>
   </div>
   
   <!-- Row 2: RTL (reverse) -->
   <div class="flex overflow-hidden w-full">
-    <div class="marquee-track-smooth gap-20 lg:gap-28" style="animation:marquee 45s linear infinite reverse;">
-      <iconify-icon icon="simple-icons:instagram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:tiktok" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:youtube" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:x" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:telegram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:discord" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:slack" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:linkedin" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:pinterest" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+    <div class="marquee-track-smooth gap-16 lg:gap-24" style="animation:marquee 25s linear infinite reverse;">
+      <img src="https://api.iconify.design/simple-icons/instagram.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/tiktok.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/youtube.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/x.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/whatsapp.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/telegram.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/discord.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/slack.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/linkedin.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/pinterest.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
       <!-- Duplicate for seamless loop -->
-      <iconify-icon icon="simple-icons:instagram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:tiktok" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:youtube" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:x" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:telegram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:discord" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:slack" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:linkedin" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
-      <iconify-icon icon="simple-icons:pinterest" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <img src="https://api.iconify.design/simple-icons/instagram.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/tiktok.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/youtube.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/x.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/whatsapp.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/telegram.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/discord.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/slack.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/linkedin.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
+      <img src="https://api.iconify.design/simple-icons/pinterest.svg?color=%23737373" alt="" class="carousel-icon" loading="lazy"/>
     </div>
   </div>
 </div>
