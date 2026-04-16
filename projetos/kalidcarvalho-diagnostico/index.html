@@ -403,27 +403,6 @@
       color: var(--text-dim); letter-spacing: 0.04em;
     }
 
-    /* ── OBRIGADO ── */
-    #obrigado { display: none; min-height: 100svh; align-items: center; justify-content: center; }
-    #obrigado.active { display: flex; }
-    .ty-inner { text-align: center; padding: 80px 24px; max-width: 520px; margin: 0 auto; }
-    .ty-icon {
-      width: 64px; height: 64px; border-radius: 50%;
-      background: var(--blue-dim); border: 1px solid var(--blue-border);
-      display: flex; align-items: center; justify-content: center; margin: 0 auto 32px;
-    }
-    .ty-icon svg { width: 24px; height: 24px; fill: none; stroke: var(--blue-light); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .ty-title {
-      font-family: var(--sans); font-size: clamp(36px, 6vw, 56px);
-      font-weight: 900; line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 20px;
-    }
-    .ty-title em { font-style: italic; font-weight: 300; color: var(--blue-light); }
-    .ty-body { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 8px; }
-    .ty-note {
-      margin-top: 28px; font-family: var(--mono); font-size: 11px; font-weight: 600;
-      text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-dim);
-    }
-
     /* ── FOOTER ── */
     footer { padding: 28px 0; }
     footer .container {
@@ -741,15 +720,6 @@
 
 </div>
 
-<!-- OBRIGADO -->
-<div id="obrigado">
-  <div class="ty-inner">
-    <div class="ty-icon"><svg viewBox="0 0 24 24"><polyline points="4,12 9,17 20,6"/></svg></div>
-    <h2 class="ty-title">Diagnóstico<br><em>solicitado.</em></h2>
-    <p class="ty-body">Recebi. Vou analisar o seu funil antes da call e entrar em contato em até 24h pelo WhatsApp.</p>
-    <p class="ty-note">kalidcarvalho.com · engenharia de vendas</p>
-  </div>
-</div>
 
 <script>
   const obs = new IntersectionObserver(entries => {
@@ -763,8 +733,6 @@
   }, 800);
 
   const form = document.getElementById('form-diag');
-  const pagina = document.getElementById('pagina-principal');
-  const obrigado = document.getElementById('obrigado');
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
@@ -775,9 +743,7 @@
       const res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
       const json = await res.json();
       if (json.success) {
-        pagina.style.display = 'none';
-        obrigado.classList.add('active');
-        window.scrollTo(0, 0);
+        window.location.href = './obrigado/';
       } else { btn.innerHTML = 'Erro. Tente novamente.'; btn.disabled = false; }
     } catch { btn.innerHTML = orig; btn.disabled = false; }
   });
