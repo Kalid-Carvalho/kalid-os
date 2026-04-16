@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px; height: 1350px;
+      background: #0D1526;
+      font-family: 'Inter', sans-serif; color: #F0F4FF;
+      position: relative; overflow: hidden;
+    }
+    body::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.03;
+      pointer-events: none; z-index: 20;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px;
+    }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+
+    /* Editorial number hero */
+    .number-hero {
+      position: absolute;
+      left: 60px; top: 80px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 360px; font-weight: 700;
+      color: transparent;
+      -webkit-text-stroke: 2px rgba(26,86,219,0.3);
+      line-height: 0.9; z-index: 2;
+      letter-spacing: -0.04em;
+    }
+
+    /* Glow behind number */
+    .glow {
+      position: absolute; left: 0; top: 0;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 60%);
+      z-index: 1; pointer-events: none;
+    }
+
+    /* Diagonal stripe */
+    .stripe {
+      position: absolute; top: 0; right: 160px;
+      width: 1px; height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(26,86,219,0.15) 50%, transparent 100%);
+      z-index: 2;
+    }
+
+    /* Content */
+    .content {
+      position: absolute; inset: 0;
+      padding: 80px 80px 100px 86px;
+      display: flex; flex-direction: column;
+      justify-content: flex-end; z-index: 10;
+    }
+
+    .tag {
+      display: inline-flex;
+      background: rgba(26,86,219,0.12);
+      border: 1px solid rgba(26,86,219,0.35);
+      border-radius: 4px; padding: 9px 18px;
+      margin-bottom: 40px; width: fit-content;
+    }
+    .tag span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+
+    .headline {
+      font-size: 66px; font-weight: 800;
+      line-height: 1.05; color: #F0F4FF;
+      letter-spacing: -0.02em; margin-bottom: 36px;
+    }
+
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 32px; border-radius: 2px; }
+
+    .body-text {
+      font-size: 31px; font-weight: 400;
+      color: #8899BB; line-height: 1.55; max-width: 860px;
+      margin-bottom: 36px;
+    }
+    .body-text strong { color: #F0F4FF; font-weight: 600; }
+
+    .channels {
+      display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 60px;
+    }
+    .channel-pill {
+      background: rgba(26,86,219,0.1);
+      border: 1px solid rgba(26,86,219,0.3);
+      border-radius: 100px; padding: 10px 22px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 0.05em;
+    }
+
+    .bottom-row {
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .handle { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #3D527A; }
+    .progress { display: flex; align-items: center; gap: 10px; }
+    .progress-track { width: 150px; height: 2px; background: #1C2D4A; border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 55.55%; background: #1A56DB; border-radius: 2px; }
+    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #3D527A; }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="glow"></div>
+  <div class="stripe"></div>
+  <div class="number-hero">R$1M</div>
+
+  <div class="content">
+    <div class="tag"><span>prova 01</span></div>
+    <div class="headline">Quem cruzou R$1M tem<br>um segundo canal.<br>Sem exceção.</div>
+    <div class="divider"></div>
+    <div class="body-text">
+      Empresas de TI que cruzaram R$1M de faturamento anual têm em comum um canal previsível além da indicação.
+    </div>
+    <div class="channels">
+      <div class="channel-pill">outbound</div>
+      <div class="channel-pill">conteúdo técnico</div>
+      <div class="channel-pill">Google Ads fundo funil</div>
+    </div>
+    <div class="bottom-row">
+      <div class="handle">@eukalidcarvalho</div>
+      <div class="progress">
+        <div class="progress-track"><div class="progress-fill"></div></div>
+        <span class="progress-label">05/09</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
