@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px; height: 1350px;
+      background: #F0F4FF;
+      font-family: 'Inter', sans-serif; color: #0D1526;
+      position: relative; overflow: hidden;
+    }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+
+    /* Dark section top */
+    .top-bar {
+      position: absolute; top: 0; left: 6px; right: 0; height: 12px;
+      background: #1A56DB; z-index: 3;
+    }
+
+    /* BG number */
+    .bg-number {
+      position: absolute; right: -40px; bottom: 80px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 480px; font-weight: 700;
+      color: #1A56DB; opacity: 0.05;
+      line-height: 1; z-index: 1;
+      letter-spacing: -0.05em;
+    }
+
+    /* Content */
+    .content {
+      position: absolute; inset: 0;
+      padding: 80px 80px 100px 86px;
+      display: flex; flex-direction: column;
+      justify-content: center; z-index: 10;
+    }
+
+    .tag {
+      display: inline-flex;
+      background: #1A56DB;
+      border-radius: 4px; padding: 9px 18px;
+      margin-bottom: 44px; width: fit-content;
+    }
+    .tag span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px; font-weight: 600;
+      color: #F0F4FF; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+
+    .headline {
+      font-size: 68px; font-weight: 800;
+      line-height: 1.05; color: #0D1526;
+      letter-spacing: -0.025em; margin-bottom: 40px;
+    }
+    .headline span { color: #1A56DB; }
+
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 32px; border-radius: 2px; }
+
+    .body-text {
+      font-size: 30px; font-weight: 400;
+      color: #3D527A; line-height: 1.6; max-width: 900px;
+      margin-bottom: 48px;
+    }
+    .body-text strong { color: #0D1526; font-weight: 700; }
+
+    /* Motor list */
+    .motor-list { display: flex; flex-direction: column; gap: 16px; }
+    .motor-item {
+      display: flex; align-items: flex-start; gap: 20px;
+      background: rgba(26,86,219,0.06);
+      border: 1px solid rgba(26,86,219,0.2);
+      border-radius: 8px; padding: 22px 28px;
+    }
+    .motor-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: #1A56DB; flex-shrink: 0; margin-top: 11px;
+    }
+    .motor-text {
+      font-size: 28px; font-weight: 500;
+      color: #0D1526; line-height: 1.35;
+    }
+
+    .bottom-row {
+      position: absolute; bottom: 64px; left: 86px; right: 80px;
+      display: flex; align-items: center; justify-content: space-between; z-index: 10;
+    }
+    .handle { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #9BB3E8; }
+    .progress { display: flex; align-items: center; gap: 10px; }
+    .progress-track { width: 150px; height: 2px; background: rgba(26,86,219,0.15); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 88.88%; background: #1A56DB; border-radius: 2px; }
+    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #9BB3E8; }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="top-bar"></div>
+  <div class="bg-number">08</div>
+
+  <div class="content">
+    <div class="tag"><span>a virada</span></div>
+    <div class="headline">Construa um<br><span>segundo motor.</span><br>A indicação fica.</div>
+    <div class="divider"></div>
+    <div class="body-text">
+      A saída está em construir um segundo motor rodando em paralelo. Quando os dois funcionam juntos, a indicação vira bônus. <strong>Deixa de ser a única tábua de salvação.</strong>
+    </div>
+    <div class="motor-list">
+      <div class="motor-item">
+        <div class="motor-dot"></div>
+        <div class="motor-text">LP que converte pesquisa de fundo de funil</div>
+      </div>
+      <div class="motor-item">
+        <div class="motor-dot"></div>
+        <div class="motor-text">Conteúdo técnico que posiciona o fundador como referência</div>
+      </div>
+      <div class="motor-item">
+        <div class="motor-dot"></div>
+        <div class="motor-text">Outbound cirúrgico para o ICP certo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="handle">@eukalidcarvalho</div>
+    <div class="progress">
+      <div class="progress-track"><div class="progress-fill"></div></div>
+      <span class="progress-label">08/09</span>
+    </div>
+  </div>
+</body>
+</html>

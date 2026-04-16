@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px; height: 1350px;
+      background: #0D1526;
+      font-family: 'Inter', sans-serif; color: #F0F4FF;
+      position: relative; overflow: hidden;
+    }
+    body::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.03;
+      pointer-events: none; z-index: 20;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px;
+    }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+
+    /* Split ratio visual */
+    .ratio-block {
+      position: absolute; top: 80px; left: 86px; right: 80px;
+      height: 180px; display: flex; z-index: 5; border-radius: 8px; overflow: hidden;
+    }
+    .ratio-left {
+      flex: 80; background: #1A56DB;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .ratio-left span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 72px; font-weight: 700; color: #F0F4FF;
+    }
+    .ratio-right {
+      flex: 20; background: #111D35;
+      display: flex; align-items: center; justify-content: center;
+      border-left: 1px solid rgba(26,86,219,0.3);
+    }
+    .ratio-right span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 72px; font-weight: 700; color: #3D527A;
+    }
+    .ratio-labels {
+      position: absolute; top: 268px; left: 86px; right: 80px;
+      display: flex; justify-content: space-between; z-index: 5;
+    }
+    .ratio-label-left {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .ratio-label-right {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 19px; font-weight: 600;
+      color: #3D527A; letter-spacing: 0.1em; text-transform: uppercase;
+    }
+
+    /* Glow */
+    .glow {
+      position: absolute; bottom: 0; right: 0;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(26,86,219,0.08) 0%, transparent 60%);
+      z-index: 1; pointer-events: none;
+    }
+
+    /* Content */
+    .content {
+      position: absolute; top: 340px; left: 86px; right: 80px; bottom: 100px;
+      display: flex; flex-direction: column; justify-content: center; z-index: 10;
+    }
+    .tag {
+      display: inline-flex;
+      background: rgba(26,86,219,0.12);
+      border: 1px solid rgba(26,86,219,0.35);
+      border-radius: 4px; padding: 9px 18px;
+      margin-bottom: 40px; width: fit-content;
+    }
+    .tag span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+    .headline {
+      font-size: 62px; font-weight: 800;
+      line-height: 1.05; color: #F0F4FF;
+      letter-spacing: -0.02em; margin-bottom: 32px;
+    }
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 30px; border-radius: 2px; }
+    .body-text {
+      font-size: 31px; font-weight: 400;
+      color: #8899BB; line-height: 1.55;
+    }
+    .body-text strong { color: #F0F4FF; font-weight: 600; }
+
+    .bottom-row {
+      position: absolute; bottom: 64px; left: 86px; right: 80px;
+      display: flex; align-items: center; justify-content: space-between; z-index: 10;
+    }
+    .handle { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #3D527A; }
+    .progress { display: flex; align-items: center; gap: 10px; }
+    .progress-track { width: 150px; height: 2px; background: #1C2D4A; border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 77.77%; background: #1A56DB; border-radius: 2px; }
+    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #3D527A; }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="glow"></div>
+
+  <div class="ratio-block">
+    <div class="ratio-left"><span>80%</span></div>
+    <div class="ratio-right"><span>20%</span></div>
+  </div>
+
+  <div class="ratio-labels">
+    <div class="ratio-label-left">entregando</div>
+    <div class="ratio-label-right">vendendo</div>
+  </div>
+
+  <div class="content">
+    <div class="tag"><span>prova 03</span></div>
+    <div class="headline">Vender por indicação<br>não é vender.<br>É esperar.</div>
+    <div class="divider"></div>
+    <div class="body-text">
+      O fundador de TI médio passa 80% do tempo entregando e 20% vendendo. O problema: esperar não escala.<br><br>
+      A empresa cresce até onde a rede pessoal alcança e <strong>fica presa nesse teto por anos.</strong>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="handle">@eukalidcarvalho</div>
+    <div class="progress">
+      <div class="progress-track"><div class="progress-fill"></div></div>
+      <span class="progress-label">07/09</span>
+    </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px; height: 1350px;
+      background: #0D1526;
+      font-family: 'Inter', sans-serif; color: #F0F4FF;
+      position: relative; overflow: hidden;
+    }
+    body::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.03;
+      pointer-events: none; z-index: 20;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px;
+    }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+
+    /* Glow central */
+    .glow {
+      position: absolute; left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(26,86,219,0.12) 0%, transparent 60%);
+      z-index: 1; pointer-events: none;
+    }
+
+    /* Stripes */
+    .stripe-1 {
+      position: absolute; top: 0; left: 300px;
+      width: 1px; height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(26,86,219,0.1) 50%, transparent 100%);
+      z-index: 2;
+    }
+    .stripe-2 {
+      position: absolute; top: 0; right: 250px;
+      width: 1px; height: 100%;
+      background: linear-gradient(180deg, transparent 0%, rgba(26,86,219,0.08) 50%, transparent 100%);
+      z-index: 2;
+    }
+
+    /* Content */
+    .content {
+      position: absolute; inset: 0;
+      padding: 80px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; z-index: 10;
+    }
+
+    /* Logo monogram */
+    .monogram {
+      width: 100px; height: 100px;
+      background: #1A56DB;
+      border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 52px;
+      font-family: 'Inter', sans-serif;
+      font-size: 42px; font-weight: 800;
+      color: #F0F4FF; letter-spacing: -0.02em;
+    }
+
+    .cta-headline {
+      font-size: 72px; font-weight: 800;
+      line-height: 1.05; color: #F0F4FF;
+      letter-spacing: -0.025em; margin-bottom: 32px;
+      max-width: 780px;
+    }
+    .cta-headline span { color: #1A56DB; }
+
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin: 0 auto 32px; border-radius: 2px; }
+
+    .cta-sub {
+      font-size: 32px; font-weight: 400;
+      color: #8899BB; line-height: 1.5;
+      max-width: 700px; margin-bottom: 56px;
+    }
+
+    /* Handle badge */
+    .handle-badge {
+      background: rgba(26,86,219,0.15);
+      border: 1px solid rgba(26,86,219,0.4);
+      border-radius: 100px; padding: 16px 40px;
+    }
+    .handle-badge span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 30px; font-weight: 600;
+      color: #F0F4FF; letter-spacing: 0.04em;
+    }
+
+    /* Progress full */
+    .bottom-row {
+      position: absolute; bottom: 64px; left: 86px; right: 80px;
+      display: flex; align-items: center; justify-content: space-between; z-index: 10;
+    }
+    .handle { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #3D527A; }
+    .progress { display: flex; align-items: center; gap: 10px; }
+    .progress-track { width: 150px; height: 2px; background: #1C2D4A; border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 100%; background: #1A56DB; border-radius: 2px; }
+    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #3D527A; }
+  </style>
+</head>
+<body>
+  <div class="accent-bar"></div>
+  <div class="glow"></div>
+  <div class="stripe-1"></div>
+  <div class="stripe-2"></div>
+
+  <div class="content">
+    <div class="monogram">KC</div>
+    <div class="cta-headline">
+      Quer montar o <span>segundo motor</span> sem queimar dinheiro em ads genéricos?
+    </div>
+    <div class="divider"></div>
+    <div class="cta-sub">
+      Todo conteúdo aqui é sobre construir máquina de vendas para empresas de TI e SaaS.
+    </div>
+    <div class="handle-badge">
+      <span>@eukalidcarvalho</span>
+    </div>
+  </div>
+
+  <div class="bottom-row">
+    <div class="handle">@eukalidcarvalho</div>
+    <div class="progress">
+      <div class="progress-track"><div class="progress-fill"></div></div>
+      <span class="progress-label">09/09</span>
+    </div>
+  </div>
+</body>
+</html>
