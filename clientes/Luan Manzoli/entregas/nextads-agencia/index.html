@@ -19,6 +19,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
+  <!-- Iconify for brand logos in carousel -->
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
   <!-- Tailwind Config — matching Design System tokens -->
   <script>
   tailwind.config = {
@@ -342,9 +345,9 @@
   <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-center">
     <p class="text-[11px] sm:text-xs font-bold tracking-wide text-center text-white/80 uppercase leading-relaxed font-primary">
       <span class="inline-block mr-1.5">⚠️</span>
-      <span class="text-[#FF6A00] font-extrabold">EXCLUSIVO</span> PARA DONOS DE LOJAS APPLE QUE VENDEM MAIS DE 
-      <span class="text-[#FF6A00] font-extrabold">30 APARELHOS/MÊS</span> E ESTÃO PRONTOS PARA 
-      <span class="text-[#FF6A00] font-extrabold">ESCALAR.</span>
+      PARA DONOS DE LOJAS APPLE QUE FATURAM ACIMA DE 
+      <span class="text-[#FF6A00] font-extrabold">R$50 MIL/MÊS</span> E QUEREM 
+      <span class="text-[#FF6A00] font-extrabold">SAIR DO BOCA A BOCA.</span>
     </p>
   </div>
   <!-- Animated bottom line -->
@@ -368,26 +371,21 @@
     <!-- ═══ LEFT COLUMN: Copy & CTA ═══ -->
     <div class="flex flex-col justify-center hero-content">
       
-      <!-- Eyebrow Badge -->
-      <div class="hero-eyebrow mb-6 inline-flex items-center gap-2.5">
-        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full animate-pulse bg-[#FF6A00]"></span>
-        <span class="eyebrow">Diagnóstico Gratuito</span>
-      </div>
-
       <!-- H1 Headline -->
-      <h1 class="hero-headline text-glow text-4xl sm:text-5xl md:text-[3.4rem] lg:text-[3.6rem] xl:text-[4rem] font-extrabold tracking-[-0.03em] leading-[1.05] text-white mb-6">
-        RECEBA O PLANO DE TRÁFEGO EXATO PARA PARAR DE ATRAIR CURIOSOS E 
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6A00] to-[#FF8C00]">VENDER IPHONES TODOS OS DIAS COM ALTA MARGEM.</span>
+      <h1 class="hero-headline text-glow text-2xl sm:text-3xl md:text-[2.1rem] lg:text-[2.2rem] xl:text-[2.45rem] font-extrabold tracking-[-0.02em] leading-[1.35] text-white mb-10">
+        Sua loja de iPhones pode ter<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6A00] to-[#FF8C00]">compradores qualificados chegando todo dia.</span><br/>
+        Sem depender de indicação.<br/>
+        Sem lead frio que só pergunta preço.
       </h1>
 
       <!-- Sub-headline -->
-      <p class="hero-sub text-base sm:text-lg text-[#999] leading-relaxed mb-8 max-w-xl font-secondary">
-        O time estratégico da <strong class="text-white font-semibold">NEXTADS</strong> vai fazer um Raio-X da sua operação. Descubra a rota exata para não depender mais do 
-        <em class="text-white/70">'boca a boca'</em> e atrair leads qualificados, que já chegam prontos para comprar.
+      <p class="hero-sub text-base sm:text-lg text-[#999] leading-[1.8] mb-10 max-w-xl font-secondary">
+        Os especialistas da <strong class="text-white font-semibold">NEXTADS</strong> analisam sua operação hoje e traçam o plano exato de anúncios para você ter um fluxo previsível de clientes qualificados, sem depender de indicação e sem atender quem nunca vai comprar.
       </p>
 
       <!-- CTA Button -->
-      <div class="hero-cta mb-5">
+      <div class="hero-cta mb-8">
         <a href="#" class="button-custom group" id="cta-hero-plano" aria-label="Solicitar plano de escala">
           <div class="points_wrapper">
             <i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i>
@@ -411,7 +409,7 @@
       </div>
 
       <!-- Trust signals -->
-      <div class="hero-trust flex items-center gap-5 mt-5 flex-wrap">
+      <div class="hero-trust flex items-center gap-5 mt-8 flex-wrap">
         <div class="flex items-center gap-1.5 text-[0.72rem] text-white/35">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="opacity-50"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Dados Protegidos
@@ -470,6 +468,68 @@
   </div>
 </section>
 
+<!-- ══════════════════════════════════════════════════════════════
+     LOGO CAROUSEL — Social Proof (Dupla Faixa)
+     ══════════════════════════════════════════════════════════════ -->
+<div class="logo-carousel-section relative z-10" style="padding:3rem 0;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.4);">
+  <!-- Fade edges -->
+  <div style="position:absolute;left:0;top:0;bottom:0;width:120px;z-index:10;background:linear-gradient(to right,#060606,transparent);pointer-events:none;"></div>
+  <div style="position:absolute;right:0;top:0;bottom:0;width:120px;z-index:10;background:linear-gradient(to left,#060606,transparent);pointer-events:none;"></div>
+  
+  <!-- Row 1: LTR -->
+  <div class="flex overflow-hidden w-full mb-6">
+    <div class="flex items-center whitespace-nowrap gap-20" style="animation:marquee 40s linear infinite;">
+      <iconify-icon icon="simple-icons:apple" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:google" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:meta" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:stripe" class="text-6xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:nvidia" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:vercel" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:figma" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:notion" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:linear" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:shopify" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <!-- Duplicate for seamless loop -->
+      <iconify-icon icon="simple-icons:apple" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:google" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:meta" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:stripe" class="text-6xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:nvidia" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:vercel" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:figma" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:notion" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:linear" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:shopify" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+    </div>
+  </div>
+  
+  <!-- Row 2: RTL (reverse) -->
+  <div class="flex overflow-hidden w-full">
+    <div class="flex items-center whitespace-nowrap gap-20" style="animation:marquee 45s linear infinite reverse;">
+      <iconify-icon icon="simple-icons:instagram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:tiktok" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:youtube" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:x" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:telegram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:discord" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:slack" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:linkedin" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:pinterest" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <!-- Duplicate for seamless loop -->
+      <iconify-icon icon="simple-icons:instagram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:tiktok" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:youtube" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:x" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:telegram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:discord" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:slack" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:linkedin" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:pinterest" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════════════════════════════════════════════════════════
      GSAP ENTRANCE ANIMATIONS
@@ -491,8 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
 
   heroTl
-    .from('.hero-eyebrow', { y: 30, opacity: 0, filter: 'blur(8px)', duration: 0.8 }, 0.4)
-    .from('.hero-headline', { y: 40, opacity: 0, filter: 'blur(10px)', duration: 1.1 }, 0.55)
+    .from('.hero-headline', { y: 40, opacity: 0, filter: 'blur(10px)', duration: 1.1 }, 0.4)
     .from('.hero-sub', { y: 30, opacity: 0, filter: 'blur(6px)', duration: 0.9 }, 0.8)
     .from('.hero-cta', { y: 25, opacity: 0, filter: 'blur(4px)', duration: 0.8 }, 1.0)
     .from('.hero-proof', { y: 20, opacity: 0, duration: 0.7 }, 1.2)
@@ -519,6 +578,15 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     y: 60,
     scale: 1.1,
+  });
+
+  // Logo carousel entrance
+  gsap.from('.logo-carousel-section', {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    ease: 'power2.out',
+    delay: 1.6,
   });
 });
 </script>
