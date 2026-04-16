@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>NEXTADS — Tráfego Pago para Lojas Apple | Plano de Escala</title>
+  <meta name="description" content="Receba o plano de tráfego exato para parar de atrair curiosos e vender iPhones todos os dias com alta margem. Mais de R$ XX Milhões gerenciados em anúncios para Lojas Apple."/>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- GSAP + ScrollTrigger for premium entrance animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Tailwind Config — matching Design System tokens -->
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          'brand': {
+            DEFAULT: '#FF6A00',
+            light: '#FF8C00',
+            glow: 'rgba(255,106,0,0.18)',
+            soft: 'rgba(255,106,0,0.09)',
+            border: 'rgba(255,106,0,0.28)',
+          },
+          'surface': {
+            deep: '#060606',
+            card: '#0d0d0d',
+            elevated: '#111111',
+          }
+        },
+        fontFamily: {
+          'primary': ['"Plus Jakarta Sans"', 'sans-serif'],
+          'secondary': ['"Inter"', 'sans-serif'],
+        }
+      }
+    }
+  };
+  </script>
+
+  <style>
+  /* ═══════════════════════════════════════════════
+     RESET & BASE
+     ═══════════════════════════════════════════════ */
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scrollbar-width:none}
+  ::-webkit-scrollbar{width:0px}
+
+  :root{
+    --o:#FF6A00;
+    --o2:#FF8C00;
+    --og:rgba(255,106,0,0.18);
+    --os:rgba(255,106,0,0.09);
+    --ob:rgba(255,106,0,0.28);
+    --black:#060606;
+    --card:#0d0d0d;
+    --c2:#111;
+    --bd:rgba(255,255,255,0.07);
+    --tx:#e0e0e0;
+    --mt:#999;
+    --mt2:#666;
+  }
+
+  body{
+    background:var(--black);
+    color:var(--tx);
+    font-family:'Plus Jakarta Sans',sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  /* ═══════════════════════════════════════════════
+     BACKGROUNDS & PATTERNS
+     ═══════════════════════════════════════════════ */
+  .linear-grid{
+    background-size:40px 40px;
+    background-image:
+      linear-gradient(to right,rgba(255,255,255,0.025) 1px,transparent 1px),
+      linear-gradient(to bottom,rgba(255,255,255,0.025) 1px,transparent 1px);
+    mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+  }
+
+  .noise-overlay{
+    position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.03;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
+  /* ═══════════════════════════════════════════════
+     ANIMATIONS
+     ═══════════════════════════════════════════════ */
+  @keyframes fadeSlideIn{
+    0%{opacity:0;transform:translateY(30px);filter:blur(8px)}
+    100%{opacity:1;transform:translateY(0);filter:blur(0px)}
+  }
+
+  @keyframes shimmer{
+    from{transform:translateX(-100%) skewX(-15deg)}
+    to{transform:translateX(200%) skewX(-15deg)}
+  }
+
+  @keyframes marquee{
+    0%{transform:translateX(0)}
+    100%{transform:translateX(-50%)}
+  }
+
+  @keyframes beam-fall{
+    0%{transform:translateY(-100%);opacity:0}
+    5%{opacity:0.5}
+    50%{opacity:1}
+    95%{opacity:0.5}
+    100%{transform:translateY(120vh);opacity:0}
+  }
+  .animate-beam-1{animation:beam-fall 6s linear infinite;animation-delay:0s}
+  .animate-beam-2{animation:beam-fall 8s linear infinite;animation-delay:2s}
+  .animate-beam-3{animation:beam-fall 7s linear infinite;animation-delay:4s}
+
+  @keyframes pulse-glow{
+    0%,100%{box-shadow:0 0 20px rgba(255,106,0,0.3),0 0 60px rgba(255,106,0,0.1)}
+    50%{box-shadow:0 0 40px rgba(255,106,0,0.5),0 0 80px rgba(255,106,0,0.2)}
+  }
+
+  @keyframes float{
+    0%,100%{transform:translateY(0px)}
+    50%{transform:translateY(-14px)}
+  }
+
+  @keyframes floating-points{
+    0%{transform:translateY(0)}
+    85%{opacity:0}
+    100%{transform:translateY(-55px);opacity:0}
+  }
+
+  @keyframes spin{
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
+  }
+
+  @keyframes topbar-shimmer{
+    0%{background-position:-200% 0}
+    100%{background-position:200% 0}
+  }
+
+  @keyframes image-glow-pulse{
+    0%,100%{opacity:0.6;transform:scale(1)}
+    50%{opacity:1;transform:scale(1.05)}
+  }
+
+  @keyframes typewriter-blink{
+    0%,100%{opacity:1}
+    50%{opacity:0}
+  }
+
+  /* Text glow from design system */
+  .text-glow{text-shadow:0 0 30px rgba(255,106,0,0.15),0 0 60px rgba(255,106,0,0.05)}
+
+  /* ═══════════════════════════════════════════════
+     SUPERCABEÇALHO (TOP BAR)
+     ═══════════════════════════════════════════════ */
+  .topbar{
+    background:linear-gradient(90deg,#060606 0%,#0d0d0d 50%,#060606 100%);
+    border-bottom:1px solid rgba(255,106,0,0.15);
+    position:relative;
+    overflow:hidden;
+  }
+  .topbar::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:linear-gradient(90deg,transparent,rgba(255,106,0,0.06),transparent);
+    background-size:200% 100%;
+    animation:topbar-shimmer 4s linear infinite;
+    pointer-events:none;
+  }
+
+  /* ═══════════════════════════════════════════════
+     PARTICLE CTA BUTTON (from design system)
+     ═══════════════════════════════════════════════ */
+  .button-custom{
+    cursor:pointer;position:relative;display:inline-flex;align-items:center;justify-content:center;
+    overflow:hidden;transition:all 0.25s ease;
+    background:radial-gradient(65.28% 65.28% at 50% 100%,rgba(255,140,0,0.8) 0%,rgba(255,140,0,0) 100%),linear-gradient(0deg,#FF6A00,#FF6A00);
+    border-radius:8px;border:none;padding:18px 40px;min-height:56px;
+  }
+  .button-custom::before{
+    content:"";position:absolute;inset:1px;
+    background:linear-gradient(177.95deg,rgba(255,255,255,0.3) 0%,rgba(255,255,255,0) 100%);
+    border-radius:8px;transition:all 0.5s ease-in-out;z-index:0;
+  }
+  .button-custom::after{
+    content:"";position:absolute;inset:2px;
+    background:radial-gradient(65.28% 65.28% at 50% 100%,rgba(255,140,0,0.8) 0%,rgba(255,140,0,0) 100%),linear-gradient(0deg,#FF6A00,#FF6A00);
+    border-radius:8px;transition:all 0.5s ease-in-out;z-index:0;
+  }
+  .button-custom:hover{
+    transform:scale(1.05);
+    box-shadow:0 8px 40px rgba(255,106,0,0.55),0 0 80px rgba(255,106,0,0.15);
+  }
+  .inner{
+    z-index:2;gap:8px;position:relative;width:100%;color:#000;
+    display:inline-flex;align-items:center;justify-content:center;
+    font-size:0.92rem;font-weight:800;letter-spacing:0.04em;
+    text-transform:uppercase;
+    font-family:'Plus Jakarta Sans',sans-serif;
+  }
+
+  .points_wrapper{overflow:hidden;width:100%;height:100%;pointer-events:none;position:absolute;z-index:1}
+  .points_wrapper .point{bottom:-10px;position:absolute;animation:floating-points infinite ease-in-out;pointer-events:none;width:2px;height:2px;background-color:rgba(0,0,0,0.4);border-radius:9999px}
+  .points_wrapper .point:nth-child(1){left:10%;opacity:1;animation-duration:2.35s;animation-delay:0.2s}
+  .points_wrapper .point:nth-child(2){left:20%;opacity:0.7;animation-duration:2.5s;animation-delay:0.5s}
+  .points_wrapper .point:nth-child(3){left:30%;opacity:0.8;animation-duration:2.2s;animation-delay:0.1s}
+  .points_wrapper .point:nth-child(4){left:44%;opacity:0.6;animation-duration:2.05s}
+  .points_wrapper .point:nth-child(5){left:55%;opacity:1;animation-duration:1.9s}
+  .points_wrapper .point:nth-child(6){left:70%;opacity:0.5;animation-duration:1.5s;animation-delay:1.5s}
+  .points_wrapper .point:nth-child(7){left:85%;opacity:0.9;animation-duration:2.2s;animation-delay:0.2s}
+  .points_wrapper .point:nth-child(8){left:92%;opacity:0.6;animation-duration:2.6s;animation-delay:0.8s}
+
+  /* ═══════════════════════════════════════════════
+     IMAGE GLOW
+     ═══════════════════════════════════════════════ */
+  .image-glow{
+    position:absolute;
+    inset:-30px;
+    background:radial-gradient(ellipse at center,rgba(255,106,0,0.25) 0%,rgba(255,106,0,0.08) 40%,transparent 70%);
+    animation:image-glow-pulse 4s ease-in-out infinite;
+    pointer-events:none;
+    z-index:0;
+    border-radius:16px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     EYEBROW BADGE
+     ═══════════════════════════════════════════════ */
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:0.5rem;
+    font-size:0.68rem;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+    color:var(--o);background:var(--os);border:1px solid var(--ob);
+    padding:0.32rem 1rem;border-radius:100px;
+  }
+
+  /* ═══════════════════════════════════════════════
+     HERO IMAGE PLACEHOLDER
+     ═══════════════════════════════════════════════ */
+  .hero-image-placeholder{
+    width:100%;
+    max-width:600px;
+    aspect-ratio:1/1;
+    border-radius:12px;
+    background:
+      linear-gradient(135deg,rgba(255,106,0,0.08) 0%,rgba(13,13,13,0.9) 50%,rgba(255,106,0,0.05) 100%),
+      linear-gradient(180deg,#0d0d0d 0%,#111 100%);
+    border:1px solid rgba(255,255,255,0.08);
+    position:relative;
+    overflow:hidden;
+    z-index:1;
+  }
+  .hero-image-placeholder::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:
+      linear-gradient(135deg,rgba(255,106,0,0.12) 0%,transparent 50%),
+      linear-gradient(315deg,rgba(255,106,0,0.06) 0%,transparent 50%);
+    pointer-events:none;
+  }
+  .hero-image-placeholder::after{
+    content:'';
+    position:absolute;
+    top:-50%;left:-50%;width:200%;height:200%;
+    background:conic-gradient(from 0deg,transparent 0deg,rgba(255,106,0,0.04) 60deg,transparent 120deg);
+    animation:spin 20s linear infinite;
+    pointer-events:none;
+  }
+
+  /* Checklist items */
+  .check-icon{
+    width:18px;height:18px;border-radius:50%;
+    background:linear-gradient(135deg,#FF6A00,#FF8C00);
+    display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;
+  }
+
+  /* Beam Borders */
+  .beam-border-v{position:absolute;top:0;bottom:0;left:0;width:1px;background:rgba(255,255,255,0.05);overflow:hidden;z-index:10}
+  .beam-border-v::after{content:'';position:absolute;top:0;left:0;bottom:0;right:0;background:linear-gradient(to bottom,transparent,var(--o),transparent);transform:translateY(-100%);animation:beam-drop 5s cubic-bezier(0.4,0,0.2,1) infinite;opacity:0.7}
+  @keyframes beam-drop{
+    0%{transform:translateY(-100%);opacity:0}
+    10%{opacity:1}90%{opacity:1}
+    100%{transform:translateY(100%);opacity:0}
+  }
+
+  /* Counter animation */
+  .counter-highlight{
+    display:inline-block;
+    background:linear-gradient(90deg,rgba(255,106,0,0.15),rgba(255,106,0,0.05));
+    padding:2px 8px;
+    border-radius:4px;
+    border:1px solid rgba(255,106,0,0.2);
+  }
+  </style>
+</head>
+<body class="selection:bg-[rgba(255,106,0,0.3)] selection:text-white">
+
+<!-- Noise Overlay -->
+<div class="noise-overlay"></div>
+
+<!-- Fixed Background Grid -->
+<div class="fixed inset-0 z-0 pointer-events-none linear-grid"></div>
+
+<!-- Vertical Beam Lines -->
+<div class="fixed inset-0 z-0 pointer-events-none flex w-full max-w-7xl mx-auto opacity-40">
+  <div class="flex-1 border-l border-white/[0.03] h-full relative overflow-hidden"></div>
+  <div class="flex-1 border-l border-white/[0.03] h-full relative overflow-hidden">
+    <div class="absolute top-0 -left-[1px] w-[1px] h-64 bg-gradient-to-b from-transparent via-[#FF6A00]/60 to-transparent animate-beam-1"></div>
+  </div>
+  <div class="flex-1 border-l border-white/[0.03] h-full relative overflow-hidden">
+    <div class="absolute top-0 -left-[1px] w-[1px] h-96 bg-gradient-to-b from-transparent via-[#FF6A00]/80 to-transparent animate-beam-2"></div>
+  </div>
+  <div class="flex-1 border-l border-white/[0.03] h-full relative overflow-hidden">
+    <div class="absolute top-0 -left-[1px] w-[1px] h-48 bg-gradient-to-b from-transparent via-[#FF6A00]/60 to-transparent animate-beam-3"></div>
+  </div>
+  <div class="flex-1 border-l border-r border-white/[0.03] h-full relative overflow-hidden"></div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     1. SUPERCABEÇALHO (TOP BAR)
+     ══════════════════════════════════════════════════════════════ -->
+<div id="topbar" class="topbar relative z-50">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-center">
+    <p class="text-[11px] sm:text-xs font-bold tracking-wide text-center text-white/80 uppercase leading-relaxed font-primary">
+      <span class="inline-block mr-1.5">⚠️</span>
+      <span class="text-[#FF6A00] font-extrabold">EXCLUSIVO</span> PARA DONOS DE LOJAS APPLE QUE VENDEM MAIS DE 
+      <span class="text-[#FF6A00] font-extrabold">30 APARELHOS/MÊS</span> E ESTÃO PRONTOS PARA 
+      <span class="text-[#FF6A00] font-extrabold">ESCALAR.</span>
+    </p>
+  </div>
+  <!-- Animated bottom line -->
+  <div class="absolute bottom-0 left-0 right-0 h-[1px] overflow-hidden">
+    <div class="h-full w-full bg-gradient-to-r from-transparent via-[#FF6A00]/50 to-transparent" style="animation:topbar-shimmer 3s linear infinite;background-size:200% 100%"></div>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     2. HERO SECTION
+     ══════════════════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen overflow-hidden flex items-center">
+  <!-- Hero Ambient Glows -->
+  <div class="absolute top-[5%] right-[5%] w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.10)_0%,transparent_65%)] pointer-events-none z-0"></div>
+  <div class="absolute bottom-[10%] left-[15%] w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.06)_0%,transparent_70%)] pointer-events-none z-0"></div>
+  <div class="absolute top-[60%] right-[30%] w-[300px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.04)_0%,transparent_70%)] pointer-events-none z-0"></div>
+
+  <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20 lg:py-0 w-full">
+    
+    <!-- ═══ LEFT COLUMN: Copy & CTA ═══ -->
+    <div class="flex flex-col justify-center hero-content">
+      
+      <!-- Eyebrow Badge -->
+      <div class="hero-eyebrow mb-6 inline-flex items-center gap-2.5">
+        <span class="inline-flex items-center justify-center w-2 h-2 rounded-full animate-pulse bg-[#FF6A00]"></span>
+        <span class="eyebrow">Diagnóstico Gratuito</span>
+      </div>
+
+      <!-- H1 Headline -->
+      <h1 class="hero-headline text-glow text-4xl sm:text-5xl md:text-[3.4rem] lg:text-[3.6rem] xl:text-[4rem] font-extrabold tracking-[-0.03em] leading-[1.05] text-white mb-6">
+        RECEBA O PLANO DE TRÁFEGO EXATO PARA PARAR DE ATRAIR CURIOSOS E 
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6A00] to-[#FF8C00]">VENDER IPHONES TODOS OS DIAS COM ALTA MARGEM.</span>
+      </h1>
+
+      <!-- Sub-headline -->
+      <p class="hero-sub text-base sm:text-lg text-[#999] leading-relaxed mb-8 max-w-xl font-secondary">
+        O time estratégico da <strong class="text-white font-semibold">NEXTADS</strong> vai fazer um Raio-X da sua operação. Descubra a rota exata para não depender mais do 
+        <em class="text-white/70">'boca a boca'</em> e atrair leads qualificados, que já chegam prontos para comprar.
+      </p>
+
+      <!-- CTA Button -->
+      <div class="hero-cta mb-5">
+        <a href="#" class="button-custom group" id="cta-hero-plano" aria-label="Solicitar plano de escala">
+          <div class="points_wrapper">
+            <i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i>
+            <i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i>
+          </div>
+          <span class="inner">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-80">
+              <path d="M5 12h14m-7-7 7 7-7 7"/>
+            </svg>
+            QUERO RECEBER MEU PLANO DE ESCALA
+          </span>
+        </a>
+      </div>
+
+      <!-- Social Proof -->
+      <div class="hero-proof flex items-center gap-2 text-sm text-white/40">
+        <span class="text-[#FF6A00] text-base">⚡</span>
+        <span class="font-secondary text-[13px]">
+          Mais de <strong class="text-white/60 counter-highlight">R$ XX Milhões</strong> gerenciados em anúncios para Lojas Apple.
+        </span>
+      </div>
+
+      <!-- Trust signals -->
+      <div class="hero-trust flex items-center gap-5 mt-5 flex-wrap">
+        <div class="flex items-center gap-1.5 text-[0.72rem] text-white/35">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="opacity-50"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Dados Protegidos
+        </div>
+        <div class="flex items-center gap-1.5 text-[0.72rem] text-white/35">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="opacity-50"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          100% Gratuito
+        </div>
+        <div class="flex items-center gap-1.5 text-[0.72rem] text-white/35">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="opacity-50"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Resposta em 24h
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ RIGHT COLUMN: Image Placeholder ═══ -->
+    <div class="hero-image flex items-center justify-center relative">
+      <!-- Glow behind image -->
+      <div class="image-glow"></div>
+      
+      <!-- Image Container -->
+      <div class="hero-image-placeholder relative" style="animation:float 6s ease-in-out infinite">
+        <!-- Inner visual elements for the placeholder -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center z-10 p-8">
+          <!-- Logo mark -->
+          <div class="w-20 h-20 rounded-2xl bg-gradient-to-br from-[#FF6A00] to-[#FF8C00] flex items-center justify-center mb-6 shadow-2xl" style="animation:pulse-glow 3s ease-in-out infinite">
+            <span class="text-black font-extrabold text-2xl tracking-tighter font-primary">N</span>
+          </div>
+          <span class="text-white/40 text-sm font-semibold tracking-widest uppercase font-primary">NEXTADS</span>
+          <span class="text-white/20 text-xs mt-2 font-secondary">600 × 600</span>
+          
+          <!-- Decorative grid dots -->
+          <div class="absolute bottom-6 right-6 grid grid-cols-3 gap-1.5 opacity-20">
+            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+            <div class="w-1.5 h-1.5 rounded-full bg-[#FF6A00]"></div>
+          </div>
+
+          <!-- Decorative line top-left -->
+          <div class="absolute top-6 left-6 flex items-center gap-2 opacity-20">
+            <div class="w-8 h-[1px] bg-gradient-to-r from-[#FF6A00] to-transparent"></div>
+            <div class="w-2 h-2 border border-[#FF6A00]/50 rounded-full"></div>
+          </div>
+        </div>
+
+        <!-- Beam border effect on the left -->
+        <div class="beam-border-v"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     GSAP ENTRANCE ANIMATIONS
+     ══════════════════════════════════════════════════════════════ -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Top Bar entrance
+  gsap.from('#topbar', {
+    y: -60,
+    opacity: 0,
+    duration: 0.8,
+    ease: 'power3.out',
+    delay: 0.2
+  });
+
+  // Hero — staggered entrance from left
+  const heroTl = gsap.timeline({ defaults: { ease: 'power3.out', duration: 1 } });
+
+  heroTl
+    .from('.hero-eyebrow', { y: 30, opacity: 0, filter: 'blur(8px)', duration: 0.8 }, 0.4)
+    .from('.hero-headline', { y: 40, opacity: 0, filter: 'blur(10px)', duration: 1.1 }, 0.55)
+    .from('.hero-sub', { y: 30, opacity: 0, filter: 'blur(6px)', duration: 0.9 }, 0.8)
+    .from('.hero-cta', { y: 25, opacity: 0, filter: 'blur(4px)', duration: 0.8 }, 1.0)
+    .from('.hero-proof', { y: 20, opacity: 0, duration: 0.7 }, 1.2)
+    .from('.hero-trust', { y: 15, opacity: 0, duration: 0.6 }, 1.35);
+
+  // Hero Image — entrance from right with scale
+  gsap.from('.hero-image', {
+    x: 80,
+    opacity: 0,
+    scale: 0.92,
+    filter: 'blur(12px)',
+    duration: 1.4,
+    ease: 'power3.out',
+    delay: 0.7,
+  });
+
+  // Subtle parallax on the image glow
+  gsap.to('.image-glow', {
+    scrollTrigger: {
+      trigger: '#hero',
+      start: 'top top',
+      end: 'bottom top',
+      scrub: 1,
+    },
+    y: 60,
+    scale: 1.1,
+  });
+});
+</script>
+
+</body>
+</html>
