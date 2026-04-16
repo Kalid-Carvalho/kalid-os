@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Diagnóstico Gratuito — Captação B2B para Empresas de TI | Kalid Carvalho</title>
+  <title>Diagnóstico — Captação B2B para Empresas de TI | Kalid Carvalho</title>
   <meta name="description" content="Uma conversa de 30 minutos para entender onde está o gargalo da sua captação B2B e se faz sentido construirmos isso juntos." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -464,7 +464,7 @@
         <div class="hero-eyebrow">
           <div class="eyebrow-tag">
             <span class="eyebrow-dot"></span>
-            Diagnóstico Gratuito · TI &amp; SaaS B2B
+            Diagnóstico · TI &amp; SaaS B2B
           </div>
           <span class="eyebrow-year">2026</span>
         </div>
@@ -479,7 +479,7 @@
           <p class="hero-sub">Uma conversa de 30 minutos para entender onde está o gargalo da sua captação B2B e se faz sentido construirmos isso juntos.</p>
           <div class="hero-cta-group">
             <a href="#formulario" class="btn-cta">
-              Quero meu diagnóstico gratuito
+              Quero meu diagnóstico
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
             </a>
             <p class="hero-note">Sem custo. Sem compromisso.</p>
@@ -684,50 +684,47 @@
             <input type="hidden" name="subject" value="Novo diagnostico — kalidcarvalho.com/diagnostico (TI B2B)" />
             <input type="checkbox" name="botcheck" style="display:none" />
 
-            <div class="fg">
-              <label for="nome">Nome completo</label>
-              <input type="text" id="nome" name="nome" placeholder="Roberto Alves" required />
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 18px;">
+              <div class="fg">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Roberto Alves" required />
+              </div>
+              <div class="fg">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Alves Infraestrutura TI" required />
+              </div>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:0 18px;">
+              <div class="fg">
+                <label for="segmento">Segmento</label>
+                <select id="segmento" name="segmento" required>
+                  <option value="" disabled selected>Selecione</option>
+                  <option>Infraestrutura de TI (cabeamento, firewall, CFTV, redes)</option>
+                  <option>Segurança da Informação</option>
+                  <option>MSP / Suporte Gerenciado</option>
+                  <option>SaaS B2B (ERP, RH, logística, outro)</option>
+                  <option>Revenda de hardware / software</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label for="telefone">Telefone / WhatsApp</label>
+                <input type="tel" id="telefone" name="telefone" placeholder="(92) 99999-0000" required />
+              </div>
             </div>
             <div class="fg">
-              <label for="empresa">Empresa</label>
-              <input type="text" id="empresa" name="empresa" placeholder="Alves Infraestrutura TI" required />
-            </div>
-            <div class="fg">
-              <label for="segmento">Segmento</label>
-              <select id="segmento" name="segmento" required>
-                <option value="" disabled selected>Selecione o segmento</option>
-                <option>Infraestrutura de TI (cabeamento, firewall, CFTV, redes)</option>
-                <option>Segurança da Informação</option>
-                <option>MSP / Suporte Gerenciado</option>
-                <option>SaaS B2B (ERP, RH, logística, outro)</option>
-                <option>Revenda de hardware / software</option>
-                <option>Outro</option>
-              </select>
-            </div>
-            <div class="fg">
-              <label for="cidade">Cidade</label>
-              <input type="text" id="cidade" name="cidade" placeholder="Manaus, AM" required />
-            </div>
-            <div class="fg">
-              <label for="dif">Onde o seu funil de captação trava hoje?</label>
-              <textarea id="dif" name="dificuldade" placeholder="Ex: dependemos 100% de indicação. Leads que chegam são pessoa física sem fit nenhum..." required></textarea>
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="roberto@alvesti.com.br" required />
             </div>
             <div class="fg" style="margin-bottom:28px">
-              <label for="origem">Como chegou até aqui?</label>
-              <select id="origem" name="origem" required>
-                <option value="" disabled selected>Selecione</option>
-                <option>Instagram @eukalidcarvalho</option>
-                <option>LinkedIn</option>
-                <option>Google</option>
-                <option>Indicação</option>
-                <option>Outro</option>
-              </select>
+              <label for="dif">Onde seu funil de captação trava hoje?</label>
+              <textarea id="dif" name="dificuldade" placeholder="Ex: dependemos 100% de indicação. Leads que chegam são pessoa física sem fit nenhum..." required></textarea>
             </div>
             <button type="submit" class="btn-submit">
-              Quero meu diagnóstico gratuito
+              Quero meu diagnóstico
               <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
             </button>
-            <p class="form-fine">Sem custo. Respondemos em até 24h úteis.</p>
+            <p class="form-fine">Respondemos em até 24h úteis.</p>
           </form>
         </div>
       </div>
