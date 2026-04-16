@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px; height: 1920px;
+      background: #F0F4FF;
+      font-family: 'Inter', sans-serif; color: #0D1526;
+      position: relative; overflow: hidden;
+    }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+
+    /* Giant BG number */
+    .bg-number {
+      position: absolute; right: -40px; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 600px; font-weight: 700;
+      color: #1A56DB; opacity: 0.05;
+      line-height: 1; z-index: 1;
+      letter-spacing: -0.05em;
+    }
+
+    /* Content */
+    .content {
+      position: absolute; inset: 0;
+      padding: 80px 80px 100px 86px;
+      display: flex; flex-direction: column;
+      justify-content: center; z-index: 10;
+    }
+
+    .tag {
+      display: inline-flex;
+      background: rgba(26,86,219,0.08);
+      border: 1px solid rgba(26,86,219,0.25);
+      border-radius: 4px; padding: 9px 18px;
+      margin-bottom: 44px; width: fit-content;
+    }
+    .tag span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 18px; font-weight: 600;
+      color: #1A56DB; letter-spacing: 0.14em; text-transform: uppercase;
+    }
+
+    .stat-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 21px; font-weight: 600;
+      color: #9BB3E8; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .big-stat {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 220px; font-weight: 700;
+      color: #1A56DB; line-height: 0.9;
+      letter-spacing: -0.04em; margin-bottom: 44px;
+    }
+
+    .headline {
+      font-size: 58px; font-weight: 800;
+      line-height: 1.05; color: #0D1526;
+      letter-spacing: -0.02em; margin-bottom: 32px;
+    }
+
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 30px; border-radius: 2px; }
+
+    .body-text {
+      font-size: 30px; font-weight: 400;
+      color: #3D527A; line-height: 1.55; max-width: 880px;
+    }
+    .body-text strong { color: #0D1526; font-weight: 700; }
+
+    .bottom-row {
+      position: absolute; bottom: 64px; left: 86px; right: 80px;
+      display: flex; align-items: center; justify-content: space-between; z-index: 10;
+    }
+    .handle { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #9BB3E8; }
+    .progress { display: flex; align-items: center; gap: 10px; }
+    .progress-track { width: 150px; height: 2px; background: rgba(26,86,219,0.15); border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; width: 66.66%; background: #1A56DB; border-radius: 2px; }
+    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #9BB3E8; }
+
+
+    /* === TOP HEADER === */
+    .top-header {
+      position: absolute; top: 0; left: 0; right: 0; height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 80px;
+      border-bottom: 1px solid rgba(26,86,219,0.1);
+      z-index: 15;
+    }
+    .top-header span {
+      font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 400;
+      color: #9BB3E8; letter-spacing: 0.02em;
+    }
+    /* === BOTTOM AUTHOR === */
+    .bottom-author {
+      position: absolute; bottom: 278px; left: 0; right: 0; height: 88px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 80px;
+      border-top: 1px solid rgba(26,86,219,0.1);
+      z-index: 15;
+    }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #1C2D4A; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 1px; }
+    .ba-name { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #0D1526; }
+    .ba-name .check { color: #1A56DB; margin-left: 4px; }
+    .ba-handle { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; color: #3D527A; }
+    .ba-right { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 500; color: #9BB3E8; }
+  </style>
+</head>
+<body>
+  <div class="top-header">
+    <span>@eukalidcarvalho</span>
+    <span>Ecossistema de Resultado</span>
+    <span>© 2026</span>
+  </div>
+  <div class="accent-bar"></div>
+  <div class="bg-number">40%</div>
+
+  <div class="content">
+    <div class="tag"><span>prova 02</span></div>
+    <div class="stat-label">concentração de receita</div>
+    <div class="big-stat">40%</div>
+    <div class="headline">Um cliente que<br>paga as contas<br>é risco, não parceria.</div>
+    <div class="divider"></div>
+    <div class="body-text">
+      Quando ele sai, seja por corte de budget, troca de gestor ou proposta mais barata do concorrente, a empresa não tem pipeline.<br><br>
+      Tem <strong>desespero.</strong> E desespero fecha contrato ruim.
+    </div>
+  </div>
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info">
+        <span class="ba-name">Kalid Carvalho <span class="check">✓</span></span>
+        <span class="ba-handle">@eukalidcarvalho</span>
+      </div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
+  </div>
+  <div style="position:absolute;bottom:0;left:0;right:0;height:230px;
+    background:rgba(0,0,0,0.0);border-top:1px dashed rgba(255,255,255,0.0);
+    z-index:20;pointer-events:none;"></div>
+</body>
+</html>
