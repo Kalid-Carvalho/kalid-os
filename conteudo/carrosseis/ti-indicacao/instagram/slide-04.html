@@ -7,134 +7,111 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       width: 1080px; height: 1350px;
-      background: #0A1020;
-      font-family: 'Inter', sans-serif; color: #F0F4FF;
+      background: #F0F4FF;
+      font-family: 'Inter', sans-serif; color: #0D1526;
       position: relative; overflow: hidden;
-    }
-    body::after {
-      content: ''; position: absolute; inset: 0; opacity: 0.03;
-      pointer-events: none; z-index: 20;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
-      background-size: 300px;
     }
     .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
 
-    /* BG number */
-    .bg-number {
-      position: absolute; right: -60px; top: 50%;
-      transform: translateY(-50%);
+    /* Large stat block */
+    .stat-block {
+      position: absolute; top: 0; left: 6px; right: 0; height: 500px;
+      background: #0D1526;
+      display: flex; flex-direction: column;
+      align-items: flex-start; justify-content: flex-end;
+      padding: 0 80px 56px 80px;
+      z-index: 3;
+    }
+    .stat-label {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 580px; font-weight: 700;
+      font-size: 20px; font-weight: 600;
+      color: #3D527A; letter-spacing: 0.12em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .stat-row { display: flex; align-items: flex-end; gap: 12px; }
+    .stat-value {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 160px; font-weight: 700;
+      color: #1A56DB; line-height: 0.9;
+      letter-spacing: -0.04em;
+    }
+    .stat-sub {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 38px; font-weight: 600;
+      color: #3D527A; padding-bottom: 20px;
+    }
+
+    /* BG number texture on stat block */
+    .bg-num {
+      position: absolute; right: -30px; top: -20px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 500px; font-weight: 700;
       color: #1A56DB; opacity: 0.04;
-      line-height: 1; z-index: 1;
+      line-height: 1; z-index: 2;
       letter-spacing: -0.05em;
     }
 
-    /* Glow */
-    .glow {
-      position: absolute; top: 100px; left: 100px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(26,86,219,0.09) 0%, transparent 60%);
-      z-index: 1; pointer-events: none;
-    }
-
-    /* Content */
+    /* Content below */
     .content {
-      position: absolute; inset: 0;
-      padding: 80px 80px 100px 86px;
-      display: flex; flex-direction: column;
-      justify-content: center; z-index: 10;
+      position: absolute; top: 500px; left: 6px; right: 0; bottom: 0;
+      padding: 56px 80px 100px 80px;
+      display: flex; flex-direction: column; justify-content: center;
+      z-index: 5;
     }
-
     .tag {
       display: inline-flex;
-      background: rgba(26,86,219,0.12);
-      border: 1px solid rgba(26,86,219,0.35);
+      background: rgba(26,86,219,0.08);
+      border: 1px solid rgba(26,86,219,0.25);
       border-radius: 4px; padding: 9px 18px;
-      margin-bottom: 52px; width: fit-content;
+      margin-bottom: 36px; width: fit-content;
     }
     .tag span {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 19px; font-weight: 600;
+      font-size: 18px; font-weight: 600;
       color: #1A56DB; letter-spacing: 0.14em; text-transform: uppercase;
     }
-
-    /* Revenue stat */
-    .stat-block {
-      display: flex; align-items: flex-end; gap: 16px;
-      margin-bottom: 40px;
-    }
-    .stat-value {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 130px; font-weight: 700;
-      color: #1A56DB; line-height: 0.9;
-      letter-spacing: -0.03em;
-    }
-    .stat-unit {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 40px; font-weight: 600;
-      color: #3D527A; padding-bottom: 18px;
-    }
-
     .headline {
       font-size: 60px; font-weight: 800;
-      line-height: 1.05; color: #F0F4FF;
-      letter-spacing: -0.02em; margin-bottom: 40px;
+      line-height: 1.05; color: #0D1526;
+      letter-spacing: -0.02em; margin-bottom: 32px;
     }
-
-    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 36px; border-radius: 2px; }
-
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 28px; border-radius: 2px; }
     .body-text {
-      font-size: 32px; font-weight: 400;
-      color: #8899BB; line-height: 1.55; max-width: 860px;
+      font-size: 30px; font-weight: 400;
+      color: #3D527A; line-height: 1.55; max-width: 880px;
     }
-    .body-text strong { color: #F0F4FF; font-weight: 600; }
+    .body-text strong { color: #0D1526; font-weight: 700; }
 
-    /* Card highlight */
-    .highlight-card {
-      margin-top: 44px;
-      background: rgba(26,86,219,0.08);
-      border-left: 4px solid #1A56DB;
-      border-radius: 0 8px 8px 0;
-      padding: 28px 36px;
-    }
-    .highlight-card p {
-      font-size: 30px; font-weight: 500;
-      color: #F0F4FF; line-height: 1.45;
-    }
-
-    /* Bottom */
     .bottom-row {
-      position: absolute; bottom: 72px; left: 86px; right: 80px;
+      position: absolute; bottom: 64px; left: 86px; right: 80px;
       display: flex; align-items: center; justify-content: space-between; z-index: 10;
     }
-    .handle { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #3D527A; }
+    .handle { font-family: 'JetBrains Mono', monospace; font-size: 21px; color: #9BB3E8; }
     .progress { display: flex; align-items: center; gap: 10px; }
-    .progress-track { width: 150px; height: 2px; background: #1C2D4A; border-radius: 2px; overflow: hidden; }
+    .progress-track { width: 150px; height: 2px; background: rgba(26,86,219,0.15); border-radius: 2px; overflow: hidden; }
     .progress-fill { height: 100%; width: 44.44%; background: #1A56DB; border-radius: 2px; }
-    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #3D527A; }
+    .progress-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; color: #9BB3E8; }
   </style>
 </head>
 <body>
   <div class="accent-bar"></div>
-  <div class="glow"></div>
-  <div class="bg-number">04</div>
+  <div class="bg-num">04</div>
+
+  <div class="stat-block">
+    <div class="stat-label">teto de faturamento</div>
+    <div class="stat-row">
+      <div class="stat-value">R$50k</div>
+      <div class="stat-sub">/mês</div>
+    </div>
+  </div>
 
   <div class="content">
     <div class="tag"><span>mecanismo</span></div>
-
-    <div class="stat-block">
-      <div class="stat-value">R$50k</div>
-      <div class="stat-unit">/mês</div>
-    </div>
-
-    <div class="headline">O teto que ninguém<br>percebe que existe.</div>
+    <div class="headline">A rede pessoal<br>tem teto. E você<br>já chegou nele.</div>
     <div class="divider"></div>
     <div class="body-text">
-      A indicação funcionou porque o mercado era pequeno o suficiente para a rede pessoal cobrir. Só que rede pessoal tem teto. Ela não cresce além do círculo de relacionamentos do fundador.
-    </div>
-    <div class="highlight-card">
-      <p>Falta de competência técnica? Não.<br>Falta de motor de aquisição.</p>
+      A indicação funcionou porque o mercado era pequeno o suficiente para a rede pessoal cobrir. Ela não cresce além do círculo de relacionamentos do fundador.<br><br>
+      Falta de competência técnica? <strong>Não. Falta de motor de aquisição.</strong>
     </div>
   </div>
 
