@@ -16,6 +16,25 @@
       overflow: hidden;
     }
 
+    /* Background image */
+    .capa-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 0;
+    }
+
+    /* Gradient overlay sobre a foto */
+    .capa-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,21,38,0.35) 0%, rgba(13,21,38,0.55) 40%, rgba(13,21,38,0.92) 75%, #0D1526 100%);
+      z-index: 1;
+    }
+
     /* Noise overlay */
     body::after {
       content: '';
@@ -214,6 +233,9 @@
   </style>
 </head>
 <body>
+  <img class="capa-bg" src="../bg-capa.png" alt="">
+  <div class="capa-overlay"></div>
+
   <div class="top-header">
     <span>@eukalidcarvalho</span>
     <span>Digital para TI</span>
