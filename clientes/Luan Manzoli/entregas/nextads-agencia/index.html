@@ -119,6 +119,17 @@
     100%{transform:translateX(-50%)}
   }
 
+  /* Smooth marquee tracks */
+  .marquee-track-smooth{
+    display:flex;
+    align-items:center;
+    white-space:nowrap;
+    backface-visibility:hidden;
+    -webkit-backface-visibility:hidden;
+    perspective:1000px;
+    will-change:transform;
+  }
+
   @keyframes beam-fall{
     0%{transform:translateY(-100%);opacity:0}
     5%{opacity:0.5}
@@ -360,32 +371,30 @@
 <!-- ══════════════════════════════════════════════════════════════
      2. HERO SECTION
      ══════════════════════════════════════════════════════════════ -->
-<section id="hero" class="relative min-h-screen overflow-hidden flex items-center">
+<section id="hero" class="relative overflow-hidden">
   <!-- Hero Ambient Glows -->
   <div class="absolute top-[5%] right-[5%] w-[700px] h-[700px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.10)_0%,transparent_65%)] pointer-events-none z-0"></div>
   <div class="absolute bottom-[10%] left-[15%] w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.06)_0%,transparent_70%)] pointer-events-none z-0"></div>
   <div class="absolute top-[60%] right-[30%] w-[300px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.04)_0%,transparent_70%)] pointer-events-none z-0"></div>
 
-  <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20 lg:py-0 w-full">
+  <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-16 pb-10 lg:pt-20 lg:pb-12 w-full">
     
     <!-- ═══ LEFT COLUMN: Copy & CTA ═══ -->
     <div class="flex flex-col justify-center hero-content">
       
       <!-- H1 Headline -->
-      <h1 class="hero-headline text-glow text-2xl sm:text-3xl md:text-[2.1rem] lg:text-[2.2rem] xl:text-[2.45rem] font-extrabold tracking-[-0.02em] leading-[1.35] text-white mb-10">
+      <h1 class="hero-headline text-glow text-4xl sm:text-5xl md:text-[3rem] lg:text-[3.2rem] xl:text-[3.8rem] font-extrabold tracking-[-0.03em] leading-[1.35] text-white mb-8">
         Sua loja de iPhones pode ter<br/>
-        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6A00] to-[#FF8C00]">compradores qualificados chegando todo dia.</span><br/>
-        Sem depender de indicação.<br/>
-        Sem lead frio que só pergunta preço.
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6A00] to-[#FF8C00]">compradores qualificados<br/>chegando todo dia.</span>
       </h1>
 
       <!-- Sub-headline -->
-      <p class="hero-sub text-base sm:text-lg text-[#999] leading-[1.8] mb-10 max-w-xl font-secondary">
+      <p class="hero-sub text-base sm:text-lg text-[#999] leading-[1.8] mb-8 max-w-xl font-secondary">
         Os especialistas da <strong class="text-white font-semibold">NEXTADS</strong> analisam sua operação hoje e traçam o plano exato de anúncios para você ter um fluxo previsível de clientes qualificados, sem depender de indicação e sem atender quem nunca vai comprar.
       </p>
 
       <!-- CTA Button -->
-      <div class="hero-cta mb-8">
+      <div class="hero-cta mb-6">
         <a href="#" class="button-custom group" id="cta-hero-plano" aria-label="Solicitar plano de escala">
           <div class="points_wrapper">
             <i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i>
@@ -409,7 +418,7 @@
       </div>
 
       <!-- Trust signals -->
-      <div class="hero-trust flex items-center gap-5 mt-8 flex-wrap">
+      <div class="hero-trust flex items-center gap-5 mt-6 flex-wrap">
         <div class="flex items-center gap-1.5 text-[0.72rem] text-white/35">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="opacity-50"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Dados Protegidos
@@ -466,70 +475,70 @@
       </div>
     </div>
   </div>
-</section>
 
 <!-- ══════════════════════════════════════════════════════════════
      LOGO CAROUSEL — Social Proof (Dupla Faixa)
      ══════════════════════════════════════════════════════════════ -->
-<div class="logo-carousel-section relative z-10" style="padding:3rem 0;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.4);">
+<div class="logo-carousel-section relative z-10" style="padding:2rem 0;border-top:1px solid rgba(255,255,255,0.05);border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.3);">
   <!-- Fade edges -->
   <div style="position:absolute;left:0;top:0;bottom:0;width:120px;z-index:10;background:linear-gradient(to right,#060606,transparent);pointer-events:none;"></div>
   <div style="position:absolute;right:0;top:0;bottom:0;width:120px;z-index:10;background:linear-gradient(to left,#060606,transparent);pointer-events:none;"></div>
   
   <!-- Row 1: LTR -->
   <div class="flex overflow-hidden w-full mb-6">
-    <div class="flex items-center whitespace-nowrap gap-20" style="animation:marquee 40s linear infinite;">
-      <iconify-icon icon="simple-icons:apple" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:google" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:meta" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:stripe" class="text-6xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:nvidia" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:vercel" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:figma" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:notion" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:linear" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:shopify" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+    <div class="marquee-track-smooth gap-20 lg:gap-28" style="animation:marquee 40s linear infinite;">
+      <iconify-icon icon="simple-icons:apple" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:google" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:meta" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:stripe" class="text-6xl lg:text-8xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:nvidia" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:vercel" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:figma" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:notion" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:linear" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:shopify" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
       <!-- Duplicate for seamless loop -->
-      <iconify-icon icon="simple-icons:apple" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:google" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:meta" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:stripe" class="text-6xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:nvidia" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:vercel" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:figma" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:notion" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:linear" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:shopify" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:apple" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:google" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:meta" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:stripe" class="text-6xl lg:text-8xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:nvidia" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:vercel" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:figma" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:notion" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:linear" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:shopify" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
     </div>
   </div>
   
   <!-- Row 2: RTL (reverse) -->
   <div class="flex overflow-hidden w-full">
-    <div class="flex items-center whitespace-nowrap gap-20" style="animation:marquee 45s linear infinite reverse;">
-      <iconify-icon icon="simple-icons:instagram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:tiktok" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:youtube" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:x" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:telegram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:discord" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:slack" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:linkedin" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:pinterest" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+    <div class="marquee-track-smooth gap-20 lg:gap-28" style="animation:marquee 45s linear infinite reverse;">
+      <iconify-icon icon="simple-icons:instagram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:tiktok" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:youtube" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:x" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:telegram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:discord" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:slack" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:linkedin" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:pinterest" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
       <!-- Duplicate for seamless loop -->
-      <iconify-icon icon="simple-icons:instagram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:tiktok" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:youtube" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:x" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:telegram" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:discord" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:slack" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:linkedin" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
-      <iconify-icon icon="simple-icons:pinterest" class="text-5xl text-neutral-500 flex-shrink-0 opacity-30"></iconify-icon>
+      <iconify-icon icon="simple-icons:instagram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:tiktok" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:youtube" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:x" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:whatsapp" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:telegram" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:discord" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:slack" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:linkedin" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
+      <iconify-icon icon="simple-icons:pinterest" class="text-5xl lg:text-7xl text-neutral-500 flex-shrink-0 opacity-30 hover:opacity-80 hover:text-[#FF6A00] hover:scale-110 transition-all duration-300 cursor-default"></iconify-icon>
     </div>
   </div>
 </div>
+</section>
 
 <!-- ══════════════════════════════════════════════════════════════
      GSAP ENTRANCE ANIMATIONS
