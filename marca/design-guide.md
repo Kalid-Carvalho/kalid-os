@@ -39,56 +39,54 @@
 
 ---
 
-## @eukalidcarvalho — Marketing Jurídico para Advogados
-*Usar para: conteúdo @eukalidcarvalho, carrosséis jurídicos, landing pages de captação, propostas para advogados*
+## @eukalidcarvalho — Ecossistema de Resultados para TI e SaaS
+*Usar para: conteúdo @eukalidcarvalho, carrosséis B2B, landing pages de captação, propostas para empresas de TI e SaaS*
 
 ### Conceito
-Institucional, autoritativo, elegante. O dourado comunica peso jurídico, tradição e seriedade — sem parecer agência genérica. Contraste entre serif editorial e sans moderno cria a tensão "mundo jurídico + sistema digital".
+Tech B2B com presença humana. Estética de produto digital — escuro, preciso, direto. O azul comunica confiança e sofisticação técnica. A fonte mono nas palavras-chave remete ao universo de dev/infra, falando direto com o ICP sem precisar explicar o posicionamento.
 
 ### Cores
-- **Fundo principal:** #0C1018 (preto quente)
-- **Fundo secundário:** #081018
-- **Surface / cards:** #101928
-- **Cor de destaque / CTA:** #C9A84C (dourado)
-- **Accent hover:** #D9BC72
-- **Texto principal:** #F4F0E8 (cream quente)
-- **Texto secundário:** #9A9080
-- **Texto muted:** #4A4030
-- **Separadores:** #1C1A14
-- **Dim overlay accent:** rgba(201,168,76,0.09)
-- **Border accent:** rgba(201,168,76,0.28)
+- **Fundo principal:** #0D1526 (azul escuro profundo)
+- **Fundo secundário:** #0A1020
+- **Surface / cards:** #111D35
+- **Cor de destaque / CTA:** #1A56DB (azul elétrico)
+- **Accent hover:** #2563EB
+- **Texto principal:** #F0F4FF (branco frio)
+- **Texto secundário:** #8899BB
+- **Texto muted:** #3D527A
+- **Separadores:** #1C2D4A
+- **Dim overlay accent:** rgba(26,86,219,0.09)
+- **Border accent:** rgba(26,86,219,0.28)
 
 ### Tipografia
-- **Display / headlines:** Cormorant Garamond (Google Fonts) — itálico para ênfase, 600–700
-- **Body / labels / CTAs:** DM Sans (Google Fonts) — 400/500/600
-- **Hero:** clamp(42px, 8vw, 76px), weight 700, line-height 0.95
-- **Heading seção:** clamp(28px, 5vw, 48px), weight 700
+- **Palavras-chave / destaque / termos técnicos:** JetBrains Mono (Google Fonts) — 600–700, usado em termos como "n8n", "MRR", "webhook", "MQL", números e dados
+- **Texto normal / corpo / CTAs:** Inter (Google Fonts) — 400/500/600
+- **Hero:** clamp(42px, 8vw, 72px), weight 700, line-height 0.95
+- **Heading seção:** clamp(26px, 5vw, 44px), weight 700
 - **Body:** 15–17px, weight 400–500
-- **Labels:** 11px, weight 600, uppercase, letter-spacing 0.14em
+- **Labels / tags técnicas:** JetBrains Mono, 11px, weight 600, uppercase, letter-spacing 0.10em
 
 ### Elementos-chave
-- Border-radius: 6–10px em cards, 100px em badges pill
-- Botão CTA: fundo #C9A84C, texto #0C1018 (escuro — contraste obrigatório)
-- Left border accent: 3px solid #C9A84C em pull quotes
-- Grid de pontos no hero: radial-gradient rgba(201,168,76,0.14)
-- Glow radial no hero: rgba(201,168,76,0.09)
-- Scrollbar: 2px, cor #D9BC72
-- Noise texture: opacity 0.3–0.5 (atmosfera)
+- Border-radius: 6–8px em cards, 100px em badges pill
+- Botão CTA: fundo #1A56DB, texto #F0F4FF
+- Left border accent: 3px solid #1A56DB em pull quotes e destaques
+- Grid de pontos no hero: radial-gradient rgba(26,86,219,0.12)
+- Glow radial no hero: rgba(26,86,219,0.08)
+- Scrollbar: 2px, cor #2563EB
 - Container: max-width 1300px
 
 ### Header padrão dos slides
-- Avatar circular de Kalid (60–64px, borda 2px #C9A84C)
-- Nome: DM Sans 700, 22–24px, #F4F0E8
-- Handle: @eukalidcarvalho, 18–20px, #9A9080
-- Watermark: @eukalidcarvalho, canto inferior direito, #4A4030
+- Avatar circular de Kalid (60–64px, borda 2px #1A56DB)
+- Nome: Inter 700, 22–24px, #F0F4FF
+- Handle: @eukalidcarvalho, Inter 400, 18–20px, #8899BB
+- Watermark: @eukalidcarvalho, canto inferior direito, #3D527A
 
 ### O que NUNCA fazer
-- Misturar com o azul #1A56DB do @kalidcarvalho
-- Usar fundo claro — sempre escuro
-- Botão dourado com texto branco (contraste insuficiente)
-- Tipografia serifada no body (só no display)
-- Emojis em posts educativos/jurídicos
-- Prometer resultado absoluto (questão OAB)
+- Usar a paleta da GROVW (preto #000 + limão #cdff00) nesse canal
+- Usar o dourado do design antigo (era identidade jurídica)
+- Fundo claro — sempre escuro
+- Tipografia serifada (era identidade jurídica)
+- Misturar JetBrains Mono no corpo de texto corrido (só para destaques e termos técnicos)
 
 ---
 
