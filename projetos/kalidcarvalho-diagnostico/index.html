@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico Gratuito — Captação B2B para Integradores de TI | Kalid Carvalho</title>
+  <meta name="description" content="Sistema de captação para integradores de TI que só atendem empresas. Leads com CNPJ, filtrados por automação, direto no pipeline do seu time comercial." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:           #080E1C;
+      --bg2:          #060C18;
+      --bg3:          #0D1830;
+      --surface:      #102040;
+      --blue:         #1A56DB;
+      --blue-mid:     #2563EB;
+      --blue-light:   #6090FF;
+      --blue-bright:  #84AAFF;
+      --blue-dim:     rgba(26,86,219,0.08);
+      --blue-border:  rgba(96,144,255,0.22);
+      --green:        #22C55E;
+      --green-dim:    rgba(34,197,94,0.12);
+      --amber:        #F59E0B;
+      --text:         #EEF2FF;
+      --text-muted:   #7A90BB;
+      --text-dim:     #334466;
+      --sep:          #142035;
+      --mono:         'JetBrains Mono', monospace;
+      --sans:         'Inter', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 1000;
+    }
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(26,86,219,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,86,219,0.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none; z-index: 0;
+    }
+
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: var(--bg2); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 2px; }
+
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 32px; position: relative; z-index: 1; }
+
+    .r {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.8s cubic-bezier(.16,1,.3,1), transform 0.8s cubic-bezier(.16,1,.3,1);
+    }
+    .r.in { opacity: 1; transform: none; }
+    .r.d1 { transition-delay: 0.06s; }
+    .r.d2 { transition-delay: 0.14s; }
+    .r.d3 { transition-delay: 0.22s; }
+    .r.d4 { transition-delay: 0.32s; }
+    .r.d5 { transition-delay: 0.42s; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 20px 0;
+      border-bottom: 1px solid transparent;
+      transition: background 0.3s, border-color 0.3s, padding 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(8,14,28,0.92);
+      border-color: var(--sep);
+      padding: 14px 0;
+      backdrop-filter: blur(12px);
+    }
+    nav .container { display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo {
+      font-family: var(--mono); font-size: 13px; font-weight: 700;
+      color: var(--text); text-decoration: none;
+    }
+    .nav-logo .acc { color: var(--blue-light); }
+    .nav-logo .cur {
+      display: inline-block; width: 8px; height: 14px;
+      background: var(--blue-light); vertical-align: middle;
+      animation: blink 1.1s steps(1) infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 20px;
+      background: transparent; border: 1px solid var(--blue-border); border-radius: 4px;
+      color: var(--blue-bright); font-family: var(--mono); font-size: 11px; font-weight: 600;
+      text-decoration: none; letter-spacing: 0.06em; text-transform: uppercase;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--blue-dim); border-color: var(--blue-light); color: var(--text); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100svh;
+      display: grid; grid-template-columns: 1fr 440px; gap: 40px;
+      align-items: center; padding: 140px 0 80px;
+      border-bottom: 1px solid var(--sep);
+      position: relative; overflow: hidden;
+    }
+    .hero-glow {
+      position: absolute; top: -20%; left: -10%;
+      width: 70vw; height: 70vw; max-width: 800px; max-height: 800px;
+      background: radial-gradient(ellipse at center, rgba(26,86,219,0.12) 0%, transparent 65%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-glow-r {
+      position: absolute; top: 5%; right: -5%;
+      width: 40vw; height: 40vw; max-width: 500px; max-height: 500px;
+      background: radial-gradient(ellipse at center, rgba(26,86,219,0.06) 0%, transparent 70%);
+      pointer-events: none; z-index: 0;
+    }
+    .hero-left { position: relative; z-index: 2; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 7px 14px;
+      background: var(--blue-dim); border: 1px solid var(--blue-border); border-radius: 100px;
+      margin-bottom: 40px;
+    }
+    .badge-dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--green); box-shadow: 0 0 8px var(--green);
+      animation: pulse-g 2s ease-in-out infinite;
+    }
+    @keyframes pulse-g {
+      0%,100% { box-shadow: 0 0 8px var(--green); }
+      50% { box-shadow: 0 0 18px var(--green), 0 0 4px var(--green); }
+    }
+    .badge-txt {
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-muted);
+    }
+    .badge-txt span { color: var(--green); }
+
+    .hero-title {
+      font-family: var(--sans);
+      font-size: clamp(44px, 6vw, 86px);
+      font-weight: 900; line-height: 0.93; letter-spacing: -0.04em;
+      margin-bottom: 32px;
+    }
+    .hero-title .ln { display: block; }
+    .hero-title .ln-dim { color: var(--text-muted); font-weight: 300; }
+    .hero-title .ln-outline {
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--blue-light);
+    }
+
+    .hero-sub {
+      font-size: 16px; color: var(--text-muted); line-height: 1.8;
+      max-width: 500px; margin-bottom: 44px;
+    }
+    .hero-sub strong { color: var(--text); font-weight: 600; }
+
+    .hero-actions { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 16px 32px; background: var(--blue); color: #fff;
+      font-family: var(--sans); font-size: 14px; font-weight: 700;
+      text-decoration: none; border-radius: 6px; border: none; cursor: pointer;
+      letter-spacing: -0.01em;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--blue-mid);
+      box-shadow: 0 8px 32px rgba(26,86,219,0.45);
+      transform: translateY(-2px);
+    }
+    .btn-primary svg { transition: transform 0.2s; }
+    .btn-primary:hover svg { transform: translateX(3px); }
+    .hero-note { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+
+    /* terminal */
+    .hero-right { position: relative; z-index: 2; }
+    .terminal {
+      background: rgba(6,12,24,0.95);
+      border: 1px solid var(--blue-border); border-radius: 10px; overflow: hidden;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.6), inset 0 1px 0 rgba(96,144,255,0.08);
+    }
+    .term-bar {
+      background: var(--surface); border-bottom: 1px solid var(--sep);
+      padding: 12px 18px; display: flex; align-items: center; gap: 12px;
+    }
+    .term-dots { display: flex; gap: 6px; }
+    .term-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .term-title { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin: 0 auto; padding-right: 36px; }
+    .term-body { padding: 22px 20px; min-height: 300px; }
+    .term-line {
+      display: flex; align-items: flex-start; gap: 10px;
+      margin-bottom: 9px; font-family: var(--mono); font-size: 12px; line-height: 1.6;
+      opacity: 0; transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .term-line.show { opacity: 1; transform: none; }
+    .t-prompt { color: var(--blue-light); flex-shrink: 0; }
+    .t-cmd { color: var(--text); }
+    .t-out { color: var(--text-muted); padding-left: 20px; }
+    .t-ok { color: var(--green); flex-shrink: 0; }
+    .t-warn { color: var(--amber); flex-shrink: 0; }
+    .t-err { color: #F87171; flex-shrink: 0; }
+    .t-info { color: var(--blue-light); flex-shrink: 0; }
+    .term-div { height: 1px; background: var(--sep); margin: 12px 0; opacity: 0; transition: opacity 0.3s; }
+    .term-div.show { opacity: 1; }
+    .term-cursor {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 12px; color: var(--text-muted);
+      opacity: 0; transition: opacity 0.3s;
+    }
+    .term-cursor.show { opacity: 1; }
+    .term-cursor .blk {
+      display: inline-block; width: 8px; height: 14px;
+      background: var(--blue-light); animation: blink 1.1s steps(1) infinite;
+    }
+    .term-foot {
+      border-top: 1px solid var(--sep); padding: 10px 20px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .term-status { display: flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+    .st-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+    .term-ver { font-family: var(--mono); font-size: 10px; color: var(--text-dim); }
+
+    /* ── STRIP ── */
+    .strip {
+      overflow: hidden; height: 44px; display: flex; align-items: center;
+      background: var(--bg2); border-bottom: 1px solid var(--sep);
+      position: relative; z-index: 1;
+    }
+    .strip::before, .strip::after {
+      content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+    }
+    .strip::before { left: 0; background: linear-gradient(90deg, var(--bg2), transparent); }
+    .strip::after { right: 0; background: linear-gradient(-90deg, var(--bg2), transparent); }
+    .strip-track { display: flex; animation: scroll 36s linear infinite; white-space: nowrap; }
+    @keyframes scroll { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    .strip-item {
+      display: flex; align-items: center; gap: 16px; padding: 0 36px;
+      font-family: var(--mono); font-size: 10px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.18em; color: var(--text-dim);
+    }
+    .strip-item b { color: var(--text-muted); }
+    .s-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--blue); flex-shrink: 0; }
+
+    /* ── SHARED SECTION ── */
+    section { padding: 96px 0; border-bottom: 1px solid var(--sep); position: relative; z-index: 1; }
+    .bg-alt { background: var(--bg2); }
+
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--mono); font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.22em; color: var(--blue-light);
+      margin-bottom: 28px;
+    }
+    .sec-label::before { content: ''; width: 20px; height: 1px; background: var(--blue-light); }
+
+    /* ── PROBLEMA ── */
+    .prob-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: start; margin-top: 52px;
+    }
+    .prob-headline {
+      font-family: var(--sans); font-size: clamp(28px, 4vw, 48px);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.05;
+      margin-bottom: 24px; color: var(--text);
+    }
+    .prob-headline .hl { color: var(--blue-bright); }
+    .prob-sub {
+      font-size: 16px; color: var(--text-muted); line-height: 1.8; margin-bottom: 32px; max-width: 480px;
+    }
+    .pull-quote {
+      padding: 20px 24px;
+      border-left: 2px solid var(--blue);
+      background: var(--blue-dim); border-radius: 0 6px 6px 0;
+    }
+    .pull-quote p { font-size: 15px; font-weight: 500; color: var(--text-muted); line-height: 1.75; }
+    .pull-quote p strong { color: var(--text); }
+
+    .pain-stack { display: flex; flex-direction: column; }
+    .pain-item {
+      display: flex; align-items: stretch;
+      border: 1px solid var(--sep); border-bottom: none;
+      background: var(--bg3);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .pain-item:first-child { border-radius: 8px 8px 0 0; }
+    .pain-item:last-child { border-bottom: 1px solid var(--sep); border-radius: 0 0 8px 8px; }
+    .pain-item:hover { background: var(--surface); border-color: var(--blue-border); }
+    .pain-num {
+      font-family: var(--mono); font-size: 11px; font-weight: 700; color: var(--blue-light);
+      padding: 22px 16px; border-right: 1px solid var(--sep);
+      min-width: 54px; text-align: center; letter-spacing: 0.04em; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pain-body { padding: 18px 20px; }
+    .pain-body h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 5px; letter-spacing: -0.01em; }
+    .pain-body p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* ── COMO FUNCIONA ── */
+    .steps-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+      align-items: start; margin-top: 52px;
+    }
+    .sec-h { font-family: var(--sans); font-weight: 800; letter-spacing: -0.03em; line-height: 1.05; color: var(--text); }
+    .sec-p { font-size: 16px; color: var(--text-muted); line-height: 1.8; }
+
+    .steps-list { display: flex; flex-direction: column; margin-top: 32px; }
+    .step-item {
+      display: grid; grid-template-columns: 64px 1fr;
+      border: 1px solid var(--sep); border-bottom: none;
+      background: var(--bg3); transition: background 0.2s;
+    }
+    .step-item:first-child { border-radius: 8px 8px 0 0; }
+    .step-item:last-child { border-bottom: 1px solid var(--sep); border-radius: 0 0 8px 8px; }
+    .step-item.active { background: var(--blue-dim); border-color: var(--blue-border); }
+    .step-n {
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--mono); font-size: 18px; font-weight: 700;
+      color: var(--text-dim); border-right: 1px solid var(--sep);
+    }
+    .step-item.active .step-n { color: var(--blue-light); border-right-color: var(--blue-border); }
+    .step-bd { padding: 24px 20px; }
+    .step-bd h4 { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 6px; letter-spacing: -0.01em; }
+    .step-bd p { font-size: 13px; color: var(--text-muted); line-height: 1.7; }
+
+    .wyg-block { margin-top: 32px; }
+    .wyg-lbl {
+      font-family: var(--mono); font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-dim); margin-bottom: 14px;
+    }
+    .wyg-item {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 0; border-bottom: 1px solid var(--sep);
+      font-size: 13px; color: var(--text-muted);
+    }
+    .wyg-item:last-child { border-bottom: none; }
+    .wyg-ck { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .wyg-ck svg { width: 16px; height: 16px; fill: none; stroke: var(--green); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── PARA QUEM ── */
+    .for-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 52px;
+    }
+    .for-lbl {
+      font-family: var(--mono); font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.16em; color: var(--text-dim);
+      margin-bottom: 18px;
+    }
+    .check-list { display: flex; flex-direction: column; gap: 8px; }
+    .check-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px; background: var(--bg3);
+      border: 1px solid var(--sep); border-radius: 6px;
+      font-size: 14px; color: var(--text-muted); line-height: 1.5;
+      transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .check-item:hover { border-color: var(--blue-border); background: var(--blue-dim); color: var(--text); }
+    .ck-ico { width: 18px; height: 18px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .ck-ico svg { width: 16px; height: 16px; fill: none; stroke: var(--green); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .ck-x svg { stroke: #F87171; }
+    .not-item {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px; background: var(--bg3);
+      border: 1px solid var(--sep); border-radius: 6px;
+      font-size: 14px; color: var(--text-dim); line-height: 1.5; margin-bottom: 8px;
+    }
+
+    /* ── QUEM SOU EU ── */
+    .about-grid {
+      display: grid; grid-template-columns: 320px 1fr; gap: 80px;
+      align-items: start; margin-top: 52px;
+    }
+    .about-photo-wrap { position: relative; }
+    .about-photo {
+      width: 100%; aspect-ratio: 3/4; object-fit: cover;
+      border-radius: 8px;
+      border: 1px solid var(--blue-border);
+      filter: grayscale(20%);
+      display: block;
+    }
+    .about-photo-tag {
+      position: absolute; bottom: 16px; left: 16px; right: 16px;
+      background: rgba(8,14,28,0.88);
+      border: 1px solid var(--blue-border);
+      border-radius: 6px; padding: 10px 14px;
+      backdrop-filter: blur(8px);
+    }
+    .apt-name { font-size: 14px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; margin-bottom: 3px; }
+    .apt-role { font-family: var(--mono); font-size: 10px; color: var(--blue-light); letter-spacing: 0.06em; text-transform: uppercase; }
+
+    .about-right {}
+    .about-headline {
+      font-family: var(--sans); font-size: clamp(24px, 3.5vw, 42px);
+      font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
+      margin-bottom: 28px; color: var(--text);
+    }
+    .about-headline .hl { color: var(--blue-bright); }
+    .about-body { font-size: 16px; color: var(--text-muted); line-height: 1.85; margin-bottom: 24px; }
+    .about-body strong { color: var(--text); font-weight: 600; }
+
+    .about-creds { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
+    .cred {
+      display: flex; align-items: center; gap: 14px;
+      padding: 14px 18px; background: var(--bg3);
+      border: 1px solid var(--sep); border-radius: 6px;
+      font-size: 14px; color: var(--text-muted);
+      transition: border-color 0.2s;
+    }
+    .cred:hover { border-color: var(--blue-border); }
+    .cred-ico {
+      width: 34px; height: 34px; border-radius: 6px;
+      background: var(--blue-dim); border: 1px solid var(--blue-border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .cred-ico svg { width: 15px; height: 15px; fill: none; stroke: var(--blue-bright); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    /* ── FORMULÁRIO ── */
+    .form-grid {
+      display: grid; grid-template-columns: 1fr 400px; gap: 80px;
+      align-items: start; margin-top: 52px;
+    }
+    .form-left-head { font-family: var(--sans); font-size: clamp(28px, 4vw, 50px); font-weight: 900; letter-spacing: -0.04em; line-height: 1.0; margin-bottom: 16px; color: var(--text); }
+    .form-left-sub { font-size: 16px; color: var(--text-muted); line-height: 1.8; margin-bottom: 40px; }
+
+    .form-promises { display: flex; flex-direction: column; gap: 10px; }
+    .fp { display: flex; align-items: center; gap: 12px; font-size: 14px; color: var(--text-muted); }
+    .fp-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--blue-light); flex-shrink: 0; }
+
+    .form-shell {
+      border: 1px solid var(--sep); border-radius: 10px; overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.4);
+    }
+    .form-topbar {
+      background: var(--surface); border-bottom: 1px solid var(--sep);
+      padding: 12px 20px; display: flex; align-items: center; gap: 10px;
+    }
+    .tb-dots { display: flex; gap: 6px; }
+    .tb-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .tb-lbl { font-family: var(--mono); font-size: 11px; color: var(--text-dim); margin: 0 auto; padding-right: 36px; }
+    .form-inner { padding: 28px 24px; background: var(--bg3); }
+    .fg { margin-bottom: 16px; }
+    label {
+      display: block; font-family: var(--mono); font-size: 10px; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.12em; color: var(--text-muted); margin-bottom: 8px;
+    }
+    input, select, textarea {
+      width: 100%; background: var(--bg2); border: 1px solid var(--sep); border-radius: 5px;
+      padding: 12px 14px; font-family: var(--sans); font-size: 14px; color: var(--text);
+      outline: none; transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none; appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: var(--text-dim); font-size: 13px; }
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue-border);
+      box-shadow: 0 0 0 3px rgba(26,86,219,0.06);
+    }
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%233D527A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 14px center;
+      padding-right: 36px; cursor: pointer;
+    }
+    select option { background: var(--bg3); }
+    textarea { resize: vertical; min-height: 86px; }
+    .btn-submit {
+      width: 100%; padding: 15px; background: var(--blue); color: #fff;
+      font-family: var(--sans); font-size: 14px; font-weight: 700;
+      border: none; border-radius: 5px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      letter-spacing: -0.01em; margin-top: 4px;
+    }
+    .btn-submit:hover {
+      background: var(--blue-mid);
+      box-shadow: 0 6px 24px rgba(26,86,219,0.40);
+      transform: translateY(-1px);
+    }
+    .form-fine {
+      margin-top: 12px; text-align: center;
+      font-family: var(--mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.04em;
+    }
+
+    /* ── OBRIGADO ── */
+    #obrigado { display: none; min-height: 100svh; align-items: center; justify-content: center; }
+    #obrigado.active { display: flex; }
+    .ty-inner { text-align: center; padding: 80px 24px; max-width: 540px; margin: 0 auto; }
+    .ty-icon {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--green-dim); border: 1px solid rgba(34,197,94,0.3);
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 36px; box-shadow: 0 0 40px rgba(34,197,94,0.15);
+    }
+    .ty-icon svg { width: 28px; height: 28px; fill: none; stroke: var(--green); stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .ty-title { font-family: var(--sans); font-size: clamp(38px, 6vw, 58px); font-weight: 900; line-height: 1.0; letter-spacing: -0.04em; margin-bottom: 20px; }
+    .ty-title em { font-style: normal; color: var(--blue-light); }
+    .ty-body { font-size: 16px; color: var(--text-muted); line-height: 1.75; margin-bottom: 8px; }
+    .ty-note { margin-top: 32px; font-family: var(--mono); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--text-dim); }
+
+    /* ── FOOTER ── */
+    footer { padding: 28px 0; border-top: 1px solid var(--sep); position: relative; z-index: 1; }
+    footer .container { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .f-logo { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--text-muted); }
+    .f-logo span { color: var(--blue-light); }
+    .f-links { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+    .f-links a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .f-links a:hover { color: var(--text-muted); }
+
+    /* ── MOBILE ── */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; padding: 110px 0 60px; }
+      .hero-right { display: none; }
+      .prob-grid, .steps-grid, .for-grid, .form-grid, .about-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-title { font-size: clamp(40px, 10vw, 66px); }
+      .about-photo-wrap { max-width: 280px; }
+    }
+    @media (max-width: 560px) {
+      section { padding: 64px 0; }
+      .hero-title { font-size: 40px; }
+      footer .container { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container">
+    <a href="https://kalidcarvalho.com" class="nav-logo" target="_blank">
+      kalid<span class="acc">_</span>carvalho<span class="cur"></span>
+    </a>
+    <a href="#formulario" class="nav-cta">
+      diagnóstico gratuito
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
+    </a>
+  </div>
+</nav>
+
+<div id="pagina-principal">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="hero-glow-r"></div>
+    <div class="container" style="display:contents;">
+
+      <div class="hero-left" style="padding:0 0 0 32px;">
+        <div class="hero-badge r">
+          <span class="badge-dot"></span>
+          <span class="badge-txt">Vagas abertas — <span>3 disponíveis este mês</span></span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="ln r d1">Você instala</span>
+          <span class="ln r d2">firewall corporativo.</span>
+          <span class="ln ln-dim r d3">Seu site ainda recebe</span>
+          <span class="ln ln-outline r d4">curioso pedindo pra</span>
+          <span class="ln r d4">formatar notebook.</span>
+        </h1>
+
+        <p class="hero-sub r d4">
+          Construo sistemas de captação para integradores de TI que <strong>só atendem empresas</strong>. Leads com CNPJ, filtrados por automação, direto no pipeline do seu time comercial.
+        </p>
+
+        <div class="hero-actions r d5">
+          <a href="#formulario" class="btn-primary">
+            Quero meu diagnóstico gratuito
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+          </a>
+          <span class="hero-note">// 30 min · análise real · sem enrolação</span>
+        </div>
+      </div>
+
+      <div class="hero-right r d2" style="padding-right:32px;">
+        <div class="terminal">
+          <div class="term-bar">
+            <div class="term-dots">
+              <div class="term-dot" style="background:#FF5F57"></div>
+              <div class="term-dot" style="background:#FEBC2E"></div>
+              <div class="term-dot" style="background:#28C840"></div>
+            </div>
+            <span class="term-title">diagnostico_funil_b2b.sh</span>
+          </div>
+          <div class="term-body" id="term-body"></div>
+          <div class="term-foot">
+            <div class="term-status"><div class="st-dot"></div> sessão_ativa</div>
+            <span class="term-ver">grovw v2.6</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STRIP -->
+  <div class="strip">
+    <div class="strip-track">
+      <div class="strip-item"><span class="s-dot"></span> Cabeamento Estruturado</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Fortinet / Sophos</b></div>
+      <div class="strip-item"><span class="s-dot"></span> MSP</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>CFTV Corporativo</b></div>
+      <div class="strip-item"><span class="s-dot"></span> Segurança da Informação</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Lead CNPJ Qualificado</b></div>
+      <div class="strip-item"><span class="s-dot"></span> n8n + CRM</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Polo Industrial</b></div>
+      <div class="strip-item"><span class="s-dot"></span> Pipeline Previsível</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Google Ads B2B</b></div>
+      <!-- loop -->
+      <div class="strip-item"><span class="s-dot"></span> Cabeamento Estruturado</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Fortinet / Sophos</b></div>
+      <div class="strip-item"><span class="s-dot"></span> MSP</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>CFTV Corporativo</b></div>
+      <div class="strip-item"><span class="s-dot"></span> Segurança da Informação</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Lead CNPJ Qualificado</b></div>
+      <div class="strip-item"><span class="s-dot"></span> n8n + CRM</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Polo Industrial</b></div>
+      <div class="strip-item"><span class="s-dot"></span> Pipeline Previsível</div>
+      <div class="strip-item"><span class="s-dot"></span> <b>Google Ads B2B</b></div>
+    </div>
+  </div>
+
+  <!-- PROBLEMA -->
+  <section class="bg-alt">
+    <div class="container">
+      <p class="sec-label r">// o_que_ta_travando</p>
+      <div class="prob-grid">
+        <div class="r d1">
+          <h2 class="prob-headline">
+            Você é bom no que faz.<br>O problema é que o mercado<br><span class="hl">não te encontra.</span>
+          </h2>
+          <p class="prob-sub">Todo mês o pipeline depende de quem você conhece. Se o telefone não toca com uma indicação, a empresa não tem previsibilidade de vendas.</p>
+          <div class="pull-quote">
+            <p>Você já contratou agência de marketing. Fizeram postinho, não trouxeram um CNPJ sequer. <strong>Você teve que explicar o que é um switch core pra um redator de 22 anos.</strong></p>
+          </div>
+        </div>
+        <div class="pain-stack r d2">
+          <div class="pain-item">
+            <span class="pain-num">01</span>
+            <div class="pain-body">
+              <h4>Dependência de indicação</h4>
+              <p>Networking resolve por um tempo. Mas quando a rede esfria, o caixa sente. Zero previsibilidade.</p>
+            </div>
+          </div>
+          <div class="pain-item">
+            <span class="pain-num">02</span>
+            <div class="pain-body">
+              <h4>Leads sujos — CPF em vez de CNPJ</h4>
+              <p>Quando alguém preenche o formulário, é sempre pessoa física pedindo pra formatar notebook. Você só atende empresa.</p>
+            </div>
+          </div>
+          <div class="pain-item">
+            <span class="pain-num">03</span>
+            <div class="pain-body">
+              <h4>Site que envergonha</h4>
+              <p>Você manda o link pra um diretor de compras de indústria e morre por dentro. O site parece que foi feito em 2015 porque foi.</p>
+            </div>
+          </div>
+          <div class="pain-item">
+            <span class="pain-num">04</span>
+            <div class="pain-body">
+              <h4>Agência que não entende o produto</h4>
+              <p>Tentou resolver antes. A agência não sabia o que era um firewall. Não trouxe resultado. Virou prejuízo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section>
+    <div class="container">
+      <p class="sec-label r">// como_funciona</p>
+      <div class="steps-grid">
+        <div class="r d1">
+          <h2 class="sec-h" style="font-size:clamp(28px,4vw,44px); margin-bottom:12px;">O diagnóstico</h2>
+          <p class="sec-p">Uma conversa de 30 minutos pra mapear onde a captação da sua empresa está quebrando. Tem análise real do seu funil e, sim, no final apresento como posso ajudar.</p>
+          <div class="steps-list">
+            <div class="step-item">
+              <span class="step-n">01</span>
+              <div class="step-bd">
+                <h4>Você preenche o formulário</h4>
+                <p>5 perguntas sobre sua empresa, o que você vende e onde o funil trava. Menos de 2 minutos.</p>
+              </div>
+            </div>
+            <div class="step-item active">
+              <span class="step-n">02</span>
+              <div class="step-bd">
+                <h4>Confirmo em até 24h</h4>
+                <p>Analiso sua resposta e entro em contato pelo WhatsApp pra confirmar o horário da call.</p>
+              </div>
+            </div>
+            <div class="step-item">
+              <span class="step-n">03</span>
+              <div class="step-bd">
+                <h4>Call de 30 minutos</h4>
+                <p>Mapeamos o gargalo de captação e o que faz sentido construir primeiro pra trazer CNPJ qualificado.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="r d2" style="padding-top:8px;">
+          <div class="wyg-block">
+            <div class="wyg-lbl">// o que você recebe da call</div>
+            <div class="wyg-item">
+              <span class="wyg-ck"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Diagnóstico do gargalo de aquisição B2B
+            </div>
+            <div class="wyg-item">
+              <span class="wyg-ck"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Recomendação de stack de captação (ads + automação n8n)
+            </div>
+            <div class="wyg-item">
+              <span class="wyg-ck"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Próximos passos concretos — com ou sem a Grovw
+            </div>
+            <div class="wyg-item">
+              <span class="wyg-ck"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Estimativa de ROI para o seu segmento de TI
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM -->
+  <section class="bg-alt">
+    <div class="container">
+      <p class="sec-label r">// para_quem_e</p>
+      <h2 class="sec-h r d1" style="font-size:clamp(26px,4vw,44px);">Esse diagnóstico é pra você se...</h2>
+      <div class="for-grid">
+        <div class="r d1">
+          <div class="for-lbl">é pra você</div>
+          <div class="check-list">
+            <div class="check-item">
+              <span class="ck-ico"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Tem empresa de TI, integrador de infraestrutura ou SaaS B2B
+            </div>
+            <div class="check-item">
+              <span class="ck-ico"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Só atende empresas mas continua recebendo curioso pessoa física
+            </div>
+            <div class="check-item">
+              <span class="ck-ico"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Já tentou agência genérica e foi dinheiro jogado fora
+            </div>
+            <div class="check-item">
+              <span class="ck-ico"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Tem projeto de R$15k+ mas o site não reflete isso
+            </div>
+            <div class="check-item">
+              <span class="ck-ico"><svg viewBox="0 0 16 16"><polyline points="2,8 6,12 14,4"/></svg></span>
+              Quer pipeline previsível sem depender de indicação
+            </div>
+          </div>
+        </div>
+        <div class="r d2">
+          <div class="for-lbl" style="color:#F87171;">não é pra você</div>
+          <div class="not-item">
+            <span class="ck-ico ck-x"><svg viewBox="0 0 16 16" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg></span>
+            Atende pessoa física também
+          </div>
+          <div class="not-item">
+            <span class="ck-ico ck-x"><svg viewBox="0 0 16 16" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg></span>
+            Quer aprender marketing pra tocar por conta própria
+          </div>
+          <div class="not-item">
+            <span class="ck-ico ck-x"><svg viewBox="0 0 16 16" fill="none" stroke="#F87171" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="3" x2="13" y2="13"/><line x1="13" y1="3" x2="3" y2="13"/></svg></span>
+            Ainda está validando o modelo de negócio
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUEM SOU EU -->
+  <section>
+    <div class="container">
+      <p class="sec-label r">// quem_esta_por_tras</p>
+      <div class="about-grid">
+        <div class="about-photo-wrap r d1">
+          <img src="avatar.png" alt="Kalid Carvalho" class="about-photo" />
+          <div class="about-photo-tag">
+            <div class="apt-name">Kalid Carvalho</div>
+            <div class="apt-role">// engenharia de vendas · TI &amp; SaaS</div>
+          </div>
+        </div>
+        <div class="about-right r d2">
+          <h2 class="about-headline">
+            Formado em TI.<br>Trabalha com marketing.<br><span class="hl">Essa combinação é rara.</span>
+          </h2>
+          <p class="about-body">
+            Tenho graduação em <strong>Análise e Desenvolvimento de Sistemas</strong> e pós-graduação em <strong>Gestão de TI</strong>. Trabalho com marketing digital há 4 anos: sites de alta conversão, tráfego pago e, mais recentemente, automações com <strong>n8n</strong> e agentes de IA.
+          </p>
+          <p class="about-body">
+            Quando você fala "switch core", "firewall Fortinet" ou "contrato MSP" eu sei do que se trata. <strong>Não precisa explicar o que você vende.</strong> É exatamente por isso que consigo construir um sistema que filtra CPF de CNPJ antes do lead chegar no seu WhatsApp.
+          </p>
+          <div class="about-creds">
+            <div class="cred">
+              <div class="cred-ico">
+                <svg viewBox="0 0 15 15"><rect x="2" y="3" width="11" height="9" rx="1"/><path d="M5 3V2h5v1"/></svg>
+              </div>
+              Graduado em Análise e Desenvolvimento de Sistemas
+            </div>
+            <div class="cred">
+              <div class="cred-ico">
+                <svg viewBox="0 0 15 15"><circle cx="7.5" cy="7.5" r="5.5"/><path d="M7.5 4.5v3l2 2"/></svg>
+              </div>
+              Pós-graduado em Gestão de TI
+            </div>
+            <div class="cred">
+              <div class="cred-ico">
+                <svg viewBox="0 0 15 15"><path d="M3 8s1.5-3 4.5-3 4.5 3 4.5 3-1.5 3-4.5 3S3 8 3 8z"/><circle cx="7.5" cy="8" r="1.5"/></svg>
+              </div>
+              4 anos em sites, tráfego pago e automações n8n
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMULÁRIO -->
+  <section id="formulario" class="bg-alt">
+    <div class="container">
+      <p class="sec-label r">// agendar_diagnostico</p>
+      <div class="form-grid">
+        <div class="r d1">
+          <h2 class="form-left-head">Garanta<br>sua vaga.</h2>
+          <p class="form-left-sub">Analiso cada resposta antes da call. Quanto mais preciso você for, mais útil a conversa vai ser.</p>
+          <div class="form-promises">
+            <div class="fp"><span class="fp-dot"></span> Gratuito e sem compromisso de compra</div>
+            <div class="fp"><span class="fp-dot"></span> Resposta em até 24h úteis pelo WhatsApp</div>
+            <div class="fp"><span class="fp-dot"></span> Análise real do funil — não é pitch genérico</div>
+            <div class="fp"><span class="fp-dot"></span> Você sai sabendo o que fazer, com ou sem a Grovw</div>
+          </div>
+        </div>
+        <div class="form-shell r d2">
+          <div class="form-topbar">
+            <div class="tb-dots">
+              <div class="tb-dot" style="background:#FF5F57"></div>
+              <div class="tb-dot" style="background:#FEBC2E"></div>
+              <div class="tb-dot" style="background:#28C840"></div>
+            </div>
+            <span class="tb-lbl">diagnostico.form</span>
+          </div>
+          <div class="form-inner">
+            <form id="form-diag" action="https://api.web3forms.com/submit" method="POST">
+              <input type="hidden" name="access_key" value="f65a41ca-f8a1-4a6e-bde4-fdeb6672298b" />
+              <input type="hidden" name="subject" value="Novo diagnostico — kalidcarvalho.com/diagnostico (TI B2B)" />
+              <input type="checkbox" name="botcheck" style="display:none" />
+              <div class="fg">
+                <label for="nome">Nome completo</label>
+                <input type="text" id="nome" name="nome" placeholder="Roberto Alves" required />
+              </div>
+              <div class="fg">
+                <label for="empresa">Empresa</label>
+                <input type="text" id="empresa" name="empresa" placeholder="Alves Infraestrutura TI" required />
+              </div>
+              <div class="fg">
+                <label for="segmento">Segmento</label>
+                <select id="segmento" name="segmento" required>
+                  <option value="" disabled selected>Selecione o segmento</option>
+                  <option>Infraestrutura de TI (cabeamento, firewall, CFTV, redes)</option>
+                  <option>Segurança da Informação</option>
+                  <option>MSP / Suporte Gerenciado</option>
+                  <option>SaaS B2B (ERP, RH, logística, outro)</option>
+                  <option>Revenda de hardware / software</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+              <div class="fg">
+                <label for="cidade">Cidade</label>
+                <input type="text" id="cidade" name="cidade" placeholder="Manaus, AM" required />
+              </div>
+              <div class="fg">
+                <label for="dif">Onde o funil trava hoje?</label>
+                <textarea id="dif" name="dificuldade" placeholder="Ex: só fechamos por indicação. Leads que chegam são pessoa física sem fit nenhum..." required></textarea>
+              </div>
+              <div class="fg" style="margin-bottom:20px">
+                <label for="origem">Como chegou até aqui?</label>
+                <select id="origem" name="origem" required>
+                  <option value="" disabled selected>Selecione</option>
+                  <option>Instagram @eukalidcarvalho</option>
+                  <option>LinkedIn</option>
+                  <option>Google</option>
+                  <option>Indicação</option>
+                  <option>Outro</option>
+                </select>
+              </div>
+              <button type="submit" class="btn-submit">
+                Quero meu diagnóstico gratuito
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+              </button>
+              <p class="form-fine">// sem compromisso · resposta em até 24h úteis</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <span class="f-logo">kalid_carvalho <span>| ecossistema_de_resultados</span></span>
+      <p class="f-links">
+        <a href="https://kalidcarvalho.com" target="_blank">kalidcarvalho.com</a>
+        &ensp;&middot;&ensp;
+        <a href="https://instagram.com/eukalidcarvalho" target="_blank">@eukalidcarvalho</a>
+      </p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- OBRIGADO -->
+<div id="obrigado">
+  <div class="ty-inner">
+    <div class="ty-icon"><svg viewBox="0 0 24 24"><polyline points="4,12 9,17 20,6"/></svg></div>
+    <h2 class="ty-title">Diagnóstico<br><em>solicitado.</em></h2>
+    <p class="ty-body">Recebi. Vou analisar o seu funil antes da call e entrar em contato em até 24h pelo WhatsApp.</p>
+    <p class="ty-note">// kalidcarvalho.com · ecossistema_de_resultados</p>
+  </div>
+</div>
+
+<script>
+  /* NAV */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 40); }, { passive: true });
+
+  /* REVEAL */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.06 });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+  /* TERMINAL */
+  const lines = [
+    { t:'cmd',  p:'$', txt:'./analisa_funil --cliente="Integrador TI"' },
+    { t:'out',  txt:'Iniciando mapeamento de captação B2B...' },
+    { t:'div' },
+    { t:'chk',  s:'err',  txt:'aquisicao_atual: indicacao_100%' },
+    { t:'chk',  s:'err',  txt:'leads_qualidade: CPF=98% | CNPJ=2%' },
+    { t:'chk',  s:'warn', txt:'site_status: obsoleto_2015' },
+    { t:'chk',  s:'err',  txt:'agencia_anterior: sem_resultado' },
+    { t:'div' },
+    { t:'out',  txt:'Calculando potencial de mercado...' },
+    { t:'chk',  s:'ok',   txt:'ticket_medio_projeto: R$15k - R$100k' },
+    { t:'chk',  s:'ok',   txt:'polo_industrial_manaus: alto_potencial' },
+    { t:'chk',  s:'ok',   txt:'diferencial_tecnico: detectado' },
+    { t:'div' },
+    { t:'out',  txt:'Recomendação:' },
+    { t:'chk',  s:'ok',   txt:'ecossistema_de_captacao_b2b: PRONTO' },
+    { t:'cur' },
+  ];
+  const icons = { ok:'✓', warn:'⚠', err:'✕', info:'→' };
+  const body = document.getElementById('term-body');
+
+  function mkLine(cfg) {
+    if (cfg.t === 'div') {
+      const d = document.createElement('div'); d.className = 'term-div'; return d;
+    }
+    if (cfg.t === 'cur') {
+      const d = document.createElement('div');
+      d.className = 'term-cursor';
+      d.innerHTML = '<span class="t-prompt">$</span> <span class="blk"></span>';
+      return d;
+    }
+    const d = document.createElement('div'); d.className = 'term-line';
+    if (cfg.t === 'cmd') d.innerHTML = `<span class="t-prompt">${cfg.p}</span><span class="t-cmd"> ${cfg.txt}</span>`;
+    else if (cfg.t === 'out') d.innerHTML = `<span class="t-out">${cfg.txt}</span>`;
+    else if (cfg.t === 'chk') d.innerHTML = `<span class="t-${cfg.s}">${icons[cfg.s]}</span><span class="t-cmd"> ${cfg.txt}</span>`;
+    return d;
+  }
+
+  let i = 0;
+  function next() {
+    if (i >= lines.length) return;
+    const el = mkLine(lines[i]);
+    body.appendChild(el);
+    requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('show')));
+    i++;
+    const delay = lines[i-1].t==='div' ? 80 : lines[i-1].t==='cmd' ? 700 : lines[i-1].t==='out' ? 380 : 200;
+    if (i < lines.length) setTimeout(next, delay);
+  }
+  setTimeout(next, 1400);
+
+  /* FORM */
+  const form = document.getElementById('form-diag');
+  const pagina = document.getElementById('pagina-principal');
+  const obrigado = document.getElementById('obrigado');
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const btn = form.querySelector('.btn-submit');
+    const orig = btn.innerHTML;
+    btn.innerHTML = 'Enviando...'; btn.disabled = true;
+    try {
+      const res = await fetch(form.action, { method:'POST', body: new FormData(form) });
+      const json = await res.json();
+      if (json.success) {
+        pagina.style.display = 'none';
+        obrigado.classList.add('active');
+        window.scrollTo(0, 0);
+      } else { btn.innerHTML = 'Erro. Tente novamente.'; btn.disabled = false; }
+    } catch { btn.innerHTML = orig; btn.disabled = false; }
+  });
+</script>
+</body>
+</html>
