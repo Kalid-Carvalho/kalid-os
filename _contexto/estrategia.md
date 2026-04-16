@@ -1,19 +1,35 @@
 # Foco Atual — Kalid Carvalho
 
 ## Fase
-Crescimento e aquisição — negócio estruturado, agora expandindo carteira de clientes e capacidades técnicas.
+Pivotagem e tração inicial — mudança de nicho executada em abril/2026. Foco em fazer caixa rápido e validar o novo posicionamento com os primeiros clientes.
 
 ## Prioridade principal
-1. Prospectar e fechar clientes no setor de advocacia para a GROVW
-2. Aprender criação de apps com claude core (novo skill em desenvolvimento)
-3. Virar um criador de conteudo na internet na parte de IA no youtube e instagram no perfil pessoal
+1. Fazer caixa rápido: fechar projetos de Setup (R$3.000–R$5.000) no nicho de TI B2B e Infraestrutura
+2. Prospectar via LinkedIn e Cold Email — foco inicial em Manaus (Polo Industrial) para reuniões presenciais
+3. Pivotar o @eukalidcarvalho para Engenharia de Vendas B2B (build in public, conteúdo técnico)
+4. Aprender criação de apps com Claude Code (skill em desenvolvimento)
+5. Crescer como criador de conteúdo tech no @kalidcarvalho (YouTube + Instagram)
 
 ## O que pode esperar
-- Projetos fora do nicho de advocacia por enquanto
-- Contratação de equipe (opera solo por escolha)
+- Zero clientes ativos no novo nicho — tudo começa do zero
+- Projetos fora do nicho de TI B2B por enquanto (exceto Smart Center, cliente antigo ativo)
+- Contratação de equipe não está no radar agora
+
+## Estratégia de aquisição
+- **Outbound (custo zero):** LinkedIn e Cold Email mirando empresas com sites obsoletos ou sem máquina de vendas
+- **Ads:** Google Ads fundo de funil (intenção extrema) — investimento inicial dos R$2.000
+- **Iscas técnicas:** Auditoria de Infraestrutura de Vendas como isca para Meta/LinkedIn Ads
+- **Foco geográfico inicial:** Manaus — reuniões presenciais para fechar primeiros cases
+
+## ICP principal
+Integrador de Infraestrutura de TI médio porte (10–50 funcionários). Vende firewall, cabeamento, CFTV corporativo, segurança da informação. Ticket alto. Depende de indicações. Já se frustrou com agências que não entendem termos técnicos.
+
+## ICP secundário
+Founder de SaaS B2B com software validado (ERP, RH, logística) que precisa integrar tráfego ao CRM e qualificar MQLs/SQLs automaticamente.
 
 ## Contexto com prazo
-- Prospecção advocacia: ativa desde abril 2026, sem prazo fixo
+- Pivotagem GROVW + @eukalidcarvalho: iniciada em abril/2026
+- Setup primeiros clientes TI B2B: prioridade imediata (sem prazo fixo)
 - Apps: aprendizado em andamento
 
 ---

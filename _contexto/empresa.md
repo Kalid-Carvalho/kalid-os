@@ -12,12 +12,17 @@
 ## Marcas / Projetos
 
 ### GROVW (grovw.com.br)
-Agência de performance digital. Vende sistema completo de captação de clientes qualificados.
+Agência de performance digital — **pivotada em abril/2026** do nicho de advocacia para **Empresas de Tecnologia B2B, SaaS e Infraestrutura de TI**.
 
-**Planos:**
-- Plano 1 — R$1.400 (landing page + email profissional + 30 dias Google Ads gerenciado)
-- Plano 2 — R$2.000 setup + R$3.000/mês (ecossistema autônomo: LP + Google Ads + bot WhatsApp + relatórios)
-- Plano 3 — R$5.000 setup + R$2.000/mês (ecossistema completo: site institucional + LP + Google + Meta + automação email/WhatsApp)
+**Posicionamento novo:** "Engenharia de Vendas" e "Aceleração de MRR/LTV" — não vende "marketing", vende máquina de vendas automatizada.
+**Promessa principal:** "Aceleramos o faturamento de empresas de TI, SaaS e Infraestrutura construindo máquinas de vendas automatizadas."
+
+**Oferta principal (Setup Cavalo de Troia):**
+- Ecossistema de Vendas: Landing Page de alta conversão (WordPress/Elementor) + Setup Google Ads + Automação de filtragem/webhook no n8n conectada ao CRM/WhatsApp do cliente
+- Ticket alvo: R$3.000 a R$5.000 (pagamento rápido, entrega em 15 dias)
+- Upsell: gestão de tráfego R$2.000 a R$3.000/mês após validação da máquina
+
+**Design system GROVW:** Dark tech — fundo preto #000000, accent limão #cdff00, Inter + JetBrains Mono, estilo Digital Architect (alinhado com estética tech B2B)
 
 **Design system GROVW:** Dark tech — fundo preto #000000, accent limão #cdff00, Inter + JetBrains Mono, estilo Digital Architect
 
@@ -28,12 +33,19 @@ Canal: @kalidcarvalho
 **Design system pessoal:** Bold Human — fundo #0D1526, accent azul #1A56DB, Space Grotesk, estilo tech com presença humana
 
 ### @eukalidcarvalho
-Canal de nicho focado em marketing jurídico para advogados. Gera leads para a GROVW.
-Público: advogados autônomos e sócios de escritórios pequenos (1 a 10 pessoas).
-Conteúdo: captação de clientes, sistema digital para escritório, tráfego pago jurídico.
+Canal de nicho — **pivotado em abril/2026** de marketing jurídico para Engenharia de Vendas B2B focada em TI e SaaS.
+Público novo: fundadores e diretores de TI de empresas de infraestrutura (firewall, cabeamento, CFTV, segurança), integradores de TI médio porte (10–50 funcionários) e founders de SaaS B2B.
+Conteúdo: "build in public" — documentação de processos, bastidores de n8n, LPs de alta conversão, integrações de API, automação de vendas B2B.
+Narrativa: transição transparente, mostrando a união do background técnico (ADS/Infra) com Growth — autoridade por sofisticação técnica.
+
+**Limpeza de vitrine:** arquivar posts institucionais e dicas rasas de OAB/Advocacia que não conversem com lógica de negócios geral.
 
 ## Contexto adicional
-- Prospecção ativa no setor de advocacia (prioridade atual)
+- **Nicho anterior:** Advocacia (abandonado — baixo fit, engessado)
+- **Nicho atual (abril/2026):** TI B2B, SaaS, Infraestrutura de TI
+- **Caixa atual:** R$2.000 para investir em tração inicial
+- **Aquisição:** Outbound (LinkedIn + Cold Email) custo zero + Google Ads fundo de funil + Meta/LinkedIn Ads com iscas técnicas
+- **Vantagem injusta:** Kalid tem formação em ADS + pós em Gestão de TI + experiência real em infraestrutura — fala de igual pra igual com fundadores e diretores de TI
 - Aprendendo criação de apps
 - Usa Opensquad com 5 squads ativos: Carrosséis Instagram, Designer Visual, Head de Growth, Prospecção Email, Reels Profissionais
 - Contato principal: WhatsApp — https://wa.me/5592991923266
