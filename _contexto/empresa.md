@@ -63,8 +63,7 @@ Narrativa: transição transparente, mostrando a união do background técnico (
 - **Plataforma de Ticketing White Label** — em desenvolvimento para gerenciamento de ingressos para eventos
 
 ## Institutos de Manaus (braço social/institucional)
-- **saberhumano.com.br** — site finalizado
-- **iires.org** e **biosystemires.com** — proposta de redesign enviada, R$1.700
+- **Adriann Sahdo** — cliente ativo, redesign de dois sites: saberhumano.com.br (site finalizado) + iires.org/biosystemires.com (proposta de redesign enviada, R$1.700)
 
 ## Histórico de propostas não fechadas (modelo antigo — só criação de sites)
 Propostas enviadas entre 2024-2025, antes de migrar para o modelo atual (site + tráfego + IA):
