@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1080">
+<title>Slide 01 — Capa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    width: 1080px;
+    height: 1350px;
+    background: #0D1526;
+    font-family: 'Space Grotesk', sans-serif;
+    color: #FFFFFF;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .bg-glow {
+    position: absolute;
+    width: 700px;
+    height: 700px;
+    right: -200px;
+    bottom: 80px;
+    background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bg-glow-top {
+    position: absolute;
+    width: 500px;
+    height: 500px;
+    left: -150px;
+    top: -100px;
+    background: radial-gradient(circle, rgba(26,86,219,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 72px;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1E2E4A;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo-mark {
+    width: 38px;
+    height: 38px;
+    background: #1A56DB;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #FFFFFF;
+    letter-spacing: -0.5px;
+  }
+
+  .logo-name {
+    font-size: 18px;
+    font-weight: 500;
+    color: #9BB3E8;
+  }
+
+  .slide-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #3D527A;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: absolute;
+    top: 72px;
+    left: 0; right: 0; bottom: 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 80px;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1A56DB;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin-bottom: 40px;
+  }
+
+  .accent-line {
+    width: 56px;
+    height: 4px;
+    background: #1A56DB;
+    border-radius: 2px;
+    margin-bottom: 48px;
+  }
+
+  .headline {
+    font-size: 76px;
+    font-weight: 700;
+    line-height: 1.0;
+    color: #FFFFFF;
+    letter-spacing: -2px;
+    margin-bottom: 36px;
+  }
+
+  .headline em {
+    color: #1A56DB;
+    font-style: normal;
+  }
+
+  .subtitle {
+    font-size: 28px;
+    font-weight: 400;
+    color: #9BB3E8;
+    line-height: 1.55;
+    max-width: 640px;
+  }
+
+  .bottom-bar {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 72px;
+    padding: 0 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #1E2E4A;
+  }
+
+  .handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 500;
+    color: #3D527A;
+  }
+
+  .swipe-tag {
+    font-size: 14px;
+    font-weight: 500;
+    color: #9BB3E8;
+    background: #111D35;
+    border: 1px solid #1E2E4A;
+    border-radius: 6px;
+    padding: 9px 18px;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+  <div class="bg-glow"></div>
+  <div class="bg-glow-top"></div>
+
+  <div class="top-bar">
+    <div class="logo">
+      <div class="logo-mark">KC</div>
+      <span class="logo-name">kalidcarvalho</span>
+    </div>
+    <span class="slide-label">Case · Redesign</span>
+  </div>
+
+  <div class="content">
+    <div class="tag">antes &amp; depois</div>
+    <div class="accent-line"></div>
+    <h1 class="headline">Quando o negócio<br>cresce, o site<br>precisa <em>crescer<br>junto.</em></h1>
+    <p class="subtitle">Um antes e depois com tudo que mudou por dentro.</p>
+  </div>
+
+  <div class="bottom-bar">
+    <span class="handle">@kalidcarvalho</span>
+    <span class="swipe-tag">arrasta →</span>
+  </div>
+</body>
+</html>
