@@ -17,12 +17,13 @@
 - **Separadores:** #1E2E4A
 
 ### Tipografia
-- **Fonte:** Space Grotesk (Google Fonts)
-- **Hero:** 60–68px, weight 700
-- **Heading:** 44px, weight 600
-- **Body:** 34px, weight 500
-- **Caption:** 24px, weight 400–500
-- **Tag/Badge:** 20–22px, weight 600 (uppercase)
+- **Fonte principal:** Space Grotesk (Google Fonts)
+- **Fonte técnica / destaque:** JetBrains Mono (Google Fonts) — usar em números, dados, nomes de ferramentas (Claude, N8N, GPT-4, etc.), termos técnicos e badges
+- **Hero:** 60–68px, weight 700, Space Grotesk
+- **Heading:** 44px, weight 600, Space Grotesk
+- **Body:** 34px, weight 500, Space Grotesk
+- **Caption:** 24px, weight 400–500, Space Grotesk
+- **Tag/Badge / dados técnicos:** 20–22px, weight 600 (uppercase), JetBrains Mono
 
 ### Elementos-chave
 - Border-radius: 8px em badges e botões
