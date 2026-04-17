@@ -970,6 +970,15 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
+<!-- Form Submit → Obrigado -->
+<script>
+document.getElementById('form-consultoria').addEventListener('submit', function(e) {
+  e.preventDefault();
+  // TODO: integrar Web3Forms ou webhook aqui antes do redirect
+  window.location.href = 'obrigado/index.html';
+});
+</script>
+
 <!-- Scroll Animation Observer (Design System) -->
 <script>
 (function(){
