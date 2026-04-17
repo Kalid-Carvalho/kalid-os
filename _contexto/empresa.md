@@ -4,9 +4,10 @@
 **Negócio:** GROVW (grovw.com.br) + Kalid Carvalho | Builder
 **O que faz:** Criação de sites de alta conversão + tráfego pago (Google Ads e Meta Ads) + automações com IA (WhatsApp bots, agentes, integrações N8N) para pequenas e médias empresas brasileiras
 **Perfil:** freelancer / solopreneur
-**Atende clientes:** Sim — foco atual em advocacia (escritórios de pequeno e médio porte)
+**Atende clientes:** Sim — foco atual em TI B2B, SaaS e Infraestrutura de TI (empresas de 10–50 funcionários)
 **Equipe:** Solo — opera tudo sozinho
-**Ferramentas:** N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright
+**Ferramentas:** N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright, Redis, Evolution API
+**MCPs conectados:** n8n-mcp (gerenciar workflows N8N direto do Claude Code)
 **Principais entregas:** Sites de alta conversão, landing pages, tráfego pago gerenciado, bots de qualificação WhatsApp, automações de captação, agentes de IA, reels e carrosséis de conteúdo
 
 ## Marcas / Projetos

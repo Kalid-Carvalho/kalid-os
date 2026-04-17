@@ -43,7 +43,10 @@ Design systems por marca:
 Ver `_contexto/preferencias.md` para lista completa.
 
 ## Ferramentas conectadas
-N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright
+N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright, Redis, Evolution API
+
+## MCPs configurados
+- **n8n-mcp** — gerencia workflows N8N direto do Claude Code (listar, criar, editar, debugar execuções)
 
 ---
 
