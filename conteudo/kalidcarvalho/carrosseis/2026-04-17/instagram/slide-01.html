@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
+
   body {
     width: 1080px;
     height: 1350px;
@@ -19,46 +20,29 @@
     position: relative;
   }
 
-  .bg-glow {
-    position: absolute;
-    width: 700px;
-    height: 700px;
-    right: -200px;
-    bottom: 80px;
-    background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .bg-glow-top {
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    left: -150px;
-    top: -100px;
-    background: radial-gradient(circle, rgba(26,86,219,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
+  /* TOP BAR */
   .top-bar {
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 72px;
-    padding: 0 60px;
+    height: 68px;
+    padding: 0 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid #1E2E4A;
+    z-index: 10;
+    background: rgba(13, 21, 38, 0.90);
+    border-bottom: 1px solid rgba(30, 46, 74, 0.8);
   }
 
   .logo {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
   }
 
   .logo-mark {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
     background: #1A56DB;
     border-radius: 8px;
     display: flex;
@@ -66,61 +50,132 @@
     justify-content: center;
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
     color: #FFFFFF;
-    letter-spacing: -0.5px;
   }
 
   .logo-name {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 500;
     color: #9BB3E8;
   }
 
   .slide-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 600;
     color: #3D527A;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
-  .content {
+  /* SPLIT SCREEN */
+  .split-wrapper {
     position: absolute;
-    top: 72px;
-    left: 0; right: 0; bottom: 72px;
+    top: 68px;
+    left: 0; right: 0;
+    height: 740px;
+    display: flex;
+  }
+
+  .split-side {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  .split-side .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(13, 21, 38, 0.25) 0%,
+      rgba(13, 21, 38, 0.50) 65%,
+      rgba(13, 21, 38, 0.95) 100%
+    );
+  }
+
+  .site-label {
+    position: absolute;
+    top: 24px;
+    left: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .split-side.antes .site-label {
+    background: rgba(255,255,255,0.08);
+    color: #9BB3E8;
+    border: 1px solid rgba(155, 179, 232, 0.20);
+  }
+
+  .split-side.depois .site-label {
+    background: rgba(26, 86, 219, 0.18);
+    color: #4D7EFF;
+    border: 1px solid rgba(26, 86, 219, 0.45);
+  }
+
+  /* divider line */
+  .divider {
+    position: absolute;
+    top: 68px;
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 740px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #1A56DB 15%,
+      #1A56DB 85%,
+      transparent 100%
+    );
+    z-index: 5;
+    opacity: 0.55;
+  }
+
+  /* TEXT AREA */
+  .text-area {
+    position: absolute;
+    top: 808px;
+    left: 0; right: 0;
+    bottom: 68px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 0 80px;
+    padding: 0 72px;
   }
 
   .tag {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: 600;
     color: #1A56DB;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    margin-bottom: 40px;
-  }
-
-  .accent-line {
-    width: 56px;
-    height: 4px;
-    background: #1A56DB;
-    border-radius: 2px;
-    margin-bottom: 48px;
+    margin-bottom: 20px;
   }
 
   .headline {
-    font-size: 76px;
+    font-size: 62px;
     font-weight: 700;
-    line-height: 1.0;
+    line-height: 1.03;
     color: #FFFFFF;
-    letter-spacing: -2px;
-    margin-bottom: 36px;
+    letter-spacing: -1.6px;
+    margin-bottom: 18px;
   }
 
   .headline em {
@@ -129,46 +184,44 @@
   }
 
   .subtitle {
-    font-size: 28px;
+    font-size: 23px;
     font-weight: 400;
     color: #9BB3E8;
-    line-height: 1.55;
-    max-width: 640px;
+    line-height: 1.5;
   }
 
+  /* BOTTOM BAR */
   .bottom-bar {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 72px;
-    padding: 0 60px;
+    height: 68px;
+    padding: 0 56px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-top: 1px solid #1E2E4A;
+    z-index: 10;
   }
 
   .handle {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: #3D527A;
   }
 
   .swipe-tag {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 500;
     color: #9BB3E8;
     background: #111D35;
     border: 1px solid #1E2E4A;
     border-radius: 6px;
-    padding: 9px 18px;
-    letter-spacing: 0.02em;
+    padding: 8px 16px;
   }
 </style>
 </head>
 <body>
-  <div class="bg-glow"></div>
-  <div class="bg-glow-top"></div>
 
   <div class="top-bar">
     <div class="logo">
@@ -178,16 +231,31 @@
     <span class="slide-label">Case · Redesign</span>
   </div>
 
-  <div class="content">
+  <div class="split-wrapper">
+    <div class="split-side antes">
+      <img src="../../../../../dados/antiga.png" alt="Site antigo">
+      <div class="overlay"></div>
+      <span class="site-label">antes</span>
+    </div>
+    <div class="split-side depois">
+      <img src="../../../../../dados/nova.png" alt="Site novo">
+      <div class="overlay"></div>
+      <span class="site-label">depois</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="text-area">
     <div class="tag">antes &amp; depois</div>
-    <div class="accent-line"></div>
-    <h1 class="headline">Quando o negócio<br>cresce, o site<br>precisa <em>crescer<br>junto.</em></h1>
-    <p class="subtitle">Um antes e depois com tudo que mudou por dentro.</p>
+    <h1 class="headline">Quando o negócio cresce,<br>o site precisa<br><em>crescer junto.</em></h1>
+    <p class="subtitle">O que mudou — e por que cada mudança importa.</p>
   </div>
 
   <div class="bottom-bar">
     <span class="handle">@kalidcarvalho</span>
     <span class="swipe-tag">arrasta →</span>
   </div>
+
 </body>
 </html>
