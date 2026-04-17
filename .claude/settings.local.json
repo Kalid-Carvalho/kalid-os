@@ -29,7 +29,9 @@
       "Write",
       "Bash",
       "Bash(mkdir -p \"c:/Users/kalid/Downloads/KalidCarvalho-os/.claude/skills/criativos-trafego/references\")",
-      "Bash(mkdir -p \"c:/Users/kalid/Downloads/KalidCarvalho-os/.claude/skills/criativos-trafego/scripts\")"
+      "Bash(mkdir -p \"c:/Users/kalid/Downloads/KalidCarvalho-os/.claude/skills/criativos-trafego/scripts\")",
+      "Skill(update-config)",
+      "Skill(update-config:*)"
     ]
   }
 }
