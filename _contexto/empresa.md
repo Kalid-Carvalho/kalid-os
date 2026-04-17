@@ -7,7 +7,7 @@
 **Atende clientes:** Sim — foco atual em TI B2B, SaaS e Infraestrutura de TI (empresas de 10–50 funcionários)
 **Equipe:** Solo — opera tudo sozinho
 **Ferramentas:** N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright, Redis, Evolution API
-**MCPs conectados:** n8n-mcp (gerenciar workflows N8N direto do Claude Code)
+**MCPs conectados:** n8n-mcp (gerenciar workflows N8N direto do Claude Code), Gmail (leitura e rascunhos de email), Google Calendar (eventos e agenda)
 **Principais entregas:** Sites de alta conversão, landing pages, tráfego pago gerenciado, bots de qualificação WhatsApp, automações de captação, agentes de IA, reels e carrosséis de conteúdo
 
 ## Marcas / Projetos
@@ -29,8 +29,6 @@ Agência de performance digital — **pivotada em abril/2026** do nicho de advoc
 | Gestão de Captação | R$2.000–R$3.000/mês | Recorrente | Gestão de tráfego + otimização de copy + relatório mensal de leads. Upsell após o setup. |
 
 **Design system GROVW:** Dark tech — fundo preto #000000, accent limão #cdff00, Inter + JetBrains Mono, estilo Digital Architect (alinhado com estética tech B2B)
-
-**Design system GROVW:** Dark tech — fundo preto #000000, accent limão #cdff00, Inter + JetBrains Mono, estilo Digital Architect
 
 ### Kalid Carvalho | Builder
 Marca pessoal de tech. Conteúdo sobre sites, apps e IA para criadores e empreendedores digitais.
@@ -58,6 +56,9 @@ Narrativa: transição transparente, mostrando a união do background técnico (
 
 ## Outros clientes e projetos
 - **Smart Center** — gestão de tráfego pago, R$200/mês de retainer (ativo)
+- **Luan Manzoli** — contrato fechado em 10/04/2026, R$2.000 (entrega em andamento)
+- **Vinicius Zanin (RSMX)** — cliente ativo, contrato pendente de assinatura
+- **Gilmar** — proposta enviada em 02/04/2026, aguardando retorno
 - **Produtores de eventos locais em Manaus** — apoio operacional, ticketing
 - **Plataforma de Ticketing White Label** — em desenvolvimento para gerenciamento de ingressos para eventos
 
