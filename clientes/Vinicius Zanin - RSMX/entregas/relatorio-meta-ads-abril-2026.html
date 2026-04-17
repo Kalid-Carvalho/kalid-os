@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Relatório Meta Ads — RSMX | Abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0B0F1A;
+    color: #F0F4FF;
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    border-bottom: 1px solid #1C2D4A;
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(26,86,219,0.15);
+    border: 1px solid rgba(26,86,219,0.35);
+    color: #7EB3FF;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #F0F4FF;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .header h1 span {
+    color: #1A56DB;
+  }
+
+  .header-meta {
+    font-size: 14px;
+    color: #8899BB;
+    margin-top: 8px;
+  }
+
+  .header-meta strong {
+    color: #F0F4FF;
+  }
+
+  .status-pill {
+    background: rgba(34,197,94,0.12);
+    border: 1px solid rgba(34,197,94,0.3);
+    color: #4ADE80;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1C2D4A;
+  }
+
+  /* Cards de métricas */
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .metric-card {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 20px 18px;
+  }
+
+  .metric-card.highlight {
+    border-color: rgba(26,86,219,0.4);
+    background: rgba(26,86,219,0.08);
+  }
+
+  .metric-card.alert {
+    border-color: rgba(234,88,12,0.4);
+    background: rgba(234,88,12,0.07);
+  }
+
+  .metric-card.success {
+    border-color: rgba(34,197,94,0.3);
+    background: rgba(34,197,94,0.06);
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #8899BB;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #F0F4FF;
+    line-height: 1;
+  }
+
+  .metric-sub {
+    font-size: 12px;
+    color: #8899BB;
+    margin-top: 6px;
+  }
+
+  /* Tabela */
+  .table-wrap {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    background: #0D1526;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8899BB;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #1C2D4A;
+  }
+
+  tbody td {
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #D0DEFF;
+    border-bottom: 1px solid #0D1526;
+  }
+
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover td {
+    background: rgba(26,86,219,0.04);
+  }
+
+  .tag-frio {
+    background: rgba(26,86,219,0.15);
+    color: #7EB3FF;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .tag-remarketing {
+    background: rgba(168,85,247,0.15);
+    color: #C084FC;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .tag-topo {
+    background: rgba(34,197,94,0.12);
+    color: #4ADE80;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .value-zero {
+    color: #EA580C;
+    font-weight: 600;
+  }
+
+  /* Diagnóstico */
+  .diag-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .diag-item {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 20px 20px 20px 24px;
+    border-left: 3px solid #1A56DB;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .diag-item.critical {
+    border-left-color: #EA580C;
+  }
+
+  .diag-item.warning {
+    border-left-color: #EAB308;
+  }
+
+  .diag-item.ok {
+    border-left-color: #22C55E;
+  }
+
+  .diag-number {
+    background: #1A56DB;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .diag-item.critical .diag-number { background: #EA580C; }
+  .diag-item.warning .diag-number { background: #EAB308; color: #0B0F1A; }
+  .diag-item.ok .diag-number { background: #22C55E; color: #0B0F1A; }
+
+  .diag-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #F0F4FF;
+    margin-bottom: 6px;
+  }
+
+  .diag-content p {
+    font-size: 13px;
+    color: #8899BB;
+    line-height: 1.6;
+  }
+
+  /* Próximos passos */
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step-item {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .step-priority {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .priority-alta {
+    background: rgba(234,88,12,0.15);
+    color: #FB923C;
+    border: 1px solid rgba(234,88,12,0.3);
+  }
+
+  .priority-media {
+    background: rgba(234,179,8,0.12);
+    color: #FACC15;
+    border: 1px solid rgba(234,179,8,0.3);
+  }
+
+  .step-text {
+    font-size: 14px;
+    color: #D0DEFF;
+    line-height: 1.5;
+  }
+
+  .step-text strong {
+    color: #F0F4FF;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  /* Contexto */
+  .context-box {
+    background: rgba(26,86,219,0.07);
+    border: 1px solid rgba(26,86,219,0.2);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 13px;
+    color: #8899BB;
+    line-height: 1.7;
+  }
+
+  .context-box strong {
+    color: #7EB3FF;
+  }
+
+  /* Footer */
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #1C2D4A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: gap;
+    gap: 12px;
+  }
+
+  .footer-left {
+    font-size: 13px;
+    color: #3D527A;
+  }
+
+  .footer-right {
+    font-size: 13px;
+    color: #3D527A;
+  }
+
+  .divider {
+    height: 1px;
+    background: #1C2D4A;
+    margin: 32px 0;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="badge">Meta Ads — Diagnóstico Inicial</div>
+        <h1>Campanha <span>RSMX</span><br>Resultados e Próximos Passos</h1>
+        <div class="header-meta">
+          <strong>Período:</strong> 3 a 17 de abril de 2026 &nbsp;·&nbsp;
+          <strong>Cliente:</strong> Vinicius Zanin / RSMX &nbsp;·&nbsp;
+          <strong>Objetivo:</strong> Geração de leads via landing page
+        </div>
+      </div>
+      <div class="status-pill">Campanha ativa</div>
+    </div>
+  </div>
+
+  <!-- Contexto -->
+  <div class="section">
+    <div class="section-title">Contexto da estratégia</div>
+    <div class="context-box">
+      A estratégia está estruturada em <strong>dois estágios</strong>: uma campanha de <strong>topo de funil</strong> para aquecer audiência via visitas ao perfil do Instagram (ativa desde 3 de abril), e duas campanhas de <strong>fundo de funil</strong> com objetivo de conversão — uma para público frio via Stories e uma de remarketing para quem já interagiu com o perfil (ativas desde 13 de abril, 4 dias de dados). O ticket médio do serviço é <strong>R$ 2.500</strong>.
+    </div>
+  </div>
+
+  <!-- Topo de funil -->
+  <div class="section">
+    <div class="section-title">Topo de funil — Visitas ao perfil</div>
+    <div class="metrics-grid">
+      <div class="metric-card success">
+        <div class="metric-label">CTR</div>
+        <div class="metric-value">3,99%</div>
+        <div class="metric-sub">Referência saudável: acima de 2%</div>
+      </div>
+      <div class="metric-card success">
+        <div class="metric-label">Custo / visita</div>
+        <div class="metric-value">R$ 0,15</div>
+        <div class="metric-sub">868 visitas geradas</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Alcance</div>
+        <div class="metric-value">12.745</div>
+        <div class="metric-sub">Impressões: 22.076</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Frequência</div>
+        <div class="metric-value">1,73</div>
+        <div class="metric-sub">Saudável — sem saturação</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Investimento</div>
+        <div class="metric-value">R$ 10</div>
+        <div class="metric-sub">Orçamento diário</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fundo de funil -->
+  <div class="section">
+    <div class="section-title">Fundo de funil — Conversão (13 a 17 abr)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Campanha</th>
+            <th>Alcance</th>
+            <th>Impressões</th>
+            <th>Freq.</th>
+            <th>Cliques</th>
+            <th>CTR</th>
+            <th>CPC</th>
+            <th>Views LP</th>
+            <th>Leads</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="tag-frio">Público Frio</span><br><span style="font-size:12px;color:#3D527A;margin-top:4px;display:block">Stories</span></td>
+            <td>942</td>
+            <td>1.285</td>
+            <td>1,36</td>
+            <td>11</td>
+            <td>0,86%</td>
+            <td>R$ 2,75</td>
+            <td>6</td>
+            <td><span class="value-zero">0</span></td>
+          </tr>
+          <tr>
+            <td><span class="tag-remarketing">Remarketing</span><br><span style="font-size:12px;color:#3D527A;margin-top:4px;display:block">Stories</span></td>
+            <td>457</td>
+            <td>1.414</td>
+            <td style="color:#EAB308;font-weight:600">3,09</td>
+            <td>13</td>
+            <td>0,92%</td>
+            <td>R$ 3,33</td>
+            <td>7</td>
+            <td><span class="value-zero">0</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Diagnóstico -->
+  <div class="section">
+    <div class="section-title">Diagnóstico — o que está acontecendo</div>
+    <div class="diag-list">
+
+      <div class="diag-item critical">
+        <div class="diag-number">1</div>
+        <div class="diag-content">
+          <h4>Metade dos cliques não chega na landing page</h4>
+          <p>11 cliques geraram apenas 6 visualizações da LP. 13 cliques geraram 7. Uma queda de ~45% indica problema de carregamento da página no mobile, pixel mal configurado, ou link quebrado em algum criativo. Esse é o ponto mais crítico — sem tráfego chegando, não há como gerar lead.</p>
+        </div>
+      </div>
+
+      <div class="diag-item critical">
+        <div class="diag-number">2</div>
+        <div class="diag-content">
+          <h4>Zero leads — conversão não está acontecendo</h4>
+          <p>Mesmo as pessoas que chegam na landing page não estão preenchendo o formulário. Pode ser problema na página (clareza da oferta, velocidade, CTA fraco) ou o evento de conversão do Pixel não está disparando corretamente — o que impede o algoritmo do Meta de otimizar para leads.</p>
+        </div>
+      </div>
+
+      <div class="diag-item warning">
+        <div class="diag-number">3</div>
+        <div class="diag-content">
+          <h4>Audiência de remarketing muito pequena e saturando rápido</h4>
+          <p>Com apenas 457 pessoas no remarketing e frequência de 3,09 em apenas 4 dias, essa audiência já está sobrecarregada. As mesmas pessoas estão vendo o anúncio mais de 3 vezes por semana. É necessário ampliar a janela de engajamento (de 30 para 60–90 dias) para aumentar o pool disponível.</p>
+        </div>
+      </div>
+
+      <div class="diag-item warning">
+        <div class="diag-number">4</div>
+        <div class="diag-content">
+          <h4>CTR baixo nas campanhas de fundo (0,86% e 0,92%)</h4>
+          <p>Comparando com o 3,99% do topo de funil, os criativos de conversão não estão gerando clique suficiente. Stories de fundo precisam de um ângulo mais direto — prova social, resultado concreto de cliente médico, ou urgência clara. Abaixo de 1% indica necessidade de teste de novos criativos.</p>
+        </div>
+      </div>
+
+      <div class="diag-item ok">
+        <div class="diag-number">5</div>
+        <div class="diag-content">
+          <h4>Topo de funil funcionando bem — base para escalar</h4>
+          <p>CTR de 3,99% e custo por visita de R$ 0,15 são números saudáveis. A campanha está aquecendo audiência com eficiência. Quando o fundo estiver funcionando, esse topo já terá construído uma base qualificada para o remarketing.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Próximos passos -->
+  <div class="section">
+    <div class="section-title">Próximos passos — plano de ação</div>
+    <div class="steps-list">
+
+      <div class="step-item">
+        <span class="step-priority priority-alta">Alta</span>
+        <div class="step-text">
+          <strong>Verificar e corrigir o Pixel do Meta</strong>
+          Confirmar se o evento "Lead" está disparando corretamente no submit do formulário. Sem isso o algoritmo não aprende quem converte e não consegue otimizar as campanhas de fundo.
+        </div>
+      </div>
+
+      <div class="step-item">
+        <span class="step-priority priority-alta">Alta</span>
+        <div class="step-text">
+          <strong>Auditar a landing page no mobile</strong>
+          Testar velocidade de carregamento, clareza da oferta e funcionamento do formulário em dispositivos móveis. A queda de 45% entre cliques e visualizações aponta diretamente para um problema nessa etapa.
+        </div>
+      </div>
+
+      <div class="step-item">
+        <span class="step-priority priority-alta">Alta</span>
+        <div class="step-text">
+          <strong>Expandir audiência de remarketing</strong>
+          Ampliar a janela de engajamento de 30 para 90 dias para aumentar o pool de remarketing e reduzir a saturação (frequência de 3,09 em 4 dias é muito alta para uma audiência de 457 pessoas).
+        </div>
+      </div>
+
+      <div class="step-item">
+        <span class="step-priority priority-media">Média</span>
+        <div class="step-text">
+          <strong>Testar novos criativos no fundo de funil</strong>
+          Criar variações com ângulo de prova social ou resultado concreto de cliente médico. CTR abaixo de 1% indica que o criativo atual não está gerando desejo ou urgência suficiente para o clique.
+        </div>
+      </div>
+
+      <div class="step-item">
+        <span class="step-priority priority-media">Média</span>
+        <div class="step-text">
+          <strong>Revisão completa em 7 dias</strong>
+          Com as correções implementadas, o próximo relatório de performance deverá ser feito entre 22 e 24 de abril para avaliar se o algoritmo começou a otimizar para leads e se a taxa de chegada na LP melhorou.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">RSMX — Relatório Meta Ads · Abril 2026</div>
+    <div class="footer-right">Elaborado por GROVW</div>
+  </div>
+
+</div>
+</body>
+</html>
