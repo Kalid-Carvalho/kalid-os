@@ -36,9 +36,10 @@ deploy_links() {
 deploy_luan() {
   echo "→ Subindo kalidcarvalho.com/luan-manzoli..."
   LUAN="/c/Users/kalid/Downloads/KalidCarvalho-os/clientes/Luan Manzoli/entregas/nextads-agencia"
-  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/luan-manzoli/obrigado"
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/luan-manzoli/obrigado /var/www/kalid/luan-manzoli/assets/img"
   scp $SSH_OPTS "$LUAN/index.html" $VPS:/var/www/kalid/luan-manzoli/index.html
   scp $SSH_OPTS "$LUAN/obrigado/index.html" $VPS:/var/www/kalid/luan-manzoli/obrigado/index.html
+  scp $SSH_OPTS "$LUAN/assets/img/luan-hero.jpg" $VPS:/var/www/kalid/luan-manzoli/assets/img/luan-hero.jpg
   echo "✓ kalidcarvalho.com/luan-manzoli atualizado"
 }
 
