@@ -33,6 +33,15 @@ deploy_links() {
   echo "✓ grovw.com.br/links atualizado"
 }
 
+deploy_luan() {
+  echo "→ Subindo kalidcarvalho.com/luan-manzoli..."
+  LUAN="/c/Users/kalid/Downloads/KalidCarvalho-os/clientes/Luan Manzoli/entregas/nextads-agencia"
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/luan-manzoli/obrigado"
+  scp $SSH_OPTS "$LUAN/index.html" $VPS:/var/www/kalid/luan-manzoli/index.html
+  scp $SSH_OPTS "$LUAN/obrigado/index.html" $VPS:/var/www/kalid/luan-manzoli/obrigado/index.html
+  echo "✓ kalidcarvalho.com/luan-manzoli atualizado"
+}
+
 deploy_diagnostico() {
   echo "→ Subindo landing page de diagnóstico..."
   DIAG="$HOME/Downloads/KalidCarvalho-os/projetos/kalidcarvalho-diagnostico"
@@ -48,11 +57,13 @@ case "$1" in
   kalid)        deploy_kalid ;;
   links)        deploy_links ;;
   diagnostico)  deploy_diagnostico ;;
+  luan)         deploy_luan ;;
   all)
     deploy_grovw
     deploy_kalid
     deploy_links
     deploy_diagnostico
+    deploy_luan
     ;;
   *)
     echo "Uso: bash deploy.sh [target]"
@@ -62,6 +73,7 @@ case "$1" in
     echo "  kalid        → sobe kalidcarvalho.com/links"
     echo "  links        → sobe grovw.com.br/links"
     echo "  diagnostico  → sobe kalidcarvalho.com/diagnostico"
+  echo "  luan         → sobe kalidcarvalho.com/luan-manzoli"
     echo "  all          → sobe tudo"
     ;;
 esac
