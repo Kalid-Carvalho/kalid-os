@@ -64,9 +64,11 @@ body {
 .author-handle { font-size: 22px; font-weight: 400; color: #536471; }
 
 .tweet-text {
-  font-size: 40px; font-weight: 400;
-  color: #0F1419; line-height: 1.60;
+  font-size: 36px; font-weight: 400;
+  color: #0F1419; line-height: 1.45;
+  display: flex; flex-direction: column; gap: 18px;
 }
+.tweet-text p { margin: 0; }
 
 .tweet-timestamp {
   font-size: 19px; color: #536471;
@@ -121,11 +123,10 @@ body {
       </div>
     </div>
 
-    <p class="tweet-text">
-      Karpathy chamou isso de "the jagged frontier". A fronteira irregular entre o que IA domina e o que ainda falha.<br><br>
-      Quem aprende a navegar isso não precisa de time grande. Só precisa saber onde confiar e onde revisar.<br><br>
-      Se você quer continuar acompanhando como IA está mudando a forma de construir coisas, me segue aqui. Posto sobre isso toda semana.
-    </p>
+    <div class="tweet-text">
+      <p>Karpathy chamou isso de "the jagged frontier". A fronteira irregular entre o que IA domina e o que ainda falha.</p>
+      <p>Quem aprende a navegar isso não precisa de time grande. Só precisa saber onde confiar e onde revisar.</p>
+    </div>
 
     <div class="tweet-timestamp">
       9:33 PM <span>·</span> 18 abr. 2026 <span>·</span> <strong style="color:#0F1419;">16,8K</strong> Visualizações
@@ -153,8 +154,8 @@ body {
 </div>
 
 <div class="bottom-bar">
-  <span class="progress">7 / 7</span>
-  <span class="swipe">@kalidcarvalho</span>
+  <span class="progress">7 / 8</span>
+  <span class="swipe">arrasta →</span>
 </div>
 
 </body>

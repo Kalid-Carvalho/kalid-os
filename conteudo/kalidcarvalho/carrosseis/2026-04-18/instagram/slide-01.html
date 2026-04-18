@@ -68,11 +68,11 @@ body {
 
 /* Tweet text area */
 .tweet-text {
-  font-size: 40px; font-weight: 400;
-  color: #0F1419; line-height: 1.60;
+  font-size: 36px; font-weight: 400;
+  color: #0F1419; line-height: 1.45;
+  display: flex; flex-direction: column; gap: 18px;
 }
-.tweet-text strong { font-weight: 400; }
-.tweet-text em { color: #0F1419; font-style: normal; font-weight: 400; }
+.tweet-text p { margin: 0; }
 
 /* Timestamp */
 .tweet-timestamp {
@@ -132,10 +132,10 @@ body {
       </div>
     </div>
 
-    <p class="tweet-text">
-      Andrej Karpathy foi cofundador da OpenAI e diretor de IA da Tesla. Uma das vozes mais respeitadas no desenvolvimento de IA. Quando ele opina sobre IA, <strong>o mundo tech para.</strong><br><br>
-      Na semana passada ele colocou em palavras algo que <em>a maioria ainda não percebeu.</em>
-    </p>
+    <div class="tweet-text">
+      <p>Andrej Karpathy foi cofundador da OpenAI e diretor de IA da Tesla. Uma das vozes mais respeitadas no desenvolvimento de IA. Quando ele opina sobre IA, o mundo tech para.</p>
+      <p>Na semana passada ele colocou em palavras algo que a maioria ainda não percebeu.</p>
+    </div>
 
     <div class="tweet-timestamp">
       9:27 PM <span>·</span> 18 abr. 2026 <span>·</span> <strong style="color:#0F1419;">18,4K</strong> Visualizações
@@ -163,7 +163,7 @@ body {
 </div>
 
 <div class="bottom-bar">
-  <span class="progress">1 / 7</span>
+  <span class="progress">1 / 8</span>
   <span class="swipe">arrasta →</span>
 </div>
 

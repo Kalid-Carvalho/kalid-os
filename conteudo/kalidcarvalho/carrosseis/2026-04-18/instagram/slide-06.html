@@ -64,9 +64,11 @@ body {
 .author-handle { font-size: 22px; font-weight: 400; color: #536471; }
 
 .tweet-text {
-  font-size: 40px; font-weight: 400;
-  color: #0F1419; line-height: 1.60;
+  font-size: 36px; font-weight: 400;
+  color: #0F1419; line-height: 1.45;
+  display: flex; flex-direction: column; gap: 18px;
 }
+.tweet-text p { margin: 0; }
 
 .tweet-timestamp {
   font-size: 19px; color: #536471;
@@ -121,10 +123,10 @@ body {
       </div>
     </div>
 
-    <p class="tweet-text">
-      A diferença não é técnica. É conceitual.<br><br>
-      Quem usa IA pra acelerar tarefas fica 20% mais rápido. Quem usa IA como executor consegue entregar o que antes precisava de um time inteiro.
-    </p>
+    <div class="tweet-text">
+      <p>A diferença não é técnica. É conceitual.</p>
+      <p>Quem usa IA pra acelerar tarefas fica 20% mais rápido. Quem usa IA como executor consegue entregar o que antes precisava de um time inteiro.</p>
+    </div>
 
     <div class="tweet-timestamp">
       9:32 PM <span>·</span> 18 abr. 2026 <span>·</span> <strong style="color:#0F1419;">11,7K</strong> Visualizações
@@ -152,7 +154,7 @@ body {
 </div>
 
 <div class="bottom-bar">
-  <span class="progress">6 / 7</span>
+  <span class="progress">6 / 8</span>
   <span class="swipe">arrasta →</span>
 </div>
 
