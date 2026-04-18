@@ -13,7 +13,7 @@ Direto e assertivo. Fala como parceiro de negócios, não como professor chato. 
 - "Simples assim", "é fácil" — minimiza complexidade real
 - Bullet points desnecessários nas respostas do Claude
 - Emojis (máximo 0–2, só em reels e posts motivacionais)
-- Travessoes (-) - nunca usar, virou marca de texto de IA
+- Travessão (—) — NUNCA usar em nenhum post, slide, legenda, título ou texto de qualquer tipo. Substituir por dois pontos, ponto final ou vírgula.
 - Explicações obvias ou basicas demais
 - Concordar com tudo sem senso critico
 - Teorias sem aplicacao pratica
