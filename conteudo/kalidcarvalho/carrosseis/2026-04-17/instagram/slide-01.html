@@ -41,24 +41,66 @@
     display: block;
   }
 
-  /* leve escurecimento no topo, forte no rodapé para o texto */
+  /* overlay: quase nada no meio, forte no topo e rodapé */
   .split-side .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(
       to bottom,
-      rgba(13, 21, 38, 0.04) 0%,
-      rgba(13, 21, 38, 0.04) 45%,
-      rgba(13, 21, 38, 0.72) 75%,
-      rgba(13, 21, 38, 0.97) 100%
+      rgba(13, 21, 38, 0.0) 10%,
+      rgba(13, 21, 38, 0.0) 45%,
+      rgba(13, 21, 38, 0.65) 70%,
+      rgba(13, 21, 38, 0.98) 100%
     );
   }
 
-  /* label ANTES / DEPOIS */
+  /* divider */
+  .divider {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: calc(50% - 1px);
+    width: 2px;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(26,86,219,0.65) 10%,
+      rgba(26,86,219,0.65) 90%,
+      transparent 100%
+    );
+    z-index: 6;
+  }
+
+  /* TOP BAR — sólido */
+  .top-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    padding: 0 52px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 20;
+    background: rgba(8, 14, 28, 0.95);
+    border-bottom: 1px solid rgba(26, 86, 219, 0.25);
+  }
+
+  .top-bar span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(155, 179, 232, 0.65);
+    letter-spacing: 0.02em;
+  }
+
+  .top-bar span.brand {
+    font-weight: 600;
+    color: #9BB3E8;
+  }
+
+  /* LABELS ANTES / DEPOIS — abaixo da top bar, bem destacados */
   .site-label {
     position: absolute;
-    top: 84px;
-    left: 20px;
+    top: 76px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 700;
@@ -66,92 +108,29 @@
     text-transform: uppercase;
     padding: 7px 14px;
     border-radius: 4px;
-    z-index: 2;
+    z-index: 15;
   }
 
-  .split-side.antes .site-label {
-    background: rgba(255,255,255,0.10);
+  .label-antes {
+    left: 20px;
+    background: rgba(13, 21, 38, 0.82);
     color: #C8D8F0;
-    border: 1px solid rgba(200, 216, 240, 0.22);
+    border: 1px solid rgba(155, 179, 232, 0.30);
   }
 
-  .split-side.depois .site-label {
-    background: rgba(26, 86, 219, 0.22);
-    color: #5B8FFF;
-    border: 1px solid rgba(26, 86, 219, 0.50);
+  .label-depois {
+    left: calc(50% + 20px);
+    background: rgba(13, 21, 38, 0.82);
+    color: #4D7EFF;
+    border: 1px solid rgba(26, 86, 219, 0.55);
   }
 
-  /* divider */
-  .divider {
-    position: absolute;
-    top: 0;
-    left: calc(50% - 1px);
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgba(26,86,219,0.70) 12%,
-      rgba(26,86,219,0.70) 88%,
-      transparent 100%
-    );
-    z-index: 5;
-  }
-
-  /* TOP BAR — flutuando */
-  .top-bar {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 68px;
-    padding: 0 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 20;
-    background: linear-gradient(to bottom, rgba(13,21,38,0.88) 0%, transparent 100%);
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .logo-mark {
-    width: 36px;
-    height: 36px;
-    background: #1A56DB;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: #FFFFFF;
-  }
-
-  .logo-name {
-    font-size: 17px;
-    font-weight: 500;
-    color: #9BB3E8;
-  }
-
-  .slide-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    color: rgba(155,179,232,0.60);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  /* TEXT AREA — sobreposto no fundo */
+  /* HEADLINE + subtítulo — centro/baixo */
   .text-area {
     position: absolute;
-    bottom: 68px;
+    bottom: 120px;
     left: 0; right: 0;
-    padding: 0 72px 48px;
+    padding: 0 68px 0;
     z-index: 15;
   }
 
@@ -162,17 +141,17 @@
     color: #1A56DB;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    margin-bottom: 18px;
+    margin-bottom: 16px;
   }
 
   .headline {
-    font-size: 64px;
+    font-size: 62px;
     font-weight: 700;
-    line-height: 1.02;
+    line-height: 1.03;
     color: #FFFFFF;
-    letter-spacing: -1.8px;
-    margin-bottom: 16px;
-    text-shadow: 0 2px 24px rgba(13,21,38,0.6);
+    letter-spacing: -1.6px;
+    margin-bottom: 14px;
+    text-shadow: 0 2px 20px rgba(8, 14, 28, 0.8);
   }
 
   .headline em {
@@ -181,41 +160,82 @@
   }
 
   .subtitle {
-    font-size: 23px;
+    font-size: 22px;
     font-weight: 400;
-    color: rgba(155,179,232,0.90);
+    color: rgba(155, 179, 232, 0.85);
     line-height: 1.5;
   }
 
-  /* BOTTOM BAR — flutuando */
-  .bottom-bar {
+  /* BOTTOM AUTHOR */
+  .bottom-author {
     position: absolute;
     bottom: 0; left: 0; right: 0;
-    height: 68px;
-    padding: 0 56px;
+    height: 108px;
+    padding: 0 68px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     z-index: 20;
-    background: linear-gradient(to top, rgba(13,21,38,0.88) 0%, transparent 100%);
+    background: rgba(8, 14, 28, 0.95);
+    border-top: 1px solid rgba(26, 86, 219, 0.20);
   }
 
-  .handle {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 500;
-    color: rgba(155,179,232,0.55);
+  .ba-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
   }
 
-  .swipe-tag {
-    font-size: 13px;
+  .ba-avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border: 2px solid #1A56DB;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #1C2D4A;
+  }
+
+  .ba-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .ba-info {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .ba-name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: #F0F4FF;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .ba-check {
+    color: #1A56DB;
+    font-size: 18px;
+  }
+
+  .ba-handle {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #8899BB;
+  }
+
+  .ba-right {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 15px;
     font-weight: 500;
-    color: #9BB3E8;
-    background: rgba(17,29,53,0.85);
-    border: 1px solid rgba(30,46,74,0.9);
-    border-radius: 6px;
-    padding: 8px 16px;
-    backdrop-filter: blur(4px);
+    color: rgba(155, 179, 232, 0.55);
   }
 </style>
 </head>
@@ -225,34 +245,45 @@
     <div class="split-side antes">
       <img src="../../../../../dados/antiga.png" alt="Site antigo">
       <div class="overlay"></div>
-      <span class="site-label">antes</span>
     </div>
     <div class="split-side depois">
       <img src="../../../../../dados/nova.png" alt="Site novo">
       <div class="overlay"></div>
-      <span class="site-label">depois</span>
     </div>
   </div>
 
   <div class="divider"></div>
 
+  <!-- TOP BAR -->
   <div class="top-bar">
-    <div class="logo">
-      <div class="logo-mark">KC</div>
-      <span class="logo-name">kalidcarvalho</span>
-    </div>
-    <span class="slide-label">Case · Redesign</span>
+    <span class="brand">@kalidcarvalho</span>
+    <span>Case: Redesign de Site</span>
+    <span>© 2026</span>
   </div>
 
+  <!-- LABELS -->
+  <span class="site-label label-antes">antes</span>
+  <span class="site-label label-depois">depois</span>
+
+  <!-- HEADLINE -->
   <div class="text-area">
     <div class="tag">antes &amp; depois</div>
     <h1 class="headline">Quando o negócio cresce,<br>o site precisa<br><em>crescer junto.</em></h1>
     <p class="subtitle">O que mudou e por que cada mudança importa.</p>
   </div>
 
-  <div class="bottom-bar">
-    <span class="handle">@kalidcarvalho</span>
-    <span class="swipe-tag">arrasta →</span>
+  <!-- BOTTOM AUTHOR -->
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar">
+        <img src="../../../../../marca/foto-perfil.png" alt="Kalid Carvalho">
+      </div>
+      <div class="ba-info">
+        <span class="ba-name">Kalid Carvalho <span class="ba-check">✓</span></span>
+        <span class="ba-handle">@kalidcarvalho</span>
+      </div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
   </div>
 
 </body>
