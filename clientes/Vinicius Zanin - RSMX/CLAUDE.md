@@ -21,5 +21,21 @@ A definir após briefing completo.
 - [ ] Logo e materiais visuais
 - [ ] Fechar valor e condições
 
+## Acesso ao servidor (RSMX)
+
+```bash
+ssh -p 65002 u627285565@147.79.84.66
+# senha: Rsmx!@2026*
+```
+
+Upload via Python/paramiko (sem sshpass):
+- Host: `147.79.84.66`
+- Porta: `65002`
+- Usuário: `u627285565`
+- Senha: `Rsmx!@2026*`
+- Raiz do site: `domains/rsmx.com.br/public_html/`
+
 ## Arquivos importantes
 - briefing.md — template em preenchimento
+- site/ — LP estática (index.html + assets)
+- site/backup-server/ — backup das páginas `links/` e `trafego/` do servidor antigo
