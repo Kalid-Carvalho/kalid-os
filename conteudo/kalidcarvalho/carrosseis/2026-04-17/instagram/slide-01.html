@@ -20,10 +20,12 @@
     position: relative;
   }
 
-  /* SPLIT SCREEN — full cover */
+  /* SPLIT SCREEN — entre top bar e bottom author */
   .split-wrapper {
     position: absolute;
-    inset: 0;
+    top: 64px;
+    left: 0; right: 0;
+    bottom: 108px;
     display: flex;
   }
 
@@ -57,15 +59,14 @@
   /* divider */
   .divider {
     position: absolute;
-    top: 0; bottom: 0;
+    top: 64px;
+    bottom: 108px;
     left: calc(50% - 1px);
     width: 2px;
     background: linear-gradient(
       to bottom,
-      transparent 0%,
-      rgba(26,86,219,0.65) 10%,
-      rgba(26,86,219,0.65) 90%,
-      transparent 100%
+      rgba(26,86,219,0.65) 0%,
+      rgba(26,86,219,0.65) 100%
     );
     z-index: 6;
   }
@@ -100,7 +101,7 @@
   /* LABELS ANTES / DEPOIS — abaixo da top bar, bem destacados */
   .site-label {
     position: absolute;
-    top: 76px;
+    top: 14px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 700;
@@ -112,14 +113,14 @@
   }
 
   .label-antes {
-    left: 20px;
+    left: 16px;
     background: rgba(13, 21, 38, 0.82);
     color: #C8D8F0;
     border: 1px solid rgba(155, 179, 232, 0.30);
   }
 
   .label-depois {
-    left: calc(50% + 20px);
+    left: calc(50% + 16px);
     background: rgba(13, 21, 38, 0.82);
     color: #4D7EFF;
     border: 1px solid rgba(26, 86, 219, 0.55);
