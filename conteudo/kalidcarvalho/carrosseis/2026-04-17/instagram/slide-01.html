@@ -20,7 +20,85 @@
     position: relative;
   }
 
-  /* TOP BAR */
+  /* SPLIT SCREEN — full cover */
+  .split-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+  }
+
+  .split-side {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .split-side img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+  }
+
+  /* leve escurecimento no topo, forte no rodapé para o texto */
+  .split-side .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(13, 21, 38, 0.15) 0%,
+      rgba(13, 21, 38, 0.10) 40%,
+      rgba(13, 21, 38, 0.55) 65%,
+      rgba(13, 21, 38, 0.96) 100%
+    );
+  }
+
+  /* label ANTES / DEPOIS */
+  .site-label {
+    position: absolute;
+    top: 84px;
+    left: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 7px 14px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+
+  .split-side.antes .site-label {
+    background: rgba(255,255,255,0.10);
+    color: #C8D8F0;
+    border: 1px solid rgba(200, 216, 240, 0.22);
+  }
+
+  .split-side.depois .site-label {
+    background: rgba(26, 86, 219, 0.22);
+    color: #5B8FFF;
+    border: 1px solid rgba(26, 86, 219, 0.50);
+  }
+
+  /* divider */
+  .divider {
+    position: absolute;
+    top: 0;
+    left: calc(50% - 1px);
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(26,86,219,0.70) 12%,
+      rgba(26,86,219,0.70) 88%,
+      transparent 100%
+    );
+    z-index: 5;
+  }
+
+  /* TOP BAR — flutuando */
   .top-bar {
     position: absolute;
     top: 0; left: 0; right: 0;
@@ -29,9 +107,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: 10;
-    background: rgba(13, 21, 38, 0.90);
-    border-bottom: 1px solid rgba(30, 46, 74, 0.8);
+    z-index: 20;
+    background: linear-gradient(to bottom, rgba(13,21,38,0.88) 0%, transparent 100%);
   }
 
   .logo {
@@ -64,99 +141,18 @@
     font-family: 'JetBrains Mono', monospace;
     font-size: 12px;
     font-weight: 600;
-    color: #3D527A;
+    color: rgba(155,179,232,0.60);
     letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
-  /* SPLIT SCREEN */
-  .split-wrapper {
-    position: absolute;
-    top: 68px;
-    left: 0; right: 0;
-    height: 740px;
-    display: flex;
-  }
-
-  .split-side {
-    flex: 1;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .split-side img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-    display: block;
-  }
-
-  .split-side .overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      rgba(13, 21, 38, 0.25) 0%,
-      rgba(13, 21, 38, 0.50) 65%,
-      rgba(13, 21, 38, 0.95) 100%
-    );
-  }
-
-  .site-label {
-    position: absolute;
-    top: 24px;
-    left: 24px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 7px 14px;
-    border-radius: 4px;
-    z-index: 2;
-  }
-
-  .split-side.antes .site-label {
-    background: rgba(255,255,255,0.08);
-    color: #9BB3E8;
-    border: 1px solid rgba(155, 179, 232, 0.20);
-  }
-
-  .split-side.depois .site-label {
-    background: rgba(26, 86, 219, 0.18);
-    color: #4D7EFF;
-    border: 1px solid rgba(26, 86, 219, 0.45);
-  }
-
-  /* divider line */
-  .divider {
-    position: absolute;
-    top: 68px;
-    left: calc(50% - 1px);
-    width: 2px;
-    height: 740px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      #1A56DB 15%,
-      #1A56DB 85%,
-      transparent 100%
-    );
-    z-index: 5;
-    opacity: 0.55;
-  }
-
-  /* TEXT AREA */
+  /* TEXT AREA — sobreposto no fundo */
   .text-area {
     position: absolute;
-    top: 808px;
-    left: 0; right: 0;
     bottom: 68px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0 72px;
+    left: 0; right: 0;
+    padding: 0 72px 48px;
+    z-index: 15;
   }
 
   .tag {
@@ -166,31 +162,32 @@
     color: #1A56DB;
     text-transform: uppercase;
     letter-spacing: 0.14em;
-    margin-bottom: 20px;
-  }
-
-  .headline {
-    font-size: 62px;
-    font-weight: 700;
-    line-height: 1.03;
-    color: #FFFFFF;
-    letter-spacing: -1.6px;
     margin-bottom: 18px;
   }
 
+  .headline {
+    font-size: 64px;
+    font-weight: 700;
+    line-height: 1.02;
+    color: #FFFFFF;
+    letter-spacing: -1.8px;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 24px rgba(13,21,38,0.6);
+  }
+
   .headline em {
-    color: #1A56DB;
+    color: #4D7EFF;
     font-style: normal;
   }
 
   .subtitle {
     font-size: 23px;
     font-weight: 400;
-    color: #9BB3E8;
+    color: rgba(155,179,232,0.90);
     line-height: 1.5;
   }
 
-  /* BOTTOM BAR */
+  /* BOTTOM BAR — flutuando */
   .bottom-bar {
     position: absolute;
     bottom: 0; left: 0; right: 0;
@@ -199,37 +196,30 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-top: 1px solid #1E2E4A;
-    z-index: 10;
+    z-index: 20;
+    background: linear-gradient(to top, rgba(13,21,38,0.88) 0%, transparent 100%);
   }
 
   .handle {
     font-family: 'JetBrains Mono', monospace;
     font-size: 13px;
     font-weight: 500;
-    color: #3D527A;
+    color: rgba(155,179,232,0.55);
   }
 
   .swipe-tag {
     font-size: 13px;
     font-weight: 500;
     color: #9BB3E8;
-    background: #111D35;
-    border: 1px solid #1E2E4A;
+    background: rgba(17,29,53,0.85);
+    border: 1px solid rgba(30,46,74,0.9);
     border-radius: 6px;
     padding: 8px 16px;
+    backdrop-filter: blur(4px);
   }
 </style>
 </head>
 <body>
-
-  <div class="top-bar">
-    <div class="logo">
-      <div class="logo-mark">KC</div>
-      <span class="logo-name">kalidcarvalho</span>
-    </div>
-    <span class="slide-label">Case · Redesign</span>
-  </div>
 
   <div class="split-wrapper">
     <div class="split-side antes">
@@ -245,6 +235,14 @@
   </div>
 
   <div class="divider"></div>
+
+  <div class="top-bar">
+    <div class="logo">
+      <div class="logo-mark">KC</div>
+      <span class="logo-name">kalidcarvalho</span>
+    </div>
+    <span class="slide-label">Case · Redesign</span>
+  </div>
 
   <div class="text-area">
     <div class="tag">antes &amp; depois</div>
