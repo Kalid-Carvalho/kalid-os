@@ -4,18 +4,19 @@ Referências de alto nível para modelar conteúdo e extrair insights por canal.
 
 ---
 
-## @eukalidcarvalho — Marketing Jurídico
+## @eukalidcarvalho — Engenharia de Vendas B2B (TI, SaaS e Infraestrutura)
 
-Contexto: conteúdo focado em captação de clientes por autoridade e inbound marketing, respeitando o código de ética da OAB. Sem cruzar a linha da mercantilização.
+Contexto: build in public focado em empresas de TI, integradores de infraestrutura e founders de SaaS B2B. Conteúdo técnico-estratégico: n8n, automação de vendas, LP de captação, MQL/SQL, CRM, tráfego B2B.
 
 ### Pessoas-chave
-- **Maiara Trombini** — especialista em marketing jurídico. Referência para posicionamento digital de escritórios pequenos e médios
-- **Euro Júnior** — gestão e crescimento de escritórios de advocacia. Visão de negócios para advogados
-- **Afonso Paciléo** — presidente da AATSP. Referência prática de branding pessoal e posicionamento de autoridade na advocacia
+- **Dener Lippert (V4 Company)** — modelo de growth partner no Brasil. Como vender performance pra empresas tradicionais
+- **Gabriel Costa (Mineiro)** — Growth Hacking, alavancas de crescimento, retenção e dados
+- **Pedro Sobral** — tráfego pago e aquisição de clientes B2B
 
 ### Blogs e portais
-- **Blog da Aurum** — maior software jurídico do Brasil. Seção forte sobre marketing, gestão e inovação para advogados
-- **ADVBOX** — portal focado na transição do advogado tradicional para o digital
+- **Blog da Resultados Digitais (RD Station)** — funis de vendas B2B, inbound e outbound
+- **Reforge** — frameworks avançados de Growth e Produto (pouco usados no Brasil)
+- **Blog da V4 Company** — estudos de caso de escala via marketing digital
 
 ---
 
