@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #0A1020; font-family: 'Space Grotesk', sans-serif; color: #FFFFFF; overflow: hidden; position: relative; }
+.accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+.glow { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 65%); z-index: 1; pointer-events: none; }
+
+.top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-bottom: 1px solid rgba(26,86,219,0.18); z-index: 15; }
+.top-header span { font-size: 16px; font-weight: 400; color: rgba(155,179,232,0.50); }
+.top-header .brand { font-weight: 600; color: #9BB3E8; }
+
+.content { position: absolute; top: 52px; left: 6px; right: 0; bottom: 96px; padding: 0 80px; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
+.slide-tag { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: #1A56DB; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 52px; }
+.quote-block { border-left: 5px solid #1A56DB; padding-left: 44px; margin-bottom: 56px; }
+.quote { font-size: 60px; font-weight: 700; line-height: 1.05; color: #F0F4FF; letter-spacing: -1.5px; }
+.quote em { color: #4D7EFF; font-style: normal; }
+.divider { width: 52px; height: 3px; background: #1A56DB; border-radius: 2px; margin-bottom: 40px; }
+.body-text { font-size: 30px; font-weight: 400; color: #8899BB; line-height: 1.65; max-width: 840px; }
+.body-text strong { color: #C8D8F0; font-weight: 600; }
+
+.bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 96px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-top: 1px solid rgba(26,86,219,0.18); z-index: 15; }
+.ba-left { display: flex; align-items: center; gap: 14px; }
+.ba-avatar { width: 62px; height: 62px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; background: #1C2D4A; flex-shrink: 0; }
+.ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.ba-info { display: flex; flex-direction: column; gap: 3px; }
+.ba-name { font-size: 19px; font-weight: 700; color: #F0F4FF; display: flex; align-items: center; gap: 6px; }
+.ba-check { color: #1A56DB; font-size: 17px; }
+.ba-handle { font-size: 14px; font-weight: 400; color: #8899BB; }
+.ba-right { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: rgba(155,179,232,0.40); }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<div class="glow"></div>
+<div class="top-header">
+  <span class="brand">@kalidcarvalho</span>
+  <span>Case: Redesign de Site</span>
+  <span>© 2026</span>
+</div>
+<div class="content">
+  <div class="slide-tag">a virada</div>
+  <div class="quote-block">
+    <div class="quote">O design sozinho não converte.<br><em>O que converte é a mensagem certa chegando pra pessoa certa.</em></div>
+  </div>
+  <div class="divider"></div>
+  <p class="body-text">O visual é o que dá <strong>credibilidade</strong> pra essa mensagem existir. Os dois precisam andar juntos.</p>
+</div>
+<div class="bottom-author">
+  <div class="ba-left">
+    <div class="ba-avatar"><img src="../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+    <div class="ba-info">
+      <span class="ba-name">Kalid Carvalho <span class="ba-check">✓</span></span>
+      <span class="ba-handle">@kalidcarvalho</span>
+    </div>
+  </div>
+  <span class="ba-right">7 / 10</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #0D1526; font-family: 'Space Grotesk', sans-serif; color: #FFFFFF; overflow: hidden; position: relative; }
+.accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+.glow { position: absolute; right: 0; bottom: 100px; width: 500px; height: 500px; background: radial-gradient(circle, rgba(26,86,219,0.09) 0%, transparent 65%); z-index: 1; pointer-events: none; }
+
+.top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-bottom: 1px solid rgba(26,86,219,0.18); z-index: 15; }
+.top-header span { font-size: 16px; font-weight: 400; color: rgba(155,179,232,0.50); }
+.top-header .brand { font-weight: 600; color: #9BB3E8; }
+
+/* mini screenshots */
+.screens-row { position: absolute; top: 100px; left: 86px; right: 80px; height: 420px; display: flex; gap: 20px; z-index: 5; }
+.screen-card { flex: 1; border-radius: 8px; overflow: hidden; position: relative; border: 1px solid rgba(26,86,219,0.25); }
+.screen-card img { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
+.screen-card .screen-label { position: absolute; bottom: 0; left: 0; right: 0; padding: 10px 14px; background: rgba(8,14,28,0.90); font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; }
+.screen-card.antes .screen-label { color: #8899BB; }
+.screen-card.depois .screen-label { color: #4D7EFF; }
+
+/* headline change comparison */
+.change-block { position: absolute; top: 548px; left: 86px; right: 80px; z-index: 5; }
+.change-label { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 600; color: #1A56DB; text-transform: uppercase; letter-spacing: 0.14em; margin-bottom: 20px; }
+.change-row { display: flex; gap: 16px; align-items: stretch; }
+.change-item { flex: 1; padding: 24px 28px; border-radius: 8px; }
+.change-item.old { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); }
+.change-item.new { background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.35); }
+.change-item-label { font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 12px; }
+.change-item.old .change-item-label { color: #3D527A; }
+.change-item.new .change-item-label { color: #4D7EFF; }
+.change-item-text { font-size: 22px; font-weight: 500; line-height: 1.4; }
+.change-item.old .change-item-text { color: #8899BB; }
+.change-item.new .change-item-text { color: #F0F4FF; }
+
+.body-text { position: absolute; top: 900px; left: 86px; right: 80px; font-size: 30px; font-weight: 400; color: #8899BB; line-height: 1.60; z-index: 5; }
+.body-text strong { color: #C8D8F0; font-weight: 600; }
+
+.bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 96px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-top: 1px solid rgba(26,86,219,0.18); z-index: 15; }
+.ba-left { display: flex; align-items: center; gap: 14px; }
+.ba-avatar { width: 62px; height: 62px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; background: #1C2D4A; flex-shrink: 0; }
+.ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.ba-info { display: flex; flex-direction: column; gap: 3px; }
+.ba-name { font-size: 19px; font-weight: 700; color: #F0F4FF; display: flex; align-items: center; gap: 6px; }
+.ba-check { color: #1A56DB; font-size: 17px; }
+.ba-handle { font-size: 14px; font-weight: 400; color: #8899BB; }
+.ba-right { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: rgba(155,179,232,0.40); }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<div class="glow"></div>
+<div class="top-header">
+  <span class="brand">@kalidcarvalho</span>
+  <span>Case: Redesign de Site</span>
+  <span>© 2026</span>
+</div>
+
+<div class="screens-row">
+  <div class="screen-card antes">
+    <img src="../../../../../dados/antiga.png" alt="Antes">
+    <div class="screen-label">antes</div>
+  </div>
+  <div class="screen-card depois">
+    <img src="../../../../../dados/nova.png" alt="Depois">
+    <div class="screen-label">depois</div>
+  </div>
+</div>
+
+<div class="change-block">
+  <div class="change-label">mudança 01: foco no público</div>
+  <div class="change-row">
+    <div class="change-item old">
+      <div class="change-item-label">headline antiga</div>
+      <div class="change-item-text">"Organizamos seu posicionamento na internet"</div>
+    </div>
+    <div class="change-item new">
+      <div class="change-item-label">headline nova</div>
+      <div class="change-item-text">"Seu tempo de volta. Agora."</div>
+    </div>
+  </div>
+</div>
+
+<p class="body-text">Quando a pessoa certa lê aquilo, ela sente que foi <strong>escrito pra ela.</strong></p>
+
+<div class="bottom-author">
+  <div class="ba-left">
+    <div class="ba-avatar"><img src="../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+    <div class="ba-info">
+      <span class="ba-name">Kalid Carvalho <span class="ba-check">✓</span></span>
+      <span class="ba-handle">@kalidcarvalho</span>
+    </div>
+  </div>
+  <span class="ba-right">4 / 10</span>
+</div>
+</body>
+</html>

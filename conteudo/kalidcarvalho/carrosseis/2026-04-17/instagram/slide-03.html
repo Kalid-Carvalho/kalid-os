@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #F0F4FF; font-family: 'Space Grotesk', sans-serif; color: #0D1526; overflow: hidden; position: relative; }
+.accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+.bg-number { position: absolute; right: -20px; top: -30px; font-family: 'JetBrains Mono', monospace; font-size: 520px; font-weight: 700; color: #1A56DB; opacity: 0.05; line-height: 1; z-index: 1; letter-spacing: -0.05em; pointer-events: none; }
+
+.top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-bottom: 1px solid rgba(26,86,219,0.18); z-index: 15; background: #F0F4FF; }
+.top-header span { font-size: 16px; font-weight: 400; color: rgba(13,21,38,0.40); }
+.top-header .brand { font-weight: 600; color: #1A56DB; }
+
+.content { position: absolute; top: 52px; left: 6px; right: 0; bottom: 96px; padding: 0 80px; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
+.slide-tag { display: inline-flex; background: rgba(26,86,219,0.10); border: 1px solid rgba(26,86,219,0.30); border-radius: 4px; padding: 8px 16px; margin-bottom: 44px; width: fit-content; }
+.slide-tag span { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #1A56DB; letter-spacing: 0.14em; text-transform: uppercase; }
+.headline { font-size: 58px; font-weight: 700; line-height: 1.08; color: #0D1526; letter-spacing: -1.2px; margin-bottom: 40px; max-width: 860px; }
+.headline em { color: #1A56DB; font-style: normal; }
+.divider { width: 52px; height: 3px; background: #1A56DB; border-radius: 2px; margin-bottom: 40px; }
+.body-text { font-size: 32px; font-weight: 400; color: #3D527A; line-height: 1.60; max-width: 840px; }
+.body-text strong { color: #0D1526; font-weight: 700; }
+
+.bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 96px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-top: 1px solid rgba(26,86,219,0.15); z-index: 15; background: #F0F4FF; }
+.ba-left { display: flex; align-items: center; gap: 14px; }
+.ba-avatar { width: 62px; height: 62px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; background: #1C2D4A; flex-shrink: 0; }
+.ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.ba-info { display: flex; flex-direction: column; gap: 3px; }
+.ba-name { font-size: 19px; font-weight: 700; color: #0D1526; display: flex; align-items: center; gap: 6px; }
+.ba-check { color: #1A56DB; font-size: 17px; }
+.ba-handle { font-size: 14px; font-weight: 400; color: #8899BB; }
+.ba-right { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: rgba(13,21,38,0.35); }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<div class="bg-number">03</div>
+<div class="top-header">
+  <span class="brand">@kalidcarvalho</span>
+  <span>Case: Redesign de Site</span>
+  <span>© 2026</span>
+</div>
+<div class="content">
+  <div class="slide-tag"><span>o diagnóstico</span></div>
+  <h2 class="headline">Não é que o site antigo era ruim. É que ele foi construído pra <em>um momento diferente.</em></h2>
+  <div class="divider"></div>
+  <p class="body-text">Quando o posicionamento muda, a comunicação precisa acompanhar. Do contrário, o visitante não reconhece o valor que está <strong>na frente dele.</strong></p>
+</div>
+<div class="bottom-author">
+  <div class="ba-left">
+    <div class="ba-avatar"><img src="../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+    <div class="ba-info">
+      <span class="ba-name">Kalid Carvalho <span class="ba-check">✓</span></span>
+      <span class="ba-handle">@kalidcarvalho</span>
+    </div>
+  </div>
+  <span class="ba-right">3 / 10</span>
+</div>
+</body>
+</html>

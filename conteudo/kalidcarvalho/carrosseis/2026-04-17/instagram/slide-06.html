@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { width: 1080px; height: 1350px; background: #F0F4FF; font-family: 'Space Grotesk', sans-serif; color: #0D1526; overflow: hidden; position: relative; }
+.accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+
+.top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-bottom: 1px solid rgba(26,86,219,0.15); z-index: 15; background: #F0F4FF; }
+.top-header span { font-size: 16px; font-weight: 400; color: rgba(13,21,38,0.40); }
+.top-header .brand { font-weight: 600; color: #1A56DB; }
+
+.content { position: absolute; top: 52px; left: 6px; right: 0; bottom: 96px; padding: 0 80px; display: flex; flex-direction: column; justify-content: center; z-index: 5; }
+.slide-tag { display: inline-flex; background: rgba(26,86,219,0.10); border: 1px solid rgba(26,86,219,0.28); border-radius: 4px; padding: 8px 16px; margin-bottom: 40px; width: fit-content; }
+.slide-tag span { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #1A56DB; letter-spacing: 0.14em; text-transform: uppercase; }
+.headline { font-size: 52px; font-weight: 700; line-height: 1.08; color: #0D1526; letter-spacing: -1px; margin-bottom: 48px; }
+.headline em { color: #1A56DB; font-style: normal; }
+
+.steps { display: flex; flex-direction: column; gap: 20px; }
+.step { display: flex; align-items: flex-start; gap: 24px; padding: 24px 28px; background: #FFFFFF; border-radius: 8px; border-left: 4px solid #1A56DB; box-shadow: 0 2px 12px rgba(13,21,38,0.06); }
+.step-num { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 700; color: #1A56DB; min-width: 36px; padding-top: 2px; }
+.step-content {}
+.step-title { font-size: 26px; font-weight: 700; color: #0D1526; margin-bottom: 4px; }
+.step-desc { font-size: 20px; font-weight: 400; color: #8899BB; line-height: 1.4; }
+
+.bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 96px; display: flex; align-items: center; justify-content: space-between; padding: 0 72px; border-top: 1px solid rgba(26,86,219,0.15); z-index: 15; background: #F0F4FF; }
+.ba-left { display: flex; align-items: center; gap: 14px; }
+.ba-avatar { width: 62px; height: 62px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; background: #1C2D4A; flex-shrink: 0; }
+.ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.ba-info { display: flex; flex-direction: column; gap: 3px; }
+.ba-name { font-size: 19px; font-weight: 700; color: #0D1526; display: flex; align-items: center; gap: 6px; }
+.ba-check { color: #1A56DB; font-size: 17px; }
+.ba-handle { font-size: 14px; font-weight: 400; color: #8899BB; }
+.ba-right { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: rgba(13,21,38,0.35); }
+</style>
+</head>
+<body>
+<div class="accent-bar"></div>
+<div class="top-header">
+  <span class="brand">@kalidcarvalho</span>
+  <span>Case: Redesign de Site</span>
+  <span>© 2026</span>
+</div>
+<div class="content">
+  <div class="slide-tag"><span>mudança 03: estrutura</span></div>
+  <h2 class="headline">Uma linha clara.<br><em>Cada seção leva à próxima.</em></h2>
+  <div class="steps">
+    <div class="step">
+      <span class="step-num">01</span>
+      <div class="step-content">
+        <div class="step-title">Problema</div>
+        <div class="step-desc">O visitante se reconhece na dor imediatamente</div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">02</span>
+      <div class="step-content">
+        <div class="step-title">Processo</div>
+        <div class="step-desc">Entende como a solução funciona na prática</div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">03</span>
+      <div class="step-content">
+        <div class="step-title">Prova</div>
+        <div class="step-desc">Vê os dados e resultados de quem já passou por isso</div>
+      </div>
+    </div>
+    <div class="step">
+      <span class="step-num">04</span>
+      <div class="step-content">
+        <div class="step-title">Formulário</div>
+        <div class="step-desc">Age. Sem ruído, sem distração, sem saída lateral</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="bottom-author">
+  <div class="ba-left">
+    <div class="ba-avatar"><img src="../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+    <div class="ba-info">
+      <span class="ba-name">Kalid Carvalho <span class="ba-check">✓</span></span>
+      <span class="ba-handle">@kalidcarvalho</span>
+    </div>
+  </div>
+  <span class="ba-right">6 / 10</span>
+</div>
+</body>
+</html>
