@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1200" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      width: 1200px;
+      height: 630px;
+      background: #000000;
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #ffffff;
+      overflow: hidden;
+      position: relative;
+    }
+    .noise {
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      opacity: 0.35;
+      pointer-events: none;
+    }
+    .glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(205,255,0,0.12) 0%, transparent 70%);
+      top: -200px;
+      right: -100px;
+      pointer-events: none;
+    }
+    .inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+      padding: 56px 72px;
+    }
+    .logo {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 22px;
+      font-weight: 700;
+      color: #cdff00;
+      letter-spacing: 0.05em;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 500;
+      color: #888888;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #cdff00;
+    }
+    .headline {
+      font-size: 68px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+    }
+    .headline .accent { color: #cdff00; }
+    .headline .outline {
+      -webkit-text-stroke: 2px #ffffff;
+      color: transparent;
+    }
+    .sub {
+      margin-top: 20px;
+      font-size: 20px;
+      color: #888888;
+      font-weight: 400;
+      line-height: 1.5;
+      max-width: 560px;
+    }
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .tags {
+      display: flex;
+      gap: 12px;
+    }
+    .tag {
+      font-size: 13px;
+      font-weight: 600;
+      padding: 6px 14px;
+      border: 1px solid rgba(205,255,0,0.3);
+      border-radius: 4px;
+      color: #cdff00;
+      letter-spacing: 0.05em;
+    }
+    .url {
+      font-family: 'JetBrains Mono', 'Courier New', monospace;
+      font-size: 15px;
+      color: #444444;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="glow"></div>
+  <div class="inner">
+    <div class="logo">GROVW</div>
+    <div>
+      <div class="badge"><span class="badge-dot"></span>Sistema de Captação Digital</div>
+      <div class="headline">
+        O sistema que<br>traz <span class="accent">clientes</span><br><span class="outline">até você</span>
+      </div>
+      <div class="sub">Site + tráfego pago + IA no WhatsApp. Leads qualificados todo mês.</div>
+    </div>
+    <div class="footer">
+      <div class="tags">
+        <span class="tag">Setup em 14 dias</span>
+        <span class="tag">Google + Meta Ads</span>
+        <span class="tag">IA no WhatsApp</span>
+      </div>
+      <div class="url">grovw.com.br</div>
+    </div>
+  </div>
+</body>
+</html>

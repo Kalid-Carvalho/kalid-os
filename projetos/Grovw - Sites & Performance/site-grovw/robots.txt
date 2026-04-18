@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Disallow: /briefing/
+Disallow: /contrato/
+Disallow: /briefings/
+
+Sitemap: https://grovw.com.br/sitemap.xml
