@@ -11,108 +11,121 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
   width: 1080px; height: 1350px;
-  background: #0D1526;
+  background: #F7F9FC;
   font-family: 'Space Grotesk', sans-serif;
   overflow: hidden; position: relative;
 }
-.accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
-.glow { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(26,86,219,0.09) 0%, transparent 65%); z-index: 1; pointer-events: none; }
 
 /* TOP HEADER */
 .top-header {
-  position: absolute; top: 0; left: 0; right: 0; height: 52px;
+  position: absolute; top: 0; left: 0; right: 0; height: 56px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 72px;
-  border-bottom: 1px solid rgba(26,86,219,0.18); z-index: 15;
+  padding: 0 56px;
+  background: #0D1526;
+  border-bottom: 1px solid rgba(26,86,219,0.30);
+  z-index: 15;
 }
-.top-header span { font-size: 16px; font-weight: 400; color: rgba(155,179,232,0.50); }
+.top-header span { font-size: 16px; font-weight: 400; color: rgba(155,179,232,0.55); }
 .top-header .brand { font-weight: 600; color: #9BB3E8; }
 
-/* TWEET CARD */
-.card-wrapper {
+/* TWEET CARD — fills between header and bottom bar */
+.tweet-card {
   position: absolute;
-  top: 52px; left: 6px; right: 0; bottom: 64px;
-  display: flex; align-items: center; justify-content: center;
-  padding: 0 60px;
-  z-index: 5;
+  top: 56px; left: 0; right: 0; bottom: 64px;
+  background: #FFFFFF;
+  padding: 64px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 48px;
 }
 
-.tweet-card {
-  background: #FFFFFF;
-  border-radius: 20px;
-  padding: 44px 48px 36px;
-  width: 100%;
-  box-shadow: 0 4px 40px rgba(0,0,0,0.25);
-}
+/* Top block */
+.tweet-top { display: flex; flex-direction: column; }
 
 /* Card header */
 .card-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 20px;
+  margin-bottom: 36px;
 }
-.author-block { display: flex; align-items: center; gap: 14px; }
-.avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #1C2D4A; }
+.author-block { display: flex; align-items: center; gap: 20px; }
+.avatar {
+  width: 88px; height: 88px; border-radius: 50%;
+  overflow: hidden; flex-shrink: 0; background: #1C2D4A;
+}
 .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.author-info { display: flex; flex-direction: column; gap: 3px; }
+.author-info { display: flex; flex-direction: column; gap: 5px; }
 .author-name {
-  font-size: 22px; font-weight: 700; color: #0F1419;
-  display: flex; align-items: center; gap: 6px;
+  font-size: 28px; font-weight: 700; color: #0F1419;
+  display: flex; align-items: center; gap: 8px;
 }
-.check { color: #1A56DB; font-size: 20px; }
-.author-handle { font-size: 17px; font-weight: 400; color: #536471; }
+.check-icon { color: #1A56DB; }
+.author-handle { font-size: 22px; font-weight: 400; color: #536471; }
 .thread-num {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 14px; font-weight: 600;
+  font-size: 17px; font-weight: 700;
   color: #1A56DB;
   background: rgba(26,86,219,0.08);
-  border: 1px solid rgba(26,86,219,0.20);
+  border: 1.5px solid rgba(26,86,219,0.22);
   border-radius: 100px;
-  padding: 5px 14px;
-  white-space: nowrap;
+  padding: 8px 20px;
 }
 
-/* Thread line */
-.thread-body { display: flex; gap: 20px; }
-.thread-line-col { display: flex; flex-direction: column; align-items: center; padding-top: 4px; }
-.thread-line { width: 2px; flex: 1; background: linear-gradient(to bottom, rgba(26,86,219,0.30) 0%, transparent 100%); min-height: 40px; margin-top: 8px; }
-.tweet-content { flex: 1; }
-
-/* Tweet text */
+/* Tweet text area */
 .tweet-text {
-  font-size: 30px; font-weight: 400;
-  color: #0F1419; line-height: 1.55;
-  margin-bottom: 28px;
+  font-size: 40px; font-weight: 400;
+  color: #0F1419; line-height: 1.60;
 }
 .tweet-text strong { font-weight: 700; }
 .tweet-text em { color: #1A56DB; font-style: normal; font-weight: 600; }
 
+/* Timestamp */
+.tweet-timestamp {
+  font-size: 19px; color: #536471;
+  margin-top: 20px;
+}
+.tweet-timestamp span { margin: 0 6px; color: #ccc; }
+
 /* Metrics */
 .metrics {
-  display: flex; align-items: center; gap: 32px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(0,0,0,0.08);
+  display: flex; align-items: center; gap: 0;
+  padding-top: 24px;
+  border-top: 1px solid #EFF3F4;
 }
-.metric { display: flex; align-items: center; gap: 8px; }
-.metric-icon { font-size: 20px; }
-.metric-val { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; color: #536471; }
-.metric-views { margin-left: auto; font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #536471; }
+.metric {
+  display: flex; align-items: center; gap: 12px;
+  margin-right: 56px;
+  color: #536471;
+}
+.metric svg { width: 22px; height: 22px; fill: none; stroke: #536471; stroke-width: 1.8; }
+.metric-val {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 19px; font-weight: 500; color: #536471;
+}
+.metric-views {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 19px; color: #536471;
+  display: flex; align-items: center; gap: 10px;
+}
+.metric-views svg { width: 22px; height: 22px; fill: none; stroke: #536471; stroke-width: 1.8; }
 
 /* BOTTOM BAR */
 .bottom-bar {
   position: absolute; bottom: 0; left: 0; right: 0; height: 64px;
   display: flex; align-items: center; justify-content: space-between;
-  padding: 0 72px; z-index: 15;
-  border-top: 1px solid rgba(26,86,219,0.15);
+  padding: 0 56px;
+  background: #0D1526;
+  border-top: 1px solid rgba(26,86,219,0.25);
+  z-index: 15;
 }
-.progress { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 500; color: rgba(155,179,232,0.40); }
-.swipe { font-size: 14px; font-weight: 500; color: rgba(155,179,232,0.55); }
+.progress { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: rgba(155,179,232,0.40); }
+.swipe { font-size: 15px; font-weight: 500; color: rgba(155,179,232,0.55); }
 </style>
 </head>
 <body>
-<div class="accent-bar"></div>
-<div class="glow"></div>
 
 <div class="top-header">
   <span class="brand">@kalidcarvalho</span>
@@ -120,43 +133,61 @@ body {
   <span>© 2026</span>
 </div>
 
-<div class="card-wrapper">
-  <div class="tweet-card">
+<div class="tweet-card">
+  <div class="tweet-top">
     <div class="card-header">
       <div class="author-block">
         <div class="avatar"><img src="../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
         <div class="author-info">
-          <span class="author-name">Kalid Carvalho <span class="check">✓</span></span>
+          <span class="author-name">Kalid Carvalho
+            <svg class="check-icon" width="26" height="26" viewBox="0 0 24 24" fill="#1A56DB" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="#1A56DB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
           <span class="author-handle">@kalidcarvalho</span>
         </div>
       </div>
       <span class="thread-num">1 / 7</span>
     </div>
 
-    <div class="thread-body">
-      <div class="thread-line-col">
-        <div class="thread-line"></div>
-      </div>
-      <div class="tweet-content">
-        <p class="tweet-text">
-          Andrej Karpathy foi cofundador da OpenAI e diretor de IA da Tesla. Uma das mentes mais respeitadas no setor. Quando ele posta sobre capacidade de IA, <strong>o mundo tech para.</strong> Na semana passada ele identificou algo que <em>eu sinto todo dia.</em>
-        </p>
-        <div class="metrics">
-          <div class="metric">
-            <span class="metric-icon">💬</span>
-            <span class="metric-val">47</span>
-          </div>
-          <div class="metric">
-            <span class="metric-icon">🔁</span>
-            <span class="metric-val">312</span>
-          </div>
-          <div class="metric">
-            <span class="metric-icon">❤️</span>
-            <span class="metric-val">2.1K</span>
-          </div>
-          <span class="metric-views">18.4K views</span>
-        </div>
-      </div>
+    <p class="tweet-text">
+      Andrej Karpathy foi cofundador da OpenAI e diretor de IA da Tesla. Uma das mentes mais respeitadas no setor. Quando ele posta sobre capacidade de IA, <strong>o mundo tech para.</strong><br><br>
+      Na semana passada ele identificou algo que <em>eu sinto todo dia.</em>
+    </p>
+
+    <div class="tweet-timestamp">
+      9:27 PM <span>·</span> 18 abr. 2026 <span>·</span> <strong style="color:#0F1419;">18,4K</strong> Visualizações
+    </div>
+  </div><!-- /.tweet-top -->
+
+  <div class="metrics">
+    <div class="metric">
+      <!-- Comment -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="metric-val">47</span>
+    </div>
+    <div class="metric">
+      <!-- Retweet -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="metric-val">312</span>
+    </div>
+    <div class="metric">
+      <!-- Heart -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="metric-val">2,1K</span>
+    </div>
+    <div class="metric-views">
+      <!-- Chart/Views -->
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 20V10M12 20V4M6 20v-6" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span>18,4K Visualizações</span>
     </div>
   </div>
 </div>
@@ -165,5 +196,6 @@ body {
   <span class="progress">1 / 7</span>
   <span class="swipe">arrasta →</span>
 </div>
+
 </body>
 </html>
