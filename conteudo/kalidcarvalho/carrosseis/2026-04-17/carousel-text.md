@@ -40,12 +40,16 @@ Se o seu site não está gerando o resultado que você espera, a pergunta não �
 
 ---
 
-## Legenda sugerida
+## Legenda final
 
 O site não estava errado. Estava falando de um momento que já passou.
 
-Quando o posicionamento evolui, a comunicação precisa acompanhar. Esse foi o redesign que fizemos: mesmo serviço, mensagem nova, estrutura mais limpa.
+Quando o posicionamento evolui, a comunicação precisa acompanhar. Esse foi o redesign: mesmo serviço, mensagem nova, público mais claro, estrutura mais limpa.
 
-O que mudou por dentro está nos slides 👆
+Arrasta pra ver o que mudou e por que cada decisão importa.
 
-#redesign #site #conversao #marketing #builderemconstrucao
+.
+.
+.
+
+#redesigndesite #webdesign #siteparaempresas #marketingdigital #kalidcarvalho #builderemconstrucao #conversao #estrategiadigital
