@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manaus Insana — Logo & Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #1a1a1a;
+    font-family: 'Inter', sans-serif;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .section-label {
+    color: #666;
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: -40px;
+    width: 100%;
+  }
+
+  /* ===================== LOGO ===================== */
+  .logo-showcase {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .logo {
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: #E5000F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 0 40px rgba(229,0,15,0.4);
+  }
+
+  .logo-arara {
+    font-size: 28px;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .logo-manaus {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: #fff;
+    letter-spacing: 3px;
+    line-height: 1;
+  }
+
+  .logo-insana {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    color: #0D0D0D;
+    letter-spacing: 6px;
+    line-height: 1;
+    background: #fff;
+    padding: 0 8px;
+  }
+
+  .logo-sm {
+    width: 120px;
+    height: 120px;
+  }
+  .logo-sm .logo-manaus { font-size: 22px; letter-spacing: 2px; }
+  .logo-sm .logo-insana { font-size: 22px; letter-spacing: 3px; }
+  .logo-sm .logo-arara { font-size: 16px; }
+
+  .logo-xs {
+    width: 72px;
+    height: 72px;
+  }
+  .logo-xs .logo-manaus { font-size: 13px; letter-spacing: 1px; }
+  .logo-xs .logo-insana { font-size: 13px; letter-spacing: 2px; padding: 0 4px; }
+  .logo-xs .logo-arara { font-size: 10px; margin-bottom: 2px; }
+
+  .logo-dark {
+    background: #0D0D0D;
+    border: 3px solid #E5000F;
+  }
+  .logo-dark .logo-insana {
+    background: #E5000F;
+    color: #fff;
+  }
+
+  /* ===================== POST TEMPLATE — TIPO B/E (2 fotos + logo) ===================== */
+  .post-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .post-label {
+    color: #555;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .post {
+    width: 540px;
+    height: 540px;
+    background: #0D0D0D;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+
+  /* Manchete source card no topo */
+  .source-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0,0,0,0.92);
+    padding: 10px 14px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    z-index: 10;
+    border-bottom: 2px solid #E5000F;
+  }
+
+  .source-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #E5000F;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .source-text {
+    flex: 1;
+  }
+
+  .source-name {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 12px;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .source-headline {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    color: #ccc;
+    line-height: 1.3;
+    margin-top: 2px;
+  }
+
+  /* Fotos lado a lado */
+  .photos {
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+  }
+
+  .photo {
+    flex: 1;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+
+  .photo-left {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    border-right: 2px solid #0D0D0D;
+  }
+
+  .photo-right {
+    background: linear-gradient(135deg, #2d1515 0%, #4a1010 50%, #7a1515 100%);
+  }
+
+  /* Placeholder de imagem */
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 8px;
+    color: rgba(255,255,255,0.2);
+    font-size: 11px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .photo-placeholder-icon {
+    font-size: 32px;
+    opacity: 0.3;
+  }
+
+  /* Logo central sobreposto */
+  .logo-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 20;
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: #E5000F;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 4px #0D0D0D, 0 0 20px rgba(0,0,0,0.8);
+  }
+
+  .logo-overlay .logo-arara { font-size: 14px; margin-bottom: 1px; }
+  .logo-overlay .logo-manaus { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #fff; letter-spacing: 2px; line-height: 1; }
+  .logo-overlay .logo-insana { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: #0D0D0D; letter-spacing: 3px; background: #fff; padding: 0 4px; line-height: 1; }
+
+  /* ===================== POST GRID 2x2 ===================== */
+  .post-grid .photos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+
+  .post-grid .photo {
+    border: 1px solid #0D0D0D;
+  }
+
+  .photo-tl { background: linear-gradient(135deg, #1a1a2e, #16213e); }
+  .photo-tr { background: linear-gradient(135deg, #1a2e1a, #163e16); }
+  .photo-bl { background: linear-gradient(135deg, #2e1a1a, #3e1616); }
+  .photo-br { background: linear-gradient(135deg, #2e2a1a, #3e3016); }
+
+  .post-grid .logo-overlay {
+    top: 50%;
+    left: 50%;
+  }
+
+  /* ===================== POST TIPO C (meme - foto única) ===================== */
+  .post-meme .photos {
+    display: block;
+  }
+
+  .post-meme .photo-full {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #0d1b2a 0%, #1b263b 40%, #415a77 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .meme-text-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0,0,0,0.9));
+    padding: 30px 16px 14px;
+    z-index: 10;
+  }
+
+  .meme-caption {
+    font-family: 'Inter', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.3;
+  }
+
+  .meme-caption span {
+    color: #E5000F;
+  }
+
+  .watermark {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 2px;
+    z-index: 11;
+  }
+
+</style>
+</head>
+<body>
+
+  <!-- ===== LOGOS ===== -->
+  <p class="section-label">Logo — Variações</p>
+  <div class="logo-showcase">
+
+    <!-- Principal -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div class="logo">
+        <span class="logo-arara">🦜</span>
+        <span class="logo-manaus">MANAUS</span>
+        <span class="logo-insana">INSANA</span>
+      </div>
+      <span style="color:#555;font-size:11px;letter-spacing:2px;">PRINCIPAL</span>
+    </div>
+
+    <!-- Dark -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div class="logo logo-dark">
+        <span class="logo-arara">🦜</span>
+        <span class="logo-manaus">MANAUS</span>
+        <span class="logo-insana">INSANA</span>
+      </div>
+      <span style="color:#555;font-size:11px;letter-spacing:2px;">DARK</span>
+    </div>
+
+    <!-- Médio -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div class="logo logo-sm">
+        <span class="logo-arara">🦜</span>
+        <span class="logo-manaus">MANAUS</span>
+        <span class="logo-insana">INSANA</span>
+      </div>
+      <span style="color:#555;font-size:11px;letter-spacing:2px;">MÉDIO</span>
+    </div>
+
+    <!-- Pequeno -->
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;">
+      <div class="logo logo-xs">
+        <span class="logo-arara">🦜</span>
+        <span class="logo-manaus">MANAUS</span>
+        <span class="logo-insana">INSANA</span>
+      </div>
+      <span style="color:#555;font-size:11px;letter-spacing:2px;">ÍCONE</span>
+    </div>
+
+  </div>
+
+  <!-- ===== TEMPLATE TIPO B/E — 2 fotos + logo ===== -->
+  <p class="section-label">Template — Fofoca / Polêmica (2 fotos)</p>
+  <div class="post-wrapper">
+    <div class="post">
+
+      <div class="source-card">
+        <div class="source-avatar">📰</div>
+        <div class="source-text">
+          <div class="source-name">Portal Em Tempo</div>
+          <div class="source-headline">Manauara conquista ranking nacional e supera influencers do Sul e Sudeste</div>
+        </div>
+      </div>
+
+      <div class="photos">
+        <div class="photo photo-left">
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-icon">👤</span>
+            <span>Foto da pessoa</span>
+          </div>
+        </div>
+        <div class="photo photo-right">
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-icon">🖼️</span>
+            <span>Foto temática</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-overlay">
+        <span class="logo-arara">🦜</span>
+        <span class="logo-manaus">MANAUS</span>
+        <span class="logo-insana">INSANA</span>
+      </div>
+
+    </div>
+    <span class="post-label">Tipo B/E — Fofoca · Polêmica · Crime</span>
+  </div>
+
+  <!-- ===== TEMPLATE TIPO E — Grid 2x2 ===== -->
+  <p class="section-label">Template — Emoção / Momento (grid 2x2)</p>
+  <div class="post-wrapper">
+    <div class="post post-grid">
+
+      <div class="source-card">
+        <div class="source-avatar">💙</div>
+        <div class="source-text">
+          <div class="source-name">Joyce</div>
+          <div class="source-headline">Os pais da Marciele que fofinhos vendo o mar pela primeira vez 💙</div>
+        </div>
+      </div>
+
+      <div class="photos">
+        <div class="photo photo-tl">
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-icon">📸</span>
+          </div>
+        </div>
+        <div class="photo photo-tr">
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-icon">📸</span>
+          </div>
+        </div>
+        <div class="photo photo-bl">
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-icon">📸</span>
+          </div>
+        </div>
+        <div class="photo photo-br">
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-icon">📸</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="logo-overlay">
+        <span class="logo-arara">🦜</span>
+        <span class="logo-manaus">MANAUS</span>
+        <span class="logo-insana">INSANA</span>
+      </div>
+
+    </div>
+    <span class="post-label">Tipo E — Emoção · Orgulho Local · Momento</span>
+  </div>
+
+  <!-- ===== TEMPLATE TIPO C — Meme ===== -->
+  <p class="section-label">Template — Meme / Cotidiano (foto única)</p>
+  <div class="post-wrapper">
+    <div class="post post-meme">
+
+      <div class="photos">
+        <div class="photo-full">
+          <div class="photo-placeholder">
+            <span class="photo-placeholder-icon" style="font-size:60px;opacity:0.15;">🎥</span>
+            <span style="color:rgba(255,255,255,0.15);font-size:13px;">vídeo ou foto do flagrante</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="meme-text-overlay">
+        <div class="meme-caption">Égua da luta pra acordar o cara <span>😂</span></div>
+      </div>
+
+      <div class="watermark">@manausinsana</div>
+
+    </div>
+    <span class="post-label">Tipo C — Meme · Flagrante · Humor</span>
+  </div>
+
+</body>
+</html>
