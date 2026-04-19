@@ -710,6 +710,17 @@
     }
 
     /* ── PROCESSO ── */
+    .process-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .process-sticky { position: sticky; top: 90px; }
+    @media (max-width: 860px) {
+      .process-layout { grid-template-columns: 1fr; gap: 40px; }
+      .process-sticky { position: static; }
+    }
     .process-list {
       display: flex; flex-direction: column;
       gap: 0;
@@ -1357,8 +1368,8 @@
   <!-- PROCESSO -->
   <section class="section" id="como-funciona">
     <div class="container">
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
-        <div class="reveal" style="position:sticky;top:90px;">
+      <div class="process-layout">
+        <div class="reveal process-sticky">
           <p class="section-meta">Como trabalhamos</p>
           <h2 class="section-title">Do diagnóstico ao sistema funcionando</h2>
           <p class="section-sub" style="margin-top:12px;">Processo direto. Você não precisa entender de marketing pra ver o sistema funcionando.</p>
