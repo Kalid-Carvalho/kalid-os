@@ -3,909 +3,948 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proposta — DataSync TI | GROVW</title>
+<title>Proposta — DataSync TI × GROVW</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --bg: #000;
-    --bg2: #0f0f0f;
-    --surface: #161616;
-    --border: rgba(255,255,255,0.08);
-    --accent: #cdff00;
-    --text: #fff;
-    --text-2: #999;
-    --text-3: #555;
-  }
-
-  html, body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Inter', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── SLIDE BASE ── */
-  .slide {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 64px 80px;
-    position: relative;
-    border-bottom: 1px solid var(--border);
-    overflow: hidden;
-  }
-
-  /* barra superior fixa em cada slide */
-  .slide-bar {
-    position: absolute;
-    top: 0; left: 0; right: 0;
-    height: 3px;
-    background: var(--accent);
-    opacity: 0.15;
-  }
-
-  .slide-bar.active {
-    opacity: 1;
-  }
-
-  /* rodapé discreto em cada slide */
-  .slide-footer {
-    position: absolute;
-    bottom: 28px; left: 80px; right: 80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .slide-footer-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--text-3);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .slide-footer-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-3);
-    letter-spacing: 0.08em;
-  }
-
-  /* label de seção */
-  .tag {
-    display: inline-block;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #000;
-    background: var(--accent);
-    padding: 5px 12px;
-    border-radius: 3px;
-    margin-bottom: 28px;
-  }
-
-  .tag.outline {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid rgba(205,255,0,0.35);
-  }
-
-  /* headings */
-  .h-hero {
-    font-size: clamp(44px, 7vw, 80px);
-    font-weight: 800;
-    line-height: 0.93;
-    letter-spacing: -0.04em;
-  }
-
-  .h-section {
-    font-size: clamp(32px, 5vw, 56px);
-    font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-  }
-
-  .accent { color: var(--accent); }
-
-  .lead {
-    font-size: clamp(16px, 1.6vw, 20px);
-    color: var(--text-2);
-    line-height: 1.6;
-    max-width: 580px;
-  }
-
-  /* ── SLIDE 1 — CAPA ── */
-  #s1 {
-    background:
-      radial-gradient(ellipse 70% 60% at 90% 10%, rgba(205,255,0,0.05) 0%, transparent 65%),
-      radial-gradient(ellipse 50% 50% at 5% 90%, rgba(205,255,0,0.03) 0%, transparent 60%),
-      var(--bg);
-  }
-
-  .capa-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 48px;
-  }
-
-  .capa-top {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-  }
-
-  .grovw-logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 20px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-
-  .capa-meta {
-    text-align: right;
-  }
-
-  .capa-meta p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-3);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    line-height: 1.8;
-  }
-
-  .capa-body {
-    padding: 40px 0 20px;
-  }
-
-  .capa-pre {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-  }
-
-  .capa-body .lead { margin-top: 24px; }
-
-  .capa-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    padding-top: 32px;
-    border-top: 1px solid var(--border);
-  }
-
-  .client-block p {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--text-3);
-    margin-bottom: 6px;
-  }
-
-  .client-block strong {
-    font-size: 22px;
-    font-weight: 700;
-    display: block;
-  }
-
-  .client-block span {
-    font-size: 14px;
-    color: var(--text-2);
-  }
-
-  /* ── SLIDE 2 — PROBLEMA ── */
-  .pain-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    margin-top: 48px;
-  }
-
-  .pain-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 28px;
-    transition: border-color 0.2s;
-  }
-
-  .pain-card:hover { border-color: rgba(205,255,0,0.2); }
-
-  .pain-num {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    margin-bottom: 12px;
-  }
-
-  .pain-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 8px;
-    line-height: 1.2;
-  }
-
-  .pain-card p {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.6;
-  }
-
-  /* ── SLIDE 3 — SOLUÇÃO ── */
-  .solution-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    margin-top: 48px;
-    align-items: start;
-  }
-
-  .solution-cols p {
-    font-size: 17px;
-    color: var(--text-2);
-    line-height: 1.65;
-  }
-
-  .solution-cols p + p { margin-top: 14px; }
-
-  .callout {
-    background: rgba(205,255,0,0.05);
-    border: 1px solid rgba(205,255,0,0.15);
-    border-left: 3px solid var(--accent);
-    border-radius: 0 6px 6px 0;
-    padding: 20px 24px;
-    margin-top: 24px;
-  }
-
-  .callout p {
-    font-size: 15px !important;
-    color: var(--text) !important;
-    line-height: 1.6 !important;
-  }
-
-  .stack-list {
-    list-style: none;
-    margin-top: 24px;
-  }
-
-  .stack-list li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 15px;
-    color: var(--text-2);
-  }
-
-  .stack-list li:last-child { border-bottom: none; }
-
-  .stack-list li::before {
-    content: '';
-    width: 6px; height: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    flex-shrink: 0;
-  }
-
-  .stack-list li strong {
-    color: var(--text);
-    font-weight: 600;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-  }
-
-  /* ── SLIDE 4 — ESCOPO SETUP ── */
-  .scope-cols {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 48px;
-  }
-
-  .scope-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 28px;
-  }
-
-  .scope-card-tag {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: #000;
-    background: var(--accent);
-    padding: 3px 8px;
-    border-radius: 3px;
-    display: inline-block;
-    margin-bottom: 14px;
-  }
-
-  .scope-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 16px;
-  }
-
-  .scope-list {
-    list-style: none;
-  }
-
-  .scope-list li {
-    font-size: 13px;
-    color: var(--text-2);
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    gap: 10px;
-    line-height: 1.5;
-  }
-
-  .scope-list li:last-child { border-bottom: none; }
-
-  .scope-list li::before {
-    content: '→';
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--accent);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  /* ── SLIDE 5 — GESTÃO MENSAL ── */
-  .gestao-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 48px;
-    margin-top: 48px;
-    align-items: start;
-  }
-
-  .gestao-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 32px;
-  }
-
-  .gestao-card h3 {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 20px;
-  }
-
-  /* ── SLIDE 6 — PRAZO ── */
-  .timeline {
-    margin-top: 48px;
-    max-width: 720px;
-  }
-
-  .tl-item {
-    display: grid;
-    grid-template-columns: 130px 1fr;
-    gap: 32px;
-    padding: 22px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .tl-item:last-child { border-bottom: none; }
-
-  .tl-day {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding-top: 2px;
-  }
-
-  .tl-content h4 {
-    font-size: 16px;
-    font-weight: 700;
-    margin-bottom: 4px;
-  }
-
-  .tl-content p {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.5;
-  }
-
-  /* ── SLIDE 7 — INVESTIMENTO ── */
-  #s7 {
-    background:
-      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(205,255,0,0.06) 0%, transparent 70%),
-      var(--bg);
-  }
-
-  .invest-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    margin-top: 48px;
-  }
-
-  .price-card {
-    background: var(--surface);
-    border: 1px solid rgba(205,255,0,0.25);
-    border-radius: 6px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .price-label {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-
-  .price-big {
-    font-size: clamp(48px, 7vw, 72px);
-    font-weight: 800;
-    line-height: 1;
-    letter-spacing: -0.04em;
-    color: var(--accent);
-  }
-
-  .price-big small {
-    font-size: 0.4em;
-    font-weight: 500;
-    color: var(--text-2);
-    letter-spacing: 0;
-    vertical-align: super;
-    margin-right: 4px;
-  }
-
-  .price-desc {
-    font-size: 15px;
-    color: var(--text-2);
-    line-height: 1.55;
-  }
-
-  .price-note {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 10px;
-    color: var(--text-3);
-    letter-spacing: 0.06em;
-    line-height: 1.6;
-  }
-
-  .roi-card {
-    background: var(--bg2);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 40px;
-  }
-
-  .roi-card h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 24px;
-  }
-
-  .roi-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .roi-row:last-child { border-bottom: none; }
-
-  .roi-row span {
-    font-size: 14px;
-    color: var(--text-2);
-    max-width: 200px;
-  }
-
-  .roi-row strong {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--text);
-  }
-
-  .roi-row.hi strong { color: var(--accent); }
-
-  /* ── SLIDE 8 — PRÓXIMOS PASSOS ── */
-  .steps-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-    margin-top: 48px;
-  }
-
-  .step-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 32px;
-  }
-
-  .step-n {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 40px;
-    font-weight: 700;
-    color: var(--accent);
-    opacity: 0.25;
-    line-height: 1;
-    margin-bottom: 16px;
-  }
-
-  .step-card h4 {
-    font-size: 17px;
-    font-weight: 700;
-    margin-bottom: 8px;
-  }
-
-  .step-card p {
-    font-size: 14px;
-    color: var(--text-2);
-    line-height: 1.55;
-  }
-
-  /* ── SLIDE 9 — SOBRE + CTA ── */
-  #s9 {
-    background:
-      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(205,255,0,0.04) 0%, transparent 70%),
-      var(--bg);
-    text-align: center;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .cta-block {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
-    max-width: 640px;
-    margin: 0 auto;
-  }
-
-  .cta-block .h-section {
-    text-align: center;
-  }
-
-  .cta-block .lead {
-    text-align: center;
-  }
-
-  .btn-cta {
-    display: inline-block;
-    background: var(--accent);
-    color: #000;
-    font-family: 'Inter', sans-serif;
-    font-size: 15px;
-    font-weight: 700;
-    text-decoration: none;
-    padding: 18px 48px;
-    border-radius: 4px;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    margin-top: 8px;
-  }
-
-  .about-strip {
-    display: flex;
-    gap: 32px;
-    margin-top: 48px;
-    padding-top: 40px;
-    border-top: 1px solid var(--border);
-    justify-content: center;
-  }
-
-  .about-stat {
-    text-align: center;
-  }
-
-  .about-stat-val {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 28px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 6px;
-  }
-
-  .about-stat-label {
-    font-size: 12px;
-    color: var(--text-2);
-  }
-
-  /* ── NOT INCLUDED LIST ── */
-  .not-list {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px;
-    margin-top: 32px;
-  }
-
-  .not-list li {
-    list-style: none;
-    font-size: 14px;
-    color: var(--text-3);
-    display: flex;
-    gap: 10px;
-    align-items: center;
-  }
-
-  .not-list li::before {
-    content: '×';
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 13px;
-    color: #ff4444;
-    font-weight: 700;
-  }
-
-  @media (max-width: 900px) {
-    .slide { padding: 48px 32px; }
-    .slide-footer { left: 32px; right: 32px; }
-    .pain-grid, .scope-cols, .solution-cols,
-    .gestao-layout, .invest-layout, .steps-grid { grid-template-columns: 1fr; }
-    .not-list { grid-template-columns: 1fr; }
-    .tl-item { grid-template-columns: 1fr; gap: 4px; }
-  }
+/* ─────────────────────────────────────────
+   RESET + BASE
+───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink:     #090909;
+  --paper:   #EEEEE8;
+  --dim:     rgba(238,238,232,0.38);
+  --ghost:   rgba(238,238,232,0.10);
+  --rule:    rgba(238,238,232,0.09);
+  --lime:    #cdff00;
+  --red:     #ff3b30;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ink);
+  color: var(--paper);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  cursor: default;
+}
+
+/* ─────────────────────────────────────────
+   SLIDE SHELL
+───────────────────────────────────────── */
+.slide {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 96px 80px;
+  position: relative;
+  border-bottom: 1px solid var(--rule);
+  overflow: hidden;
+}
+
+/* decorative slide number watermark */
+.slide::after {
+  content: attr(data-n);
+  position: absolute;
+  bottom: -20px;
+  right: 80px;
+  font-family: 'Syne', sans-serif;
+  font-size: 320px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--paper);
+  opacity: 0.025;
+  pointer-events: none;
+  letter-spacing: -0.05em;
+  user-select: none;
+}
+
+/* persistent footer */
+.sf {
+  position: absolute;
+  bottom: 32px;
+  left: 96px;
+  right: 96px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sf-brand {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ghost);
+}
+
+.sf-num {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--ghost);
+  letter-spacing: 0.1em;
+}
+
+/* ─────────────────────────────────────────
+   TYPOGRAPHY SYSTEM
+───────────────────────────────────────── */
+.label {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.20em;
+  text-transform: uppercase;
+  color: var(--dim);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.label::before {
+  content: '';
+  width: 20px;
+  height: 1px;
+  background: var(--lime);
+  flex-shrink: 0;
+}
+
+.h1 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.h2 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(40px, 6vw, 68px);
+  font-weight: 800;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(22px, 2.5vw, 30px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.lime { color: var(--lime); }
+
+.body {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.72;
+  max-width: 560px;
+}
+
+.body + .body { margin-top: 16px; }
+
+.mono {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+/* ─────────────────────────────────────────
+   HORIZONTAL RULE
+───────────────────────────────────────── */
+.hr {
+  width: 100%;
+  height: 1px;
+  background: var(--rule);
+  border: none;
+}
+
+/* ─────────────────────────────────────────
+   GRID HELPERS
+───────────────────────────────────────── */
+.cols-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.cols-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 48px;
+}
+
+/* ─────────────────────────────────────────
+   REVEAL ANIMATION
+───────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible { opacity: 1; transform: none; }
+
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+.reveal-d4 { transition-delay: 0.4s; }
+.reveal-d5 { transition-delay: 0.5s; }
+
+/* ─────────────────────────────────────────
+   LINE LIST (replaces bullet cards)
+───────────────────────────────────────── */
+.line-list { list-style: none; margin: 0; }
+
+.line-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.5;
+}
+
+.line-list li:first-child { border-top: 1px solid var(--rule); }
+
+.line-list li .item-n {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lime);
+  letter-spacing: 0.12em;
+  flex-shrink: 0;
+  width: 20px;
+}
+
+.line-list li strong {
+  font-weight: 500;
+  color: var(--paper);
+}
+
+/* ─────────────────────────────────────────
+   STAT BLOCK
+───────────────────────────────────────── */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid var(--rule);
+}
+
+.stat-cell {
+  padding: 32px 0 32px;
+  border-right: 1px solid var(--rule);
+}
+
+.stat-cell:last-child { border-right: none; }
+
+.stat-cell + .stat-cell { padding-left: 32px; }
+
+.stat-val {
+  font-family: 'Syne', sans-serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--lime);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-lbl {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--dim);
+  letter-spacing: 0.02em;
+}
+
+/* ─────────────────────────────────────────
+   SLIDE 1 — CAPA
+───────────────────────────────────────── */
+#s1 { justify-content: space-between; padding-top: 56px; }
+
+.capa-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.grovw {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--lime);
+}
+
+.capa-meta {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--ghost);
+  letter-spacing: 0.14em;
+  text-align: right;
+  line-height: 1.9;
+}
+
+.capa-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.capa-eyebrow {
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 24px;
+}
+
+.capa-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-top: 40px;
+  border-top: 1px solid var(--rule);
+}
+
+.capa-client strong {
+  font-family: 'Syne', sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.capa-client span {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--dim);
+}
+
+.capa-client small {
+  display: block;
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ghost);
+  margin-bottom: 8px;
+}
+
+/* ─────────────────────────────────────────
+   SLIDE 3 — O QUE FAZEMOS (pilares)
+───────────────────────────────────────── */
+.pilar {
+  padding-top: 32px;
+  border-top: 1px solid var(--rule);
+}
+
+.pilar-n {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lime);
+  letter-spacing: 0.16em;
+  margin-bottom: 16px;
+}
+
+.pilar h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.pilar p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.65;
+}
+
+/* ─────────────────────────────────────────
+   SLIDE 4 — DIAGNÓSTICO
+───────────────────────────────────────── */
+.dor-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 56px;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.dor {
+  padding: 36px 40px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.dor-n {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lime);
+  letter-spacing: 0.16em;
+  margin-bottom: 14px;
+}
+
+.dor h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.dor p {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.65;
+}
+
+/* ─────────────────────────────────────────
+   SLIDE 9 — INVESTIMENTO
+───────────────────────────────────────── */
+.invest-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  margin-top: 56px;
+  border-top: 1px solid var(--rule);
+}
+
+.price-block {
+  padding: 40px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.price-block + .price-block {
+  padding-left: 0;
+}
+
+.price-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 16px;
+}
+
+.price-num {
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(52px, 7vw, 80px);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.9;
+  color: var(--lime);
+  margin-bottom: 16px;
+}
+
+.price-num sup {
+  font-size: 0.35em;
+  font-weight: 500;
+  color: var(--dim);
+  vertical-align: super;
+  letter-spacing: 0;
+  margin-right: 3px;
+}
+
+.price-num sub {
+  font-size: 0.28em;
+  font-weight: 400;
+  color: var(--dim);
+  vertical-align: baseline;
+  letter-spacing: 0;
+}
+
+.price-desc {
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.65;
+  max-width: 340px;
+}
+
+.price-note {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--ghost);
+  letter-spacing: 0.06em;
+  margin-top: 12px;
+  line-height: 1.7;
+}
+
+.roi-table { margin-top: 56px; }
+
+.roi-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.roi-row:first-child { border-top: 1px solid var(--rule); }
+
+.roi-row span {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--dim);
+}
+
+.roi-row strong {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--paper);
+  letter-spacing: 0.04em;
+}
+
+.roi-row.hi strong { color: var(--lime); }
+
+/* ─────────────────────────────────────────
+   SLIDE 11 — CTA
+───────────────────────────────────────── */
+#s11 {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.cta-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  max-width: 680px;
+}
+
+.cta-btn {
+  display: inline-block;
+  background: var(--lime);
+  color: var(--ink);
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 18px 52px;
+  transition: opacity 0.2s;
+}
+
+.cta-btn:hover { opacity: 0.85; }
+
+.cta-contact {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--ghost);
+  letter-spacing: 0.14em;
+  line-height: 2;
+}
+
+/* ─────────────────────────────────────────
+   TIMELINE
+───────────────────────────────────────── */
+.tl { margin-top: 56px; max-width: 760px; }
+
+.tl-row {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 40px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--rule);
+  align-items: baseline;
+}
+
+.tl-row:first-child { border-top: 1px solid var(--rule); }
+
+.tl-d {
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--lime);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-top: 2px;
+}
+
+.tl-c h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+
+.tl-c p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.6;
+}
+
+/* ─────────────────────────────────────────
+   STEPS
+───────────────────────────────────────── */
+.steps { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; margin-top: 56px; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+
+.step { padding: 36px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); }
+
+.step-n {
+  font-family: 'Syne', sans-serif;
+  font-size: 52px;
+  font-weight: 800;
+  color: var(--lime);
+  opacity: 0.18;
+  line-height: 1;
+  margin-bottom: 20px;
+  letter-spacing: -0.04em;
+}
+
+.step h4 {
+  font-family: 'Syne', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin-bottom: 8px;
+}
+
+.step p {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--dim);
+  line-height: 1.65;
+}
+
+/* ─────────────────────────────────────────
+   SCOPE COLS
+───────────────────────────────────────── */
+.scope-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0;
+  margin-top: 48px;
+  border-top: 1px solid var(--rule);
+  border-left: 1px solid var(--rule);
+}
+
+.scope-col {
+  padding: 32px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.scope-col-tag {
+  font-family: 'Fira Code', monospace;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 12px;
+}
+
+.scope-col h3 {
+  font-family: 'Syne', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.scope-col ul { list-style: none; }
+
+.scope-col ul li {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--dim);
+  padding: 9px 0;
+  border-bottom: 1px solid var(--rule);
+  line-height: 1.5;
+  display: flex;
+  gap: 10px;
+}
+
+.scope-col ul li::before {
+  content: '—';
+  font-family: 'Fira Code', monospace;
+  font-size: 10px;
+  color: var(--ghost);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.scope-col ul li:last-child { border-bottom: none; }
+
+/* ─────────────────────────────────────────
+   NOT INCLUDED
+───────────────────────────────────────── */
+.not-list { list-style: none; }
+
+.not-list li {
+  font-size: 13px;
+  font-weight: 300;
+  color: rgba(238,238,232,0.28);
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  gap: 12px;
+  line-height: 1.5;
+}
+
+.not-list li::before {
+  content: '×';
+  font-family: 'Fira Code', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--red);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+.not-list li:first-child { border-top: 1px solid var(--rule); }
+
+/* ─────────────────────────────────────────
+   RESPONSIVE
+───────────────────────────────────────── */
+@media (max-width: 900px) {
+  .slide { padding: 56px 40px 80px; }
+  .sf { left: 40px; right: 40px; }
+  .slide::after { right: 40px; font-size: 200px; }
+  .cols-2, .cols-3, .dor-grid, .scope-3, .steps, .invest-grid { grid-template-columns: 1fr; }
+  .tl-row { grid-template-columns: 1fr; gap: 6px; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .h1 { font-size: 52px; }
+  .h2 { font-size: 36px; }
+}
 </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════════
-     SLIDE 1 — CAPA
-══════════════════════════════════════ -->
-<div class="slide" id="s1">
-  <div class="slide-bar active"></div>
-
-  <div class="capa-layout">
-    <div class="capa-top">
-      <div class="grovw-logo">GROVW</div>
-      <div class="capa-meta">
-        <p>Proposta Comercial</p>
-        <p>19 de abril de 2026</p>
-        <p style="margin-top:4px; color: rgba(205,255,0,0.4);">CONF-0001</p>
-      </div>
-    </div>
-
-    <div class="capa-body">
-      <div class="capa-pre">Sistema de Captação B2B</div>
-      <h1 class="h-hero">
-        Leads qualificados.<br>
-        <span class="accent">Todo mês.</span><br>
-        Sem depender<br>de indicação.
-      </h1>
-      <p class="lead" style="margin-top: 28px;">
-        Landing page, Google Ads e automação de lead no WhatsApp — montados em 15 dias, rodando no automático.
-      </p>
-    </div>
-
-    <div class="capa-bottom">
-      <div class="client-block">
-        <p>Preparado para</p>
-        <strong>Ricardo Mendes</strong>
-        <span>Sócio-Diretor, DataSync Soluções em TI</span>
-      </div>
-      <div style="text-align:right;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3); letter-spacing:0.1em;">grovw.com.br</div>
-      </div>
+<!-- ═══════════════════════════════════════
+  01 — CAPA
+═══════════════════════════════════════ -->
+<div class="slide" id="s1" data-n="01">
+  <div class="capa-bar reveal">
+    <div class="grovw">GROVW</div>
+    <div class="capa-meta">
+      <div>Proposta Comercial</div>
+      <div>19.04.2026</div>
+      <div style="color:rgba(205,255,0,0.3)">CONF-0001</div>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">01 / 09</span>
+  <div class="capa-main">
+    <div class="capa-eyebrow reveal reveal-d1">Sistema de Captação B2B</div>
+    <h1 class="h1 reveal reveal-d2">
+      Leads<br>
+      qualificados.<br>
+      <span class="lime">Todo mês.</span>
+    </h1>
+    <p class="body reveal reveal-d3" style="margin-top:28px; max-width:480px;">
+      Landing page, Google Ads e automação de lead no WhatsApp — montados em 15 dias, rodando no automático.
+    </p>
+  </div>
+
+  <div class="capa-foot reveal reveal-d4">
+    <div class="capa-client">
+      <small>Preparado para</small>
+      <strong>Ricardo Mendes</strong>
+      <span>Sócio-Diretor, DataSync Soluções em TI</span>
+    </div>
+    <div class="mono" style="color:var(--ghost); text-align:right; line-height:1.9;">
+      grovw.com.br
+    </div>
+  </div>
+
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">01 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 2 — QUEM SOMOS
-══════════════════════════════════════ -->
-<div class="slide" id="s2">
-  <div class="slide-bar"></div>
-
-  <span class="tag">Quem somos</span>
-  <h2 class="h-section">Engenharia de vendas<br><span class="accent">para empresas de TI.</span></h2>
-
-  <div class="solution-cols" style="margin-top:48px;">
+<!-- ═══════════════════════════════════════
+  02 — QUEM SOMOS
+═══════════════════════════════════════ -->
+<div class="slide" id="s2" data-n="02">
+  <div class="label reveal">Quem somos</div>
+  <div class="cols-2" style="gap:100px; align-items:start;">
     <div>
-      <p>A GROVW é operada por Kalid Carvalho — analista de sistemas com pós-graduação em Gestão de TI e mais de 5 anos construindo sistemas de captação digital para PMEs brasileiras.</p>
-      <p style="margin-top:14px;">Não vende pacote de redes sociais. Constrói máquina de captação: landing page, tráfego pago e automação de lead rodando juntos, com resultado rastreado.</p>
-      <p style="margin-top:14px;">Opera com stack técnica própria — N8N, Google Ads, WordPress, automações de WhatsApp via Evolution API — e fala de igual pra igual com fundadores e diretores de TI porque veio do mesmo mercado.</p>
-      <div class="callout" style="margin-top:24px;">
-        <p>Foco exclusivo em <strong style="color:var(--accent);">TI B2B, SaaS e Infraestrutura</strong> — empresas que vendem para outras empresas e precisam de leads qualificados, não de curtidas.</p>
-      </div>
+      <h2 class="h2 reveal reveal-d1">Engenharia<br>de vendas<br>para <span class="lime">TI.</span></h2>
     </div>
-    <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px; align-content:start;">
-      <div class="scope-card" style="text-align:center; padding:32px 20px;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:10px;">+5</div>
-        <div style="font-size:13px; color:var(--text-2);">anos de operação</div>
-      </div>
-      <div class="scope-card" style="text-align:center; padding:32px 20px;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:10px;">B2B</div>
-        <div style="font-size:13px; color:var(--text-2);">nicho especializado</div>
-      </div>
-      <div class="scope-card" style="text-align:center; padding:32px 20px;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:10px;">15d</div>
-        <div style="font-size:13px; color:var(--text-2);">entrega do setup</div>
-      </div>
-      <div class="scope-card" style="text-align:center; padding:32px 20px;">
-        <div style="font-family:'JetBrains Mono',monospace; font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:10px;">N8N</div>
-        <div style="font-size:13px; color:var(--text-2);">automações próprias</div>
-      </div>
+    <div style="padding-top:8px;">
+      <p class="body reveal reveal-d2">A GROVW é operada por Kalid Carvalho — analista de sistemas com pós-graduação em Gestão de TI e mais de 5 anos construindo sistemas de captação para PMEs brasileiras.</p>
+      <p class="body reveal reveal-d3">Não vende pacote de redes sociais. Constrói máquina de captação: landing page, tráfego pago e automação de lead rodando juntos, com resultado rastreado.</p>
+      <p class="body reveal reveal-d4" style="margin-top:16px;">Opera com stack técnica própria e fala de igual pra igual com fundadores e diretores de TI porque veio do mesmo mercado.</p>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">02 / 11</span>
+  <div class="stat-row reveal reveal-d5" style="margin-top:56px;">
+    <div class="stat-cell">
+      <div class="stat-val">+5</div>
+      <div class="stat-lbl">anos de operação</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">TI</div>
+      <div class="stat-lbl">B2B exclusivo</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">15d</div>
+      <div class="stat-lbl">entrega do setup</div>
+    </div>
+    <div class="stat-cell">
+      <div class="stat-val">N8N</div>
+      <div class="stat-lbl">automações próprias</div>
+    </div>
+  </div>
+
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">02 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 3 — O QUE FAZEMOS
-══════════════════════════════════════ -->
-<div class="slide" id="s3b">
-  <div class="slide-bar"></div>
+<!-- ═══════════════════════════════════════
+  03 — O QUE FAZEMOS
+═══════════════════════════════════════ -->
+<div class="slide" id="s3" data-n="03">
+  <div class="label reveal">O que fazemos</div>
+  <h2 class="h2 reveal reveal-d1">Sistemas de captação<br>que <span class="lime">geram MRR.</span></h2>
 
-  <span class="tag">O que fazemos</span>
-  <h2 class="h-section">Sistemas de captação<br><span class="accent">que geram MRR.</span></h2>
-
-  <div class="scope-cols" style="margin-top:48px;">
-    <div class="scope-card">
-      <span class="scope-card-tag">01</span>
+  <div class="cols-3" style="margin-top:56px; gap:0; border-top:1px solid var(--rule); border-left:1px solid var(--rule);">
+    <div class="pilar reveal reveal-d2" style="padding:36px; border-right:1px solid var(--rule); border-top:none;">
+      <div class="pilar-n">01</div>
       <h3>Landing Page de Alta Conversão</h3>
-      <ul class="scope-list">
-        <li>Página construída para converter visitante em lead</li>
-        <li>Copy técnico voltado para o ICP de TI</li>
-        <li>Rastreamento completo com GTM e GA4</li>
-      </ul>
+      <p style="margin-top:12px; font-size:14px; font-weight:300; color:var(--dim); line-height:1.65;">Página construída para converter visitante em lead. Copy técnico voltado para o ICP de TI. Rastreamento completo com GTM e GA4.</p>
     </div>
-    <div class="scope-card">
-      <span class="scope-card-tag">02</span>
+    <div class="pilar reveal reveal-d3" style="padding:36px; border-right:1px solid var(--rule); border-top:none;">
+      <div class="pilar-n">02</div>
       <h3>Tráfego Pago B2B</h3>
-      <ul class="scope-list">
-        <li>Google Ads fundo de funil — busca ativa</li>
-        <li>Meta Ads com segmentação por cargo e setor</li>
-        <li>Gestão contínua com relatório mensal</li>
-      </ul>
+      <p style="margin-top:12px; font-size:14px; font-weight:300; color:var(--dim); line-height:1.65;">Google Ads fundo de funil, busca ativa. Meta Ads com segmentação por cargo e setor. Gestão contínua com relatório mensal.</p>
     </div>
-    <div class="scope-card">
-      <span class="scope-card-tag">03</span>
+    <div class="pilar reveal reveal-d4" style="padding:36px; border-right:1px solid var(--rule); border-top:none;">
+      <div class="pilar-n">03</div>
       <h3>Automação de Lead</h3>
-      <ul class="scope-list">
-        <li>Lead qualificado chega no WhatsApp em 60s</li>
-        <li>Fluxo N8N: notificação, registro e follow-up</li>
-        <li>Integração com o processo comercial existente</li>
-      </ul>
+      <p style="margin-top:12px; font-size:14px; font-weight:300; color:var(--dim); line-height:1.65;">Lead qualificado chega no WhatsApp em 60s. Fluxo N8N com notificação, registro e follow-up integrado ao processo comercial.</p>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">03 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">03 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 4 — O PROBLEMA
-══════════════════════════════════════ -->
-<div class="slide" id="s2">
-  <div class="slide-bar"></div>
+<!-- ═══════════════════════════════════════
+  04 — DIAGNÓSTICO
+═══════════════════════════════════════ -->
+<div class="slide" id="s4" data-n="04">
+  <div class="label reveal">Diagnóstico</div>
+  <h2 class="h2 reveal reveal-d1">O que está travando<br><span class="lime">o crescimento.</span></h2>
 
-  <span class="tag outline">Diagnóstico</span>
-  <h2 class="h-section">O que está travando<br><span class="accent">o crescimento</span></h2>
-
-  <div class="pain-grid">
-    <div class="pain-card">
-      <div class="pain-num">01</div>
+  <div class="dor-grid reveal reveal-d2">
+    <div class="dor">
+      <div class="dor-n">01</div>
       <h3>Sem presença no momento da busca</h3>
-      <p>Quando um gestor de TI pesquisa "integrador de redes" ou "suporte TI empresarial" na sua região, a DataSync não aparece. O contrato vai para quem investiu antes.</p>
+      <p>Quando um gestor pesquisa "integrador de redes" na sua região, a DataSync não aparece. O contrato vai para quem investiu antes.</p>
     </div>
-    <div class="pain-card">
-      <div class="pain-num">02</div>
+    <div class="dor">
+      <div class="dor-n">02</div>
       <h3>Site que não gera lead</h3>
-      <p>O site atual é institucional. Sem landing page de conversão, sem CTA claro, sem captura de contato. Visitante entra e sai sem deixar rastro.</p>
+      <p>O site atual é institucional. Sem landing page de conversão, sem CTA claro, sem captura de contato. Visitante entra e sai.</p>
     </div>
-    <div class="pain-card">
-      <div class="pain-num">03</div>
+    <div class="dor">
+      <div class="dor-n">03</div>
       <h3>Lead cai no vácuo</h3>
-      <p>Quando alguém preenche um formulário, o contato chega por email e depende de alguém ver. Sem automação, a janela de interesse fecha rápido.</p>
+      <p>Quando alguém preenche um formulário, o contato chega por email e depende de alguém ver. Sem automação, a janela fecha rápido.</p>
     </div>
-    <div class="pain-card">
-      <div class="pain-num">04</div>
+    <div class="dor">
+      <div class="dor-n">04</div>
       <h3>Crescimento só por indicação</h3>
       <p>Indicação é boa, mas não é escalável. Para crescer MRR com previsibilidade, precisa de canal ativo, não passivo.</p>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">04 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">04 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 3 — A SOLUÇÃO
-══════════════════════════════════════ -->
-<div class="slide" id="s3">
-  <div class="slide-bar"></div>
-
-  <span class="tag">Proposta</span>
-  <h2 class="h-section">Uma máquina de captação<br><span class="accent">construída do zero.</span></h2>
-
-  <div class="solution-cols">
+<!-- ═══════════════════════════════════════
+  05 — A SOLUÇÃO
+═══════════════════════════════════════ -->
+<div class="slide" id="s5" data-n="05">
+  <div class="label reveal">Proposta</div>
+  <div class="cols-2" style="gap:96px; align-items:start;">
     <div>
-      <p>Vamos montar um sistema de captação completo para a DataSync: uma landing page construída para converter, campanhas no Google Ads capturando quem está buscando por serviços de TI, e automação que responde o lead no WhatsApp em menos de 60 segundos.</p>
-      <p style="margin-top:14px;">O resultado: quando um gestor pesquisar integração de redes ou suporte empresarial na sua região, a DataSync aparece. Quando ele preenche o formulário, o time já recebe o contato com contexto.</p>
-      <div class="callout">
-        <p>Não é marketing. É engenharia de captação. Cada peça tem função: a LP converte, o Ads traz tráfego qualificado, a automação não deixa lead esfriar.</p>
-      </div>
+      <h2 class="h2 reveal reveal-d1">Uma máquina<br>de captação<br><span class="lime">do zero.</span></h2>
+      <p class="body reveal reveal-d2" style="margin-top:32px;">Vamos montar um sistema de captação completo: LP para converter, Google Ads para trazer tráfego qualificado, e automação que responde o lead no WhatsApp em menos de 60 segundos.</p>
+      <p class="body reveal reveal-d3">O resultado: a DataSync aparece quando o gestor está buscando. Quando ele preenche o formulário, o time já recebe o contato com contexto.</p>
     </div>
-    <div>
-      <ul class="stack-list">
-        <li><strong>WordPress + Elementor</strong> — landing page de alta conversão</li>
-        <li><strong>Google Ads</strong> — fundo de funil, busca ativa</li>
-        <li><strong>N8N</strong> — automação lead no WhatsApp</li>
-        <li><strong>GTM + GA4</strong> — rastreamento completo</li>
-        <li><strong>Google Sheets</strong> — controle de leads em tempo real</li>
-        <li><strong>Evolution API</strong> — WhatsApp comercial integrado</li>
+    <div style="padding-top:8px;">
+      <ul class="line-list reveal reveal-d2">
+        <li><span class="item-n">LP</span> <span><strong>WordPress + Elementor</strong> — landing page de alta conversão</span></li>
+        <li><span class="item-n">ADS</span> <span><strong>Google Ads</strong> — fundo de funil, busca ativa</span></li>
+        <li><span class="item-n">BOT</span> <span><strong>N8N</strong> — automação de lead no WhatsApp</span></li>
+        <li><span class="item-n">TRK</span> <span><strong>GTM + GA4</strong> — rastreamento completo</span></li>
+        <li><span class="item-n">DB</span> <span><strong>Google Sheets</strong> — controle de leads em tempo real</span></li>
+        <li><span class="item-n">API</span> <span><strong>Evolution API</strong> — WhatsApp comercial integrado</span></li>
       </ul>
-      <div class="callout" style="margin-top:24px;">
-        <p><strong style="color:var(--accent);">Setup completo:</strong> 15 dias úteis.<br>
-        Tudo rastreado, sem caixa-preta, acesso total do cliente.</p>
-      </div>
+      <p class="mono reveal reveal-d3" style="color:var(--lime); margin-top:28px; font-size:11px; letter-spacing:0.12em;">Setup completo: 15 dias úteis. Sem caixa-preta. Acesso total.</p>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">05 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">05 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 4 — ESCOPO DO SETUP
-══════════════════════════════════════ -->
-<div class="slide" id="s4">
-  <div class="slide-bar"></div>
+<!-- ═══════════════════════════════════════
+  06 — ESCOPO DO SETUP
+═══════════════════════════════════════ -->
+<div class="slide" id="s6" data-n="06">
+  <div class="label reveal">Setup único — 15 dias</div>
+  <h2 class="h2 reveal reveal-d1">O que está<br><span class="lime">incluído.</span></h2>
 
-  <span class="tag">Setup único — 15 dias</span>
-  <h2 class="h-section">O que está<br><span class="accent">incluído no setup</span></h2>
-
-  <div class="scope-cols">
-    <div class="scope-card">
-      <span class="scope-card-tag">Landing Page</span>
+  <div class="scope-3 reveal reveal-d2">
+    <div class="scope-col">
+      <div class="scope-col-tag">Landing Page</div>
       <h3>Página de Captação</h3>
-      <ul class="scope-list">
-        <li>LP focada em conversão B2B (1 página)</li>
+      <ul>
+        <li>LP focada em conversão B2B</li>
         <li>Copy voltado para gestor de TI</li>
         <li>Formulário integrado à automação</li>
         <li>Otimização mobile e velocidade</li>
@@ -913,22 +952,22 @@
         <li>Hospedagem no domínio da DataSync</li>
       </ul>
     </div>
-    <div class="scope-card">
-      <span class="scope-card-tag">Google Ads</span>
+    <div class="scope-col">
+      <div class="scope-col-tag">Google Ads</div>
       <h3>Tráfego Qualificado</h3>
-      <ul class="scope-list">
-        <li>Pesquisa de palavras-chave fundo de funil</li>
+      <ul>
+        <li>Palavras-chave fundo de funil</li>
         <li>Criação ou auditoria de conta</li>
         <li>1 campanha de pesquisa estruturada</li>
-        <li>Anúncios responsivos com extensões</li>
-        <li>Configuração de conversão e rastreamento</li>
+        <li>Anúncios responsivos + extensões</li>
+        <li>Configuração de conversão</li>
         <li>Briefing de investimento recomendado</li>
       </ul>
     </div>
-    <div class="scope-card">
-      <span class="scope-card-tag">Automação</span>
+    <div class="scope-col">
+      <div class="scope-col-tag">Automação N8N</div>
       <h3>Lead no WhatsApp</h3>
-      <ul class="scope-list">
+      <ul>
         <li>Fluxo N8N: formulário aciona automação</li>
         <li>Mensagem automática para o lead</li>
         <li>Notificação no WhatsApp comercial</li>
@@ -938,36 +977,34 @@
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">06 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">06 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 5 — GESTÃO MENSAL + NÃO INCLUÍDO
-══════════════════════════════════════ -->
-<div class="slide" id="s5">
-  <div class="slide-bar"></div>
+<!-- ═══════════════════════════════════════
+  07 — GESTÃO MENSAL
+═══════════════════════════════════════ -->
+<div class="slide" id="s7" data-n="07">
+  <div class="label reveal">Gestão mensal</div>
+  <h2 class="h2 reveal reveal-d1">Depois do setup:<br><span class="lime">otimização contínua.</span></h2>
 
-  <span class="tag outline">Gestão mensal</span>
-  <h2 class="h-section">Depois do setup:<br><span class="accent">otimização contínua.</span></h2>
-
-  <div class="gestao-layout">
-    <div class="gestao-card">
-      <h3>O que a gestão mensal inclui</h3>
-      <ul class="scope-list">
-        <li>Otimização semanal das campanhas Google Ads</li>
-        <li>Ajuste de copy e criativos conforme performance</li>
-        <li>Check-in analítico semanal por WhatsApp</li>
-        <li>Relatório mensal: leads, custo por lead, conversão</li>
-        <li>Sugestões de pauta e ajuste de estratégia</li>
-        <li>Manutenção da automação N8N</li>
+  <div class="cols-2" style="margin-top:56px; gap:80px; align-items:start;">
+    <div>
+      <p class="mono reveal reveal-d2" style="color:var(--dim); margin-bottom:20px; font-size:10px; letter-spacing:0.14em;">INCLUSO NA GESTÃO</p>
+      <ul class="line-list reveal reveal-d2">
+        <li><span class="item-n">01</span>Otimização semanal das campanhas Google Ads</li>
+        <li><span class="item-n">02</span>Ajuste de copy e criativos conforme performance</li>
+        <li><span class="item-n">03</span>Check-in analítico semanal por WhatsApp</li>
+        <li><span class="item-n">04</span>Relatório mensal: leads, custo por lead, conversão</li>
+        <li><span class="item-n">05</span>Sugestões de pauta e ajuste de estratégia</li>
+        <li><span class="item-n">06</span>Manutenção da automação N8N</li>
       </ul>
     </div>
     <div>
-      <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 16px; color: var(--text-2);">O que <span style="color:#ff4444;">não</span> está incluído</h3>
-      <ul class="not-list">
+      <p class="mono reveal reveal-d3" style="color:var(--dim); margin-bottom:20px; font-size:10px; letter-spacing:0.14em;">FORA DO ESCOPO</p>
+      <ul class="not-list reveal reveal-d3">
         <li>Gestão de redes sociais</li>
         <li>Produção de vídeos ou fotos</li>
         <li>Campanhas Meta Ads</li>
@@ -980,201 +1017,187 @@
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">07 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">07 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 6 — PRAZO
-══════════════════════════════════════ -->
-<div class="slide" id="s6">
-  <div class="slide-bar"></div>
+<!-- ═══════════════════════════════════════
+  08 — CRONOGRAMA
+═══════════════════════════════════════ -->
+<div class="slide" id="s8" data-n="08">
+  <div class="label reveal">Cronograma</div>
+  <h2 class="h2 reveal reveal-d1">Entrega em<br><span class="lime">15 dias úteis.</span></h2>
 
-  <span class="tag">Cronograma</span>
-  <h2 class="h-section">Entrega em<br><span class="accent">15 dias úteis.</span></h2>
-
-  <div class="timeline">
-    <div class="tl-item">
-      <div class="tl-day">Dia 1</div>
-      <div class="tl-content">
+  <div class="tl reveal reveal-d2">
+    <div class="tl-row">
+      <div class="tl-d">Dia 1</div>
+      <div class="tl-c">
         <h4>Kickoff e coleta de informações</h4>
         <p>Briefing completo: serviços, diferenciais, tom, público-alvo, região e acessos.</p>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-day">Dias 2 – 5</div>
-      <div class="tl-content">
+    <div class="tl-row">
+      <div class="tl-d">Dias 2–5</div>
+      <div class="tl-c">
         <h4>Desenvolvimento da landing page</h4>
         <p>Estrutura, copy e design. Revisão com o cliente antes de publicar.</p>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-day">Dias 6 – 10</div>
-      <div class="tl-content">
+    <div class="tl-row">
+      <div class="tl-d">Dias 6–10</div>
+      <div class="tl-c">
         <h4>Google Ads e rastreamento</h4>
         <p>Campanha estruturada, conversões configuradas, GTM e GA4 instalados e testados.</p>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-day">Dias 11 – 13</div>
-      <div class="tl-content">
+    <div class="tl-row">
+      <div class="tl-d">Dias 11–13</div>
+      <div class="tl-c">
         <h4>Automação de lead</h4>
         <p>Fluxo N8N montado e testado: formulário, WhatsApp comercial, planilha de controle.</p>
       </div>
     </div>
-    <div class="tl-item">
-      <div class="tl-day">Dias 14 – 15</div>
-      <div class="tl-content">
+    <div class="tl-row">
+      <div class="tl-d">Dias 14–15</div>
+      <div class="tl-c">
         <h4>Revisão final e entrega</h4>
         <p>Testes end-to-end, ajustes finais e passagem de acessos com documentação.</p>
       </div>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">08 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">08 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 7 — INVESTIMENTO
-══════════════════════════════════════ -->
-<div class="slide" id="s7">
-  <div class="slide-bar"></div>
+<!-- ═══════════════════════════════════════
+  09 — INVESTIMENTO
+═══════════════════════════════════════ -->
+<div class="slide" id="s9" data-n="09">
+  <div class="label reveal">Investimento</div>
+  <h2 class="h2 reveal reveal-d1">Quanto custa<br><span class="lime">e o que você ganha.</span></h2>
 
-  <span class="tag">Investimento</span>
-  <h2 class="h-section">Quanto custa<br><span class="accent">e o que você ganha.</span></h2>
-
-  <div class="invest-layout">
-    <div style="display:flex; flex-direction:column; gap:16px;">
-      <div class="price-card">
-        <div class="price-label">Setup único</div>
-        <div class="price-big"><small>R$</small>4.000</div>
+  <div class="invest-grid reveal reveal-d2">
+    <div style="border-right:1px solid var(--rule); padding-right:60px;">
+      <div class="price-block">
+        <div class="price-tag">Setup único</div>
+        <div class="price-num"><sup>R$</sup>4.000</div>
         <p class="price-desc">LP + Google Ads + automação N8N. Entregue em 15 dias úteis após o kickoff.</p>
-        <p class="price-note">Pagamento via PIX ou boleto. Início no dia do pagamento confirmado.</p>
+        <p class="price-note">Pagamento via PIX ou boleto.<br>Início no dia do pagamento confirmado.</p>
       </div>
-      <div class="price-card" style="border-color: rgba(255,255,255,0.12);">
-        <div class="price-label">Gestão mensal</div>
-        <div class="price-big" style="font-size: clamp(36px,5vw,52px);"><small>R$</small>3.000<span style="font-size:18px; color:var(--text-2); font-weight:400; font-family:'Inter',sans-serif;">/mês</span></div>
+      <div class="price-block">
+        <div class="price-tag">Gestão mensal</div>
+        <div class="price-num" style="font-size:clamp(42px,5.5vw,64px);"><sup>R$</sup>3.000<sub>/mês</sub></div>
         <p class="price-desc">Otimização de Ads, relatórios e ajustes contínuos. Sem fidelidade mínima no 1º mês.</p>
-        <p class="price-note">Investimento em Ads separado e na conta do cliente.<br>Recomendação inicial: R$800 – R$1.500/mês.</p>
+        <p class="price-note">Investimento em Ads separado, na conta do cliente.<br>Recomendação inicial: R$800–R$1.500/mês.</p>
       </div>
     </div>
-
-    <div class="roi-card">
-      <h3>Por que faz sentido financeiro</h3>
-      <div class="roi-row">
-        <span>Ticket médio de um contrato de TI</span>
-        <strong>R$2k – R$8k/ano</strong>
+    <div style="padding-left:60px;">
+      <div class="roi-table">
+        <p class="mono" style="color:var(--dim); margin-bottom:0; font-size:10px; letter-spacing:0.14em;">POR QUE FAZ SENTIDO</p>
+        <div class="roi-row">
+          <span>Ticket médio de contrato TI</span>
+          <strong>R$2k–R$8k/ano</strong>
+        </div>
+        <div class="roi-row">
+          <span>Leads qualificados por mês</span>
+          <strong>5 a 15</strong>
+        </div>
+        <div class="roi-row">
+          <span>Conversão realista TI B2B</span>
+          <strong>10–20%</strong>
+        </div>
+        <div class="roi-row">
+          <span>Novos contratos no 1º trimestre</span>
+          <strong>2 a 5</strong>
+        </div>
+        <div class="roi-row hi">
+          <span>Retorno vs. investimento</span>
+          <strong>10x+ em 90 dias</strong>
+        </div>
+        <p style="font-size:11px; font-weight:300; color:var(--ghost); margin-top:16px; line-height:1.7;">* Estimativa conservadora. Resultado depende do investimento em Ads e do processo comercial interno.</p>
       </div>
-      <div class="roi-row">
-        <span>Leads qualificados estimados por mês</span>
-        <strong>5 a 15</strong>
-      </div>
-      <div class="roi-row">
-        <span>Taxa de conversão realista em TI B2B</span>
-        <strong>10 – 20%</strong>
-      </div>
-      <div class="roi-row">
-        <span>Novos contratos no 1º trimestre</span>
-        <strong>2 a 5</strong>
-      </div>
-      <div class="roi-row hi">
-        <span>Retorno vs. investimento total</span>
-        <strong>10x+ em 90 dias</strong>
-      </div>
-      <p style="font-size:12px; color:var(--text-3); margin-top:20px; line-height:1.6;">* Estimativa conservadora. Resultado depende do investimento em Ads e do processo comercial interno.</p>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">09 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">09 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 8 — PRÓXIMOS PASSOS
-══════════════════════════════════════ -->
-<div class="slide" id="s8">
-  <div class="slide-bar"></div>
+<!-- ═══════════════════════════════════════
+  10 — PRÓXIMOS PASSOS
+═══════════════════════════════════════ -->
+<div class="slide" id="s10" data-n="10">
+  <div class="label reveal">Como avançar</div>
+  <h2 class="h2 reveal reveal-d1">Três passos<br>para <span class="lime">começar.</span></h2>
 
-  <span class="tag">Como avançar</span>
-  <h2 class="h-section">Três passos para<br><span class="accent">começar.</span></h2>
-
-  <div class="steps-grid">
-    <div class="step-card">
+  <div class="steps reveal reveal-d2">
+    <div class="step">
       <div class="step-n">01</div>
       <h4>Confirmação da proposta</h4>
       <p>Responder com "topo" por WhatsApp ou email. Se tiver dúvida em qualquer ponto, a gente resolve antes de fechar.</p>
     </div>
-    <div class="step-card">
+    <div class="step">
       <div class="step-n">02</div>
       <h4>Contrato e pagamento</h4>
-      <p>Contrato simples por email. Pagamento do setup via PIX ou boleto. Início no dia do pagamento confirmado.</p>
+      <p>Contrato simples por email. Pagamento via PIX ou boleto. Início no dia do pagamento confirmado.</p>
     </div>
-    <div class="step-card">
+    <div class="step">
       <div class="step-n">03</div>
       <h4>Kickoff em 48h</h4>
       <p>Reunião de briefing via Google Meet. 45 minutos. Saímos com tudo para começar a produção imediatamente.</p>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">10 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">10 / 11</span>
   </div>
 </div>
 
-<!-- ══════════════════════════════════════
-     SLIDE 9 — CTA FINAL
-══════════════════════════════════════ -->
-<div class="slide" id="s9">
-  <div class="slide-bar"></div>
-
-  <div class="cta-block">
-    <span class="tag">GROVW</span>
-    <h2 class="h-section" style="text-align:center;">
-      Pronto para estruturar<br>
-      <span class="accent">a captação?</span>
+<!-- ═══════════════════════════════════════
+  11 — CTA FINAL
+═══════════════════════════════════════ -->
+<div class="slide" id="s11" data-n="11">
+  <div class="cta-inner">
+    <div class="mono reveal" style="color:var(--lime); letter-spacing:0.22em; font-size:10px;">GROVW — 2026</div>
+    <h2 class="h2 reveal reveal-d1" style="text-align:center;">
+      Pronto para<br>estruturar a<br><span class="lime">captação?</span>
     </h2>
-    <p class="lead" style="text-align:center;">
+    <p class="body reveal reveal-d2" style="text-align:center; max-width:460px;">
       Responda essa proposta e a gente começa em 48 horas. Sem reunião de vendas, sem enrolação.
     </p>
-    <a href="https://wa.me/5592991923266" class="btn-cta">Falar com a GROVW</a>
-
-    <div class="about-strip">
-      <div class="about-stat">
-        <div class="about-stat-val">+5</div>
-        <div class="about-stat-label">anos de operação</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-val">TI B2B</div>
-        <div class="about-stat-label">nicho especializado</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-val">15d</div>
-        <div class="about-stat-label">entrega do setup</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-val">N8N</div>
-        <div class="about-stat-label">automações próprias</div>
-      </div>
-    </div>
-
-    <div style="margin-top: 16px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3); letter-spacing:0.12em;">
-      Kalid Carvalho &nbsp;|&nbsp; +55 92 99192-3266 &nbsp;|&nbsp; grovw.com.br
+    <a href="https://wa.me/5592991923266" class="cta-btn reveal reveal-d3">Falar com a GROVW</a>
+    <div class="cta-contact reveal reveal-d4">
+      <div>Kalid Carvalho</div>
+      <div>+55 92 99192-3266</div>
+      <div>grovw.com.br</div>
     </div>
   </div>
 
-  <div class="slide-footer">
-    <span class="slide-footer-logo">GROVW</span>
-    <span class="slide-footer-num">11 / 11</span>
+  <div class="sf">
+    <span class="sf-brand">GROVW</span>
+    <span class="sf-num">11 / 11</span>
   </div>
 </div>
 
+<script>
+// Scroll-triggered reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
