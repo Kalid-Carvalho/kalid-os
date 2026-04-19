@@ -35,7 +35,14 @@ Upload via Python/paramiko (sem sshpass):
 - Senha: `Rsmx!@2026*`
 - Raiz do site: `domains/rsmx.com.br/public_html/`
 
+## Site (status: no ar — site estático)
+- Migrado do WordPress para site estático em 18/04/2026
+- GTM instalado: `GTM-5ZTSC6BS`
+- SEO atualizado: title, description, canonical, OG image real, Schema JSON-LD (Organization + FAQPage)
+- Formulário conectado via API (Web3Forms)
+- Servidor: `147.79.84.66:65002` → `domains/rsmx.com.br/public_html/`
+
 ## Arquivos importantes
-- briefing.md — template em preenchimento
-- site/ — LP estática (index.html + assets)
+- briefing.md — briefing do cliente
+- site/ — LP estática (index.html + assets) — submodule git
 - site/backup-server/ — backup das páginas `links/` e `trafego/` do servidor antigo

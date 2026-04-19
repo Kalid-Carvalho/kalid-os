@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atualização de Estratégia — RSMX | Abril 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0B0F1A;
+    color: #F0F4FF;
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  .container { max-width: 900px; margin: 0 auto; }
+
+  .header {
+    border-bottom: 1px solid #1C2D4A;
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(26,86,219,0.15);
+    border: 1px solid rgba(26,86,219,0.35);
+    color: #7EB3FF;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #F0F4FF;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .header h1 span { color: #1A56DB; }
+
+  .header-meta {
+    font-size: 14px;
+    color: #8899BB;
+    margin-top: 8px;
+  }
+
+  .header-meta strong { color: #F0F4FF; }
+
+  .status-pill {
+    background: rgba(234,179,8,0.12);
+    border: 1px solid rgba(234,179,8,0.3);
+    color: #FACC15;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .section { margin-bottom: 40px; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1C2D4A;
+  }
+
+  .context-box {
+    background: rgba(26,86,219,0.07);
+    border: 1px solid rgba(26,86,219,0.2);
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 13px;
+    color: #8899BB;
+    line-height: 1.7;
+  }
+
+  .context-box strong { color: #7EB3FF; }
+
+  .diag-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .diag-item {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 20px 20px 20px 24px;
+    border-left: 3px solid #1A56DB;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+
+  .diag-item.ok { border-left-color: #22C55E; }
+  .diag-item.warning { border-left-color: #EAB308; }
+  .diag-item.critical { border-left-color: #EA580C; }
+  .diag-item.info { border-left-color: #1A56DB; }
+
+  .diag-number {
+    background: #1A56DB;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .diag-item.ok .diag-number { background: #22C55E; color: #0B0F1A; }
+  .diag-item.warning .diag-number { background: #EAB308; color: #0B0F1A; }
+  .diag-item.critical .diag-number { background: #EA580C; }
+
+  .diag-content h4 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #F0F4FF;
+    margin-bottom: 6px;
+  }
+
+  .diag-content p {
+    font-size: 13px;
+    color: #8899BB;
+    line-height: 1.6;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+  }
+
+  .metric-card {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 20px 18px;
+  }
+
+  .metric-card.highlight {
+    border-color: rgba(26,86,219,0.4);
+    background: rgba(26,86,219,0.08);
+  }
+
+  .metric-card.paused {
+    border-color: rgba(234,88,12,0.3);
+    background: rgba(234,88,12,0.05);
+    opacity: 0.7;
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #8899BB;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #F0F4FF;
+    line-height: 1;
+  }
+
+  .metric-sub {
+    font-size: 12px;
+    color: #8899BB;
+    margin-top: 6px;
+  }
+
+  .table-wrap {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  table { width: 100%; border-collapse: collapse; }
+
+  thead th {
+    background: #0D1526;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8899BB;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #1C2D4A;
+  }
+
+  tbody td {
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #D0DEFF;
+    border-bottom: 1px solid #0D1526;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  .tag-active {
+    background: rgba(34,197,94,0.12);
+    color: #4ADE80;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .tag-paused {
+    background: rgba(234,88,12,0.12);
+    color: #FB923C;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .tag-new {
+    background: rgba(26,86,219,0.15);
+    color: #7EB3FF;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .steps-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step-item {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .step-priority {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 100px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .priority-alta {
+    background: rgba(234,88,12,0.15);
+    color: #FB923C;
+    border: 1px solid rgba(234,88,12,0.3);
+  }
+
+  .priority-media {
+    background: rgba(234,179,8,0.12);
+    color: #FACC15;
+    border: 1px solid rgba(234,179,8,0.3);
+  }
+
+  .step-text {
+    font-size: 14px;
+    color: #D0DEFF;
+    line-height: 1.5;
+  }
+
+  .step-text strong {
+    color: #F0F4FF;
+    display: block;
+    margin-bottom: 2px;
+  }
+
+  .divider {
+    height: 1px;
+    background: #1C2D4A;
+    margin: 32px 0;
+  }
+
+  .footer {
+    margin-top: 48px;
+    padding-top: 24px;
+    border-top: 1px solid #1C2D4A;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .footer-left, .footer-right {
+    font-size: 13px;
+    color: #3D527A;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="badge">Meta Ads — Atualização de Estratégia</div>
+        <h1>Nova Fase <span>RSMX</span><br>Foco em Audiência e Vídeo</h1>
+        <div class="header-meta">
+          <strong>Data:</strong> 19 de abril de 2026 &nbsp;·&nbsp;
+          <strong>Cliente:</strong> Vinicius Zanin / RSMX &nbsp;·&nbsp;
+          <strong>Orçamento:</strong> R$ 25/dia
+        </div>
+      </div>
+      <div class="status-pill">Reconfiguração em andamento</div>
+    </div>
+  </div>
+
+  <!-- Contexto -->
+  <div class="section">
+    <div class="section-title">Por que mudamos a estratégia</div>
+    <div class="context-box">
+      O diagnóstico da semana passada mostrou <strong>zero leads</strong> nas campanhas de conversão, audiência de remarketing saturada (457 pessoas, frequência 3,09 em 4 dias) e provável problema no disparo do Pixel. Em vez de continuar investindo em fundo de funil sem base, a decisão foi <strong>pausar as campanhas de leads</strong> e redirecionar o orçamento para construir audiência qualificada via visualização de vídeo. O fundo volta a rodar quando o pool de remarketing for maior e mais quente.
+    </div>
+  </div>
+
+  <!-- Nova estrutura de campanhas -->
+  <div class="section">
+    <div class="section-title">Nova estrutura de campanhas</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Campanha</th>
+            <th>Objetivo</th>
+            <th>Orçamento/dia</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Turbinar Perfil</strong></td>
+            <td>Visitas ao perfil do Instagram</td>
+            <td>R$ 10</td>
+            <td><span class="tag-active">Mantida</span></td>
+          </tr>
+          <tr>
+            <td><strong>Visualização de Vídeo — Lookalike 1%</strong></td>
+            <td>Vídeo views 50%+ / construção de audiência</td>
+            <td>R$ 5</td>
+            <td><span class="tag-new">Nova</span></td>
+          </tr>
+          <tr>
+            <td><strong>Visualização de Vídeo — Lookalike 2%</strong></td>
+            <td>Vídeo views 50%+ / construção de audiência</td>
+            <td>R$ 5</td>
+            <td><span class="tag-new">Nova</span></td>
+          </tr>
+          <tr>
+            <td><strong>Visualização de Vídeo — Lookalike 3%</strong></td>
+            <td>Vídeo views 50%+ / construção de audiência</td>
+            <td>R$ 5</td>
+            <td><span class="tag-new">Nova</span></td>
+          </tr>
+          <tr>
+            <td><strong>Fundo de Funil — Leads</strong></td>
+            <td>Conversão / formulário LP</td>
+            <td>R$ 8</td>
+            <td><span class="tag-paused">Pausada</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Lookalike -->
+  <div class="section">
+    <div class="section-title">Origem do público lookalike</div>
+    <div class="context-box">
+      A lista usada como semente para os públicos Lookalike é composta por <strong>médicos cadastrados em uma empresa parceira</strong> — profissionais em início de carreira que já demonstraram interesse em estruturar sua atuação no mercado. São médicos ativos, com CRM, exatamente o ICP do serviço da RSMX. A lista foi enviada ao Meta e três públicos semelhantes foram gerados: <strong>1%, 2% e 3%</strong> de similaridade. Cada um será testado com o mesmo criativo e mesmo orçamento por 7 a 10 dias para identificar qual perfil responde melhor ao vídeo.
+    </div>
+  </div>
+
+  <!-- Lógica do teste -->
+  <div class="section">
+    <div class="section-title">Como funciona o teste de lookalike</div>
+    <div class="diag-list">
+
+      <div class="diag-item info">
+        <div class="diag-number">1%</div>
+        <div class="diag-content">
+          <h4>Mais parecido com a lista original</h4>
+          <p>Público menor, mais caro por impressão, mas tende a ser mais qualificado. Esperado para ter o melhor custo por visualização de 50%+ e gerar a audiência de remarketing mais quente.</p>
+        </div>
+      </div>
+
+      <div class="diag-item info">
+        <div class="diag-number">2%</div>
+        <div class="diag-content">
+          <h4>Equilíbrio entre qualidade e volume</h4>
+          <p>Público intermediário. Pode ter melhor alcance com qualidade razoável. Serve como referência para calibrar até onde faz sentido abrir o público sem perder relevância.</p>
+        </div>
+      </div>
+
+      <div class="diag-item info">
+        <div class="diag-number">3%</div>
+        <div class="diag-content">
+          <h4>Maior volume, menor precisão</h4>
+          <p>CPM mais barato, alcance maior. Útil se os dados mostrarem que o público responde bem mesmo com menos similaridade. Costuma converter pior em serviços de ticket alto.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- O que estamos medindo -->
+  <div class="section">
+    <div class="section-title">O que vamos medir nos próximos 7–10 dias</div>
+    <div class="diag-list">
+
+      <div class="diag-item ok">
+        <div class="diag-number">1</div>
+        <div class="diag-content">
+          <h4>Custo por visualização de 50% e 95%</h4>
+          <p>Principal métrica do teste. Indica qual lookalike está gerando a audiência mais qualificada ao menor custo. Esse público vai alimentar o remarketing quando o fundo de funil voltar.</p>
+        </div>
+      </div>
+
+      <div class="diag-item ok">
+        <div class="diag-number">2</div>
+        <div class="diag-content">
+          <h4>Hold Rate — taxa de retenção do vídeo</h4>
+          <p>Quantas pessoas continuam assistindo após os primeiros segundos. Meta: acima de 1%. Se ficar abaixo com todos os públicos, o criativo precisa ser substituído por um com mais substância no meio (prova social, resultado de cliente).</p>
+        </div>
+      </div>
+
+      <div class="diag-item ok">
+        <div class="diag-number">3</div>
+        <div class="diag-content">
+          <h4>Tamanho da audiência de remarketing gerada</h4>
+          <p>Ao final do teste, verificar quantas pessoas entraram no pool de "assistiu 50% do vídeo". Meta: chegar em 1.000+ pessoas para o remarketing ter escala quando for reativado.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Próximos passos -->
+  <div class="section">
+    <div class="section-title">Próximos passos</div>
+    <div class="steps-list">
+
+      <div class="step-item">
+        <span class="step-priority priority-alta">Agora</span>
+        <div class="step-text">
+          <strong>Subir campanha de visualização de vídeo</strong>
+          Criar 3 conjuntos de anúncios (lookalike 1%, 2%, 3%) com R$ 5/dia cada. Mesmo criativo nos três conjuntos para isolar a variável do público.
+        </div>
+      </div>
+
+      <div class="step-item">
+        <span class="step-priority priority-alta">Agora</span>
+        <div class="step-text">
+          <strong>Pausar campanhas de leads</strong>
+          Desativar os dois conjuntos de fundo de funil (público frio + remarketing) até o pool de audiência estar maior e mais aquecido.
+        </div>
+      </div>
+
+      <div class="step-item">
+        <span class="step-priority priority-media">7–10 dias</span>
+        <div class="step-text">
+          <strong>Revisão do teste de lookalike</strong>
+          Identificar qual dos três públicos gerou o menor custo por visualização de 50%+. Pausar os dois piores e concentrar R$ 15/dia no vencedor.
+        </div>
+      </div>
+
+      <div class="step-item">
+        <span class="step-priority priority-media">Final de abril</span>
+        <div class="step-text">
+          <strong>Religar o fundo de funil com audiência nova</strong>
+          Quando o pool de remarketing (quem assistiu 50%+ do vídeo) atingir volume suficiente, reativar as campanhas de conversão com esse público aquecido.
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-left">RSMX — Atualização de Estratégia · Abril 2026</div>
+    <div class="footer-right">Elaborado por GROVW</div>
+  </div>
+
+</div>
+</body>
+</html>
