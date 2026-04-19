@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROVW - Advanced Design System 2026</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&display=swap" rel="stylesheet" />
+    
+    <!-- Icons -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+    <style>
+        :root {
+            --bg: #000000;
+            --bg2: #060606;
+            --bg3: #0e0e0e;
+            --surface: #111111;
+            --surface2: #181818;
+            --surface-glass: rgba(255,255,255,0.03);
+            --accent: #cdff00;
+            --accent-glow: rgba(205,255,0,0.15);
+            --accent-glow-strong: rgba(205,255,0,0.25);
+            --accent-dim: rgba(205,255,0,0.07);
+            --accent-border: rgba(205,255,0,0.2);
+            --text: #ffffff;
+            --text-muted: #666666;
+            --border: rgba(255,255,255,0.08);
+            --font: 'Inter', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+            
+            /* Utils */
+            --mouse-x: 50%;
+            --mouse-y: 50%;
+        }
+
+        /* Reset */
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            font-family: var(--font); 
+            background: var(--bg); 
+            color: var(--text); 
+            overflow-x: hidden; 
+            min-height: 100vh;
+        }
+
+        /* Utilities */
+        .container { max-width: 1300px; margin: 0 auto; padding: 0 40px; position: relative; z-index: 10; }
+        .text-accent { color: var(--accent); }
+        .bg-accent { background: var(--accent); color: var(--bg); }
+        .font-mono { font-family: var(--mono); }
+        
+        .text-glow { text-shadow: 0 0 30px rgba(205,255,0,0.2); }
+        .text-glow-white { text-shadow: 0 0 30px rgba(255,255,255,0.15); }
+
+        /* Grid Pattern Backgrounds (Canvas-Visual) */
+        .grid-bg {
+            background-image:
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+        }
+
+        /* Animations & Keyframes */
+        @keyframes fadeSlideIn {
+            0% { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+            100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+        }
+        .animate-on-scroll { animation-play-state: paused !important; }
+        .animate-on-scroll.animate { animation-play-state: running !important; }
+        
+        /* Text Reveal (Digital Architect) */
+        .text-reveal-wrapper { overflow: hidden; display: inline-block; vertical-align: bottom; line-height: 1.1; }
+        .text-reveal-content {
+            transform: translateY(110%);
+            opacity: 0;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 1.2s ease;
+            display: block;
+        }
+        .reveal-active .text-reveal-content { transform: translateY(0); opacity: 1; }
+
+        /* Interaction: Flashlight Card (Animation-Clean) */
+        .flashlight-card {
+            position: relative;
+            background-color: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .flashlight-card::before {
+            content: ""; position: absolute; inset: 0; border-radius: inherit;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.05), transparent 40%);
+            opacity: 0; transition: opacity 0.5s; pointer-events: none; z-index: 3;
+        }
+        .flashlight-card::after {
+            content: ""; position: absolute; inset: 0; border-radius: inherit;
+            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(205, 255, 0, 0.08), transparent 40%);
+            z-index: 1; opacity: 0; transition: opacity 0.5s; pointer-events: none;
+        }
+        .flashlight-border {
+            position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(205, 255, 0, 0.5), transparent 40%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude; opacity: 0; transition: opacity 0.5s; pointer-events: none;
+        }
+        .flashlight-card:hover::before, .flashlight-card:hover .flashlight-border, .flashlight-card:hover::after {
+            opacity: 1;
+        }
+
+        /* Floating 3D Cards (Canvas-Visual) */
+        .floating-card {
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), z-index 0s, box-shadow 0.4s;
+            will-change: transform;
+        }
+        .floating-card:hover {
+            transform: scale(1.04) translateY(-10px) rotate(0deg) !important;
+            z-index: 50;
+            box-shadow: 0 25px 40px -10px rgba(205, 255, 0, 0.15);
+            border-color: rgba(205, 255, 0, 0.4);
+        }
+        
+        /* Mask Border Gradients (Fluxora / Clean) */
+        .border-gradient { position: relative; }
+        .border-gradient::before {
+            content: ""; position: absolute; inset: 0; border-radius: inherit; padding: 1px;
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor; mask-composite: exclude;
+            background: linear-gradient(225deg, rgba(205, 255, 0, 0.0) 0%, rgba(205, 255, 0, 0.5) 50%, rgba(205, 255, 0, 0.0) 100%);
+            pointer-events: none;
+        }
+
+        /* Buttons & Actions */
+        .btn-beam-container { 
+            position: relative; border-radius: 9999px; overflow: hidden; background: var(--bg2); padding: 2px; display: inline-flex; 
+        }
+        .btn-beam-container > .beam-border {
+            position: absolute; inset: -10px; border-radius: 9999px; pointer-events: none; z-index: 0; opacity: 0;
+            background: conic-gradient(from 0deg at 50% 50%, transparent 0deg, var(--accent) 60deg, transparent 120deg);
+            animation: rotate-beam 2.5s linear infinite; transition: opacity 0.3s;
+        }
+        .btn-beam-container:hover > .beam-border { opacity: 1; }
+        .btn-beam-inner { 
+            position: relative; z-index: 10; background: var(--surface); border-radius: 9999px; padding: 14px 28px; transition: 0.3s;
+        }
+        .btn-beam-container:hover .btn-beam-inner { background: var(--bg); }
+        @keyframes rotate-beam { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        /* Card Stack Loop (Instagram Slides) */
+        @keyframes cardStackCycle {
+            0%, 25% { transform: translateY(0) scale(1); z-index: 30; opacity: 1; filter: blur(0px); }
+            33%, 58% { transform: translateY(-40px) scale(0.85); z-index: 10; opacity: 0.5; filter: blur(2px); }
+            66%, 91% { transform: translateY(-20px) scale(0.92); z-index: 20; opacity: 0.75; filter: blur(1px); }
+            100% { transform: translateY(0) scale(1); z-index: 30; opacity: 1; filter: blur(0px); }
+        }
+        @media (min-width: 768px) {
+            @keyframes cardStackCycle {
+                0%, 25% { transform: translateY(0) scale(1); z-index: 30; opacity: 1; filter: blur(0px); }
+                33%, 58% { transform: translateY(-60px) scale(0.85); z-index: 10; opacity: 0.5; filter: blur(2px); }
+                66%, 91% { transform: translateY(-30px) scale(0.92); z-index: 20; opacity: 0.75; filter: blur(1px); }
+                100% { transform: translateY(0) scale(1); z-index: 30; opacity: 1; filter: blur(0px); }
+            }
+        }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .4; } }
+
+        /* Future Wrapper Btn (Canvas-Visual) */
+        .btn-wrapper-futuristic {
+            position: relative; display: inline-flex; padding: 1px; cursor: pointer;
+        }
+        .btn-wrapper-futuristic .corner-tl { position: absolute; top:0; left:0; width: 6px; height: 6px; border-top: 1px solid var(--accent); border-left: 1px solid var(--accent); transition: 0.3s; opacity: 0; transform: translate(-4px, -4px); }
+        .btn-wrapper-futuristic .corner-br { position: absolute; bottom:0; right:0; width: 6px; height: 6px; border-bottom: 1px solid var(--accent); border-right: 1px solid var(--accent); transition: 0.3s; opacity: 0; transform: translate(4px, 4px); }
+        .btn-wrapper-futuristic:hover .corner-tl { opacity: 1; transform: translate(0, 0); }
+        .btn-wrapper-futuristic:hover .corner-br { opacity: 1; transform: translate(0, 0); }
+        .btn-future-inner {
+            padding: 16px 36px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); color: #fff; display: flex; align-items: center; gap: 12px; transition: background 0.3s, color 0.3s;
+        }
+        .btn-wrapper-futuristic:hover .btn-future-inner {
+            background: var(--accent); color: #000; border-color: var(--accent);
+        }
+
+        /* Glass Badge */
+        .glass-badge {
+            padding: 6px 16px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 9999px; font-family: var(--mono); text-transform: uppercase; letter-spacing: 0.15em;
+            font-size: 11px; backdrop-filter: blur(10px); color: var(--text-muted); display: inline-flex; align-items: center; gap: 8px;
+        }
+
+        /* Slider Component (Instagram Slides) */
+        .slider-wrapper { position: relative; width: 100%; border-radius: 24px; overflow: hidden; background: #000; border: 1px solid var(--border); }
+        .slider-container { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; -ms-overflow-style: none; scrollbar-width: none; width: 100%; }
+        .slider-container::-webkit-scrollbar { display: none; }
+        .slide-item { flex: 0 0 100%; width: 100%; scroll-snap-align: start; padding: 60px; min-height: 540px; display: flex; flex-direction: column; justify-content: center; position: relative; }
+        @media(max-width: 800px) { .slide-item { padding: 32px; min-height: 480px; } }
+        
+        .slider-nav { position: absolute; bottom: 24px; left: 0; width: 100%; display: flex; justify-content: center; gap: 8px; z-index: 10; pointer-events: none; }
+        .slider-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: 0.3s; pointer-events: auto; cursor: pointer; }
+        .slider-dot.active { background: var(--accent); transform: scale(1.2); box-shadow: 0 0 10px var(--accent); }
+        
+        .slider-controls { position: absolute; top: 50%; left: 24px; right: 24px; transform: translateY(-50%); display: flex; justify-content: space-between; pointer-events: none; z-index: 10; }
+        .s-ctrl-btn { width: 44px; height: 44px; border-radius: 50%; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; pointer-events: auto; backdrop-filter: blur(8px); transition: 0.3s; }
+        .s-ctrl-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+
+        /* Navigation */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 999;
+            background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: center; padding: 18px 5%;
+        }
+        .nav-logo { font-family: var(--mono); font-weight: 800; font-size: 16px; letter-spacing: 0.1em; display: flex; align-items: center; gap: 12px; }
+        .nav-logo svg { width: 22px; height: 22px; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { color: var(--text-muted); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--text); }
+        @media (max-width: 800px) { .nav-links { display: none; } }
+
+        /* General Sections */
+        section { padding: 120px 0; border-bottom: 1px solid var(--border); position: relative; }
+        .section-label { font-family: var(--mono); font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.2em; display: flex; align-items: center; gap: 12px; margin-bottom: 24px; }
+        .section-label::before { content: ''; width: 30px; height: 1px; background: var(--accent); }
+        .section-title { font-size: clamp(32px, 5vw, 54px); font-weight: 800; letter-spacing: -0.04em; margin-bottom: 60px; line-height: 1.1; }
+
+        /* 1. Hero Setup */
+        .hero { min-height: 100vh; display: flex; align-items: center; position: relative; overflow: hidden; padding-top: 80px; }
+        .hero-glowing-sphere {
+            position: absolute; top: 50%; right: 10%; transform: translateY(-50%); width: 600px; height: 600px;
+            background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 60%);
+            pointer-events: none; z-index: 0; filter: blur(60px);
+        }
+        .hero-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        @media (max-width: 900px) { .hero-layout { grid-template-columns: 1fr; } }
+
+        /* Carousel inside Hero */
+        .hero-visual { width: 100%; height: 640px; position: relative; border-radius: 20px; border: 1px solid var(--border); overflow: hidden; perspective: 1000px; }
+        .carousel-slide { position: absolute; inset: 0; transition: opacity 1.5s ease; opacity: 0; overflow: hidden; }
+        .carousel-slide.active { opacity: 1; }
+        .carousel-slide img { width: 100%; height: 100%; object-fit: cover; transform: scale(1); transition: transform 10s ease-out; filter: grayscale(100%) opacity(40%); }
+        .carousel-slide.active img { transform: scale(1.1); filter: grayscale(100%) opacity(50%); }
+
+        /* 2. Typo Grid */
+        .type-row { display: grid; grid-template-columns: 1fr 3fr 1fr; border-bottom: 1px solid var(--border); padding: 40px 0; align-items: baseline; }
+        @media (max-width: 800px) { .type-row { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; } }
+        .t-col-1 { font-family: var(--mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.1em; }
+        .t-col-3 { font-family: var(--mono); font-size: 12px; color: var(--text-muted); text-align: right; }
+        @media (max-width: 800px) { .t-col-3 { text-align: left; } }
+
+        /* 3. Color Grid */
+        .color-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+        .color-card { aspect-ratio: 1; border: 1px solid var(--border); display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; border-radius: 16px; transition: transform 0.3s; }
+        .color-card:hover { transform: translateY(-4px); }
+
+        /* 4. Component Bento */
+        .bento-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        @media (max-width: 900px) { .bento-grid { grid-template-columns: 1fr; } }
+        .bento-box { background: var(--bg2); border: 1px solid var(--border); border-radius: 20px; padding: 40px; position: relative; }
+
+        /* Form Input */
+        .input-group { display: flex; align-items: center; background: #000; border: 1px solid var(--border); border-radius: 9999px; padding: 6px 6px 6px 24px; transition: 0.3s; }
+        .input-group:focus-within, .input-group:hover { border-color: rgba(205,255,0,0.5); }
+        .input-group input { background: none; border: none; outline: none; color: #fff; width: 100%; font-family: var(--font); font-size: 14px; }
+        .input-group button { background: var(--surface); border: 1px solid var(--border); width: 44px; height: 44px; border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--accent); cursor: pointer; transition: 0.3s; flex-shrink: 0; }
+        .input-group button:hover { background: var(--accent); color: #000; }
+
+        /* Icon Grid */
+        .icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 16px; }
+        .icon-card { aspect-ratio: 1; border: 1px solid var(--border); background: var(--surface); border-radius: 16px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; transition: 0.3s; cursor: pointer; }
+        .icon-card:hover { border-color: var(--accent-border); background: var(--surface2); color: var(--accent); box-shadow: 0 0 20px var(--accent-glow); }
+        
+        /* Layout Marquee */
+        .marquee-container { border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg2); padding: 24px 0; display: flex; overflow: hidden; user-select: none; width: 100%; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+        .marquee-content { flex-shrink: 0; display: flex; align-items: center; min-width: 100%; animation: scroll 20s linear infinite; }
+        .mq-item { font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); padding: 0 40px; display: flex; align-items: center; gap: 20px; }
+        .mq-dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+
+        /* Grid Demo */
+        .col-frame { background: rgba(255,255,255,0.02); border: 1px dashed rgba(255,255,255,0.15); height: 160px; display: flex; align-items: center; justify-content: center; font-family: var(--mono); font-size: 10px; color: var(--text-muted); border-radius: 8px; }
+
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+    <div class="nav-logo">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <circle cx="12" cy="12" r="10" stroke="#cdff00" stroke-width="4"/>
+            <circle cx="12" cy="12" r="4" fill="#cdff00"/>
+        </svg>
+        <span>GROVW</span>
+    </div>
+    <div class="nav-links">
+        <a href="#hero">Intro</a>
+        <a href="#typography">Typography</a>
+        <a href="#colors">Colors</a>
+        <a href="#components">Components</a>
+        <a href="#icons">Iconography</a>
+        <a href="#motion-references">Motion Refs</a>
+        <a href="#layout">Layout</a>
+    </div>
+</nav>
+
+<!-- 1. Hero Showcase -->
+<section id="hero" class="hero">
+    <div class="absolute inset-0 grid-bg pointer-events-none z-0"></div>
+    <div class="hero-glowing-sphere"></div>
+    
+    <div class="container hero-layout">
+        <!-- Content -->
+        <div>
+            <div class="glass-badge animate-on-scroll" style="animation: fadeSlideIn 1s ease-out 0s both; margin-bottom: 24px;">
+                <span style="width: 6px; height: 6px; background: var(--accent); border-radius: 50%; box-shadow: 0 0 8px var(--accent);"></span>
+                Design System v2.0
+            </div>
+            
+            <h1 class="text-glow-white" style="font-size: clamp(42px, 6.5vw, 84px); font-weight: 900; line-height: 0.95; margin-bottom: 32px;" id="hero-title">
+                <span class="text-reveal-wrapper"><span class="text-reveal-content" style="transition-delay: 0.1s;">Digital</span></span><br/>
+                <span class="text-reveal-wrapper"><span class="text-reveal-content text-accent" style="transition-delay: 0.2s;">Architect</span></span><br/>
+                <span class="text-reveal-wrapper"><span class="text-reveal-content" style="transition-delay: 0.3s;">System</span></span>
+            </h1>
+            
+            <p class="animate-on-scroll" style="font-size: 18px; color: var(--text-muted); line-height: 1.6; margin-bottom: 48px; max-width: 500px; animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.5s both;">
+                Padrões visuais atômicos, blocos paramétricos de UI e a espinha dorsal de comportamento de marca da GROVW. The living pattern library.
+            </p>
+            
+            <div class="animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.7s both;">
+                <a href="#components" class="btn-beam-container" style="text-decoration: none;">
+                    <div class="beam-border"></div>
+                    <div class="btn-beam-inner" style="display: flex; align-items: center; gap: 12px;">
+                        <span style="font-weight: 700; color: #fff; font-size: 13px; text-transform: uppercase; letter-spacing: 0.1em; font-family: var(--mono);">Ver Componentes</span>
+                        <iconify-icon icon="solar:arrow-right-up-linear" style="color: var(--accent); font-size: 20px;"></iconify-icon>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Artwork -->
+        <div class="hero-visual animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.4s both;">
+            <div id="hero-carousel">
+                <div class="carousel-slide active">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=2564&auto=format&fit=crop" alt="Abstract Nodes">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2670&auto=format&fit=crop" alt="Digital Structure">
+                </div>
+                <div class="carousel-slide">
+                    <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?q=80&w=2640&auto=format&fit=crop" alt="Monochrome Art">
+                </div>
+            </div>
+            
+            <!-- Cards Flutuantes (Canvas-Visual) -->
+            <div class="floating-card" style="position: absolute; bottom: -20px; left: -20px; width: 160px; height: 200px; background: #000; border: 1px solid var(--accent-border); transform: rotate(-6deg); padding: 8px;">
+                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=800&auto=format&fit=crop" style="width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s;" onmouseover="this.style.filter='grayscale(0%)'" onmouseout="this.style.filter='grayscale(100%)'">
+                <!-- Fig caption -->
+                <div style="position: absolute; bottom: 12px; left: 12px; background: rgba(0,0,0,0.8); backdrop-filter: blur(4px); padding: 4px 8px; border: 1px solid rgba(255,255,255,0.1); font-family: var(--mono); font-size: 10px; color: #fff;">FIG. 01</div>
+            </div>
+            <div class="floating-card" style="position: absolute; top: 40px; right: -20px; width: 140px; height: 140px; background: var(--surface2); border: 1px solid rgba(255,255,255,0.1); transform: rotate(5deg); display: flex; align-items: center; justify-content: center; flex-direction: column;">
+                <iconify-icon icon="solar:star-fall-bold-duotone" style="font-size: 40px; color: var(--accent); margin-bottom: 12px;"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: var(--text-muted); letter-spacing: 0.2em;">SYSTEM BASE</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 2. Typography -->
+<section id="typography">
+    <div class="container animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0s both;">
+        <div class="section-label">01 // Foundations</div>
+        <h2 class="section-title">Tipografia</h2>
+        
+        <div class="type-row" style="border-top: 1px solid var(--border);">
+            <div class="t-col-1">Display H1</div>
+            <div>
+                <h1 style="font-size: clamp(36px, 5vw, 76px); line-height: 0.9; margin: 0; font-weight: 900;" class="text-glow">Engine Visível</h1>
+            </div>
+            <div class="t-col-3">76px / Inter 900 / 0.9 LH</div>
+        </div>
+        
+        <div class="type-row">
+            <div class="t-col-1">Heading H2</div>
+            <div>
+                <h2 style="font-size: clamp(28px, 4vw, 54px); line-height: 1.1; margin: 0; font-weight: 800;">Criando Inteligência</h2>
+            </div>
+            <div class="t-col-3">54px / Inter 800 / 1.1 LH</div>
+        </div>
+        
+        <div class="type-row">
+            <div class="t-col-1">Heading H3</div>
+            <div>
+                <h3 style="font-size: clamp(24px, 3vw, 36px); line-height: 1.2; margin: 0; color: #eee; font-weight: 600;">Fundamentos de Layouts Influidos</h3>
+            </div>
+            <div class="t-col-3">36px / Inter 600 / 1.2 LH</div>
+        </div>
+        
+        <div class="type-row">
+            <div class="t-col-1">Body Large</div>
+            <div>
+                <p style="font-size: 18px; line-height: 1.8; color: var(--text-dim); margin: 0; font-weight: 400; max-width: 600px;">
+                    O design da GROVW opera sob a interseção entre brutalismo utilitário e refinamento espacial. Textos focados em legibilidade paramétrica.
+                </p>
+            </div>
+            <div class="t-col-3">18px / Inter 400 / 1.8 LH</div>
+        </div>
+        
+        <div class="type-row" style="border-bottom: none;">
+            <div class="t-col-1">Label / UI Meta</div>
+            <div>
+                <span class="glass-badge" style="background: var(--surface2);">VAR-ACELERADOR-01</span>
+            </div>
+            <div class="t-col-3">11px / JetBrains Mono 500</div>
+        </div>
+    </div>
+</section>
+
+<!-- 3. Colors -->
+<section id="colors" style="background: var(--bg2);">
+    <div class="container animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0s both;">
+        <div class="section-label">02 // Foundations</div>
+        <h2 class="section-title">Cores & Superfícies</h2>
+        
+        <div class="color-grid">
+            <!-- Background Master -->
+            <div class="color-card" style="background: var(--bg);">
+                <div style="font-weight: 700; font-size: 16px;">Vazio</div>
+                <div style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 6px;">bg-000 / #000000</div>
+            </div>
+            <!-- Bg2 / Elevate -->
+            <div class="color-card" style="background: var(--bg2);">
+                <div style="font-weight: 700; font-size: 16px;">Camada 1</div>
+                <div style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 6px;">bg-006 / #060606</div>
+            </div>
+            <!-- Surface -->
+            <div class="color-card" style="background: var(--surface);">
+                <div style="font-weight: 700; font-size: 16px;">Superfície High</div>
+                <div style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 6px;">surface / #111111</div>
+            </div>
+            <!-- Accent Neon -->
+            <div class="color-card" style="background: var(--accent); color: #000; box-shadow: 0 0 40px var(--accent-glow); border-color: var(--accent-border);">
+                <div style="font-weight: 800; font-size: 16px;">Neon Accent</div>
+                <div style="font-family: var(--mono); font-size: 11px; margin-top: 6px; font-weight: 700;">accent / #cdff00</div>
+            </div>
+            <!-- Glass -->
+            <div class="color-card border-gradient" style="background: var(--surface-glass); backdrop-filter: blur(16px);">
+                <div style="font-weight: 700; font-size: 16px;">Glassmorphism</div>
+                <div style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-top: 6px;">Overlay / rgba(0.03)</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 4. Components -->
+<section id="components" style="position: relative;">
+    <!-- Grid bg no fundo de componentes também fica lindo -->
+    <div class="absolute inset-0 grid-bg opacity-30 pointer-events-none z-0"></div>
+
+    <div class="container relative z-10">
+        <div class="section-label animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0s both;">03 // Elements</div>
+        <h2 class="section-title animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.1s both;">Blocos de Interface</h2>
+        
+        <div class="bento-grid">
+            
+            <!-- Cards Column -->
+            <div style="display: flex; flex-direction: column; gap: 40px;">
+                <!-- Flashlight Card (Interação Radial Gradient X,Y em tempo real) -->
+                <div class="flashlight-card animate-on-scroll" style="padding: 48px; min-height: 380px; display: flex; flex-direction: column; justify-content: flex-end; animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.2s both; cursor: default;">
+                    <div class="flashlight-border"></div>
+                    <div style="position: relative; z-index: 5;">
+                        <span class="glass-badge mb-6" style="margin-bottom: 24px;">Hover Tracking</span>
+                        <h3 style="font-size: 32px; font-weight: 800; margin-bottom: 16px;">Cartão Flashlight</h3>
+                        <p style="color: var(--text-muted); font-size: 16px; line-height: 1.7; font-weight: 400; max-width: 90%;">
+                            O Radial Gradient persegue as coordenadas X e Y do mouse calculadas em tempo real via JS, projetando um glow elegante sob as bordas. (Extrato do Animation-Clean).
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stats Metric Pattern -->
+                <div class="bento-box animate-on-scroll border-gradient" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.4s both; padding: 48px;">
+                    <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px; letter-spacing: 0.1em;">Estatísticas Limpas</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+                        <div>
+                            <div style="font-size: 40px; font-weight: 300; letter-spacing: -0.05em; color: var(--text); margin-bottom: 8px;" class="text-glow-white">99%</div>
+                            <div style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Aprovado</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 40px; font-weight: 300; letter-spacing: -0.05em; color: var(--accent); margin-bottom: 8px;" class="text-glow">1.2s</div>
+                            <div style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase;">Latência</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Buttons & UI Column -->
+            <div style="display: flex; flex-direction: column; gap: 40px;">
+                <!-- UI Elements Board -->
+                <div class="bento-box animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.3s both; padding: 48px; min-height: 380px;">
+                    <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 40px; letter-spacing: 0.1em;">Interativo . Focus</div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 32px;">
+                        
+                        <!-- Futuristic Button com linhas na ponta (Canvas-visual) -->
+                        <div>
+                            <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase;">Secondary Action</div>
+                            <div class="btn-wrapper-futuristic">
+                                <div class="corner-tl"></div>
+                                <div class="corner-br"></div>
+                                <div class="btn-future-inner">
+                                    <span style="font-family: var(--mono); font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">Rodar Sistema</span>
+                                    <iconify-icon icon="solar:command-bold-duotone" style="font-size: 18px;"></iconify-icon>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Input Moderno (Fluxora adaptado) -->
+                        <div style="width: 100%;">
+                            <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase;">Lead Form Field</div>
+                            <form action="#" onsubmit="event.preventDefault();" class="input-group" style="max-width: 320px;">
+                                <iconify-icon icon="solar:letter-linear" style="font-size: 20px; color: var(--text-muted); margin-right: 12px;"></iconify-icon>
+                                <input type="email" placeholder="Endereço de email...">
+                                <button type="submit">
+                                    <iconify-icon icon="solar:arrow-right-linear" style="font-size: 18px;"></iconify-icon>
+                                </button>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                <!-- Helper Board -->
+                <div class="bento-box animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.5s both; padding: 48px;">
+                    <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px; letter-spacing: 0.1em;">Badges & Tags</div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 12px;">
+                        <span class="glass-badge" style="background: rgba(205,255,0,0.05); border-color: rgba(205,255,0,0.2); color: var(--accent);">Status: Ativo</span>
+                        <span class="glass-badge">Framework 24</span>
+                        <span class="glass-badge" style="border: none; background: var(--bg);">+ Neutro</span>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- 5. Iconography -->
+<section id="icons" style="background: var(--bg2);">
+    <div class="container animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0s both;">
+        <div class="section-label">04 // Assets</div>
+        <h2 class="section-title">Iconografia</h2>
+        
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 40px; max-width: 500px;">Set de ícones Solar Icons configurados em modo Duotone. Variamos entre aplicações estritamente white/mono e accent neon.</p>
+        
+        <div class="icon-grid">
+            <div class="icon-card">
+                <iconify-icon icon="solar:atom-bold-duotone" style="font-size: 32px;"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">ATOM</div>
+            </div>
+            <div class="icon-card">
+                <iconify-icon icon="solar:layers-minimalistic-bold-duotone" style="font-size: 32px;"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">LAYERS</div>
+            </div>
+            <div class="icon-card">
+                <iconify-icon icon="solar:widget-6-bold-duotone" style="font-size: 32px; color: var(--accent); text-shadow: 0 0 20px var(--accent-glow);"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">WIDGETS</div>
+            </div>
+            <div class="icon-card">
+                <iconify-icon icon="solar:star-fall-bold-duotone" style="font-size: 32px;"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">STAR FALL</div>
+            </div>
+            <div class="icon-card">
+                <iconify-icon icon="solar:play-circle-bold-duotone" style="font-size: 32px;"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">PLAY</div>
+            </div>
+            <div class="icon-card">
+                <iconify-icon icon="solar:document-add-bold-duotone" style="font-size: 32px; color: var(--accent); text-shadow: 0 0 20px var(--accent-glow);"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">DOCUMENT</div>
+            </div>
+            <div class="icon-card">
+                <iconify-icon icon="solar:shield-check-bold-duotone" style="font-size: 32px;"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">SHIELD</div>
+            </div>
+            <div class="icon-card">
+                <iconify-icon icon="solar:cpu-bold-duotone" style="font-size: 32px;"></iconify-icon>
+                <div style="font-family: var(--mono); font-size: 9px; color: inherit; letter-spacing: 0.1em;">CODE/CPU</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Motion & Visual Refs (Instagram Slides) -->
+<section id="motion-references" style="background: var(--bg); position: relative;">
+    <div class="container animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0s both;">
+        <div class="section-label">06 // Advanced Visuals</div>
+        <h2 class="section-title">Carrossel & Animações</h2>
+        
+        <p style="color: var(--text-muted); font-size: 16px; margin-bottom: 40px; max-width: 600px;">
+            A estrutura de apresentação baseada no Instagram Slides, apresentando snap scrolling horizontal, Intersection Animators e o Carrossel Infinito embutido.
+        </p>
+
+        <!-- O Carrossel Infinito / Snap Scroll (Instagram Slides) -->
+        <div class="slider-wrapper animate-on-scroll border-gradient" style="animation: fadeSlideIn 1s ease-out 0.2s both;">
+            <div class="slider-controls">
+                <button class="s-ctrl-btn" id="s-prev"><iconify-icon icon="solar:arrow-left-linear" style="font-size: 20px;"></iconify-icon></button>
+                <button class="s-ctrl-btn" id="s-next"><iconify-icon icon="solar:arrow-right-linear" style="font-size: 20px;"></iconify-icon></button>
+            </div>
+            
+            <div class="slider-container" id="main-slider">
+                
+                <!-- Slide 1: Animate on View Component -->
+                <div class="slide-item" style="background: var(--surface2);">
+                    <div style="max-width: 400px; margin: 0 auto; width: 100%;">
+                        <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 24px; letter-spacing: 0.1em; text-align: center;">1/3 // Viewport Entry</div>
+                        
+                        <div class="border border-[rgba(255,255,0,0.1)] rounded-xl p-6 bg-[rgba(255,255,255,0.02)] mb-8 flex-col shadow-2xl" style="display:flex; align-items:center; width:100%; border-radius:16px; border: 1px dashed rgba(255,255,255,0.1); padding: 32px;">
+                            <span class="glass-badge" style="margin-bottom: 24px; background:#fff; color:#000;">VIEWPORT <iconify-icon icon="solar:eye-bold-duotone" style="margin-left: 4px;"></iconify-icon> </span>
+                            <div style="width: 100%; display:flex; flex-direction: column; gap: 12px; align-items:center;">
+                               <div style="width: 50%; height: 12px; background: rgba(255,255,255,0.1); border-radius: 4px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;"></div>
+                               <div style="width: 100%; height: 70px; background: rgba(255,255,255,0.05); border-radius: 4px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.2s infinite;"></div>
+                               <div style="width: 70%; height: 12px; background: rgba(255,255,255,0.1); border-radius: 4px; animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) 0.4s infinite;"></div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="font-size: 28px; font-weight: 800; margin-bottom: 12px; text-align: center;">Animate on View</h3>
+                        <p style="color: var(--text-muted); font-size: 15px; line-height: 1.6; text-align: center;">Sequências de animação paramétricas são engatilhadas dinamicamente ao cruzar o Viewport Horizon (Intersection Observer).</p>
+                    </div>
+                </div>
+
+                <!-- Slide 2: Infinite Loop 3D Stack -->
+                <div class="slide-item grid-bg" style="background-color: var(--bg);">
+                    <div style="max-width: 400px; margin: 0 auto; width: 100%;">
+                        <div style="font-family: var(--mono); font-size: 10px; color: var(--accent); text-transform: uppercase; margin-bottom: 24px; letter-spacing: 0.1em; text-align: center;">2/3 // Card Loop</div>
+                        
+                        <div class="flex items-center justify-center relative w-full mb-12" style="min-height: 250px; display:flex; justify-content:center;">
+                            <div style="position:relative; width: 100%; max-width: 180px; aspect-ratio: 1/1.2;">
+                                <!-- Card 3 -->
+                                <div style="position:absolute; inset:0; width:100%; height:100%; border-radius:12px; background:#0A0A0A; border:1px solid rgba(255,255,255,0.1); padding:20px; box-shadow:0 10px 40px rgba(0,0,0,0.8); display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; animation: cardStackCycle 12s infinite ease-in-out; animation-delay: -8s;">
+                                    <div style="background:rgba(255,255,255,0.05); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.1);">
+                                        <iconify-icon icon="solar:layers-bold-duotone" style="color:#fff; font-size:16px;"></iconify-icon>
+                                    </div>
+                                    <div style="background:var(--surface2); width:100%; height:60px; border-radius:8px;"></div>
+                                </div>
+                                <!-- Card 2 -->
+                                <div style="position:absolute; inset:0; width:100%; height:100%; border-radius:12px; background:#0A0A0A; border:1px solid rgba(255,255,255,0.1); padding:20px; box-shadow:0 10px 40px rgba(0,0,0,0.8); display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; animation: cardStackCycle 12s infinite ease-in-out; animation-delay: -4s;">
+                                    <div style="background:rgba(255,255,255,0.05); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.1);">
+                                        <iconify-icon icon="solar:widget-3-bold-duotone" style="color:#fff; font-size:16px;"></iconify-icon>
+                                    </div>
+                                    <div style="background:var(--surface2); width:100%; height:60px; border-radius:8px;"></div>
+                                </div>
+                                <!-- Card 1 -->
+                                <div style="position:absolute; inset:0; width:100%; height:100%; border-radius:12px; background:#111; border:1px solid rgba(205,255,0,0.2); padding:20px; box-shadow:0 0 30px rgba(205,255,0,0.1); display:flex; flex-direction:column; justify-content:space-between; overflow:hidden; animation: cardStackCycle 12s infinite ease-in-out; animation-delay: 0s;">
+                                    <div style="background:rgba(205,255,0,0.1); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid rgba(205,255,0,0.2);">
+                                        <iconify-icon icon="solar:star-circle-bold-duotone" style="color:var(--accent); font-size:16px;"></iconify-icon>
+                                    </div>
+                                    <div style="background:rgba(205,255,0,0.05); width:100%; height:60px; border-radius:8px;"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 style="font-size: 28px; font-weight: 800; margin-bottom: 12px; text-align: center;">Infinito Loop 3D</h3>
+                        <p style="color: var(--text-muted); font-size: 15px; line-height: 1.6; text-align: center;">O carrossel infinito de cartas empilhadas flutuando no eixo Z via aproximações de scale interligadas.</p>
+                    </div>
+                </div>
+
+                <!-- Slide 3: Good Prompting -->
+                <div class="slide-item" style="background: #000; background-image: radial-gradient(circle at bottom, rgba(205,255,0,0.1), transparent 60%);">
+                    <div style="max-width: 400px; margin: 0 auto; width: 100%;">
+                        <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 32px; letter-spacing: 0.1em; display:flex; justify-content:center;">
+                             <span style="display:flex; align-items:center; gap:8px;"><span style="width:6px; height:6px; background:var(--accent); border-radius:50%; box-shadow: 0 0 10px var(--accent);"></span> CTA Final // 3/3</span>
+                        </div>
+                        
+                        <h3 style="font-size: 40px; font-weight: 900; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.04em; text-align:center;">
+                            Good Prompting <br>
+                            <span style="color: var(--text-muted);">Is Everything</span>
+                        </h3>
+                        <p style="color: var(--text-muted); font-size: 15px; line-height: 1.6; margin-bottom: 40px; text-align:center;">
+                            A engine visual avançada depende de referências lúcidas. O carrossel termina com uma chamada decisiva (CTA).
+                        </p>
+                        
+                        <div style="display:flex; flex-direction:column; align-items:center; gap: 24px;">
+                            <button class="btn-beam-container" style="padding: 1px;">
+                                <div class="beam-border"></div>
+                                <div class="btn-beam-inner" style="padding: 12px 32px; display:flex; align-items:center; gap:8px;">
+                                    <span style="font-size:12px; font-weight:800; font-family:var(--mono);">SEE PROMPTS</span>
+                                    <iconify-icon icon="solar:arrow-right-up-linear" style="color:var(--accent);"></iconify-icon>
+                                </div>
+                            </button>
+                            
+                            <div style="display:flex; align-items:center; gap: 12px; margin-top: 24px; opacity: 0.5;">
+                                <div style="width: 32px; height: 32px; background: #fff; color: #000; border-radius: 50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size: 10px;">M</div>
+                                <div>
+                                    <div style="font-weight: 700; font-size: 10px; text-transform:uppercase;">Meng To // Inst. Slides</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Pagination Dots -->
+            <div class="slider-nav" id="s-dots">
+                <div class="slider-dot active"></div>
+                <div class="slider-dot"></div>
+                <div class="slider-dot"></div>
+            </div>
+            
+        </div>
+    </div>
+</section>
+
+<!-- 7. Layout & Motion -->
+<section id="layout" style="padding-bottom: 0; border-top: 1px solid var(--border);">
+    
+    <!-- Infinite Marquee (Animation Clean / Digital Architect) -->
+    <div class="marquee-container animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0s both; margin-bottom: 100px;">
+        <div class="marquee-content">
+            <span class="mq-item">Grovw Agency <span class="mq-dot"></span></span>
+            <span class="mq-item">Post-Digital Era <span class="mq-dot"></span></span>
+            <span class="mq-item" style="color: var(--accent);">Living Pattern Library <span class="mq-dot"></span></span>
+            <span class="mq-item">Intersection Observer <span class="mq-dot"></span></span>
+            <span class="mq-item">Grid System <span class="mq-dot"></span></span>
+        </div>
+        <div class="marquee-content">
+            <span class="mq-item">Grovw Agency <span class="mq-dot"></span></span>
+            <span class="mq-item">Post-Digital Era <span class="mq-dot"></span></span>
+            <span class="mq-item" style="color: var(--accent);">Living Pattern Library <span class="mq-dot"></span></span>
+            <span class="mq-item">Intersection Observer <span class="mq-dot"></span></span>
+            <span class="mq-item">Grid System <span class="mq-dot"></span></span>
+        </div>
+    </div>
+
+    <!-- Grid Spacing Layout -->
+    <div class="container animate-on-scroll" style="animation: fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.2s both; padding-bottom: 120px;">
+        <div class="section-label">05 // Structure</div>
+        <h2 class="section-title">Layout Constraints</h2>
+        
+        <!-- Padrão 12 Colunas Visível -->
+        <p style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 16px; letter-spacing: 0.1em;">12 Columns Metric / Gap 16px</p>
+        <div style="display: grid; grid-template-columns: repeat(12, 1fr); gap: 16px; margin-bottom: 16px;">
+            <div class="col-frame" style="height: 100px;">1</div><div class="col-frame" style="height: 100px;">2</div>
+            <div class="col-frame" style="height: 100px;">3</div><div class="col-frame" style="height: 100px;">4</div>
+            <div class="col-frame" style="height: 100px;">5</div><div class="col-frame" style="height: 100px;">6</div>
+            <div class="col-frame" style="height: 100px;">7</div><div class="col-frame" style="height: 100px;">8</div>
+            <div class="col-frame" style="height: 100px;">9</div><div class="col-frame" style="height: 100px;">10</div>
+            <div class="col-frame" style="height: 100px;">11</div><div class="col-frame" style="height: 100px;">12</div>
+        </div>
+        
+        <p style="font-family: var(--mono); font-size: 11px; color: var(--text-muted); text-transform: uppercase; margin: 48px 0 16px; letter-spacing: 0.1em;">Problem Layout / 5 : 7</p>
+        <div style="display: grid; grid-template-columns: 5fr 7fr; gap: 40px; margin-bottom: 24px;">
+            <div class="col-frame border-gradient" style="background: rgba(255,255,255,0.03); color: var(--text);">Texto / Stick</div>
+            <div class="col-frame" style="border-style: solid; background: var(--bg2);">Conteúdos Soltos</div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer style="padding: 60px 0; border-top: 1px solid var(--border); background: var(--bg); text-align: center;">
+    <div class="container">
+        <iconify-icon icon="solar:command-bold-duotone" style="font-size: 24px; color: var(--text-muted); margin-bottom: 16px;"></iconify-icon>
+        <div style="font-family: var(--mono); font-size: 10px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.2em;">
+            Sistema de Design Sintetizado para GROVW . 2026<br><br>
+            Construído unindo bases da Canvas Visual<br> e Digital Architect
+        </div>
+    </div>
+</footer>
+
+<!-- JS Scripts Interativos -->
+<script>
+    // 1. Intersection Observer (Fade Slide In / Reveal)
+    document.addEventListener("DOMContentLoaded", () => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    entry.target.classList.add('reveal-active');
+                    // Observer stops observing after first trigger para não refazer
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+        const heroTitle = document.getElementById('hero-title');
+        if(heroTitle) observer.observe(heroTitle);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+    });
+
+    // 2. Carousel Loop (Hero)
+    const slides = document.querySelectorAll('.carousel-slide');
+    if(slides.length > 0) {
+        let currentSlide = 0;
+        setInterval(() => {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + 1) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }, 5000);
+    }
+
+    // 3. Flashlight Cards Tracker (Mouse Coordinates)
+    const flashCards = document.querySelectorAll('.flashlight-card');
+    flashCards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left; 
+            const y = e.clientY - rect.top;  
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
+    });
+
+    // 4. Horizontal Slider Controller (Instagram Slides logic)
+    const hSlider = document.getElementById('main-slider');
+    const sDots = document.querySelectorAll('.slider-dot');
+    const sPrev = document.getElementById('s-prev');
+    const sNext = document.getElementById('s-next');
+
+    if(hSlider) {
+        const updateDots = (activeIndex) => {
+            sDots.forEach((dot, idx) => {
+                if(idx === activeIndex) dot.classList.add('active');
+                else dot.classList.remove('active');
+            });
+        };
+        
+        // Setup observer for snapping pagination updates
+        const slideObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                    const index = Array.from(hSlider.children).indexOf(entry.target);
+                    if(index !== -1) updateDots(index);
+                }
+            });
+        }, { root: hSlider, threshold: 0.5 });
+        
+        Array.from(hSlider.children).forEach(slide => slideObserver.observe(slide));
+
+        sDots.forEach((dot, idx) => {
+            dot.addEventListener('click', () => {
+                const targetSlide = hSlider.children[idx];
+                const scrollPos = targetSlide.offsetLeft - hSlider.offsetLeft;
+                hSlider.scrollTo({ left: scrollPos, behavior: 'smooth' });
+            });
+        });
+
+        if(sNext && sPrev) {
+            sNext.addEventListener('click', () => {
+                hSlider.scrollBy({ left: hSlider.clientWidth, behavior: 'smooth' });
+            });
+            sPrev.addEventListener('click', () => {
+                hSlider.scrollBy({ left: -hSlider.clientWidth, behavior: 'smooth' });
+            });
+        }
+    }
+</script>
+
+</body>
+</html>
