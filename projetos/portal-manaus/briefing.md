@@ -1,90 +1,30 @@
 # Portal de Manaus — Mapeamento de Identidade
 
-## Conceito
-Canal misto de notícias, ocorrências e fofocas de Manaus.
-Operação: Instagram + Site (WordPress) com automação N8N.
+## Identidade — MANAUS INSANA
 
----
-
-## Candidatos de Nome
-
-### Opção 1 — FATOS DE MANAUS
 | Item | Valor |
 |---|---|
-| Conceito | Neutro, jornalístico. Funciona pra qualquer tipo de conteúdo. |
-| Tom | Informativo com pitada popular |
-| Instagram | @fatosdemanaus |
-| Domínio .com.br | fatosdemanaus.com.br |
-| Domínio .com | fatosdemanaus.com |
-| Username YouTube | @fatosdemanaus |
-| WhatsApp Channel | Fatos de Manaus |
-| Força SEO | Alta — "fatos de manaus" é termo de busca natural |
-| Risco | Mais sério, pode parecer portal de notícias convencional |
+| Nome | Manaus Insana |
+| Handle Instagram | @manausinsana |
+| Domínio .com.br | manausinsana.com.br |
+| Domínio .com | manausinsana.com |
+| Username YouTube | @manausinsana |
+| WhatsApp Channel | Manaus Insana |
+| Conceito | "Insana" reflete o caos divertido de promoções, flagrantes e fofocas locais |
+| Tom | Caótico, divertido, urgente, local — sem filtro |
+| Bio Instagram | Manaus do jeito que é. Flagrante, fofoca, crime, promoção. 🦜 |
 
----
+## Visual — Design System
 
-### Opção 2 — MANAUS AGORA
 | Item | Valor |
 |---|---|
-| Conceito | Urgência e tempo real. Ideal pro formato de ocorrências ao vivo. |
-| Tom | Urgente, breaking news, ágil |
-| Instagram | @manausagora |
-| Domínio .com.br | manausagora.com.br |
-| Domínio .com | manausagora.com |
-| Username YouTube | @manausagora |
-| WhatsApp Channel | Manaus Agora |
-| Força SEO | Média — "agora" sinaliza atualidade mas não é keyword forte |
-| Risco | Pode já existir com esse nome (verificar) |
-
----
-
-### Opção 3 — AQUI EM MANAUS
-| Item | Valor |
-|---|---|
-| Conceito | Pertencimento local, conversacional. Quem é de Manaus se identifica. |
-| Tom | Próximo, de bairro, comunitário |
-| Instagram | @aquiemmanaus |
-| Domínio .com.br | aquiemmanaus.com.br |
-| Domínio .com | aquiemmanaus.com |
-| Username YouTube | @aquiemmanaus |
-| WhatsApp Channel | Aqui em Manaus |
-| Força SEO | Baixa — frase coloquial, não é keyword de busca |
-| Risco | Menos autoridade visual — parece blog pessoal |
-
----
-
-### Opção 4 — MANAUS FERVER
-| Item | Valor |
-|---|---|
-| Conceito | Gíria local, irreverente. "Tá fervendo" = tá acontecendo coisa. |
-| Tom | Popular, fofoca, entretenimento, cultura de Manaus |
-| Instagram | @manausferver |
-| Domínio .com.br | manausferver.com.br |
-| Domínio .com | manausferver.com |
-| Username YouTube | @manausferver |
-| WhatsApp Channel | Manaus Ferver |
-| Força SEO | Nenhuma — não é termo de busca |
-| Risco | Limita a percepção de autoridade, difícil vender posts patrocinados sérios |
-
----
-
-## Recomendação
-
-**Fatos de Manaus** para quem quer crescer com SEO e vender posts patrocinados pra empresas.
-**Manaus Agora** para quem quer focar em ocorrências ao vivo e engajamento rápido.
-
-Os dois são os mais sólidos. Os outros funcionam melhor como subcanais ou nomes de séries de conteúdo.
-
----
-
-## Visual — Paleta por Opção
-
-| Opção | Fundo | Acento | Fonte |
-|---|---|---|---|
-| Fatos de Manaus | Branco #FFFFFF | Vermelho #D10000 | Inter Bold |
-| Manaus Agora | Preto #111111 | Amarelo #FFD600 | Inter Black |
-| Aqui em Manaus | Azul Navy #1A2B4A | Verde AM #00A651 | Space Grotesk |
-| Manaus Ferver | Vermelho escuro #8B0000 | Laranja #FF6B00 | Barlow Black |
+| Fundo | Preto #0D0D0D |
+| Acento principal | Vermelho intenso #E5000F |
+| Acento secundário | Branco #FFFFFF |
+| Fonte manchete | Bebas Neue ou Anton (impacto, grito) |
+| Fonte corpo | Inter Regular |
+| Logo | Círculo com "MANAUS INSANA" em caixa alta — estilo Gossip Manaux adaptado |
+| Ícone | 🦜 Arara — símbolo do Amazonas, memorável, diferencia do concorrente |
 
 ---
 
