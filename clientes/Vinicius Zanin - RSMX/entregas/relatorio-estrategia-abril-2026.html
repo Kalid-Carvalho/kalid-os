@@ -339,8 +339,14 @@
   }
 
   @media print {
-    .diag-item, .step-item, .metric-card, .table-wrap, .context-box, .section { page-break-inside: avoid; }
-    .diag-list, .steps-list, .metrics-grid { page-break-inside: avoid; }
+    .diag-item, .step-item, .metric-card, .table-wrap, .context-box, .section {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .diag-list, .steps-list, .metrics-grid {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
   }
 </style>
 </head>
