@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Proposta Comercial — DataSync TI | GROVW</title>
+<title>Proposta — DataSync TI | GROVW</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -11,199 +11,209 @@
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg: #000000;
+    --bg: #000;
     --bg2: #0f0f0f;
     --surface: #161616;
     --border: rgba(255,255,255,0.08);
     --accent: #cdff00;
-    --accent-dim: rgba(205,255,0,0.08);
-    --text: #ffffff;
-    --text-secondary: #888888;
-    --text-muted: #555555;
+    --text: #fff;
+    --text-2: #999;
+    --text-3: #555;
   }
 
-  html { scroll-behavior: smooth; }
-
-  body {
+  html, body {
     background: var(--bg);
     color: var(--text);
     font-family: 'Inter', sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
 
-  .container {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: 0 32px;
-  }
-
-  /* ── HERO / CAPA ── */
-  .hero {
+  /* ── SLIDE BASE ── */
+  .slide {
+    width: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    padding: 48px 0;
+    justify-content: center;
+    padding: 64px 80px;
     position: relative;
+    border-bottom: 1px solid var(--border);
     overflow: hidden;
   }
 
-  .hero::before {
-    content: '';
+  /* barra superior fixa em cada slide */
+  .slide-bar {
     position: absolute;
-    inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(205,255,0,0.04) 0%, transparent 70%),
-      radial-gradient(ellipse 40% 40% at 10% 80%, rgba(205,255,0,0.03) 0%, transparent 60%);
-    pointer-events: none;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent);
+    opacity: 0.15;
   }
 
-  .hero-top {
+  .slide-bar.active {
+    opacity: 1;
+  }
+
+  /* rodapé discreto em cada slide */
+  .slide-footer {
+    position: absolute;
+    bottom: 28px; left: 80px; right: 80px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
   }
 
-  .logo {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .hero-meta {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--text-muted);
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-  }
-
-  .hero-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 80px 0 40px;
-  }
-
-  .hero-label {
+  .slide-footer-logo {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
-    font-weight: 600;
-    color: var(--accent);
+    font-weight: 700;
+    color: var(--text-3);
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-bottom: 24px;
   }
 
-  .hero-title {
-    font-size: clamp(40px, 6vw, 72px);
+  .slide-footer-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+  }
+
+  /* label de seção */
+  .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #000;
+    background: var(--accent);
+    padding: 5px 12px;
+    border-radius: 3px;
+    margin-bottom: 28px;
+  }
+
+  .tag.outline {
+    background: transparent;
+    color: var(--accent);
+    border: 1px solid rgba(205,255,0,0.35);
+  }
+
+  /* headings */
+  .h-hero {
+    font-size: clamp(44px, 7vw, 80px);
+    font-weight: 800;
+    line-height: 0.93;
+    letter-spacing: -0.04em;
+  }
+
+  .h-section {
+    font-size: clamp(32px, 5vw, 56px);
     font-weight: 800;
     line-height: 0.95;
     letter-spacing: -0.03em;
-    margin-bottom: 32px;
   }
 
-  .hero-title span {
-    color: var(--accent);
+  .accent { color: var(--accent); }
+
+  .lead {
+    font-size: clamp(16px, 1.6vw, 20px);
+    color: var(--text-2);
+    line-height: 1.6;
+    max-width: 580px;
   }
 
-  .hero-sub {
-    font-size: 18px;
-    font-weight: 400;
-    color: var(--text-secondary);
-    max-width: 520px;
-    line-height: 1.55;
+  /* ── SLIDE 1 — CAPA ── */
+  #s1 {
+    background:
+      radial-gradient(ellipse 70% 60% at 90% 10%, rgba(205,255,0,0.05) 0%, transparent 65%),
+      radial-gradient(ellipse 50% 50% at 5% 90%, rgba(205,255,0,0.03) 0%, transparent 60%),
+      var(--bg);
   }
 
-  .hero-bottom {
+  .capa-layout {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    gap: 48px;
+  }
+
+  .capa-top {
+    display: flex;
     justify-content: space-between;
-    border-top: 1px solid var(--border);
-    padding-top: 32px;
+    align-items: flex-start;
   }
 
-  .hero-client-block p {
+  .grovw-logo {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-
-  .hero-client-block strong {
     font-size: 20px;
     font-weight: 700;
-    color: var(--text);
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
   }
 
-  .hero-client-block em {
-    display: block;
-    font-style: normal;
-    font-size: 14px;
-    color: var(--text-secondary);
-    margin-top: 2px;
-  }
-
-  .hero-date {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
-    color: var(--text-muted);
+  .capa-meta {
     text-align: right;
   }
 
-  /* ── SECTION ── */
-  section {
-    padding: 80px 0;
-    border-top: 1px solid var(--border);
-  }
-
-  .section-label {
+  .capa-meta p {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
+    color: var(--text-3);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .capa-body {
+    padding: 40px 0 20px;
+  }
+
+  .capa-pre {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
     font-weight: 600;
     color: var(--accent);
     letter-spacing: 0.14em;
     text-transform: uppercase;
     margin-bottom: 20px;
+  }
+
+  .capa-body .lead { margin-top: 24px; }
+
+  .capa-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .client-block p {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 6px;
+  }
+
+  .client-block strong {
+    font-size: 22px;
+    font-weight: 700;
     display: block;
   }
 
-  .section-title {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 700;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 32px;
+  .client-block span {
+    font-size: 14px;
+    color: var(--text-2);
   }
 
-  .section-title span {
-    color: var(--accent);
-  }
-
-  .body-text {
-    font-size: 17px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-    max-width: 700px;
-  }
-
-  .body-text + .body-text {
-    margin-top: 16px;
-  }
-
-  /* ── CARDS PROBLEMA ── */
+  /* ── SLIDE 2 — PROBLEMA ── */
   .pain-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     margin-top: 48px;
   }
@@ -212,75 +222,103 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 28px 24px;
+    padding: 28px;
     transition: border-color 0.2s;
   }
 
-  .pain-card:hover {
-    border-color: rgba(205,255,0,0.2);
-  }
+  .pain-card:hover { border-color: rgba(205,255,0,0.2); }
 
-  .pain-number {
+  .pain-num {
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px;
     font-weight: 700;
     color: var(--accent);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.1em;
     margin-bottom: 12px;
-    text-transform: uppercase;
   }
 
   .pain-card h3 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 8px;
+    line-height: 1.2;
   }
 
   .pain-card p {
     font-size: 14px;
-    color: var(--text-secondary);
-    line-height: 1.55;
-  }
-
-  /* ── SOLUÇÃO ── */
-  .solution-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
-    margin-top: 48px;
-  }
-
-  .solution-block p {
-    font-size: 17px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-
-  .solution-block p + p {
-    margin-top: 14px;
-  }
-
-  .highlight-box {
-    background: var(--accent-dim);
-    border: 1px solid rgba(205,255,0,0.15);
-    border-left: 3px solid var(--accent);
-    border-radius: 6px;
-    padding: 24px;
-    margin-top: 28px;
-  }
-
-  .highlight-box p {
-    font-size: 15px;
-    color: var(--text);
+    color: var(--text-2);
     line-height: 1.6;
   }
 
-  /* ── ESCOPO ── */
-  .scope-grid {
+  /* ── SLIDE 3 — SOLUÇÃO ── */
+  .solution-cols {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 64px;
+    margin-top: 48px;
+    align-items: start;
+  }
+
+  .solution-cols p {
+    font-size: 17px;
+    color: var(--text-2);
+    line-height: 1.65;
+  }
+
+  .solution-cols p + p { margin-top: 14px; }
+
+  .callout {
+    background: rgba(205,255,0,0.05);
+    border: 1px solid rgba(205,255,0,0.15);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+
+  .callout p {
+    font-size: 15px !important;
+    color: var(--text) !important;
+    line-height: 1.6 !important;
+  }
+
+  .stack-list {
+    list-style: none;
+    margin-top: 24px;
+  }
+
+  .stack-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px;
+    color: var(--text-2);
+  }
+
+  .stack-list li:last-child { border-bottom: none; }
+
+  .stack-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .stack-list li strong {
+    color: var(--text);
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+  }
+
+  /* ── SLIDE 4 — ESCOPO SETUP ── */
+  .scope-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
     margin-top: 48px;
   }
 
@@ -288,41 +326,27 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 32px;
+    padding: 28px;
   }
 
-  .scope-card.full-width {
-    grid-column: 1 / -1;
-  }
-
-  .scope-card-header {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 24px;
-  }
-
-  .scope-tag {
+  .scope-card-tag {
     font-family: 'JetBrains Mono', monospace;
     font-size: 10px;
     font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
     color: #000;
     background: var(--accent);
-    padding: 4px 10px;
-    border-radius: 4px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .scope-tag.recurring {
-    background: transparent;
-    color: var(--accent);
-    border: 1px solid rgba(205,255,0,0.4);
+    padding: 3px 8px;
+    border-radius: 3px;
+    display: inline-block;
+    margin-bottom: 14px;
   }
 
   .scope-card h3 {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 700;
+    margin-bottom: 16px;
   }
 
   .scope-list {
@@ -330,81 +354,67 @@
   }
 
   .scope-list li {
-    font-size: 15px;
-    color: var(--text-secondary);
-    padding: 10px 0;
+    font-size: 13px;
+    color: var(--text-2);
+    padding: 8px 0;
     border-bottom: 1px solid var(--border);
     display: flex;
-    align-items: flex-start;
     gap: 10px;
+    line-height: 1.5;
   }
 
-  .scope-list li:last-child {
-    border-bottom: none;
-  }
+  .scope-list li:last-child { border-bottom: none; }
 
   .scope-list li::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    min-width: 6px;
-    background: var(--accent);
-    border-radius: 50%;
-    margin-top: 7px;
+    content: '→';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
   }
 
-  .scope-list li strong {
-    color: var(--text);
-    font-weight: 600;
-  }
-
-  /* ── NOT INCLUDED ── */
-  .not-included-list {
-    list-style: none;
-    margin-top: 32px;
+  /* ── SLIDE 5 — GESTÃO MENSAL ── */
+  .gestao-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12px;
+    gap: 48px;
+    margin-top: 48px;
+    align-items: start;
   }
 
-  .not-included-list li {
-    font-size: 14px;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  .gestao-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 32px;
   }
 
-  .not-included-list li::before {
-    content: '×';
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 14px;
+  .gestao-card h3 {
+    font-size: 20px;
     font-weight: 700;
-    color: #ff4444;
-    min-width: 16px;
+    margin-bottom: 20px;
   }
 
-  /* ── PRAZO ── */
+  /* ── SLIDE 6 — PRAZO ── */
   .timeline {
     margin-top: 48px;
-    position: relative;
+    max-width: 720px;
   }
 
-  .timeline-item {
+  .tl-item {
     display: grid;
-    grid-template-columns: 140px 1fr;
+    grid-template-columns: 130px 1fr;
     gap: 32px;
-    padding: 24px 0;
+    padding: 22px 0;
     border-bottom: 1px solid var(--border);
   }
 
-  .timeline-item:last-child {
-    border-bottom: none;
-  }
+  .tl-item:last-child { border-bottom: none; }
 
-  .timeline-day {
+  .tl-day {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 0.08em;
@@ -412,24 +422,30 @@
     padding-top: 2px;
   }
 
-  .timeline-content h4 {
+  .tl-content h4 {
     font-size: 16px;
     font-weight: 700;
     margin-bottom: 4px;
   }
 
-  .timeline-content p {
+  .tl-content p {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: var(--text-2);
+    line-height: 1.5;
   }
 
-  /* ── INVESTIMENTO ── */
-  .investment-wrap {
-    margin-top: 48px;
+  /* ── SLIDE 7 — INVESTIMENTO ── */
+  #s7 {
+    background:
+      radial-gradient(ellipse 60% 50% at 50% 0%, rgba(205,255,0,0.06) 0%, transparent 70%),
+      var(--bg);
+  }
+
+  .invest-layout {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 24px;
-    align-items: stretch;
+    margin-top: 48px;
   }
 
   .price-card {
@@ -439,47 +455,47 @@
     padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 20px;
   }
 
   .price-label {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 700;
     color: var(--accent);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-bottom: 16px;
   }
 
-  .price-value {
-    font-size: clamp(36px, 5vw, 52px);
+  .price-big {
+    font-size: clamp(48px, 7vw, 72px);
     font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--accent);
     line-height: 1;
+    letter-spacing: -0.04em;
+    color: var(--accent);
   }
 
-  .price-value small {
-    font-size: 20px;
+  .price-big small {
+    font-size: 0.4em;
     font-weight: 500;
-    color: var(--text-secondary);
+    color: var(--text-2);
+    letter-spacing: 0;
+    vertical-align: super;
     margin-right: 4px;
   }
 
   .price-desc {
     font-size: 15px;
-    color: var(--text-secondary);
-    margin-top: 16px;
+    color: var(--text-2);
     line-height: 1.55;
   }
 
   .price-note {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 11px;
-    color: var(--text-muted);
-    margin-top: 20px;
+    font-size: 10px;
+    color: var(--text-3);
     letter-spacing: 0.06em;
+    line-height: 1.6;
   }
 
   .roi-card {
@@ -490,12 +506,12 @@
   }
 
   .roi-card h3 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
   }
 
-  .roi-item {
+  .roi-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -503,27 +519,24 @@
     border-bottom: 1px solid var(--border);
   }
 
-  .roi-item:last-child {
-    border-bottom: none;
-  }
+  .roi-row:last-child { border-bottom: none; }
 
-  .roi-item span {
+  .roi-row span {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: var(--text-2);
+    max-width: 200px;
   }
 
-  .roi-item strong {
+  .roi-row strong {
     font-family: 'JetBrains Mono', monospace;
     font-size: 14px;
     font-weight: 700;
     color: var(--text);
   }
 
-  .roi-item.highlight strong {
-    color: var(--accent);
-  }
+  .roi-row.hi strong { color: var(--accent); }
 
-  /* ── PRÓXIMOS PASSOS ── */
+  /* ── SLIDE 8 — PRÓXIMOS PASSOS ── */
   .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -535,569 +548,544 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: 6px;
-    padding: 28px 24px;
+    padding: 32px;
   }
 
-  .step-num {
+  .step-n {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 32px;
+    font-size: 40px;
     font-weight: 700;
     color: var(--accent);
-    opacity: 0.4;
+    opacity: 0.25;
     line-height: 1;
     margin-bottom: 16px;
   }
 
   .step-card h4 {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: 700;
     margin-bottom: 8px;
   }
 
   .step-card p {
     font-size: 14px;
-    color: var(--text-secondary);
+    color: var(--text-2);
     line-height: 1.55;
   }
 
-  /* ── SOBRE ── */
-  .about-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-    margin-top: 48px;
-  }
-
-  .about-text p {
-    font-size: 16px;
-    color: var(--text-secondary);
-    line-height: 1.65;
-  }
-
-  .about-text p + p {
-    margin-top: 14px;
-  }
-
-  .about-stats {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-  }
-
-  .stat-box {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 24px;
+  /* ── SLIDE 9 — SOBRE + CTA ── */
+  #s9 {
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 50%, rgba(205,255,0,0.04) 0%, transparent 70%),
+      var(--bg);
     text-align: center;
+    justify-content: center;
+    align-items: center;
   }
 
-  .stat-value {
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--accent);
-    line-height: 1;
-    margin-bottom: 8px;
-  }
-
-  .stat-label {
-    font-size: 13px;
-    color: var(--text-secondary);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    border-top: 1px solid var(--border);
-    padding: 48px 0;
+  .cta-block {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    gap: 24px;
+    max-width: 640px;
+    margin: 0 auto;
   }
 
-  footer .logo {
-    font-size: 16px;
-  }
-
-  .footer-contact {
-    text-align: right;
-  }
-
-  .footer-contact p {
-    font-size: 14px;
-    color: var(--text-secondary);
-  }
-
-  .footer-contact a {
-    color: var(--accent);
-    text-decoration: none;
-    font-weight: 600;
-  }
-
-  /* ── CTA FINAL ── */
-  .cta-section {
-    background: var(--accent);
-    padding: 64px 0;
+  .cta-block .h-section {
     text-align: center;
   }
 
-  .cta-section h2 {
-    font-size: clamp(28px, 4vw, 44px);
-    font-weight: 800;
-    color: #000;
-    letter-spacing: -0.02em;
-    margin-bottom: 12px;
+  .cta-block .lead {
+    text-align: center;
   }
 
-  .cta-section p {
-    font-size: 16px;
-    color: rgba(0,0,0,0.6);
-    margin-bottom: 32px;
-  }
-
-  .cta-btn {
+  .btn-cta {
     display: inline-block;
-    background: #000;
-    color: var(--accent);
+    background: var(--accent);
+    color: #000;
     font-family: 'Inter', sans-serif;
     font-size: 15px;
     font-weight: 700;
     text-decoration: none;
-    padding: 16px 40px;
+    padding: 18px 48px;
     border-radius: 4px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+    margin-top: 8px;
   }
 
-  /* ── RESPONSIVE ── */
-  @media (max-width: 768px) {
-    .solution-layout,
-    .scope-grid,
-    .investment-wrap,
-    .about-layout,
-    .steps-grid,
-    .not-included-list {
-      grid-template-columns: 1fr;
-    }
+  .about-strip {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 40px;
+    border-top: 1px solid var(--border);
+    justify-content: center;
+  }
 
-    .scope-card.full-width {
-      grid-column: 1;
-    }
+  .about-stat {
+    text-align: center;
+  }
 
-    .timeline-item {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
+  .about-stat-val {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .about-stat-label {
+    font-size: 12px;
+    color: var(--text-2);
+  }
+
+  /* ── NOT INCLUDED LIST ── */
+  .not-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .not-list li {
+    list-style: none;
+    font-size: 14px;
+    color: var(--text-3);
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .not-list li::before {
+    content: '×';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: #ff4444;
+    font-weight: 700;
+  }
+
+  @media (max-width: 900px) {
+    .slide { padding: 48px 32px; }
+    .slide-footer { left: 32px; right: 32px; }
+    .pain-grid, .scope-cols, .solution-cols,
+    .gestao-layout, .invest-layout, .steps-grid { grid-template-columns: 1fr; }
+    .not-list { grid-template-columns: 1fr; }
+    .tl-item { grid-template-columns: 1fr; gap: 4px; }
   }
 </style>
 </head>
 <body>
 
-<!-- ──────────────────────────────────────
-     CAPA
-────────────────────────────────────── -->
-<div class="hero">
-  <div class="container">
-    <div class="hero-top">
-      <div class="logo">GROVW</div>
-      <div class="hero-meta">Proposta Comercial</div>
+<!-- ══════════════════════════════════════
+     SLIDE 1 — CAPA
+══════════════════════════════════════ -->
+<div class="slide" id="s1">
+  <div class="slide-bar active"></div>
+
+  <div class="capa-layout">
+    <div class="capa-top">
+      <div class="grovw-logo">GROVW</div>
+      <div class="capa-meta">
+        <p>Proposta Comercial</p>
+        <p>19 de abril de 2026</p>
+        <p style="margin-top:4px; color: rgba(205,255,0,0.4);">CONF-0001</p>
+      </div>
     </div>
 
-    <div class="hero-body">
-      <span class="hero-label">Sistema de Captação B2B</span>
-      <h1 class="hero-title">
-        Previsibilidade<br>
-        de <span>leads qualificados</span><br>
-        para a DataSync TI.
+    <div class="capa-body">
+      <div class="capa-pre">Sistema de Captação B2B</div>
+      <h1 class="h-hero">
+        Leads qualificados.<br>
+        <span class="accent">Todo mês.</span><br>
+        Sem depender<br>de indicação.
       </h1>
-      <p class="hero-sub">
-        Uma máquina de captação construída do zero: landing page, tráfego gerenciado e automação de lead no WhatsApp — tudo integrado, tudo rastreado.
+      <p class="lead" style="margin-top: 28px;">
+        Landing page, Google Ads e automação de lead no WhatsApp — montados em 15 dias, rodando no automático.
       </p>
     </div>
 
-    <div class="hero-bottom">
-      <div class="hero-client-block">
+    <div class="capa-bottom">
+      <div class="client-block">
         <p>Preparado para</p>
         <strong>Ricardo Mendes</strong>
-        <em>Sócio-Diretor, DataSync Soluções em TI</em>
+        <span>Sócio-Diretor, DataSync Soluções em TI</span>
       </div>
-      <div class="hero-date">
-        <div>19 de abril de 2026</div>
-        <div style="margin-top:4px; font-size:11px; font-family:'JetBrains Mono',monospace; letter-spacing:0.1em; color:#555;">CONF-0001</div>
+      <div style="text-align:right;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3); letter-spacing:0.1em;">grovw.com.br</div>
       </div>
     </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">01 / 09</span>
   </div>
 </div>
 
-<!-- ──────────────────────────────────────
-     O PROBLEMA
-────────────────────────────────────── -->
-<section>
-  <div class="container">
-    <span class="section-label">Diagnóstico</span>
-    <h2 class="section-title">O que está travando<br><span>o crescimento</span></h2>
+<!-- ══════════════════════════════════════
+     SLIDE 2 — O PROBLEMA
+══════════════════════════════════════ -->
+<div class="slide" id="s2">
+  <div class="slide-bar"></div>
 
-    <p class="body-text">
-      A DataSync entrega bem. O time técnico resolve, os clientes renovam, o NPS é alto. O problema não está na operação — está na entrada. Novos contratos chegam por indicação, e indicação é imprevisível.
-    </p>
-    <p class="body-text" style="margin-top:14px;">
-      Sem um canal de captação próprio, o crescimento fica refém de sorte e relacionamento. Cada mês sem pipeline estruturado é um mês de oportunidade perdida para concorrentes que já aparecem no Google quando o cliente está procurando.
-    </p>
+  <span class="tag outline">Diagnóstico</span>
+  <h2 class="h-section">O que está travando<br><span class="accent">o crescimento</span></h2>
 
-    <div class="pain-grid">
-      <div class="pain-card">
-        <div class="pain-number">01</div>
-        <h3>Sem presença no momento da busca</h3>
-        <p>Quando um gestor de TI pesquisa "integrador de redes Campinas" ou "suporte TI para empresas", a DataSync não aparece. O contrato vai para quem investiu antes.</p>
+  <div class="pain-grid">
+    <div class="pain-card">
+      <div class="pain-num">01</div>
+      <h3>Sem presença no momento da busca</h3>
+      <p>Quando um gestor de TI pesquisa "integrador de redes" ou "suporte TI empresarial" na sua região, a DataSync não aparece. O contrato vai para quem investiu antes.</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">02</div>
+      <h3>Site que não gera lead</h3>
+      <p>O site atual é institucional. Sem landing page de conversão, sem CTA claro, sem captura de contato. Visitante entra e sai sem deixar rastro.</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">03</div>
+      <h3>Lead cai no vácuo</h3>
+      <p>Quando alguém preenche um formulário, o contato chega por email e depende de alguém ver. Sem automação, a janela de interesse fecha rápido.</p>
+    </div>
+    <div class="pain-card">
+      <div class="pain-num">04</div>
+      <h3>Crescimento só por indicação</h3>
+      <p>Indicação é boa, mas não é escalável. Para crescer MRR com previsibilidade, precisa de canal ativo, não passivo.</p>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">02 / 09</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 3 — A SOLUÇÃO
+══════════════════════════════════════ -->
+<div class="slide" id="s3">
+  <div class="slide-bar"></div>
+
+  <span class="tag">Proposta</span>
+  <h2 class="h-section">Uma máquina de captação<br><span class="accent">construída do zero.</span></h2>
+
+  <div class="solution-cols">
+    <div>
+      <p>Vamos montar um sistema de captação completo para a DataSync: uma landing page construída para converter, campanhas no Google Ads capturando quem está buscando por serviços de TI, e automação que responde o lead no WhatsApp em menos de 60 segundos.</p>
+      <p style="margin-top:14px;">O resultado: quando um gestor pesquisar integração de redes ou suporte empresarial na sua região, a DataSync aparece. Quando ele preenche o formulário, o time já recebe o contato com contexto.</p>
+      <div class="callout">
+        <p>Não é marketing. É engenharia de captação. Cada peça tem função: a LP converte, o Ads traz tráfego qualificado, a automação não deixa lead esfriar.</p>
       </div>
-      <div class="pain-card">
-        <div class="pain-number">02</div>
-        <h3>Site que não gera lead</h3>
-        <p>O site atual é institucional. Não tem uma landing page focada em conversão, sem CTA claro, sem captura de contato. Visitante entra e sai sem deixar rastro.</p>
-      </div>
-      <div class="pain-card">
-        <div class="pain-number">03</div>
-        <h3>Lead cai no vácuo</h3>
-        <p>Quando alguém preenche um formulário, o contato chega por email e depende de alguém ver e responder. Sem automação, a janela de interesse fecha rápido.</p>
-      </div>
-      <div class="pain-card">
-        <div class="pain-number">04</div>
-        <h3>Crescimento só por indicação</h3>
-        <p>Indicação é boa, mas não é escalável. Para crescer MRR com previsibilidade, precisa de canal ativo, não passivo.</p>
+    </div>
+    <div>
+      <ul class="stack-list">
+        <li><strong>WordPress + Elementor</strong> — landing page de alta conversão</li>
+        <li><strong>Google Ads</strong> — fundo de funil, busca ativa</li>
+        <li><strong>N8N</strong> — automação lead no WhatsApp</li>
+        <li><strong>GTM + GA4</strong> — rastreamento completo</li>
+        <li><strong>Google Sheets</strong> — controle de leads em tempo real</li>
+        <li><strong>Evolution API</strong> — WhatsApp comercial integrado</li>
+      </ul>
+      <div class="callout" style="margin-top:24px;">
+        <p><strong style="color:var(--accent);">Setup completo:</strong> 15 dias úteis.<br>
+        Tudo rastreado, sem caixa-preta, acesso total do cliente.</p>
       </div>
     </div>
   </div>
-</section>
 
-<!-- ──────────────────────────────────────
-     A SOLUÇÃO
-────────────────────────────────────── -->
-<section>
-  <div class="container">
-    <span class="section-label">Proposta</span>
-    <h2 class="section-title">O que a GROVW<br><span>vai construir</span></h2>
-
-    <div class="solution-layout">
-      <div class="solution-block">
-        <p>
-          Vamos montar um sistema de captação completo para a DataSync: uma landing page construída para converter visitantes qualificados em contatos, campanhas no Google Ads capturando quem está buscando ativamente por serviços de TI, e uma automação que garante resposta imediata ao lead no WhatsApp comercial.
-        </p>
-        <p>
-          O resultado: quando um gestor de TI pesquisar por integração de redes, segurança de dados ou suporte empresarial na sua região, a DataSync aparece. Quando ele preenche o formulário, o time já recebe o contato com contexto em menos de 60 segundos.
-        </p>
-        <div class="highlight-box">
-          <p>Não é marketing. É engenharia de captação. Cada peça tem função: a LP converte, o Ads traz tráfego qualificado, a automação não deixa lead esfriar.</p>
-        </div>
-      </div>
-      <div class="solution-block">
-        <p>
-          O setup é feito em 15 dias. Após a entrega, a GROVW acompanha a performance e oferece gestão mensal de tráfego para manter e escalar o volume de leads.
-        </p>
-        <p>
-          Tudo rastreado: pixel, GTM, relatório de custo por lead. Sem caixa-preta.
-        </p>
-        <div class="highlight-box" style="margin-top: 28px;">
-          <p><strong style="color: var(--accent); font-family: 'JetBrains Mono', monospace; font-size: 13px;">Stack utilizado:</strong><br><br>
-          WordPress + Elementor Pro para a LP.<br>
-          Google Ads (fundo de funil) para tráfego.<br>
-          N8N para automação de lead no WhatsApp.<br>
-          GTM + GA4 para rastreamento completo.
-          </p>
-        </div>
-      </div>
-    </div>
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">03 / 09</span>
   </div>
-</section>
+</div>
 
-<!-- ──────────────────────────────────────
-     ESCOPO
-────────────────────────────────────── -->
-<section>
-  <div class="container">
-    <span class="section-label">Escopo</span>
-    <h2 class="section-title">O que está<br><span>incluído</span></h2>
+<!-- ══════════════════════════════════════
+     SLIDE 4 — ESCOPO DO SETUP
+══════════════════════════════════════ -->
+<div class="slide" id="s4">
+  <div class="slide-bar"></div>
 
-    <div class="scope-grid">
-      <div class="scope-card">
-        <div class="scope-card-header">
-          <span class="scope-tag">Setup</span>
-          <h3>Landing Page</h3>
-        </div>
-        <ul class="scope-list">
-          <li>Criação da LP focada em captação B2B (1 página)</li>
-          <li>Copywriting voltado para o ICP: gestor de TI e tomador de decisão</li>
-          <li>Formulário de contato integrado ao fluxo de automação</li>
-          <li>Otimização mobile e velocidade de carregamento</li>
-          <li>Instalação de GTM, GA4 e pixel do Meta</li>
-          <li>Hospedagem no domínio atual da DataSync</li>
-        </ul>
-      </div>
+  <span class="tag">Setup único — 15 dias</span>
+  <h2 class="h-section">O que está<br><span class="accent">incluído no setup</span></h2>
 
-      <div class="scope-card">
-        <div class="scope-card-header">
-          <span class="scope-tag">Setup</span>
-          <h3>Google Ads</h3>
-        </div>
-        <ul class="scope-list">
-          <li>Pesquisa de palavras-chave (fundo de funil)</li>
-          <li>Criação de conta ou auditoria da conta existente</li>
-          <li>Estrutura de campanha: 1 campanha de pesquisa segmentada por serviço</li>
-          <li>Anúncios responsivos com extensões configuradas</li>
-          <li>Configuração de conversão e rastreamento de leads</li>
-          <li>Briefing de investimento mensal recomendado</li>
-        </ul>
-      </div>
-
-      <div class="scope-card">
-        <div class="scope-card-header">
-          <span class="scope-tag">Setup</span>
-          <h3>Automação de Lead</h3>
-        </div>
-        <ul class="scope-list">
-          <li>Fluxo N8N: formulário da LP aciona automação imediata</li>
-          <li>Mensagem automática de boas-vindas no WhatsApp do lead</li>
-          <li>Notificação instantânea para o WhatsApp comercial da DataSync</li>
-          <li>Registro automático do lead em planilha Google Sheets</li>
-          <li>Teste completo do fluxo antes da entrega</li>
-        </ul>
-      </div>
-
-      <div class="scope-card">
-        <div class="scope-card-header">
-          <span class="scope-tag recurring">Recorrente</span>
-          <h3>Gestão de Captação</h3>
-        </div>
-        <ul class="scope-list">
-          <li>Otimização semanal das campanhas Google Ads</li>
-          <li>Ajuste de copy e criativos conforme performance</li>
-          <li>Check-in analítico semanal por WhatsApp</li>
-          <li>Relatório mensal: leads, custo por lead, conversão</li>
-          <li>Sugestões de pauta e ajuste de estratégia mensalmente</li>
-        </ul>
-      </div>
+  <div class="scope-cols">
+    <div class="scope-card">
+      <span class="scope-card-tag">Landing Page</span>
+      <h3>Página de Captação</h3>
+      <ul class="scope-list">
+        <li>LP focada em conversão B2B (1 página)</li>
+        <li>Copy voltado para gestor de TI</li>
+        <li>Formulário integrado à automação</li>
+        <li>Otimização mobile e velocidade</li>
+        <li>GTM, GA4 e pixel instalados</li>
+        <li>Hospedagem no domínio da DataSync</li>
+      </ul>
     </div>
-
-    <!-- Não incluído -->
-    <div style="margin-top: 48px;">
-      <span class="section-label">Fora do escopo</span>
-      <h3 style="font-size: 20px; font-weight: 700; margin-bottom: 8px;">O que <span style="color: #ff4444;">não</span> está incluído</h3>
-      <p style="font-size: 14px; color: var(--text-secondary); margin-bottom: 4px;">Para evitar ruído depois:</p>
-      <ul class="not-included-list">
-        <li>Criação de site institucional completo</li>
-        <li>Gestão de redes sociais</li>
-        <li>Produção de vídeos ou fotos</li>
-        <li>Campanhas Meta Ads (podem ser contratadas à parte)</li>
-        <li>SEO orgânico (blog, link building)</li>
-        <li>CRM ou sistema de gestão de clientes</li>
-        <li>Investimento em anúncios (fica na conta da DataSync)</li>
-        <li>Suporte técnico de TI ou infraestrutura interna</li>
+    <div class="scope-card">
+      <span class="scope-card-tag">Google Ads</span>
+      <h3>Tráfego Qualificado</h3>
+      <ul class="scope-list">
+        <li>Pesquisa de palavras-chave fundo de funil</li>
+        <li>Criação ou auditoria de conta</li>
+        <li>1 campanha de pesquisa estruturada</li>
+        <li>Anúncios responsivos com extensões</li>
+        <li>Configuração de conversão e rastreamento</li>
+        <li>Briefing de investimento recomendado</li>
+      </ul>
+    </div>
+    <div class="scope-card">
+      <span class="scope-card-tag">Automação</span>
+      <h3>Lead no WhatsApp</h3>
+      <ul class="scope-list">
+        <li>Fluxo N8N: formulário aciona automação</li>
+        <li>Mensagem automática para o lead</li>
+        <li>Notificação no WhatsApp comercial</li>
+        <li>Registro automático em planilha</li>
+        <li>Teste completo antes da entrega</li>
       </ul>
     </div>
   </div>
-</section>
 
-<!-- ──────────────────────────────────────
-     PRAZO
-────────────────────────────────────── -->
-<section>
-  <div class="container">
-    <span class="section-label">Cronograma</span>
-    <h2 class="section-title">Entrega em<br><span>15 dias úteis</span></h2>
-
-    <div class="timeline">
-      <div class="timeline-item">
-        <div class="timeline-day">Dia 1</div>
-        <div class="timeline-content">
-          <h4>Kickoff e coleta de informações</h4>
-          <p>Briefing completo: serviços, diferenciais, tom de voz, público-alvo, cidade de atuação e acesso aos domínios.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-day">Dias 2 a 5</div>
-        <div class="timeline-content">
-          <h4>Desenvolvimento da landing page</h4>
-          <p>Estrutura, copy e design. Revisão com o cliente antes de publicar.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-day">Dias 6 a 10</div>
-        <div class="timeline-content">
-          <h4>Configuração do Google Ads e rastreamento</h4>
-          <p>Campanha estruturada, conversões configuradas, GTM e GA4 instalados.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-day">Dias 11 a 13</div>
-        <div class="timeline-content">
-          <h4>Automação de lead</h4>
-          <p>Fluxo N8N montado e testado: formulário, WhatsApp comercial, planilha de controle.</p>
-        </div>
-      </div>
-      <div class="timeline-item">
-        <div class="timeline-day">Dia 14 a 15</div>
-        <div class="timeline-content">
-          <h4>Revisão final e entrega</h4>
-          <p>Testes end-to-end, ajustes finais e passagem de acesso ao cliente com documentação básica.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────────────────────────────────
-     INVESTIMENTO
-────────────────────────────────────── -->
-<section>
-  <div class="container">
-    <span class="section-label">Investimento</span>
-    <h2 class="section-title">Quanto custa<br><span>e o que você ganha</span></h2>
-
-    <div class="investment-wrap">
-      <div class="price-card">
-        <div>
-          <div class="price-label">Setup único (15 dias)</div>
-          <div class="price-value">
-            <small>R$</small>3.500
-          </div>
-          <p class="price-desc">
-            LP + Google Ads configurado + automação de lead N8N. Entregue em 15 dias úteis após o kickoff.
-          </p>
-        </div>
-        <div>
-          <div class="price-label" style="margin-top: 28px;">Gestão mensal (opcional)</div>
-          <div class="price-value" style="font-size: clamp(26px, 3vw, 36px);">
-            <small>R$</small>2.000<span style="font-size: 16px; color: var(--text-secondary); font-weight: 400;">/mês</span>
-          </div>
-          <p class="price-desc" style="margin-top: 10px;">
-            Otimização contínua de Ads, relatórios e ajustes de copy. Sem fidelidade mínima no primeiro mês.
-          </p>
-          <p class="price-note">* Investimento em anúncios é separado e fica na conta do cliente. Recomendação: R$800–R$1.500/mês para iniciar.</p>
-        </div>
-      </div>
-
-      <div class="roi-card">
-        <h3>Por que R$3.500 faz sentido</h3>
-        <div class="roi-item">
-          <span>Ticket médio de um contrato de TI</span>
-          <strong>R$ 2.000–R$ 8.000/ano</strong>
-        </div>
-        <div class="roi-item">
-          <span>Leads qualificados esperados por mês</span>
-          <strong>5 a 15</strong>
-        </div>
-        <div class="roi-item">
-          <span>Taxa de conversão realista em TI B2B</span>
-          <strong>10–20%</strong>
-        </div>
-        <div class="roi-item">
-          <span>Novos clientes estimados no 1º trimestre</span>
-          <strong>2 a 5</strong>
-        </div>
-        <div class="roi-item highlight">
-          <span>Receita gerada vs. investimento</span>
-          <strong>10x+ em 90 dias</strong>
-        </div>
-        <p style="font-size: 13px; color: var(--text-muted); margin-top: 20px;">* Estimativa conservadora. Resultado real depende do investimento em Ads e da qualidade do processo comercial.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────────────────────────────────
-     PRÓXIMOS PASSOS
-────────────────────────────────────── -->
-<section>
-  <div class="container">
-    <span class="section-label">Como avançar</span>
-    <h2 class="section-title">Próximos<br><span>passos</span></h2>
-
-    <div class="steps-grid">
-      <div class="step-card">
-        <div class="step-num">01</div>
-        <h4>Confirmação da proposta</h4>
-        <p>Responder essa proposta com "topo" por WhatsApp ou email. Se tiver dúvida em qualquer ponto, a gente resolve antes.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">02</div>
-        <h4>Contrato e pagamento</h4>
-        <p>Contrato simples por email. Pagamento do setup via PIX ou boleto. Início começa no dia do pagamento confirmado.</p>
-      </div>
-      <div class="step-card">
-        <div class="step-num">03</div>
-        <h4>Kickoff em 48h</h4>
-        <p>Reunião de briefing via Google Meet. 45 minutos. Saímos com tudo que precisa para começar a produção.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────────────────────────────────
-     SOBRE A GROVW
-────────────────────────────────────── -->
-<section>
-  <div class="container">
-    <span class="section-label">Quem entrega</span>
-    <h2 class="section-title">Sobre a<br><span>GROVW</span></h2>
-
-    <div class="about-layout">
-      <div class="about-text">
-        <p>
-          A GROVW é operada por Kalid Carvalho, analista de sistemas com pós-graduação em Gestão de TI e mais de 5 anos construindo sistemas de captação digital para PMEs brasileiras.
-        </p>
-        <p>
-          Opera solo com stack técnica própria: N8N, WordPress, Google Ads, automações de WhatsApp via Evolution API e rastreamento avançado com GTM. Fala de igual pra igual com diretores e fundadores de TI porque veio do mesmo mercado.
-        </p>
-        <p>
-          Não vende pacote de redes sociais. Constrói máquina de captação e acompanha o resultado.
-        </p>
-      </div>
-      <div class="about-stats">
-        <div class="stat-box">
-          <div class="stat-value">+5</div>
-          <div class="stat-label">anos de operação</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-value">TI B2B</div>
-          <div class="stat-label">nicho especializado</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-value">15d</div>
-          <div class="stat-label">entrega do setup</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-value">N8N</div>
-          <div class="stat-label">automações próprias</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ──────────────────────────────────────
-     CTA FINAL
-────────────────────────────────────── -->
-<div class="cta-section">
-  <div class="container">
-    <h2>Pronto para estruturar a captação?</h2>
-    <p>Responda essa proposta e a gente começa em 48 horas.</p>
-    <a href="https://wa.me/5592991923266" class="cta-btn">Falar com a GROVW</a>
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">04 / 09</span>
   </div>
 </div>
 
-<!-- ──────────────────────────────────────
-     FOOTER
-────────────────────────────────────── -->
-<footer>
-  <div class="container" style="display:flex; align-items:center; justify-content:space-between; width:100%;">
-    <div class="logo">GROVW</div>
-    <div class="footer-contact">
-      <p>Kalid Carvalho</p>
-      <p><a href="https://wa.me/5592991923266">+55 92 99192-3266</a></p>
-      <p style="margin-top: 4px; font-size:12px; color: var(--text-muted);">grovw.com.br</p>
+<!-- ══════════════════════════════════════
+     SLIDE 5 — GESTÃO MENSAL + NÃO INCLUÍDO
+══════════════════════════════════════ -->
+<div class="slide" id="s5">
+  <div class="slide-bar"></div>
+
+  <span class="tag outline">Gestão mensal</span>
+  <h2 class="h-section">Depois do setup:<br><span class="accent">otimização contínua.</span></h2>
+
+  <div class="gestao-layout">
+    <div class="gestao-card">
+      <h3>O que a gestão mensal inclui</h3>
+      <ul class="scope-list">
+        <li>Otimização semanal das campanhas Google Ads</li>
+        <li>Ajuste de copy e criativos conforme performance</li>
+        <li>Check-in analítico semanal por WhatsApp</li>
+        <li>Relatório mensal: leads, custo por lead, conversão</li>
+        <li>Sugestões de pauta e ajuste de estratégia</li>
+        <li>Manutenção da automação N8N</li>
+      </ul>
+    </div>
+    <div>
+      <h3 style="font-size: 17px; font-weight: 700; margin-bottom: 16px; color: var(--text-2);">O que <span style="color:#ff4444;">não</span> está incluído</h3>
+      <ul class="not-list">
+        <li>Gestão de redes sociais</li>
+        <li>Produção de vídeos ou fotos</li>
+        <li>Campanhas Meta Ads</li>
+        <li>SEO orgânico (blog, link building)</li>
+        <li>CRM ou sistema de gestão interno</li>
+        <li>Investimento em Ads (conta do cliente)</li>
+        <li>Site institucional completo</li>
+        <li>Suporte de infraestrutura interna</li>
+      </ul>
     </div>
   </div>
-</footer>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">05 / 09</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 6 — PRAZO
+══════════════════════════════════════ -->
+<div class="slide" id="s6">
+  <div class="slide-bar"></div>
+
+  <span class="tag">Cronograma</span>
+  <h2 class="h-section">Entrega em<br><span class="accent">15 dias úteis.</span></h2>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-day">Dia 1</div>
+      <div class="tl-content">
+        <h4>Kickoff e coleta de informações</h4>
+        <p>Briefing completo: serviços, diferenciais, tom, público-alvo, região e acessos.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-day">Dias 2 – 5</div>
+      <div class="tl-content">
+        <h4>Desenvolvimento da landing page</h4>
+        <p>Estrutura, copy e design. Revisão com o cliente antes de publicar.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-day">Dias 6 – 10</div>
+      <div class="tl-content">
+        <h4>Google Ads e rastreamento</h4>
+        <p>Campanha estruturada, conversões configuradas, GTM e GA4 instalados e testados.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-day">Dias 11 – 13</div>
+      <div class="tl-content">
+        <h4>Automação de lead</h4>
+        <p>Fluxo N8N montado e testado: formulário, WhatsApp comercial, planilha de controle.</p>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-day">Dias 14 – 15</div>
+      <div class="tl-content">
+        <h4>Revisão final e entrega</h4>
+        <p>Testes end-to-end, ajustes finais e passagem de acessos com documentação.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">06 / 09</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 7 — INVESTIMENTO
+══════════════════════════════════════ -->
+<div class="slide" id="s7">
+  <div class="slide-bar"></div>
+
+  <span class="tag">Investimento</span>
+  <h2 class="h-section">Quanto custa<br><span class="accent">e o que você ganha.</span></h2>
+
+  <div class="invest-layout">
+    <div style="display:flex; flex-direction:column; gap:16px;">
+      <div class="price-card">
+        <div class="price-label">Setup único</div>
+        <div class="price-big"><small>R$</small>4.000</div>
+        <p class="price-desc">LP + Google Ads + automação N8N. Entregue em 15 dias úteis após o kickoff.</p>
+        <p class="price-note">Pagamento via PIX ou boleto. Início no dia do pagamento confirmado.</p>
+      </div>
+      <div class="price-card" style="border-color: rgba(255,255,255,0.12);">
+        <div class="price-label">Gestão mensal</div>
+        <div class="price-big" style="font-size: clamp(36px,5vw,52px);"><small>R$</small>3.000<span style="font-size:18px; color:var(--text-2); font-weight:400; font-family:'Inter',sans-serif;">/mês</span></div>
+        <p class="price-desc">Otimização de Ads, relatórios e ajustes contínuos. Sem fidelidade mínima no 1º mês.</p>
+        <p class="price-note">Investimento em Ads separado e na conta do cliente.<br>Recomendação inicial: R$800 – R$1.500/mês.</p>
+      </div>
+    </div>
+
+    <div class="roi-card">
+      <h3>Por que faz sentido financeiro</h3>
+      <div class="roi-row">
+        <span>Ticket médio de um contrato de TI</span>
+        <strong>R$2k – R$8k/ano</strong>
+      </div>
+      <div class="roi-row">
+        <span>Leads qualificados estimados por mês</span>
+        <strong>5 a 15</strong>
+      </div>
+      <div class="roi-row">
+        <span>Taxa de conversão realista em TI B2B</span>
+        <strong>10 – 20%</strong>
+      </div>
+      <div class="roi-row">
+        <span>Novos contratos no 1º trimestre</span>
+        <strong>2 a 5</strong>
+      </div>
+      <div class="roi-row hi">
+        <span>Retorno vs. investimento total</span>
+        <strong>10x+ em 90 dias</strong>
+      </div>
+      <p style="font-size:12px; color:var(--text-3); margin-top:20px; line-height:1.6;">* Estimativa conservadora. Resultado depende do investimento em Ads e do processo comercial interno.</p>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">07 / 09</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 8 — PRÓXIMOS PASSOS
+══════════════════════════════════════ -->
+<div class="slide" id="s8">
+  <div class="slide-bar"></div>
+
+  <span class="tag">Como avançar</span>
+  <h2 class="h-section">Três passos para<br><span class="accent">começar.</span></h2>
+
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-n">01</div>
+      <h4>Confirmação da proposta</h4>
+      <p>Responder com "topo" por WhatsApp ou email. Se tiver dúvida em qualquer ponto, a gente resolve antes de fechar.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-n">02</div>
+      <h4>Contrato e pagamento</h4>
+      <p>Contrato simples por email. Pagamento do setup via PIX ou boleto. Início no dia do pagamento confirmado.</p>
+    </div>
+    <div class="step-card">
+      <div class="step-n">03</div>
+      <h4>Kickoff em 48h</h4>
+      <p>Reunião de briefing via Google Meet. 45 minutos. Saímos com tudo para começar a produção imediatamente.</p>
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">08 / 09</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SLIDE 9 — CTA FINAL
+══════════════════════════════════════ -->
+<div class="slide" id="s9">
+  <div class="slide-bar"></div>
+
+  <div class="cta-block">
+    <span class="tag">GROVW</span>
+    <h2 class="h-section" style="text-align:center;">
+      Pronto para estruturar<br>
+      <span class="accent">a captação?</span>
+    </h2>
+    <p class="lead" style="text-align:center;">
+      Responda essa proposta e a gente começa em 48 horas. Sem reunião de vendas, sem enrolação.
+    </p>
+    <a href="https://wa.me/5592991923266" class="btn-cta">Falar com a GROVW</a>
+
+    <div class="about-strip">
+      <div class="about-stat">
+        <div class="about-stat-val">+5</div>
+        <div class="about-stat-label">anos de operação</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-val">TI B2B</div>
+        <div class="about-stat-label">nicho especializado</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-val">15d</div>
+        <div class="about-stat-label">entrega do setup</div>
+      </div>
+      <div class="about-stat">
+        <div class="about-stat-val">N8N</div>
+        <div class="about-stat-label">automações próprias</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 16px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--text-3); letter-spacing:0.12em;">
+      Kalid Carvalho &nbsp;|&nbsp; +55 92 99192-3266 &nbsp;|&nbsp; grovw.com.br
+    </div>
+  </div>
+
+  <div class="slide-footer">
+    <span class="slide-footer-logo">GROVW</span>
+    <span class="slide-footer-num">09 / 09</span>
+  </div>
+</div>
 
 </body>
 </html>
