@@ -18,6 +18,7 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Já contratei agência antes e não funcionou. Por que seria diferente?","acceptedAnswer":{"@type":"Answer","text":"A maioria das agências entrega serviço avulso, não sistema. Post no Instagram não gera lead B2B. A GROVW monta o processo inteiro de captação integrado."}},{"@type":"Question","name":"Meu negócio é muito técnico para agência entender.","acceptedAnswer":{"@type":"Answer","text":"Kalid Carvalho tem formação em ADS e pós em Gestão de TI. Fala de igual pra igual com diretores de infraestrutura."}},{"@type":"Question","name":"Quanto custa?","acceptedAnswer":{"@type":"Answer","text":"O diagnóstico inicial é gratuito. O sistema completo parte de R$3.500."}}]}</script>
 
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
@@ -685,6 +686,17 @@
     }
     .sol-card:hover::before { opacity: 1; }
 
+    .sol-icon {
+      width: 40px; height: 40px;
+      background: var(--surface2);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+    .sol-icon iconify-icon { font-size: 18px; }
+
     .sol-num {
       font-family: var(--mono); font-size: 64px; font-weight: 900;
       color: rgba(255,255,255,0.04);
@@ -1344,18 +1356,21 @@
 
       <div class="solution-grid">
         <div class="sol-card reveal reveal-delay-1">
+          <div class="sol-icon"><iconify-icon icon="ph:browser" style="color:var(--accent);"></iconify-icon></div>
           <div class="sol-num">01</div>
           <span class="sol-tag">Site</span>
           <h3>Site que converte</h3>
           <p>Não é portfólio. É uma página construída pra transformar visitante em contato. Copy direto pra quem decide: diretor, gerente de TI, sócio. Carrega rápido e ranqueia no Google.</p>
         </div>
         <div class="sol-card reveal reveal-delay-2">
+          <div class="sol-icon"><iconify-icon icon="ph:chart-line-up" style="color:var(--accent);"></iconify-icon></div>
           <div class="sol-num">02</div>
           <span class="sol-tag">Tráfego</span>
           <h3>Google Ads com intenção</h3>
           <p>Anúncios focados em quem já está procurando o que você oferece. Sem desperdício de verba com público genérico. Configurado pra gerar contato, não clique.</p>
         </div>
         <div class="sol-card reveal reveal-delay-3">
+          <div class="sol-icon"><iconify-icon icon="ph:lightning" style="color:var(--accent);"></iconify-icon></div>
           <div class="sol-num">03</div>
           <span class="sol-tag">Automação</span>
           <h3>Lead sem tempo de resposta</h3>
