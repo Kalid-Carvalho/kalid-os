@@ -848,6 +848,124 @@
     }
     @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
+    /* ── PORTFÓLIO ── */
+    .portfolio-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 48px;
+      gap: 32px;
+    }
+    .portfolio-title-block { flex: 1; }
+    .portfolio-title-block h2 {
+      font-size: clamp(36px, 5vw, 72px);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .portfolio-title-block h2 span { color: var(--accent); }
+    .portfolio-nav-block {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding-bottom: 6px;
+    }
+    .port-arrow {
+      width: 42px; height: 42px;
+      border: 1px solid var(--border2);
+      border-radius: 4px;
+      background: none;
+      color: var(--text-dim);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .port-arrow:hover { border-color: var(--accent); color: var(--accent); }
+    .port-arrow svg { width: 16px; height: 16px; }
+
+    .portfolio-track-wrap { overflow: hidden; }
+    .portfolio-track {
+      display: flex;
+      gap: 20px;
+      transition: transform 0.5s var(--ease-out);
+    }
+    .port-card {
+      flex: 0 0 calc(33.333% - 14px);
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+      aspect-ratio: 3 / 4;
+      background: var(--surface);
+      cursor: pointer;
+      transition: border-color 0.3s;
+    }
+    .port-card:hover { border-color: var(--border2); }
+    .port-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: top;
+      display: block;
+      transition: transform 0.6s var(--ease-out);
+      filter: grayscale(15%);
+    }
+    .port-card:hover img { transform: scale(1.03); filter: grayscale(0%); }
+    .port-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 55%);
+    }
+    .port-card-info {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 20px;
+    }
+    .port-card-name {
+      font-size: 18px; font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .port-card-tag {
+      font-family: var(--mono); font-size: 10px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .port-card-btn {
+      position: absolute;
+      bottom: 20px; right: 20px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid var(--border2);
+      color: var(--text);
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.08em;
+      padding: 7px 14px;
+      border-radius: 4px;
+      backdrop-filter: blur(6px);
+      transition: background 0.2s, border-color 0.2s;
+      text-decoration: none;
+    }
+    .port-card-btn:hover { background: var(--accent); color: #000; border-color: var(--accent); }
+
+    .portfolio-progress {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+      margin-top: 32px;
+    }
+    .port-prog-dot {
+      width: 24px; height: 2px;
+      background: var(--border2);
+      border-radius: 2px;
+      transition: background 0.3s, width 0.3s;
+    }
+    .port-prog-dot.active { background: var(--accent); width: 40px; }
+
+    @media (max-width: 860px) {
+      .port-card { flex: 0 0 calc(80% - 10px); }
+      .portfolio-header { flex-direction: column; align-items: flex-start; }
+    }
+
     /* ── FAQ ── */
     .faq-grid {
       display: grid;
@@ -1474,6 +1592,79 @@
     </div>
   </section>
 
+  <!-- PORTFOLIO -->
+  <section class="section" id="portfolio">
+    <div class="container">
+
+      <div class="portfolio-header reveal">
+        <div class="portfolio-title-block">
+          <p class="section-meta">Casos</p>
+          <h2>Sites que <span>convertem</span></h2>
+        </div>
+        <div class="portfolio-nav-block">
+          <button class="port-arrow" id="port-prev" aria-label="Anterior">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10 3L5 8l5 5"/></svg>
+          </button>
+          <button class="port-arrow" id="port-next" aria-label="Próximo">
+            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 3l5 5-5 5"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <div class="portfolio-track-wrap reveal reveal-delay-1">
+        <div class="portfolio-track" id="portfolio-track">
+
+          <div class="port-card">
+            <img src="assets/img/cases/rsmx.jpg" alt="Site RSMX" />
+            <div class="port-card-overlay"></div>
+            <div class="port-card-info">
+              <div class="port-card-name">RSMX</div>
+              <div class="port-card-tag">Infraestrutura de TI</div>
+            </div>
+            <a href="https://rsmx.com.br" target="_blank" rel="noopener" class="port-card-btn">Ver site</a>
+          </div>
+
+          <div class="port-card">
+            <img src="assets/img/cases/luan-manzoli.jpg" alt="Site Luan Manzoli" />
+            <div class="port-card-overlay"></div>
+            <div class="port-card-info">
+              <div class="port-card-name">Luan Manzoli</div>
+              <div class="port-card-tag">Advocacia Trabalhista</div>
+            </div>
+            <a href="#" class="port-card-btn">Ver site</a>
+          </div>
+
+          <div class="port-card">
+            <img src="assets/img/cases/smart-center.jpg" alt="Site Smart Center" />
+            <div class="port-card-overlay"></div>
+            <div class="port-card-info">
+              <div class="port-card-name">Smart Center</div>
+              <div class="port-card-tag">Integração de TI</div>
+            </div>
+            <a href="#" class="port-card-btn">Ver site</a>
+          </div>
+
+          <div class="port-card">
+            <img src="assets/img/cases/adriann-sahdo.jpg" alt="Site Adriann Sahdo" />
+            <div class="port-card-overlay"></div>
+            <div class="port-card-info">
+              <div class="port-card-name">Adriann Sahdo</div>
+              <div class="port-card-tag">Advocacia</div>
+            </div>
+            <a href="#" class="port-card-btn">Ver site</a>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="portfolio-progress" id="port-progress">
+        <div class="port-prog-dot active"></div>
+        <div class="port-prog-dot"></div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- FORM -->
   <section class="section form-section" id="diagnostico">
     <div class="container">
@@ -1703,6 +1894,31 @@
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+    // ── PORTFOLIO CAROUSEL
+    (function(){
+      const track = document.getElementById('portfolio-track');
+      const cards = track ? track.querySelectorAll('.port-card') : [];
+      const dots = document.querySelectorAll('.port-prog-dot');
+      let current = 0;
+      const total = Math.ceil(cards.length / 3);
+
+      function getVisible() {
+        return window.innerWidth <= 860 ? 1 : 3;
+      }
+
+      function slide(dir) {
+        const visible = getVisible();
+        const pages = Math.ceil(cards.length / visible);
+        current = (current + dir + pages) % pages;
+        const cardW = cards[0].offsetWidth + 20;
+        track.style.transform = `translateX(-${current * visible * cardW}px)`;
+        dots.forEach((d, i) => d.classList.toggle('active', i === current));
+      }
+
+      document.getElementById('port-prev')?.addEventListener('click', () => slide(-1));
+      document.getElementById('port-next')?.addEventListener('click', () => slide(1));
+    })();
 
     // ── FAQ
     document.querySelectorAll('.faq-q').forEach(btn => {
