@@ -53,30 +53,10 @@
       background: var(--bg);
       color: var(--text);
       overflow-x: hidden;
-      cursor: none;
     }
 
     a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
-
-    /* ── CURSOR ── */
-    .cur-dot {
-      position: fixed; top: 0; left: 0; z-index: 9999;
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      pointer-events: none;
-      transform: translate(-50%,-50%);
-      transition: transform 0.1s;
-    }
-    .cur-ring {
-      position: fixed; top: 0; left: 0; z-index: 9998;
-      width: 32px; height: 32px; border-radius: 50%;
-      border: 1px solid rgba(205,255,0,0.4);
-      pointer-events: none;
-      transform: translate(-50%,-50%);
-      transition: transform 0.18s ease, width 0.2s, height 0.2s, opacity 0.2s;
-    }
-    @media (hover: none) { .cur-dot, .cur-ring { display: none; } }
 
     /* ── LAYOUT ── */
     .container { max-width: var(--max); margin: 0 auto; padding: 0 32px; }
@@ -86,17 +66,6 @@
     .dot-grid {
       background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
       background-size: 28px 28px;
-    }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0; z-index: 1;
-      pointer-events: none;
-      opacity: 0.018;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-      background-repeat: repeat;
-      background-size: 128px 128px;
     }
 
     /* ── NAV ── */
@@ -158,25 +127,12 @@
       border-bottom: 1px solid var(--border);
     }
 
-    /* Grid background */
     .hero::before {
       content: '';
       position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-    }
-
-    /* Accent glow blob */
-    .hero::after {
-      content: '';
-      position: absolute;
-      top: -20%; left: -10%;
-      width: 60vw; height: 60vw;
-      background: radial-gradient(circle, rgba(205,255,0,0.04) 0%, transparent 70%);
-      pointer-events: none;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%);
     }
 
     .hero-inner {
@@ -429,30 +385,39 @@
       line-height: 1;
     }
 
-    /* ── MARQUEE ── */
-    .marquee-wrap {
+    /* ── STACK SECTION ── */
+    .stack-section {
+      padding: 52px 0;
       border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      background: var(--bg2);
     }
-    .marquee-track {
-      display: flex;
-      animation: marquee 28s linear infinite;
-      width: max-content;
+    .stack-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 28px; flex-wrap: wrap; gap: 12px;
     }
-    .marquee-track:hover { animation-play-state: paused; }
-    @keyframes marquee { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-    .marquee-item {
-      display: flex; align-items: center; gap: 12px;
-      padding: 14px 36px;
-      font-family: var(--mono);
-      font-size: 11px; letter-spacing: 0.15em;
+    .stack-label {
+      font-family: var(--mono); font-size: 10px;
+      text-transform: uppercase; letter-spacing: 0.18em;
       color: var(--text-muted);
-      white-space: nowrap;
-      text-transform: uppercase;
-      border-right: 1px solid var(--border);
     }
-    .marquee-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    .stack-grid {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .stack-pill {
+      display: flex; align-items: center; gap: 8px;
+      font-family: var(--mono); font-size: 11px;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--text-dim);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 8px 14px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .stack-pill:hover { border-color: var(--accent-border); color: var(--accent); }
+    .stack-pill-dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent); flex-shrink: 0;
+    }
 
     /* ── LOGOS ── */
     .logos-section {
@@ -1021,10 +986,6 @@
 </head>
 <body>
 
-  <!-- CURSOR -->
-  <div class="cur-dot" id="cur-dot"></div>
-  <div class="cur-ring" id="cur-ring"></div>
-
   <!-- NAV -->
   <nav>
     <div class="nav-inner">
@@ -1162,26 +1123,24 @@
     </div>
   </section>
 
-  <!-- MARQUEE -->
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      <!-- duplicated for seamless loop -->
-      <div class="marquee-item"><span class="marquee-dot"></span>INFRAESTRUTURA DE TI</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>GOOGLE ADS B2B</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>AUTOMAÇÃO DE LEADS</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>SEGURANÇA DA INFORMAÇÃO</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>SAAS B2B</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>CAPTAÇÃO PREVISÍVEL</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>MANAUS, AM</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>N8N / AUTOMAÇÃO</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>INFRAESTRUTURA DE TI</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>GOOGLE ADS B2B</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>AUTOMAÇÃO DE LEADS</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>SEGURANÇA DA INFORMAÇÃO</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>SAAS B2B</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>CAPTAÇÃO PREVISÍVEL</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>MANAUS, AM</div>
-      <div class="marquee-item"><span class="marquee-dot"></span>N8N / AUTOMAÇÃO</div>
+  <!-- STACK -->
+  <div class="stack-section">
+    <div class="container">
+      <div class="stack-header">
+        <span class="stack-label">// o que entregamos</span>
+      </div>
+      <div class="stack-grid">
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Site Estático (HTML/CSS)</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>WordPress + Blog</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Landing Page</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Google Ads</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Meta Ads</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Automação N8N</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Bot WhatsApp</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Formulário + CRM</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>SEO Local</span>
+        <span class="stack-pill"><span class="stack-pill-dot"></span>Elementor / Antigravity</span>
+      </div>
     </div>
   </div>
 
@@ -1573,23 +1532,6 @@
   </a>
 
   <script>
-    // ── CURSOR
-    const dot = document.getElementById('cur-dot');
-    const ring = document.getElementById('cur-ring');
-    let mx = 0, my = 0, rx = 0, ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx+'px'; dot.style.top = my+'px'; });
-    (function animRing(){
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      ring.style.left = rx+'px';
-      ring.style.top = ry+'px';
-      requestAnimationFrame(animRing);
-    })();
-    document.querySelectorAll('a,button,input,select').forEach(el => {
-      el.addEventListener('mouseenter', () => { ring.style.width='48px'; ring.style.height='48px'; ring.style.opacity='0.6'; });
-      el.addEventListener('mouseleave', () => { ring.style.width='32px'; ring.style.height='32px'; ring.style.opacity='1'; });
-    });
-
     // ── SCROLL REVEAL
     const obs = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
