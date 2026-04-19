@@ -128,9 +128,7 @@
       width: 7px; height: 7px; border-radius: 50%;
       background: var(--accent);
       box-shadow: 0 0 8px var(--accent);
-      animation: blink-slow 3s ease-in-out infinite;
     }
-    @keyframes blink-slow { 0%,100%{opacity:1} 50%{opacity:0.2} }
     @keyframes fadeSlideIn { 0%{opacity:0;transform:translateY(30px);filter:blur(8px)} 100%{opacity:1;transform:translateY(0);filter:blur(0)} }
     @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-20px)} }
     @keyframes pulse-glow { 0%,100%{box-shadow:0 0 30px -8px rgba(205,255,0,0.3)} 50%{box-shadow:0 0 50px -6px rgba(205,255,0,0.5)} }
@@ -223,10 +221,7 @@
     .hero-badge-pulse {
       width: 5px; height: 5px; border-radius: 50%;
       background: var(--accent);
-      box-shadow: 0 0 6px var(--accent);
-      animation: pulse-dot 2s ease-in-out infinite;
     }
-    @keyframes pulse-dot { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.7)} }
 
     .hero h1 {
       font-size: clamp(34px, 4.5vw, 62px);
@@ -377,14 +372,8 @@
       margin-bottom: 4px;
       position: relative;
       transition: border-color 0.3s;
-      animation: node-glow 4s ease-in-out infinite;
     }
-    .sys-node:nth-child(2) { animation-delay: 1.3s; }
-    .sys-node:nth-child(3) { animation-delay: 2.6s; }
-    @keyframes node-glow {
-      0%,100%{ border-color: var(--border); }
-      50%{ border-color: rgba(205,255,0,0.25); box-shadow: 0 0 16px rgba(205,255,0,0.06); }
-    }
+
 
     .sys-connector {
       display: flex; align-items: center; justify-content: center;
@@ -398,13 +387,7 @@
       width: 1px;
       background: linear-gradient(to bottom, var(--border), rgba(205,255,0,0.3), var(--border));
     }
-    .sys-connector-dot {
-      width: 6px; height: 6px; border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 8px var(--accent);
-      z-index: 1;
-      animation: travel 3s ease-in-out infinite;
-    }
+    .sys-connector-dot { display: none; }
     @keyframes travel {
       0%{ transform: translateY(-8px); opacity: 0; }
       20%{ opacity: 1; }
