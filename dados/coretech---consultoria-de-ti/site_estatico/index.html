@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coretech | Portfólio de TI</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Alpine.js for Interactivity -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- External Assets -->
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body x-data="{ mobileMenu: false }" class="bg-white text-zinc-950 antialiased font-sans">
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 bg-transparent">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-brand"></div>
+                <span class="text-xl font-black tracking-tighter text-zinc-950 uppercase">coretech</span>
+            </div>
+
+            <!-- Desktop Nav -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#" class="text-xs font-medium tracking-widest uppercase text-zinc-500 hover:text-brand transition-colors">Início</a>
+                <a href="#services" class="text-xs font-medium tracking-widest uppercase text-zinc-500 hover:text-brand transition-colors">Serviços</a>
+                <a href="#industries" class="text-xs font-medium tracking-widest uppercase text-zinc-500 hover:text-brand transition-colors">Setores</a>
+                <a href="#blog" class="text-xs font-medium tracking-widest uppercase text-zinc-500 hover:text-brand transition-colors">Blog</a>
+                <a href="#about" class="text-xs font-medium tracking-widest uppercase text-zinc-500 hover:text-brand transition-colors">Sobre</a>
+                <a href="#contact" class="text-xs font-medium tracking-widest uppercase text-zinc-500 hover:text-brand transition-colors">Contato</a>
+                <button class="bg-zinc-950 text-white px-6 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-brand transition-all">
+                    Contato
+                </button>
+            </div>
+
+            <!-- Mobile Toggle -->
+            <button @click="mobileMenu = !mobileMenu" class="md:hidden text-zinc-950">
+                <i x-show="!mobileMenu" data-lucide="menu"></i>
+                <i x-show="mobileMenu" data-lucide="x"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div x-show="mobileMenu" 
+             x-transition:enter="transition ease-out duration-200"
+             x-transition:enter-start="opacity-0 -translate-y-4"
+             x-transition:enter-end="opacity-100 translate-y-0"
+             class="absolute top-full left-0 right-0 bg-white border-t border-zinc-100 p-6 md:hidden shadow-xl">
+            <div class="flex flex-col gap-6">
+                <a href="#" @click="mobileMenu = false" class="text-xs font-bold uppercase tracking-widest text-zinc-950">Início</a>
+                <a href="#services" @click="mobileMenu = false" class="text-xs font-bold uppercase tracking-widest text-zinc-950">Serviços</a>
+                <a href="#industries" @click="mobileMenu = false" class="text-xs font-bold uppercase tracking-widest text-zinc-950">Setores</a>
+                <a href="#about" @click="mobileMenu = false" class="text-xs font-bold uppercase tracking-widest text-zinc-950">Sobre</a>
+                <button class="bg-brand text-white w-full py-4 text-xs font-black uppercase tracking-widest">Solicitar Consultoria</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-white">
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-12 gap-12 items-start">
+            <div class="hidden md:block md:col-span-1 pt-12">
+                <p class="vertical-rail text-zinc-400">ESTRATÉGIA & TECNOLOGIA</p>
+            </div>
+            <div class="md:col-span-11">
+                <div class="inline-flex items-center gap-2 text-brand text-[10px] font-bold uppercase tracking-[0.3em] mb-8">
+                    <i data-lucide="sparkles" class="w-4 h-4"></i> Transformação Digital
+                </div>
+                <h1 class="bold-title mb-10 text-zinc-950">
+                    Código que <span class="text-brand">impulsiona</span><br> o amanhã.
+                </h1>
+                <div class="flex flex-col lg:flex-row gap-16 items-start lg:items-center">
+                    <p class="max-w-lg text-lg text-zinc-600 leading-relaxed font-medium">
+                        Sua infraestrutura de TI merece precisão. Desenvolvemos ecossistemas escaláveis, seguros e otimizados para empresas que buscam liderança no mercado digital.
+                    </p>
+                    <div class="flex flex-col gap-6">
+                        <div class="flex flex-wrap gap-4">
+                            <button class="bg-brand text-white px-10 py-5 text-sm font-bold uppercase tracking-[0.2em] hover:bg-brand/90 transition-all shadow-2xl shadow-brand/20">
+                                Falar com Especialista
+                            </button>
+                            <button class="bg-transparent text-zinc-950 border border-zinc-200 px-10 py-5 text-sm font-bold uppercase tracking-[0.2em] hover:bg-zinc-50 transition-all">
+                                Portfolio
+                            </button>
+                        </div>
+                        <span class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-bold">Inovação sem limites. resultados reais.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners -->
+    <section class="py-12 bg-zinc-50 border-y border-zinc-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-wrap justify-between items-center gap-8 opacity-40 grayscale hover:grayscale-0 hover:opacity-100 transition-all font-mono text-xs tracking-[0.4em] uppercase text-zinc-400">
+                <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand"></i> Flash</div>
+                <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand"></i> Sitemark</div>
+                <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand"></i> Nextmove</div>
+                <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand"></i> SnapShot</div>
+                <div class="flex items-center gap-2"><i data-lucide="zap" class="w-4 h-4 text-brand"></i> Snowflake</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6 mb-20 flex flex-col md:flex-row justify-between items-end gap-8">
+            <div class="max-w-xl">
+                <span class="text-brand font-bold text-[10px] tracking-[0.3em] uppercase mb-4 block">O que fazemos</span>
+                <h2 class="text-6xl font-black tracking-tighter uppercase leading-none text-zinc-950">
+                    Soluções com Precisão <span class="text-brand">Técnica</span>
+                </h2>
+            </div>
+            <p class="max-w-xs text-zinc-400 text-sm font-medium">Potencializando o crescimento empresarial com expertise especializada e tecnologia de ponta.</p>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-4 gap-px bg-zinc-100 border-y border-zinc-100">
+            <div class="bg-white p-10 hover:bg-zinc-50 transition-all">
+                <span class="text-brand font-mono text-xl mb-8 block font-bold">01</span>
+                <h3 class="text-sm font-black uppercase tracking-widest text-zinc-950 mb-4">TI Gerenciada</h3>
+                <p class="text-zinc-500 leading-relaxed text-xs uppercase tracking-wider">Monitoramento 24/7 e suporte proativo para sua empresa.</p>
+            </div>
+            <div class="bg-white p-10 hover:bg-zinc-50 transition-all">
+                <span class="text-brand font-mono text-xl mb-8 block font-bold">02</span>
+                <h3 class="text-sm font-black uppercase tracking-widest text-zinc-950 mb-4">IA & Dados</h3>
+                <p class="text-zinc-500 leading-relaxed text-xs uppercase tracking-wider">Transformamos dados em inteligência estratégica.</p>
+            </div>
+            <div class="bg-white p-10 hover:bg-zinc-50 transition-all">
+                <span class="text-brand font-mono text-xl mb-8 block font-bold">03</span>
+                <h3 class="text-sm font-black uppercase tracking-widest text-zinc-950 mb-4">Nuvem</h3>
+                <p class="text-zinc-500 leading-relaxed text-xs uppercase tracking-wider">Migração e otimização para AWS e Azure.</p>
+            </div>
+            <div class="bg-white p-10 hover:bg-zinc-50 transition-all">
+                <span class="text-brand font-mono text-xl mb-8 block font-bold">04</span>
+                <h3 class="text-sm font-black uppercase tracking-widest text-zinc-950 mb-4">Cybersegurança</h3>
+                <p class="text-zinc-500 leading-relaxed text-xs uppercase tracking-wider">Proteção total contra ameaças digitais avançadas.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-24 bg-brand relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div class="text-white">
+                    <div class="text-6xl font-black mb-2 tracking-tighter uppercase leading-none">54<span class="opacity-50">K+</span></div>
+                    <div class="text-[10px] font-bold uppercase tracking-[0.3em] opacity-70 border-l border-white/20 pl-4">Projetos Concluídos</div>
+                </div>
+                <div class="text-white">
+                    <div class="text-6xl font-black mb-2 tracking-tighter uppercase leading-none">99<span class="opacity-50">%</span></div>
+                    <div class="text-[10px] font-bold uppercase tracking-[0.3em] opacity-70 border-l border-white/20 pl-4">Clientes Satisfeitos</div>
+                </div>
+                <div class="text-white">
+                    <div class="text-6xl font-black mb-2 tracking-tighter uppercase leading-none">20<span class="opacity-50">+</span></div>
+                    <div class="text-[10px] font-bold uppercase tracking-[0.3em] opacity-70 border-l border-white/20 pl-4">Anos de Experiência</div>
+                </div>
+                <div class="text-white">
+                    <div class="text-6xl font-black mb-2 tracking-tighter uppercase leading-none">88<span class="opacity-50">+</span></div>
+                    <div class="text-[10px] font-bold uppercase tracking-[0.3em] opacity-70 border-l border-white/20 pl-4">Especialistas Tech</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI advisor -->
+    <section class="py-24 bg-zinc-50 relative overflow-hidden border-y border-zinc-100">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="flex flex-col md:flex-row items-center gap-24 text-zinc-950">
+                <div class="md:w-1/2">
+                    <div class="inline-flex items-center gap-2 text-brand text-[9px] font-black uppercase tracking-[0.4em] mb-8 border-b border-brand pb-2">
+                         Inteligência Artificial Integrada
+                    </div>
+                    <h2 class="text-6xl font-black tracking-tighter uppercase mb-8 leading-none">AI <br><span class="text-brand">Advisor.</span></h2>
+                    <p class="text-sm uppercase tracking-widest font-black text-zinc-400 mb-12 leading-loose">
+                        A Coretech utiliza o poder do <span class="text-brand">Gemini 3</span> para fornecer diagnósticos tecnológicos em tempo real.
+                    </p>
+                    <div class="grid grid-cols-2 gap-px bg-zinc-200 border border-zinc-200">
+                        <div class="bg-white p-8">
+                            <i data-lucide="zap" class="text-brand mb-6 h-6 w-6"></i>
+                            <h4 class="font-black uppercase text-[10px] tracking-widest mb-3 text-zinc-950">Analise de Gap</h4>
+                            <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Otimização em segundos.</p>
+                        </div>
+                        <div class="bg-white p-8">
+                            <i data-lucide="globe" class="text-brand mb-6 h-6 w-6"></i>
+                            <h4 class="font-black uppercase text-[10px] tracking-widest mb-3 text-zinc-950">Escala Global</h4>
+                            <p class="text-[10px] text-zinc-500 uppercase tracking-widest">Consultoria em tempo real.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/2 w-full flex justify-end">
+                    <div class="bg-white border border-zinc-200 p-px shadow-2xl w-full max-w-md">
+                        <div class="bg-zinc-50 p-8 border border-zinc-100 h-[500px] flex flex-col">
+                             <div class="flex items-center justify-between mb-8 pb-6 border-b border-zinc-200">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-10 h-10 bg-brand text-white font-black flex items-center justify-center text-sm">G</div>
+                                    <div>
+                                        <h4 class="font-black uppercase text-[10px] tracking-widest text-zinc-950">Gemini Advisor</h4>
+                                        <p class="text-[9px] text-brand uppercase tracking-widest font-black flex items-center gap-2">Online</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="menu" class="w-4 h-4 text-zinc-300"></i>
+                             </div>
+                             <div class="flex-grow space-y-6 overflow-y-auto mb-8 text-[10px] uppercase font-black tracking-widest text-zinc-950">
+                                 <div class="ml-0 mr-8 bg-zinc-100 p-5 border-l-2 border-brand">
+                                    <p class="text-zinc-400 mb-2 italic">Gemini 3 respondeu:</p>
+                                    <p>Olá! Como a IA Generativa pode otimizar seu faturamento operacional hoje?</p>
+                                 </div>
+                                 <div class="mr-0 ml-8 bg-brand/5 p-5 border-r-2 border-brand text-right">
+                                    <p>Solicitar plano de redução de custos Cloud.</p>
+                                 </div>
+                             </div>
+                             <div class="flex gap-px bg-zinc-200 border border-zinc-200">
+                                <input class="flex-grow bg-white text-zinc-950 text-[9px] uppercase font-black tracking-widest px-6 py-5 outline-none border-none" placeholder="Digite seu desafio...">
+                                <button class="px-6 bg-brand text-white"><i data-lucide="arrow-right" class="w-4 h-4"></i></button>
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 bg-white border-b border-zinc-100">
+        <div class="max-w-7xl mx-auto px-6 mb-20 text-center">
+             <span class="text-brand font-bold text-[10px] tracking-[0.3em] uppercase mb-4 block">Depoimentos</span>
+             <h2 class="text-5xl font-black tracking-tighter text-zinc-950 uppercase leading-none">Confiança Consolidada</h2>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-3 gap-px bg-zinc-100 border border-zinc-100">
+            <div class="bg-white p-12">
+                <i data-lucide="sparkles" class="w-4 h-4 text-brand fill-brand mb-8"></i>
+                <p class="text-zinc-600 mb-10 text-[11px] uppercase tracking-widest font-bold leading-relaxed italic">"A Coretech revolucionou nossa infraestrutura. Nunca estivemos tão seguros."</p>
+                <div class="flex items-center gap-4 pt-8 border-t border-zinc-50">
+                    <img src="https://picsum.photos/seed/user1/100/100" class="w-10 h-10 grayscale border border-zinc-100" alt="">
+                    <div>
+                        <h4 class="font-black text-zinc-950 uppercase text-[10px] tracking-widest">Michael Santos</h4>
+                        <p class="text-[10px] text-zinc-400 uppercase font-bold tracking-widest">CEO TechFlow</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-12">
+                <i data-lucide="sparkles" class="w-4 h-4 text-brand fill-brand mb-8"></i>
+                <p class="text-zinc-600 mb-10 text-[11px] uppercase tracking-widest font-bold leading-relaxed italic">"Migração impecável. Faturamento escalou 40% graças à nova estrutura."</p>
+                <div class="flex items-center gap-4 pt-8 border-t border-zinc-50">
+                    <img src="https://picsum.photos/seed/user2/100/100" class="w-10 h-10 grayscale border border-zinc-100" alt="">
+                    <div>
+                        <h4 class="font-black text-zinc-950 uppercase text-[10px] tracking-widest">Alex Ferreira</h4>
+                        <p class="text-[10px] text-zinc-400 uppercase font-bold tracking-widest">CTO Global Retail</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-12">
+                <i data-lucide="sparkles" class="w-4 h-4 text-brand fill-brand mb-8"></i>
+                <p class="text-zinc-600 mb-10 text-[11px] uppercase tracking-widest font-bold leading-relaxed italic">"Expertise técnica aliada a um atendimento humano excepcional."</p>
+                <div class="flex items-center gap-4 pt-8 border-t border-zinc-50">
+                    <img src="https://picsum.photos/seed/user3/100/100" class="w-10 h-10 grayscale border border-zinc-100" alt="">
+                    <div>
+                        <h4 class="font-black text-zinc-950 uppercase text-[10px] tracking-widest">Emily Souza</h4>
+                        <p class="text-[10px] text-zinc-400 uppercase font-bold tracking-widest">COO SmartLogix</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-24 bg-white" x-data="{ open: 0 }">
+        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-12 gap-20">
+            <div class="lg:col-span-1 border-r border-zinc-100 pr-12 hidden lg:block">
+                <p class="vertical-rail text-zinc-400">SUPORTE & LOGÍSTICA</p>
+            </div>
+            <div class="lg:col-span-4">
+                <div class="bg-brand p-12 text-white shadow-xl">
+                    <i data-lucide="message-square" class="w-10 h-10 mb-8 opacity-50"></i>
+                    <h2 class="text-4xl font-black uppercase tracking-tighter leading-none mb-6">Dúvidas Frequentes</h2>
+                    <p class="text-xs uppercase tracking-widest opacity-80 mb-10">Fale direto com nossa equipe se não encontrar o que busca.</p>
+                    <button class="bg-white text-brand px-6 py-4 text-xs font-black uppercase tracking-widest w-full">Ver Mais</button>
+                </div>
+            </div>
+            <div class="lg:col-span-7 space-y-4">
+                <div class="border border-zinc-100 bg-zinc-50 transition-colors">
+                    <button @click="open = open === 0 ? -1 : 0" class="flex w-full items-center justify-between p-8 text-left font-black uppercase tracking-widest text-[10px] text-zinc-950">
+                        Quais serviços vocês oferecem?
+                        <i data-lucide="chevron-right" :class="open === 0 ? 'rotate-90' : ''" class="w-4 h-4 text-brand transition-all"></i>
+                    </button>
+                    <div x-show="open === 0" class="px-8 pb-8 text-zinc-500 uppercase tracking-widest text-[10px] border-t border-zinc-100 pt-6">
+                        Oferecemos TI gerenciada, cibersegurança, consultoria em nuvem, software e IA.
+                    </div>
+                </div>
+                <div class="border border-zinc-100 bg-zinc-50 transition-colors">
+                    <button @click="open = open === 1 ? -1 : 1" class="flex w-full items-center justify-between p-8 text-left font-black uppercase tracking-widest text-[10px] text-zinc-950">
+                        Como garantem a segurança?
+                        <i data-lucide="chevron-right" :class="open === 1 ? 'rotate-90' : ''" class="w-4 h-4 text-brand transition-all"></i>
+                    </button>
+                    <div x-show="open === 1" class="px-8 pb-8 text-zinc-500 uppercase tracking-widest text-[10px] border-t border-zinc-100 pt-6">
+                        Criptografia de ponta e monitoramento proativo 24/7.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white px-12 pb-12 border-t border-zinc-100">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-px bg-zinc-100">
+            <div class="bg-white py-12 pr-12">
+                <span class="text-brand font-mono text-sm mb-4 block font-bold">01. CLOUD</span>
+                <p class="text-xs text-zinc-400 uppercase tracking-widest">Migração Híbrida Inteligente.</p>
+            </div>
+            <div class="bg-white py-12 pr-12">
+                <span class="text-brand font-mono text-sm mb-4 block font-bold">02. CYBER</span>
+                <p class="text-xs text-zinc-400 uppercase tracking-widest">Segurança Ativa 360.</p>
+            </div>
+            <div class="bg-white py-12 pr-12">
+                <span class="text-brand font-mono text-sm mb-4 block font-bold">03. DEV</span>
+                <p class="text-xs text-zinc-400 uppercase tracking-widest">Software Sob Medida.</p>
+            </div>
+            <div class="bg-white py-12 pr-12">
+                <span class="text-brand font-mono text-sm mb-4 block font-bold">04. DATA</span>
+                <p class="text-xs text-zinc-400 uppercase tracking-widest">Inteligência Preditiva.</p>
+            </div>
+        </div>
+        <div class="mt-20 flex flex-col md:flex-row justify-between items-center pt-12 border-t border-zinc-100">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-brand"></div>
+                <span class="text-xl font-black tracking-tighter uppercase text-zinc-950">coretech</span>
+            </div>
+            <div class="flex gap-12 text-[10px] font-bold tracking-[0.3em] uppercase text-zinc-400">
+                <a href="#">LinkedIn</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p class="text-[10px] uppercase font-bold tracking-[0.2em] text-zinc-400">© 2026 Coretech.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
