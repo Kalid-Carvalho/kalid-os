@@ -7,19 +7,19 @@
 
 VPS="root@191.101.234.242"
 KEY="/c/Users/kalid/.ssh/grovw_vps"
-BASE="/c/Users/kalid/Downloads/KalidCarvalho-os/projetos/Grovw - Sites & Performance"
+BASE="/c/Users/kalid/Downloads/KalidCarvalho-os/projetos/grovw-site-oficial/grovw.com.br"
 
 SSH_OPTS="-i $KEY -o StrictHostKeyChecking=no"
 
 deploy_grovw() {
-  echo "→ Subindo site-grovw (site principal)..."
-  scp $SSH_OPTS "$BASE/site-grovw/index.html" $VPS:/var/www/grovw/index.html
-  echo "  → Subindo assets/img..."
-  ssh $SSH_OPTS $VPS "mkdir -p /var/www/grovw/assets/img"
-  scp $SSH_OPTS -r "$BASE/site-grovw/assets/img" $VPS:/var/www/grovw/assets/
+  echo "→ Subindo site GROVW (index-v4)..."
+  scp $SSH_OPTS "$BASE/index-v4.html" $VPS:/var/www/grovw/index.html
+  echo "  → Subindo assets..."
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/grovw/assets/img/cases"
+  scp $SSH_OPTS -r "$BASE/assets/" $VPS:/var/www/grovw/
   echo "  → Subindo robots.txt e sitemap.xml..."
-  scp $SSH_OPTS "$BASE/site-grovw/robots.txt" $VPS:/var/www/grovw/robots.txt
-  scp $SSH_OPTS "$BASE/site-grovw/sitemap.xml" $VPS:/var/www/grovw/sitemap.xml
+  scp $SSH_OPTS "$BASE/robots.txt" $VPS:/var/www/grovw/robots.txt
+  scp $SSH_OPTS "$BASE/sitemap.xml" $VPS:/var/www/grovw/sitemap.xml
   echo "✓ grovw.com.br atualizado"
 }
 
