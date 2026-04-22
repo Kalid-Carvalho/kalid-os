@@ -15,8 +15,10 @@ deploy_grovw() {
   echo "→ Subindo site GROVW (index-v4)..."
   scp $SSH_OPTS "$BASE/index-v4.html" $VPS:/var/www/grovw/index.html
   echo "  → Subindo assets..."
-  ssh $SSH_OPTS $VPS "mkdir -p /var/www/grovw/assets/img/cases"
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/grovw/assets/img/cases /var/www/grovw/obrigado"
   scp $SSH_OPTS -r "$BASE/assets/" $VPS:/var/www/grovw/
+  echo "  → Subindo página de obrigado..."
+  scp $SSH_OPTS "$BASE/_raiz/obrigado/index.html" $VPS:/var/www/grovw/obrigado/index.html
   echo "  → Subindo robots.txt e sitemap.xml..."
   scp $SSH_OPTS "$BASE/robots.txt" $VPS:/var/www/grovw/robots.txt
   scp $SSH_OPTS "$BASE/sitemap.xml" $VPS:/var/www/grovw/sitemap.xml
