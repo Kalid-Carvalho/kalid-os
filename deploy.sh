@@ -58,6 +58,8 @@ deploy_diagnostico() {
   scp $SSH_OPTS "$DIAG/avatar.png" $VPS:/var/www/kalid/avatar.png
   scp $SSH_OPTS "$DIAG/avatar.png" $VPS:/var/www/kalid/diagnostico/avatar.png
   scp $SSH_OPTS "$DIAG/obrigado/index.html" $VPS:/var/www/kalid/diagnostico/obrigado/index.html
+  scp $SSH_OPTS "$DIAG/robots.txt" $VPS:/var/www/kalid/robots.txt
+  scp $SSH_OPTS "$DIAG/sitemap.xml" $VPS:/var/www/kalid/sitemap.xml
   echo "✓ kalidcarvalho.com e kalidcarvalho.com/diagnostico atualizados"
 }
 
