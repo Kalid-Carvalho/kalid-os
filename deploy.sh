@@ -53,10 +53,12 @@ deploy_diagnostico() {
   echo "→ Subindo landing page de diagnóstico..."
   DIAG="$HOME/Downloads/KalidCarvalho-os/projetos/kalidcarvalho-diagnostico"
   ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/diagnostico/obrigado"
+  scp $SSH_OPTS "$DIAG/index.html" $VPS:/var/www/kalid/index.html
   scp $SSH_OPTS "$DIAG/index.html" $VPS:/var/www/kalid/diagnostico/index.html
+  scp $SSH_OPTS "$DIAG/avatar.png" $VPS:/var/www/kalid/avatar.png
   scp $SSH_OPTS "$DIAG/avatar.png" $VPS:/var/www/kalid/diagnostico/avatar.png
   scp $SSH_OPTS "$DIAG/obrigado/index.html" $VPS:/var/www/kalid/diagnostico/obrigado/index.html
-  echo "✓ kalidcarvalho.com/diagnostico atualizado"
+  echo "✓ kalidcarvalho.com e kalidcarvalho.com/diagnostico atualizados"
 }
 
 case "$1" in
