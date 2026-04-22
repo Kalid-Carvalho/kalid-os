@@ -60,6 +60,9 @@ deploy_diagnostico() {
   scp $SSH_OPTS "$DIAG/obrigado/index.html" $VPS:/var/www/kalid/diagnostico/obrigado/index.html
   scp $SSH_OPTS "$DIAG/robots.txt" $VPS:/var/www/kalid/robots.txt
   scp $SSH_OPTS "$DIAG/sitemap.xml" $VPS:/var/www/kalid/sitemap.xml
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/politica-de-privacidade /var/www/kalid/termos-de-uso"
+  scp $SSH_OPTS "$DIAG/politica-de-privacidade/index.html" $VPS:/var/www/kalid/politica-de-privacidade/index.html
+  scp $SSH_OPTS "$DIAG/termos-de-uso/index.html" $VPS:/var/www/kalid/termos-de-uso/index.html
   echo "✓ kalidcarvalho.com e kalidcarvalho.com/diagnostico atualizados"
 }
 
