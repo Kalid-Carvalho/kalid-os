@@ -473,7 +473,7 @@
       padding: 14px 36px;
       font-family: var(--mono);
       font-size: 11px; letter-spacing: 0.15em;
-      color: var(--text-muted);
+      color: rgba(255,255,255,0.55);
       white-space: nowrap;
       text-transform: uppercase;
       border-right: 1px solid var(--border);
@@ -513,10 +513,6 @@
       text-transform: uppercase; letter-spacing: 0.2em;
       color: var(--accent); margin-bottom: 16px;
       display: flex; align-items: center; gap: 10px;
-    }
-    .section-meta::before {
-      content: ''; width: 20px; height: 1px;
-      background: var(--accent);
     }
     .section-title {
       font-size: clamp(24px, 2.6vw, 36px);
@@ -1875,7 +1871,7 @@
       submitBtn.innerHTML = 'Enviando<span style="animation:blink 1s step-end infinite;display:inline-block;margin-left:4px;">_</span>';
 
       const data = new FormData(form);
-      data.set('botcheck', false);
+      data.set('botcheck', '');
 
       try {
         const res = await fetch('https://api.web3forms.com/submit', { method: 'POST', body: data });
