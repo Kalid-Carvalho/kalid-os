@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1584px;
+    height: 396px;
+    overflow: hidden;
+    background: #0D1526;
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .bg-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(circle, rgba(26,86,219,0.18) 1px, transparent 1px);
+    background-size: 36px 36px;
+    mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 100% 100% at 50% 50%, black 20%, transparent 100%);
+  }
+
+  .glow-left {
+    position: absolute;
+    top: -60%; left: -10%;
+    width: 600px; height: 600px;
+    background: radial-gradient(ellipse at center, rgba(26,86,219,0.14) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .glow-right {
+    position: absolute;
+    bottom: -80%; right: 5%;
+    width: 500px; height: 500px;
+    background: radial-gradient(ellipse at center, rgba(96,144,255,0.08) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .content {
+    position: relative; z-index: 2;
+    width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+    gap: 0;
+  }
+
+  .left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex: 1;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #6090FF;
+  }
+
+  .tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #6090FF;
+    box-shadow: 0 0 8px rgba(96,144,255,0.8);
+  }
+
+  .headline {
+    font-size: 48px;
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: #EEF2FF;
+  }
+
+  .headline em {
+    font-style: italic;
+    font-weight: 300;
+    color: #7A90BB;
+  }
+
+  .headline .accent { color: #6090FF; }
+
+  .sub {
+    font-size: 16px;
+    color: #7A90BB;
+    line-height: 1.6;
+    max-width: 560px;
+  }
+
+  .divider {
+    position: absolute;
+    left: 50%;
+    top: 48px; bottom: 48px;
+    width: 1px;
+    background: linear-gradient(180deg, transparent, rgba(96,144,255,0.25) 30%, rgba(96,144,255,0.25) 70%, transparent);
+  }
+
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-left: 80px;
+    min-width: 480px;
+  }
+
+  .pill-row {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    border: 1px solid rgba(96,144,255,0.22);
+    border-radius: 100px;
+    background: rgba(26,86,219,0.07);
+    font-size: 12px;
+    font-weight: 600;
+    color: #7A90BB;
+    letter-spacing: 0.01em;
+  }
+
+  .pill-icon {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: #6090FF;
+    opacity: 0.7;
+    flex-shrink: 0;
+  }
+
+  .url-block {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .url-line {
+    height: 1px; width: 28px;
+    background: #1A56DB;
+  }
+
+  .url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    color: #6090FF;
+    letter-spacing: 0.04em;
+  }
+
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="bg-dots"></div>
+<div class="glow-left"></div>
+<div class="glow-right"></div>
+
+<div class="content">
+
+  <div class="left">
+    <div class="tag">
+      <span class="tag-dot"></span>
+      Engenharia de Vendas · B2B
+    </div>
+    <div class="headline">
+      Seu pipeline de TI<br>
+      <em>não precisa depender</em><br>
+      <span class="accent">de indicação.</span>
+    </div>
+    <div class="sub">
+      Sistemas de captação B2B para integradores de infraestrutura, MSPs e empresas de segurança.
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="right">
+    <div class="pill-row">
+      <div class="pill"><span class="pill-icon"></span>Infraestrutura de TI</div>
+      <div class="pill"><span class="pill-icon"></span>MSP</div>
+    </div>
+    <div class="pill-row">
+      <div class="pill"><span class="pill-icon"></span>Segurança da Informação</div>
+      <div class="pill"><span class="pill-icon"></span>Cabeamento</div>
+    </div>
+    <div class="pill-row">
+      <div class="pill"><span class="pill-icon"></span>CFTV Corporativo</div>
+      <div class="pill"><span class="pill-icon"></span>Firewall</div>
+    </div>
+    <div class="url-block">
+      <div class="url-line"></div>
+      <div class="url">kalidcarvalho.com/diagnostico</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
