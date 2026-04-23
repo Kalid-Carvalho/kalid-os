@@ -16,6 +16,25 @@
       overflow: hidden;
     }
 
+    /* Background image */
+    .capa-bg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center center;
+      z-index: 0;
+    }
+
+    /* Gradient overlay */
+    .capa-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(13,21,38,0.30) 0%, rgba(13,21,38,0.50) 35%, rgba(13,21,38,0.88) 70%, #0D1526 100%);
+      z-index: 1;
+    }
+
     /* Noise overlay */
     body::after {
       content: '';
@@ -28,36 +47,15 @@
       background-size: 300px;
     }
 
-    /* Dot grid */
-    .dot-grid {
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(26,86,219,0.16) 1.2px, transparent 1.2px);
-      background-size: 38px 38px;
-      z-index: 0;
-    }
-
-    /* Radial glow center */
+    /* Radial glow bottom */
     .glow {
       position: absolute;
       bottom: -80px;
       left: -80px;
       width: 860px;
       height: 860px;
-      background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 65%);
-      z-index: 1;
-      pointer-events: none;
-    }
-
-    /* Glow top-right */
-    .glow-tr {
-      position: absolute;
-      top: -100px;
-      right: -100px;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(26,86,219,0.06) 0%, transparent 70%);
-      z-index: 1;
+      background: radial-gradient(circle, rgba(26,86,219,0.12) 0%, transparent 65%);
+      z-index: 2;
       pointer-events: none;
     }
 
@@ -202,9 +200,9 @@
   </style>
 </head>
 <body>
-  <div class="dot-grid"></div>
+  <img class="capa-bg" src="../bg-capa.png" alt="">
+  <div class="capa-overlay"></div>
   <div class="glow"></div>
-  <div class="glow-tr"></div>
 
   <div class="top-header">
     <span>@eukalidcarvalho</span>
