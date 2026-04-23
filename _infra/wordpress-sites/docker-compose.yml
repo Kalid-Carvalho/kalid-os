@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb:10.11
+    container_name: wp_sites_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: WPRoot2026!
+      MYSQL_DATABASE: wordpress_sites
+      MYSQL_USER: wp_sites
+      MYSQL_PASSWORD: WPSites2026!
+    volumes:
+      - wp_sites_db:/var/lib/mysql
+    networks:
+      - wp_sites_net
+
+  wordpress:
+    image: wordpress:6.5-php8.2-apache
+    container_name: wp_sites
+    restart: always
+    depends_on:
+      - db
+    ports:
+      - "8090:80"
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_NAME: wordpress_sites
+      WORDPRESS_DB_USER: wp_sites
+      WORDPRESS_DB_PASSWORD: WPSites2026!
+      WORDPRESS_CONFIG_EXTRA: |
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') { $_SERVER['HTTPS'] = 'on'; }
+    volumes:
+      - wp_sites_data:/var/www/html
+    networks:
+      - wp_sites_net
+
+volumes:
+  wp_sites_db:
+  wp_sites_data:
+
+networks:
+  wp_sites_net:
+    driver: bridge
