@@ -1569,7 +1569,7 @@
         <!-- FOTO -->
         <div class="reveal">
           <div class="sobre-foto-card">
-            <img src="assets/img/kalid.png" alt="Kalid Carvalho" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <img src="assets/img/kalid.png" alt="Kalid Carvalho" width="320" height="320" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
             <div class="sobre-foto-placeholder" style="display:none;">FOTO<br>kalid.jpg</div>
           </div>
         </div>
@@ -1884,8 +1884,8 @@
       function slide(dir) {
         const visible = getVisible();
         const pages = Math.ceil(cards.length / visible);
+        const cardW = cards[0] ? cards[0].getBoundingClientRect().width + 20 : 0;
         current = (current + dir + pages) % pages;
-        const cardW = cards[0].offsetWidth + 20;
         track.style.transform = `translateX(-${current * visible * cardW}px)`;
         dots.forEach((d, i) => d.classList.toggle('active', i === current));
       }
