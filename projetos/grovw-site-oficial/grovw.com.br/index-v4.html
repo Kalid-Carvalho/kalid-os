@@ -18,11 +18,12 @@
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Já contratei agência antes e não funcionou. Por que seria diferente?","acceptedAnswer":{"@type":"Answer","text":"A maioria das agências entrega serviço avulso, não sistema. Post no Instagram não gera lead B2B. A GROVW monta o processo inteiro de captação integrado."}},{"@type":"Question","name":"Meu negócio é muito técnico para agência entender.","acceptedAnswer":{"@type":"Answer","text":"Kalid Carvalho tem formação em ADS e pós em Gestão de TI. Fala de igual pra igual com diretores de infraestrutura."}},{"@type":"Question","name":"Quanto custa?","acceptedAnswer":{"@type":"Answer","text":"O diagnóstico inicial é gratuito. O sistema completo parte de R$3.500."}}]}</script>
 
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg" />
-  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@700;800;900&display=swap" /></noscript>
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js" defer></script>
 
   <style>
     :root {
@@ -1568,7 +1569,7 @@
         <!-- FOTO -->
         <div class="reveal">
           <div class="sobre-foto-card">
-            <img src="assets/img/kalid.png" alt="Kalid Carvalho" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <img src="assets/img/kalid.png" alt="Kalid Carvalho" loading="lazy" decoding="async" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
             <div class="sobre-foto-placeholder" style="display:none;">FOTO<br>kalid.jpg</div>
           </div>
         </div>
@@ -1823,21 +1824,25 @@
   </a>
 
   <script>
-    // ── SMOOTH SCROLL
-    const lenis = new Lenis({
-      duration: 1.4,
-      easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      smoothTouch: false,
+    // ── SMOOTH SCROLL (defer-safe: Lenis loads deferred, init after load)
+    let lenis;
+    window.addEventListener('load', function() {
+      lenis = new Lenis({
+        duration: 1.4,
+        easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        smoothTouch: false,
+      });
+      (function raf(time){ lenis.raf(time); requestAnimationFrame(raf); })(0);
     });
-    (function raf(time){ lenis.raf(time); requestAnimationFrame(raf); })(0);
 
     // anchor links via lenis
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
         e.preventDefault();
         const target = document.querySelector(a.getAttribute('href'));
-        if (target) lenis.scrollTo(target, { offset: -58 });
+        if (target && lenis) lenis.scrollTo(target, { offset: -58 });
+        else if (target) target.scrollIntoView({ behavior: 'smooth' });
       });
     });
 
