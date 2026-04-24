@@ -28,8 +28,6 @@ services:
       WORDPRESS_DB_NAME: wordpress_sites
       WORDPRESS_DB_USER: wp_sites
       WORDPRESS_DB_PASSWORD: WPSites2026!
-      WORDPRESS_CONFIG_EXTRA: |
-        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') { $_SERVER['HTTPS'] = 'on'; }
     volumes:
       - wp_sites_data:/var/www/html
     networks:

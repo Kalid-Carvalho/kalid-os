@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      width: 1080px; height: 1350px;
+      background: #0D1526;
+      font-family: 'Space Grotesk', sans-serif;
+      color: #F0F4FF;
+      position: relative; overflow: hidden;
+    }
+
+    body::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.025;
+      pointer-events: none; z-index: 20;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px;
+    }
+
+    .grid {
+      position: absolute; inset: 0; z-index: 0;
+      background-image:
+        linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .glow-blue {
+      position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 600px;
+      background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 65%);
+      z-index: 1; pointer-events: none;
+    }
+
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+
+    .top-header {
+      position: absolute; top: 0; left: 0; right: 0; height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07);
+      background: rgba(13,21,38,0.80); z-index: 15;
+    }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
+
+    .content {
+      position: absolute; inset: 0;
+      padding: 80px 72px 148px 86px;
+      display: flex; flex-direction: column;
+      justify-content: flex-start; z-index: 10;
+      padding-top: 72px;
+    }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 10px;
+      background: rgba(26,86,219,0.12); border: 1px solid rgba(26,86,219,0.30);
+      border-radius: 4px; padding: 9px 18px;
+      margin-bottom: 28px; width: fit-content;
+    }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #6B9AE8; letter-spacing: 0.12em; text-transform: uppercase; }
+
+    .headline {
+      font-size: 52px; font-weight: 800;
+      line-height: 1.1; letter-spacing: -0.025em;
+      color: #F0F4FF; margin-bottom: 10px;
+    }
+
+    .subtitle {
+      font-size: 22px; font-weight: 400; color: #8899BB;
+      line-height: 1.5; margin-bottom: 32px;
+    }
+
+    /* n8n window frame */
+    .workflow-frame {
+      background: #111827;
+      border: 1px solid rgba(26,86,219,0.22);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.04),
+        0 8px 48px rgba(0,0,0,0.5),
+        0 0 60px rgba(26,86,219,0.08);
+      flex-shrink: 0;
+    }
+
+    .frame-bar {
+      background: #0f1623;
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .f-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .f-dot-r { background: #FF5F57; }
+    .f-dot-y { background: #FFBD2E; }
+    .f-dot-g { background: #28C840; }
+    .frame-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px; color: rgba(240,244,255,0.35);
+      margin-left: 6px;
+    }
+    .frame-tabs {
+      margin-left: auto; display: flex; gap: 4px;
+    }
+    .frame-tab {
+      font-family: 'JetBrains Mono', monospace; font-size: 12px;
+      padding: 4px 12px; border-radius: 4px; color: rgba(240,244,255,0.30);
+    }
+    .frame-tab.active {
+      background: rgba(26,86,219,0.18); color: #6B9AE8;
+      border: 1px solid rgba(26,86,219,0.25);
+    }
+
+    .frame-img {
+      width: 100%; display: block;
+    }
+
+    /* Step flow */
+    .step-flow {
+      display: flex; align-items: center; gap: 0;
+      margin-top: 24px; flex-wrap: nowrap;
+      justify-content: center;
+    }
+    .step {
+      display: flex; flex-direction: column; align-items: center; gap: 5px;
+      flex: 1;
+    }
+    .step-icon {
+      width: 40px; height: 40px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 700;
+      letter-spacing: 0.04em; color: #F0F4FF;
+    }
+    .step-icon.serp { background: rgba(217,119,87,0.18); border: 1px solid rgba(217,119,87,0.35); color: #D97757; }
+    .step-icon.jina { background: rgba(26,86,219,0.18); border: 1px solid rgba(26,86,219,0.35); color: #6B9AE8; }
+    .step-icon.openai { background: rgba(16,163,127,0.18); border: 1px solid rgba(16,163,127,0.35); color: #10A37F; }
+    .step-icon.evo { background: rgba(37,211,102,0.15); border: 1px solid rgba(37,211,102,0.30); color: #25D366; }
+    .step-icon.sheets { background: rgba(52,168,83,0.15); border: 1px solid rgba(52,168,83,0.30); color: #34A853; }
+    .step-label { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(240,244,255,0.40); text-align: center; }
+    .step-arrow {
+      font-size: 18px; color: rgba(26,86,219,0.50);
+      flex-shrink: 0; padding: 0 2px; margin-bottom: 18px;
+    }
+
+    /* Bottom author */
+    .bottom-author {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07);
+      background: rgba(13,21,38,0.70); z-index: 15;
+    }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #111D35; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 2px; }
+    .ba-name { font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name .check { color: #1A56DB; margin-left: 4px; }
+    .ba-handle { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 400; color: #8899BB; }
+    .ba-right { font-family: 'Space Grotesk', sans-serif; font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+  </style>
+</head>
+<body>
+  <div class="grid"></div>
+  <div class="glow-blue"></div>
+  <div class="accent-bar"></div>
+
+  <div class="top-header">
+    <span>@kalidcarvalho</span>
+    <span>Build in Public</span>
+    <span>© 2026</span>
+  </div>
+
+  <div class="content">
+    <div class="tag"><span>a arquitetura</span></div>
+
+    <div class="headline">O workflow completo.</div>
+    <div class="subtitle">43 nodes. Cada seção faz uma coisa.</div>
+
+    <div class="workflow-frame">
+      <div class="frame-bar">
+        <div class="f-dot f-dot-r"></div>
+        <div class="f-dot f-dot-y"></div>
+        <div class="f-dot f-dot-g"></div>
+        <span class="frame-title">n8n — Agente de Prospecção</span>
+        <div class="frame-tabs">
+          <span class="frame-tab active">Editor</span>
+          <span class="frame-tab">Executions</span>
+        </div>
+      </div>
+      <img class="frame-img" src="../bg-capa-n8n.png" alt="Workflow n8n">
+    </div>
+
+    <div class="step-flow">
+      <div class="step">
+        <div class="step-icon serp">SERP</div>
+        <span class="step-label">Busca</span>
+      </div>
+      <span class="step-arrow">→</span>
+      <div class="step">
+        <div class="step-icon jina">JINA</div>
+        <span class="step-label">Scraping</span>
+      </div>
+      <span class="step-arrow">→</span>
+      <div class="step">
+        <div class="step-icon openai">GPT</div>
+        <span class="step-label">Mensagem</span>
+      </div>
+      <span class="step-arrow">→</span>
+      <div class="step">
+        <div class="step-icon evo">WPP</div>
+        <span class="step-label">Disparo</span>
+      </div>
+      <span class="step-arrow">→</span>
+      <div class="step">
+        <div class="step-icon sheets">LOG</div>
+        <span class="step-label">Registro</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info">
+        <span class="ba-name">Kalid Carvalho <span class="check">✓</span></span>
+        <span class="ba-handle">@kalidcarvalho</span>
+      </div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
+  </div>
+</body>
+</html>
