@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1350px; background: #0D1526; font-family: 'Space Grotesk', sans-serif; color: #F0F4FF; position: relative; overflow: hidden; }
+    body::after { content: ''; position: absolute; inset: 0; opacity: 0.025; pointer-events: none; z-index: 20; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 300px; }
+    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px); background-size: 60px 60px; }
+    .glow-blue { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(26,86,219,0.09) 0%, transparent 60%); z-index: 1; pointer-events: none; }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.80); z-index: 15; }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
+    .content { position: absolute; inset: 0; padding: 80px 86px 148px 86px; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
+    .tag { display: inline-flex; align-items: center; gap: 10px; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.30); border-radius: 4px; padding: 9px 18px; margin-bottom: 36px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #D97757; letter-spacing: 0.12em; text-transform: uppercase; }
+    .headline { font-size: 58px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #F0F4FF; margin-bottom: 10px; }
+    .headline .claude { color: #D97757; }
+    .sub { font-size: 24px; color: #8899BB; margin-bottom: 44px; line-height: 1.5; }
+    .terminal { background: rgba(6,10,20,0.90); border: 1px solid rgba(26,86,219,0.18); border-radius: 10px; overflow: hidden; margin-bottom: 44px; }
+    .t-bar { background: rgba(10,16,32,0.95); padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .t-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .t-dot-r { background: #FF5F57; } .t-dot-y { background: #FFBD2E; } .t-dot-g { background: #28C840; }
+    .t-title { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(240,244,255,0.30); margin-left: 8px; }
+    .t-body { padding: 28px 32px; display: flex; flex-direction: column; gap: 0; }
+    .t-line { font-family: 'JetBrains Mono', monospace; font-size: 18px; line-height: 1.9; }
+    .t-prompt { color: #D97757; }
+    .t-cmd { color: #F0F4FF; }
+    .t-arg { color: rgba(240,244,255,0.55); }
+    .t-out { color: rgba(136,153,187,0.60); }
+    .t-ok { color: rgba(40,200,64,0.75); }
+    .t-mcp { color: #6B9AE8; }
+    .checklist { display: flex; flex-direction: column; gap: 14px; }
+    .check-item { display: flex; align-items: flex-start; gap: 16px; }
+    .check-icon { font-family: 'JetBrains Mono', monospace; font-size: 16px; color: #1A56DB; flex-shrink: 0; padding-top: 3px; }
+    .check-text { font-size: 24px; color: #8899BB; line-height: 1.4; }
+    .check-text strong { color: #F0F4FF; font-weight: 600; }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.70); z-index: 15; }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #111D35; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 2px; }
+    .ba-name { font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name .check { color: #1A56DB; margin-left: 4px; }
+    .ba-handle { font-size: 16px; font-weight: 400; color: #8899BB; }
+    .ba-right { font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+  </style>
+</head>
+<body>
+  <div class="grid"></div><div class="glow-blue"></div>
+  <div class="accent-bar"></div>
+  <div class="top-header"><span>@kalidcarvalho</span><span>Build in Public</span><span>© 2026</span></div>
+  <div class="content">
+    <div class="tag"><span>claude code</span></div>
+    <div class="headline">Como o <span class="claude">Claude Code</span><br>entrou no fluxo.</div>
+    <div class="sub">Descrevi o sistema inteiro. Ele mapeou e conectou.</div>
+    <div class="terminal">
+      <div class="t-bar">
+        <div class="t-dot t-dot-r"></div><div class="t-dot t-dot-y"></div><div class="t-dot t-dot-g"></div>
+        <span class="t-title">claude — MCP n8n</span>
+      </div>
+      <div class="t-body">
+        <div class="t-line"><span class="t-prompt">❯ </span><span class="t-cmd">claude</span> <span class="t-arg">"build sdr workflow n8n"</span></div>
+        <div class="t-line"><span class="t-mcp">  Conectando ao MCP n8n...</span></div>
+        <div class="t-line"><span class="t-out">  Mapeando nodes existentes...</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ SerpAPI → validação 12/13 dígitos</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ Jina AI Scraper configurado</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ OpenAI com contexto do site</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ Evolution API — disparo individual</span></div>
+        <div class="t-line"><span class="t-ok">  ✓ Workflow criado (43 nodes)</span></div>
+      </div>
+    </div>
+    <div class="checklist">
+      <div class="check-item"><span class="check-icon">→</span><span class="check-text"><strong>Não escrevi JSON de workflow na mão.</strong></span></div>
+      <div class="check-item"><span class="check-icon">→</span><span class="check-text">Descrevi o que queria em linguagem natural e iterei até funcionar.</span></div>
+    </div>
+  </div>
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info"><span class="ba-name">Kalid Carvalho <span class="check">✓</span></span><span class="ba-handle">@kalidcarvalho</span></div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
+  </div>
+</body>
+</html>

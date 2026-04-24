@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1350px; background: #0D1526; font-family: 'Space Grotesk', sans-serif; color: #F0F4FF; position: relative; overflow: hidden; }
+    body::after { content: ''; position: absolute; inset: 0; opacity: 0.025; pointer-events: none; z-index: 20; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 300px; }
+    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px); background-size: 60px 60px; }
+    .glow-orange { position: absolute; top: -60px; right: -60px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(217,119,87,0.09) 0%, transparent 60%); z-index: 1; pointer-events: none; }
+    .glow-blue { position: absolute; bottom: 100px; left: -80px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(26,86,219,0.08) 0%, transparent 60%); z-index: 1; pointer-events: none; }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #D97757; z-index: 5; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.80); z-index: 15; }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
+    .content { position: absolute; inset: 0; padding: 80px 86px 148px 86px; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
+    .tag { display: inline-flex; align-items: center; gap: 10px; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.30); border-radius: 4px; padding: 9px 18px; margin-bottom: 36px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #D97757; letter-spacing: 0.12em; text-transform: uppercase; }
+    .headline { font-size: 54px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #F0F4FF; margin-bottom: 12px; }
+    .sub { font-size: 24px; font-weight: 400; color: #8899BB; margin-bottom: 44px; line-height: 1.5; }
+    .sub strong { color: #D97757; font-weight: 600; }
+    .code-block { background: rgba(8,12,24,0.85); border: 1px solid rgba(26,86,219,0.20); border-radius: 10px; overflow: hidden; margin-bottom: 40px; }
+    .code-bar { background: rgba(10,16,32,0.9); padding: 12px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+    .c-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .c-dot-r { background: #FF5F57; } .c-dot-y { background: #FFBD2E; } .c-dot-g { background: #28C840; }
+    .code-lang { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: rgba(240,244,255,0.30); margin-left: auto; }
+    .code-body { padding: 28px 32px; }
+    .code-line { font-family: 'JetBrains Mono', monospace; font-size: 19px; line-height: 2.0; white-space: pre; }
+    .c-comment { color: rgba(136,153,187,0.40); }
+    .c-var { color: #6B9AE8; }
+    .c-str { color: #D97757; }
+    .c-fn { color: #10A37F; }
+    .c-kw { color: #C084FC; }
+    .c-op { color: rgba(240,244,255,0.50); }
+    .conclusion { border-left: 4px solid #D97757; padding-left: 28px; }
+    .conclusion p { font-size: 26px; font-weight: 500; color: #F0F4FF; line-height: 1.55; }
+    .conclusion span { color: #D97757; }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.70); z-index: 15; }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #111D35; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 2px; }
+    .ba-name { font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name .check { color: #1A56DB; margin-left: 4px; }
+    .ba-handle { font-size: 16px; font-weight: 400; color: #8899BB; }
+    .ba-right { font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+  </style>
+</head>
+<body>
+  <div class="grid"></div><div class="glow-orange"></div><div class="glow-blue"></div>
+  <div class="accent-bar"></div>
+  <div class="top-header"><span>@kalidcarvalho</span><span>Build in Public</span><span>© 2026</span></div>
+  <div class="content">
+    <div class="tag"><span>o detalhe</span></div>
+    <div class="headline">O nó que quase<br>quebrou tudo.</div>
+    <div class="sub">WhatsApp no Brasil aceita <strong>12 e 13 dígitos</strong><br>dependendo da operadora e da região.</div>
+    <div class="code-block">
+      <div class="code-bar">
+        <div class="c-dot c-dot-r"></div><div class="c-dot c-dot-y"></div><div class="c-dot c-dot-g"></div>
+        <span class="code-lang">n8n — validação de número</span>
+      </div>
+      <div class="code-body">
+        <div class="code-line"><span class="c-comment">// Monta os dois formatos possíveis</span></div>
+        <div class="code-line"><span class="c-kw">const</span> <span class="c-var">num12</span> <span class="c-op">= </span><span class="c-str">`55${ddd}${fone.slice(-8)}`</span></div>
+        <div class="code-line"><span class="c-kw">const</span> <span class="c-var">num13</span> <span class="c-op">= </span><span class="c-str">`55${ddd}9${fone.slice(-8)}`</span></div>
+        <div class="code-line"> </div>
+        <div class="code-line"><span class="c-comment">// Verifica qual está ativo</span></div>
+        <div class="code-line"><span class="c-kw">if</span> <span class="c-op">(await </span><span class="c-fn">checkWpp</span><span class="c-op">(</span><span class="c-var">num12</span><span class="c-op">)) return </span><span class="c-var">num12</span></div>
+        <div class="code-line"><span class="c-kw">if</span> <span class="c-op">(await </span><span class="c-fn">checkWpp</span><span class="c-op">(</span><span class="c-var">num13</span><span class="c-op">)) return </span><span class="c-var">num13</span></div>
+      </div>
+    </div>
+    <div class="conclusion">
+      <p>Esse nó sozinho levou mais tempo<br>que <span>o resto do fluxo inteiro.</span></p>
+    </div>
+  </div>
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info"><span class="ba-name">Kalid Carvalho <span class="check">✓</span></span><span class="ba-handle">@kalidcarvalho</span></div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
+  </div>
+</body>
+</html>
