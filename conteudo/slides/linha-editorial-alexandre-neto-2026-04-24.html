@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=1920">
+<title>Linha Editorial — Alexandre Neto | Maio 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg: #080E1C;
+    --surface: #0F1A30;
+    --card: #121E38;
+    --accent: #22C55E;
+    --accent-dim: rgba(34,197,94,0.10);
+    --accent-border: rgba(34,197,94,0.25);
+    --blue: #1A56DB;
+    --text: #F0F4FF;
+    --muted: #8899BB;
+    --faint: #3D527A;
+    --sep: #1C2D4A;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    gap: 0;
+  }
+
+  .deck { width: 1920px; }
+
+  .slide {
+    width: 1920px;
+    height: 1080px;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+  }
+  .slide.active { display: flex; }
+
+  /* ── decorative grid ── */
+  .slide::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,86,219,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,86,219,0.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    pointer-events: none;
+  }
+
+  /* ── slide nav bar ── */
+  .nav {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    z-index: 100;
+    background: rgba(8,14,28,0.9);
+    border: 1px solid var(--sep);
+    border-radius: 100px;
+    padding: 12px 24px;
+  }
+  .nav button {
+    background: none;
+    border: 1px solid var(--sep);
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 18px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .nav button:hover { border-color: var(--accent); color: var(--accent); }
+  .nav .counter { color: var(--faint); font-size: 13px; font-family: 'JetBrains Mono'; padding: 0 8px; }
+
+  /* ── shared layout ── */
+  .slide-inner {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 72px 100px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-dim);
+    border: 1px solid var(--accent-border);
+    border-radius: 100px;
+    padding: 6px 18px;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+
+  h1 { font-size: 80px; font-weight: 800; color: var(--text); line-height: 0.95; letter-spacing: -2px; }
+  h2 { font-size: 52px; font-weight: 700; color: var(--text); line-height: 1; letter-spacing: -1px; }
+  h3 { font-size: 26px; font-weight: 600; color: var(--text); }
+
+  .sub { font-size: 22px; color: var(--muted); font-weight: 400; margin-top: 20px; line-height: 1.5; }
+  .mono { font-family: 'JetBrains Mono', monospace; color: var(--accent); }
+
+  /* ── SLIDE 1 — Capa ── */
+  #s1 .slide-inner { justify-content: center; }
+  #s1 .eyebrow { font-family: 'JetBrains Mono'; font-size: 15px; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 28px; }
+  #s1 h1 { font-size: 96px; }
+  #s1 h1 span { color: var(--accent); }
+  #s1 .meta { display: flex; gap: 40px; margin-top: 56px; }
+  #s1 .meta-item { border-left: 3px solid var(--accent); padding-left: 20px; }
+  #s1 .meta-item .label { font-size: 13px; color: var(--faint); font-family: 'JetBrains Mono'; text-transform: uppercase; letter-spacing: 0.10em; margin-bottom: 6px; }
+  #s1 .meta-item .value { font-size: 20px; color: var(--text); font-weight: 600; }
+  #s1 .glow {
+    position: absolute;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(34,197,94,0.08) 0%, transparent 70%);
+    right: 200px; top: 200px;
+    pointer-events: none;
+  }
+
+  /* ── SLIDE 2 — Contexto ── */
+  #s2 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 48px; flex: 1; }
+  #s2 .card {
+    background: var(--surface);
+    border: 1px solid var(--sep);
+    border-radius: 12px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+  }
+  #s2 .card.highlight { border-color: var(--accent-border); background: var(--card); }
+  #s2 .card-label { font-family: 'JetBrains Mono'; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px; }
+  #s2 .stat { font-size: 64px; font-weight: 800; color: var(--accent); font-family: 'JetBrains Mono'; line-height: 1; }
+  #s2 .stat-desc { font-size: 18px; color: var(--muted); margin-top: 10px; }
+  #s2 .list { display: flex; flex-direction: column; gap: 14px; }
+  #s2 .list-item { display: flex; gap: 14px; align-items: flex-start; font-size: 18px; color: var(--muted); line-height: 1.4; }
+  #s2 .list-item::before { content: '→'; color: var(--accent); font-family: 'JetBrains Mono'; flex-shrink: 0; margin-top: 1px; }
+
+  /* ── SLIDE 3 — ICP ── */
+  #s3 .icp-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; margin-top: 48px; flex: 1; align-items: start; }
+  #s3 .icp-card {
+    background: var(--surface);
+    border: 1px solid var(--sep);
+    border-radius: 12px;
+    padding: 36px;
+  }
+  #s3 .icp-icon { font-size: 36px; margin-bottom: 20px; }
+  #s3 .icp-title { font-size: 20px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
+  #s3 .icp-body { font-size: 17px; color: var(--muted); line-height: 1.6; }
+  #s3 .icp-body strong { color: var(--text); font-weight: 600; }
+  #s3 .transform-bar {
+    background: var(--card);
+    border: 1px solid var(--accent-border);
+    border-radius: 12px;
+    padding: 32px 48px;
+    margin-top: 36px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  #s3 .transform-bar .before, #s3 .transform-bar .after { font-size: 20px; font-weight: 600; color: var(--text); flex: 1; }
+  #s3 .transform-bar .arrow { font-size: 32px; color: var(--accent); font-family: 'JetBrains Mono'; }
+  #s3 .transform-bar .after { color: var(--accent); }
+
+  /* ── SLIDE 4 — Pilares ── */
+  #s4 .pilares { display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; margin-top: 48px; flex: 1; align-items: start; }
+  #s4 .pilar {
+    background: var(--surface);
+    border: 1px solid var(--sep);
+    border-radius: 12px;
+    padding: 32px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  #s4 .pilar.p1 { border-top: 3px solid #EF4444; }
+  #s4 .pilar.p2 { border-top: 3px solid #F59E0B; }
+  #s4 .pilar.p3 { border-top: 3px solid var(--blue); }
+  #s4 .pilar.p4 { border-top: 3px solid #8B5CF6; }
+  #s4 .pilar.p5 { border-top: 3px solid var(--accent); }
+  #s4 .pilar-num { font-family: 'JetBrains Mono'; font-size: 13px; color: var(--faint); font-weight: 600; }
+  #s4 .pilar-title { font-size: 20px; font-weight: 700; color: var(--text); }
+  #s4 .pilar-obj { font-size: 15px; color: var(--muted); line-height: 1.5; }
+  #s4 .pilar-ex { font-size: 14px; color: var(--faint); font-style: italic; margin-top: 8px; line-height: 1.5; border-left: 2px solid var(--sep); padding-left: 12px; }
+
+  /* ── SLIDE 5 — Calendário ── */
+  #s5 .cal { display: grid; grid-template-columns: 100px repeat(3, 1fr); gap: 16px; margin-top: 40px; flex: 1; align-items: start; }
+  #s5 .cal-header { font-family: 'JetBrains Mono'; font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: 0.12em; padding: 12px 16px; text-align: center; }
+  #s5 .cal-header.left { text-align: left; }
+  #s5 .week-label { font-family: 'JetBrains Mono'; font-size: 13px; color: var(--muted); padding: 16px 0; line-height: 1.4; }
+  #s5 .week-label span { display: block; font-size: 11px; color: var(--faint); margin-top: 4px; }
+  #s5 .cell {
+    background: var(--surface);
+    border: 1px solid var(--sep);
+    border-radius: 8px;
+    padding: 18px 20px;
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  #s5 .cell strong { display: block; color: var(--text); font-weight: 600; font-size: 14px; margin-bottom: 6px; font-family: 'JetBrains Mono'; text-transform: uppercase; letter-spacing: 0.06em; }
+  #s5 .cell.dor strong { color: #EF4444; }
+  #s5 .cell.edu strong { color: #F59E0B; }
+  #s5 .cell.met strong { color: var(--blue); }
+  #s5 .cell.prova strong { color: #8B5CF6; }
+  #s5 .cell.cta strong { color: var(--accent); }
+
+  /* ── SLIDE 6 — Próximos Passos ── */
+  #s6 .steps { display: flex; flex-direction: column; gap: 28px; margin-top: 48px; flex: 1; justify-content: center; }
+  #s6 .step {
+    background: var(--surface);
+    border: 1px solid var(--sep);
+    border-radius: 12px;
+    padding: 28px 40px;
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+  #s6 .step.now { border-color: var(--accent-border); }
+  #s6 .step-n { font-family: 'JetBrains Mono'; font-size: 40px; font-weight: 700; color: var(--faint); width: 56px; flex-shrink: 0; }
+  #s6 .step.now .step-n { color: var(--accent); }
+  #s6 .step-title { font-size: 22px; font-weight: 700; color: var(--text); }
+  #s6 .step-desc { font-size: 17px; color: var(--muted); margin-top: 4px; }
+  #s6 .step-badge { margin-left: auto; font-family: 'JetBrains Mono'; font-size: 12px; color: var(--accent); background: var(--accent-dim); border: 1px solid var(--accent-border); border-radius: 100px; padding: 6px 16px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="deck">
+
+  <!-- ── SLIDE 1 — CAPA ── -->
+  <div class="slide active" id="s1">
+    <div class="glow"></div>
+    <div class="slide-inner">
+      <div class="eyebrow">Linha Editorial · Estratégia de Conteúdo</div>
+      <h1>Inglês para<br><span>Profissionais de TI</span></h1>
+      <p class="sub">Funil orgânico do zero — Instagram · Maio 2026</p>
+      <div class="meta">
+        <div class="meta-item">
+          <div class="label">Projeto</div>
+          <div class="value">Alexandre Neto</div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Canal</div>
+          <div class="value">Instagram (orgânico)</div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Início</div>
+          <div class="value">Maio 2026</div>
+        </div>
+        <div class="meta-item">
+          <div class="label">Cadência</div>
+          <div class="value">3x / semana</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 2 — CONTEXTO ATUAL ── -->
+  <div class="slide" id="s2">
+    <div class="slide-inner">
+      <div class="tag">Contexto Atual</div>
+      <h2>De onde partimos</h2>
+      <div class="grid">
+        <div class="card highlight">
+          <div class="card-label">Alunos ativos</div>
+          <div class="stat">8</div>
+          <div class="stat-desc">R$250–300/mês · captação 100% por indicação</div>
+        </div>
+        <div class="card highlight">
+          <div class="card-label">Meta</div>
+          <div class="stat">20</div>
+          <div class="stat-desc">alunos · R$3.000/mês · 100% orgânico</div>
+        </div>
+        <div class="card">
+          <div class="card-label">Presença digital atual</div>
+          <div class="list">
+            <div class="list-item">Zero seguidores · zero posts</div>
+            <div class="list-item">Sem site ou landing page</div>
+            <div class="list-item">Sem produto de entrada definido</div>
+            <div class="list-item">Orçamento de tráfego: zero</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-label">Recursos disponíveis</div>
+          <div class="list">
+            <div class="list-item">3–5h/semana para conteúdo</div>
+            <div class="list-item">8 alunos reais como prova social</div>
+            <div class="list-item">Conhecimento técnico por nicho (TI, importação, aviação…)</div>
+            <div class="list-item">Metodologia adaptativa comprovada</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 3 — ICP ── -->
+  <div class="slide" id="s3">
+    <div class="slide-inner">
+      <div class="tag">Público-alvo</div>
+      <h2>Quem é o aluno ideal</h2>
+      <div class="icp-grid">
+        <div class="icp-card">
+          <div class="icp-icon">👤</div>
+          <div class="icp-title">Perfil</div>
+          <div class="icp-body">
+            Profissional de TI (<strong>dev, técnico, analista</strong>) com nível <strong>A1–B1</strong>.<br><br>
+            Trabalha com tecnologia, entende o universo técnico — mas congela quando precisa usar inglês no trabalho.
+          </div>
+        </div>
+        <div class="icp-card">
+          <div class="icp-icon">😣</div>
+          <div class="icp-title">Dor central</div>
+          <div class="icp-body">
+            <strong>Sabe o conteúdo técnico.</strong> Não sabe como expressar em inglês.<br><br>
+            Reunião com cliente gringo, entrevista em empresa estrangeira, documentação técnica, suporte em inglês.
+          </div>
+        </div>
+        <div class="icp-card">
+          <div class="icp-icon">🎯</div>
+          <div class="icp-title">O que ele quer</div>
+          <div class="icp-body">
+            Não quer "aprender inglês do zero".<br><br>
+            Quer <strong>desbloquear o inglês que já tem</strong> para usá-lo nas situações que aparecem na carreira.
+          </div>
+        </div>
+      </div>
+      <div class="transform-bar">
+        <div class="before">Profissional que sabe o conteúdo mas trava na hora de falar</div>
+        <div class="arrow">→</div>
+        <div class="after">Profissional que se expressa com confiança em inglês em qualquer situação profissional</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 4 — PILARES ── -->
+  <div class="slide" id="s4">
+    <div class="slide-inner">
+      <div class="tag">Estratégia de Conteúdo</div>
+      <h2>5 Pilares Editoriais</h2>
+      <div class="pilares">
+        <div class="pilar p1">
+          <div class="pilar-num">01 · DOR</div>
+          <div class="pilar-title">O travamento profissional</div>
+          <div class="pilar-obj">Mostrar que o problema é real e identificável.</div>
+          <div class="pilar-ex">"Você configura servidor mas não consegue abrir a boca em reunião em inglês"</div>
+        </div>
+        <div class="pilar p2">
+          <div class="pilar-num">02 · EDUCAÇÃO</div>
+          <div class="pilar-title">Vocabulário de TI em inglês</div>
+          <div class="pilar-obj">Conteúdo prático e compartilhável.</div>
+          <div class="pilar-ex">"5 frases para reunião de projeto com cliente estrangeiro"</div>
+        </div>
+        <div class="pilar p3">
+          <div class="pilar-num">03 · MÉTODO</div>
+          <div class="pilar-title">Como a aula funciona</div>
+          <div class="pilar-obj">Construir confiança no diferencial antes da venda.</div>
+          <div class="pilar-ex">"O que muda quando você aprende o inglês da sua área"</div>
+        </div>
+        <div class="pilar p4">
+          <div class="pilar-num">04 · PROVA</div>
+          <div class="pilar-title">Transformação de aluno</div>
+          <div class="pilar-obj">Prova social via narrativa.</div>
+          <div class="pilar-ex">"Esse aluno travava em reunião. Hoje conduz chamadas em inglês."</div>
+        </div>
+        <div class="pilar p5">
+          <div class="pilar-num">05 · CTA</div>
+          <div class="pilar-title">Produto de entrada</div>
+          <div class="pilar-obj">Convite para aula experimental.</div>
+          <div class="pilar-ex">"Aula experimental — inglês para profissional de TI"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 5 — CALENDÁRIO ── -->
+  <div class="slide" id="s5">
+    <div class="slide-inner">
+      <div class="tag">Calendário</div>
+      <h2>Maio 2026 — 3x/semana</h2>
+      <div class="cal">
+        <div class="cal-header left"></div>
+        <div class="cal-header">Segunda / Terça</div>
+        <div class="cal-header">Quarta / Quinta</div>
+        <div class="cal-header">Sexta / Sábado</div>
+
+        <div class="week-label">S1<span>05–09</span></div>
+        <div class="cell"><strong class="dor">Dor</strong>Apresentação — quem é Alexandre, pra quem é o método</div>
+        <div class="cell"><strong class="edu">Educação</strong>5 termos de infraestrutura que todo técnico precisa saber em inglês</div>
+        <div class="cell"><strong class="met">Método</strong>O que muda quando você aprende inglês dentro da sua área</div>
+
+        <div class="week-label">S2<span>12–16</span></div>
+        <div class="cell"><strong class="dor">Dor</strong>Por que profissional de TI trava mais que qualquer outro no inglês</div>
+        <div class="cell"><strong class="edu">Educação</strong>Como pedir esclarecimento em inglês sem parecer que não entendeu nada</div>
+        <div class="cell"><strong class="prova">Prova</strong>Narrativa de transformação — aluno técnico de TI</div>
+
+        <div class="week-label">S3<span>19–23</span></div>
+        <div class="cell"><strong class="dor">Dor</strong>A vaga que você perdeu por causa do inglês que você já sabe</div>
+        <div class="cell"><strong class="edu">Educação</strong>Frases para reunião de projeto com cliente estrangeiro</div>
+        <div class="cell"><strong class="met">Método</strong>Aula que se adapta ao seu nível e vocabulário da sua área</div>
+
+        <div class="week-label">S4<span>26–30</span></div>
+        <div class="cell"><strong class="dor">Dor</strong>Você não trava por falta de inglês. Trava por falta do inglês certo</div>
+        <div class="cell"><strong class="edu">Educação</strong>Como descrever um bug, uma solução, uma arquitetura em inglês</div>
+        <div class="cell"><strong class="cta">CTA</strong>Convite para aula experimental — inglês para profissional de TI</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── SLIDE 6 — PRÓXIMOS PASSOS ── -->
+  <div class="slide" id="s6">
+    <div class="slide-inner">
+      <div class="tag">Próximos Passos</div>
+      <h2>O que precisa acontecer agora</h2>
+      <div class="steps">
+        <div class="step now">
+          <div class="step-n">01</div>
+          <div>
+            <div class="step-title">Definir handle e produto de entrada</div>
+            <div class="step-desc">Nome do Instagram, produto experimental (gratuito ou low-ticket) para converter seguidores em alunos</div>
+          </div>
+          <div class="step-badge">Esta semana</div>
+        </div>
+        <div class="step">
+          <div class="step-n">02</div>
+          <div>
+            <div class="step-title">Criar identidade visual básica</div>
+            <div class="step-desc">Foto de perfil, paleta e template de post — padronizar antes de publicar</div>
+          </div>
+          <div class="step-badge">Semana 1</div>
+        </div>
+        <div class="step">
+          <div class="step-n">03</div>
+          <div>
+            <div class="step-title">Produzir e agendar posts da Semana 1</div>
+            <div class="step-desc">3 posts prontos antes do dia 05/05 — capa de apresentação, educacional e método</div>
+          </div>
+          <div class="step-badge">Até 02/05</div>
+        </div>
+        <div class="step">
+          <div class="step-n">04</div>
+          <div>
+            <div class="step-title">Landing page e sequência de nutrição</div>
+            <div class="step-desc">Destino do CTA — onde o lead cai, captura de contato, mensagem de boas-vindas</div>
+          </div>
+          <div class="step-badge">Maio</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button onclick="prev()">← Anterior</button>
+  <span class="counter" id="counter">1 / 6</span>
+  <button onclick="next()">Próximo →</button>
+</div>
+
+<script>
+  let cur = 0;
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+
+  function show(n) {
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    counter.textContent = `${cur + 1} / ${slides.length}`;
+  }
+  function next() { show(cur + 1); }
+  function prev() { show(cur - 1); }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>
