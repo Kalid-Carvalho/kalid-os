@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      width: 1080px; height: 1350px;
+      background: #0D1526;
+      font-family: 'Inter', sans-serif; color: #F0F4FF;
+      position: relative; overflow: hidden;
+    }
+    .capa-bg {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center center; z-index: 0;
+    }
+    .capa-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(13,21,38,0.30) 0%, rgba(13,21,38,0.50) 35%, rgba(13,21,38,0.88) 70%, #0D1526 100%);
+      z-index: 1;
+    }
+    body::after {
+      content: ''; position: absolute; inset: 0; opacity: 0.03;
+      pointer-events: none; z-index: 20;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 300px;
+    }
+    .glow {
+      position: absolute; bottom: -80px; left: -80px;
+      width: 860px; height: 860px;
+      background: radial-gradient(circle, rgba(26,86,219,0.12) 0%, transparent 65%);
+      z-index: 2; pointer-events: none;
+    }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+    .top-header {
+      position: absolute; top: 0; left: 0; right: 0; height: 52px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(13,21,38,0.60); z-index: 15;
+    }
+    .top-header span { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.45); letter-spacing: 0.02em; }
+    .content {
+      position: absolute; inset: 0;
+      padding: 80px 80px 148px 86px;
+      display: flex; flex-direction: column; justify-content: flex-end; z-index: 10;
+    }
+    .tag {
+      display: inline-flex; align-items: center;
+      background: rgba(26,86,219,0.30); border: 1px solid rgba(26,86,219,0.70);
+      border-radius: 4px; padding: 9px 18px; margin-bottom: 44px; width: fit-content;
+    }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 19px; font-weight: 600; color: #F0F4FF; letter-spacing: 0.14em; text-transform: uppercase; }
+    .headline { font-size: 80px; font-weight: 800; line-height: 1.05; color: #F0F4FF; margin-bottom: 40px; letter-spacing: -0.025em; }
+    .headline .highlight { color: #1A56DB; }
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 34px; border-radius: 2px; }
+    .subtitle { font-size: 30px; font-weight: 400; color: #8899BB; line-height: 1.5; max-width: 760px; }
+    .bottom-author {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(13,21,38,0.70); z-index: 15;
+    }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #111D35; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 2px; }
+    .ba-name { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name .check { color: #1A56DB; margin-left: 4px; }
+    .ba-handle { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; color: #8899BB; }
+    .ba-right { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.45); }
+  </style>
+</head>
+<body>
+  <img class="capa-bg" src="../bg-capa.png" alt="">
+  <div class="capa-overlay"></div>
+  <div class="glow"></div>
+  <div class="accent-bar"></div>
+  <div class="top-header">
+    <span>@eukalidcarvalho</span>
+    <span>Engenharia de Vendas B2B</span>
+    <span>© 2026</span>
+  </div>
+  <div class="content">
+    <div class="tag"><span>gestão de tempo</span></div>
+    <div class="headline">O custo que não aparece<br>na planilha de nenhuma<br>empresa de <span class="highlight">TI.</span></div>
+    <div class="divider"></div>
+    <div class="subtitle">E que está travando o crescimento de quase todas.</div>
+  </div>
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info">
+        <span class="ba-name">Kalid Carvalho <span class="check">✓</span></span>
+        <span class="ba-handle">@eukalidcarvalho</span>
+      </div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
+  </div>
+</body>
+</html>

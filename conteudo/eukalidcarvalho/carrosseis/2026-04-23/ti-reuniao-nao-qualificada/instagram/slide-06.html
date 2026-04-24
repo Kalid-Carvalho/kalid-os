@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1350px; background: #F0F4FF; font-family: 'Inter', sans-serif; color: #0D1526; position: relative; overflow: hidden; }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+    .top-block { position: absolute; top: 0; left: 6px; right: 0; height: 420px; background: linear-gradient(160deg, #0A1020 0%, #111D35 100%); z-index: 2; }
+    .glow { position: absolute; right: 0; top: 0; width: 500px; height: 420px; background: radial-gradient(circle, rgba(26,86,219,0.14) 0%, transparent 60%); z-index: 3; pointer-events: none; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.08); z-index: 15; }
+    .top-header span { font-family: 'Inter', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.45); letter-spacing: 0.02em; }
+    .top-content { position: absolute; top: 0; left: 6px; right: 0; height: 420px; padding: 120px 80px 40px 80px; display: flex; flex-direction: column; z-index: 5; }
+    .tag { display: inline-flex; background: rgba(26,86,219,0.25); border: 1px solid rgba(26,86,219,0.5); border-radius: 4px; padding: 8px 16px; margin-bottom: 28px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #9BB3E8; letter-spacing: 0.14em; text-transform: uppercase; }
+    .question { font-size: 58px; font-weight: 800; line-height: 1.1; color: #F0F4FF; letter-spacing: -0.025em; }
+    .question .highlight { color: #1A56DB; }
+    .bottom-content { position: absolute; top: 420px; left: 6px; right: 0; bottom: 120px; padding: 44px 80px 0 80px; display: flex; flex-direction: column; z-index: 5; }
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 28px; border-radius: 2px; }
+    .intro { font-size: 26px; font-weight: 400; color: #3D527A; line-height: 1.5; margin-bottom: 24px; }
+    .questions { display: flex; flex-direction: column; gap: 14px; margin-bottom: 28px; }
+    .q-item { display: flex; align-items: flex-start; gap: 18px; background: #E8EDF8; border-radius: 8px; padding: 16px 22px; }
+    .q-dot { width: 8px; height: 8px; border-radius: 50%; background: #1A56DB; flex-shrink: 0; margin-top: 8px; }
+    .q-text { font-size: 24px; font-weight: 600; color: #0D1526; line-height: 1.4; }
+    .stat-badge { display: inline-flex; align-items: center; gap: 12px; background: rgba(26,86,219,0.10); border: 1px solid rgba(26,86,219,0.25); border-radius: 8px; padding: 14px 22px; }
+    .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 700; color: #1A56DB; }
+    .stat-text { font-size: 22px; font-weight: 500; color: #3D527A; }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(13,21,38,0.10); background: rgba(240,244,255,0.9); z-index: 15; }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #1C2D4A; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 1px; }
+    .ba-name { font-family: 'Inter', sans-serif; font-size: 20px; font-weight: 700; color: #0D1526; }
+    .ba-name .check { color: #1A56DB; margin-left: 4px; }
+    .ba-handle { font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 400; color: #3D527A; }
+    .ba-right { font-family: 'Inter', sans-serif; font-size: 18px; font-weight: 500; color: rgba(13,21,38,0.45); }
+  </style>
+</head>
+<body>
+  <div class="top-header"><span>@eukalidcarvalho</span><span>Engenharia de Vendas B2B</span><span>© 2026</span></div>
+  <div class="accent-bar"></div>
+  <div class="top-block"></div><div class="glow"></div>
+  <div class="top-content">
+    <div class="tag"><span>o filtro</span></div>
+    <div class="question">3 perguntas eliminam<br><span class="highlight">40 a 60%</span> dos contatos<br>sem perfil.</div>
+  </div>
+  <div class="bottom-content">
+    <div class="divider"></div>
+    <div class="intro">Antes de marcar qualquer reunião:</div>
+    <div class="questions">
+      <div class="q-item"><div class="q-dot"></div><span class="q-text">Quantos funcionários a empresa tem?</span></div>
+      <div class="q-item"><div class="q-dot"></div><span class="q-text">Qual o principal problema que quer resolver?</span></div>
+      <div class="q-item"><div class="q-dot"></div><span class="q-text">Já tem orçamento aprovado para isso?</span></div>
+    </div>
+    <div class="stat-badge">
+      <span class="stat-num">0</span>
+      <span class="stat-text">reuniões fora do perfil chegam ao fundador</span>
+    </div>
+  </div>
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info"><span class="ba-name">Kalid Carvalho <span class="check">✓</span></span><span class="ba-handle">@eukalidcarvalho</span></div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
+  </div>
+</body>
+</html>
