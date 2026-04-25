@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Guia de Reunião em Inglês para Devs — Alexandre Neto</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green: #22C55E;
+    --green-dim: rgba(34,197,94,0.08);
+    --green-border: rgba(34,197,94,0.20);
+    --dark: #080E1C;
+    --surface: #0F1A30;
+    --card: #111D35;
+    --text: #F0F4FF;
+    --muted: #8899BB;
+    --faint: #3D527A;
+    --sep: #1C2D4A;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #e5e7eb;
+    color: var(--dark);
+  }
+
+  /* ── PAGE ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    margin: 0 auto 24px;
+    position: relative;
+    overflow: hidden;
+    page-break-after: always;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; }
+    .no-print { display: none !important; }
+  }
+
+  /* ── COVER ── */
+  .cover {
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 64px 56px;
+    min-height: 297mm;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,86,219,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,86,219,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+  }
+  .cover-glow {
+    position: absolute;
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(34,197,94,0.10) 0%, transparent 70%);
+    right: 0; top: 80px;
+    pointer-events: none;
+  }
+  .cover-top { position: relative; z-index: 1; }
+  .cover-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    display: inline-block;
+    margin-bottom: 40px;
+  }
+  .cover h1 {
+    font-size: 52px;
+    font-weight: 800;
+    color: #F0F4FF;
+    line-height: 1.05;
+    letter-spacing: -1.5px;
+    max-width: 480px;
+  }
+  .cover h1 span { color: var(--green); }
+  .cover-sub {
+    font-size: 17px;
+    color: var(--muted);
+    margin-top: 20px;
+    line-height: 1.6;
+    max-width: 400px;
+  }
+  .cover-bottom { position: relative; z-index: 1; }
+  .cover-handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    color: var(--faint);
+    letter-spacing: 0.06em;
+  }
+  .cover-handle span { color: var(--green); }
+  .cover-divider { width: 48px; height: 3px; background: var(--green); margin: 24px 0; border-radius: 2px; }
+  .cover-cta {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .cover-cta strong { color: #F0F4FF; font-weight: 600; }
+
+  /* ── INNER PAGES ── */
+  .inner {
+    padding: 52px 56px 48px;
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .section-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    border-left: 3px solid var(--green);
+    padding-left: 10px;
+    margin-bottom: 8px;
+  }
+  .page-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.5px;
+    margin-bottom: 6px;
+  }
+  .page-desc {
+    font-size: 14px;
+    color: #6B7280;
+    margin-bottom: 32px;
+    line-height: 1.5;
+  }
+
+  /* ── INTRO ── */
+  .intro-body {
+    font-size: 15px;
+    color: #374151;
+    line-height: 1.8;
+    flex: 1;
+  }
+  .intro-body p { margin-bottom: 18px; }
+  .intro-body strong { color: var(--dark); font-weight: 700; }
+  .intro-highlight {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-left: 4px solid var(--green);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-size: 15px;
+    color: #166534;
+    line-height: 1.7;
+  }
+  .intro-how {
+    background: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-top: 24px;
+  }
+  .intro-how .how-title {
+    font-size: 13px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #6B7280;
+    margin-bottom: 12px;
+  }
+  .intro-how ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .intro-how li { font-size: 14px; color: #374151; padding-left: 20px; position: relative; line-height: 1.5; }
+  .intro-how li::before { content: '→'; position: absolute; left: 0; color: var(--green); font-family: 'JetBrains Mono'; font-weight: 600; }
+
+  /* ── PHRASE CARD ── */
+  .phrase-list { display: flex; flex-direction: column; gap: 16px; flex: 1; }
+  .phrase-card {
+    border: 1px solid #E5E7EB;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .phrase-card-top {
+    background: #F9FAFB;
+    padding: 14px 20px 12px;
+    border-bottom: 1px solid #E5E7EB;
+  }
+  .phrase-en {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.5;
+  }
+  .phrase-card-bottom {
+    padding: 12px 20px;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+  }
+  .phrase-pt {
+    font-size: 13px;
+    color: #374151;
+    flex: 1;
+    line-height: 1.5;
+  }
+  .phrase-ctx {
+    font-size: 12px;
+    color: #9CA3AF;
+    font-style: italic;
+    flex: 1;
+    line-height: 1.5;
+    border-left: 2px solid #E5E7EB;
+    padding-left: 16px;
+  }
+
+  /* ── SECTION DIVIDER ── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+  .section-divider .num {
+    width: 36px; height: 36px;
+    background: var(--dark);
+    color: var(--green);
+    border-radius: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .section-divider .info {}
+  .section-divider .info .num-label {
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    color: var(--green);
+    margin-bottom: 2px;
+  }
+  .section-divider .info .num-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--dark);
+    letter-spacing: -0.4px;
+  }
+  .section-divider .line { flex: 1; height: 1px; background: #E5E7EB; }
+
+  /* ── CTA FINAL ── */
+  .cta-page {
+    background: var(--dark);
+    min-height: 297mm;
+    padding: 64px 56px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-page::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(26,86,219,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26,86,219,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .cta-glow {
+    position: absolute;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(34,197,94,0.10) 0%, transparent 70%);
+    right: -100px; bottom: -100px;
+  }
+  .cta-inner { position: relative; z-index: 1; max-width: 480px; }
+  .cta-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--green);
+    background: var(--green-dim);
+    border: 1px solid var(--green-border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  .cta-page h2 {
+    font-size: 42px;
+    font-weight: 800;
+    color: #F0F4FF;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+  }
+  .cta-page h2 span { color: var(--green); }
+  .cta-page p {
+    font-size: 16px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 40px;
+  }
+  .cta-box {
+    background: var(--surface);
+    border: 1px solid var(--green-border);
+    border-radius: 12px;
+    padding: 28px 32px;
+  }
+  .cta-box .cta-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--green);
+    text-transform: uppercase;
+    letter-spacing: 0.10em;
+    margin-bottom: 12px;
+  }
+  .cta-box .cta-text {
+    font-size: 15px;
+    color: #F0F4FF;
+    line-height: 1.6;
+  }
+  .cta-box .cta-handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--green);
+    font-weight: 700;
+    margin-top: 16px;
+    display: block;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    margin-top: auto;
+    padding-top: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #E5E7EB;
+  }
+  .footer .handle {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #9CA3AF;
+  }
+  .footer .page-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: #D1D5DB;
+  }
+
+  /* ── PRINT BTN ── */
+  .print-btn {
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    background: var(--dark);
+    color: var(--green);
+    border: 1px solid var(--green-border);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 100px;
+    cursor: pointer;
+    z-index: 100;
+  }
+  .print-btn:hover { background: var(--green); color: var(--dark); }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">Exportar PDF</button>
+
+<!-- ══ CAPA ══ -->
+<div class="page">
+  <div class="cover">
+    <div class="cover-glow"></div>
+    <div class="cover-top">
+      <div class="cover-tag">Guia Gratuito</div>
+      <h1>Guia de Reunião em Inglês para <span>Devs</span></h1>
+      <p class="cover-sub">As frases certas para você conduzir calls técnicas em inglês com confiança — sem travar, sem parecer amador.</p>
+    </div>
+    <div class="cover-bottom">
+      <div class="cover-handle">por <span>@alexandreneto.english</span></div>
+      <div class="cover-divider"></div>
+      <p class="cover-cta">Esse guia é pra quem <strong>já sabe inglês</strong> mas congela na hora de usar. Você vai sair daqui com frases prontas pra próxima call.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ INTRODUÇÃO ══ -->
+<div class="page">
+  <div class="inner">
+    <div class="section-tag">Introdução</div>
+    <div class="page-title">Por que você trava em reunião</div>
+    <p class="page-desc">E por que esse guia existe</p>
+    <div class="intro-body">
+      <p>Você estuda inglês há anos. Entende séries sem legenda, lê documentação técnica sem dificuldade e consegue se virar em situações do dia a dia. Mas quando entra em uma reunião com um cliente estrangeiro, algo trava.</p>
+      <p>O problema quase nunca é o inglês em si. É a falta do inglês <strong>certo para aquele momento</strong>. Uma reunião técnica tem um ritmo, uma estrutura e um vocabulário específico que nenhum curso genérico te ensina.</p>
+      <div class="intro-highlight">
+        Saber inglês e saber usar inglês em ambiente profissional são coisas diferentes. Esse guia fecha essa lacuna.
+      </div>
+      <p>Aqui você vai encontrar as frases que profissionais de TI realmente usam para abrir uma call, dar atualizações técnicas, lidar com imprevistos e fechar com próximos passos claros. Não é pra memorizar. É pra ter na mão nas primeiras vezes, até virar automático.</p>
+      <div class="intro-how">
+        <div class="how-title">Como usar este guia</div>
+        <ul>
+          <li>Leia antes da reunião, não durante</li>
+          <li>Escolha 3 ou 4 frases por seção e treine em voz alta</li>
+          <li>Na call, use como referência rápida se precisar</li>
+          <li>Com o tempo, as frases vão sair naturalmente</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="handle">@alexandreneto.english</span>
+      <span class="page-num">2</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SEÇÃO 1: ABRINDO A REUNIÃO ══ -->
+<div class="page">
+  <div class="inner">
+    <div class="section-divider">
+      <div class="num">01</div>
+      <div class="info">
+        <div class="num-label">Seção 1</div>
+        <div class="num-title">Abrindo a Reunião</div>
+      </div>
+      <div class="line"></div>
+    </div>
+    <p class="page-desc">Os primeiros 2 minutos definem o tom da call. Use essas frases para entrar com segurança, verificar áudio e dar o pontapé inicial.</p>
+    <div class="phrase-list">
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Can everyone hear me okay?</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Todo mundo consegue me ouvir bem?</div>
+          <div class="phrase-ctx">Use logo que entrar na call, antes de começar a falar de verdade.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Let me share my screen real quick.</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Deixa eu compartilhar minha tela rapidinho.</div>
+          <div class="phrase-ctx">Natural e direto. Evita aquele silêncio enquanto você mexe no computador.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Thanks for joining. Let's get started.</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Obrigado por participar. Vamos começar.</div>
+          <div class="phrase-ctx">Abre a reunião com autoridade, sem enrolação.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Today I'd like to walk you through [topic].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Hoje eu gostaria de te guiar por [assunto].</div>
+          <div class="phrase-ctx">Apresenta a pauta antes de entrar no conteúdo. Profissional e organizado.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">We have about [30] minutes. Does that still work for you?</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Temos cerca de [30] minutos. Ainda funciona pra você?</div>
+          <div class="phrase-ctx">Confirma o tempo disponível e mostra que você respeita a agenda do outro.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="handle">@alexandreneto.english</span>
+      <span class="page-num">3</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SEÇÃO 2: CONDUZINDO A REUNIÃO ══ -->
+<div class="page">
+  <div class="inner">
+    <div class="section-divider">
+      <div class="num">02</div>
+      <div class="info">
+        <div class="num-label">Seção 2</div>
+        <div class="num-title">Conduzindo a Reunião</div>
+      </div>
+      <div class="line"></div>
+    </div>
+    <p class="page-desc">Atualizações técnicas, pedidos de esclarecimento e como concordar ou discordar sem soar agressivo.</p>
+    <div class="phrase-list">
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">So basically what we did was [explanation].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Basicamente o que fizemos foi [explicação].</div>
+          <div class="phrase-ctx">Ótimo pra dar update técnico de forma direta e sem formalidade excessiva.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Could you clarify what you mean by [term]?</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Você poderia esclarecer o que quer dizer com [termo]?</div>
+          <div class="phrase-ctx">Pede esclarecimento sem parecer que não entendeu nada. Soa confiante.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Just to make sure I understood — you're saying that [summary], right?</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Só pra garantir que entendi — você está dizendo que [resumo], certo?</div>
+          <div class="phrase-ctx">Confirma o entendimento antes de tomar uma decisão. Evita retrabalho.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">That makes sense. On our end, we have [update].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Faz sentido. Do nosso lado, temos [atualização].</div>
+          <div class="phrase-ctx">Concorda e já passa para o seu ponto sem interromper o fluxo.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">I see your point, but we might want to consider [alternative].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Entendo seu ponto, mas talvez valha considerar [alternativa].</div>
+          <div class="phrase-ctx">Discorda com respeito. Não nega, propõe.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="handle">@alexandreneto.english</span>
+      <span class="page-num">4</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SEÇÃO 3: PROBLEMAS TÉCNICOS ══ -->
+<div class="page">
+  <div class="inner">
+    <div class="section-divider">
+      <div class="num">03</div>
+      <div class="info">
+        <div class="num-label">Seção 3</div>
+        <div class="num-title">Lidando com Problemas Técnicos</div>
+      </div>
+      <div class="line"></div>
+    </div>
+    <p class="page-desc">Bug ao vivo, prazo para solução, como descrever o problema e propor correção sem entrar em pânico.</p>
+    <div class="phrase-list">
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">We ran into an issue with [component]. Let me explain what happened.</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Encontramos um problema com [componente]. Deixa eu explicar o que aconteceu.</div>
+          <div class="phrase-ctx">Assume o problema com transparência antes que o cliente pergunte.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">The root cause was [explanation]. We've already [action taken].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">A causa raiz foi [explicação]. Já [ação tomada].</div>
+          <div class="phrase-ctx">Estrutura técnica clássica: causa + o que foi feito. Passa confiança.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">We're looking into it and should have an update by [time/date].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Estamos investigando e devemos ter uma atualização até [hora/data].</div>
+          <div class="phrase-ctx">Quando ainda não tem resposta. Dá um prazo sem se comprometer com o que não sabe.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">As a workaround, we can [temporary solution] until we fix [issue].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Como alternativa temporária, podemos [solução] até corrigirmos [problema].</div>
+          <div class="phrase-ctx">Propõe plano B enquanto a solução definitiva não fica pronta.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">This shouldn't affect [other feature]. We'll keep you posted.</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Isso não deve afetar [outra funcionalidade]. Vamos te mantendo informado.</div>
+          <div class="phrase-ctx">Limita o escopo do problema e mostra que você está no controle.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="handle">@alexandreneto.english</span>
+      <span class="page-num">5</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SEÇÃO 4: ENCERRANDO ══ -->
+<div class="page">
+  <div class="inner">
+    <div class="section-divider">
+      <div class="num">04</div>
+      <div class="info">
+        <div class="num-label">Seção 4</div>
+        <div class="num-title">Encerrando e Follow-up</div>
+      </div>
+      <div class="line"></div>
+    </div>
+    <p class="page-desc">Resumir próximos passos, confirmar responsáveis e fechar a call com clareza.</p>
+    <div class="phrase-list">
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Let me quickly recap what we agreed on.</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Deixa eu recapitular rapidamente o que combinamos.</div>
+          <div class="phrase-ctx">Abre o resumo final. Sinaliza que a reunião está chegando ao fim.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">So the next steps are: [step 1], [step 2], and [step 3].</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Então os próximos passos são: [passo 1], [passo 2] e [passo 3].</div>
+          <div class="phrase-ctx">Lista as ações de forma clara. Evita ambiguidade no pós-call.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">I'll send a follow-up email with everything we discussed.</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Vou enviar um email de follow-up com tudo o que discutimos.</div>
+          <div class="phrase-ctx">Mostra organização e garante que nada se perde após a call.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Does anyone have any questions before we wrap up?</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Alguém tem alguma dúvida antes de encerrarmos?</div>
+          <div class="phrase-ctx">Dá espaço pra perguntas antes de fechar. Profissional e cuidadoso.</div>
+        </div>
+      </div>
+      <div class="phrase-card">
+        <div class="phrase-card-top"><div class="phrase-en">Thanks everyone. Talk soon.</div></div>
+        <div class="phrase-card-bottom">
+          <div class="phrase-pt">Obrigado a todos. Até logo.</div>
+          <div class="phrase-ctx">Encerra com naturalidade. Simples e direto, sem formalidade excessiva.</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+      <span class="handle">@alexandreneto.english</span>
+      <span class="page-num">6</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══ CTA FINAL ══ -->
+<div class="page">
+  <div class="cta-page">
+    <div class="cta-glow"></div>
+    <div class="cta-inner">
+      <div class="cta-tag">Próximo passo</div>
+      <h2>Quer sair de uma call em inglês <span>sem travar?</span></h2>
+      <p>Esse guia te deu as frases. A aula te dá a confiança pra usá-las no ritmo certo, com o vocabulário da sua área e sem depender de tradução mental.</p>
+      <div class="cta-box">
+        <div class="cta-label">Aula Experimental Gratuita</div>
+        <div class="cta-text">Uma aula adaptada ao seu nível e ao inglês que você usa no trabalho. Sem compromisso.</div>
+        <span class="cta-handle">@alexandreneto.english</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
