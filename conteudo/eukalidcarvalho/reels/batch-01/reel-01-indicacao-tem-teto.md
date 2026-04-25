@@ -1,4 +1,4 @@
-# Reel 01 — Empresa de TI que depende de indicação tem teto de crescimento
+# Reel 01 — O que sua empresa de TI precisa ter antes de investir em tráfego pago
 Data sugerida: 2026-04-28
 Formato: Talking Head
 Duração estimada: 40–50s
