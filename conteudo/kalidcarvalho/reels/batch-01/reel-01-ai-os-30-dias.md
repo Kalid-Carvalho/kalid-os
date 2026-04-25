@@ -1,7 +1,7 @@
-# Reel 01 — AI Business OS por 30 dias
-Data sugerida: 2026-04-21
+# Reel 01 — Usei Claude como sistema operacional do meu negócio por 30 dias
+Data sugerida: 2026-04-28
 Formato: Talking Head
-Duração estimada: 35–45s
+Duração estimada: 40–50s
 Canal: @kalidcarvalho
 
 ---
@@ -10,39 +10,41 @@ Canal: @kalidcarvalho
 
 ### HOOK (0–3s)
 **Visual:** Kalid direto para a câmera, enquadramento do peito para cima
-**Overlay:** "Usei IA como sistema operacional do meu negócio por 30 dias."
-**Script falado:** "Usei IA como sistema operacional do meu negócio por 30 dias. Aqui o que aprendi."
+**Overlay:** "Usei Claude como sistema operacional do meu negócio por 30 dias."
+**Script falado:** "Usei Claude como sistema operacional do meu negócio por 30 dias. Aqui o que aprendi."
 **Nota de produção:** Fala seca, sem sorrir. "30 dias" em tom de dado confirmado.
 
-### PONTO 1 (3–12s)
-**Visual:** Kalid câmera, gesto com a mão
-**Overlay:** "IA não é ferramenta. É colaborador."
-**Script:** "A primeira virada foi parar de usar IA como ferramenta e começar a usar como colaborador. Eu briefo, ele executa, eu reviso. O ritmo de trabalho dobrou."
-
-### PONTO 2 (12–22s)
+### O QUE É AI BUSINESS OS (3–15s)
 **Visual:** Kalid câmera
-**Overlay:** "Agente ≠ Chatbot"
-**Script:** "O segundo aprendizado: agente de IA não é chatbot. Chatbot responde e para. Agente entra em loop — pensa, age, avalia, corrige. Eu montei um que qualifica lead às 23h sem eu tocar no celular."
+**Overlay:** "AI Business OS: Claude no centro da operação"
+**Script:** "AI Business OS é a ideia de colocar o Claude no centro da operação, não como ferramenta pontual. Você não abre ele pra escrever um email. Você integra ele ao fluxo: planejamento, criação, prospecção, atendimento. Ele fica no loop junto com você."
 
-### PONTO 3 (22–32s)
-**Visual:** Kalid câmera, tom direto
-**Overlay:** "O erro mais comum: usar IA só pra escrever texto."
-**Script:** "E o erro que eu via todo mundo cometendo: usar IA só pra escrever texto. IA conectada a ferramentas — Google Calendar, WhatsApp, CRM — é outra coisa. Aí vira sistema."
+### VIRADA 1 (15–25s)
+**Visual:** Kalid câmera, gesto com a mão
+**Overlay:** "Claude não é ferramenta. É colaborador."
+**Script:** "A primeira virada foi parar de usar o Claude como ferramenta e começar a usar como colaborador. Eu briefo, ele executa, eu reviso. O ritmo de trabalho dobrou sem contratar ninguém."
 
-### CTA (32–40s)
+### VIRADA 2 (25–37s)
+**Visual:** Kalid câmera
+**Overlay:** "Claude conectado a ferramentas = sistema"
+**Script:** "O segundo aprendizado: Claude sozinho responde. Claude conectado a ferramentas age. Quando você liga ele ao WhatsApp, ao CRM, ao calendário via n8n, ele para de ser um chat e vira um sistema que opera enquanto você dorme."
+
+### CTA (37–46s)
 **Visual:** Kalid olhando direto para a câmera
 **Overlay:** "Série: Construindo meu AI Business OS — Ep. 1"
-**Script:** "Vou documentar tudo isso aqui. Se você quer ver como um negócio solo roda com agentes de IA, me segue."
+**Script:** "Vou documentar tudo isso aqui. Como montar, o que automatizar, o que não funciona. Se você quer ver um negócio solo rodando com Claude no centro, me segue."
 
 ---
 
 ## LEGENDA
 
-Usei IA como sistema operacional do meu negócio por 30 dias.
+Usei Claude como sistema operacional do meu negócio por 30 dias.
 
-Não como ferramenta. Como colaborador.
+Não como ferramenta. Como colaborador no centro da operação.
 
-O que mudou: ritmo de trabalho, captação de lead, operação inteira.
+Claude sozinho responde. Claude conectado a ferramentas age: WhatsApp, CRM, calendário, n8n. Aí vira sistema.
+
+O ritmo de trabalho dobrou sem contratar ninguém.
 
 Série: Construindo meu AI Business OS — Ep. 1
 
@@ -50,13 +52,13 @@ Série: Construindo meu AI Business OS — Ep. 1
 
 ## HASHTAGS
 
-#IA #BuilderIA #ClaudeCode #AutomacaoIA #AIBusinessOS
+#Claude #ClaudeAI #AIBusinessOS #AutomacaoIA #BuilderIA #N8N #AgentesIA
 
 ---
 
 ## SUGESTÃO DE ÁUDIO
 
-Áudio original — voz do Kalid. Trilha instrumental minimalista, volume ~15%.
+Áudio original, voz do Kalid. Trilha instrumental minimalista, volume 15%.
 
 ---
 
@@ -64,7 +66,8 @@ Série: Construindo meu AI Business OS — Ep. 1
 
 - **Câmera:** Vertical 9:16, enquadramento do peito para cima
 - **Fundo:** Escritório ou parede escura, identidade Bold Human
-- **Subtítulos:** Obrigatórios — burned-in, Space Grotesk Bold, branco com sombra escura
+- **Subtítulos:** Obrigatórios, burned-in, Space Grotesk Bold, branco com sombra escura
 - **Ritmo:** Assertivo, sem pausas longas. Tom de quem já testou e tem resultado.
-- **Overlay principal:** Space Grotesk Bold, branco sobre azul escuro #0D1526 (caixa semitransparente)
-- **Tag de série:** Incluir "EP. 01" no canto inferior direito como marca da série
+- **Overlay principal:** Space Grotesk Bold, branco sobre caixa azul #1A56DB semitransparente
+- **Destaque:** "Claude" sempre aparece em destaque visual quando mencionado no overlay
+- **Tag de série:** "EP. 01" no canto inferior direito
