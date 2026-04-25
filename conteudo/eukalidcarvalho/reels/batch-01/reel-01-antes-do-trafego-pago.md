@@ -37,7 +37,7 @@ Canal: @eukalidcarvalho (Instagram + LinkedIn)
 ### CTA (51–56s)
 **Visual:** Kalid direto para a câmera
 **Overlay:** "Engenharia de Vendas B2B para TI"
-**Script:** "Próximo vídeo eu mostro como estruturar esse funil do zero. Me segue."
+**Script:** "Me segue se você quer aprender a montar tráfego que realmente funciona pra empresa de TI. Todo conteúdo aqui é sobre isso."
 
 ---
 
