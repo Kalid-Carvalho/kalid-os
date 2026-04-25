@@ -1,7 +1,7 @@
-# Reel 03 — Agente que responde lead no WhatsApp às 3h
+# Reel 03 — O que ninguém fala sobre usar Claude no dia a dia
 Data sugerida: 2026-04-25
-Formato: Câmera + Tela (rosto + demo ao vivo)
-Duração estimada: 60–75s
+Formato: Talking Head
+Duração estimada: 45–55s
 Canal: @kalidcarvalho
 
 ---
@@ -9,46 +9,42 @@ Canal: @kalidcarvalho
 ## ROTEIRO
 
 ### HOOK (0–3s)
-**Visual:** Kalid na câmera, tela do N8N visível ao fundo ou em picture-in-picture
-**Overlay:** "Construí um agente que responde lead no WhatsApp às 3h da manhã."
-**Script falado:** "Construí um agente que responde lead no WhatsApp às 3h da manhã. Aqui como funciona."
-**Nota:** Tom de quem está mostrando algo que já está em produção — não hipotético.
+**Visual:** Kalid direto para a câmera
+**Overlay:** "O que ninguém fala sobre usar Claude no dia a dia."
+**Script falado:** "Todo mundo fala o que o Claude faz. Ninguém fala o que ele não faz. Vou ser direto."
+**Nota de produção:** Tom seco, sem introdução. Vai direto. Pausa de 1 segundo depois de "vou ser direto."
 
-### SETUP (3–10s)
-**Visual:** Kalid na câmera
-**Script:** "O problema era esse: lead chegava fora do horário, eu não via, ele ia embora. Então montei um sistema com N8N, Evolution API e Claude."
+### VERDADE 1 (3–18s)
+**Visual:** Kalid câmera
+**Overlay:** "Claude não lembra de você."
+**Script:** "Primeira coisa: Claude não lembra de você. Toda conversa começa do zero. Se você não der contexto, ele não sabe quem é você, o que você faz, o que já foi decidido. Quem entende isso monta um sistema de contexto. Quem não entende acha que Claude é inconsistente. Não é. É você que não preparou o terreno."
 
-### DEMO — PARTE 1 (10–35s)
-**Visual:** Corte para tela — mostrando o workflow no N8N em tempo real
-**Overlay:** "1. Lead manda mensagem no WhatsApp"
-**Narração:** "Lead manda mensagem no WhatsApp. O webhook captura. O N8N dispara."
+### VERDADE 2 (18–33s)
+**Visual:** Kalid câmera
+**Overlay:** "Sua primeira pergunta vai ser errada."
+**Script:** "Segunda: sua primeira pergunta vai ser errada. Claude é tão bom quanto o briefing que você dá. A maioria usa como Google: pergunta curta, espera resposta pronta. O trabalho real é aprender a briefar. Contexto, objetivo, formato, restrições. Isso ninguém ensina porque não é glamouroso."
 
-**Overlay:** "2. Claude qualifica — pergunta segmento, dor, orçamento"
-**Narração:** "O Claude entra no loop. Faz 3 perguntas de qualificação. Testa se o lead é fit pro serviço."
+### VERDADE 3 (33–46s)
+**Visual:** Kalid câmera, tom direto
+**Overlay:** "Nem tudo vale delegar."
+**Script:** "Terceira: nem tudo vale delegar pro Claude. Quem delega tudo começa a perder o raciocínio próprio sem perceber. Claude executa bem. Mas a decisão sobre o que executar precisa ser sua. Saber o que não passar pra ele é metade do trabalho."
 
-**Overlay:** "3. Se qualificado: agenda no Google Calendar"
-**Narração:** "Se passar no critério, o agente já oferece horário disponível no Google Calendar e confirma."
-
-### DEMO — PARTE 2 (35–55s)
-**Visual:** Tela mostrando conversa real no WhatsApp com a resposta do agente
-**Overlay:** "Resultado real: lead qualificado às 3h14"
-**Narração:** "Aqui uma conversa real. 3h14 da manhã. Lead entrou, foi qualificado, recebeu horário de reunião — sem eu acordar."
-**Overlay secundário:** "Tempo de resposta: 8 segundos"
-
-### CTA (55–68s)
-**Visual:** Volta para Kalid na câmera
+### CTA (46–53s)
+**Visual:** Kalid direto para a câmera
 **Overlay:** "Série: Construindo meu AI Business OS — Ep. 3"
-**Script:** "Isso roda 24h sem custo operacional. Vou detalhar cada parte desse workflow nos próximos episódios. Me segue pra não perder."
+**Script:** "Estou documentando tudo isso na prática. Me segue pra acompanhar."
 
 ---
 
 ## LEGENDA
 
-Construí um agente que responde lead no WhatsApp às 3h da manhã.
+Todo mundo fala o que o Claude faz. Ninguém fala o que ele não faz.
 
-N8N + Evolution API + Claude.
+1. Claude não lembra de você. Toda conversa começa do zero. Quem não dá contexto acha que ele é inconsistente.
 
-Lead entra, agente qualifica, agenda reunião — 8 segundos de resposta. Sem eu acordar.
+2. Sua primeira pergunta vai ser errada. Claude é tão bom quanto o briefing que você dá. Isso ninguém ensina.
+
+3. Nem tudo vale delegar. Quem delega tudo perde o raciocínio próprio sem perceber.
 
 Série: Construindo meu AI Business OS — Ep. 3
 
@@ -56,22 +52,22 @@ Série: Construindo meu AI Business OS — Ep. 3
 
 ## HASHTAGS
 
-#N8N #WhatsAppIA #AgentesIA #AutomacaoIA #ClaudeAI
+#Claude #ClaudeAI #AIBusinessOS #BuildInPublic #AutomacaoIA #ProductividadeIA
 
 ---
 
 ## SUGESTÃO DE ÁUDIO
 
-Áudio misto: Kalid falando na câmera + narração durante a tela. Trilha mínima no fundo.
+Áudio original, voz do Kalid. Sem trilha ou trilha mínima volume 8%. Foco total na fala.
 
 ---
 
 ## NOTA DE PRODUÇÃO
 
-- **Enquadramento câmera:** Peito para cima, fundo com monitor visível mostrando N8N
-- **Tela:** Gravar antes. Mostrar workflow real rodando — não mockup
-- **Conversa WhatsApp:** Pode borrar nome do lead real ou usar lead de teste
-- **Edição:** Corte limpo entre câmera e tela (sem transição longa)
-- **Subtítulos:** Obrigatórios em todas as cenas — Space Grotesk Bold, branco
-- **Dado destaque:** "3h14" e "8 segundos" em caixa azul #1A56DB
+- **Câmera:** Vertical 9:16, enquadramento do peito para cima
+- **Fundo:** Escritório, identidade Bold Human
+- **Subtítulos:** Obrigatórios, burned-in, Space Grotesk Bold, branco com sombra
+- **Numeração:** "01", "02", "03" em caixa azul #1A56DB a cada verdade. Ritmo visual claro.
+- **Tom:** Honesto, sem hype. Quem já usa na prática e está sendo direto sobre o que aprendeu.
+- **Pausa pós-hook:** 1 segundo depois de "vou ser direto" antes de entrar na primeira verdade.
 - **Tag de série:** "EP. 03" no canto inferior direito
