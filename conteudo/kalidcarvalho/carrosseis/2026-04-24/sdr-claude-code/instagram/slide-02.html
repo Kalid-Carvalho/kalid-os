@@ -5,33 +5,32 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { width: 1080px; height: 1350px; background: #0D1526; font-family: 'Space Grotesk', sans-serif; color: #F0F4FF; position: relative; overflow: hidden; }
-    body::after { content: ''; position: absolute; inset: 0; opacity: 0.025; pointer-events: none; z-index: 20; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 300px; }
-    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px); background-size: 60px 60px; }
-    .glow-blue { position: absolute; bottom: -80px; right: -80px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 60%); z-index: 1; pointer-events: none; }
+    body { width: 1080px; height: 1350px; background: #F0F4FF; font-family: 'Space Grotesk', sans-serif; color: #0D1526; position: relative; overflow: hidden; }
+    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(13,21,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(13,21,38,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .glow-blue { position: absolute; bottom: -80px; right: -80px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(26,86,219,0.07) 0%, transparent 60%); z-index: 1; pointer-events: none; }
     .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
-    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.80); z-index: 15; }
-    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(13,21,38,0.35); letter-spacing: 0.02em; }
     .content { position: absolute; inset: 0; padding: 80px 86px 148px 86px; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
-    .tag { display: inline-flex; align-items: center; gap: 10px; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.30); border-radius: 4px; padding: 9px 18px; margin-bottom: 44px; width: fit-content; }
-    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #D97757; letter-spacing: 0.12em; text-transform: uppercase; }
-    .headline { font-size: 60px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #F0F4FF; margin-bottom: 60px; }
+    .tag { display: inline-flex; align-items: center; gap: 10px; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.35); border-radius: 4px; padding: 9px 18px; margin-bottom: 44px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #C05E35; letter-spacing: 0.12em; text-transform: uppercase; }
+    .headline { font-size: 60px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #0D1526; margin-bottom: 60px; }
     .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 56px; border-radius: 2px; }
     .problem-list { display: flex; flex-direction: column; gap: 40px; }
     .problem-item { display: flex; gap: 28px; align-items: flex-start; }
-    .problem-num { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 700; color: rgba(26,86,219,0.25); line-height: 1; flex-shrink: 0; width: 60px; }
+    .problem-num { font-family: 'JetBrains Mono', monospace; font-size: 48px; font-weight: 700; color: rgba(26,86,219,0.18); line-height: 1; flex-shrink: 0; width: 60px; }
     .problem-body { display: flex; flex-direction: column; gap: 8px; padding-top: 4px; }
-    .problem-title { font-size: 38px; font-weight: 700; color: #F0F4FF; line-height: 1.1; }
-    .problem-desc { font-size: 24px; font-weight: 400; color: #8899BB; line-height: 1.55; }
-    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.70); z-index: 15; }
+    .problem-title { font-size: 38px; font-weight: 700; color: #0D1526; line-height: 1.1; }
+    .problem-desc { font-size: 24px; font-weight: 400; color: #556080; line-height: 1.55; }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
     .ba-left { display: flex; align-items: center; gap: 14px; }
     .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #111D35; }
     .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
     .ba-info { display: flex; flex-direction: column; gap: 2px; }
-    .ba-name { font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name { font-size: 20px; font-weight: 700; color: #0D1526; }
     .ba-name .check { color: #1A56DB; margin-left: 4px; }
-    .ba-handle { font-size: 16px; font-weight: 400; color: #8899BB; }
-    .ba-right { font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+    .ba-handle { font-size: 16px; font-weight: 400; color: #556080; }
+    .ba-right { font-size: 18px; font-weight: 500; color: rgba(13,21,38,0.35); }
   </style>
 </head>
 <body>
