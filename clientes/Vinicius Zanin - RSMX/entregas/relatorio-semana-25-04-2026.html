@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Atualização Semanal — RSMX | 25 abr 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0B0F1A;
+    color: #F0F4FF;
+    min-height: 100vh;
+    padding: 48px 24px;
+  }
+
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .header {
+    border-bottom: 1px solid #1C2D4A;
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    background: rgba(26,86,219,0.15);
+    border: 1px solid rgba(26,86,219,0.35);
+    color: #7EB3FF;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 100px;
+    display: inline-block;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #F0F4FF;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .header h1 span { color: #1A56DB; }
+
+  .header-meta {
+    font-size: 14px;
+    color: #8899BB;
+    margin-top: 8px;
+  }
+
+  .header-meta strong { color: #F0F4FF; }
+
+  .status-pill {
+    background: rgba(234,179,8,0.12);
+    border: 1px solid rgba(234,179,8,0.35);
+    color: #FCD34D;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 100px;
+    white-space: nowrap;
+    align-self: flex-start;
+  }
+
+  .section {
+    margin-bottom: 40px;
+  }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #1A56DB;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #1C2D4A;
+  }
+
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .metric-card {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 20px 18px;
+  }
+
+  .metric-card.highlight {
+    border-color: rgba(26,86,219,0.4);
+    background: rgba(26,86,219,0.08);
+  }
+
+  .metric-card.warn {
+    border-color: rgba(234,179,8,0.4);
+    background: rgba(234,179,8,0.07);
+  }
+
+  .metric-card.success {
+    border-color: rgba(34,197,94,0.3);
+    background: rgba(34,197,94,0.06);
+  }
+
+  .metric-label {
+    font-size: 11px;
+    font-weight: 500;
+    color: #8899BB;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+
+  .metric-value {
+    font-size: 26px;
+    font-weight: 700;
+    color: #F0F4FF;
+    line-height: 1;
+  }
+
+  .metric-sub {
+    font-size: 12px;
+    color: #8899BB;
+    margin-top: 6px;
+  }
+
+  .table-wrap {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  thead th {
+    background: #0D1526;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8899BB;
+    padding: 14px 18px;
+    text-align: left;
+    border-bottom: 1px solid #1C2D4A;
+  }
+
+  tbody td {
+    padding: 14px 18px;
+    font-size: 14px;
+    color: #D0DEFF;
+    border-bottom: 1px solid #0D1526;
+  }
+
+  tbody tr:last-child td { border-bottom: none; }
+
+  tbody tr:hover td { background: #0D1526; }
+
+  .tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+  }
+
+  .tag-ok {
+    background: rgba(34,197,94,0.12);
+    color: #4ADE80;
+    border: 1px solid rgba(34,197,94,0.3);
+  }
+
+  .tag-warn {
+    background: rgba(234,179,8,0.12);
+    color: #FCD34D;
+    border: 1px solid rgba(234,179,8,0.3);
+  }
+
+  .tag-off {
+    background: rgba(148,163,184,0.1);
+    color: #94A3B8;
+    border: 1px solid rgba(148,163,184,0.2);
+  }
+
+  .info-box {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 12px;
+  }
+
+  .info-box.blue {
+    border-color: rgba(26,86,219,0.35);
+    background: rgba(26,86,219,0.06);
+  }
+
+  .info-box.warn {
+    border-color: rgba(234,179,8,0.35);
+    background: rgba(234,179,8,0.06);
+  }
+
+  .info-box p {
+    font-size: 14px;
+    color: #B0C4E8;
+    line-height: 1.7;
+  }
+
+  .info-box p strong { color: #F0F4FF; }
+
+  .action-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .action-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+
+  .action-num {
+    background: rgba(26,86,219,0.18);
+    color: #7EB3FF;
+    font-size: 12px;
+    font-weight: 700;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .action-text strong {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: #F0F4FF;
+    margin-bottom: 4px;
+  }
+
+  .action-text span {
+    font-size: 13px;
+    color: #8899BB;
+    line-height: 1.6;
+  }
+
+  .audience-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  @media (max-width: 600px) {
+    .audience-grid { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  .audience-card {
+    background: #111D35;
+    border: 1px solid #1C2D4A;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .audience-card .aud-value {
+    font-size: 32px;
+    font-weight: 800;
+    color: #F0F4FF;
+    margin-bottom: 4px;
+  }
+
+  .audience-card .aud-label {
+    font-size: 12px;
+    color: #8899BB;
+    margin-bottom: 10px;
+  }
+
+  .audience-card .aud-heat {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+  }
+
+  .heat-hot {
+    background: rgba(239,68,68,0.12);
+    color: #F87171;
+    border: 1px solid rgba(239,68,68,0.3);
+  }
+
+  .heat-warm {
+    background: rgba(234,179,8,0.12);
+    color: #FCD34D;
+    border: 1px solid rgba(234,179,8,0.3);
+  }
+
+  .heat-cold {
+    background: rgba(148,163,184,0.1);
+    color: #94A3B8;
+    border: 1px solid rgba(148,163,184,0.2);
+  }
+
+  .footer {
+    border-top: 1px solid #1C2D4A;
+    padding-top: 28px;
+    margin-top: 40px;
+    font-size: 13px;
+    color: #8899BB;
+    line-height: 1.7;
+  }
+
+  .footer strong { color: #F0F4FF; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="badge">Atualização Semanal</div>
+        <h1>Meta Ads <span>RSMX</span></h1>
+        <div class="header-meta">
+          Período analisado: <strong>19 a 25 de abril de 2026</strong>
+          &nbsp;·&nbsp; Responsável: <strong>Kalid Carvalho / GROVW</strong>
+        </div>
+      </div>
+      <div class="status-pill">Saldo esgotado — aguardando recarga</div>
+    </div>
+  </div>
+
+  <!-- Resumo executivo -->
+  <div class="section">
+    <div class="section-title">Resumo da semana</div>
+    <div class="info-box blue">
+      <p>
+        Esta semana rodamos a campanha de construção de audiência via <strong>vídeo views com públicos lookalike</strong>.
+        O objetivo era qualificar pessoas com base em comportamento de consumo de vídeo, criando um pool para remarketing antes de ativar o fundo de funil.
+        O saldo configurado para o período foi totalmente utilizado. <strong>As campanhas estão pausadas aguardando recarga para continuar.</strong>
+      </p>
+    </div>
+  </div>
+
+  <!-- Métricas gerais -->
+  <div class="section">
+    <div class="section-title">Performance consolidada — vídeo views (19–25 abr)</div>
+    <div class="metrics-grid">
+      <div class="metric-card highlight">
+        <div class="metric-label">Gasto total</div>
+        <div class="metric-value">R$ 180</div>
+        <div class="metric-sub">6 dias de campanha</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Alcance</div>
+        <div class="metric-value">11.811</div>
+        <div class="metric-sub">pessoas únicas</div>
+      </div>
+      <div class="metric-card success">
+        <div class="metric-label">ThruPlays</div>
+        <div class="metric-value">4.209</div>
+        <div class="metric-sub">R$ 0,04 por ThruPlay</div>
+      </div>
+      <div class="metric-card success">
+        <div class="metric-label">Hook Rate médio</div>
+        <div class="metric-value">46%</div>
+        <div class="metric-sub">CJ01 + CJ00 acima de 56%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">CPM</div>
+        <div class="metric-value">R$ 13,62</div>
+        <div class="metric-sub">por 1.000 impressões</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-label">Frequência</div>
+        <div class="metric-value">1,11</div>
+        <div class="metric-sub">audiência não saturada</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabela por conjunto -->
+  <div class="section">
+    <div class="section-title">Performance por conjunto de anúncios</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Conjunto</th>
+            <th>ThruPlays</th>
+            <th>Hook Rate</th>
+            <th>Hold Rate</th>
+            <th>Rep. 25%</th>
+            <th>Rep. 50%</th>
+            <th>Rep. 95%</th>
+            <th>Gasto</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>CJ01 — Lookalike 1-2%</td>
+            <td>1.750</td>
+            <td>59,0%</td>
+            <td>2,88%</td>
+            <td>1.669</td>
+            <td>183</td>
+            <td>104</td>
+            <td>R$ 59,23</td>
+            <td><span class="tag tag-ok">Manter</span></td>
+          </tr>
+          <tr>
+            <td>CJ00 — Lookalike 1%</td>
+            <td>1.627</td>
+            <td>56,6%</td>
+            <td>3,18%</td>
+            <td>1.572</td>
+            <td>183</td>
+            <td>108</td>
+            <td>R$ 59,25</td>
+            <td><span class="tag tag-ok">Manter</span></td>
+          </tr>
+          <tr>
+            <td>CJ02 — Lookalike 2-3%</td>
+            <td>832</td>
+            <td>24,4%</td>
+            <td>0,68%</td>
+            <td>792</td>
+            <td>78</td>
+            <td>42</td>
+            <td>R$ 60,44</td>
+            <td><span class="tag tag-warn">Pausar</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="margin-top:12px;">
+      <div class="info-box warn">
+        <p>
+          O CJ02 (Lookalike 2-3%) consumiu o mesmo valor que os outros dois conjuntos mas entregou metade dos resultados.
+          Hook Rate de 24% indica que o público mais distante da semente não responde ao criativo atual.
+          <strong>Recomendação: pausar o CJ02 e concentrar verba nos dois conjuntos de melhor performance.</strong>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audiências construídas -->
+  <div class="section">
+    <div class="section-title">Audiências construídas para remarketing</div>
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="aud-value">4.033</div>
+        <div class="aud-label">Assistiram 25% ou mais do vídeo</div>
+        <div class="aud-heat heat-warm">Quente</div>
+      </div>
+      <div class="audience-card">
+        <div class="aud-value">444</div>
+        <div class="aud-label">Assistiram 50% ou mais do vídeo</div>
+        <div class="aud-heat heat-hot">Muito quente</div>
+      </div>
+      <div class="audience-card">
+        <div class="aud-value">254</div>
+        <div class="aud-label">Assistiram 95% ou mais do vídeo</div>
+        <div class="aud-heat heat-hot">Ultra qualificado</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;">
+      <div class="info-box">
+        <p>
+          Essas audiências estão salvas na conta de anúncios e prontas para uso em remarketing.
+          Com mais uma semana de vídeo views rodando, a audiência de 50%+ deve ultrapassar 1.000 pessoas
+          — volume suficiente para um conjunto de remarketing exclusivo e altamente qualificado.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Próximas ações -->
+  <div class="section">
+    <div class="section-title">Próximos passos</div>
+    <ul class="action-list">
+      <li>
+        <div class="action-num">1</div>
+        <div class="action-text">
+          <strong>Recarregar saldo e retomar as campanhas</strong>
+          <span>Manter CJ01 (Lookalike 1-2%) e CJ00 (Lookalike 1%) ativos. Pausar CJ02. Manter turbinado de perfil em R$ 10/dia.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">2</div>
+        <div class="action-text">
+          <strong>Ativar campanha de fundo de funil (remarketing)</strong>
+          <span>Com o pixel agora corrigido, criar campanha de tráfego para LP segmentada para quem assistiu 25%+ do vídeo (4.033 pessoas). Orçamento sugerido: R$ 15/dia. Objetivo: registrar os primeiros leads com rastreamento funcionando.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">3</div>
+        <div class="action-text">
+          <strong>Analisar os dois novos criativos</strong>
+          <span>Dois criativos novos foram produzidos. Vamos revisar as transcrições para definir qual tem mais potencial para o fundo de funil — precisa ser mais direto que o criativo de topo, com prova social e CTA claro.</span>
+        </div>
+      </li>
+      <li>
+        <div class="action-num">4</div>
+        <div class="action-text">
+          <strong>Integração RVOps — receber leads na plataforma</strong>
+          <span>Atualmente os leads chegam via formulário do site e são notificados por WhatsApp, mas não entram no RVOps automaticamente. Precisamos do endpoint ou webhook do RVOps para conectar via N8N. Com essa integração, cada lead gerado pelas campanhas entra direto na sua plataforma de gestão, com dados completos (nome, telefone, email, origem).</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <!-- RVOps destaque -->
+  <div class="section">
+    <div class="section-title">Integração RVOps — detalhe técnico</div>
+    <div class="info-box blue">
+      <p>
+        O formulário do site já está capturando leads e enviando notificação automática via WhatsApp.
+        O próximo passo é fazer esses leads <strong>entrarem automaticamente no RVOps</strong> para gestão e follow-up centralizado.
+        <br><br>
+        Para configurar isso, precisamos de uma das seguintes opções do lado da plataforma:
+        <br><br>
+        <strong>Opção A:</strong> Webhook do RVOps — uma URL que a gente envia os dados do lead via POST (nome, telefone, email, origem da campanha).<br>
+        <strong>Opção B:</strong> API Key do RVOps — se a plataforma tiver API REST, conectamos diretamente.
+        <br><br>
+        Com qualquer uma das duas, configuramos o N8N para enviar cada lead das campanhas para o RVOps em menos de 5 segundos após o preenchimento.
+      </p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    Relatório gerado em <strong>25 de abril de 2026</strong> · GROVW para RSMX ·
+    Dúvidas: falar diretamente com <strong>Kalid Carvalho</strong>
+  </div>
+
+</div>
+</body>
+</html>
