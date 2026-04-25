@@ -11,7 +11,7 @@ Canal: @kalidcarvalho
 ### HOOK (0–3s)
 **Visual:** Kalid direto para a câmera, enquadramento do peito para cima
 **Overlay:** "Estou usando Claude como sistema operacional do meu negócio."
-**Script falado:** "Estou usando Claude como sistema operacional do meu negócio. Vou documentar tudo aqui."
+**Script falado:** "Estou usando Claude como sistema operacional do meu negócio. Aqui o que já construí."
 **Nota de produção:** Fala direta, tom de quem está no meio do processo. Não empolgado, confiante.
 
 ### O QUE É AI BUSINESS OS (3–15s)
