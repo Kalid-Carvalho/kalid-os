@@ -16,7 +16,7 @@ PARA QUEM QUER ABRIR UMA LOJA DE IPHONE E NÃO QUER APRENDER ERRANDO COM O PRÓP
 O mercado de iPhone é lucrativo. Mas só para quem entra com o sistema certo.
 
 **Sub-headline:**
-Luan Manzoli opera no setor de lojas Apple há anos. Na mentoria, você recebe o protocolo completo — do produto certo ao primeiro cliente — sem precisar queimar capital na curva de aprendizado que a maioria não sobrevive.
+Luan Manzoli opera no setor de lojas Apple há anos. Na mentoria, você recebe o protocolo completo: do produto certo ao primeiro cliente, sem precisar queimar capital na curva de aprendizado que a maioria não sobrevive.
 
 **CTA 1:**
 QUERO ENTRAR NO MERCADO DO JEITO CERTO
@@ -43,7 +43,7 @@ Não é falta de esforço. É falta de sistema.
 **Título:** O QUE VOCÊ APRENDE NA MENTORIA
 
 **Estrutura do negócio:**
-Como montar a operação antes de abrir — modelo, capital mínimo, estrutura jurídica e o que ninguém conta na fase zero.
+Como montar a operação antes de abrir: modelo, capital mínimo, estrutura jurídica e o que ninguém conta na fase zero.
 
 **Produto e fornecedores:**
 Onde comprar, como avaliar fornecedor, qual mix de estoque começa gerando margem real. Sem sorte, sem tentativa e erro.
@@ -52,7 +52,7 @@ Onde comprar, como avaliar fornecedor, qual mix de estoque começa gerando marge
 Como precificar para lucrar, não só para vender. Custo operacional, markup certo, quando baixar e quando segurar o preço.
 
 **Captação dos primeiros clientes:**
-Como atrair compradores qualificados sem depender de indicação — com ou sem verba de anúncio no início.
+Como atrair compradores qualificados sem depender de indicação, com ou sem verba de anúncio no início.
 
 **Escala:**
 Quando contratar, quando investir em tráfego pago, quando expandir. O mapa de quem já passou por isso.
@@ -83,7 +83,7 @@ QUERO MINHA VAGA NA MENTORIA
 
 Luan Manzoli não ensina teoria de curso online. Opera no setor. Comanda a NEXTADS, agência especializada em captação para lojas Apple no Brasil, com mais de R$[X] gerenciados em anúncios para esse mercado.
 
-Conhece o setor de dentro — como dono de operação, como gestor de tráfego e como quem já viu [X] lojas abrindo, escalar e algumas fechando por erro evitável.
+Conhece o setor de dentro: como dono de operação, como gestor de tráfego e como quem já viu [X] lojas abrindo, escalando e algumas fechando por erro evitável.
 
 O que você aprende aqui não está em nenhum conteúdo gratuito.
 
@@ -92,7 +92,7 @@ O que você aprende aqui não está em nenhum conteúdo gratuito.
 ## FAQ
 
 **Preciso ter capital para começar?**
-Sim. A mentoria te ajuda a saber exatamente quanto, como alocar e o que não fazer com ele — para não desperdiçar nem travar por falta.
+Sim. A mentoria te ajuda a saber exatamente quanto alocar e o que evitar para não desperdiçar capital nem travar por falta dele.
 
 **Funciona para quem ainda não tem loja?**
 É feita para isso. A maioria dos alunos entra sem operação e sai com plano concreto e fornecedor validado.
@@ -101,7 +101,7 @@ Sim. A mentoria te ajuda a saber exatamente quanto, como alocar e o que não faz
 Depende da sua execução. Quem implementa o protocolo correto desde o início opera com margem positiva nos primeiros meses.
 
 **Já tenho loja mas não estou lucrando. Serve?**
-Sim. A mentoria cobre diagnóstico de operação existente — produto, precificação e captação.
+Sim. A mentoria cobre diagnóstico de operação existente: produto, precificação e captação.
 
 **Tem suporte durante a mentoria?**
 Sim. Acesso direto ao Luan pelo período contratado.
@@ -121,9 +121,9 @@ GARANTIR MINHA VAGA
 
 ## Variáveis pendentes (validar com Luan)
 
-- [X] alunos — social proof / barra de confiança
-- R$[X] gerenciados em anúncios — autoridade
-- [X] lojas vistas abrindo/escalando — autoridade
-- [X] vagas disponíveis — escassez
+- [X] alunos: social proof / barra de confiança
+- R$[X] gerenciados em anúncios: autoridade
+- [X] lojas vistas abrindo/escalando: autoridade
+- [X] vagas disponíveis: escassez
 - Preço da mentoria (se for exibir na LP)
 - Link de conversão (WhatsApp, Hotmart, Checkout, etc)
