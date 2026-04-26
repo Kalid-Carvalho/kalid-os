@@ -1,0 +1,757 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>[VERDE] Mentoria Luan Manzoli — Abra Sua Loja de iPhone com o Sistema Certo</title>
+  <meta name="description" content="Aprenda com quem opera no setor. Protocolo completo para abrir e escalar uma loja de iPhone com margem real."/>
+
+  <link href="https://fonts.googleapis.com" rel="preconnect"/>
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: { DEFAULT:'#00C851', light:'#00A843', glow:'rgba(0,200,81,0.18)', soft:'rgba(0,200,81,0.09)', border:'rgba(0,200,81,0.28)' },
+          surface: { deep:'#060606', card:'#0d0d0d', elevated:'#111111' }
+        },
+        fontFamily: {
+          primary: ['"Plus Jakarta Sans"', 'sans-serif'],
+          secondary: ['"Inter"', 'sans-serif'],
+        }
+      }
+    }
+  };
+  </script>
+
+  <style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scrollbar-width:none;overflow-x:hidden}
+  ::-webkit-scrollbar{width:0}
+
+  :root{
+    --o:#00C851;--o2:#00A843;
+    --og:rgba(0,200,81,0.18);--os:rgba(0,200,81,0.09);--ob:rgba(0,200,81,0.28);
+    --black:#060606;--card:#0d0d0d;--c2:#111;
+    --bd:rgba(255,255,255,0.07);--tx:#e0e0e0;--mt:#999;--mt2:#666;
+  }
+
+  body{background:var(--black);color:var(--tx);font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+  .linear-grid{
+    background-size:40px 40px;
+    background-image:linear-gradient(to right,rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(to bottom,rgba(255,255,255,0.025) 1px,transparent 1px);
+    mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%);
+  }
+
+  .noise-overlay{position:fixed;inset:0;z-index:9999;pointer-events:none;opacity:0.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")}
+
+  @keyframes topbar-shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+  @keyframes beam-fall{0%{transform:translateY(-100%);opacity:0}5%{opacity:.5}50%{opacity:1}95%{opacity:.5}100%{transform:translateY(120vh);opacity:0}}
+  @keyframes floating-points{0%{transform:translateY(0)}85%{opacity:0}100%{transform:translateY(-55px);opacity:0}}
+  @keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+  @keyframes pulse-glow{0%,100%{box-shadow:0 0 20px rgba(0,200,81,.3),0 0 60px rgba(0,200,81,.1)}50%{box-shadow:0 0 40px rgba(0,200,81,.5),0 0 80px rgba(0,200,81,.2)}}
+  @keyframes fadeSlideIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+  @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+  .animate-beam-1{animation:beam-fall 6s linear infinite;animation-delay:0s}
+  .animate-beam-2{animation:beam-fall 8s linear infinite;animation-delay:2s}
+  .animate-beam-3{animation:beam-fall 7s linear infinite;animation-delay:4s}
+
+  .topbar{background:linear-gradient(90deg,#060606 0%,#0d0d0d 50%,#060606 100%);border-bottom:1px solid rgba(0,200,81,0.15);position:relative;overflow:hidden}
+  .topbar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,200,81,0.06),transparent);background-size:200% 100%;animation:topbar-shimmer 4s linear infinite;pointer-events:none}
+
+  .button-cta{cursor:pointer;position:relative;display:inline-flex;align-items:center;justify-content:center;overflow:hidden;transition:all .25s ease;background:radial-gradient(65.28% 65.28% at 50% 100%,rgba(0,168,67,.8) 0%,rgba(0,168,67,0) 100%),linear-gradient(0deg,#00C851,#00C851);border-radius:8px;border:none;padding:18px 40px;min-height:56px;text-decoration:none}
+  .button-cta::before{content:"";position:absolute;inset:1px;background:linear-gradient(177.95deg,rgba(255,255,255,.3) 0%,rgba(255,255,255,0) 100%);border-radius:8px;transition:all .5s ease-in-out;z-index:0}
+  .button-cta::after{content:"";position:absolute;inset:2px;background:radial-gradient(65.28% 65.28% at 50% 100%,rgba(0,168,67,.8) 0%,rgba(0,168,67,0) 100%),linear-gradient(0deg,#00C851,#00C851);border-radius:8px;transition:all .5s ease-in-out;z-index:0}
+  .button-cta:hover{transform:scale(1.05);box-shadow:0 8px 40px rgba(0,200,81,.55),0 0 80px rgba(0,200,81,.15)}
+  .button-cta .inner{z-index:2;gap:8px;position:relative;width:100%;color:#000;display:inline-flex;align-items:center;justify-content:center;font-size:.92rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase;font-family:'Plus Jakarta Sans',sans-serif}
+  .points_wrapper{overflow:hidden;width:100%;height:100%;pointer-events:none;position:absolute;z-index:1}
+  .points_wrapper .point{bottom:-10px;position:absolute;animation:floating-points infinite ease-in-out;pointer-events:none;width:2px;height:2px;background-color:rgba(0,0,0,.4);border-radius:9999px}
+  .points_wrapper .point:nth-child(1){left:10%;opacity:1;animation-duration:2.35s;animation-delay:.2s}
+  .points_wrapper .point:nth-child(2){left:20%;opacity:.7;animation-duration:2.5s;animation-delay:.5s}
+  .points_wrapper .point:nth-child(3){left:30%;opacity:.8;animation-duration:2.2s;animation-delay:.1s}
+  .points_wrapper .point:nth-child(4){left:44%;opacity:.6;animation-duration:2.05s}
+  .points_wrapper .point:nth-child(5){left:55%;opacity:1;animation-duration:1.9s}
+  .points_wrapper .point:nth-child(6){left:70%;opacity:.5;animation-duration:1.5s;animation-delay:1.5s}
+  .points_wrapper .point:nth-child(7){left:85%;opacity:.9;animation-duration:2.2s;animation-delay:.2s}
+  .points_wrapper .point:nth-child(8){left:92%;opacity:.6;animation-duration:2.6s;animation-delay:.8s}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o)}
+  .section-title{font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;line-height:1.15;color:#fff}
+  .card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:1.5rem;transition:border-color .3s ease}
+  .card:hover{border-color:var(--ob)}
+  .check-icon{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,#00C851,#00A843);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .x-icon{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+  .step-num{width:48px;height:48px;border-radius:50%;background:var(--og);border:1px solid var(--ob);display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:800;color:var(--o);flex-shrink:0}
+
+  .faq-item{border-bottom:1px solid var(--bd)}
+  .faq-toggle{width:100%;text-align:left;background:none;border:none;padding:1.25rem 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#fff;font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:600}
+  .faq-body{max-height:0;overflow:hidden;transition:max-height .35s ease}
+  .faq-body.open{max-height:300px}
+  .faq-icon{transition:transform .3s ease;color:var(--o);font-size:1.25rem;line-height:1}
+  .faq-icon.open{transform:rotate(45deg)}
+
+  .image-glow{position:absolute;inset:-30px;background:radial-gradient(ellipse at center,rgba(0,200,81,.25) 0%,rgba(0,200,81,.08) 40%,transparent 70%);pointer-events:none;z-index:0;border-radius:16px}
+
+  .guarantee-badge{background:var(--og);border:1px solid var(--ob);border-radius:12px;padding:1.25rem 1.5rem;display:flex;align-items:center;gap:1rem}
+
+  .aos{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+  .aos.visible{opacity:1;transform:translateY(0)}
+  </style>
+</head>
+<body class="selection:bg-[rgba(0,200,81,0.3)] selection:text-white">
+
+<!-- Noise -->
+<div class="noise-overlay"></div>
+
+<!-- Fixed Grid -->
+<div class="fixed inset-0 z-0 pointer-events-none linear-grid"></div>
+
+<!-- Beam Lines -->
+<div class="fixed inset-0 z-0 pointer-events-none flex w-full max-w-7xl mx-auto opacity-40">
+  <div class="flex-1 border-l border-white/[0.03] h-full"></div>
+  <div class="flex-1 border-l border-white/[0.03] h-full relative overflow-hidden">
+    <div class="absolute top-0 -left-[1px] w-[1px] h-64 bg-gradient-to-b from-transparent via-[#00C851]/60 to-transparent animate-beam-1"></div>
+  </div>
+  <div class="flex-1 border-l border-white/[0.03] h-full relative overflow-hidden">
+    <div class="absolute top-0 -left-[1px] w-[1px] h-96 bg-gradient-to-b from-transparent via-[#00C851]/80 to-transparent animate-beam-2"></div>
+  </div>
+  <div class="flex-1 border-l border-white/[0.03] h-full relative overflow-hidden">
+    <div class="absolute top-0 -left-[1px] w-[1px] h-48 bg-gradient-to-b from-transparent via-[#00C851]/60 to-transparent animate-beam-3"></div>
+  </div>
+  <div class="flex-1 border-l border-r border-white/[0.03] h-full"></div>
+</div>
+
+
+<!-- ══ TOPBAR ══ -->
+<div class="topbar relative z-10">
+  <div class="max-w-[1300px] mx-auto px-6 py-3 text-center">
+    <p class="text-xs font-semibold tracking-widest uppercase" style="color:var(--o)">
+      Para quem quer abrir uma loja de iPhone e não quer aprender errando com o próprio dinheiro
+    </p>
+  </div>
+</div>
+
+
+<!-- ══ HERO ══ -->
+<section class="relative z-10 pt-20 pb-24 px-6">
+  <div class="max-w-[1300px] mx-auto">
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Left -->
+      <div>
+        <div class="eyebrow mb-5">
+          <span style="width:6px;height:6px;border-radius:50%;background:var(--o);display:inline-block"></span>
+          Mentoria Luan Manzoli
+        </div>
+
+        <h1 class="section-title mb-6" style="font-size:clamp(2rem,5vw,3rem)">
+          O mercado de iPhone é lucrativo.<br>
+          <span style="color:var(--o)">Mas só para quem entra com o sistema certo.</span>
+        </h1>
+
+        <p class="mb-8" style="color:var(--mt);font-size:1.1rem;line-height:1.7;max-width:520px">
+          Luan Manzoli opera no setor de lojas Apple há anos. Na mentoria, você recebe o protocolo completo: do produto certo ao primeiro cliente, sem precisar queimar capital na curva de aprendizado que a maioria não sobrevive.
+        </p>
+
+        <!-- Social proof bar -->
+        <div class="flex items-center gap-3 mb-8 p-4 rounded-xl" style="background:var(--os);border:1px solid var(--ob);max-width:420px">
+          <div style="display:flex">
+            <div style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#00C851,#00A843);border:2px solid #060606;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;color:#000">LM</div>
+          </div>
+          <p style="font-size:.82rem;color:var(--mt)"><strong style="color:#fff">[X] alunos</strong> já usaram esse sistema para abrir ou escalar no mercado de iPhone</p>
+        </div>
+
+        <a href="https://wa.me/5527999429510?text=Ol%C3%A1%2C+Luan%21+Tenho+interesse+na+mentoria." target="_blank" class="button-cta">
+          <div class="points_wrapper"><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span></div>
+          <span class="inner">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.114.549 4.1 1.51 5.833L.055 23.077c-.094.317.019.658.286.854.164.12.359.18.555.18.108 0 .217-.019.322-.057l5.424-1.891C8.127 23.328 10.02 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+            Quero entrar no mercado do jeito certo
+          </span>
+        </a>
+      </div>
+
+      <!-- Right: foto placeholder -->
+      <div class="relative flex justify-center lg:justify-end">
+        <div class="relative" style="max-width:480px;width:100%">
+          <div class="image-glow"></div>
+          <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;position:relative;z-index:1;aspect-ratio:3/4;background:linear-gradient(135deg,#111 0%,#0d0d0d 100%);display:flex;align-items:center;justify-content:center">
+            <!-- SUBSTITUIR PELA FOTO DO LUAN -->
+            <div style="text-align:center;padding:2rem">
+              <div style="width:80px;height:80px;border-radius:50%;background:var(--og);border:2px solid var(--ob);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--o)"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7"/></svg>
+              </div>
+              <p style="color:var(--mt2);font-size:.8rem">Foto do Luan Manzoli</p>
+            </div>
+          </div>
+          <!-- Stats overlay -->
+          <div style="position:absolute;bottom:-20px;left:-20px;background:var(--card);border:1px solid var(--ob);border-radius:12px;padding:.875rem 1.25rem;z-index:2">
+            <p style="font-size:1.4rem;font-weight:800;color:var(--o)">R$[X]M+</p>
+            <p style="font-size:.72rem;color:var(--mt);text-transform:uppercase;letter-spacing:.08em">em anúncios gerenciados</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PROBLEMA ══ -->
+<section class="relative z-10 py-20 px-6">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="text-center mb-14 aos">
+      <div class="eyebrow mb-4">O Problema</div>
+      <h2 class="section-title mb-4">A maioria erra nas mesmas etapas.</h2>
+      <p style="color:var(--mt);max-width:520px;margin:0 auto">Não é falta de esforço. É falta de sistema.</p>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <div class="card aos" style="transition-delay:.1s">
+        <div style="width:44px;height:44px;border-radius:10px;background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3b30" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Estoque errado</h3>
+        <p style="font-size:.9rem;color:var(--mt);line-height:1.6">Compra de fornecedor errado e imobiliza capital que não gira. O dinheiro fica parado em produto que não vende.</p>
+      </div>
+
+      <div class="card aos" style="transition-delay:.2s">
+        <div style="width:44px;height:44px;border-radius:10px;background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3b30" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M4.93 4.93l14.14 14.14"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Sem captação</h3>
+        <p style="font-size:.9rem;color:var(--mt);line-height:1.6">Abre o perfil ou o ponto sem saber como atrair comprador com intenção real de compra. Só curiosos chegam.</p>
+      </div>
+
+      <div class="card aos" style="transition-delay:.3s">
+        <div style="width:44px;height:44px;border-radius:10px;background:rgba(255,59,48,0.1);border:1px solid rgba(255,59,48,0.2);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ff3b30" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Margem invisível</h3>
+        <p style="font-size:.9rem;color:var(--mt);line-height:1.6">Vende, mas no fim do mês a margem sumiu porque o custo operacional estava errado desde o início.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ PARA QUEM É / NÃO É ══ -->
+<section class="relative z-10 py-20 px-6" style="background:var(--card);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="text-center mb-14 aos">
+      <div class="eyebrow mb-4">Qualificação</div>
+      <h2 class="section-title">Essa mentoria é para você?</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Para quem É -->
+      <div style="background:rgba(34,197,94,0.04);border:1px solid rgba(34,197,94,0.15);border-radius:16px;padding:2rem" class="aos">
+        <div class="flex items-center gap-3 mb-6">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(34,197,94,0.15);display:flex;align-items:center;justify-content:center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h3 style="font-size:1.1rem;font-weight:700;color:#fff">É para você se...</h3>
+        </div>
+        <ul style="display:flex;flex-direction:column;gap:.875rem">
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Você quer abrir a primeira loja de iPhone mas não sabe por onde começar</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Você tem capital disponível mas tem medo de alocar errado e queimar tudo</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Você já tentou entrar no mercado e travou na hora de encontrar fornecedor confiável</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Você quer um negócio com margem real, sem depender de emprego nem de sorte</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Para quem NÃO É -->
+      <div style="background:rgba(255,255,255,0.02);border:1px solid var(--bd);border-radius:16px;padding:2rem" class="aos" style="transition-delay:.15s">
+        <div class="flex items-center gap-3 mb-6">
+          <div style="width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--mt)" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </div>
+          <h3 style="font-size:1.1rem;font-weight:700;color:var(--mt)">Não é para você se...</h3>
+        </div>
+        <ul style="display:flex;flex-direction:column;gap:.875rem">
+          <li class="flex items-start gap-3">
+            <div class="x-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mt)" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <p style="font-size:.92rem;color:var(--mt2)">Você quer resultado sem precisar executar nada</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="x-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mt)" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <p style="font-size:.92rem;color:var(--mt2)">Você busca conteúdo para consumir e nunca aplicar</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="x-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="var(--mt)" stroke-width="3"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+            <p style="font-size:.92rem;color:var(--mt2)">Você não tem capital mínimo para iniciar uma operação comercial</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ TRANSFORMAÇÃO ══ -->
+<section class="relative z-10 py-20 px-6">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="text-center mb-14 aos">
+      <div class="eyebrow mb-4">Transformação</div>
+      <h2 class="section-title">De onde você sai para onde você vai</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 max-w-[860px] mx-auto">
+
+      <!-- Antes -->
+      <div style="background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:2rem" class="aos">
+        <p style="font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--mt2);margin-bottom:1.25rem">Antes da mentoria</p>
+        <ul style="display:flex;flex-direction:column;gap:.75rem">
+          <li class="flex items-start gap-3">
+            <span style="color:var(--mt2);margin-top:3px;font-size:.8rem">·</span>
+            <p style="font-size:.92rem;color:var(--mt2)">Sem operação estruturada</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span style="color:var(--mt2);margin-top:3px;font-size:.8rem">·</span>
+            <p style="font-size:.92rem;color:var(--mt2)">Sem fornecedor validado</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span style="color:var(--mt2);margin-top:3px;font-size:.8rem">·</span>
+            <p style="font-size:.92rem;color:var(--mt2)">Sem sistema de captação</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <span style="color:var(--mt2);margin-top:3px;font-size:.8rem">·</span>
+            <p style="font-size:.92rem;color:var(--mt2)">Gastando tempo em fórum sem resultado</p>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Depois -->
+      <div style="background:rgba(0,200,81,0.05);border:1px solid var(--ob);border-radius:16px;padding:2rem;box-shadow:0 0 40px rgba(0,200,81,0.08)" class="aos" style="transition-delay:.15s">
+        <p style="font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--o);margin-bottom:1.25rem">Depois da mentoria</p>
+        <ul style="display:flex;flex-direction:column;gap:.75rem">
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px;width:16px;height:16px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Operação montada com protocolo testado</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px;width:16px;height:16px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Fornecedor validado com margem real</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px;width:16px;height:16px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Primeiros clientes chegando sem indicação</p>
+          </li>
+          <li class="flex items-start gap-3">
+            <div class="check-icon" style="margin-top:2px;width:16px;height:16px"><svg width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Clareza total sobre onde e como escalar</p>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ SOLUÇÃO: O QUE VOCÊ APRENDE ══ -->
+<section class="relative z-10 py-20 px-6" style="background:var(--card);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="text-center mb-14 aos">
+      <div class="eyebrow mb-4">Conteúdo</div>
+      <h2 class="section-title">O que você aprende na mentoria</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <div class="card aos" style="transition-delay:.05s">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--og);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--o)" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Estrutura do negócio</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Como montar a operação antes de abrir: modelo, capital mínimo, estrutura jurídica e o que ninguém conta na fase zero.</p>
+      </div>
+
+      <div class="card aos" style="transition-delay:.1s">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--og);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--o)" stroke-width="2"><path d="M20 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Produto e fornecedores</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Onde comprar, como avaliar fornecedor, qual mix de estoque começa gerando margem real. Sem sorte, sem tentativa e erro.</p>
+      </div>
+
+      <div class="card aos" style="transition-delay:.15s">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--og);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--o)" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Precificação e margem</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Como precificar para lucrar, não só para vender. Custo operacional, markup certo, quando baixar e quando segurar o preço.</p>
+      </div>
+
+      <div class="card aos" style="transition-delay:.2s">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--og);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--o)" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6.13 6.13l.94-.94a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Captação dos primeiros clientes</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Como atrair compradores qualificados sem depender de indicação, com ou sem verba de anúncio no início.</p>
+      </div>
+
+      <div class="card aos" style="transition-delay:.25s">
+        <div style="width:44px;height:44px;border-radius:10px;background:var(--og);display:flex;align-items:center;justify-content:center;margin-bottom:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--o)" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Escala</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Quando contratar, quando investir em tráfego pago, quando expandir. O mapa de quem já passou por isso.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ O QUE ESTÁ INCLUÍDO ══ -->
+<section class="relative z-10 py-20 px-6">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="grid lg:grid-cols-2 gap-16 items-start">
+
+      <div class="aos">
+        <div class="eyebrow mb-4">Entregáveis</div>
+        <h2 class="section-title mb-4">O que você recebe</h2>
+        <p style="color:var(--mt);line-height:1.7">Tudo o que você precisa para sair do zero e entrar no mercado de iPhone com estrutura real, não com suposição.</p>
+      </div>
+
+      <div class="aos" style="transition-delay:.1s">
+        <ul style="display:flex;flex-direction:column;gap:1rem">
+          <li class="flex items-start gap-4" style="padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">[X] módulos em vídeo com o protocolo completo de abertura e operação</p>
+          </li>
+          <li class="flex items-start gap-4" style="padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Planilha de precificação e controle de margem pronta para usar</p>
+          </li>
+          <li class="flex items-start gap-4" style="padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Lista validada de fornecedores com critérios de avaliação</p>
+          </li>
+          <li class="flex items-start gap-4" style="padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">Acesso ao grupo exclusivo de alunos</p>
+          </li>
+          <li class="flex items-start gap-4" style="padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <p style="font-size:.92rem;color:var(--tx)">[X] semanas de suporte direto com Luan via WhatsApp</p>
+          </li>
+          <li class="flex items-start gap-4" style="padding:.875rem;background:rgba(0,200,81,0.05);border:1px solid var(--ob);border-radius:10px">
+            <div class="check-icon" style="margin-top:2px"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <div>
+              <p style="font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--o);margin-bottom:.25rem">Bônus</p>
+              <p style="font-size:.92rem;color:var(--tx)">[Descrever bônus com o Luan]</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ COMO FUNCIONA ══ -->
+<section class="relative z-10 py-20 px-6" style="background:var(--card);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="text-center mb-14 aos">
+      <div class="eyebrow mb-4">Processo</div>
+      <h2 class="section-title">Como funciona</h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-8 max-w-[900px] mx-auto">
+
+      <div class="text-center aos" style="transition-delay:.05s">
+        <div class="step-num mx-auto mb-5">01</div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Inscrição</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Clique no botão e fale com o Luan pelo WhatsApp. Vagas são limitadas por ciclo.</p>
+      </div>
+
+      <div class="text-center aos" style="transition-delay:.15s">
+        <div class="step-num mx-auto mb-5">02</div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Acesso ao conteúdo</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Você recebe o material estruturado e acesso direto ao Luan para tirar dúvidas durante o período da mentoria.</p>
+      </div>
+
+      <div class="text-center aos" style="transition-delay:.25s">
+        <div class="step-num mx-auto mb-5">03</div>
+        <h3 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:.5rem">Execução com suporte</h3>
+        <p style="font-size:.88rem;color:var(--mt);line-height:1.6">Você implementa o sistema com acompanhamento. Não fica sozinho na hora de tomar decisão de capital.</p>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="https://wa.me/5527999429510?text=Ol%C3%A1%2C+Luan%21+Tenho+interesse+na+mentoria." target="_blank" class="button-cta">
+        <div class="points_wrapper"><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span></div>
+        <span class="inner">Quero minha vaga na mentoria</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ AUTORIDADE ══ -->
+<section class="relative z-10 py-20 px-6">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+      <!-- Foto -->
+      <div class="relative flex justify-center aos">
+        <div class="relative" style="max-width:420px;width:100%">
+          <div class="image-glow"></div>
+          <div style="border-radius:16px;border:1px solid rgba(255,255,255,0.08);overflow:hidden;position:relative;z-index:1;aspect-ratio:4/5;background:var(--card);display:flex;align-items:center;justify-content:center">
+            <!-- SUBSTITUIR PELA FOTO DO LUAN -->
+            <div style="text-align:center;padding:2rem">
+              <div style="width:80px;height:80px;border-radius:50%;background:var(--og);border:2px solid var(--ob);margin:0 auto 1rem;display:flex;align-items:center;justify-content:center">
+                <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--o)"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.582-7 8-7s8 3 8 7"/></svg>
+              </div>
+              <p style="color:var(--mt2);font-size:.8rem">Foto do Luan Manzoli</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bio -->
+      <div class="aos" style="transition-delay:.1s">
+        <div class="eyebrow mb-4">Quem está do outro lado</div>
+        <h2 class="section-title mb-6">Luan Manzoli</h2>
+        <p style="color:var(--mt);line-height:1.8;margin-bottom:1.25rem">
+          Luan Manzoli não ensina teoria de curso online. Opera no setor. Comanda a NEXTADS, agência especializada em captação para lojas Apple no Brasil, com mais de R$[X] gerenciados em anúncios para esse mercado.
+        </p>
+        <p style="color:var(--mt);line-height:1.8;margin-bottom:2rem">
+          Conhece o setor de dentro: como dono de operação, como gestor de tráfego e como quem já viu [X] lojas abrindo, escalando e algumas fechando por erro evitável. O que você aprende aqui não está em nenhum conteúdo gratuito.
+        </p>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-4">
+          <div style="text-align:center;padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <p style="font-size:1.4rem;font-weight:800;color:var(--o)">R$[X]M</p>
+            <p style="font-size:.72rem;color:var(--mt2);margin-top:.25rem">em anúncios</p>
+          </div>
+          <div style="text-align:center;padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <p style="font-size:1.4rem;font-weight:800;color:var(--o)">[X]+</p>
+            <p style="font-size:.72rem;color:var(--mt2);margin-top:.25rem">lojas atendidas</p>
+          </div>
+          <div style="text-align:center;padding:.875rem;background:var(--card);border:1px solid var(--bd);border-radius:10px">
+            <p style="font-size:1.4rem;font-weight:800;color:var(--o)">[X]+</p>
+            <p style="font-size:.72rem;color:var(--mt2);margin-top:.25rem">alunos</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ INVESTIMENTO ══ -->
+<section class="relative z-10 py-20 px-6" style="background:var(--card);border-top:1px solid var(--bd);border-bottom:1px solid var(--bd)">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="text-center mb-14 aos">
+      <div class="eyebrow mb-4">Investimento</div>
+      <h2 class="section-title">Quanto custa entrar no mercado certo</h2>
+    </div>
+
+    <div class="max-w-[520px] mx-auto">
+      <div style="background:var(--c2);border:1px solid var(--ob);border-radius:20px;padding:2.5rem;text-align:center;box-shadow:0 0 60px rgba(0,200,81,0.1)" class="aos">
+
+        <p style="font-size:.72rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--o);margin-bottom:1rem">Mentoria Completa</p>
+
+        <div style="margin-bottom:.5rem">
+          <span style="font-size:2.8rem;font-weight:800;color:#fff">R$997</span>
+          <span style="font-size:1rem;color:var(--mt)">,00</span>
+        </div>
+        <p style="color:var(--mt);font-size:.9rem;margin-bottom:2rem">ou 12x de R$97,00</p>
+
+        <a href="https://wa.me/5527999429510?text=Ol%C3%A1%2C+Luan%21+Tenho+interesse+na+mentoria." target="_blank" class="button-cta" style="width:100%;justify-content:center">
+          <div class="points_wrapper"><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span></div>
+          <span class="inner">Garantir minha vaga</span>
+        </a>
+
+        <!-- Garantia -->
+        <div class="guarantee-badge mt-6" style="justify-content:center;text-align:left">
+          <div style="width:40px;height:40px;border-radius:50%;background:var(--og);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--o)" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div>
+            <p style="font-size:.85rem;font-weight:700;color:#fff;margin-bottom:.15rem">Garantia de [X] dias</p>
+            <p style="font-size:.8rem;color:var(--mt)">Se você aplicar o protocolo e não ver resultado, devolvemos o valor. Sem burocracia.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ FAQ ══ -->
+<section class="relative z-10 py-20 px-6">
+  <div class="max-w-[1300px] mx-auto">
+
+    <div class="text-center mb-14 aos">
+      <div class="eyebrow mb-4">Dúvidas</div>
+      <h2 class="section-title">Perguntas frequentes</h2>
+    </div>
+
+    <div style="max-width:720px;margin:0 auto" class="aos">
+
+      <div class="faq-item">
+        <button class="faq-toggle" onclick="toggleFaq(this)">
+          Preciso ter capital para começar?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p style="color:var(--mt);padding-bottom:1.25rem;font-size:.92rem;line-height:1.7">Sim. A mentoria te ajuda a saber exatamente quanto alocar e o que evitar para não desperdiçar capital nem travar por falta dele.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-toggle" onclick="toggleFaq(this)">
+          Funciona para quem ainda não tem loja?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p style="color:var(--mt);padding-bottom:1.25rem;font-size:.92rem;line-height:1.7">É feita para isso. A maioria dos alunos entra sem operação e sai com plano concreto e fornecedor validado.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-toggle" onclick="toggleFaq(this)">
+          Quanto tempo leva para ter resultado?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p style="color:var(--mt);padding-bottom:1.25rem;font-size:.92rem;line-height:1.7">Depende da sua execução. Quem implementa o protocolo correto desde o início opera com margem positiva nos primeiros meses.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-toggle" onclick="toggleFaq(this)">
+          Já tenho loja mas não estou lucrando. Serve?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p style="color:var(--mt);padding-bottom:1.25rem;font-size:.92rem;line-height:1.7">Sim. A mentoria cobre diagnóstico de operação existente: produto, precificação e captação.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-toggle" onclick="toggleFaq(this)">
+          Tem suporte durante a mentoria?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p style="color:var(--mt);padding-bottom:1.25rem;font-size:.92rem;line-height:1.7">Sim. Acesso direto ao Luan pelo período contratado.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-toggle" onclick="toggleFaq(this)">
+          Como funciona a garantia?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-body">
+          <p style="color:var(--mt);padding-bottom:1.25rem;font-size:.92rem;line-height:1.7">Você tem [X] dias para aplicar o conteúdo. Se não funcionar, é só pedir o reembolso. Sem perguntas.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ══ CTA FINAL ══ -->
+<section class="relative z-10 py-24 px-6 overflow-hidden">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,200,81,0.08) 0%,transparent 70%);pointer-events:none"></div>
+  <div class="max-w-[1300px] mx-auto text-center relative z-10">
+
+    <div class="aos">
+      <div class="eyebrow mb-5" style="justify-content:center">Últimas vagas</div>
+      <h2 class="section-title mb-4" style="font-size:clamp(1.8rem,4vw,2.8rem)">
+        Luan acompanha cada aluno de perto.<br>
+        <span style="color:var(--o)">As vagas são limitadas por ciclo.</span>
+      </h2>
+      <p style="color:var(--mt);max-width:500px;margin:0 auto 2rem;font-size:1.05rem">[X] vagas disponíveis neste ciclo. Quando fecharem, a próxima turma abre em data a confirmar.</p>
+
+      <a href="https://wa.me/5527999429510?text=Ol%C3%A1%2C+Luan%21+Tenho+interesse+na+mentoria." target="_blank" class="button-cta" style="font-size:1rem;padding:20px 48px">
+        <div class="points_wrapper"><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span><span class="point"></span></div>
+        <span class="inner" style="font-size:1rem">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.114.549 4.1 1.51 5.833L.055 23.077c-.094.317.019.658.286.854.164.12.359.18.555.18.108 0 .217-.019.322-.057l5.424-1.891C8.127 23.328 10.02 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg>
+          Garantir minha vaga agora
+        </span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ══ FOOTER ══ -->
+<footer style="border-top:1px solid var(--bd);padding:2rem 1.5rem;text-align:center">
+  <p style="font-size:.78rem;color:var(--mt2)">© 2025 Luan Manzoli. Todos os direitos reservados.</p>
+</footer>
+
+
+<script>
+// FAQ Accordion
+function toggleFaq(btn) {
+  const body = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-icon');
+  const isOpen = body.classList.contains('open');
+  document.querySelectorAll('.faq-body.open').forEach(b => {
+    b.classList.remove('open');
+    b.previousElementSibling.querySelector('.faq-icon').classList.remove('open');
+  });
+  if (!isOpen) {
+    body.classList.add('open');
+    icon.classList.add('open');
+  }
+}
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.15 });
+document.querySelectorAll('.aos').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
