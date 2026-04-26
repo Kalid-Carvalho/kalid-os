@@ -20,6 +20,7 @@ Luan Manzoli opera no setor de lojas Apple há anos. Na mentoria, você recebe o
 
 **CTA 1:**
 QUERO ENTRAR NO MERCADO DO JEITO CERTO
+(WhatsApp do Luan)
 
 **Barra de confiança:**
 [X] alunos já usaram esse sistema para abrir ou escalar no mercado de iPhone.
@@ -116,6 +117,7 @@ Você implementa o sistema com suporte. Não fica sozinho na hora de tomar decis
 
 **CTA 2:**
 QUERO MINHA VAGA NA MENTORIA
+(WhatsApp do Luan)
 
 ---
 
@@ -135,13 +137,14 @@ O que você aprende aqui não está em nenhum conteúdo gratuito.
 
 **Título:** INVESTIMENTO
 
-Valor: R$[X] à vista ou [X]x de R$[X]
+Valor: R$997,00 à vista ou 12x de R$97,00
 
 **Garantia de [X] dias:**
 Se você aplicar o protocolo e não ver resultado dentro do prazo, devolvemos o valor integralmente. Sem burocracia.
 
 **CTA 3:**
-GARANTIR MINHA VAGA COM DESCONTO
+GARANTIR MINHA VAGA
+(WhatsApp do Luan)
 
 ---
 
@@ -175,6 +178,7 @@ Luan acompanha cada aluno de perto. As vagas são limitadas por ciclo para garan
 
 **CTA FINAL:**
 GARANTIR MINHA VAGA
+(WhatsApp do Luan)
 
 ---
 
@@ -187,6 +191,5 @@ GARANTIR MINHA VAGA
 - [X] módulos em vídeo: o que está incluído
 - [X] semanas de suporte: o que está incluído
 - Bônus específicos: o que está incluído
-- Preço da mentoria + parcelamento: investimento
 - Prazo de garantia: investimento
-- Link de conversão (WhatsApp, Hotmart, Checkout, etc)
+- Mensagem padrão para o WhatsApp do CTA (confirmar com Luan o número: (27) 99942-9510)
