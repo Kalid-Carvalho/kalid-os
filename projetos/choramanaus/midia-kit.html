@@ -4,29 +4,38 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ChoraManaus: Mídia Kit 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --green: #2DBF4E;
-  --green-dim: rgba(45,191,78,0.12);
-  --green-border: rgba(45,191,78,0.3);
-  --dark: #080808;
-  --dark2: #0f0f0f;
-  --dark3: #181818;
-  --dark4: #212121;
-  --border: #1e1e1e;
-  --border2: #2a2a2a;
-  --gray: #666;
-  --gray2: #999;
-  --off: #ccc;
-  --white: #fff;
+  --green:       #1E7A47;
+  --green-dark:  #0D3D23;
+  --green-lit:   #2D9A5A;
+  --green-dim:   rgba(30,122,71,0.12);
+  --green-border:rgba(30,122,71,0.35);
+  --amarelo:     #F9C41A;
+  --amarelo-dim: rgba(249,196,26,0.12);
+  --laranja:     #C94A0A;
+  --dark:        #070B09;
+  --dark2:       #0C1610;
+  --dark3:       #111D15;
+  --dark4:       #1A2B1E;
+  --border:      rgba(255,255,255,0.07);
+  --border2:     rgba(255,255,255,0.12);
+  --gray:        #666;
+  --gray2:       #999;
+  --off:         #ccc;
+  --white:       #fff;
 }
 
 body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--dark);
   color: var(--white);
+  font-feature-settings: "kern" 1;
 }
 
 /* ────────── HELPERS ────────── */
@@ -56,7 +65,7 @@ body {
   top: -300px; left: 50%;
   transform: translateX(-50%);
   width: 900px; height: 900px;
-  background: radial-gradient(circle, rgba(45,191,78,0.1) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(30,122,71,0.15) 0%, transparent 65%);
   pointer-events: none;
 }
 .cover-inner {
@@ -91,13 +100,15 @@ body {
   background: var(--green);
 }
 .cover-name {
-  font-size: 96px;
-  font-weight: 900;
-  letter-spacing: -5px;
-  line-height: 0.9;
+  font-family: 'Anton', sans-serif;
+  font-size: 110px;
+  font-weight: 400;
+  letter-spacing: 2px;
+  line-height: 0.92;
   margin-bottom: 24px;
+  text-transform: uppercase;
 }
-.cover-name em { color: var(--green); font-style: normal; }
+.cover-name em { color: var(--amarelo); font-style: normal; }
 .cover-claim {
   font-size: 20px;
   color: var(--gray2);
@@ -121,10 +132,11 @@ body {
 }
 .cn-item:last-child { border-right: none; }
 .cn-val {
+  font-family: 'Anton', sans-serif;
   font-size: 44px;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -2px;
+  font-weight: 400;
+  color: var(--amarelo);
+  letter-spacing: 1px;
   line-height: 1;
   margin-bottom: 6px;
 }
@@ -164,10 +176,11 @@ body {
   padding: 52px 48px;
 }
 .pos-cell-num {
+  font-family: 'Anton', sans-serif;
   font-size: 64px;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -3px;
+  font-weight: 400;
+  color: var(--amarelo);
+  letter-spacing: 1px;
   line-height: 1;
   margin-bottom: 12px;
 }
@@ -183,8 +196,9 @@ body {
   line-height: 1.7;
 }
 .pos-highlight {
-  background: var(--green-dim);
-  border: 1px solid var(--green-border);
+  background: var(--amarelo-dim);
+  border: 1px solid rgba(249,196,26,0.3);
+  border-left: 3px solid var(--amarelo);
   border-radius: 12px;
   padding: 20px 24px;
   margin-top: 48px;
@@ -192,7 +206,7 @@ body {
   color: var(--off);
   line-height: 1.7;
 }
-.pos-highlight strong { color: var(--green); }
+.pos-highlight strong { color: var(--amarelo); }
 
 /* ────────── 3. AUDIÊNCIA ────────── */
 .audience { padding: 100px 0; }
@@ -242,7 +256,7 @@ body {
   border-radius: 4px;
   background: var(--green);
 }
-.bar-fill.dim { background: #2a5c36; }
+.bar-fill.dim { background: var(--green-dark); }
 .bar-pct {
   font-size: 13px;
   font-weight: 700;
@@ -262,7 +276,7 @@ body {
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: conic-gradient(var(--green) 0% 52.1%, #1a3a22 52.1% 100%);
+  background: conic-gradient(var(--green) 0% 52.1%, #0D3D23 52.1% 100%);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -308,7 +322,7 @@ body {
 .city-name { color: var(--off); }
 .city-name small { display: block; font-size: 11px; color: var(--gray); margin-top: 2px; }
 .city-pct { font-weight: 700; color: var(--white); }
-.city-pct.highlight { color: var(--green); font-size: 18px; }
+.city-pct.highlight { color: var(--amarelo); font-size: 18px; }
 
 /* Insight box */
 .insight-box {
@@ -323,10 +337,11 @@ body {
 }
 .ib-item { }
 .ib-val {
+  font-family: 'Anton', sans-serif;
   font-size: 48px;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -2px;
+  font-weight: 400;
+  color: var(--amarelo);
+  letter-spacing: 1px;
   line-height: 1;
   margin-bottom: 8px;
 }
@@ -362,7 +377,7 @@ body {
   color: var(--gray2);
   line-height: 1.7;
 }
-.pol-desc strong { color: var(--green); }
+.pol-desc strong { color: var(--amarelo); }
 
 /* ────────── 5. FORMATOS ────────── */
 .formats { padding: 100px 0; }
@@ -380,13 +395,13 @@ body {
   position: relative;
 }
 .fmt-card.featured {
-  border-color: var(--green);
-  background: linear-gradient(135deg, rgba(45,191,78,0.07) 0%, var(--dark2) 60%);
+  border-color: var(--amarelo);
+  background: linear-gradient(135deg, rgba(249,196,26,0.06) 0%, var(--dark2) 60%);
 }
 .fmt-badge {
   position: absolute;
   top: -1px; right: 28px;
-  background: var(--green);
+  background: var(--amarelo);
   color: var(--dark);
   font-size: 9px;
   font-weight: 800;
@@ -416,10 +431,11 @@ body {
   text-align: right;
 }
 .fmt-price .amt {
+  font-family: 'Anton', sans-serif;
   font-size: 36px;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -1.5px;
+  font-weight: 400;
+  color: var(--amarelo);
+  letter-spacing: 0.5px;
   line-height: 1;
 }
 .fmt-price .per {
@@ -458,7 +474,7 @@ body {
 .pack-total {
   margin-top: 20px;
   background: var(--dark2);
-  border: 1px solid var(--green);
+  border: 1px solid var(--amarelo);
   border-radius: 20px;
   padding: 48px;
   display: grid;
@@ -479,7 +495,7 @@ body {
 }
 .pt-right { text-align: right; }
 .pt-right .from { font-size: 11px; color: var(--gray2); text-transform: uppercase; letter-spacing: 1px; }
-.pt-right .price { font-size: 64px; font-weight: 900; color: var(--green); letter-spacing: -3px; line-height: 1; }
+.pt-right .price { font-family: 'Anton', sans-serif; font-size: 64px; font-weight: 400; color: var(--amarelo); letter-spacing: 1px; line-height: 1; }
 .pt-right .note { font-size: 12px; color: var(--gray2); }
 
 /* ────────── 6. ALCANCE POLÍTICO ────────── */
@@ -499,10 +515,11 @@ body {
   text-align: center;
 }
 .rp-cell .val {
+  font-family: 'Anton', sans-serif;
   font-size: 48px;
-  font-weight: 900;
-  color: var(--green);
-  letter-spacing: -2px;
+  font-weight: 400;
+  color: var(--amarelo);
+  letter-spacing: 1px;
   line-height: 1;
   margin-bottom: 10px;
 }
@@ -530,19 +547,20 @@ body {
   bottom: -200px; left: 50%;
   transform: translateX(-50%);
   width: 700px; height: 700px;
-  background: radial-gradient(circle, rgba(45,191,78,0.12) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(30,122,71,0.18) 0%, transparent 65%);
   pointer-events: none;
 }
 .contact h2 {
-  font-size: 64px;
-  font-weight: 900;
-  letter-spacing: -3px;
-  line-height: 1;
+  font-family: 'Anton', sans-serif;
+  font-size: 72px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  line-height: 0.95;
   margin-bottom: 20px;
   position: relative;
   z-index: 1;
 }
-.contact h2 em { color: var(--green); font-style: normal; }
+.contact h2 em { color: var(--amarelo); font-style: normal; }
 .contact p {
   font-size: 18px;
   color: var(--gray2);
@@ -552,7 +570,7 @@ body {
 }
 .contact-btn {
   display: inline-block;
-  background: var(--green);
+  background: var(--amarelo);
   color: var(--dark);
   font-size: 15px;
   font-weight: 800;
@@ -659,7 +677,7 @@ body {
 <section class="positioning">
   <div class="w">
     <div class="tag">Quem somos</div>
-    <h2 style="font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1.05;max-width:700px;">
+    <h2 style="font-family:'Anton',sans-serif;font-size:52px;font-weight:400;letter-spacing:0.5px;line-height:1.0;max-width:700px;">
       A voz do povo<br>de Manaus
     </h2>
 
@@ -697,7 +715,7 @@ body {
 <section class="audience">
   <div class="w">
     <div class="tag">Quem te vê</div>
-    <h2 style="font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1.05;">
+    <h2 style="font-family:'Anton',sans-serif;font-size:52px;font-weight:400;letter-spacing:0.5px;line-height:1.0;">
       Perfil da audiência
     </h2>
     <p style="font-size:16px;color:var(--gray2);margin-top:16px;max-width:560px;line-height:1.7;">
@@ -720,7 +738,7 @@ body {
               </div>
             </div>
             <div class="gender-item">
-              <div class="gender-dot" style="background:#1a3a22"></div>
+              <div class="gender-dot" style="background:var(--green-dark)"></div>
               <div>
                 <div class="gender-item-val">47,9%</div>
                 <div class="gender-item-lbl">Mulheres</div>
@@ -860,7 +878,7 @@ body {
 <section class="reach-pol">
   <div class="w">
     <div class="tag">Para candidatos e mandatos</div>
-    <h2 style="font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1.05;max-width:700px;">
+    <h2 style="font-family:'Anton',sans-serif;font-size:52px;font-weight:400;letter-spacing:0.5px;line-height:1.0;max-width:700px;">
       Por que o ChoraManaus<br>move voto
     </h2>
 
@@ -904,7 +922,7 @@ body {
 <section class="formats">
   <div class="w">
     <div class="tag">Formatos e preços</div>
-    <h2 style="font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1.05;">
+    <h2 style="font-family:'Anton',sans-serif;font-size:52px;font-weight:400;letter-spacing:0.5px;line-height:1.0;">
       Como sua mensagem<br>chega ao eleitor
     </h2>
     <p style="font-size:16px;color:var(--gray2);margin-top:16px;max-width:560px;line-height:1.7;">
@@ -1025,7 +1043,7 @@ body {
 <section class="reach-pol" style="padding:100px 0;">
   <div class="w">
     <div class="tag">O que seu investimento compra</div>
-    <h2 style="font-size:48px;font-weight:900;letter-spacing:-2px;line-height:1.05;">
+    <h2 style="font-family:'Anton',sans-serif;font-size:52px;font-weight:400;letter-spacing:0.5px;line-height:1.0;">
       Alcance real em números
     </h2>
     <p style="font-size:16px;color:var(--gray2);margin-top:16px;max-width:560px;line-height:1.7;">

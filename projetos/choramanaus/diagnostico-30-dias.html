@@ -4,20 +4,27 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ChoraManaus: Diagnóstico & Plano 30 Dias</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   :root {
-    --green: #1DB954;
-    --green-dark: #159040;
-    --dark: #0f0f0f;
-    --dark2: #1a1a1a;
-    --dark3: #242424;
-    --gray: #888;
-    --light: #f5f5f5;
-    --white: #fff;
-    --red: #e53935;
-    --yellow: #f9a825;
+    --green:      #1E7A47;
+    --green-dark: #0D3D23;
+    --green-lit:  #2D9A5A;
+    --amarelo:    #F9C41A;
+    --laranja:    #C94A0A;
+    --dark:       #070B09;
+    --dark2:      #0C1610;
+    --dark3:      #111D15;
+    --gray:       #666;
+    --gray2:      #999;
+    --white:      #fff;
+    --red:        #e53935;
+    --border:     rgba(255,255,255,0.07);
+    --border2:    rgba(255,255,255,0.12);
   }
 
   body {
@@ -37,11 +44,12 @@
     align-items: center;
   }
   .header-left h1 {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
+    font-family: 'Anton', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: 0.5px;
   }
-  .header-left h1 span { color: var(--green); }
+  .header-left h1 span { color: var(--amarelo); }
   .header-left p {
     color: var(--gray);
     font-size: 14px;
@@ -79,10 +87,11 @@
     font-weight: 600;
   }
   .section-heading {
-    font-size: 32px;
-    font-weight: 800;
+    font-family: 'Anton', sans-serif;
+    font-size: 36px;
+    font-weight: 400;
     margin-bottom: 40px;
-    letter-spacing: -0.5px;
+    letter-spacing: 0.5px;
   }
 
   /* STATUS GRID */
@@ -96,7 +105,7 @@
   /* METRIC CARD */
   .metric-card {
     background: var(--dark2);
-    border: 1px solid #2a2a2a;
+    border: 1px solid var(--border2);
     border-radius: 12px;
     padding: 28px;
   }
@@ -108,10 +117,12 @@
     margin-bottom: 8px;
   }
   .metric-card .metric-value {
-    font-size: 36px;
-    font-weight: 800;
+    font-family: 'Anton', sans-serif;
+    font-size: 38px;
+    font-weight: 400;
     line-height: 1;
     margin-bottom: 6px;
+    color: var(--white);
   }
   .metric-card .metric-value.placeholder {
     color: var(--gray);
@@ -123,7 +134,7 @@
   }
   .metric-card.green { border-left: 3px solid var(--green); }
   .metric-card.red { border-left: 3px solid var(--red); }
-  .metric-card.yellow { border-left: 3px solid var(--yellow); }
+  .metric-card.yellow { border-left: 3px solid var(--amarelo); }
 
   /* STATUS TABLE */
   .status-table {
@@ -138,12 +149,12 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     color: var(--gray);
-    border-bottom: 1px solid #2a2a2a;
+    border-bottom: 1px solid var(--border2);
   }
   .status-table td {
     padding: 16px 20px;
     font-size: 14px;
-    border-bottom: 1px solid #1e1e1e;
+    border-bottom: 1px solid var(--border);
     vertical-align: top;
   }
   .status-table tr:last-child td { border-bottom: none; }
@@ -157,14 +168,14 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
-  .badge.ok { background: rgba(29,185,84,0.15); color: var(--green); }
+  .badge.ok { background: rgba(30,122,71,0.15); color: var(--green-lit); }
   .badge.nok { background: rgba(229,57,53,0.15); color: var(--red); }
-  .badge.parcial { background: rgba(249,168,37,0.15); color: var(--yellow); }
+  .badge.parcial { background: rgba(249,196,26,0.15); color: var(--amarelo); }
 
   /* DIVIDER */
   .divider {
     height: 1px;
-    background: #2a2a2a;
+    background: var(--border2);
     margin: 60px 0;
   }
 
@@ -180,7 +191,8 @@
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #2a2a2a;
+    background: var(--green);
+    opacity: 0.35;
   }
   .week {
     position: relative;
@@ -207,9 +219,11 @@
     margin-bottom: 6px;
   }
   .week-title {
-    font-size: 20px;
-    font-weight: 700;
+    font-family: 'Anton', sans-serif;
+    font-size: 22px;
+    font-weight: 400;
     margin-bottom: 16px;
+    letter-spacing: 0.5px;
   }
   .week-items {
     list-style: none;
@@ -240,16 +254,17 @@
   }
   .result-card {
     background: var(--dark2);
-    border: 1px solid #2a2a2a;
-    border-top: 3px solid var(--green);
+    border: 1px solid var(--border2);
+    border-top: 3px solid var(--amarelo);
     border-radius: 12px;
     padding: 28px;
     text-align: center;
   }
   .result-card .result-value {
-    font-size: 40px;
-    font-weight: 900;
-    color: var(--green);
+    font-family: 'Anton', sans-serif;
+    font-size: 44px;
+    font-weight: 400;
+    color: var(--amarelo);
     line-height: 1;
     margin-bottom: 8px;
   }
@@ -262,7 +277,7 @@
   /* FOOTER */
   .footer {
     background: var(--dark2);
-    border-top: 1px solid #2a2a2a;
+    border-top: 1px solid var(--border2);
     padding: 32px 48px;
     display: flex;
     justify-content: space-between;
@@ -488,7 +503,7 @@
   </div>
 
   <!-- NOTA FINAL -->
-  <div style="background: #1a1a1a; border: 1px solid #2a2a2a; border-left: 3px solid var(--green); border-radius: 8px; padding: 24px 28px;">
+  <div style="background: var(--dark2); border: 1px solid var(--border2); border-left: 3px solid var(--amarelo); border-radius: 8px; padding: 24px 28px;">
     <p style="font-size: 13px; color: var(--gray); line-height: 1.7;">
       Este documento será atualizado mensalmente com os números reais. A cada ciclo de 30 dias,
       um novo relatório será gerado comparando o estado anterior com o atual, mostrando o progresso
