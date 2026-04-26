@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contrato de Parceria Operacional — ChoraManaus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --green:      #1E7A47;
+    --green-dark: #0D3D23;
+    --amarelo:    #F9C41A;
+    --dark:       #070B09;
+    --dark2:      #0C1610;
+    --border:     #d4d4d4;
+    --text:       #111;
+    --muted:      #666;
+    --light:      #f7f7f5;
+    --white:      #fff;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--light);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 14px;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: white; }
+    .no-print { display: none; }
+    .page { box-shadow: none; margin: 0; border-radius: 0; }
+    .page + .page { page-break-before: always; }
+  }
+
+  /* LAYOUT */
+  .wrapper {
+    max-width: 820px;
+    margin: 40px auto;
+    padding: 0 24px;
+  }
+
+  .page {
+    background: var(--white);
+    border-radius: 4px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    padding: 64px 72px;
+    margin-bottom: 32px;
+  }
+
+  /* HEADER DO CONTRATO */
+  .doc-header {
+    border-bottom: 3px solid var(--green);
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .doc-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .brand-mark {
+    width: 44px;
+    height: 44px;
+    background: var(--green);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .brand-mark span {
+    color: var(--amarelo);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-align: center;
+    line-height: 1.2;
+  }
+  .brand-text {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .brand-text small {
+    display: block;
+    font-weight: 400;
+    color: var(--muted);
+    font-size: 11px;
+    margin-top: 1px;
+  }
+  .doc-meta {
+    text-align: right;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .doc-meta strong { color: var(--text); }
+
+  /* TÍTULO */
+  .doc-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+  }
+  .doc-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 40px;
+  }
+
+  /* SEÇÃO */
+  .sec {
+    margin-bottom: 32px;
+  }
+  .sec-num {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .sec-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .sec p {
+    color: #333;
+    font-size: 13.5px;
+    line-height: 1.75;
+    margin-bottom: 10px;
+  }
+  .sec p:last-child { margin-bottom: 0; }
+
+  /* PARTES */
+  .parties-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 10px;
+  }
+  .party-card {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 20px 22px;
+    background: var(--light);
+  }
+  .party-role {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .party-name {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .party-detail {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .party-detail span {
+    display: block;
+  }
+
+  /* TABELA DE ENTREGAS */
+  .deliverables {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin: 12px 0;
+  }
+  .deliverables th {
+    text-align: left;
+    padding: 10px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+    background: var(--light);
+  }
+  .deliverables td {
+    padding: 11px 14px;
+    border-bottom: 1px solid #ebebeb;
+    vertical-align: top;
+    line-height: 1.5;
+    color: #333;
+  }
+  .deliverables tr:last-child td { border-bottom: none; }
+  .deliverables td:first-child { font-weight: 600; width: 180px; color: var(--text); }
+
+  /* MODELO DE REMUNERAÇÃO */
+  .remun-box {
+    background: var(--light);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--amarelo);
+    border-radius: 6px;
+    padding: 20px 24px;
+    margin: 14px 0;
+  }
+  .remun-box .option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid #e5e5e5;
+  }
+  .remun-box .option:last-child { border-bottom: none; padding-bottom: 0; }
+  .option-letter {
+    width: 26px;
+    height: 26px;
+    background: var(--green);
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .option-text {
+    flex: 1;
+  }
+  .option-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .option-desc {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+  .option.chosen .option-letter {
+    background: var(--amarelo);
+    color: var(--text);
+  }
+  .option.chosen .option-label { color: var(--green); }
+
+  /* PENDÊNCIA */
+  .pending-tag {
+    display: inline-block;
+    background: rgba(249,196,26,0.15);
+    color: #8a6c00;
+    border: 1px solid rgba(249,196,26,0.5);
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 2px 8px;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+
+  /* PRAZO */
+  .timeline-strip {
+    display: flex;
+    gap: 0;
+    margin: 14px 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .ts-item {
+    flex: 1;
+    padding: 14px 16px;
+    border-right: 1px solid var(--border);
+    text-align: center;
+  }
+  .ts-item:last-child { border-right: none; }
+  .ts-val {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--green);
+    margin-bottom: 2px;
+  }
+  .ts-lbl {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* ASSINATURAS */
+  .sig-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    margin-top: 24px;
+  }
+  .sig-block { }
+  .sig-line {
+    border-bottom: 1px solid #333;
+    height: 48px;
+    margin-bottom: 8px;
+  }
+  .sig-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 2px;
+  }
+  .sig-role {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* NOTA DE RODAPÉ */
+  .doc-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 16px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  /* BOTÃO IMPRIMIR */
+  .print-bar {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 24px 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+  }
+  .btn-print {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+  .btn-print:hover { background: #175e36; }
+
+  /* HIGHLIGHT PENDÊNCIA */
+  .highlight-box {
+    background: rgba(30,122,71,0.06);
+    border: 1px solid rgba(30,122,71,0.2);
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 13px;
+    color: #1a5c35;
+    line-height: 1.6;
+    margin: 12px 0;
+  }
+  .highlight-box strong { color: var(--green-dark); }
+</style>
+</head>
+<body>
+
+<div class="no-print" style="background:#1E7A47;padding:14px 24px;color:white;font-family:'Inter',sans-serif;font-size:13px;display:flex;justify-content:space-between;align-items:center;">
+  <span style="font-weight:600;">Rascunho — Contrato de Parceria ChoraManaus</span>
+  <span style="opacity:0.7;">Preencher campos marcados com <span style="background:rgba(249,196,26,0.3);color:#F9C41A;padding:1px 6px;border-radius:3px;font-weight:700;">PENDENTE</span> após conversa com o parceiro</span>
+</div>
+
+<div class="wrapper">
+
+  <div class="print-bar no-print">
+    <button class="btn-print" onclick="window.print()">Imprimir / Salvar PDF</button>
+  </div>
+
+  <!-- PÁGINA 1 -->
+  <div class="page">
+
+    <div class="doc-header">
+      <div class="doc-brand">
+        <div class="brand-mark"><span>CHORA<br>MANAUS</span></div>
+        <div class="brand-text">
+          ChoraManaus
+          <small>@choramanaus · choramanaus.com</small>
+        </div>
+      </div>
+      <div class="doc-meta">
+        <strong>Contrato de Parceria Operacional</strong><br>
+        Versão: Rascunho · Abril/2026<br>
+        Vigência: 3 meses
+      </div>
+    </div>
+
+    <div class="doc-title">Contrato de Parceria Operacional</div>
+    <div class="doc-subtitle">Gestão e Operação Digital do Portal ChoraManaus · Período inicial de 3 meses</div>
+
+    <!-- PARTES -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 1</div>
+      <div class="sec-title">Das Partes</div>
+      <div class="parties-grid">
+        <div class="party-card">
+          <div class="party-role">Parte A — Operação Digital</div>
+          <div class="party-name">Kalid Carvalho da Silva</div>
+          <div class="party-detail">
+            <span>Especialista em Marketing Digital</span>
+            <span>Sites, automações e tráfego pago</span>
+            <span style="margin-top:6px;color:#999;">@kalidcarvalho</span>
+          </div>
+        </div>
+        <div class="party-card">
+          <div class="party-role">Parte B — Comercial <span class="pending-tag">Pendente</span></div>
+          <div class="party-name">[Nome do Parceiro]</div>
+          <div class="party-detail">
+            <span>Proprietário da página @choramanaus</span>
+            <span>Responsável comercial e de relacionamento</span>
+            <span style="margin-top:6px;color:#999;">[CPF · Contato]</span>
+          </div>
+        </div>
+      </div>
+      <p>As partes acima identificadas firmam o presente contrato de parceria operacional para a gestão e desenvolvimento digital da marca ChoraManaus, conforme as condições estabelecidas nas cláusulas seguintes.</p>
+    </div>
+
+    <!-- OBJETO -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 2</div>
+      <div class="sec-title">Do Objeto</div>
+      <p>Este contrato tem por objeto a parceria entre as partes para a operação, crescimento e monetização da presença digital da marca ChoraManaus, compreendendo o portal <strong>choramanaus.com</strong> e o perfil <strong>@choramanaus</strong> no Instagram.</p>
+      <p>A parceria tem foco principal na estruturação de uma operação comercial de publicidade e conteúdo patrocinado, com ênfase em anunciantes políticos, institucionais e locais de Manaus.</p>
+    </div>
+
+    <!-- RESPONSABILIDADES -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 3</div>
+      <div class="sec-title">Das Responsabilidades de Cada Parte</div>
+
+      <p style="font-weight:600;margin-bottom:8px;">3.1 — Kalid Carvalho (Parte A): Operação Digital</p>
+      <table class="deliverables">
+        <thead>
+          <tr>
+            <th>Área</th>
+            <th>Entrega</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Site</td>
+            <td>Manutenção, melhorias de layout, velocidade, SEO e estrutura comercial do portal choramanaus.com</td>
+          </tr>
+          <tr>
+            <td>Automações</td>
+            <td>Criação e manutenção de fluxos N8N: captura de leads de publicidade, notificações WhatsApp, monitoramento de notícias em alta</td>
+          </tr>
+          <tr>
+            <td>Criativos</td>
+            <td>Produção de artes, banners e identidade visual dos posts patrocinados e conteúdo orgânico</td>
+          </tr>
+          <tr>
+            <td>Mídia Kit</td>
+            <td>Manutenção e atualização do Mídia Kit com métricas atuais para apresentação a anunciantes</td>
+          </tr>
+          <tr>
+            <td>Conteúdo digital</td>
+            <td>Suporte a posts no Instagram, calendário editorial, formatação de matérias para o portal</td>
+          </tr>
+          <tr>
+            <td>Marketing digital</td>
+            <td>Estratégia de crescimento, análise de métricas e relatórios mensais de desempenho</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p style="font-weight:600;margin:16px 0 8px;">3.2 — [Parceiro] (Parte B): Comercial e Relacionamento</p>
+      <table class="deliverables">
+        <thead>
+          <tr>
+            <th>Área</th>
+            <th>Entrega</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Prospecção</td>
+            <td>Abordagem e negociação com anunciantes, políticos, marcas locais e parceiros comerciais</td>
+          </tr>
+          <tr>
+            <td>Fechamento</td>
+            <td>Fechamento de contratos de publicidade, negociação de valores e prazos com clientes</td>
+          </tr>
+          <tr>
+            <td>Relacionamento</td>
+            <td>Networking com políticos, assessores, marcas e figuras públicas de Manaus</td>
+          </tr>
+          <tr>
+            <td>Conteúdo jornalístico</td>
+            <td>Apuração, redação e publicação de notícias locais no portal e Instagram</td>
+          </tr>
+          <tr>
+            <td>Briefing de anúncios</td>
+            <td>Coleta e repasse do briefing dos anunciantes para produção pela Parte A</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- PÁGINA 2 -->
+  <div class="page">
+
+    <div class="doc-header" style="border-bottom:1px solid #e0e0e0;padding-bottom:16px;margin-bottom:32px;">
+      <span style="font-size:12px;color:#999;">ChoraManaus — Contrato de Parceria Operacional · Rascunho Abr/2026</span>
+      <span style="font-size:12px;color:#999;">Pág. 2 de 2</span>
+    </div>
+
+    <!-- REMUNERAÇÃO -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 4</div>
+      <div class="sec-title">Da Remuneração <span class="pending-tag">Definir modelo com parceiro</span></div>
+
+      <p>A remuneração da Parte A (Kalid Carvalho) será definida conforme o modelo de parceria acordado entre as partes. As opções a seguir representam os modelos possíveis a serem discutidos:</p>
+
+      <div class="remun-box">
+        <div class="option">
+          <div class="option-letter">A</div>
+          <div class="option-text">
+            <div class="option-label">Sociedade total — Split de receita bruta</div>
+            <div class="option-desc">Kalid recebe <strong>[__]%</strong> de toda a receita gerada pelo ChoraManaus (publicidade, posts patrocinados, portal, político). Referência inicial discutida: 40%. Inclui acesso à conta e decisões conjuntas.</div>
+          </div>
+        </div>
+        <div class="option">
+          <div class="option-letter">B</div>
+          <div class="option-text">
+            <div class="option-label">Sociedade parcial — Split somente de publicidade digital</div>
+            <div class="option-desc">Kalid recebe <strong>[__]%</strong> da receita de publicidade captada via canais digitais (site, Instagram patrocinado, mídia kit). Receita de outras fontes permanece com a Parte B. Modelo para quem quer separar o que é "da rua" do que é "digital".</div>
+          </div>
+        </div>
+        <div class="option">
+          <div class="option-letter">C</div>
+          <div class="option-text">
+            <div class="option-label">Prestação de serviço + comissão</div>
+            <div class="option-desc">Kalid cobra um retainer fixo mensal de <strong>R$ [____]</strong> pela operação digital, mais <strong>[__]%</strong> de comissão sobre leads de publicidade convertidos via estrutura digital (formulário, automação). Indicado se o parceiro não quiser sócio formal.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box">
+        <strong>Ponto a confirmar:</strong> a Parte B (parceiro) quer ser sócio de toda a operação ChoraManaus ou apenas dividir o que vier da estrutura digital? Essa resposta define o modelo A, B ou C acima.
+      </div>
+    </div>
+
+    <!-- PRAZO -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 5</div>
+      <div class="sec-title">Do Prazo e Renovação</div>
+
+      <div class="timeline-strip">
+        <div class="ts-item">
+          <div class="ts-val">3</div>
+          <div class="ts-lbl">meses de vigência<br>inicial</div>
+        </div>
+        <div class="ts-item">
+          <div class="ts-val">Mai–Jul</div>
+          <div class="ts-lbl">período coberto<br>(2026)</div>
+        </div>
+        <div class="ts-item">
+          <div class="ts-val">30 dias</div>
+          <div class="ts-lbl">aviso para<br>rescisão antecipada</div>
+        </div>
+        <div class="ts-item">
+          <div class="ts-val">Auto</div>
+          <div class="ts-lbl">renovação automática<br>se não cancelado</div>
+        </div>
+      </div>
+
+      <p>O contrato entra em vigor na data de assinatura e tem duração de 3 (três) meses. Ao final desse período, será renovado automaticamente por igual período, salvo manifestação contrária de qualquer das partes com antecedência mínima de 30 dias.</p>
+      <p>Ao final do primeiro ciclo, as partes se reunirão para avaliar os resultados, revisar condições e confirmar ou ajustar o modelo de remuneração da Cláusula 4.</p>
+    </div>
+
+    <!-- RESCISÃO -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 6</div>
+      <div class="sec-title">Da Rescisão</div>
+      <p>Qualquer das partes pode rescindir este contrato mediante comunicação escrita (mensagem no WhatsApp ou e-mail) com antecedência mínima de <strong>30 (trinta) dias</strong>.</p>
+      <p>Em caso de rescisão, todo o trabalho produzido pela Parte A (artes, automações, códigos, documentos) permanece disponível para a Parte B, que não pode reutilizá-lo para outros projetos sem autorização expressa.</p>
+      <p>Valores devidos pela fração do mês em curso serão calculados proporcionalmente e quitados em até 15 dias após a rescisão.</p>
+    </div>
+
+    <!-- EXCLUSIVIDADE -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 7</div>
+      <div class="sec-title">Da Exclusividade</div>
+      <p>Esta parceria não é exclusiva para nenhuma das partes. A Parte A pode atender outros clientes e projetos paralelos. A Parte B pode contratar outros prestadores de serviço, desde que não conflitem diretamente com as responsabilidades definidas na Cláusula 3.</p>
+    </div>
+
+    <!-- ASSINATURA -->
+    <div class="sec">
+      <div class="sec-num">Cláusula 8</div>
+      <div class="sec-title">Das Assinaturas</div>
+      <p>As partes declaram ter lido e concordado com todos os termos deste contrato, firmando-o em duas vias de igual teor.</p>
+      <p style="color:#999;font-size:12px;">Manaus, AM · _____ de ___________ de 2026</p>
+
+      <div class="sig-grid">
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-name">Kalid Carvalho da Silva</div>
+          <div class="sig-role">Parte A — Operação Digital</div>
+        </div>
+        <div class="sig-block">
+          <div class="sig-line"></div>
+          <div class="sig-name">[Nome do Parceiro]</div>
+          <div class="sig-role">Parte B — Comercial · @choramanaus</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-footer">
+      <span>ChoraManaus · choramanaus.com · @choramanaus</span>
+      <span>Rascunho gerado em Abril/2026 — Não possui valor legal sem assinaturas</span>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
