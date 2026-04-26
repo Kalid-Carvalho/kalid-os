@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChoraManaus — Manual da Marca</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --verde:    #1E7A47;
+  --verde2:   #2D9A5A;
+  --verde-bg: #0D3D23;
+  --amarelo:  #F9C41A;
+  --laranja:  #C94A0A;
+  --branco:   #FFFFFF;
+  --preto:    #0A0A0A;
+  --cinza1:   #111111;
+  --cinza2:   #1C1C1C;
+  --cinza3:   #2A2A2A;
+  --cinza4:   #444444;
+  --texto:    #CCCCCC;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--preto);
+  color: var(--branco);
+  line-height: 1.6;
+}
+
+/* ── LAYOUT ── */
+.w { max-width: 1100px; margin: 0 auto; padding: 0 48px; }
+.sep { height: 1px; background: var(--cinza3); }
+
+.section { padding: 96px 0; }
+.section-alt { padding: 96px 0; background: var(--cinza1); }
+
+.tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--verde2);
+  display: block;
+  margin-bottom: 14px;
+}
+.h1 { font-size: 52px; font-weight: 900; letter-spacing: -2px; line-height: 1; margin-bottom: 20px; }
+.h2 { font-size: 36px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; margin-bottom: 48px; }
+.lead { font-size: 16px; color: var(--texto); line-height: 1.8; max-width: 600px; margin-bottom: 60px; }
+
+/* ── CAPA ── */
+.cover {
+  background: var(--verde-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(249,196,26,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 50% 100%, rgba(30,122,71,0.3) 0%, transparent 60%);
+}
+.cover-inner { position: relative; z-index: 1; }
+.cover-eyebrow {
+  display: inline-block;
+  border: 1px solid rgba(249,196,26,0.3);
+  color: var(--amarelo);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 7px 20px;
+  border-radius: 100px;
+  margin-bottom: 48px;
+}
+.cover-logo-text {
+  font-size: 120px;
+  font-weight: 900;
+  letter-spacing: -6px;
+  line-height: 0.85;
+  margin-bottom: 32px;
+}
+.cover-logo-text .chora { color: var(--branco); display: block; }
+.cover-logo-text .manaus { color: var(--amarelo); display: block; }
+.cover-subtitle {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 0;
+}
+.cover-footer {
+  position: absolute;
+  bottom: 32px;
+  left: 0; right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 48px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+
+/* ── LOGO ── */
+.logo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: var(--cinza3);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.logo-cell {
+  padding: 56px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.logo-cell.on-green { background: var(--verde); }
+.logo-cell.on-dark  { background: var(--preto); }
+.logo-cell.on-light { background: #F0EDE6; }
+.logo-cell.on-amarelo { background: var(--amarelo); }
+.logo-preview {
+  font-size: 40px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  line-height: 0.9;
+  text-align: center;
+}
+.logo-preview .c { display: block; }
+.logo-preview .m { display: block; }
+.logo-cell-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: 0.5;
+}
+
+/* Versão vertical grande */
+.logo-main-preview {
+  background: var(--verde);
+  border-radius: 20px;
+  padding: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+.lmp-text {
+  font-size: 80px;
+  font-weight: 900;
+  letter-spacing: -4px;
+  line-height: 0.85;
+  text-align: center;
+}
+.lmp-text .chora { color: var(--branco); display: block; }
+.lmp-text .manaus { color: var(--amarelo); display: block; }
+
+.logo-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+/* Proibidos */
+.proib-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 48px;
+}
+.proib-card {
+  background: var(--cinza2);
+  border: 1px solid var(--cinza3);
+  border-radius: 14px;
+  padding: 28px;
+  position: relative;
+}
+.proib-preview {
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -1px;
+  text-align: center;
+  margin-bottom: 16px;
+  padding: 24px;
+  border-radius: 8px;
+  background: var(--cinza3);
+}
+.proib-x {
+  position: absolute;
+  top: 16px; right: 16px;
+  color: #e53935;
+  font-size: 20px;
+  font-weight: 900;
+}
+.proib-label {
+  font-size: 12px;
+  color: #e53935;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+.proib-desc {
+  font-size: 12px;
+  color: var(--cinza4);
+  line-height: 1.5;
+}
+
+/* ── CORES ── */
+.palette-main {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+.palette-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.swatch {
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid var(--cinza3);
+}
+.swatch-color {
+  height: 120px;
+}
+.swatch-info {
+  background: var(--cinza2);
+  padding: 16px 18px;
+}
+.swatch-name {
+  font-size: 13px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.swatch-hex {
+  font-size: 12px;
+  color: var(--cinza4);
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+.swatch-role {
+  font-size: 11px;
+  color: var(--verde2);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Uso correto das cores */
+.color-use {
+  background: var(--cinza2);
+  border: 1px solid var(--cinza3);
+  border-radius: 16px;
+  padding: 36px;
+  margin-bottom: 16px;
+}
+.color-use h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.color-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.color-use ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.color-use ul li {
+  font-size: 13px;
+  color: var(--texto);
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+}
+.color-use ul li::before { content: '→'; color: var(--verde2); flex-shrink: 0; }
+
+/* ── TIPOGRAFIA ── */
+.type-showcase {
+  background: var(--cinza2);
+  border: 1px solid var(--cinza3);
+  border-radius: 20px;
+  padding: 48px;
+  margin-bottom: 24px;
+}
+.type-sample-big {
+  font-size: 72px;
+  font-weight: 900;
+  letter-spacing: -3px;
+  line-height: 1;
+  color: var(--branco);
+  margin-bottom: 16px;
+}
+.type-sample-big em { color: var(--amarelo); font-style: normal; }
+.type-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.type-meta-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--cinza4); margin-bottom: 4px; }
+.type-meta-item .val { font-size: 14px; font-weight: 600; }
+
+.type-scale {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: var(--cinza3);
+  border-radius: 16px;
+  overflow: hidden;
+  margin-bottom: 48px;
+}
+.type-scale-row {
+  background: var(--cinza2);
+  padding: 24px 32px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  align-items: center;
+  gap: 24px;
+}
+.type-scale-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--cinza4); }
+
+/* ── TOM DE VOZ ── */
+.voice-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.voice-card {
+  background: var(--cinza2);
+  border: 1px solid var(--cinza3);
+  border-radius: 16px;
+  padding: 32px;
+}
+.voice-card.ok { border-left: 3px solid var(--verde); }
+.voice-card.nok { border-left: 3px solid #e53935; }
+.voice-card-label {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 16px;
+}
+.voice-card.ok .voice-card-label { color: var(--verde2); }
+.voice-card.nok .voice-card-label { color: #e53935; }
+.voice-example {
+  font-size: 15px;
+  color: var(--branco);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 12px;
+  padding: 16px;
+  background: var(--cinza3);
+  border-radius: 8px;
+}
+.voice-why { font-size: 12px; color: var(--cinza4); line-height: 1.5; }
+
+/* ── ELEMENTOS ── */
+.elements-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.elem-card {
+  background: var(--cinza2);
+  border: 1px solid var(--cinza3);
+  border-radius: 16px;
+  padding: 36px 28px;
+  text-align: center;
+}
+.elem-icon { font-size: 48px; margin-bottom: 16px; display: block; }
+.elem-name { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+.elem-desc { font-size: 13px; color: var(--texto); line-height: 1.6; }
+
+/* ── APLICAÇÕES ── */
+.app-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 48px;
+}
+.app-card {
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--cinza3);
+}
+.app-preview {
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+.app-info {
+  background: var(--cinza2);
+  padding: 20px 24px;
+  font-size: 13px;
+  color: var(--texto);
+}
+.app-info strong { display: block; font-size: 14px; color: var(--branco); margin-bottom: 4px; }
+
+/* Post Instagram mockup */
+.insta-post {
+  background: var(--verde);
+  padding: 32px;
+  border-radius: 8px;
+  text-align: center;
+  width: 100%;
+  max-width: 220px;
+}
+.insta-post .logo-t { font-size: 28px; font-weight: 900; letter-spacing: -1px; line-height: 0.9; }
+.insta-post .logo-t .c { color: var(--branco); display: block; }
+.insta-post .logo-t .m { color: var(--amarelo); display: block; }
+.insta-post .caption { font-size: 11px; color: rgba(255,255,255,0.7); margin-top: 16px; line-height: 1.5; }
+
+/* Card notícia */
+.news-card-preview {
+  background: var(--preto);
+  border: 1px solid var(--cinza3);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 280px;
+}
+.ncp-top {
+  background: var(--verde);
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.ncp-logo { font-size: 12px; font-weight: 900; }
+.ncp-logo .c { color: var(--branco); }
+.ncp-logo .m { color: var(--amarelo); }
+.ncp-body { padding: 16px; }
+.ncp-cat { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--amarelo); margin-bottom: 6px; }
+.ncp-title { font-size: 13px; font-weight: 700; line-height: 1.4; color: var(--branco); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--verde-bg);
+  border-top: 1px solid var(--cinza3);
+  padding: 32px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+
+@media (max-width: 900px) {
+  .w { padding: 0 24px; }
+  .cover-logo-text { font-size: 72px; }
+  .logo-grid { grid-template-columns: 1fr; }
+  .logo-row { grid-template-columns: 1fr; }
+  .palette-main { grid-template-columns: 1fr; }
+  .palette-row { grid-template-columns: repeat(2, 1fr); }
+  .proib-grid { grid-template-columns: 1fr; }
+  .voice-grid { grid-template-columns: 1fr; }
+  .elements-grid { grid-template-columns: 1fr; }
+  .app-grid { grid-template-columns: 1fr; }
+  .type-sample-big { font-size: 48px; }
+  .h1 { font-size: 36px; }
+  .footer { flex-direction: column; gap: 8px; padding: 24px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═════════ CAPA ═════════ -->
+<div class="cover">
+  <div class="cover-inner">
+    <div class="cover-eyebrow">Manual da Marca · 2026</div>
+    <div class="cover-logo-text">
+      <span class="chora">CHORA</span>
+      <span class="manaus">MANAUS</span>
+    </div>
+    <p class="cover-subtitle">Identidade Visual & Diretrizes de Marca</p>
+  </div>
+  <div class="cover-footer">
+    <span>ChoraManaus · Manual da Marca 2026</span>
+    <span>Uso interno e parceiros</span>
+  </div>
+</div>
+
+<!-- ═════════ INTRODUÇÃO ═════════ -->
+<div class="sep"></div>
+<section class="section">
+  <div class="w">
+    <span class="tag">Sobre este documento</span>
+    <h1 class="h1">A voz de Manaus<br>tem uma identidade.</h1>
+    <p class="lead">
+      Este manual define como o ChoraManaus se apresenta visualmente ao mundo. Seguindo estas diretrizes, qualquer peça — post, banner, arte, site — comunica a mesma identidade: local, direta, autêntica e amazônica.
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;">
+      <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:28px;">
+        <div style="font-size:32px;margin-bottom:12px;">🎨</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px;">Paleta de cores</div>
+        <div style="font-size:13px;color:var(--texto);">Verde amazônico, amarelo manauara e branco como base da identidade.</div>
+      </div>
+      <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:28px;">
+        <div style="font-size:32px;margin-bottom:12px;">✏️</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px;">Tipografia</div>
+        <div style="font-size:13px;color:var(--texto);">Fontes bold e de alto impacto para headlines. Clean para texto corrido.</div>
+      </div>
+      <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:28px;">
+        <div style="font-size:32px;margin-bottom:12px;">🗣️</div>
+        <div style="font-size:14px;font-weight:700;margin-bottom:6px;">Tom de voz</div>
+        <div style="font-size:13px;color:var(--texto);">Popular, direto e local. Fala como Manaus fala — sem formalidade excessiva.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ LOGO ═════════ -->
+<div class="sep"></div>
+<section class="section-alt">
+  <div class="w">
+    <span class="tag">01 · Logo</span>
+    <h2 class="h2">O símbolo do ChoraManaus</h2>
+
+    <div class="logo-row">
+      <div class="logo-main-preview">
+        <div class="lmp-text">
+          <span class="chora">CHORA</span>
+          <span class="manaus">MANAUS</span>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:16px;">
+        <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:24px;flex:1;">
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--cinza4);margin-bottom:12px;">Versão horizontal</div>
+          <div style="font-size:36px;font-weight:900;letter-spacing:-2px;line-height:1;background:var(--verde);padding:20px;border-radius:8px;text-align:center;">
+            <span style="color:var(--branco);">CHORA</span> <span style="color:var(--amarelo);">MANAUS</span>
+          </div>
+        </div>
+        <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:24px;flex:1;">
+          <div style="font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--cinza4);margin-bottom:12px;">Em fundos escuros</div>
+          <div style="font-size:36px;font-weight:900;letter-spacing:-2px;line-height:1;background:var(--preto);padding:20px;border-radius:8px;text-align:center;border:1px solid var(--cinza3);">
+            <span style="color:var(--branco);">CHORA</span> <span style="color:var(--amarelo);">MANAUS</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Versões sobre fundos -->
+    <div style="margin-bottom:16px;font-size:13px;color:var(--texto);">Versões aprovadas por fundo:</div>
+    <div class="logo-grid">
+      <div class="logo-cell on-green">
+        <div class="logo-preview">
+          <span class="c" style="color:var(--branco);">CHORA</span>
+          <span class="m" style="color:var(--amarelo);">MANAUS</span>
+        </div>
+        <div class="logo-cell-label" style="color:rgba(255,255,255,0.5);">Fundo verde — principal</div>
+      </div>
+      <div class="logo-cell on-dark">
+        <div class="logo-preview">
+          <span class="c" style="color:var(--branco);">CHORA</span>
+          <span class="m" style="color:var(--amarelo);">MANAUS</span>
+        </div>
+        <div class="logo-cell-label" style="color:rgba(255,255,255,0.3);">Fundo preto — aprovado</div>
+      </div>
+      <div class="logo-cell on-light">
+        <div class="logo-preview">
+          <span class="c" style="color:var(--verde);">CHORA</span>
+          <span class="m" style="color:var(--laranja);">MANAUS</span>
+        </div>
+        <div class="logo-cell-label" style="color:rgba(0,0,0,0.35);">Fundo claro — verde + laranja</div>
+      </div>
+    </div>
+
+    <!-- Proibidos -->
+    <h3 style="font-size:20px;font-weight:700;margin:48px 0 24px;color:#e53935;">Usos proibidos da logo</h3>
+    <div class="proib-grid">
+      <div class="proib-card">
+        <div class="proib-x">✕</div>
+        <div class="proib-preview" style="opacity:0.4;filter:grayscale(1);">
+          <span style="color:#888;">CHORA</span><br>
+          <span style="color:#888;">MANAUS</span>
+        </div>
+        <div class="proib-label">Nunca em versão cinza</div>
+        <div class="proib-desc">A logo perde identidade e impacto em tons neutros.</div>
+      </div>
+      <div class="proib-card">
+        <div class="proib-x">✕</div>
+        <div class="proib-preview" style="transform:skewX(-10deg);display:inline-block;width:100%;">
+          <span style="color:var(--branco);">CHORA</span><br>
+          <span style="color:var(--amarelo);">MANAUS</span>
+        </div>
+        <div class="proib-label">Nunca distorcida ou inclinada</div>
+        <div class="proib-desc">Não aplicar rotação, espelhamento ou deformação.</div>
+      </div>
+      <div class="proib-card">
+        <div class="proib-x">✕</div>
+        <div class="proib-preview">
+          <span style="color:var(--branco);font-size:20px;font-weight:400;letter-spacing:0;">Chora Manaus</span>
+        </div>
+        <div class="proib-label">Nunca em caixa baixa ou peso fino</div>
+        <div class="proib-desc">O nome deve sempre ser em caixa alta e peso bold/black.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ CORES ═════════ -->
+<div class="sep"></div>
+<section class="section">
+  <div class="w">
+    <span class="tag">02 · Paleta de cores</span>
+    <h2 class="h2">As cores de Manaus</h2>
+
+    <!-- Cores primárias -->
+    <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--cinza4);margin-bottom:16px;">Cores primárias</div>
+    <div class="palette-main" style="margin-bottom:16px;">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#1E7A47;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Verde Amazônico</div>
+          <div class="swatch-hex">#1E7A47</div>
+          <div class="swatch-role">Cor principal · Fundo da logo</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#F9C41A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Amarelo Manauara</div>
+          <div class="swatch-hex">#F9C41A</div>
+          <div class="swatch-role">Destaque · "MANAUS"</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#FFFFFF;border-bottom:1px solid #333;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Branco</div>
+          <div class="swatch-hex">#FFFFFF</div>
+          <div class="swatch-role">Texto · "CHORA"</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cores secundárias -->
+    <div style="font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--cinza4);margin-bottom:16px;margin-top:32px;">Cores de apoio</div>
+    <div class="palette-row">
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0D3D23;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Verde Floresta</div>
+          <div class="swatch-hex">#0D3D23</div>
+          <div class="swatch-role">Fundo escuro · Fundos</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#2D9A5A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Verde Claro</div>
+          <div class="swatch-hex">#2D9A5A</div>
+          <div class="swatch-role">Hover · Links · Tags</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#C94A0A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Laranja Indígena</div>
+          <div class="swatch-hex">#C94A0A</div>
+          <div class="swatch-role">Alertas · Urgência · Breaking</div>
+        </div>
+      </div>
+      <div class="swatch">
+        <div class="swatch-color" style="background:#0A0A0A;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">Preto</div>
+          <div class="swatch-hex">#0A0A0A</div>
+          <div class="swatch-role">Texto · Fundos escuros</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Uso das cores -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;">
+      <div class="color-use">
+        <h4><div class="color-dot" style="background:#1E7A47;"></div>Verde Amazônico</h4>
+        <ul>
+          <li>Fundo da logo e cabeçalhos</li>
+          <li>Botões de ação principal</li>
+          <li>Barras de topo em posts</li>
+          <li>Bordas de destaque</li>
+        </ul>
+      </div>
+      <div class="color-use">
+        <h4><div class="color-dot" style="background:#F9C41A;"></div>Amarelo Manauara</h4>
+        <ul>
+          <li>Palavra "MANAUS" na logo</li>
+          <li>Títulos em destaque</li>
+          <li>Tags de categoria</li>
+          <li>Números e dados em evidência</li>
+        </ul>
+      </div>
+      <div class="color-use">
+        <h4><div class="color-dot" style="background:#C94A0A;"></div>Laranja Indígena</h4>
+        <ul>
+          <li>Notícias urgentes / breaking</li>
+          <li>Alertas e avisos</li>
+          <li>Elemento de destaque pontual</li>
+          <li>Nunca como cor base</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ TIPOGRAFIA ═════════ -->
+<div class="sep"></div>
+<section class="section-alt">
+  <div class="w">
+    <span class="tag">03 · Tipografia</span>
+    <h2 class="h2">As fontes que falam por Manaus</h2>
+
+    <!-- Fonte principal -->
+    <div class="type-showcase">
+      <div class="type-sample-big">A voz do povo<br>de <em>Manaus.</em></div>
+      <div class="type-meta">
+        <div class="type-meta-item">
+          <div class="label">Fonte headline</div>
+          <div class="val">Bebas Neue / Impact</div>
+        </div>
+        <div class="type-meta-item">
+          <div class="label">Peso</div>
+          <div class="val">Bold / Black</div>
+        </div>
+        <div class="type-meta-item">
+          <div class="label">Uso</div>
+          <div class="val">Títulos, logo, chamadas</div>
+        </div>
+        <div class="type-meta-item">
+          <div class="label">Alternativa gratuita</div>
+          <div class="val">Bebas Neue (Google Fonts)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Escala tipográfica -->
+    <div class="type-scale">
+      <div class="type-scale-row">
+        <div class="type-scale-label">Display<br>80–120px</div>
+        <div style="font-size:64px;font-weight:900;letter-spacing:-3px;color:var(--amarelo);line-height:1;">CHORA MANAUS</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Headline<br>40–56px</div>
+        <div style="font-size:40px;font-weight:900;letter-spacing:-2px;line-height:1;">Aconteceu em Manaus</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Subtítulo<br>20–28px</div>
+        <div style="font-size:24px;font-weight:700;letter-spacing:-0.5px;line-height:1.2;">Polícia prende suspeito no bairro Flores</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Corpo<br>14–16px</div>
+        <div style="font-size:15px;font-weight:400;color:var(--texto);line-height:1.7;max-width:600px;">O texto corrido do portal usa Inter ou qualquer sans-serif clean. Legível, sem serifa, tamanho mínimo de 14px. Espaçamento confortável de 1.6–1.8.</div>
+      </div>
+      <div class="type-scale-row">
+        <div class="type-scale-label">Caption<br>10–12px</div>
+        <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--cinza4);">POLÍTICA · MANAUS · 26 ABR 2026</div>
+      </div>
+    </div>
+
+    <!-- Regras -->
+    <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:16px;padding:36px;">
+      <div style="font-size:14px;font-weight:700;margin-bottom:20px;">Regras de tipografia</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:var(--verde2);margin-bottom:12px;">✓ Fazer</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--texto);">
+            <li>→ Títulos sempre em caixa alta ou capitalização forte</li>
+            <li>→ Peso Bold ou Black para chamadas principais</li>
+            <li>→ Contraste alto (branco em verde, amarelo em escuro)</li>
+            <li>→ Hierarquia clara: título grande, corpo pequeno</li>
+          </ul>
+        </div>
+        <div>
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1.5px;color:#e53935;margin-bottom:12px;">✕ Evitar</div>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:8px;font-size:13px;color:var(--texto);">
+            <li>→ Fontes com serifa (parecem formais demais)</li>
+            <li>→ Peso Light ou Thin em headlines</li>
+            <li>→ Mais de 2 fontes diferentes em uma peça</li>
+            <li>→ Texto pequeno em fundos texturizados</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ ELEMENTOS VISUAIS ═════════ -->
+<div class="sep"></div>
+<section class="section">
+  <div class="w">
+    <span class="tag">04 · Elementos visuais</span>
+    <h2 class="h2">O DNA visual da marca</h2>
+
+    <div class="elements-grid">
+      <div class="elem-card">
+        <span class="elem-icon">🪶</span>
+        <div class="elem-name">Cocar indígena</div>
+        <p class="elem-desc">O adorno indígena sobre o nome é o símbolo cultural da marca. Representa as raízes amazônicas de Manaus. Usar com moderação — reservado para a logo oficial.</p>
+      </div>
+      <div class="elem-card">
+        <span class="elem-icon">🏛️</span>
+        <div class="elem-name">Teatro Amazonas</div>
+        <p class="elem-desc">O ícone mais reconhecível de Manaus. Pode aparecer como elemento de fundo, silhueta ou referência visual em peças especiais e datas comemorativas.</p>
+      </div>
+      <div class="elem-card">
+        <span class="elem-icon">🌿</span>
+        <div class="elem-name">Verde amazônico</div>
+        <p class="elem-desc">A cor principal não é só estética — representa a floresta, o rio Negro e a identidade do Amazonas. Sempre presente como fundo ou destaque principal.</p>
+      </div>
+      <div class="elem-card">
+        <span class="elem-icon">📸</span>
+        <div class="elem-name">Fotografia local</div>
+        <p class="elem-desc">Imagens de Manaus: ruas, mercados, eventos, pessoas da cidade. Fotos devem parecer reais e próximas — nada de banco de imagens genérico.</p>
+      </div>
+      <div class="elem-card">
+        <span class="elem-icon">🏷️</span>
+        <div class="elem-name">Tags de categoria</div>
+        <p class="elem-desc">Pequenas etiquetas em amarelo ou verde identificando a categoria da notícia. Mantêm consistência visual e organizam o conteúdo no feed.</p>
+      </div>
+      <div class="elem-card">
+        <span class="elem-icon">📊</span>
+        <div class="elem-name">Números em destaque</div>
+        <p class="elem-desc">Dados numéricos grandes e em amarelo criam impacto imediato. Usar em posts de resultado, enquete ou informação estatística.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ TOM DE VOZ ═════════ -->
+<div class="sep"></div>
+<section class="section-alt">
+  <div class="w">
+    <span class="tag">05 · Tom de voz</span>
+    <h2 class="h2">Como o ChoraManaus fala</h2>
+    <p class="lead">Popular, direto, local. A linguagem do ChoraManaus é a linguagem da rua de Manaus — próxima, sem frescura, com personalidade.</p>
+
+    <div class="voice-grid">
+      <div class="voice-card ok">
+        <div class="voice-card-label">✓ Assim sim</div>
+        <div class="voice-example">"Cuidado manauara! Trânsito caótico na Av. Djalma Batista nessa manhã. Tá lento pra caramba!"</div>
+        <div class="voice-why">Direto, local, usa referência da cidade, tom próximo do leitor.</div>
+      </div>
+      <div class="voice-card nok">
+        <div class="voice-card-label">✕ Assim não</div>
+        <div class="voice-example">"Prezados leitores, informamos que há congestionamento de veículos na Avenida Djalma Batista neste período matutino."</div>
+        <div class="voice-why">Formal demais. O ChoraManaus não é assessoria de imprensa — é a voz do povo.</div>
+      </div>
+      <div class="voice-card ok">
+        <div class="voice-card-label">✓ Assim sim</div>
+        <div class="voice-example">"🔴 URGENTE: Tiroteio no Jorge Teixeira. Evite a área! Atualizações em breve."</div>
+        <div class="voice-why">Rápido, urgente, concreto. Dá a informação na primeira linha.</div>
+      </div>
+      <div class="voice-card nok">
+        <div class="voice-card-label">✕ Assim não</div>
+        <div class="voice-example">"De acordo com fontes consultadas pela redação, um incidente de natureza violenta teria ocorrido na zona leste da capital amazonense."</div>
+        <div class="voice-why">Enrolado e impessoal. Perde o timing da notícia local.</div>
+      </div>
+    </div>
+
+    <!-- Personalidade -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;">
+      <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">🔥</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Urgente</div>
+        <div style="font-size:12px;color:var(--texto);">Notícia quentinha, sem demora</div>
+      </div>
+      <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">🏙️</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Local</div>
+        <div style="font-size:12px;color:var(--texto);">Fala de Manaus pra Manaus</div>
+      </div>
+      <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">🤝</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Próximo</div>
+        <div style="font-size:12px;color:var(--texto);">Tom de amigo que te conta</div>
+      </div>
+      <div style="background:var(--cinza2);border:1px solid var(--cinza3);border-radius:14px;padding:24px;text-align:center;">
+        <div style="font-size:28px;margin-bottom:10px;">⚡</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Direto</div>
+        <div style="font-size:12px;color:var(--texto);">A info na primeira linha</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ APLICAÇÕES ═════════ -->
+<div class="sep"></div>
+<section class="section">
+  <div class="w">
+    <span class="tag">06 · Aplicações</span>
+    <h2 class="h2">A marca em ação</h2>
+
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="app-preview" style="background:var(--verde-bg);">
+          <div class="insta-post">
+            <div class="logo-t">
+              <span class="c">CHORA</span>
+              <span class="m">MANAUS</span>
+            </div>
+            <div class="caption">🔴 URGENTE: Tiroteio no bairro Jorge Teixeira. Evite a área! Mais informações em breve.</div>
+          </div>
+        </div>
+        <div class="app-info">
+          <strong>Post Instagram — Breaking News</strong>
+          Fundo verde, logo centralizada, legenda direta. Urgência indicada com emoji vermelho.
+        </div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-preview" style="background:#0f0f0f;">
+          <div class="news-card-preview">
+            <div class="ncp-top">
+              <div class="ncp-logo">
+                <span class="c">CHORA</span><span class="m">MANAUS</span>
+              </div>
+            </div>
+            <div class="ncp-body">
+              <div class="ncp-cat">Política</div>
+              <div class="ncp-title">Vereador propõe projeto de lei para ampliar transporte público em Manaus</div>
+            </div>
+          </div>
+        </div>
+        <div class="app-info">
+          <strong>Card de notícia — Portal</strong>
+          Barra verde no topo com logo, categoria em amarelo, título em branco. Padrão para o site.
+        </div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-preview" style="background:var(--amarelo);">
+          <div style="text-align:center;">
+            <div style="font-size:56px;font-weight:900;letter-spacing:-3px;line-height:1;margin-bottom:8px;">
+              <span style="color:var(--verde);">CHORA</span><br>
+              <span style="color:var(--preto);">MANAUS</span>
+            </div>
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:rgba(0,0,0,0.4);">Versão sobre amarelo</div>
+          </div>
+        </div>
+        <div class="app-info">
+          <strong>Versão sobre fundo amarelo</strong>
+          Em fundos amarelos, "CHORA" em verde e "MANAUS" em preto. Nunca em branco sobre amarelo — contraste insuficiente.
+        </div>
+      </div>
+
+      <div class="app-card">
+        <div class="app-preview" style="background:var(--cinza2);">
+          <div style="text-align:center;">
+            <div style="background:var(--verde);padding:6px 16px;border-radius:4px;display:inline-block;margin-bottom:16px;">
+              <span style="font-size:14px;font-weight:900;color:var(--branco);">CHORA</span>
+              <span style="font-size:14px;font-weight:900;color:var(--amarelo);">MANAUS</span>
+            </div>
+            <div style="font-size:28px;font-weight:900;line-height:1.2;color:var(--branco);max-width:220px;">ELEIÇÕES 2026 EM MANAUS</div>
+            <div style="margin-top:12px;font-size:12px;color:var(--texto);">Cobertura completa</div>
+          </div>
+        </div>
+        <div class="app-info">
+          <strong>Post de cobertura especial</strong>
+          Logo menor no topo, título grande, contexto abaixo. Padrão para séries e coberturas especiais.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════ FOOTER ═════════ -->
+<div class="sep"></div>
+<div class="footer">
+  <span>ChoraManaus · Manual da Marca 2026 · Versão 1.0</span>
+  <span>Uso interno e parceiros autorizados</span>
+</div>
+
+</body>
+</html>
