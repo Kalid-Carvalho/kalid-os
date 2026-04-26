@@ -9,6 +9,7 @@ Workspace principal de Kalid Carvalho — opera GROVW (agência de performance d
 - `conteudo/` — carrosséis, reels, newsletters
   - `conteudo/youtube/` — roteiros e materiais do canal @kalidcarvalho (IA | Tech | Apps)
 - `projetos/` — projetos internos, apps em desenvolvimento
+  - `projetos/choramanaus/` — parceria com @choramanaus (site, criativos, automações)
 - `dados/` — arquivos para análise (CSV, XLSX, PDF, imagens)
 - `marca/` — design guides das duas marcas
 - `_contexto/` — empresa, preferências e estratégia atual
