@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ChoraManaus — Manual da Marca v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --verde:      #1E7A47;
+  --verde-dark: #0D3D23;
+  --verde-mid:  #155C35;
+  --verde-lit:  #2D9A5A;
+  --amarelo:    #F9C41A;
+  --laranja:    #C94A0A;
+  --branco:     #FFFFFF;
+  --bg:         #070B09;
+  --s1:         #0C1610;
+  --s2:         #111D15;
+  --s3:         #182A1D;
+  --border:     rgba(255,255,255,0.07);
+  --border-y:   rgba(249,196,26,0.2);
+  --dim:        rgba(255,255,255,0.4);
+  --mid:        rgba(255,255,255,0.65);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--branco);
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.022;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  height: 52px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  background: rgba(7,11,9,0.9);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transform: translateY(-100%);
+  transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+}
+nav.show { transform: translateY(0); }
+.nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 1px; }
+.nav-logo em { color: var(--amarelo); font-style: normal; }
+.nav-links { display: flex; gap: 28px; list-style: none; }
+.nav-links a { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--dim); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--amarelo); }
+
+/* REVEAL */
+.r { opacity: 0; transform: translateY(28px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.16,1,0.3,1); }
+.r.on { opacity: 1; transform: none; }
+.r.d1 { transition-delay: 0.1s; }
+.r.d2 { transition-delay: 0.2s; }
+.r.d3 { transition-delay: 0.3s; }
+.r.d4 { transition-delay: 0.4s; }
+
+/* HELPERS */
+.w { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.sep { height: 1px; background: var(--border); }
+.sec { padding: 120px 0; position: relative; overflow: hidden; }
+.sec-alt { background: var(--s1); }
+.ghost-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(140px, 22vw, 320px);
+  color: rgba(255,255,255,0.018);
+  position: absolute; top: 32px; right: -16px;
+  line-height: 1; pointer-events: none; user-select: none; letter-spacing: -8px;
+}
+.sec-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 3px; color: var(--amarelo);
+  display: flex; align-items: center; gap: 12px; margin-bottom: 14px;
+}
+.sec-label::before { content: ''; display: block; width: 28px; height: 1px; background: var(--amarelo); }
+.sec-h { font-family: 'Bebas Neue', sans-serif; font-size: clamp(52px, 8vw, 104px); letter-spacing: -1px; line-height: 0.92; }
+.sec-p { font-size: 15px; color: var(--mid); line-height: 1.8; font-weight: 300; max-width: 500px; margin-top: 18px; }
+
+/* ═══ CAPA ═══ */
+.cover {
+  height: 100vh; min-height: 680px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  padding: 28px 48px 40px;
+  background: var(--bg); position: relative; overflow: hidden;
+}
+.cover-eyebrow { display: flex; justify-content: space-between; align-items: center; }
+.cover-tag { font-size: 10px; text-transform: uppercase; letter-spacing: 3px; color: var(--amarelo); font-weight: 700; }
+.cover-center {
+  position: absolute; top: 50%; left: 48px; right: 48px;
+  transform: translateY(-52%);
+}
+.cover-chora {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(96px, 19vw, 260px);
+  line-height: 0.82; color: var(--branco); letter-spacing: -4px; display: block;
+}
+.cover-rule { width: 100%; height: 2px; background: var(--amarelo); margin: 18px 0; position: relative; }
+.cover-rule::after {
+  content: 'MANUAL DA MARCA · 2026 · V2';
+  position: absolute; right: 0; top: -22px;
+  font-size: 9px; letter-spacing: 3px; color: var(--amarelo); font-weight: 700; text-transform: uppercase;
+}
+.cover-manaus {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(96px, 19vw, 260px);
+  line-height: 0.82; color: var(--amarelo); letter-spacing: -4px; display: block;
+}
+.cover-stats {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 24px;
+  position: relative; z-index: 1;
+}
+.cs { border-top: 1px solid rgba(255,255,255,0.12); padding-top: 14px; }
+.cs-v { font-family: 'Bebas Neue', sans-serif; font-size: 34px; color: var(--amarelo); letter-spacing: 1px; line-height: 1; margin-bottom: 4px; }
+.cs-l { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim); }
+
+/* ═══ 01 LOGO ═══ */
+.logo-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 3px;
+  background: var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 3px;
+}
+.lv {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 64px 40px; gap: 14px;
+}
+.lv:nth-child(1) { background: var(--verde); }
+.lv:nth-child(2) { background: #060A08; }
+.lv:nth-child(3) { background: #EDE9E0; }
+.lv:nth-child(4) { background: var(--amarelo); }
+.lv-text { font-family: 'Bebas Neue', sans-serif; font-size: 52px; letter-spacing: -1px; line-height: 0.85; text-align: center; }
+.lv-badge { font-size: 9px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.45; margin-top: 10px; }
+
+.protect-wrap {
+  background: var(--s3); border: 1px solid var(--border);
+  border-radius: 8px; padding: 72px; display: flex;
+  align-items: center; justify-content: center; position: relative; margin-bottom: 3px;
+}
+.protect-inner { position: relative; display: inline-block; }
+.protect-box {
+  position: absolute; inset: -36px;
+  border: 1px dashed rgba(249,196,26,0.35);
+}
+.protect-box::before {
+  content: '← X (área mínima) →';
+  position: absolute; bottom: -22px; left: 50%; transform: translateX(-50%);
+  font-size: 9px; color: rgba(249,196,26,0.5); letter-spacing: 1px; white-space: nowrap;
+}
+
+.nok-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; }
+.nok-card {
+  background: var(--s2); border: 1px solid var(--border);
+  border-radius: 4px; padding: 28px 20px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  position: relative;
+}
+.nok-x { position: absolute; top: 10px; right: 12px; color: #e53935; font-size: 18px; font-weight: 900; }
+.nok-prev {
+  width: 100%; height: 72px; background: var(--bg); border-radius: 4px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: -0.5px;
+}
+.nok-rule { font-size: 10px; color: #e57373; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; text-align: center; }
+
+/* ═══ 02 CORES ═══ */
+.strips { display: flex; flex-direction: column; gap: 3px; }
+.strip { display: grid; grid-template-columns: 1fr 360px; height: 156px; border-radius: 4px; overflow: hidden; }
+.strip-color { }
+.strip-info {
+  background: var(--s2); padding: 24px 28px;
+  display: flex; flex-direction: column; justify-content: center;
+  border-left: 1px solid var(--border);
+}
+.si-name { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+.si-hex { font-family: monospace; font-size: 22px; font-weight: 700; color: var(--amarelo); letter-spacing: 1px; margin-bottom: 4px; }
+.si-rgb { font-size: 11px; color: var(--dim); font-family: monospace; margin-bottom: 10px; }
+.si-use { font-size: 12px; color: var(--mid); line-height: 1.5; font-weight: 300; }
+
+/* ═══ 03 TIPOGRAFIA ═══ */
+.type-hero {
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  padding: 64px 0; margin-bottom: 56px; overflow: hidden;
+}
+.th-line {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 13vw, 192px);
+  line-height: 0.85; letter-spacing: -4px; white-space: nowrap;
+}
+.th-line.y { color: var(--amarelo); }
+.th-line.d { font-family: 'Inter', sans-serif; font-size: clamp(20px, 3.5vw, 48px); font-weight: 200; letter-spacing: -1px; color: var(--mid); line-height: 1.2; }
+
+.scale-table { width: 100%; border-collapse: separate; border-spacing: 0 3px; margin-bottom: 48px; }
+.scale-table tr { background: var(--s2); }
+.scale-table td { padding: 18px 24px; vertical-align: middle; }
+.scale-table td:first-child { width: 150px; font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--dim); border-left: 2px solid var(--border); }
+
+.font-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.fp-card { background: var(--s2); border: 1px solid var(--border); border-radius: 4px; padding: 36px; }
+.fp-name { font-size: 44px; line-height: 1; margin-bottom: 14px; }
+.fp-meta { display: flex; flex-direction: column; gap: 8px; border-top: 1px solid var(--border); padding-top: 18px; margin-top: 20px; }
+.fp-row { display: flex; justify-content: space-between; font-size: 12px; }
+.fp-row span:first-child { color: var(--dim); }
+.fp-row span:last-child { font-weight: 600; }
+
+/* ═══ 04 ELEMENTOS ═══ */
+.elem-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.elem-card {
+  background: var(--s2); border: 1px solid var(--border);
+  border-radius: 4px; padding: 44px 32px; position: relative; overflow: hidden;
+}
+.elem-bg-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 130px;
+  color: rgba(255,255,255,0.022); position: absolute; top: -8px; right: 8px;
+  line-height: 1; pointer-events: none;
+}
+.elem-icon { font-size: 36px; margin-bottom: 18px; display: block; }
+.elem-name { font-family: 'Bebas Neue', sans-serif; font-size: 30px; letter-spacing: 0.5px; margin-bottom: 10px; }
+.elem-desc { font-size: 13px; color: var(--mid); line-height: 1.7; font-weight: 300; }
+.elem-note { margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 11px; color: var(--amarelo); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
+.tags-row { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+.tag-chip { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; padding: 4px 10px; border-radius: 2px; }
+
+/* ═══ 05 TOM DE VOZ ═══ */
+.voice-rows { display: flex; flex-direction: column; gap: 3px; }
+.voice-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.vc {
+  padding: 36px; border-radius: 4px;
+}
+.vc.ok { background: rgba(30,122,71,0.1); border: 1px solid rgba(30,122,71,0.22); }
+.vc.nok { background: rgba(229,57,53,0.06); border: 1px solid rgba(229,57,53,0.15); }
+.vc-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; margin-bottom: 18px; }
+.vc.ok .vc-label { color: var(--verde-lit); }
+.vc.nok .vc-label { color: #e57373; }
+.vc-text { font-size: 15px; line-height: 1.7; font-style: italic; color: var(--branco); padding: 16px 18px; background: rgba(0,0,0,0.2); border-radius: 4px; margin-bottom: 14px; }
+.vc-why { font-size: 12px; color: var(--dim); line-height: 1.6; }
+
+.pillars { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; margin-top: 3px; }
+.pillar { background: var(--s2); border: 1px solid var(--border); border-top: 3px solid var(--amarelo); border-radius: 4px; padding: 28px 22px; }
+.pillar-icon { font-size: 22px; margin-bottom: 10px; display: block; }
+.pillar-name { font-family: 'Bebas Neue', sans-serif; font-size: 24px; letter-spacing: 0.5px; margin-bottom: 8px; }
+.pillar-desc { font-size: 12px; color: var(--mid); line-height: 1.6; font-weight: 300; }
+
+/* ═══ 06 APLICAÇÕES ═══ */
+.apps { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; }
+.app-card { background: var(--s2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+.app-stage { min-height: 300px; display: flex; align-items: center; justify-content: center; padding: 40px; }
+.app-label { padding: 16px 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.app-label strong { font-size: 13px; }
+.app-label span { font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--dim); }
+
+/* Phone */
+.phone { width: 172px; background: #181818; border-radius: 30px; padding: 10px; box-shadow: 0 24px 80px rgba(0,0,0,0.9), inset 0 0 0 1px rgba(255,255,255,0.07); }
+.phone-screen { border-radius: 22px; overflow: hidden; }
+.phone-notch { height: 18px; background: #181818; display: flex; align-items: center; justify-content: center; }
+.phone-notch::after { content: ''; width: 44px; height: 5px; background: #0a0a0a; border-radius: 3px; }
+
+/* IG Post */
+.ig-sq {
+  background: var(--verde); aspect-ratio: 1/1; width: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px;
+}
+.ig-sq-logo { font-family: 'Bebas Neue', sans-serif; font-size: 28px; letter-spacing: -0.5px; line-height: 0.85; text-align: center; }
+.ig-sq-rule { width: 80%; height: 1px; background: rgba(249,196,26,0.5); margin: 8px 0; }
+.ig-sq-cap { font-size: 7px; color: rgba(255,255,255,0.65); text-align: center; line-height: 1.5; }
+
+/* Story */
+.story {
+  width: 136px; aspect-ratio: 9/16; border-radius: 14px; overflow: hidden;
+  background: linear-gradient(160deg, var(--verde-dark) 0%, var(--verde) 70%);
+  display: flex; flex-direction: column; padding: 10px;
+  box-shadow: 0 16px 56px rgba(0,0,0,0.8);
+}
+.story-bars { display: flex; gap: 2px; margin-bottom: 8px; }
+.story-bar { flex: 1; height: 2px; background: rgba(255,255,255,0.25); border-radius: 1px; }
+.story-bar.a { background: var(--branco); }
+.story-user { display: flex; align-items: center; gap: 5px; margin-bottom: auto; }
+.story-av { width: 22px; height: 22px; border-radius: 50%; background: var(--amarelo); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 7px; color: #000; }
+.story-un { font-size: 8px; font-weight: 700; }
+.story-body { }
+.story-hl { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.5px; line-height: 1; color: var(--branco); margin-bottom: 4px; }
+.story-hl em { color: var(--amarelo); font-style: normal; }
+.story-sub { font-size: 7px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 1px; }
+
+/* Browser */
+.browser { background: #1a1a1a; border-radius: 10px; overflow: hidden; width: 320px; box-shadow: 0 16px 56px rgba(0,0,0,0.7); }
+.browser-bar { background: #252525; padding: 8px 12px; display: flex; align-items: center; gap: 8px; }
+.browser-dots { display: flex; gap: 4px; }
+.browser-dot { width: 8px; height: 8px; border-radius: 50%; }
+.browser-url { flex: 1; background: #333; border-radius: 4px; padding: 4px 10px; font-size: 9px; color: rgba(255,255,255,0.4); text-align: center; }
+.browser-body { background: #f2f2f7; }
+.bb-header { background: var(--verde); padding: 8px 10px; display: flex; justify-content: space-between; align-items: center; }
+.bb-logo { font-family: 'Bebas Neue', sans-serif; font-size: 14px; }
+.bb-item { padding: 8px 10px; border-bottom: 1px solid #e0e0e0; display: flex; gap: 8px; }
+.bb-item:last-child { border-bottom: none; }
+.bb-thumb { width: 44px; height: 36px; border-radius: 3px; flex-shrink: 0; }
+.bb-cat { font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 3px; }
+.bb-title { font-size: 8px; font-weight: 700; color: #1c1c1e; line-height: 1.4; }
+
+/* Ad card */
+.ad-card {
+  width: 280px; background: rgba(0,0,0,0.45); border: 1px solid rgba(249,196,26,0.18);
+  border-radius: 8px; padding: 24px; backdrop-filter: blur(12px);
+}
+.ad-tag { font-size: 8px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--amarelo); margin-bottom: 10px; }
+.ad-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--branco); letter-spacing: 0.5px; margin-bottom: 14px; }
+.ad-numbers { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 14px; }
+.ad-num { background: rgba(255,255,255,0.05); border-radius: 4px; padding: 8px; text-align: center; }
+.ad-num-v { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--amarelo); line-height: 1; }
+.ad-num-l { font-size: 7px; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 1px; }
+.ad-btn { background: var(--verde); border-radius: 4px; padding: 9px; text-align: center; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+
+/* FOOTER */
+footer {
+  background: var(--verde-dark); border-top: 1px solid var(--border);
+  padding: 80px 48px;
+  display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+}
+.footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 72px; letter-spacing: -3px; line-height: 0.85; }
+.footer-logo em { color: var(--amarelo); font-style: normal; }
+.footer-meta { font-size: 13px; color: var(--dim); line-height: 1.8; margin-top: 14px; }
+.footer-r { text-align: right; }
+.footer-r p { font-size: 11px; color: var(--dim); margin-bottom: 6px; }
+.footer-ver { font-family: 'Bebas Neue', sans-serif; font-size: 52px; color: var(--amarelo); letter-spacing: 1px; line-height: 1; }
+
+@media (max-width: 900px) {
+  .w { padding: 0 24px; }
+  .cover { padding: 24px; }
+  nav { padding: 0 24px; }
+  .cover-stats { grid-template-columns: repeat(2,1fr); }
+  .logo-grid, .font-pair, .voice-pair { grid-template-columns: 1fr; }
+  .nok-grid { grid-template-columns: repeat(2,1fr); }
+  .strip { grid-template-columns: 1fr; height: auto; }
+  .strip-info { border-left: none; border-top: 1px solid var(--border); }
+  .elem-grid { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: repeat(2,1fr); }
+  .apps { grid-template-columns: 1fr; }
+  footer { grid-template-columns: 1fr; }
+  .footer-r { text-align: left; }
+  .sec { padding: 80px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">CHORA<em>MANAUS</em></div>
+  <ul class="nav-links">
+    <li><a href="#logo">01 Logo</a></li>
+    <li><a href="#cores">02 Cores</a></li>
+    <li><a href="#tipo">03 Tipografia</a></li>
+    <li><a href="#elem">04 Elementos</a></li>
+    <li><a href="#voz">05 Voz</a></li>
+    <li><a href="#apps">06 Aplicações</a></li>
+  </ul>
+</nav>
+
+<!-- CAPA -->
+<section class="cover">
+  <div class="cover-eyebrow">
+    <span class="cover-tag">ChoraManaus · Manual da Marca · 2026</span>
+    <span class="cover-tag">Versão 2.0</span>
+  </div>
+
+  <div class="cover-center">
+    <span class="cover-chora">CHORA</span>
+    <div class="cover-rule"></div>
+    <span class="cover-manaus">MANAUS</span>
+  </div>
+
+  <div class="cover-stats">
+    <div class="cs"><div class="cs-v">165K</div><div class="cs-l">Seguidores</div></div>
+    <div class="cs"><div class="cs-v">2,5MI</div><div class="cs-l">Alcance mensal</div></div>
+    <div class="cs"><div class="cs-v">7,3MI</div><div class="cs-l">Visualizações/mês</div></div>
+    <div class="cs"><div class="cs-v">429K</div><div class="cs-l">Interações/mês</div></div>
+  </div>
+</section>
+
+<!-- 01 LOGO -->
+<section class="sec" id="logo">
+  <div class="ghost-num">01</div>
+  <div class="w">
+    <div style="margin-bottom:64px;" class="r">
+      <div class="sec-label">01 · Logo</div>
+      <h2 class="sec-h">O símbolo<br>de Manaus</h2>
+      <p class="sec-p">Construída sobre tipografia bold condensada e o contraste entre branco e amarelo sobre verde amazônico — as cores da floresta e do sol equatorial.</p>
+    </div>
+
+    <div class="logo-grid r">
+      <div class="lv">
+        <div class="lv-text"><span style="color:#fff;display:block;">CHORA</span><span style="color:#F9C41A;display:block;">MANAUS</span></div>
+        <div class="lv-badge" style="color:rgba(255,255,255,0.4);">Principal · Fundo verde</div>
+      </div>
+      <div class="lv">
+        <div class="lv-text"><span style="color:#fff;display:block;">CHORA</span><span style="color:#F9C41A;display:block;">MANAUS</span></div>
+        <div class="lv-badge" style="color:rgba(255,255,255,0.25);">Dark · Fundo preto</div>
+      </div>
+      <div class="lv">
+        <div class="lv-text"><span style="color:#1E7A47;display:block;">CHORA</span><span style="color:#C94A0A;display:block;">MANAUS</span></div>
+        <div class="lv-badge" style="color:rgba(0,0,0,0.3);">Clara · Fundo neutro</div>
+      </div>
+      <div class="lv">
+        <div class="lv-text"><span style="color:#1E7A47;display:block;">CHORA</span><span style="color:#070B09;display:block;">MANAUS</span></div>
+        <div class="lv-badge" style="color:rgba(0,0,0,0.35);">Amarela · Fundo amarelo</div>
+      </div>
+    </div>
+
+    <div class="protect-wrap r" style="margin-top:3px;">
+      <div class="protect-inner">
+        <div class="protect-box"></div>
+        <div style="background:var(--verde);padding:28px 36px;border-radius:4px;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:-1px;line-height:0.85;text-align:center;">
+            <span style="color:#fff;display:block;">CHORA</span>
+            <span style="color:#F9C41A;display:block;">MANAUS</span>
+          </div>
+        </div>
+      </div>
+      <div style="position:absolute;bottom:16px;right:28px;font-size:10px;color:var(--dim);">Área de proteção = X (altura da letra M)</div>
+    </div>
+
+    <div style="margin-top:48px;" class="r">
+      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#e57373;display:flex;align-items:center;gap:10px;margin-bottom:14px;"><span style="width:20px;height:1px;background:#e57373;display:block;"></span>Usos proibidos</div>
+      <div class="nok-grid">
+        <div class="nok-card">
+          <span class="nok-x">✕</span>
+          <div class="nok-prev" style="filter:grayscale(1);opacity:0.4;"><span style="color:#aaa;">CHORA MANAUS</span></div>
+          <div class="nok-rule">Nunca em cinza</div>
+        </div>
+        <div class="nok-card">
+          <span class="nok-x">✕</span>
+          <div class="nok-prev" style="transform:skewX(-14deg);"><span style="color:#fff;">CHORA</span>&nbsp;<span style="color:#F9C41A;">MANAUS</span></div>
+          <div class="nok-rule">Nunca distorcida</div>
+        </div>
+        <div class="nok-card">
+          <span class="nok-x">✕</span>
+          <div class="nok-prev" style="font-family:'Inter',sans-serif;font-size:16px;font-weight:300;"><span style="color:#fff;">Chora Manaus</span></div>
+          <div class="nok-rule">Nunca fina / caixa baixa</div>
+        </div>
+        <div class="nok-card">
+          <span class="nok-x">✕</span>
+          <div class="nok-prev" style="background:linear-gradient(135deg,#c94a0a 0%,#1e7a47 100%);"><span style="color:#fff;">CHORA</span>&nbsp;<span style="color:#F9C41A;">MANAUS</span></div>
+          <div class="nok-rule">Nunca em fundo complexo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 CORES -->
+<div class="sep"></div>
+<section class="sec sec-alt" id="cores">
+  <div class="ghost-num">02</div>
+  <div class="w">
+    <div style="margin-bottom:64px;" class="r">
+      <div class="sec-label">02 · Paleta de Cores</div>
+      <h2 class="sec-h">As cores<br>de Manaus</h2>
+      <p class="sec-p">Verde da Amazônia. Amarelo do sol equatorial. Laranja dos povos originários. Uma paleta que é a própria identidade da cidade.</p>
+    </div>
+
+    <div class="strips r">
+      <div class="strip">
+        <div class="strip-color" style="background:#1E7A47;"></div>
+        <div class="strip-info">
+          <div class="si-name">Verde Amazônico</div>
+          <div class="si-hex">#1E7A47</div>
+          <div class="si-rgb">RGB 30 · 122 · 71</div>
+          <div class="si-use">Cor principal. Fundo da logo, botões de ação, barras de topo, elementos de destaque primário.</div>
+        </div>
+      </div>
+      <div class="strip">
+        <div class="strip-color" style="background:#F9C41A;"></div>
+        <div class="strip-info">
+          <div class="si-name">Amarelo Manauara</div>
+          <div class="si-hex">#F9C41A</div>
+          <div class="si-rgb">RGB 249 · 196 · 26</div>
+          <div class="si-use">Cor de energia e destaque. Palavra "MANAUS", títulos em evidência, tags, números e CTAs secundários.</div>
+        </div>
+      </div>
+      <div class="strip">
+        <div class="strip-color" style="background:#C94A0A;"></div>
+        <div class="strip-info">
+          <div class="si-name">Laranja Indígena</div>
+          <div class="si-hex">#C94A0A</div>
+          <div class="si-rgb">RGB 201 · 74 · 10</div>
+          <div class="si-use">Breaking news, urgência máxima, alertas. Usar com moderação — nunca como cor de fundo principal.</div>
+        </div>
+      </div>
+      <div class="strip">
+        <div class="strip-color" style="background:#0D3D23;"></div>
+        <div class="strip-info">
+          <div class="si-name">Verde Floresta</div>
+          <div class="si-hex">#0D3D23</div>
+          <div class="si-rgb">RGB 13 · 61 · 35</div>
+          <div class="si-use">Fundos escuros, cabeçalhos de alto contraste. Versão profunda e sombria do verde principal.</div>
+        </div>
+      </div>
+      <div class="strip">
+        <div class="strip-color" style="background:#2D9A5A;"></div>
+        <div class="strip-info">
+          <div class="si-name">Verde Claro</div>
+          <div class="si-hex">#2D9A5A</div>
+          <div class="si-rgb">RGB 45 · 154 · 90</div>
+          <div class="si-use">Hover states, links, ícones secundários, bordas de destaque sutil.</div>
+        </div>
+      </div>
+      <div class="strip">
+        <div class="strip-color" style="background:#FFFFFF; outline: 1px solid #ddd;"></div>
+        <div class="strip-info">
+          <div class="si-name">Branco</div>
+          <div class="si-hex">#FFFFFF</div>
+          <div class="si-rgb">RGB 255 · 255 · 255</div>
+          <div class="si-use">Texto principal, palavra "CHORA" na logo. Uso em fundos escuros e verdes.</div>
+        </div>
+      </div>
+      <div class="strip">
+        <div class="strip-color" style="background:#0A0A0A;"></div>
+        <div class="strip-info">
+          <div class="si-name">Preto</div>
+          <div class="si-hex">#0A0A0A</div>
+          <div class="si-rgb">RGB 10 · 10 · 10</div>
+          <div class="si-use">Fundo base, texto sobre fundo amarelo. Alto contraste para legibilidade máxima.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 TIPOGRAFIA -->
+<div class="sep"></div>
+<section class="sec" id="tipo">
+  <div class="ghost-num">03</div>
+  <div class="w">
+    <div style="margin-bottom:64px;" class="r">
+      <div class="sec-label">03 · Tipografia</div>
+      <h2 class="sec-h">Fontes que<br>têm impacto</h2>
+    </div>
+
+    <div class="type-hero r">
+      <div class="th-line">BEBAS NEUE</div>
+      <div class="th-line y">HEADLINES</div>
+      <div class="th-line d">Inter · corpo e interface</div>
+    </div>
+
+    <table class="scale-table r">
+      <tr>
+        <td>Display</td>
+        <td><span style="font-family:'Bebas Neue',sans-serif;font-size:68px;color:var(--amarelo);letter-spacing:-3px;line-height:1;">CHORA MANAUS</span></td>
+      </tr>
+      <tr>
+        <td>H1 · 56px</td>
+        <td><span style="font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:-2px;line-height:1;">Aconteceu em Manaus</span></td>
+      </tr>
+      <tr>
+        <td>H2 · 36px</td>
+        <td><span style="font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:-1px;">Polícia prende suspeito no Centro</span></td>
+      </tr>
+      <tr>
+        <td>H3 · 22px</td>
+        <td><span style="font-size:22px;font-weight:700;letter-spacing:-0.5px;">Trânsito caótico na Djalma Batista</span></td>
+      </tr>
+      <tr>
+        <td>Corpo · 15px</td>
+        <td><span style="font-size:15px;font-weight:300;color:var(--mid);line-height:1.8;">Texto corrido legível e limpo. Espaçamento generoso. Mínimo 15px em digital.</span></td>
+      </tr>
+      <tr>
+        <td>Caption · 11px</td>
+        <td><span style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--dim);">POLÍTICA · MANAUS · 26 ABR 2026</span></td>
+      </tr>
+    </table>
+
+    <div class="font-pair r">
+      <div class="fp-card">
+        <div class="fp-name" style="font-family:'Bebas Neue',sans-serif;color:var(--amarelo);">Bebas Neue</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6;">Condensada, bold, caixa alta. Impacto imediato — pra tudo que precisa ser visto primeiro.</p>
+        <div class="fp-meta">
+          <div class="fp-row"><span>Tipo</span><span>Display / Headline</span></div>
+          <div class="fp-row"><span>Peso</span><span>Regular (único)</span></div>
+          <div class="fp-row"><span>Uso</span><span>Títulos, logo, números, CTAs</span></div>
+          <div class="fp-row"><span>Fonte</span><span>Google Fonts</span></div>
+        </div>
+      </div>
+      <div class="fp-card">
+        <div class="fp-name" style="font-family:'Inter',sans-serif;font-weight:200;color:var(--branco);">Inter</div>
+        <p style="font-size:13px;color:var(--mid);line-height:1.6;">Neutra, clean, altamente legível. Complementa o peso visual da Bebas Neue.</p>
+        <div class="fp-meta">
+          <div class="fp-row"><span>Tipo</span><span>Corpo / Interface</span></div>
+          <div class="fp-row"><span>Pesos</span><span>300 · 400 · 600 · 700</span></div>
+          <div class="fp-row"><span>Uso</span><span>Texto corrido, legendas, UI</span></div>
+          <div class="fp-row"><span>Fonte</span><span>Google Fonts</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 04 ELEMENTOS -->
+<div class="sep"></div>
+<section class="sec sec-alt" id="elem">
+  <div class="ghost-num">04</div>
+  <div class="w">
+    <div style="margin-bottom:64px;" class="r">
+      <div class="sec-label">04 · Elementos Visuais</div>
+      <h2 class="sec-h">O DNA<br>visual</h2>
+      <p class="sec-p">Os elementos que vão além das cores e fontes — carregam a cultura e a história de Manaus.</p>
+    </div>
+
+    <div class="elem-grid r">
+      <div class="elem-card">
+        <span class="elem-bg-num">1</span>
+        <span class="elem-icon">🪶</span>
+        <div class="elem-name">Cocar Indígena</div>
+        <p class="elem-desc">Adorno sobre o logotipo. Representa os povos originários do Amazonas e as raízes culturais de Manaus. Reservado à logo oficial — não reproduzir isoladamente.</p>
+        <div class="elem-note">Elemento identitário principal</div>
+      </div>
+      <div class="elem-card">
+        <span class="elem-bg-num">2</span>
+        <span class="elem-icon">🏛️</span>
+        <div class="elem-name">Teatro Amazonas</div>
+        <p class="elem-desc">Maior ícone de Manaus. Pode aparecer como silhueta, elemento de fundo ou referência em artes especiais, datas comemorativas e coberturas da cidade.</p>
+        <div class="elem-note">Símbolo visual da cidade</div>
+      </div>
+      <div class="elem-card">
+        <span class="elem-bg-num">3</span>
+        <span class="elem-icon">📸</span>
+        <div class="elem-name">Fotografia Local</div>
+        <p class="elem-desc">Imagens reais de Manaus — ruas, mercados, eventos, pessoas. Autenticidade acima de tudo. Banco de imagens genérico não representa a cidade.</p>
+        <div class="elem-note">Sempre imagens reais da cidade</div>
+      </div>
+      <div class="elem-card">
+        <span class="elem-bg-num">4</span>
+        <span class="elem-icon">🏷️</span>
+        <div class="elem-name">Tags de Categoria</div>
+        <p class="elem-desc">Etiquetas mantêm consistência editorial em todos os canais. Três variações disponíveis:</p>
+        <div class="tags-row">
+          <span class="tag-chip" style="background:var(--verde);color:#fff;">Política</span>
+          <span class="tag-chip" style="background:var(--amarelo);color:#000;">Urgente</span>
+          <span class="tag-chip" style="background:var(--laranja);color:#fff;">Breaking</span>
+          <span class="tag-chip" style="border:1px solid var(--border);color:var(--mid);">Entret.</span>
+        </div>
+      </div>
+      <div class="elem-card">
+        <span class="elem-bg-num">5</span>
+        <span class="elem-icon">📊</span>
+        <div class="elem-name">Números em Destaque</div>
+        <p class="elem-desc">Dados numéricos grandes em amarelo criam impacto imediato. Usar em posts de resultado, enquetes e estatísticas.</p>
+        <div style="margin-top:16px;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--amarelo);letter-spacing:-2px;line-height:1;">165K</span>
+          <span style="font-size:10px;color:var(--dim);display:block;text-transform:uppercase;letter-spacing:1.5px;margin-top:-4px;">Seguidores</span>
+        </div>
+      </div>
+      <div class="elem-card">
+        <span class="elem-bg-num">6</span>
+        <span class="elem-icon">📏</span>
+        <div class="elem-name">Linha Amarela</div>
+        <p class="elem-desc">Divisor visual da marca. Presente na logo entre CHORA e MANAUS — pode aparecer como separador editorial em composições e peças de destaque.</p>
+        <div style="margin-top:20px;width:100%;height:2px;background:var(--amarelo);"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 05 TOM DE VOZ -->
+<div class="sep"></div>
+<section class="sec" id="voz">
+  <div class="ghost-num">05</div>
+  <div class="w">
+    <div style="margin-bottom:64px;" class="r">
+      <div class="sec-label">05 · Tom de Voz</div>
+      <h2 class="sec-h">Como Manaus<br>fala</h2>
+      <p class="sec-p">A linguagem da rua — próxima, direta, sem frescura. O ChoraManaus é o vizinho que te conta a notícia antes do jornal.</p>
+    </div>
+
+    <div class="voice-rows r">
+      <div class="voice-pair">
+        <div class="vc ok">
+          <div class="vc-label">✓ Assim sim</div>
+          <div class="vc-text">"🔴 URGENTE: Tiroteio no Jorge Teixeira. Evite a área! Atualizações em breve."</div>
+          <div class="vc-why">Direto, urgente, local. A informação na primeira linha. Tom de quem está na rua.</div>
+        </div>
+        <div class="vc nok">
+          <div class="vc-label">✕ Assim não</div>
+          <div class="vc-text">"Conforme apurado pela redação, um incidente de natureza violenta teria ocorrido na zona leste da capital."</div>
+          <div class="vc-why">Formal demais, impessoal, enrolado. Perde o timing da notícia local.</div>
+        </div>
+      </div>
+      <div class="voice-pair">
+        <div class="vc ok">
+          <div class="vc-label">✓ Assim sim</div>
+          <div class="vc-text">"Cuidado manauara! Trânsito parado na Djalma desde cedo. Boa sorte aí!"</div>
+          <div class="vc-why">Usa "manauara", referência local, tom próximo e empático.</div>
+        </div>
+        <div class="vc nok">
+          <div class="vc-label">✕ Assim não</div>
+          <div class="vc-text">"Prezados leitores, informamos congestionamento na Avenida Djalma Batista neste período matutino."</div>
+          <div class="vc-why">Parece comunicado de assessoria. Distante e sem personalidade.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pillars r">
+      <div class="pillar"><span class="pillar-icon">🔥</span><div class="pillar-name">Urgente</div><p class="pillar-desc">Notícia quentinha. O leitor sabe antes de todo mundo.</p></div>
+      <div class="pillar"><span class="pillar-icon">🏙️</span><div class="pillar-name">Local</div><p class="pillar-desc">Fala de Manaus pra Manaus. Ruas, bairros, nomes da cidade.</p></div>
+      <div class="pillar"><span class="pillar-icon">🤝</span><div class="pillar-name">Próximo</div><p class="pillar-desc">Tom de amigo que te conta a novidade. Sem distância editorial.</p></div>
+      <div class="pillar"><span class="pillar-icon">⚡</span><div class="pillar-name">Direto</div><p class="pillar-desc">Info na primeira linha. Sem enrolação, sem introdução.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 06 APLICAÇÕES -->
+<div class="sep"></div>
+<section class="sec sec-alt" id="apps">
+  <div class="ghost-num">06</div>
+  <div class="w">
+    <div style="margin-bottom:64px;" class="r">
+      <div class="sec-label">06 · Aplicações</div>
+      <h2 class="sec-h">A marca<br>em ação</h2>
+      <p class="sec-p">Como a identidade visual aparece nos canais digitais do ChoraManaus.</p>
+    </div>
+
+    <div class="apps r">
+
+      <!-- IG Post -->
+      <div class="app-card">
+        <div class="app-stage" style="background:var(--verde-dark);">
+          <div class="phone">
+            <div class="phone-notch"></div>
+            <div class="phone-screen">
+              <div class="ig-sq">
+                <div class="ig-sq-logo">
+                  <span style="color:#fff;display:block;">CHORA</span>
+                  <span style="color:#F9C41A;display:block;">MANAUS</span>
+                </div>
+                <div class="ig-sq-rule"></div>
+                <div class="ig-sq-cap">🔴 URGENTE: Incêndio no Mercado Municipal. Bombeiros no local. Evite a área!</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-label"><strong>Post Breaking News</strong><span>Instagram · Feed</span></div>
+      </div>
+
+      <!-- Stories -->
+      <div class="app-card">
+        <div class="app-stage" style="background:#080c0a;">
+          <div class="story">
+            <div class="story-bars">
+              <div class="story-bar a"></div>
+              <div class="story-bar a"></div>
+              <div class="story-bar"></div>
+            </div>
+            <div class="story-user">
+              <div class="story-av">CM</div>
+              <span class="story-un">choramanaus</span>
+            </div>
+            <div class="story-body" style="margin-top:auto;">
+              <div class="story-hl">ELEIÇÕES<br>2026 <em>EM</em><br>MANAUS</div>
+              <div class="story-sub">Deslize para ver mais →</div>
+            </div>
+          </div>
+        </div>
+        <div class="app-label"><strong>Stories Patrocinado</strong><span>Instagram · Stories</span></div>
+      </div>
+
+      <!-- Browser/Portal -->
+      <div class="app-card">
+        <div class="app-stage" style="background:#202020;">
+          <div class="browser">
+            <div class="browser-bar">
+              <div class="browser-dots">
+                <div class="browser-dot" style="background:#ff5f57;"></div>
+                <div class="browser-dot" style="background:#febc2e;"></div>
+                <div class="browser-dot" style="background:#28c840;"></div>
+              </div>
+              <div class="browser-url">choramanaus.com</div>
+            </div>
+            <div class="browser-body">
+              <div class="bb-header">
+                <div class="bb-logo"><span style="color:#fff;">CHORA</span><span style="color:#F9C41A;">MANAUS</span></div>
+                <div style="font-size:8px;color:rgba(255,255,255,0.6);">Manaus · Ao vivo</div>
+              </div>
+              <div class="bb-item">
+                <div class="bb-thumb" style="background:var(--verde);"></div>
+                <div><div class="bb-cat" style="color:#C94A0A;">🔴 Urgente</div><div class="bb-title">Vereador propõe ampliação do transporte na zona norte de Manaus</div></div>
+              </div>
+              <div class="bb-item">
+                <div class="bb-thumb" style="background:#0D3D23;"></div>
+                <div><div class="bb-cat" style="color:#1E7A47;">Política</div><div class="bb-title">Candidatos apresentam propostas para a zona leste da cidade</div></div>
+              </div>
+              <div class="bb-item" style="border-bottom:none;">
+                <div class="bb-thumb" style="background:#2D9A5A;"></div>
+                <div><div class="bb-cat" style="color:#888;">Trânsito</div><div class="bb-title">Interdição na Djalma Batista gera congestionamento</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="app-label"><strong>Portal de Notícias</strong><span>choramanaus.com</span></div>
+      </div>
+
+      <!-- Ad Card -->
+      <div class="app-card">
+        <div class="app-stage" style="background:linear-gradient(140deg, var(--verde-dark) 0%, #1a3a22 100%);">
+          <div class="ad-card">
+            <div class="ad-tag">Publicidade Patrocinada</div>
+            <div class="ad-title">ANUNCIE PARA MANAUS</div>
+            <div class="ad-numbers">
+              <div class="ad-num"><div class="ad-num-v">2,5MI</div><div class="ad-num-l">Alcance/mês</div></div>
+              <div class="ad-num"><div class="ad-num-v">165K</div><div class="ad-num-l">Seguidores</div></div>
+            </div>
+            <div class="ad-btn">Falar com a equipe</div>
+          </div>
+        </div>
+        <div class="app-label"><strong>Card de Publicidade</strong><span>Mídia Kit · Anunciantes</span></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="sep"></div>
+<footer>
+  <div>
+    <div class="footer-logo">CHORA<em>MANAUS</em></div>
+    <div class="footer-meta">Manual da Marca · Versão 2.0<br>Uso interno e parceiros autorizados<br>Abril 2026 · Manaus, Amazonas</div>
+  </div>
+  <div class="footer-r">
+    <p>Ano de referência</p>
+    <div class="footer-ver">2026</div>
+    <p style="margin-top:10px;">choramanaus.com · @choramanaus</p>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('show', window.scrollY > window.innerHeight * 0.7);
+});
+
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); obs.unobserve(e.target); } });
+}, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+
+document.querySelectorAll('.r').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
