@@ -1,6 +1,6 @@
 # Copy Landing Page — Mentoria Luan Manzoli (V1)
 
-Gerada em 25/04/2026. Framework AIDA/PAS. Variáveis entre colchetes [ ] aguardam validação com o cliente.
+Gerada em 25/04/2026. Framework AIDA/PAS + estrutura de página de mentoria. Variáveis entre colchetes [ ] aguardam validação com o cliente.
 
 ---
 
@@ -38,6 +38,35 @@ Não é falta de esforço. É falta de sistema.
 
 ---
 
+## PARA QUEM É / PARA QUEM NÃO É
+
+**Título:** ESSA MENTORIA É PARA VOCÊ SE...
+
+- Você quer abrir a primeira loja de iPhone mas não sabe por onde começar
+- Você tem capital disponível mas tem medo de alocar errado e queimar tudo
+- Você já tentou entrar no mercado e travou na hora de encontrar fornecedor confiável
+- Você quer um negócio físico ou digital com margem real, não depender de emprego nem de sorte
+
+**Título:** NÃO É PARA VOCÊ SE...
+
+- Você quer resultado sem precisar executar nada
+- Você busca conteúdo para consumir e nunca aplicar
+- Você não tem capital mínimo para iniciar uma operação comercial
+
+---
+
+## TRANSFORMAÇÃO
+
+**Título:** DE ONDE VOCÊ SAI PARA ONDE VOCÊ VAI
+
+**Antes da mentoria:**
+Sem operação estruturada. Sem fornecedor validado. Sem sistema de captação. Gastando tempo pesquisando em fórum e ainda em dúvida sobre tudo.
+
+**Depois da mentoria:**
+Operação montada do zero com protocolo testado. Fornecedor validado com margem real. Primeiros clientes chegando sem depender de indicação. Clareza total sobre onde e como escalar.
+
+---
+
 ## SOLUÇÃO
 
 **Título:** O QUE VOCÊ APRENDE NA MENTORIA
@@ -56,6 +85,19 @@ Como atrair compradores qualificados sem depender de indicação, com ou sem ver
 
 **Escala:**
 Quando contratar, quando investir em tráfego pago, quando expandir. O mapa de quem já passou por isso.
+
+---
+
+## O QUE ESTÁ INCLUÍDO
+
+**Título:** O QUE VOCÊ RECEBE
+
+- [X] módulos em vídeo com o protocolo completo de abertura e operação
+- Planilha de precificação e controle de margem pronta para usar
+- Lista validada de fornecedores com critérios de avaliação
+- Acesso ao grupo exclusivo de alunos
+- [X] semanas de suporte direto com Luan via WhatsApp
+- Bônus: [descrever com Luan — ex: checklist de abertura, script de captação, etc.]
 
 ---
 
@@ -89,6 +131,20 @@ O que você aprende aqui não está em nenhum conteúdo gratuito.
 
 ---
 
+## INVESTIMENTO E GARANTIA
+
+**Título:** INVESTIMENTO
+
+Valor: R$[X] à vista ou [X]x de R$[X]
+
+**Garantia de [X] dias:**
+Se você aplicar o protocolo e não ver resultado dentro do prazo, devolvemos o valor integralmente. Sem burocracia.
+
+**CTA 3:**
+GARANTIR MINHA VAGA COM DESCONTO
+
+---
+
 ## FAQ
 
 **Preciso ter capital para começar?**
@@ -105,6 +161,9 @@ Sim. A mentoria cobre diagnóstico de operação existente: produto, precificaç
 
 **Tem suporte durante a mentoria?**
 Sim. Acesso direto ao Luan pelo período contratado.
+
+**Como funciona a garantia?**
+Você tem [X] dias para aplicar o conteúdo. Se não funcionar, é só pedir o reembolso. Sem perguntas.
 
 ---
 
@@ -125,5 +184,9 @@ GARANTIR MINHA VAGA
 - R$[X] gerenciados em anúncios: autoridade
 - [X] lojas vistas abrindo/escalando: autoridade
 - [X] vagas disponíveis: escassez
-- Preço da mentoria (se for exibir na LP)
+- [X] módulos em vídeo: o que está incluído
+- [X] semanas de suporte: o que está incluído
+- Bônus específicos: o que está incluído
+- Preço da mentoria + parcelamento: investimento
+- Prazo de garantia: investimento
 - Link de conversão (WhatsApp, Hotmart, Checkout, etc)
