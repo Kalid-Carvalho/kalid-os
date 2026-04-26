@@ -38,15 +38,15 @@ deploy_links() {
   echo "✓ grovw.com.br/links atualizado"
 }
 
-deploy_luan() {
-  echo "→ Subindo kalidcarvalho.com/luan-manzoli..."
+deploy_nextads() {
+  echo "→ Subindo kalidcarvalho.com/next-ads..."
   LUAN="/c/Users/kalid/Downloads/KalidCarvalho-os/clientes/Luan Manzoli/entregas/nextads-agencia"
-  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/luan-manzoli/obrigado /var/www/kalid/luan-manzoli/assets/img"
-  scp $SSH_OPTS "$LUAN/index.html" $VPS:/var/www/kalid/luan-manzoli/index.html
-  scp $SSH_OPTS "$LUAN/favicon.svg" $VPS:/var/www/kalid/luan-manzoli/favicon.svg
-  scp $SSH_OPTS "$LUAN/obrigado/index.html" $VPS:/var/www/kalid/luan-manzoli/obrigado/index.html
-  scp $SSH_OPTS "$LUAN/assets/img/luan-hero.jpg" $VPS:/var/www/kalid/luan-manzoli/assets/img/luan-hero.jpg
-  echo "✓ kalidcarvalho.com/luan-manzoli atualizado"
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/next-ads/obrigado /var/www/kalid/next-ads/assets/img"
+  scp $SSH_OPTS "$LUAN/index.html" $VPS:/var/www/kalid/next-ads/index.html
+  scp $SSH_OPTS "$LUAN/favicon.svg" $VPS:/var/www/kalid/next-ads/favicon.svg
+  scp $SSH_OPTS "$LUAN/obrigado/index.html" $VPS:/var/www/kalid/next-ads/obrigado/index.html
+  scp $SSH_OPTS "$LUAN/assets/img/luan-hero.jpg" $VPS:/var/www/kalid/next-ads/assets/img/luan-hero.jpg
+  echo "✓ kalidcarvalho.com/next-ads atualizado"
 }
 
 deploy_diagnostico() {
@@ -71,13 +71,13 @@ case "$1" in
   kalid)        deploy_kalid ;;
   links)        deploy_links ;;
   diagnostico)  deploy_diagnostico ;;
-  luan)         deploy_luan ;;
+  next-ads)     deploy_nextads ;;
   all)
     deploy_grovw
     deploy_kalid
     deploy_links
     deploy_diagnostico
-    deploy_luan
+    deploy_nextads
     ;;
   *)
     echo "Uso: bash deploy.sh [target]"
@@ -87,7 +87,7 @@ case "$1" in
     echo "  kalid        → sobe kalidcarvalho.com/links"
     echo "  links        → sobe grovw.com.br/links"
     echo "  diagnostico  → sobe kalidcarvalho.com/diagnostico"
-  echo "  luan         → sobe kalidcarvalho.com/luan-manzoli"
+    echo "  next-ads     → sobe kalidcarvalho.com/next-ads"
     echo "  all          → sobe tudo"
     ;;
 esac
