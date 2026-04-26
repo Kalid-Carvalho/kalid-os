@@ -54,6 +54,16 @@ Narrativa: transição transparente, mostrando a união do background técnico (
 - Usa Opensquad com 5 squads ativos: Carrosséis Instagram, Designer Visual, Head de Growth, Prospecção Email, Reels Profissionais
 - Contato principal: WhatsApp — https://wa.me/5592991923266
 
+## Parcerias ativas
+
+### ChoraManaus (@choramanaus)
+Parceria com amigo dono da página @choramanaus — página de conteúdo local de Manaus.
+**Papel de Kalid:** operacional — site, automações, criativos, posts no Instagram, marketing digital
+**Papel do sócio:** comercial — networking, fechar contratos, reuniões (políticos, marcas, collabs)
+**Modelo de receita:** posts patrocinados (R$300–R$500/publicação), divulgação política, collabs
+**Status (abril/2026):** parceria iniciando, split societário em definição (referência 60/40)
+**Pasta:** `projetos/choramanaus/`
+
 ## Outros clientes e projetos
 - **Smart Center** — gestão de tráfego pago, R$200/mês de retainer (ativo)
 - **Luan Manzoli** — contrato fechado em 10/04/2026, R$2.000 (entrega em andamento)
