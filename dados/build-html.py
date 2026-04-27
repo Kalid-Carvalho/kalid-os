@@ -162,7 +162,7 @@ html = """<!DOCTYPE html>
 
   .footer-bar {
     position: absolute;
-    bottom: 30mm;
+    bottom: 21mm;
     left: 12mm;
     right: 12mm;
     background: #1a4080;
