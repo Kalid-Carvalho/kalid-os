@@ -5,6 +5,7 @@ const { chromium } = require('playwright');
   const page = await browser.newPage();
   const filePath = 'file:///C:/Users/kalid/Downloads/KalidCarvalho-os/dados/certidao-template.html';
   await page.goto(filePath, { waitUntil: 'networkidle' });
+  await page.emulateMedia({ media: 'screen' });
   await page.waitForTimeout(800);
   await page.pdf({
     path: 'C:/Users/kalid/Downloads/KalidCarvalho-os/dados/certidao-output.pdf',
