@@ -119,7 +119,7 @@ html = """<!DOCTYPE html>
 
   .assinatura {
     margin-top: 18px;
-    line-height: 1.55;
+    line-height: 1.25;
     font-family: "Courier New", Courier, monospace;
     font-size: 11.5px;
   }
