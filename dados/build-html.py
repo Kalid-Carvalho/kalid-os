@@ -42,7 +42,6 @@ html = """<!DOCTYPE html>
     align-items: flex-start;
     justify-content: space-between;
     padding-bottom: 10px;
-    border-bottom: 1.5px solid #000;
     margin-bottom: 14px;
   }
 
@@ -59,9 +58,9 @@ html = """<!DOCTYPE html>
   }
 
   .certidao-title {
-    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-family: "Courier New", Courier, monospace;
     font-size: 28px;
-    font-weight: bold;
+    font-weight: 400;
     letter-spacing: 1px;
     color: #111;
     line-height: 1;
@@ -77,9 +76,9 @@ html = """<!DOCTYPE html>
 
   .certidao-num-box {
     background: transparent;
-    color: #ff0000;
+    color: #f00000;
     font-family: "Courier New", Courier, monospace;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 400;
     padding: 10px 22px;
     border: 2px solid #000;
@@ -101,7 +100,6 @@ html = """<!DOCTYPE html>
 
   .section-title {
     font-weight: bold;
-    text-decoration: underline;
     margin-top: 10px;
     margin-bottom: 2px;
     display: block;
