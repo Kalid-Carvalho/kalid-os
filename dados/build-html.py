@@ -55,6 +55,7 @@ html = """<!DOCTYPE html>
     align-items: flex-start;
     gap: 6px;
     padding-top: 4px;
+    margin-left: 40px;
   }
 
   .certidao-title {
