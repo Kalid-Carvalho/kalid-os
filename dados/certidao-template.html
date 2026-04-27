@@ -2,15 +2,14 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Certidão Nº 4789/2021 - Prefeitura de Manaus</title>
+<title>Certidão Nº 4789/2021</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
   body {
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 11.5px;
-    background: #ccc;
+    background: #888;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
     color: #000;
   }
 
@@ -18,175 +17,130 @@
     width: 210mm;
     min-height: 297mm;
     background: #fff;
-    margin: 20px auto;
-    padding: 18mm 18mm 15mm 18mm;
+    margin: 24px auto;
+    padding: 15mm 18mm 52mm 18mm;
     position: relative;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+    page-break-after: always;
   }
 
-  /* ── Topo da página ── */
   .page-ref {
     text-align: right;
+    font-family: "Courier New", Courier, monospace;
     font-size: 11px;
     font-weight: bold;
-    margin-bottom: 10px;
-    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 6px;
   }
 
-  /* ── Cabeçalho com logo + certidão ── */
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 2px solid #000;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1.5px solid #000;
+    margin-bottom: 14px;
   }
 
-  .header-logo {
+  .logo-img {
+    height: 60px;
+    width: auto;
+  }
+
+  .certidao-block {
     display: flex;
     align-items: center;
-    gap: 10px;
-    flex: 1;
-  }
-
-  .logo-placeholder {
-    width: 70px;
-    height: 70px;
-    border: 1px solid #999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 9px;
-    color: #666;
-    text-align: center;
-    flex-shrink: 0;
-  }
-
-  .logo-text {
-    display: flex;
-    flex-direction: column;
-    line-height: 1.1;
-  }
-
-  .logo-text .prefeitura-de {
-    font-family: Arial, sans-serif;
-    font-size: 11px;
-    letter-spacing: 4px;
-    color: #1a3a6b;
-    text-transform: uppercase;
-  }
-
-  .logo-text .manaus {
-    font-family: Arial, sans-serif;
-    font-size: 30px;
-    font-weight: 900;
-    color: #1a3a6b;
-    letter-spacing: 2px;
-    line-height: 1;
-  }
-
-  .header-certidao {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-shrink: 0;
+    gap: 3px;
   }
 
   .certidao-title {
     font-family: Arial, sans-serif;
-    font-size: 26px;
-    font-weight: bold;
-    text-transform: uppercase;
+    font-size: 30px;
+    font-weight: 900;
     letter-spacing: 1px;
+    color: #111;
+    line-height: 1;
   }
 
-  .certidao-n {
+  .certidao-sup {
     font-family: Arial, sans-serif;
     font-size: 13px;
     font-weight: bold;
     align-self: flex-start;
-    margin-top: 6px;
+    margin-top: 5px;
+    color: #111;
   }
 
-  .certidao-number-box {
-    background-color: #1a3a6b;
+  .certidao-num-box {
+    background: #1a4080;
     color: #fff;
     font-family: Arial, sans-serif;
-    font-size: 20px;
+    font-size: 21px;
     font-weight: bold;
-    padding: 6px 14px;
-    letter-spacing: 1px;
+    padding: 6px 13px;
+    letter-spacing: 0.5px;
+    line-height: 1;
+    align-self: stretch;
+    display: flex;
+    align-items: center;
   }
 
-  /* ── Corpo do documento ── */
   .body {
-    font-family: 'Courier New', Courier, monospace;
+    font-family: "Courier New", Courier, monospace;
     font-size: 11.5px;
-    line-height: 1.5;
+    line-height: 1.38;
     text-align: justify;
   }
 
   .body p {
-    margin-bottom: 10px;
-  }
-
-  .body .label {
-    font-weight: bold;
-  }
-
-  .indent {
-    padding-left: 20px;
-  }
-
-  .underline {
-    text-decoration: underline;
+    margin-bottom: 7px;
   }
 
   .section-title {
     font-weight: bold;
-    margin-top: 14px;
-    margin-bottom: 4px;
     text-decoration: underline;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    display: block;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11.5px;
   }
 
   .sub-title {
     font-weight: bold;
-    margin-top: 8px;
-    margin-bottom: 2px;
-  }
-
-  .obs-item {
-    margin-bottom: 10px;
-    text-align: justify;
+    margin-top: 5px;
+    margin-bottom: 1px;
+    display: block;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11.5px;
   }
 
   .assinatura {
-    margin-top: 24px;
-    line-height: 2;
+    margin-top: 18px;
+    line-height: 1.55;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11.5px;
+    text-align: justify;
   }
 
-  .fim-descricao {
-    text-align: center;
+  .fim {
     font-weight: bold;
-    margin: 16px 0;
-    letter-spacing: 1px;
+    text-align: center;
+    margin: 12px 0;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 11.5px;
   }
 
-  /* ── Rodapé azul ── */
   .footer-bar {
-    background-color: #1a3a6b;
+    position: absolute;
+    bottom: 32mm;
+    left: 0;
+    right: 0;
+    background: #1a4080;
     color: #fff;
     text-align: center;
     font-family: Arial, sans-serif;
-    font-size: 10px;
+    font-size: 9px;
     padding: 5px 10px;
-    margin-top: auto;
-    position: absolute;
-    bottom: 28mm;
-    left: 0;
-    right: 0;
     line-height: 1.6;
   }
 
@@ -195,88 +149,79 @@
     bottom: 5mm;
     left: 18mm;
     right: 18mm;
-    font-size: 8px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 7.5px;
     font-style: italic;
     line-height: 1.5;
     color: #000;
-    border-top: 1px solid #ccc;
-    padding-top: 4px;
+    border-top: 0.5px solid #999;
+    padding-top: 3px;
   }
 
   @media print {
     body { background: #fff; }
-    .page {
-      margin: 0;
-      box-shadow: none;
-      page-break-after: always;
-    }
+    .page { margin: 0; box-shadow: none; }
     .page:last-child { page-break-after: avoid; }
   }
 </style>
 </head>
 <body>
 
-<!-- ═══════════════════════════════════════════════════
-     PÁGINA 1
-════════════════════════════════════════════════════ -->
+<!-- PAGINA 1 -->
 <div class="page">
-
   <div class="page-ref">PAG CER: 4789/2021 PÁGINA 59/60</div>
 
   <div class="header">
-    <div class="header-logo">
-      <div class="logo-placeholder">LOGO<br>MANAUS</div>
-      <div class="logo-text">
-        <span class="prefeitura-de">P R E F E I T U R A &nbsp; D E</span>
-        <span class="manaus">MANAUS</span>
-      </div>
-    </div>
-    <div class="header-certidao">
+    <img class="logo-img" src="data:image/jpeg;base64,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" alt="Prefeitura de Manaus">
+    <div class="certidao-block">
       <span class="certidao-title">CERTIDÃO</span>
-      <span class="certidao-n">N°</span>
-      <span class="certidao-number-box">4789/2021</span>
+      <span class="certidao-sup">N°</span>
+      <span class="certidao-num-box">4789/2021</span>
     </div>
   </div>
 
   <div class="body">
-
     <p>
-      <span class="label">TIPO DE CERTIDÃO:</span> CERTIDÃO DE INFORMAÇÃO TÉCNICA PARA USO DO SOLO<br>
-      <span class="label">EU,</span> ISLANE RODRIGUES DE SOUZA, Gerente - GIT<br>
-      <span class="label">CERTIFICO, TENDO EM VISTA AS ATRIBUIÇÕES QUE POR LEI A MIM SÃO CONFERIDAS E DE ACORDO COM O PROCESSO PROTOCOLADO N°</span> 4789/2021 DE 25 de maio de 2021<br>
-      <span class="label">REQUERIDO POR</span> PETROMOR ALUGUEL DE SALAS E EQUIPAMENTOS LIMITADA<br>
-      <span class="label">SITO À</span> AVENIDA ANDRÉ ARAÚJO, nº 2721, ALEIXO, LOTEAMENTO PARQUE, MORADA DO SOL,<br>
-      <span class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69060000,</span><br>
-      <span class="label">DE PROPRIEDADE DE</span> RODRIGO DOMENICO PETROSINO
+      <b>TIPO DE CERTIDÃO:</b> CERTIDÃO DE INFORMAÇÃO TÉCNICA PARA USO DO SOLO<br>
+      <b>EU,</b> ISLANE RODRIGUES DE SOUZA, Gerente - GIT<br>
+      <b>CERTIFICO, TENDO EM VISTA AS ATRIBUIÇÕES QUE POR LEI A MIM SÃO CONFERIDAS E DE ACORDO COM
+      O PROCESSO PROTOCOLADO N°</b> 4789/2021 DE 25 de maio de 2021<br>
+      <b>REQUERIDO POR</b> PETROMOR ALUGUEL DE SALAS E EQUIPAMENTOS LIMITADA<br>
+      <b>SITO À</b> AVENIDA ANDRÉ ARAÚJO, nº 2721, ALEIXO, LOTEAMENTO PARQUE, MORADA DO SOL,<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69060000,<br>
+      <b>DE PROPRIEDADE DE</b> RODRIGO DOMENICO PETROSINO
     </p>
 
-    <p>
-      O(a) Interessado(a) solicita CERTIDÃO DE INFORMAÇÃO TÉCNICA PARA USO DO SOLO para o endereço acima descrito e conforme preceitua o Plano Diretor Urbano e Ambiental do Município de Manaus de 16/01/2014, informamos que:
-    </p>
+    <p>O(a) Interessado(a) solicita CERTIDÃO DE INFORMAÇÃO TÉCNICA PARA USO DO SOLO para o
+    endereço acima descrito e conforme preceitua o Plano Diretor Urbano e Ambiental do
+    Município de Manaus de 16/01/2014, informamos que:</p>
 
     <p>
-      <span class="label">MATRÍCULA DO IPTU:</span> 129069<br>
-      <span class="label">ZONA:</span> SETOR 11 (bairro Aleixo), FAIXA LINDEIRA DO CORREDOR URBANO ALEIXO, SEGMENTO ANDRÉ ARAÚJO.
+      <b>MATRÍCULA DO IPTU:</b> 129069<br>
+      <b>ZONA:</b> SETOR 11 (bairro Aleixo), FAIXA LINDEIRA DO CORREDOR URBANO ALEIXO, &nbsp;SEGMENTO ANDRÉ ARAÚJO.
     </p>
 
-    <p class="section-title">PARÂMETROS PERMITIDOS:</p>
+    <span class="section-title">PARÂMETROS PERMITIDOS:</span>
     <p>
-      <span class="label">DIRETRIZES:</span> Reforço do centro de comércio e serviços existente; integração de atividades comerciais e de serviços ao uso residencial.<br>
-      <span class="label">USOS PERMITIDOS:</span> Residencial unifamiliar e multifamiliar; comercial; de serviços; industrial.<br>
-      <span class="label">ATIVIDADES PERMITIDAS:</span> Tipo 1, Tipo 2, Tipo 3* e Tipo 4* (*exceto para o uso industrial).
+      <b>DIRETRIZES:</b> Reforço do centro de comércio e serviços existente; integração &nbsp;de &nbsp;atividades
+      comerciais e de serviços ao uso residencial.<br>
+      <b>USOS PERMITIDOS:</b> Residencial unifamiliar e multifamiliar; comercial; de serviços;
+      industrial.<br>
+      <b>ATIVIDADES PERMITIDAS:</b> Tipo 1, Tipo 2, Tipo 3* e Tipo 4* (*exceto para o uso industrial).
     </p>
 
-    <p class="section-title">ATIVIDADE(S) SOLICITADA(S):</p>
-    <p class="sub-title">ATIVIDADE PRINCIPAL</p>
+    <span class="section-title">ATIVIDADE(S) SOLICITADA(S):</span>
+    <span class="sub-title">ATIVIDADE PRINCIPAL</span>
     <p>
       CNAE/ATIVIDADE: 821130000 - Serviços combinados de escritório e apoio administrativo<br>
       USO/CLASSIFICAÇÃO: SERVIÇO TIPO 1
     </p>
 
-    <p class="section-title">ATIVIDADE(S) SECUNDÁRIA(S):</p>
+    <span class="section-title">ATIVIDADE(S) SECUNDÁRIA(S):</span>
     <p>
       ATIVIDADE/CNAE:<br>
-      631190001 - Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet<br>
+      631190001 - Tratamento de dados, provedores de serviços de aplicação e serviços de
+      hospedagem na internet<br>
       USO/CLASSIFICAÇÃO: SERVIÇO TIPO 1
     </p>
     <p>
@@ -289,15 +234,16 @@
     <p>ANÁLISE: Permitido</p>
 
     <p>Observações gerais:</p>
-    <p class="obs-item">1. O lote foi definido para USO RESIDENCIAL, estando o mesmo inserido no LOTEAMENTO PARQUE MORADA DO SOL, o qual obteve aprovação perante o Município em 24 de março de 1980, conforme demonstrado no base de dados da planta cadastral no ArqGIS;</p>
+    <p>1. O lote foi definido para USO RESIDENCIAL, estando o mesmo inserido no LOTEAMENTO PARQUE
+    MORADA DO SOL, o qual obteve &nbsp;aprovação &nbsp;perante &nbsp;o &nbsp;Município &nbsp;em &nbsp;24 &nbsp;de &nbsp;março &nbsp;de &nbsp;1980,
+    conforme demonstrado no base de dados da planta cadastral no ArqGIS;</p>
 
     <div class="assinatura">
-      E PARA CONSTAR EU, <span class="underline">ISLANE RODRIGUES DE SOUZA, Gerente - GIT</span><br>
-      DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO - IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
-      VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<span class="underline">RADJA PEREIRA MAR</span><br>
-      AOS DIAS DO MÊS DE <span class="underline">10 de junho de 2021</span>
+      E PARA CONSTAR EU, <u>ISLANE RODRIGUES DE SOUZA, Gerente - GIT</u><br>
+      DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO &nbsp;- IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
+      VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<u>RADJA PEREIRA MAR</u><br>
+      AOS DIAS DO MÊS DE <u>10 de junho de 2021</u>
     </div>
-
   </div>
 
   <div class="footer-bar">
@@ -311,71 +257,90 @@
     1 - RADJA PEREIRA MAR. Em: Qui 10/06/2021 13:27:38. Chave para validação: B14M9P.894KDK.W984CG.FGGVK6.FW24A7<br>
     2 - ISLANE RODRIGUES DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z
   </div>
-
 </div>
 
 
-<!-- ═══════════════════════════════════════════════════
-     PÁGINA 2
-════════════════════════════════════════════════════ -->
+<!-- PAGINA 2 -->
 <div class="page">
-
   <div class="page-ref">PAG CER: 4789/2021 PÁGINA 60/60</div>
 
   <div class="header">
-    <div class="header-logo">
-      <div class="logo-placeholder">LOGO<br>MANAUS</div>
-      <div class="logo-text">
-        <span class="prefeitura-de">P R E F E I T U R A &nbsp; D E</span>
-        <span class="manaus">MANAUS</span>
-      </div>
-    </div>
-    <div class="header-certidao">
+    <img class="logo-img" src="data:image/jpeg;base64,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" alt="Prefeitura de Manaus">
+    <div class="certidao-block">
       <span class="certidao-title">CERTIDÃO</span>
-      <span class="certidao-n">N°</span>
-      <span class="certidao-number-box">4789/2021</span>
+      <span class="certidao-sup">N°</span>
+      <span class="certidao-num-box">4789/2021</span>
     </div>
   </div>
 
   <div class="body">
+    <p>2. Nos termos da nova Lei Complementar de N° 012, de 17 de janeiro de 2019, § 4.° que diz:
+    Nos casos de alterações de uso para as atividades Tipo 1 e 2, localizadas &nbsp;em &nbsp;loteamentos
+    aprovados, necessitarão somente dos requisitos previstos no artigo 91 da LC 002, de &nbsp;14 &nbsp;de
+    janeiro de 2014, não sendo necessário &nbsp;aprovação &nbsp;prévia &nbsp;pelo &nbsp;CMDU &nbsp;e &nbsp;CTPCU, &nbsp;o &nbsp;pleito
+    torna-se VIÁVEL;</p>
 
-    <p class="obs-item">2. Nos termos da nova Lei Complementar de N° 012, de 17 de janeiro de 2019, § 4.° que diz: Nos casos de alterações de uso para as atividades Tipo 1 e 2, localizadas em loteamentos aprovados, necessitarão somente dos requisitos previstos no artigo 91 da LC 002, de 14 de janeiro de 2014, não sendo necessário aprovação prévia pelo CMDU e CTPCU, o pleito torna-se VIÁVEL;</p>
+    <p>3. De acordo com o Art. 96 § 4° da LC n° 014, de 17 de janeiro de 2019, por se &nbsp;tratar &nbsp;de
+    um imóvel limítrofe a uma via caracterizada como CORREDOR URBANO, não cabendo &nbsp;a &nbsp;aplicação
+    da cobrança da Outorga Onerosa de Alteração de Uso &nbsp;do &nbsp;Solo &nbsp;uma &nbsp;vez &nbsp;que &nbsp;trata &nbsp;de &nbsp;uma
+    empresa de pequeno porte - EPP, ficando ISENTA do referido pagamento;</p>
 
-    <p class="obs-item">3. De acordo com o Art. 96 § 4° da LC n° 014, de 17 de janeiro de 2019, por se tratar de um imóvel limítrofe a uma via caracterizada como CORREDOR URBANO, não cabendo a aplicação da cobrança da Outorga Onerosa de Alteração de Uso do Solo uma vez que trata de uma empresa de pequeno porte - EPP, ficando ISENTA do referido pagamento;</p>
+    <p>4. Deverá obedecer ao número de Vagas apresentadas para as &nbsp;atividades &nbsp;pleiteadas &nbsp;acima,
+    sendo 05 (vagas) vagas para estacionamento devidamente demarcadas, &nbsp;sem &nbsp;obstrução &nbsp;do
+    logradouro público, conforme disposto no &nbsp;Anexo &nbsp;IX &nbsp;- &nbsp;QUADRO &nbsp;DAS &nbsp;VAGAS &nbsp;DE &nbsp;GARAGEM &nbsp;E
+    ESTACIONAMENTO, da Lei 2.402 de 16/01/2019;</p>
 
-    <p class="obs-item">4. Deverá obedecer ao número de Vagas apresentadas para as atividades pleiteadas acima, sendo 05 (vagas) vagas para estacionamento devidamente demarcadas, sem obstrução do logradouro público, conforme disposto no Anexo IX - QUADRO DAS VAGAS DE GARAGEM E ESTACIONAMENTO, da Lei 2.402 de 16/01/2019;</p>
+    <p>5. Caso sejam constatados usos &nbsp;e/ou &nbsp;atividades &nbsp;diferentes &nbsp;destes &nbsp;autorizados &nbsp;e &nbsp;não
+    permitidos para o local e/ou ampliações sem prévia aprovação, &nbsp;a &nbsp;presente &nbsp;certidão &nbsp;será
+    automaticamente cancelada;</p>
 
-    <p class="obs-item">5. Caso sejam constatados usos e/ou atividades diferentes destes autorizados e não permitidos para o local e/ou ampliações sem prévia aprovação, a presente certidão será automaticamente cancelada;</p>
+    <p>6. Deverão ser obedecidos os parâmetros das leis complementares n° 002, &nbsp;003, &nbsp;&nbsp;004, &nbsp;&nbsp;005 &nbsp;e
+    das leis n° 1.837, 1.838 e 1.839, de 16 de janeiro de &nbsp;2014 &nbsp;do &nbsp;plano &nbsp;diretor &nbsp;urbano &nbsp;e
+    ambiental do município de Manaus;</p>
 
-    <p class="obs-item">6. Deverão ser obedecidos os parâmetros das leis complementares n° 002, 003, 004, 005 e das leis n° 1.837, 1.838 e 1.839, de 16 de janeiro de 2014 do plano diretor urbano e ambiental do município de Manaus;</p>
+    <p>7. Esta certidão não garante o &nbsp;direito &nbsp;de &nbsp;construir, &nbsp;conforme &nbsp;disposto &nbsp;do &nbsp;parágrafo único,
+    do artigo 14 da lei complementar n° 003/2014, não substitui &nbsp;o &nbsp;habite-se, &nbsp;bem &nbsp;como &nbsp;não
+    reconhece direitos de propriedade;</p>
 
-    <p class="obs-item">7. Esta certidão não garante o direito de construir, conforme disposto do parágrafo único, do artigo 14 da lei complementar n° 003/2014, não substitui o habite-se, bem como não reconhece direitos de propriedade;</p>
+    <p>8. Esta certidão não garante o &nbsp;direito &nbsp;de &nbsp;funcionamento, &nbsp;conforme &nbsp;artigo &nbsp;9° &nbsp;da &nbsp;lei
+    complementar n°005/2014, o funcionamento de qualquer estabelecimento comercial, &nbsp;industrial
+    ou prestador de serviços, sem a necessária licença ou autorização, &nbsp;consiste &nbsp;em &nbsp;infração
+    grave a referida lei, cabendo a fiscalização ao &nbsp;órgão &nbsp;licenciador &nbsp;das &nbsp;atividades
+    econômicas do município;</p>
 
-    <p class="obs-item">8. Esta certidão não garante o direito de funcionamento, conforme artigo 9° da lei complementar n°005/2014, o funcionamento de qualquer estabelecimento comercial, industrial ou prestador de serviços, sem a necessária licença ou autorização, consiste em infração grave a referida lei, cabendo a fiscalização ao órgão licenciador das atividades econômicas do município;</p>
+    <p>9. Nos cursos d'água localizados na área urbana e de &nbsp;transição, &nbsp;será &nbsp;adotada &nbsp;faixa &nbsp;de
+    proteção marginal de acordo com a legislação vigente;</p>
 
-    <p class="obs-item">9. Nos cursos d'água localizados na área urbana e de transição, será adotada faixa de proteção marginal de acordo com a legislação vigente;</p>
+    <p>10. Todo imóvel inserido, ainda que parcialmente, &nbsp;nos &nbsp;limites &nbsp;de &nbsp;área &nbsp;de &nbsp;preservação
+    permanente APP, conforme lei federal &nbsp;n° &nbsp;12.651/2012 &nbsp;de &nbsp;25 &nbsp;de &nbsp;maio &nbsp;de &nbsp;2012, &nbsp;deverá
+    formalizar processo de avaliação junto ao órgão ambiental municipal &nbsp;ou &nbsp;estadual, &nbsp;para &nbsp;a
+    possibilidade de obtenção de autorização específica;</p>
 
-    <p class="obs-item">10. Todo imóvel inserido, ainda que parcialmente, nos limites de área de preservação permanente APP, conforme lei federal n° 12.651/2012 de 25 de maio de 2012, deverá formalizar processo de avaliação junto ao órgão ambiental municipal ou estadual, para a possibilidade de obtenção de autorização específica;</p>
+    <p>11. Deverá ser mantido livre e desimpedido o passeio público, conforme disposto do &nbsp;inciso
+    i, do artigo 83 da lei complementar n° 003/2014 e do artigo &nbsp;38 &nbsp;da &nbsp;lei &nbsp;complementar &nbsp;n°
+    005/2014 e havendo geração de transtornos ao entorno, a presente certidão será cancelada;</p>
 
-    <p class="obs-item">11. Deverá ser mantido livre e desimpedido o passeio público, conforme disposto do inciso i, do artigo 83 da lei complementar n° 003/2014 e do artigo 38 da lei complementar n° 005/2014 e havendo geração de transtornos ao entorno, a presente certidão será cancelada;</p>
+    <p>12. Deverá atender ao parágrafo único do art. &nbsp;82 &nbsp;da &nbsp;lei &nbsp;n° &nbsp;1.838/2014, &nbsp;seção &nbsp;ii &nbsp;dos
+    critérios e parâmetro para garagens e estacionamentos;</p>
 
-    <p class="obs-item">12. Deverá atender ao parágrafo único do art. 82 da lei n° 1.838/2014, seção ii dos critérios e parâmetro para garagens e estacionamentos;</p>
+    <p>13. Deverá atender &nbsp;ao &nbsp;art.79 &nbsp;da &nbsp;lei &nbsp;n° &nbsp;003/2014, &nbsp;subseção &nbsp;ii &nbsp;das &nbsp;garagens &nbsp;e
+    estacionamentos para guarda de veículos;</p>
 
-    <p class="obs-item">13. Deverá atender ao art.79 da lei n° 003/2014, subseção ii das garagens e estacionamentos para guarda de veículos;</p>
+    <p>14. Deverá atender ao Anexo IX - QUADRO DAS VAGAS DE &nbsp;GARAGEM &nbsp;E &nbsp;ESTACIONAMENTO, &nbsp;da &nbsp;Lei
+    2.402 de 16/01/2019.</p>
 
-    <p class="obs-item">14. Deverá atender ao Anexo IX - QUADRO DAS VAGAS DE GARAGEM E ESTACIONAMENTO, da Lei 2.402 de 16/01/2019.</p>
+    <p>ESTAS INFORMAÇÕES NÃO PERDERÃO A VALIDADE, SALVO NO CASO &nbsp;DE &nbsp;ALTERAÇÃO &nbsp;SUPERVENIENTE &nbsp;DA
+    LEGISLAÇÃO APLICÁVEL, CONFORME PARÁGRAFO ÚNICO DO ARTIGO 14 DA LEI COMPLEMENTAR N° 003 &nbsp;DE
+    16 DE JANEIRO DE 2014.</p>
 
-    <p>ESTAS INFORMAÇÕES NÃO PERDERÃO A VALIDADE, SALVO NO CASO DE ALTERAÇÃO SUPERVENIENTE DA LEGISLAÇÃO APLICÁVEL, CONFORME PARÁGRAFO ÚNICO DO ARTIGO 14 DA LEI COMPLEMENTAR N° 003 DE 16 DE JANEIRO DE 2014.</p>
-
-    <p class="fim-descricao">*---------------------------------- FIM DESCRIÇÃO ----------------------------------*</p>
+    <p class="fim">*---------------------------------- FIM DESCRIÇÃO ----------------------------------*</p>
 
     <div class="assinatura">
-      E PARA CONSTAR EU, <span class="underline">ISLANE RODRIGUES DE SOUZA, Gerente - GIT</span><br>
-      DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO - IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
-      VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<span class="underline">RADJA PEREIRA MAR</span><br>
-      AOS DIAS DO MÊS DE <span class="underline">10 de junho de 2021</span>
+      E PARA CONSTAR EU, <u>ISLANE RODRIGUES DE SOUZA, Gerente - GIT</u><br>
+      DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO &nbsp;- IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
+      VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<u>RADJA PEREIRA MAR</u><br>
+      AOS DIAS DO MÊS DE <u>10 de junho de 2021</u>
     </div>
-
   </div>
 
   <div class="footer-bar">
@@ -389,7 +354,6 @@
     1 - RADJA PEREIRA MAR. Em: Qui 10/06/2021 13:27:38. Chave para validação: B14M9P.894KDK.W984CG.FGGVK6.FW24A7<br>
     2 - ISLANE RODRIGUES DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z
   </div>
-
 </div>
 
 </body>
