@@ -59,8 +59,8 @@ html = """<!DOCTYPE html>
 
   .certidao-title {
     font-family: "Courier New", Courier, monospace;
-    font-size: 28px;
-    font-weight: 400;
+    font-size: 34px;
+    font-weight: 700;
     letter-spacing: 1px;
     color: #111;
     line-height: 1;
@@ -68,8 +68,8 @@ html = """<!DOCTYPE html>
 
   .certidao-sup {
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 700;
     margin-top: 2px;
     color: #111;
   }
@@ -78,8 +78,8 @@ html = """<!DOCTYPE html>
     background: transparent;
     color: #f00000;
     font-family: "Courier New", Courier, monospace;
-    font-size: 26px;
-    font-weight: 400;
+    font-size: 28px;
+    font-weight: 700;
     padding: 10px 22px;
     border: 2px solid #000;
     line-height: 1;
