@@ -255,14 +255,9 @@ html = """<!DOCTYPE html>
     <span class="section-title">ATIVIDADE(S) SECUNDÁRIA(S):</span>
     <p>
       ATIVIDADE/CNAE:<br>
-      631190001 - Tratamento de dados, provedores de serviços de aplicação e serviços de
-      hospedagem na internet<br>
-      USO/CLASSIFICAÇÃO: SERVIÇO TIPO 1
-    </p>
-    <p>
-      829970701 - Salas de acesso à internet<br>
-      859960400 - Treinamento em desenvolvimento profissional e gerencial<br>
-      773310001 - Aluguel de máquinas e equipamentos para escritório<br>
+      5611-2/01 02 - RESTAURANTES E SIMILARES COM FORNECIMENTO DE MUSICA TRANSMITIDA (SEM USO DE SOM AMPLIFICADO)<br>
+      5611-2/01 03 - RESTAURANTES E SIMILARES SEM FORNECIMENTO DE MUSICA TRANSMITIDA POR QUALQUER PROCESSO<br>
+      5620-1/01 - FORNECIMENTO DE ALIMENTOS PREPARADOS PREPONDERANTEMENTE PARA EMPRESAS<br>
       USO/CLASSIFICAÇÃO: SERVIÇO TIPO 2
     </p>
 
