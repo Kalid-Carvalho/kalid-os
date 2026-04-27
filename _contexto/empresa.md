@@ -7,6 +7,7 @@
 **Atende clientes:** Sim — foco atual em TI B2B, SaaS e Infraestrutura de TI (empresas de 10–50 funcionários)
 **Equipe:** Solo — opera tudo sozinho
 **Ferramentas:** N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright, Redis, Evolution API
+**Funil de prospecção automatizado (N8N):** cold email B2B completo — Prospecção + FU1 (D+2, IA) + FU2 (D+7, estático). Conta ativa: kalidcarvalhomkt. Conta em warmup: grovwmkt (ativa em ~3 semanas).
 **MCPs conectados:** n8n-mcp (gerenciar workflows N8N direto do Claude Code), Gmail (leitura e rascunhos de email), Google Calendar (eventos e agenda)
 **Principais entregas:** Sites de alta conversão, landing pages, tráfego pago gerenciado, bots de qualificação WhatsApp, automações de captação, agentes de IA, reels e carrosséis de conteúdo
 
