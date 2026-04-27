@@ -50,6 +50,9 @@ N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, 
 
 ## MCPs configurados
 - **n8n-mcp** — gerencia workflows N8N direto do Claude Code (listar, criar, editar, debugar execuções)
+- **Gmail** — leitura de emails e criação de rascunhos direto do Claude Code
+- **Google Calendar** — criação e consulta de eventos direto do Claude Code
+- **Playwright** — automação de browser, captura de screenshots, geração de PDF/PNG
 
 ---
 
@@ -60,8 +63,7 @@ No início de toda conversa, ler os seguintes arquivos (se existirem e estiverem
 1. `_contexto/empresa.md` — quem é o usuário, o que faz, como funciona o negócio
 2. `_contexto/preferencias.md` — tom de voz, estilo de escrita, o que evitar
 3. `_contexto/estrategia.md` — foco atual, prioridades, o que pode esperar
-4. `_contexto/persona-advogado.md` — perfil detalhado do público-alvo (dores, objeções, vocabulário)
-5. `_contexto/fontes-referencia.md` — referências de alto nível por canal (@eukalidcarvalho, @kalidcarvalho, GROVW): pessoas-chave, blogs e portais que ditam o ritmo de cada mercado
+4. `_contexto/fontes-referencia.md` — referências de alto nível por canal (@eukalidcarvalho, @kalidcarvalho, GROVW): pessoas-chave, blogs e portais que ditam o ritmo de cada mercado
 
 Usar essas informações como base pra qualquer resposta ou decisão. Ao sugerir prioridades, formatos ou abordagens, considerar o foco atual descrito em `estrategia.md`.
 

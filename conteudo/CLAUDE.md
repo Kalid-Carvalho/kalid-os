@@ -6,22 +6,22 @@ Pasta de produção de conteúdo para os dois canais: @kalidcarvalho (IA e tech)
 ## Canais
 
 ### @kalidcarvalho | Builder
-- Plataformas: Instagram + YouTube
+- Plataformas: Instagram + TikTok + YouTube
 - Tema: IA, apps, ferramentas, building in public
 - Formato principal: carrosséis + reels + roteiros YouTube
 - Design: azul escuro #1A56DB, Space Grotesk (Bold Human)
 
 ### @eukalidcarvalho
-- Plataformas: Instagram
-- Tema: marketing digital para advogados
-- Formato principal: carrosséis educativos
-- Design: mesmo sistema Bold Human, linguagem jurídica
+- Plataformas: Instagram + LinkedIn
+- Tema: Engenharia de Vendas B2B para TI, SaaS e Infraestrutura
+- Formato principal: carrosséis educativos + reels (talking head)
+- Design: mesmo sistema Bold Human, linguagem técnica B2B
 
 ## Estrutura de pastas
 
 ```
 conteudo/
-├── eukalidcarvalho/       ← tudo do @eukalidcarvalho (advocacia)
+├── eukalidcarvalho/       ← tudo do @eukalidcarvalho (TI B2B, SaaS, Infraestrutura)
 │   ├── carrosseis/        ← HTMLs e PNGs por data (YYYY-MM-DD/)
 │   ├── reels/             ← roteiros e referências por data
 │   └── planejamento/      ← calendários de conteúdo
