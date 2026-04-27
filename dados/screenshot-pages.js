@@ -13,14 +13,11 @@ const path = require('path');
   await page.goto(filePath, { waitUntil: 'networkidle' });
   await page.waitForTimeout(800);
 
-  // Force each page to exactly A4 height and remove decorations
+  // Remove decoration only — flexbox height is already fixed in CSS
   await page.evaluate(() => {
     document.querySelectorAll('.page').forEach(el => {
       el.style.boxShadow = 'none';
       el.style.margin = '0';
-      el.style.minHeight = '297mm';
-      el.style.height = '297mm';
-      el.style.overflow = 'hidden';
     });
   });
 
