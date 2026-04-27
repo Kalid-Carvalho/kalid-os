@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>CNH — SANDRO GABRIEL PEREIRA DA SILVEIRA</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #888;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #000;
+}
+
+.page {
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  margin: 20px auto;
+  padding: 10mm 12mm;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  position: relative;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 116mm 1fr;
+  gap: 7mm;
+  align-items: start;
+}
+
+/* ===== CNH CARD ===== */
+.cnh-card {
+  border: 0.6px solid #aaa;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cnh-top-stripe {
+  height: 3.5px;
+  background: #009640;
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2mm 2.5mm 1.5mm 2.5mm;
+  border-bottom: 0.4px solid #ccc;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 2mm;
+}
+
+.coat-arms {
+  width: 11mm;
+  height: 11mm;
+  border-radius: 50%;
+  border: 1px solid #1b3a8f;
+  background: #f5f5ee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 13px;
+}
+
+.gov-titles .t1 {
+  font-size: 5.5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #111;
+  letter-spacing: 0.2px;
+}
+.gov-titles .t2,
+.gov-titles .t3 {
+  font-size: 4.5px;
+  text-transform: uppercase;
+  color: #333;
+  line-height: 1.4;
+}
+
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5mm;
+}
+
+.br-badge {
+  width: 9.5mm;
+  height: 9.5mm;
+  border-radius: 50%;
+  border: 2px solid #1b3a8f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7px;
+  font-weight: 900;
+  color: #1b3a8f;
+  letter-spacing: -0.5px;
+}
+
+.govbr-text {
+  font-size: 5px;
+  font-weight: bold;
+  color: #1b3a8f;
+}
+
+.card-title {
+  padding: 1.2mm 3mm;
+  text-align: center;
+  font-size: 5px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  color: #000;
+  border-bottom: 0.4px solid #ccc;
+}
+
+/* ===== BODY ===== */
+.card-body {
+  display: flex;
+}
+
+.card-stripe {
+  width: 5.5mm;
+  background: #1b3a8f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2mm 0;
+}
+
+.stripe-num {
+  font-size: 5.5px;
+  font-weight: bold;
+  color: #fff;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  letter-spacing: 1px;
+  font-family: 'Courier New', monospace;
+}
+
+.stripe-text {
+  font-size: 3.3px;
+  color: #fff;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.card-main {
+  flex: 1;
+  padding: 1.5mm 2mm;
+  display: flex;
+  gap: 2mm;
+}
+
+.photo-col {
+  flex-shrink: 0;
+  width: 21mm;
+}
+
+.photo-box {
+  width: 21mm;
+  height: 27mm;
+  background: #d0d0d0;
+  border: 0.4px solid #aaa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 5px;
+  color: #666;
+  font-style: italic;
+  overflow: hidden;
+}
+
+.sig-area {
+  margin-top: 1.5mm;
+}
+
+.sig-label {
+  font-size: 3.5px;
+  color: #1b3a8f;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.sig-line {
+  border-bottom: 0.5px solid #444;
+  margin-top: 3.5mm;
+  width: 21mm;
+}
+
+.sig-name {
+  font-family: 'Times New Roman', serif;
+  font-size: 4.5px;
+  font-style: italic;
+  margin-top: 0.5mm;
+  color: #111;
+}
+
+/* ===== FIELDS ===== */
+.fields-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6mm;
+}
+
+.row {
+  display: flex;
+  gap: 0.6mm;
+  align-items: stretch;
+}
+
+.f {
+  border: 0.4px solid #bbb;
+  padding: 0.5mm 1mm 0.8mm 1mm;
+  flex: 1;
+}
+
+.f-label {
+  font-size: 3.8px;
+  color: #1b3a8f;
+  text-transform: uppercase;
+  font-weight: bold;
+  line-height: 1.2;
+}
+
+.f-num {
+  font-size: 3.5px;
+  color: #1b3a8f;
+  font-weight: normal;
+  margin-right: 0.5mm;
+}
+
+.f-val {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 6px;
+  font-weight: bold;
+  color: #000;
+  text-transform: uppercase;
+  margin-top: 0.3mm;
+  line-height: 1.3;
+}
+
+.f-dark {
+  background: #1b3a8f;
+}
+.f-dark .f-label,
+.f-dark .f-num,
+.f-dark .f-val {
+  color: #fff;
+}
+
+.d-box {
+  background: #1b3a8f;
+  color: #fff;
+  font-size: 13px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 8mm;
+  border: 0.4px solid #1b3a8f;
+  font-family: Arial, sans-serif;
+}
+
+/* ===== CATEGORY TABLE ===== */
+.cat-wrap {
+  border-top: 0.5px solid #bbb;
+}
+
+.cat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.cat-col:first-child {
+  border-right: 0.5px solid #bbb;
+}
+
+.cat-head {
+  display: grid;
+  grid-template-columns: 7mm 1fr 15mm;
+  background: #f0f0f0;
+  border-bottom: 0.4px solid #bbb;
+  padding: 0.5mm 1mm;
+  font-size: 3.8px;
+  font-weight: bold;
+  color: #1b3a8f;
+}
+
+.cat-row {
+  display: grid;
+  grid-template-columns: 7mm 1fr 15mm;
+  align-items: center;
+  padding: 0.3mm 1mm;
+  border-bottom: 0.3px solid #eee;
+  min-height: 5mm;
+}
+
+.cat-row:last-child {
+  border-bottom: none;
+}
+
+.cat-code {
+  font-size: 4.5px;
+  font-weight: bold;
+  color: #000;
+  font-family: Arial, sans-serif;
+}
+
+.cat-icon {
+  display: flex;
+  align-items: center;
+}
+
+.cat-icon svg {
+  height: 5mm;
+  width: auto;
+}
+
+.cat-date {
+  font-family: 'Courier New', monospace;
+  font-size: 4.5px;
+  color: #000;
+  text-align: right;
+}
+
+/* ===== OBS / LOCAL ===== */
+.obs-local {
+  border-top: 0.5px solid #bbb;
+  display: flex;
+}
+
+.obs-sec {
+  flex: 2;
+  border-right: 0.5px solid #bbb;
+  padding: 1mm 1.5mm;
+  min-height: 14mm;
+  position: relative;
+}
+
+.local-sec {
+  flex: 1;
+  padding: 1mm 1.5mm;
+}
+
+.sec-lbl {
+  font-size: 3.8px;
+  color: #1b3a8f;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.sec-val {
+  font-family: 'Courier New', monospace;
+  font-size: 5.5px;
+  font-weight: bold;
+  margin-top: 0.5mm;
+}
+
+.assinado-block {
+  position: absolute;
+  bottom: 1mm;
+  right: 1.5mm;
+  text-align: right;
+  font-size: 3.5px;
+  color: #333;
+  line-height: 1.6;
+  font-family: Arial, sans-serif;
+}
+
+.assinado-block .code {
+  font-family: 'Courier New', monospace;
+  font-size: 4px;
+  letter-spacing: 0.3px;
+}
+
+.estado-name {
+  text-align: center;
+  font-size: 8.5px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  font-family: Arial, sans-serif;
+  padding: 2mm 1mm 1mm 1mm;
+}
+
+/* ===== MRZ ===== */
+.mrz-zone {
+  margin-top: 5mm;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 9px;
+  letter-spacing: 2px;
+  line-height: 1.75;
+  padding: 1mm 0;
+}
+
+/* ===== LEGEND ===== */
+.legend-text {
+  margin-top: 4mm;
+  font-size: 5px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  text-align: justify;
+}
+
+/* ===== RIGHT COLUMN ===== */
+.right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 3mm;
+}
+
+.qr-title {
+  font-size: 9px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+}
+
+.qr-box {
+  width: 100%;
+  aspect-ratio: 1;
+  border: 0.5px solid #ccc;
+  background:
+    repeating-conic-gradient(#000 0% 25%, transparent 0% 50%) 0 0 / 7px 7px,
+    repeating-conic-gradient(#000 0% 25%, transparent 0% 50%) 3.5px 3.5px / 7px 7px;
+  opacity: 0.82;
+}
+
+.dig-sig {
+  font-size: 7.5px;
+  font-family: Arial, sans-serif;
+  line-height: 1.65;
+  color: #000;
+  text-align: justify;
+}
+
+.dig-sig p + p {
+  margin-top: 3mm;
+}
+
+.serpro-brand {
+  margin-top: 6mm;
+  text-align: right;
+  font-size: 11px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  letter-spacing: 1px;
+}
+
+.serpro-brand .s-red { color: #e30613; }
+.serpro-brand .s-blue { color: #1b3a8f; }
+
+@media print {
+  body { background: #fff; }
+  .page { margin: 0; box-shadow: none; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="layout">
+
+    <!-- ===== ESQUERDA: CNH + MRZ + Legenda ===== -->
+    <div>
+
+      <div class="cnh-card">
+        <div class="cnh-top-stripe"></div>
+
+        <!-- Cabeçalho -->
+        <div class="card-header">
+          <div class="header-left">
+            <div class="coat-arms">🪙</div>
+            <div class="gov-titles">
+              <div class="t1">República Federativa do Brasil</div>
+              <div class="t2">Ministério dos Transportes</div>
+              <div class="t3">Secretaria Nacional de Trânsito - SENATRAN</div>
+            </div>
+          </div>
+          <div class="header-right">
+            <div class="br-badge">BR</div>
+            <div class="govbr-text">gov.br</div>
+          </div>
+        </div>
+
+        <!-- Título -->
+        <div class="card-title">
+          Carteira Nacional de Habilitação / Driver License / Permiso de Conducción
+        </div>
+
+        <!-- Corpo -->
+        <div class="card-body">
+          <!-- Faixa lateral azul -->
+          <div class="card-stripe">
+            <div class="stripe-num">2882657975</div>
+            <div class="stripe-text">Válida em todo o território nacional</div>
+          </div>
+
+          <!-- Foto + Campos -->
+          <div class="card-main">
+            <!-- Foto -->
+            <div class="photo-col">
+              <div class="photo-box">foto</div>
+              <div class="sig-area">
+                <div class="sig-label">7 Assinatura do Portador</div>
+                <div class="sig-line"></div>
+                <div class="sig-name">Sandro Gabriel Pereira da Silveira</div>
+              </div>
+            </div>
+
+            <!-- Campos -->
+            <div class="fields-col">
+
+              <!-- Nome + 1ª Hab -->
+              <div class="row">
+                <div class="f" style="flex:3;">
+                  <div class="f-label"><span class="f-num">2</span>Nome e Sobrenome</div>
+                  <div class="f-val" style="font-size:6.5px;">SANDRO GABRIEL PEREIRA DA SILVEIRA</div>
+                </div>
+                <div class="f" style="flex:1.3;">
+                  <div class="f-label">1ª Habilitação</div>
+                  <div class="f-val">01/08/2023</div>
+                </div>
+              </div>
+
+              <!-- Nascimento -->
+              <div class="f">
+                <div class="f-label"><span class="f-num">3</span>Data, Local e UF de Nascimento</div>
+                <div class="f-val">05/05/2004, MANAUS, AM</div>
+              </div>
+
+              <!-- Emissão + Validade + ACC + D -->
+              <div class="row">
+                <div class="f" style="flex:1.2;">
+                  <div class="f-label"><span class="f-num">4a</span>Data Emissão</div>
+                  <div class="f-val">11/11/2024</div>
+                </div>
+                <div class="f" style="flex:1.2;">
+                  <div class="f-label"><span class="f-num">4b</span>Validade</div>
+                  <div class="f-val">08/02/2033</div>
+                </div>
+                <div class="f" style="flex:0.6; text-align:center; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+                  <div class="f-label">ACC</div>
+                </div>
+                <div class="d-box">D</div>
+              </div>
+
+              <!-- Doc Identidade -->
+              <div class="f">
+                <div class="f-label"><span class="f-num">4c</span>Doc. Identidade - Órgão Emissor - UF</div>
+                <div class="f-val">2370632S SSP AM</div>
+              </div>
+
+              <!-- CPF + Nº Registro + Cat Hab -->
+              <div class="row">
+                <div class="f" style="flex:1.5;">
+                  <div class="f-label"><span class="f-num">4d</span>CPF</div>
+                  <div class="f-val">987.594.502-15</div>
+                </div>
+                <div class="f f-dark" style="flex:2;">
+                  <div class="f-label"><span class="f-num">5</span>Nº Registro</div>
+                  <div class="f-val">08251824508</div>
+                </div>
+                <div class="f" style="flex:0.8; text-align:center;">
+                  <div class="f-label" style="text-align:center;"><span class="f-num">9</span>Cat Hab</div>
+                  <div class="f-val" style="font-size:10px; text-align:center;">AB</div>
+                </div>
+              </div>
+
+              <!-- Nacionalidade -->
+              <div class="f">
+                <div class="f-label">Nacionalidade</div>
+                <div class="f-val">BRASILEIRO(A)</div>
+              </div>
+
+              <!-- Filiação -->
+              <div class="f">
+                <div class="f-label">Filiação</div>
+                <div class="f-val">ANTONIO SAVIO ARAUJO DA SILVEIRA</div>
+                <div class="f-val">MARIVETE DE ALMEIDA PEREIRA</div>
+              </div>
+
+            </div><!-- /fields-col -->
+          </div><!-- /card-main -->
+        </div><!-- /card-body -->
+
+        <!-- Tabela de categorias -->
+        <div class="cat-wrap">
+          <div class="cat-grid">
+
+            <!-- Coluna esquerda -->
+            <div class="cat-col">
+              <div class="cat-head">
+                <span>5</span><span>10</span><span style="text-align:right;">11&nbsp;&nbsp;12</span>
+              </div>
+              <!-- ACC -->
+              <div class="cat-row">
+                <span class="cat-code">ACC</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12h38l-5-7H11L6 12z" fill="#222" stroke="#000" stroke-width="0.5"/>
+                    <circle cx="13" cy="15.5" r="2.5" fill="#222"/>
+                    <circle cx="37" cy="15.5" r="2.5" fill="#222"/>
+                    <rect x="18" y="6" width="14" height="5" rx="0.5" fill="#fff" opacity="0.3"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- A -->
+              <div class="cat-row">
+                <span class="cat-code">A</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="13" cy="14" rx="3" ry="3" fill="#222"/>
+                    <ellipse cx="37" cy="14" rx="3" ry="3" fill="#222"/>
+                    <path d="M16 14c0-5 4-9 8-9h6c3 0 6 2 8 6l1 3H16z" fill="#222"/>
+                    <rect x="22" y="5" width="5" height="2" rx="0.5" fill="#555"/>
+                    <path d="M24 5V2" stroke="#555" stroke-width="1"/>
+                    <circle cx="24" cy="1.5" r="1.5" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date">08/02/2033</span>
+              </div>
+              <!-- AT -->
+              <div class="cat-row">
+                <span class="cat-code">AT</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <ellipse cx="13" cy="14" rx="3" ry="3" fill="#222"/>
+                    <ellipse cx="37" cy="14" rx="3" ry="3" fill="#222"/>
+                    <path d="M16 14c0-5 4-9 8-9h6c3 0 6 2 8 6l1 3H16z" fill="#222"/>
+                    <rect x="22" y="5" width="5" height="2" rx="0.5" fill="#555"/>
+                    <path d="M24 5V2" stroke="#555" stroke-width="1"/>
+                    <circle cx="24" cy="1.5" r="1.5" fill="#555"/>
+                    <text x="38" y="10" font-size="5" fill="#333" font-weight="bold">A</text>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- B -->
+              <div class="cat-row">
+                <span class="cat-code">B</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 12h38l-5-7H11L6 12z" fill="#222" stroke="#000" stroke-width="0.5"/>
+                    <circle cx="13" cy="15.5" r="2.5" fill="#222"/>
+                    <circle cx="37" cy="15.5" r="2.5" fill="#222"/>
+                    <rect x="10" y="6" width="12" height="5" rx="0.5" fill="#fff" opacity="0.3"/>
+                    <rect x="24" y="6" width="16" height="5" rx="0.5" fill="#fff" opacity="0.3"/>
+                  </svg>
+                </div>
+                <span class="cat-date">08/02/2033</span>
+              </div>
+              <!-- B1 -->
+              <div class="cat-row">
+                <span class="cat-code">B1</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M8 13h34l-4.5-7H12.5L8 13z" fill="#222"/>
+                    <circle cx="14" cy="16" r="2" fill="#222"/>
+                    <circle cx="36" cy="16" r="2" fill="#222"/>
+                    <rect x="13" y="7" width="10" height="4" rx="0.5" fill="#fff" opacity="0.3"/>
+                    <rect x="25" y="7" width="12" height="4" rx="0.5" fill="#fff" opacity="0.3"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- C -->
+              <div class="cat-row">
+                <span class="cat-code">C</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="7" width="44" height="8" rx="1" fill="#222"/>
+                    <rect x="3" y="4" width="18" height="5" rx="0.5" fill="#222"/>
+                    <rect x="5" y="5.5" width="14" height="3" rx="0.5" fill="#fff" opacity="0.3"/>
+                    <circle cx="11" cy="16.5" r="1.5" fill="#555"/>
+                    <circle cx="23" cy="16.5" r="1.5" fill="#555"/>
+                    <circle cx="38" cy="16.5" r="1.5" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- C1 -->
+              <div class="cat-row">
+                <span class="cat-code">C1</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="7" width="36" height="8" rx="1" fill="#222"/>
+                    <rect x="4" y="4" width="15" height="5" rx="0.5" fill="#222"/>
+                    <rect x="6" y="5.5" width="11" height="3" rx="0.5" fill="#fff" opacity="0.3"/>
+                    <circle cx="11" cy="16.5" r="1.5" fill="#555"/>
+                    <circle cx="32" cy="16.5" r="1.5" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+            </div>
+
+            <!-- Coluna direita -->
+            <div class="cat-col">
+              <div class="cat-head">
+                <span>8</span><span>15</span><span style="text-align:right;">11&nbsp;&nbsp;12</span>
+              </div>
+              <!-- D -->
+              <div class="cat-row">
+                <span class="cat-code">D</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="4" width="44" height="11" rx="1.5" fill="#222"/>
+                    <rect x="5" y="6" width="7" height="5" rx="0.5" fill="#fff" opacity="0.5"/>
+                    <rect x="14" y="6" width="5" height="5" rx="0.5" fill="#fff" opacity="0.35"/>
+                    <rect x="21" y="6" width="5" height="5" rx="0.5" fill="#fff" opacity="0.35"/>
+                    <rect x="28" y="6" width="5" height="5" rx="0.5" fill="#fff" opacity="0.35"/>
+                    <circle cx="11" cy="16.5" r="1.5" fill="#555"/>
+                    <circle cx="39" cy="16.5" r="1.5" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- D1 -->
+              <div class="cat-row">
+                <span class="cat-code">D1</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="3" y="5" width="34" height="10" rx="1.5" fill="#222"/>
+                    <rect x="5" y="7" width="7" height="4" rx="0.5" fill="#fff" opacity="0.5"/>
+                    <rect x="14" y="7" width="5" height="4" rx="0.5" fill="#fff" opacity="0.35"/>
+                    <rect x="21" y="7" width="5" height="4" rx="0.5" fill="#fff" opacity="0.35"/>
+                    <circle cx="10" cy="16.5" r="1.5" fill="#555"/>
+                    <circle cx="29" cy="16.5" r="1.5" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- E -->
+              <div class="cat-row">
+                <span class="cat-code">E</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="6" width="19" height="9" rx="1" fill="#222"/>
+                    <rect x="2" y="4" width="9" height="5" fill="#222"/>
+                    <rect x="4" y="5.5" width="6" height="3" rx="0.3" fill="#fff" opacity="0.3"/>
+                    <line x1="21" y1="10" x2="25" y2="10" stroke="#666" stroke-width="1.2"/>
+                    <rect x="25" y="5" width="22" height="10" rx="1" fill="#222"/>
+                    <circle cx="8" cy="16.5" r="1.5" fill="#555"/>
+                    <circle cx="34" cy="16.5" r="1.5" fill="#555"/>
+                    <circle cx="43" cy="16.5" r="1.5" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- CE -->
+              <div class="cat-row">
+                <span class="cat-code">CE</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="7" width="14" height="8" rx="1" fill="#222"/>
+                    <rect x="2" y="5" width="7" height="4" fill="#222"/>
+                    <line x1="16" y1="10" x2="19" y2="10" stroke="#666" stroke-width="1"/>
+                    <rect x="19" y="6" width="14" height="8" rx="1" fill="#222"/>
+                    <ellipse cx="37" cy="12" rx="2.5" ry="2.5" fill="#222"/>
+                    <ellipse cx="44" cy="12" rx="2.5" ry="2.5" fill="#222"/>
+                    <path d="M38 12c0-3 2-5 4-6" stroke="#222" stroke-width="1.2" fill="none"/>
+                    <circle cx="41" cy="5" r="1.2" fill="#555"/>
+                    <circle cx="8" cy="16.5" r="1.3" fill="#555"/>
+                    <circle cx="25" cy="16.5" r="1.3" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- C1E -->
+              <div class="cat-row">
+                <span class="cat-code">C1E</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="7" width="13" height="8" rx="1" fill="#222"/>
+                    <rect x="2" y="5" width="6" height="4" fill="#222"/>
+                    <line x1="15" y1="10" x2="18" y2="10" stroke="#666" stroke-width="1"/>
+                    <rect x="18" y="6" width="12" height="8" rx="1" fill="#222"/>
+                    <ellipse cx="34" cy="12" rx="2.5" ry="2.5" fill="#222"/>
+                    <ellipse cx="41" cy="12" rx="2.5" ry="2.5" fill="#222"/>
+                    <path d="M35 12c0-3 2-5 3.5-5.5" stroke="#222" stroke-width="1.2" fill="none"/>
+                    <circle cx="38" cy="5.5" r="1.2" fill="#555"/>
+                    <circle cx="7" cy="16.5" r="1.3" fill="#555"/>
+                    <circle cx="22" cy="16.5" r="1.3" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- DE -->
+              <div class="cat-row">
+                <span class="cat-code">DE</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="5" width="18" height="10" rx="1.5" fill="#222"/>
+                    <rect x="4" y="7" width="5" height="4" rx="0.3" fill="#fff" opacity="0.5"/>
+                    <rect x="11" y="7" width="4" height="4" rx="0.3" fill="#fff" opacity="0.35"/>
+                    <line x1="20" y1="10" x2="23" y2="10" stroke="#666" stroke-width="1"/>
+                    <rect x="23" y="5" width="18" height="10" rx="1" fill="#222"/>
+                    <circle cx="9" cy="16.5" r="1.3" fill="#555"/>
+                    <circle cx="31" cy="16.5" r="1.3" fill="#555"/>
+                    <circle cx="38" cy="16.5" r="1.3" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+              <!-- D1E -->
+              <div class="cat-row">
+                <span class="cat-code">D1E</span>
+                <div class="cat-icon">
+                  <svg viewBox="0 0 50 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="2" y="5" width="16" height="10" rx="1.5" fill="#222"/>
+                    <rect x="4" y="7" width="4" height="4" rx="0.3" fill="#fff" opacity="0.5"/>
+                    <rect x="10" y="7" width="3" height="4" rx="0.3" fill="#fff" opacity="0.35"/>
+                    <line x1="18" y1="10" x2="21" y2="10" stroke="#666" stroke-width="1"/>
+                    <rect x="21" y="6" width="14" height="9" rx="1" fill="#222"/>
+                    <circle cx="8" cy="16.5" r="1.3" fill="#555"/>
+                    <circle cx="27" cy="16.5" r="1.3" fill="#555"/>
+                    <circle cx="33" cy="16.5" r="1.3" fill="#555"/>
+                  </svg>
+                </div>
+                <span class="cat-date"></span>
+              </div>
+            </div>
+
+          </div><!-- /cat-grid -->
+        </div><!-- /cat-wrap -->
+
+        <!-- Observações + Local -->
+        <div class="obs-local">
+          <div class="obs-sec">
+            <div class="sec-lbl">12 Observações</div>
+            <div class="sec-val">EAR</div>
+            <div class="assinado-block">
+              ASSINADO DIGITALMENTE<br>
+              DEPARTAMENTO ESTADUAL DE TRÂNSITO<br>
+              <span class="code">6555S007054</span><br>
+              <span class="code">AM0446ZI060</span>
+            </div>
+          </div>
+          <div class="local-sec">
+            <div class="sec-lbl">Local</div>
+            <div class="sec-val">MANAUS, AM</div>
+            <div class="estado-name">AMAZONAS</div>
+          </div>
+        </div>
+
+      </div><!-- /cnh-card -->
+
+      <!-- MRZ -->
+      <div class="mrz-zone">
+        I&lt;BRA082518245&lt;087&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;<br>
+        0405052M3302082BRA&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;&lt;0<br>
+        SANDRO&lt;&lt;GA&lt;PEREIRA&lt;DA&lt;SILVEIRA
+      </div>
+
+      <!-- Legenda -->
+      <div class="legend-text">
+        2 e 1. Nome e Sobrenome / Name and Surname / Nombre y Apellidos – Primeiros Habilitação / First Driver License / Primera Licencia de Conducir – 3. Data e Local de Nascimento / Date and Place of Birth DD/MM/YYYY / Fecha y Lugar de Nacimiento – 4a. Data de Emissão / Expiration Date DD/MM/YYYY / Valido Hasta – ACC – 4c. Documento Identidade - Órgão emissor / Identity Document - Issuing Authority – 4d. Documento de Identificação – Autoridade Expedidora – 4d. CPF – 5. Número de registro da CNH / Driver License Number / Número de Permiso de Conducir – 9. Categoria de Veículos da Carteira de Habilitação / Driver License Class / Categoria de Permiso de Conducir – Nacionalidade / Nationality / Nacionalidad – Filiação / Filiation / Filiación – 12. Observações / Observations / Observaciones – Local / Place / Lugar
+      </div>
+
+    </div><!-- /left col -->
+
+    <!-- ===== DIREITA: QR + Assinatura Digital ===== -->
+    <div class="right-col">
+      <div class="qr-title">QR-CODE</div>
+      <div class="qr-box"></div>
+      <div class="dig-sig">
+        <p>Documento assinado com certificado digital em conformidade com a Medida Provisória nº 2200-2/2001. Sua validade poderá ser confirmada por meio do programa Assinador Serpro.</p>
+        <p>As orientações para instalar o Assinador Serpro e realizar a validação do documento digital estão disponíveis em: https://www.serpro.gov.br/assinador-digital.</p>
+      </div>
+      <div class="serpro-brand">
+        <span class="s-red">SERPRO</span>/<span class="s-blue">SENATRAN</span>
+      </div>
+    </div>
+
+  </div><!-- /layout -->
+</div><!-- /page -->
+</body>
+</html>
