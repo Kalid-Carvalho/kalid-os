@@ -23,7 +23,7 @@ html = """<!DOCTYPE html>
     min-height: 297mm;
     background: #fff;
     margin: 24px auto;
-    padding: 15mm 18mm 52mm 18mm;
+    padding: 11mm 12mm 50mm 12mm;
     position: relative;
     box-shadow: 0 2px 10px rgba(0,0,0,0.4);
     page-break-after: always;
