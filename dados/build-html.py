@@ -46,7 +46,7 @@ html = """<!DOCTYPE html>
   }
 
   .logo-img {
-    height: 90px;
+    height: 110px;
     width: auto;
   }
 
