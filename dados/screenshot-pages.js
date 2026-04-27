@@ -13,11 +13,35 @@ const path = require('path');
   await page.goto(filePath, { waitUntil: 'networkidle' });
   await page.waitForTimeout(800);
 
-  // Remove decoration only — flexbox height is already fixed in CSS
+  // Remove decoration and auto-fit font size per page so content never overflows
   await page.evaluate(() => {
     document.querySelectorAll('.page').forEach(el => {
       el.style.boxShadow = 'none';
       el.style.margin = '0';
+
+      const body = el.querySelector('.body');
+      if (!body) return;
+
+      let size = 13;
+      const step = 0.25;
+      const min = 9;
+
+      // Reduce font until content fits inside .body (no overflow)
+      while (body.scrollHeight > body.clientHeight && size > min) {
+        size -= step;
+        const s = size + 'px';
+        body.style.fontSize = s;
+        el.querySelectorAll('.section-title, .sub-title, .fim').forEach(e => {
+          e.style.fontSize = s;
+        });
+        // Tighten line-height and spacing proportionally below 11.5px
+        if (size <= 11.5) {
+          body.style.lineHeight = '1.28';
+          body.querySelectorAll('p').forEach(p => p.style.marginBottom = '4px');
+          el.querySelectorAll('.section-title').forEach(e => e.style.marginTop = '6px');
+        }
+      }
+      console.log('font fitted at', size.toFixed(2) + 'px');
     });
   });
 

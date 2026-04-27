@@ -98,14 +98,14 @@ html = """<!DOCTYPE html>
     min-height: 0;
     overflow: hidden;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
-    line-height: 1.28;
+    font-size: 13px;
+    line-height: 1.35;
     text-align: justify;
     -webkit-text-stroke: 0.22px #000;
   }
 
   .body p {
-    margin-bottom: 4px;
+    margin-bottom: 7px;
     margin-top: 0;
   }
 
@@ -116,11 +116,11 @@ html = """<!DOCTYPE html>
   .section-title {
     flex-shrink: 0;
     font-weight: bold;
-    margin-top: 6px;
+    margin-top: 9px;
     margin-bottom: 0px;
     display: block;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 13px;
   }
 
   .sub-title {
@@ -130,24 +130,24 @@ html = """<!DOCTYPE html>
     margin-bottom: 0px;
     display: block;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 13px;
   }
 
   .fim {
     font-weight: bold;
     text-align: center;
-    margin: 5px 0;
+    margin: 11px 0;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 13px;
   }
 
   /* Sempre abaixo do .body, cola acima do rodapé */
   .assinatura {
     flex-shrink: 0;
-    margin-top: 8px;
-    line-height: 1.28;
+    margin-top: 10px;
+    line-height: 1.35;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 13px;
   }
 
   .sig-line {
