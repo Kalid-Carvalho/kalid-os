@@ -93,12 +93,16 @@ html = """<!DOCTYPE html>
     font-size: 13px;
     line-height: 1.35;
     text-align: justify;
-    -webkit-text-stroke: 0.08px #000;
+    -webkit-text-stroke: 0.22px #000;
   }
 
   .body p {
     margin-bottom: 11px;
     margin-top: 0;
+  }
+
+  .body b, .body strong {
+    -webkit-text-stroke: 0px;
   }
 
   .section-title {
