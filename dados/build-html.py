@@ -93,6 +93,7 @@ html = """<!DOCTYPE html>
     font-size: 13px;
     line-height: 1.35;
     text-align: justify;
+    -webkit-text-stroke: 0.08px #000;
   }
 
   .body p {
