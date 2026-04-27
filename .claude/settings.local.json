@@ -46,7 +46,8 @@
       "PowerShell(Start-Process -FilePath \"cmd.exe\" -ArgumentList '/c cd \"c:\\\\Users\\\\kalid\\\\Downloads\\\\KalidCarvalho-os\\\\dados\\\\zip\" && npx vite preview --port 4173' -WindowStyle Normal)",
       "PowerShell(\"Servidor iniciado. Acesse: http://localhost:4173\")",
       "mcp__claude_ai_Google_Calendar__create_event",
-      "mcp__n8n-mcp__n8n_manage_credentials"
+      "mcp__n8n-mcp__n8n_manage_credentials",
+      "PowerShell(curl.exe -s -X POST \"https://webhook.kalidcarvalho.com/webhook/importar-leads\" -H \"Content-Type: application/json\" --data-binary \"@$env:TEMP\\\\leads.json\")"
     ]
   }
 }
