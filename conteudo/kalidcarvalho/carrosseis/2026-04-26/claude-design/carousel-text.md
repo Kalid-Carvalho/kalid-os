@@ -42,8 +42,7 @@ O unlock real: prototype direto pro Claude Code. Você descreve a feature, Claud
 ---
 
 ## SLIDE 8 — CTA
-Estou acompanhando cada lançamento da Anthropic de perto e documentando aqui.
-@kalidcarvalho
+Se você chegou até aqui, provavelmente usa IA no trabalho ou quer começar. É exatamente sobre isso que eu posto. Sem hype. Build real. Me segue.
 
 ---
 
