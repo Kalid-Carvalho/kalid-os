@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>ChoraManaus — Template Feed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --verde:   #1E7A47;
+  --amarelo: #F9C41A;
+  --laranja: #C94A0A;
+  --bg:      #070B09;
+}
+
+body {
+  width: 1080px;
+  height: 1080px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+}
+
+/* ── CONTAINER ── */
+.post {
+  width: 1080px;
+  height: 1080px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── FOTO DE FUNDO ── */
+.bg-photo {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1080&q=80') center/cover no-repeat;
+  filter: brightness(0.28) saturate(0.6);
+}
+
+/* Gradiente verde por cima da foto */
+.bg-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    170deg,
+    rgba(7,11,9,0.0) 0%,
+    rgba(7,11,9,0.55) 45%,
+    rgba(7,11,9,0.98) 100%
+  );
+}
+
+/* Faixa verde esquerda */
+.accent-bar {
+  position: absolute;
+  left: 0; top: 0; bottom: 0;
+  width: 6px;
+  background: var(--verde);
+}
+
+/* ── TOPO ── */
+.top-bar {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 44px 52px 0;
+}
+
+.logo {
+  font-family: 'Anton', sans-serif;
+  font-size: 26px;
+  letter-spacing: 1.5px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.logo span {
+  color: var(--amarelo);
+}
+
+.badge-categoria {
+  background: var(--laranja);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2.5px;
+  padding: 6px 16px;
+  border-radius: 2px;
+}
+
+/* ── CONTEÚDO PRINCIPAL ── */
+.content {
+  position: relative;
+  z-index: 10;
+  margin-top: auto;
+  padding: 0 52px 52px;
+}
+
+/* Tag de categoria secundária */
+.tag-linha {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--amarelo);
+  flex-shrink: 0;
+}
+
+.tag-texto {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--amarelo);
+}
+
+.tag-linha::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: rgba(249,196,26,0.25);
+}
+
+/* Manchete */
+.headline {
+  font-family: 'Anton', sans-serif;
+  font-size: 68px;
+  line-height: 1.0;
+  color: #fff;
+  letter-spacing: -0.5px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+  max-width: 920px;
+}
+
+.headline em {
+  color: var(--amarelo);
+  font-style: normal;
+}
+
+/* Subtítulo / descrição */
+.descricao {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.55;
+  max-width: 760px;
+  font-weight: 400;
+  margin-bottom: 36px;
+}
+
+/* ── RODAPÉ ── */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding-top: 22px;
+}
+
+.source-area {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.source-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.35);
+  font-weight: 600;
+}
+
+.source-name {
+  font-size: 13px;
+  color: rgba(255,255,255,0.6);
+  font-weight: 600;
+}
+
+.cta-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cta-texto {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.5);
+}
+
+.cta-handle {
+  font-family: 'Anton', sans-serif;
+  font-size: 15px;
+  color: var(--amarelo);
+  letter-spacing: 1px;
+}
+
+/* ── VARIANTE 2: FUNDO SÓLIDO VERDE ── */
+.post.variante-verde .bg-photo {
+  display: none;
+}
+.post.variante-verde .bg-overlay {
+  background: linear-gradient(145deg, #0D3D23 0%, #070B09 100%);
+  opacity: 1;
+}
+
+/* ── VARIANTE 3: DESTAQUE URGENTE ── */
+.post.variante-urgente .badge-categoria {
+  background: #C94A0A;
+  animation: none;
+}
+.post.variante-urgente .headline em {
+  color: var(--laranja);
+}
+.post.variante-urgente .tag-dot {
+  background: var(--laranja);
+}
+.post.variante-urgente .tag-texto {
+  color: var(--laranja);
+}
+.post.variante-urgente .tag-linha::after {
+  background: rgba(201,74,10,0.3);
+}
+
+/* ── NUMERO DE NOTICIA (decorativo) ── */
+.ghost-num {
+  font-family: 'Anton', sans-serif;
+  font-size: 380px;
+  color: rgba(255,255,255,0.022);
+  position: absolute;
+  bottom: -40px;
+  right: -10px;
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  z-index: 5;
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     VARIANTE 1 — COM FOTO DE FUNDO (padrão)
+════════════════════════════════════════════ -->
+<div class="post">
+
+  <div class="bg-photo"></div>
+  <div class="bg-overlay"></div>
+  <div class="accent-bar"></div>
+  <div class="ghost-num">C</div>
+
+  <!-- TOPO -->
+  <div class="top-bar">
+    <div class="logo">Chora<span>Manaus</span></div>
+    <div class="badge-categoria">Segurança Pública</div>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="content">
+    <div class="tag-linha">
+      <div class="tag-dot"></div>
+      <div class="tag-texto">Urgente · Manaus</div>
+    </div>
+
+    <h1 class="headline">
+      Suspeito de latrocínio<br>
+      é preso em <em>flagrante</em><br>
+      na Zona Norte
+    </h1>
+
+    <p class="descricao">
+      Homem foi detido pela PM após perseguição na avenida Constantino Nery. Vítima permanece em estado grave no hospital 28 de Agosto.
+    </p>
+
+    <div class="footer">
+      <div class="source-area">
+        <span class="source-label">Fonte</span>
+        <span class="source-name">Secretaria de Segurança Pública do AM</span>
+      </div>
+      <div class="cta-area">
+        <span class="cta-texto">Siga</span>
+        <span class="cta-handle">@choramanaus</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
