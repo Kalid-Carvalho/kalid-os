@@ -190,10 +190,17 @@ html = """<!DOCTYPE html>
     padding: 4px 6px;
   }
 
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
   @media print {
-    body { background: #fff; }
-    .page { margin: 0; box-shadow: none; }
+    body { background: #fff; margin: 0; padding: 0; }
+    .page { margin: 0 auto; box-shadow: none; page-break-after: always; }
     .page:last-child { page-break-after: avoid; }
+    .body { -webkit-text-stroke: 0.22px #000; }
+    .body b, .body strong { -webkit-text-stroke: 0px; }
   }
 </style>
 </head>
