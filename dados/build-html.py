@@ -40,21 +40,21 @@ html = """<!DOCTYPE html>
   .page-ref {
     text-align: right;
     font-family: "Courier New", Courier, monospace;
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
-    margin-bottom: 8px;
+    margin-bottom: 5px;
   }
 
   .header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding-bottom: 10px;
-    margin-bottom: 14px;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .logo-img {
-    height: 110px;
+    height: 90px;
     width: auto;
   }
 
@@ -98,14 +98,14 @@ html = """<!DOCTYPE html>
 
   .body {
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
-    line-height: 1.35;
+    font-size: 11.5px;
+    line-height: 1.28;
     text-align: justify;
     -webkit-text-stroke: 0.22px #000;
   }
 
   .body p {
-    margin-bottom: 7px;
+    margin-bottom: 4px;
     margin-top: 0;
   }
 
@@ -115,11 +115,11 @@ html = """<!DOCTYPE html>
 
   .section-title {
     font-weight: bold;
-    margin-top: 9px;
+    margin-top: 6px;
     margin-bottom: 0px;
     display: block;
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
+    font-size: 11.5px;
   }
 
   .sub-title {
@@ -128,14 +128,14 @@ html = """<!DOCTYPE html>
     margin-bottom: 0px;
     display: block;
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
+    font-size: 11.5px;
   }
 
   .assinatura {
-    margin-top: 18px;
-    line-height: 1.35;
+    margin-top: 10px;
+    line-height: 1.28;
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
+    font-size: 11.5px;
   }
 
   .sig-line {
@@ -163,9 +163,9 @@ html = """<!DOCTYPE html>
   .fim {
     font-weight: bold;
     text-align: center;
-    margin: 11px 0;
+    margin: 5px 0;
     font-family: "Courier New", Courier, monospace;
-    font-size: 13px;
+    font-size: 11.5px;
   }
 
   /* Rodapé em fluxo normal — nunca sobrepõe o conteúdo */
