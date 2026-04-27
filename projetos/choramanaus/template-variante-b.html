@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>ChoraManaus — Template Variante B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  width: 1080px;
+  height: 1080px;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  background: #000;
+}
+
+.post {
+  width: 1080px;
+  height: 1080px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* FOTO DE FUNDO */
+.bg-photo {
+  position: absolute;
+  inset: 0;
+  background: url('https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=1080&q=90') center top/cover no-repeat;
+}
+
+/* Gradiente mais agressivo — mais impacto */
+.bg-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.15) 0%,
+    rgba(0,0,0,0.0)  25%,
+    rgba(0,0,0,0.7)  55%,
+    rgba(0,0,0,1.0)  100%
+  );
+}
+
+/* LOGO — canto superior direito */
+.logo {
+  position: absolute;
+  top: 36px;
+  right: 42px;
+  text-align: right;
+  z-index: 10;
+  line-height: 1;
+}
+
+.logo-top {
+  font-family: 'Anton', sans-serif;
+  font-size: 36px;
+  color: #fff;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+}
+
+.logo-bottom {
+  font-family: 'Anton', sans-serif;
+  font-size: 36px;
+  color: #F9C41A;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* CONTEÚDO INFERIOR */
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0 48px 50px;
+  text-align: center;
+}
+
+/* Tag de impacto — amarelo grande */
+.tag {
+  font-family: 'Anton', sans-serif;
+  font-size: 76px;
+  color: #F9C41A;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  line-height: 1;
+  margin-bottom: 14px;
+  display: block;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.6);
+}
+
+/* Manchete — all caps, branco, bold */
+.headline {
+  font-family: 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 1.3;
+  letter-spacing: 0.3px;
+  margin-bottom: 26px;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.8);
+}
+
+/* Handle */
+.handle {
+  font-family: 'Anton', sans-serif;
+  font-size: 22px;
+  color: #fff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+.handle em {
+  color: #F9C41A;
+  font-style: normal;
+}
+</style>
+</head>
+<body>
+
+<div class="post">
+  <div class="bg-photo"></div>
+  <div class="bg-gradient"></div>
+
+  <!-- LOGO -->
+  <div class="logo">
+    <span class="logo-top">CHORA</span>
+    <span class="logo-bottom">MANAUS</span>
+  </div>
+
+  <!-- CONTEÚDO -->
+  <div class="content">
+    <span class="tag">É OFICIAL!</span>
+    <p class="headline">
+      Show internacional do Black Eyed Peas<br>
+      confirmado em Manaus ainda em 2026.
+    </p>
+    <div class="handle">@<em>CHORAMANAUS</em></div>
+  </div>
+</div>
+
+</body>
+</html>
