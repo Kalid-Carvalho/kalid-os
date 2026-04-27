@@ -1,7 +1,11 @@
-import base64
+import base64, shutil
 
-with open('c:/Users/kalid/Downloads/KalidCarvalho-os/dados/logo-0.jpeg', 'rb') as f:
-    logo_b64 = base64.b64encode(f.read()).decode()
+# Copia o logo para o mesmo diretório com nome amigável
+shutil.copy(
+    'c:/Users/kalid/Downloads/KalidCarvalho-os/dados/logo-0.jpeg',
+    'c:/Users/kalid/Downloads/KalidCarvalho-os/dados/logo-manaus.jpeg'
+)
+logo_src = "logo-manaus.jpeg"
 
 html = """<!DOCTYPE html>
 <html lang="pt-BR">
@@ -154,6 +158,7 @@ html = """<!DOCTYPE html>
     bottom: 5mm;
     left: 18mm;
     right: 18mm;
+    background: #fff;
     font-family: "Courier New", Courier, monospace;
     font-size: 7.5px;
     font-style: italic;
@@ -177,7 +182,7 @@ html = """<!DOCTYPE html>
   <div class="page-ref">PAG CER: 4789/2021 PÁGINA 59/60</div>
 
   <div class="header">
-    <img class="logo-img" src="data:image/jpeg;base64,""" + logo_b64 + """" alt="Prefeitura de Manaus">
+    <img class="logo-img" src="logo-manaus.jpeg" alt="Prefeitura de Manaus">
     <div class="certidao-block">
       <span class="certidao-title">CERTIDÃO</span>
       <span class="certidao-sup">N°</span>
@@ -270,7 +275,7 @@ html = """<!DOCTYPE html>
   <div class="page-ref">PAG CER: 4789/2021 PÁGINA 60/60</div>
 
   <div class="header">
-    <img class="logo-img" src="data:image/jpeg;base64,""" + logo_b64 + """" alt="Prefeitura de Manaus">
+    <img class="logo-img" src="logo-manaus.jpeg" alt="Prefeitura de Manaus">
     <div class="certidao-block">
       <span class="certidao-title">CERTIDÃO</span>
       <span class="certidao-sup">N°</span>
