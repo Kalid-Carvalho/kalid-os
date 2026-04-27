@@ -10,13 +10,13 @@
       width: 1080px; height: 1350px;
       background: #0D1526;
       font-family: 'Space Grotesk', sans-serif;
-      color: #F0F4FF;
       position: relative; overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
     }
 
     body::after {
       content: ''; position: absolute; inset: 0; opacity: 0.025;
-      pointer-events: none; z-index: 20;
+      pointer-events: none; z-index: 0;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 300px;
     }
@@ -24,180 +24,173 @@
     .grid {
       position: absolute; inset: 0; z-index: 0;
       background-image:
-        linear-gradient(rgba(26,86,219,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(26,86,219,0.06) 1px, transparent 1px);
+        linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px);
       background-size: 60px 60px;
     }
 
-    .glow-blue {
-      position: absolute; bottom: -100px; left: -100px;
+    .glow {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
       width: 900px; height: 900px;
-      background: radial-gradient(circle, rgba(26,86,219,0.11) 0%, transparent 60%);
-      z-index: 1; pointer-events: none;
-    }
-    .glow-orange {
-      position: absolute; top: -60px; right: -60px;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(217,119,87,0.07) 0%, transparent 60%);
-      z-index: 1; pointer-events: none;
+      background: radial-gradient(circle, rgba(26,86,219,0.10) 0%, transparent 60%);
+      z-index: 0; pointer-events: none;
     }
 
-    /* Stacked cards visual — thread indicator */
-    .cards-stack {
-      position: absolute;
-      top: 88px; right: 72px;
-      z-index: 3;
+    /* Tweet card */
+    .tweet-card {
+      width: 880px;
+      background: #F7F9FA;
+      border-radius: 20px;
+      padding: 44px 48px 36px;
+      position: relative; z-index: 10;
+      box-shadow:
+        0 0 0 1px rgba(255,255,255,0.06),
+        0 24px 80px rgba(0,0,0,0.5),
+        0 4px 16px rgba(0,0,0,0.3);
     }
-    .stack-card {
-      position: absolute;
-      width: 340px; height: 200px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.06);
+
+    /* Header */
+    .tweet-header {
+      display: flex; align-items: flex-start;
+      justify-content: space-between;
+      margin-bottom: 24px;
     }
-    .stack-card:nth-child(1) {
-      background: rgba(26,86,219,0.06);
-      transform: rotate(6deg) translate(18px, 18px);
+    .tweet-user { display: flex; align-items: center; gap: 16px; }
+    .avatar {
+      width: 64px; height: 64px; border-radius: 50%;
+      overflow: hidden; flex-shrink: 0;
+      border: 2px solid rgba(26,86,219,0.20);
+      background: #111D35;
     }
-    .stack-card:nth-child(2) {
-      background: rgba(26,86,219,0.09);
-      transform: rotate(3deg) translate(9px, 9px);
+    .avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .user-info { display: flex; flex-direction: column; gap: 2px; }
+    .user-name {
+      display: flex; align-items: center; gap: 6px;
+      font-size: 20px; font-weight: 700; color: #0F1419;
     }
-    .stack-card:nth-child(3) {
-      background: rgba(15,22,42,0.95);
-      border-color: rgba(26,86,219,0.18);
-      transform: rotate(0deg);
-      display: flex; flex-direction: column;
-      padding: 20px 22px; gap: 10px;
-    }
-    .mini-avatar {
-      width: 32px; height: 32px; border-radius: 50%;
+    .verified {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px; border-radius: 50%;
       background: #1A56DB; flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
     }
-    .mini-avatar span { font-size: 14px; font-weight: 700; color: #fff; }
-    .mini-header { display: flex; align-items: center; gap: 10px; }
-    .mini-name { font-size: 14px; font-weight: 700; color: #F0F4FF; }
-    .mini-handle { font-size: 12px; color: rgba(240,244,255,0.35); }
-    .mini-text { font-size: 13px; color: rgba(240,244,255,0.50); line-height: 1.55; }
-    .mini-footer { display: flex; gap: 20px; margin-top: 4px; }
-    .mini-stat { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(240,244,255,0.25); }
+    .verified svg { width: 12px; height: 12px; fill: #fff; }
+    .user-handle { font-size: 17px; color: #536471; font-weight: 400; }
+    .x-logo { color: #0F1419; opacity: 0.25; font-size: 24px; font-weight: 700; line-height: 1; }
 
-    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
-
-    .top-header {
-      position: absolute; top: 0; left: 0; right: 0; height: 52px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07);
-      background: rgba(13,21,38,0.85); z-index: 15;
+    /* Body */
+    .tweet-body {
+      font-size: 32px; font-weight: 500;
+      line-height: 1.45; color: #0F1419;
+      margin-bottom: 32px;
+      letter-spacing: -0.01em;
     }
-    .top-header span { font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
-
-    .content {
-      position: absolute; inset: 0;
-      padding: 80px 86px 148px 86px;
-      display: flex; flex-direction: column;
-      justify-content: flex-end; z-index: 10;
+    .tweet-body .highlight { color: #D97757; font-weight: 700; }
+    .tweet-body .thread-indicator {
+      display: block; margin-top: 24px;
+      font-size: 24px; color: #536471; font-weight: 400;
+    }
+    .tweet-body .thread-indicator span {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 20px; color: #1A56DB; font-weight: 600;
     }
 
-    .tag {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.30);
-      border-radius: 4px; padding: 9px 18px;
-      margin-bottom: 36px; width: fit-content;
+    /* Divider */
+    .tweet-divider { height: 1px; background: rgba(0,0,0,0.08); margin-bottom: 24px; }
+
+    /* Stats */
+    .tweet-stats {
+      display: flex; gap: 32px; margin-bottom: 20px;
     }
-    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 17px; font-weight: 600; color: #D97757; letter-spacing: 0.12em; text-transform: uppercase; }
+    .stat { display: flex; align-items: center; gap: 8px; }
+    .stat-num { font-size: 17px; font-weight: 700; color: #0F1419; }
+    .stat-label { font-size: 17px; color: #536471; }
 
-    .headline {
-      font-size: 72px; font-weight: 800;
-      line-height: 1.06; letter-spacing: -0.03em;
-      color: #F0F4FF; margin-bottom: 32px;
+    /* Actions */
+    .tweet-actions {
+      display: flex; gap: 0; margin-bottom: 20px;
     }
-    .headline .claude { color: #D97757; }
-
-    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 28px; border-radius: 2px; }
-
-    .subtitle { font-size: 28px; font-weight: 400; color: #8899BB; line-height: 1.5; max-width: 680px; margin-bottom: 44px; }
-
-    .thread-badge {
-      display: inline-flex; align-items: center; gap: 12px;
-      background: rgba(26,86,219,0.10); border: 1px solid rgba(26,86,219,0.25);
-      border-radius: 100px; padding: 10px 24px; width: fit-content;
+    .action {
+      display: flex; align-items: center; gap: 8px;
+      padding: 10px 16px 10px 0; cursor: pointer;
+      color: #536471; font-size: 15px;
+      flex: 1;
     }
-    .thread-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #1A56DB; }
-    .thread-badge span { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 500; color: #6B9AE8; letter-spacing: 0.06em; }
+    .action svg { width: 20px; height: 20px; fill: none; stroke: #536471; stroke-width: 1.8; }
+    .action-count { font-size: 15px; color: #536471; }
 
-    .bottom-author {
-      position: absolute; bottom: 0; left: 0; right: 0; height: 120px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07);
-      background: rgba(13,21,38,0.75); z-index: 15;
+    /* Time */
+    .tweet-time {
+      font-size: 15px; color: #536471;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,0.07);
     }
-    .ba-left { display: flex; align-items: center; gap: 14px; }
-    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #111D35; }
-    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-    .ba-info { display: flex; flex-direction: column; gap: 2px; }
-    .ba-name { font-size: 20px; font-weight: 700; color: #F0F4FF; }
-    .ba-name .check { color: #1A56DB; margin-left: 4px; }
-    .ba-handle { font-size: 16px; font-weight: 400; color: #8899BB; }
-    .ba-right { font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+    .tweet-time span { color: #1A56DB; font-weight: 500; }
+
+    /* Watermark */
+    .watermark {
+      position: absolute; bottom: 36px; right: 52px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 17px; color: rgba(240,244,255,0.20);
+      z-index: 10; letter-spacing: 0.04em;
+    }
   </style>
 </head>
 <body>
   <div class="grid"></div>
-  <div class="glow-blue"></div>
-  <div class="glow-orange"></div>
+  <div class="glow"></div>
 
-  <!-- Stacked tweet cards decoration -->
-  <div class="cards-stack">
-    <div class="stack-card"></div>
-    <div class="stack-card"></div>
-    <div class="stack-card">
-      <div class="mini-header">
-        <div class="mini-avatar"><span>K</span></div>
-        <div>
-          <div class="mini-name">Kalid Carvalho</div>
-          <div class="mini-handle">@kalidcarvalho</div>
+  <div class="tweet-card">
+    <div class="tweet-header">
+      <div class="tweet-user">
+        <div class="avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+        <div class="user-info">
+          <div class="user-name">
+            Kalid Carvalho
+            <div class="verified">
+              <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
+          </div>
+          <div class="user-handle">@kalidcarvalho</div>
         </div>
       </div>
-      <div class="mini-text">Claude Design não gera imagens. Ele escreve HTML, CSS e React em tempo real...</div>
-      <div class="mini-footer">
-        <span class="mini-stat">847 ♡</span>
-        <span class="mini-stat">12K views</span>
+      <div class="x-logo">𝕏</div>
+    </div>
+
+    <div class="tweet-body">
+      <span class="highlight">Claude Design</span> não é pra designers.<br><br>
+      E é exatamente por isso que a Anthropic acertou.
+      <span class="thread-indicator">Thread <span>↓ 1/6</span></span>
+    </div>
+
+    <div class="tweet-divider"></div>
+
+    <div class="tweet-stats">
+      <div class="stat"><span class="stat-num">1.2K</span><span class="stat-label">Reposts</span></div>
+      <div class="stat"><span class="stat-num">847</span><span class="stat-label">Curtidas</span></div>
+      <div class="stat"><span class="stat-num">42K</span><span class="stat-label">Visualizações</span></div>
+    </div>
+
+    <div class="tweet-actions">
+      <div class="action">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <span class="action-count">284</span>
+      </div>
+      <div class="action">
+        <svg viewBox="0 0 24 24"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 11V9a4 4 0 0 1 4-4h14"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 13v2a4 4 0 0 1-4 4H3"></path></svg>
+        <span class="action-count">1.2K</span>
+      </div>
+      <div class="action">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+        <span class="action-count">847</span>
+      </div>
+      <div class="action">
+        <svg viewBox="0 0 24 24"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"></path><polyline points="16 6 12 2 8 6"></polyline><line x1="12" y1="2" x2="12" y2="15"></line></svg>
       </div>
     </div>
+
+    <div class="tweet-time">17 de abril de 2026 · 09:14 · <span>42K visualizações</span></div>
   </div>
 
-  <div class="accent-bar"></div>
-
-  <div class="top-header">
-    <span>@kalidcarvalho</span>
-    <span>Build in Public</span>
-    <span>© 2026</span>
-  </div>
-
-  <div class="content">
-    <div class="tag"><span>anthropic · ia</span></div>
-    <div class="headline">
-      <span class="claude">Claude Design</span><br>
-      não é pra<br>designers.
-    </div>
-    <div class="divider"></div>
-    <div class="subtitle">E é exatamente por isso que a Anthropic acertou.</div>
-    <div class="thread-badge">
-      <div class="dot"></div>
-      <span>thread · 6 tweets</span>
-    </div>
-  </div>
-
-  <div class="bottom-author">
-    <div class="ba-left">
-      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
-      <div class="ba-info">
-        <span class="ba-name">Kalid Carvalho <span class="check">✓</span></span>
-        <span class="ba-handle">@kalidcarvalho</span>
-      </div>
-    </div>
-    <span class="ba-right">Arrasta para o lado ▶</span>
-  </div>
+  <div class="watermark">@kalidcarvalho</div>
 </body>
 </html>
