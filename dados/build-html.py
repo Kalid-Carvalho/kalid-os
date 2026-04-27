@@ -51,20 +51,20 @@ html = """<!DOCTYPE html>
   }
 
   .logo-img {
-    height: 60px;
+    height: 85px;
     width: auto;
   }
 
   .certidao-block {
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 4px;
   }
 
   .certidao-title {
     font-family: Arial, sans-serif;
-    font-size: 30px;
-    font-weight: 900;
+    font-size: 22px;
+    font-weight: 400;
     letter-spacing: 1px;
     color: #111;
     line-height: 1;
@@ -72,21 +72,21 @@ html = """<!DOCTYPE html>
 
   .certidao-sup {
     font-family: Arial, sans-serif;
-    font-size: 13px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 400;
     align-self: flex-start;
-    margin-top: 5px;
+    margin-top: 4px;
     color: #111;
   }
 
   .certidao-num-box {
-    background: #1a4080;
-    color: #fff;
+    background: transparent;
+    color: #cc0000;
     font-family: Arial, sans-serif;
-    font-size: 21px;
-    font-weight: bold;
-    padding: 6px 13px;
-    letter-spacing: 0.5px;
+    font-size: 20px;
+    font-weight: 400;
+    padding: 5px 12px;
+    border: 2px solid #000;
     line-height: 1;
     align-self: stretch;
     display: flex;
