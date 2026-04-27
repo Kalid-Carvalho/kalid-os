@@ -127,18 +127,23 @@ html = """<!DOCTYPE html>
   .sig-line {
     display: flex;
     align-items: flex-end;
+    line-height: 1;
+    margin-bottom: 3px;
+    margin-top: 3px;
   }
 
   .sig-underline {
     flex: 1;
     border-bottom: 1px solid #000;
-    padding-bottom: 1px;
+    padding-bottom: 0;
+    line-height: 1;
   }
 
   .sig-underline-short {
     border-bottom: 1px solid #000;
     padding-right: 100px;
-    padding-bottom: 1px;
+    padding-bottom: 0;
+    line-height: 1;
   }
 
   .fim {
