@@ -259,8 +259,8 @@ html = """<!DOCTYPE html>
 
     <p>ANÁLISE: Permitido</p>
 
-    <p>Observações gerais:</p>
-    <p>1. O lote foi definido para USO RESIDENCIAL, estando o mesmo inserido no LOTEAMENTO PARQUE
+    <p>Observações gerais:<br>
+    1. O lote foi definido para USO RESIDENCIAL, estando o mesmo inserido no LOTEAMENTO PARQUE
     MORADA DO SOL, o qual obteve &nbsp;aprovação &nbsp;perante &nbsp;o &nbsp;Município &nbsp;em &nbsp;24 &nbsp;de &nbsp;março &nbsp;de &nbsp;1980,
     conforme demonstrado no base de dados da planta cadastral no ArqGIS;</p>
 
