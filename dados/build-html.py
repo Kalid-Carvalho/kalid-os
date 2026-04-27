@@ -219,7 +219,7 @@ html = """<!DOCTYPE html>
   <div class="body">
     <p>
       <b>TIPO DE CERTIDÃO:</b> CERTIDÃO DE INFORMAÇÃO TÉCNICA PARA USO DO SOLO<br>
-      <b>EU,</b> LEANDRO FELIPY ALBUQUERQUE DE SOUZA, Gerente - GIT<br>
+      <b>EU,</b> ISLANE RODRIGUES DE SOUZA, Gerente - GIT<br>
       <b>CERTIFICO, TENDO EM VISTA AS ATRIBUIÇÕES QUE POR LEI A MIM SÃO CONFERIDAS E DE ACORDO COM
       O PROCESSO PROTOCOLADO N°</b> 4789/2021 DE 25 de maio de 2021<br>
       <b>REQUERIDO POR</b> PETROMOR ALUGUEL DE SALAS E EQUIPAMENTOS LIMITADA<br>
@@ -275,7 +275,7 @@ html = """<!DOCTYPE html>
   </div>
 
   <div class="assinatura">
-    <div class="sig-line">E PARA CONSTAR EU, <span class="sig-underline">LEANDRO FELIPY ALBUQUERQUE DE SOUZA, Gerente - GIT</span></div>
+    <div class="sig-line">E PARA CONSTAR EU, <span class="sig-underline">ISLANE RODRIGUES DE SOUZA, Gerente - GIT</span></div>
     DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO &nbsp;- IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
     <div class="sig-line">VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<span class="sig-underline">RADJA PEREIRA MAR</span></div>
     AOS DIAS DO MÊS DE <span class="sig-underline-short">10 de junho de 2021</span>
@@ -290,7 +290,7 @@ html = """<!DOCTYPE html>
     Este documento foi assinado digitalmente. Qualquer alteração invalidará o documento.<br>
     Esta(s) assinatura(s) pode(m) ser verificada(s) em: https://fiscal.manaus.am.gov.br/fiscal/servlet/hwpvalidardocassinado (utilize a(s) chave(s) abaixo)<br>
     1 - RADJA PEREIRA MAR. Em: Qui 10/06/2021 13:27:38. Chave para validação: B14M9P.894KDK.W984CG.FGGVK6.FW24A7.FX55B9<br>
-    2 - LEANDRO FELIPY ALBUQUERQUE DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z.FX55B9
+    2 - ISLANE RODRIGUES DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z.FX55B9
   </div>
 </div>
 
@@ -372,7 +372,7 @@ html = """<!DOCTYPE html>
   </div>
 
   <div class="assinatura">
-    <div class="sig-line">E PARA CONSTAR EU, <span class="sig-underline">LEANDRO FELIPY ALBUQUERQUE DE SOUZA, Gerente - GIT</span></div>
+    <div class="sig-line">E PARA CONSTAR EU, <span class="sig-underline">ISLANE RODRIGUES DE SOUZA, Gerente - GIT</span></div>
     DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO &nbsp;- IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
     <div class="sig-line">VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<span class="sig-underline">RADJA PEREIRA MAR</span></div>
     AOS DIAS DO MÊS DE <span class="sig-underline-short">10 de junho de 2021</span>
@@ -387,7 +387,7 @@ html = """<!DOCTYPE html>
     Este documento foi assinado digitalmente. Qualquer alteração invalidará o documento.<br>
     Esta(s) assinatura(s) pode(m) ser verificada(s) em: https://fiscal.manaus.am.gov.br/fiscal/servlet/hwpvalidardocassinado (utilize a(s) chave(s) abaixo)<br>
     1 - RADJA PEREIRA MAR. Em: Qui 10/06/2021 13:27:38. Chave para validação: B14M9P.894KDK.W984CG.FGGVK6.FW24A7.FX55B9<br>
-    2 - LEANDRO FELIPY ALBUQUERQUE DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z.FX55B9
+    2 - ISLANE RODRIGUES DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z.FX55B9
   </div>
 </div>
 
