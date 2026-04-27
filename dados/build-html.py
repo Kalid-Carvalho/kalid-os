@@ -162,7 +162,7 @@ html = """<!DOCTYPE html>
 
   .footer-bar {
     position: absolute;
-    bottom: 29mm;
+    bottom: 22mm;
     left: 12mm;
     right: 12mm;
     background: #1a4080;
@@ -178,8 +178,8 @@ html = """<!DOCTYPE html>
   .footer-notes {
     position: absolute;
     bottom: 5mm;
-    left: calc(12mm + 20px);
-    right: calc(12mm + 20px);
+    left: calc(12mm - 20px);
+    right: calc(12mm - 20px);
     background: #d4d4d4;
     font-family: "Courier New", Courier, monospace;
     font-size: 8px;
