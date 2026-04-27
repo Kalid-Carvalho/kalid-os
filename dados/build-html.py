@@ -97,7 +97,7 @@ html = """<!DOCTYPE html>
   }
 
   .body p {
-    margin-bottom: 11px;
+    margin-bottom: 7px;
     margin-top: 0;
   }
 
@@ -107,7 +107,7 @@ html = """<!DOCTYPE html>
 
   .section-title {
     font-weight: bold;
-    margin-top: 13px;
+    margin-top: 9px;
     margin-bottom: 0px;
     display: block;
     font-family: "Courier New", Courier, monospace;
@@ -124,7 +124,7 @@ html = """<!DOCTYPE html>
   }
 
   .assinatura {
-    margin-top: 65px;
+    margin-top: 18px;
     line-height: 1.35;
     font-family: "Courier New", Courier, monospace;
     font-size: 13px;

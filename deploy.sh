@@ -39,14 +39,22 @@ deploy_links() {
 }
 
 deploy_nextads() {
-  echo "→ Subindo kalidcarvalho.com/next-ads..."
+  echo "→ Subindo kalidcarvalho.com/projetos/next-ads..."
   LUAN="/c/Users/kalid/Downloads/KalidCarvalho-os/clientes/Luan Manzoli/entregas/nextads-agencia"
-  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/next-ads/obrigado /var/www/kalid/next-ads/assets/img"
-  scp $SSH_OPTS "$LUAN/index.html" $VPS:/var/www/kalid/next-ads/index.html
-  scp $SSH_OPTS "$LUAN/favicon.svg" $VPS:/var/www/kalid/next-ads/favicon.svg
-  scp $SSH_OPTS "$LUAN/obrigado/index.html" $VPS:/var/www/kalid/next-ads/obrigado/index.html
-  scp $SSH_OPTS "$LUAN/assets/img/luan-hero.jpg" $VPS:/var/www/kalid/next-ads/assets/img/luan-hero.jpg
-  echo "✓ kalidcarvalho.com/next-ads atualizado"
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/projetos/next-ads/obrigado /var/www/kalid/projetos/next-ads/assets/img"
+  scp $SSH_OPTS "$LUAN/index.html" $VPS:/var/www/kalid/projetos/next-ads/index.html
+  scp $SSH_OPTS "$LUAN/favicon.svg" $VPS:/var/www/kalid/projetos/next-ads/favicon.svg
+  scp $SSH_OPTS "$LUAN/obrigado/index.html" $VPS:/var/www/kalid/projetos/next-ads/obrigado/index.html
+  scp $SSH_OPTS "$LUAN/assets/img/luan-hero.jpg" $VPS:/var/www/kalid/projetos/next-ads/assets/img/luan-hero.jpg
+  echo "✓ kalidcarvalho.com/projetos/next-ads atualizado"
+}
+
+deploy_luan_mentoria() {
+  echo "→ Subindo kalidcarvalho.com/projetos/luan-manzoli..."
+  MENTORIA="/c/Users/kalid/Downloads/KalidCarvalho-os/clientes/Luan Manzoli/entregas/mentoria"
+  ssh $SSH_OPTS $VPS "mkdir -p /var/www/kalid/projetos/luan-manzoli"
+  scp $SSH_OPTS "$MENTORIA/index.html" $VPS:/var/www/kalid/projetos/luan-manzoli/index.html
+  echo "✓ kalidcarvalho.com/projetos/luan-manzoli atualizado"
 }
 
 deploy_diagnostico() {
