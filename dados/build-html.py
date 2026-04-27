@@ -1,11 +1,7 @@
 import base64, shutil
 
 # Copia o logo para o mesmo diretório com nome amigável
-shutil.copy(
-    'c:/Users/kalid/Downloads/KalidCarvalho-os/dados/logo-0.jpeg',
-    'c:/Users/kalid/Downloads/KalidCarvalho-os/dados/logo-manaus.jpeg'
-)
-logo_src = "logo-manaus.jpeg"
+logo_src = "Eleicoes-2020-Veja-a-proposta-dos-candidatos-a-prefeitura-de-Manaus-1024x362.jpg"
 
 html = """<!DOCTYPE html>
 <html lang="pt-BR">
@@ -36,56 +32,56 @@ html = """<!DOCTYPE html>
   .page-ref {
     text-align: right;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11px;
+    font-size: 14px;
     font-weight: bold;
-    margin-bottom: 6px;
+    margin-bottom: 8px;
   }
 
   .header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-bottom: 8px;
+    padding-bottom: 10px;
     border-bottom: 1.5px solid #000;
     margin-bottom: 14px;
   }
 
   .logo-img {
-    height: 85px;
+    height: 90px;
     width: auto;
   }
 
   .certidao-block {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
   }
 
   .certidao-title {
-    font-family: Arial, sans-serif;
-    font-size: 22px;
-    font-weight: 400;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    font-size: 26px;
+    font-weight: bold;
     letter-spacing: 1px;
     color: #111;
     line-height: 1;
   }
 
   .certidao-sup {
-    font-family: Arial, sans-serif;
-    font-size: 11px;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 12px;
     font-weight: 400;
     align-self: flex-start;
-    margin-top: 4px;
+    margin-top: 3px;
     color: #111;
   }
 
   .certidao-num-box {
     background: transparent;
     color: #cc0000;
-    font-family: Arial, sans-serif;
+    font-family: "Courier New", Courier, monospace;
     font-size: 20px;
     font-weight: 400;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border: 2px solid #000;
     line-height: 1;
     align-self: stretch;
@@ -182,7 +178,7 @@ html = """<!DOCTYPE html>
   <div class="page-ref">PAG CER: 4789/2021 PÁGINA 59/60</div>
 
   <div class="header">
-    <img class="logo-img" src="logo-manaus.jpeg" alt="Prefeitura de Manaus">
+    <img class="logo-img" src="Eleicoes-2020-Veja-a-proposta-dos-candidatos-a-prefeitura-de-Manaus-1024x362.jpg" alt="Prefeitura de Manaus">
     <div class="certidao-block">
       <span class="certidao-title">CERTIDÃO</span>
       <span class="certidao-sup">N°</span>
@@ -275,7 +271,7 @@ html = """<!DOCTYPE html>
   <div class="page-ref">PAG CER: 4789/2021 PÁGINA 60/60</div>
 
   <div class="header">
-    <img class="logo-img" src="logo-manaus.jpeg" alt="Prefeitura de Manaus">
+    <img class="logo-img" src="Eleicoes-2020-Veja-a-proposta-dos-candidatos-a-prefeitura-de-Manaus-1024x362.jpg" alt="Prefeitura de Manaus">
     <div class="certidao-block">
       <span class="certidao-title">CERTIDÃO</span>
       <span class="certidao-sup">N°</span>
