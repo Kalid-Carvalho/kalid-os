@@ -21,7 +21,8 @@ Upsell: Gestão de Captação R$2.000–R$3.000/mês
 - Contratação de equipe não está no radar agora
 
 ## Estratégia de aquisição
-- **Outbound (custo zero):** LinkedIn e Cold Email mirando empresas com sites obsoletos ou sem máquina de vendas
+- **Outbound automatizado (N8N — ativo desde abril/2026):** funil completo de cold email rodando — Prospecção (~30/dia) + FU1 D+2 (15/dia) + FU2 D+7 (10/dia), tudo pela kalidcarvalhomkt@gmail.com. Leads importados do Apollo.io via skill `subir-leads`.
+- **Conta grovwmkt@gmail.com:** em processo de warmup (~3 semanas). Quando aquecida, retoma prospecção paralela.
 - **Ads:** Google Ads fundo de funil (intenção extrema) — investimento inicial dos R$2.000
 - **Iscas técnicas:** Auditoria de Infraestrutura de Vendas como isca para Meta/LinkedIn Ads
 - **Foco geográfico inicial:** Manaus — reuniões presenciais para fechar primeiros cases

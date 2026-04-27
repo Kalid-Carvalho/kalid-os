@@ -13,23 +13,25 @@ Workspace principal de Kalid Carvalho — opera GROVW (agência de performance d
 - `dados/` — arquivos para análise (CSV, XLSX, PDF, imagens)
 - `marca/` — design guides das duas marcas
 - `_contexto/` — empresa, preferências e estratégia atual
+- `_arquivo/` — arquivos e materiais antigos arquivados
+- `_infra/` — configurações de infraestrutura e servidores
 - `templates/skills/` — templates de skills prontos para personalizar
 - `templates/ferramentas/catalogo.md` — APIs e ferramentas disponíveis
 
 ## Sobre o negócio
-Kalid opera solo. Vende sistemas de captação digital para PMEs brasileiras pela GROVW (sites + tráfego + IA). Foco atual: fechar clientes no setor de advocacia. Paralelamente, constrói audiência como criador de conteúdo de IA no YouTube e Instagram (@kalidcarvalho) e aprende criação de apps com Claude.
+Kalid opera solo. Vende sistemas de captação digital para empresas de TI B2B pela GROVW (sites + tráfego + IA + automações). Foco atual: fechar clientes no setor de TI B2B, SaaS e Infraestrutura de TI. Paralelamente, constrói audiência como criador de conteúdo de IA no YouTube e Instagram (@kalidcarvalho) e aprende criação de apps com Claude.
 
 ## O que mais fazemos aqui
 - Criação de sites de alta conversão (WordPress/Elementor e Antigravity)
 - Configuração e gestão de tráfego pago (Google Ads + Meta Ads)
 - Automações com IA (N8N, Typebot, Cal.com, agentes Claude)
 - Conteúdo tech para @kalidcarvalho (sites, apps, IA — criador de conteúdo pessoal)
-- Conteúdo jurídico para @eukalidcarvalho (marketing para advogados — canal de nicho GROVW)
+- Conteúdo B2B para @eukalidcarvalho (Engenharia de Vendas para TI, SaaS e Infraestrutura — canal de nicho GROVW)
 - Prospecção ativa (email frio + follow-up)
 - Propostas comerciais
 
 ## Clientes e contexto
-Atende clientes externos. Nicho atual: advocacia (escritórios de pequeno e médio porte). Ticket médio: R$1.400–R$5.000 setup + recorrência.
+Atende clientes externos. Nicho atual: TI B2B, SaaS e Infraestrutura de TI (empresas de 10–50 funcionários). Ticket médio: R$1.000–R$3.500 setup + recorrência de R$2.000–R$3.000/mês.
 
 ## Tom de voz
 Direto, assertivo, parceiro de negócios. Dados antes de adjetivos. Sem hype. Vocabulário: "sistema", "máquina de clientes", "conversão", "qualificado", "previsível".
@@ -39,7 +41,7 @@ Nunca usar: travessões, bullet points desnecessários, emojis (exceto em reels/
 Design systems por marca:
 - GROVW: preto, limão, Inter
 - @kalidcarvalho | Builder (Bold Human): azul escuro #1A56DB, Space Grotesk
-- @eukalidcarvalho: mesmo design system Bold Human, conteúdo focado em advocacia
+- @eukalidcarvalho: mesmo design system Bold Human, conteúdo focado em TI B2B e Engenharia de Vendas
 
 Ver `_contexto/preferencias.md` para lista completa.
 
