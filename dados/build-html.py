@@ -90,39 +90,39 @@ html = """<!DOCTYPE html>
 
   .body {
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
-    line-height: 1.38;
+    font-size: 12.2px;
+    line-height: 1.28;
     text-align: justify;
   }
 
   .body p {
-    margin-bottom: 5px;
+    margin-bottom: 3px;
     margin-top: 0;
   }
 
   .section-title {
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 6px;
     margin-bottom: 0px;
     display: block;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 12.2px;
   }
 
   .sub-title {
     font-weight: bold;
-    margin-top: 4px;
+    margin-top: 2px;
     margin-bottom: 0px;
     display: block;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 12.2px;
   }
 
   .assinatura {
-    margin-top: 40px;
+    margin-top: 36px;
     line-height: 1.25;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 12.2px;
   }
 
   .sig-line {
@@ -150,9 +150,9 @@ html = """<!DOCTYPE html>
   .fim {
     font-weight: bold;
     text-align: center;
-    margin: 12px 0;
+    margin: 8px 0;
     font-family: "Courier New", Courier, monospace;
-    font-size: 11.5px;
+    font-size: 12.2px;
   }
 
   .footer-bar {
