@@ -79,23 +79,31 @@ case "$1" in
   kalid)        deploy_kalid ;;
   links)        deploy_links ;;
   diagnostico)  deploy_diagnostico ;;
-  next-ads)     deploy_nextads ;;
+  next-ads)        deploy_nextads ;;
+  luan-mentoria)   deploy_luan_mentoria ;;
+  luan-all)
+    deploy_nextads
+    deploy_luan_mentoria
+    ;;
   all)
     deploy_grovw
     deploy_kalid
     deploy_links
     deploy_diagnostico
     deploy_nextads
+    deploy_luan_mentoria
     ;;
   *)
     echo "Uso: bash deploy.sh [target]"
     echo ""
     echo "Targets disponíveis:"
-    echo "  grovw        → sobe site principal grovw.com.br"
-    echo "  kalid        → sobe kalidcarvalho.com/links"
-    echo "  links        → sobe grovw.com.br/links"
-    echo "  diagnostico  → sobe kalidcarvalho.com/diagnostico"
-    echo "  next-ads     → sobe kalidcarvalho.com/next-ads"
-    echo "  all          → sobe tudo"
+    echo "  grovw          → sobe site principal grovw.com.br"
+    echo "  kalid          → sobe kalidcarvalho.com/links"
+    echo "  links          → sobe grovw.com.br/links"
+    echo "  diagnostico    → sobe kalidcarvalho.com/diagnostico"
+    echo "  next-ads       → sobe kalidcarvalho.com/projetos/next-ads"
+    echo "  luan-mentoria  → sobe kalidcarvalho.com/projetos/luan-manzoli"
+    echo "  luan-all       → sobe next-ads + luan-mentoria"
+    echo "  all            → sobe tudo"
     ;;
 esac
