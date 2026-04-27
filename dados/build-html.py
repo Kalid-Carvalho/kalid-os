@@ -137,7 +137,7 @@ html = """<!DOCTYPE html>
 
   .sig-underline-short {
     border-bottom: 1px solid #000;
-    padding-right: 50px;
+    padding-right: 100px;
     padding-bottom: 1px;
   }
 
