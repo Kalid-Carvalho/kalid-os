@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Certidão Nº 4789/2021 - Prefeitura de Manaus</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11.5px;
+    background: #ccc;
+    color: #000;
+  }
+
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    background: #fff;
+    margin: 20px auto;
+    padding: 18mm 18mm 15mm 18mm;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  /* ── Topo da página ── */
+  .page-ref {
+    text-align: right;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  /* ── Cabeçalho com logo + certidão ── */
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    gap: 10px;
+  }
+
+  .header-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+  }
+
+  .logo-placeholder {
+    width: 70px;
+    height: 70px;
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: #666;
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo-text .prefeitura-de {
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: #1a3a6b;
+    text-transform: uppercase;
+  }
+
+  .logo-text .manaus {
+    font-family: Arial, sans-serif;
+    font-size: 30px;
+    font-weight: 900;
+    color: #1a3a6b;
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .header-certidao {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+
+  .certidao-title {
+    font-family: Arial, sans-serif;
+    font-size: 26px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .certidao-n {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: bold;
+    align-self: flex-start;
+    margin-top: 6px;
+  }
+
+  .certidao-number-box {
+    background-color: #1a3a6b;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 6px 14px;
+    letter-spacing: 1px;
+  }
+
+  /* ── Corpo do documento ── */
+  .body {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 11.5px;
+    line-height: 1.5;
+    text-align: justify;
+  }
+
+  .body p {
+    margin-bottom: 10px;
+  }
+
+  .body .label {
+    font-weight: bold;
+  }
+
+  .indent {
+    padding-left: 20px;
+  }
+
+  .underline {
+    text-decoration: underline;
+  }
+
+  .section-title {
+    font-weight: bold;
+    margin-top: 14px;
+    margin-bottom: 4px;
+    text-decoration: underline;
+  }
+
+  .sub-title {
+    font-weight: bold;
+    margin-top: 8px;
+    margin-bottom: 2px;
+  }
+
+  .obs-item {
+    margin-bottom: 10px;
+    text-align: justify;
+  }
+
+  .assinatura {
+    margin-top: 24px;
+    line-height: 2;
+  }
+
+  .fim-descricao {
+    text-align: center;
+    font-weight: bold;
+    margin: 16px 0;
+    letter-spacing: 1px;
+  }
+
+  /* ── Rodapé azul ── */
+  .footer-bar {
+    background-color: #1a3a6b;
+    color: #fff;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    padding: 5px 10px;
+    margin-top: auto;
+    position: absolute;
+    bottom: 28mm;
+    left: 0;
+    right: 0;
+    line-height: 1.6;
+  }
+
+  .footer-notes {
+    position: absolute;
+    bottom: 5mm;
+    left: 18mm;
+    right: 18mm;
+    font-size: 8px;
+    font-style: italic;
+    line-height: 1.5;
+    color: #000;
+    border-top: 1px solid #ccc;
+    padding-top: 4px;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page {
+      margin: 0;
+      box-shadow: none;
+      page-break-after: always;
+    }
+    .page:last-child { page-break-after: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════
+     PÁGINA 1
+════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="page-ref">PAG CER: 4789/2021 PÁGINA 59/60</div>
+
+  <div class="header">
+    <div class="header-logo">
+      <div class="logo-placeholder">LOGO<br>MANAUS</div>
+      <div class="logo-text">
+        <span class="prefeitura-de">P R E F E I T U R A &nbsp; D E</span>
+        <span class="manaus">MANAUS</span>
+      </div>
+    </div>
+    <div class="header-certidao">
+      <span class="certidao-title">CERTIDÃO</span>
+      <span class="certidao-n">N°</span>
+      <span class="certidao-number-box">4789/2021</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <p>
+      <span class="label">TIPO DE CERTIDÃO:</span> CERTIDÃO DE INFORMAÇÃO TÉCNICA PARA USO DO SOLO<br>
+      <span class="label">EU,</span> ISLANE RODRIGUES DE SOUZA, Gerente - GIT<br>
+      <span class="label">CERTIFICO, TENDO EM VISTA AS ATRIBUIÇÕES QUE POR LEI A MIM SÃO CONFERIDAS E DE ACORDO COM O PROCESSO PROTOCOLADO N°</span> 4789/2021 DE 25 de maio de 2021<br>
+      <span class="label">REQUERIDO POR</span> PETROMOR ALUGUEL DE SALAS E EQUIPAMENTOS LIMITADA<br>
+      <span class="label">SITO À</span> AVENIDA ANDRÉ ARAÚJO, nº 2721, ALEIXO, LOTEAMENTO PARQUE, MORADA DO SOL,<br>
+      <span class="indent">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;69060000,</span><br>
+      <span class="label">DE PROPRIEDADE DE</span> RODRIGO DOMENICO PETROSINO
+    </p>
+
+    <p>
+      O(a) Interessado(a) solicita CERTIDÃO DE INFORMAÇÃO TÉCNICA PARA USO DO SOLO para o endereço acima descrito e conforme preceitua o Plano Diretor Urbano e Ambiental do Município de Manaus de 16/01/2014, informamos que:
+    </p>
+
+    <p>
+      <span class="label">MATRÍCULA DO IPTU:</span> 129069<br>
+      <span class="label">ZONA:</span> SETOR 11 (bairro Aleixo), FAIXA LINDEIRA DO CORREDOR URBANO ALEIXO, SEGMENTO ANDRÉ ARAÚJO.
+    </p>
+
+    <p class="section-title">PARÂMETROS PERMITIDOS:</p>
+    <p>
+      <span class="label">DIRETRIZES:</span> Reforço do centro de comércio e serviços existente; integração de atividades comerciais e de serviços ao uso residencial.<br>
+      <span class="label">USOS PERMITIDOS:</span> Residencial unifamiliar e multifamiliar; comercial; de serviços; industrial.<br>
+      <span class="label">ATIVIDADES PERMITIDAS:</span> Tipo 1, Tipo 2, Tipo 3* e Tipo 4* (*exceto para o uso industrial).
+    </p>
+
+    <p class="section-title">ATIVIDADE(S) SOLICITADA(S):</p>
+    <p class="sub-title">ATIVIDADE PRINCIPAL</p>
+    <p>
+      CNAE/ATIVIDADE: 821130000 - Serviços combinados de escritório e apoio administrativo<br>
+      USO/CLASSIFICAÇÃO: SERVIÇO TIPO 1
+    </p>
+
+    <p class="section-title">ATIVIDADE(S) SECUNDÁRIA(S):</p>
+    <p>
+      ATIVIDADE/CNAE:<br>
+      631190001 - Tratamento de dados, provedores de serviços de aplicação e serviços de hospedagem na internet<br>
+      USO/CLASSIFICAÇÃO: SERVIÇO TIPO 1
+    </p>
+    <p>
+      829970701 - Salas de acesso à internet<br>
+      859960400 - Treinamento em desenvolvimento profissional e gerencial<br>
+      773310001 - Aluguel de máquinas e equipamentos para escritório<br>
+      USO/CLASSIFICAÇÃO: SERVIÇO TIPO 2
+    </p>
+
+    <p>ANÁLISE: Permitido</p>
+
+    <p>Observações gerais:</p>
+    <p class="obs-item">1. O lote foi definido para USO RESIDENCIAL, estando o mesmo inserido no LOTEAMENTO PARQUE MORADA DO SOL, o qual obteve aprovação perante o Município em 24 de março de 1980, conforme demonstrado no base de dados da planta cadastral no ArqGIS;</p>
+
+    <div class="assinatura">
+      E PARA CONSTAR EU, <span class="underline">ISLANE RODRIGUES DE SOUZA, Gerente - GIT</span><br>
+      DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO - IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
+      VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<span class="underline">RADJA PEREIRA MAR</span><br>
+      AOS DIAS DO MÊS DE <span class="underline">10 de junho de 2021</span>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    Instituto Municipal de Planejamento Urbano – IMPLURB<br>
+    Av. Brasil, nº 2971 - Compensa (anexo da Prefeitura de Manaus) - CEP 69035-110 - Manaus - Amazonas
+  </div>
+
+  <div class="footer-notes">
+    Este documento foi assinado digitalmente. Qualquer alteração invalidará o documento.<br>
+    Esta(s) assinatura(s) pode(m) ser verificada(s) em: https://fiscal.manaus.am.gov.br/fiscal/servlet/hwpvalidardocassinado (utilize a(s) chave(s) abaixo)<br>
+    1 - RADJA PEREIRA MAR. Em: Qui 10/06/2021 13:27:38. Chave para validação: B14M9P.894KDK.W984CG.FGGVK6.FW24A7<br>
+    2 - ISLANE RODRIGUES DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z
+  </div>
+
+</div>
+
+
+<!-- ═══════════════════════════════════════════════════
+     PÁGINA 2
+════════════════════════════════════════════════════ -->
+<div class="page">
+
+  <div class="page-ref">PAG CER: 4789/2021 PÁGINA 60/60</div>
+
+  <div class="header">
+    <div class="header-logo">
+      <div class="logo-placeholder">LOGO<br>MANAUS</div>
+      <div class="logo-text">
+        <span class="prefeitura-de">P R E F E I T U R A &nbsp; D E</span>
+        <span class="manaus">MANAUS</span>
+      </div>
+    </div>
+    <div class="header-certidao">
+      <span class="certidao-title">CERTIDÃO</span>
+      <span class="certidao-n">N°</span>
+      <span class="certidao-number-box">4789/2021</span>
+    </div>
+  </div>
+
+  <div class="body">
+
+    <p class="obs-item">2. Nos termos da nova Lei Complementar de N° 012, de 17 de janeiro de 2019, § 4.° que diz: Nos casos de alterações de uso para as atividades Tipo 1 e 2, localizadas em loteamentos aprovados, necessitarão somente dos requisitos previstos no artigo 91 da LC 002, de 14 de janeiro de 2014, não sendo necessário aprovação prévia pelo CMDU e CTPCU, o pleito torna-se VIÁVEL;</p>
+
+    <p class="obs-item">3. De acordo com o Art. 96 § 4° da LC n° 014, de 17 de janeiro de 2019, por se tratar de um imóvel limítrofe a uma via caracterizada como CORREDOR URBANO, não cabendo a aplicação da cobrança da Outorga Onerosa de Alteração de Uso do Solo uma vez que trata de uma empresa de pequeno porte - EPP, ficando ISENTA do referido pagamento;</p>
+
+    <p class="obs-item">4. Deverá obedecer ao número de Vagas apresentadas para as atividades pleiteadas acima, sendo 05 (vagas) vagas para estacionamento devidamente demarcadas, sem obstrução do logradouro público, conforme disposto no Anexo IX - QUADRO DAS VAGAS DE GARAGEM E ESTACIONAMENTO, da Lei 2.402 de 16/01/2019;</p>
+
+    <p class="obs-item">5. Caso sejam constatados usos e/ou atividades diferentes destes autorizados e não permitidos para o local e/ou ampliações sem prévia aprovação, a presente certidão será automaticamente cancelada;</p>
+
+    <p class="obs-item">6. Deverão ser obedecidos os parâmetros das leis complementares n° 002, 003, 004, 005 e das leis n° 1.837, 1.838 e 1.839, de 16 de janeiro de 2014 do plano diretor urbano e ambiental do município de Manaus;</p>
+
+    <p class="obs-item">7. Esta certidão não garante o direito de construir, conforme disposto do parágrafo único, do artigo 14 da lei complementar n° 003/2014, não substitui o habite-se, bem como não reconhece direitos de propriedade;</p>
+
+    <p class="obs-item">8. Esta certidão não garante o direito de funcionamento, conforme artigo 9° da lei complementar n°005/2014, o funcionamento de qualquer estabelecimento comercial, industrial ou prestador de serviços, sem a necessária licença ou autorização, consiste em infração grave a referida lei, cabendo a fiscalização ao órgão licenciador das atividades econômicas do município;</p>
+
+    <p class="obs-item">9. Nos cursos d'água localizados na área urbana e de transição, será adotada faixa de proteção marginal de acordo com a legislação vigente;</p>
+
+    <p class="obs-item">10. Todo imóvel inserido, ainda que parcialmente, nos limites de área de preservação permanente APP, conforme lei federal n° 12.651/2012 de 25 de maio de 2012, deverá formalizar processo de avaliação junto ao órgão ambiental municipal ou estadual, para a possibilidade de obtenção de autorização específica;</p>
+
+    <p class="obs-item">11. Deverá ser mantido livre e desimpedido o passeio público, conforme disposto do inciso i, do artigo 83 da lei complementar n° 003/2014 e do artigo 38 da lei complementar n° 005/2014 e havendo geração de transtornos ao entorno, a presente certidão será cancelada;</p>
+
+    <p class="obs-item">12. Deverá atender ao parágrafo único do art. 82 da lei n° 1.838/2014, seção ii dos critérios e parâmetro para garagens e estacionamentos;</p>
+
+    <p class="obs-item">13. Deverá atender ao art.79 da lei n° 003/2014, subseção ii das garagens e estacionamentos para guarda de veículos;</p>
+
+    <p class="obs-item">14. Deverá atender ao Anexo IX - QUADRO DAS VAGAS DE GARAGEM E ESTACIONAMENTO, da Lei 2.402 de 16/01/2019.</p>
+
+    <p>ESTAS INFORMAÇÕES NÃO PERDERÃO A VALIDADE, SALVO NO CASO DE ALTERAÇÃO SUPERVENIENTE DA LEGISLAÇÃO APLICÁVEL, CONFORME PARÁGRAFO ÚNICO DO ARTIGO 14 DA LEI COMPLEMENTAR N° 003 DE 16 DE JANEIRO DE 2014.</p>
+
+    <p class="fim-descricao">*---------------------------------- FIM DESCRIÇÃO ----------------------------------*</p>
+
+    <div class="assinatura">
+      E PARA CONSTAR EU, <span class="underline">ISLANE RODRIGUES DE SOUZA, Gerente - GIT</span><br>
+      DO INSTITUTO MUNICIPAL DE PLANEJAMENTO URBANO - IMPLURB, LAVREI PRESENTE CERTIDÃO, QUE<br>
+      VAI POR MIM ASSINADA E PELO(A) FUNCIONÁRIO(A) &nbsp;<span class="underline">RADJA PEREIRA MAR</span><br>
+      AOS DIAS DO MÊS DE <span class="underline">10 de junho de 2021</span>
+    </div>
+
+  </div>
+
+  <div class="footer-bar">
+    Instituto Municipal de Planejamento Urbano – IMPLURB<br>
+    Av. Brasil, nº 2971 - Compensa (anexo da Prefeitura de Manaus) - CEP 69035-110 - Manaus - Amazonas
+  </div>
+
+  <div class="footer-notes">
+    Este documento foi assinado digitalmente. Qualquer alteração invalidará o documento.<br>
+    Esta(s) assinatura(s) pode(m) ser verificada(s) em: https://fiscal.manaus.am.gov.br/fiscal/servlet/hwpvalidardocassinado (utilize a(s) chave(s) abaixo)<br>
+    1 - RADJA PEREIRA MAR. Em: Qui 10/06/2021 13:27:38. Chave para validação: B14M9P.894KDK.W984CG.FGGVK6.FW24A7<br>
+    2 - ISLANE RODRIGUES DE SOUZA. Em: Qui 10/06/2021 13:49:55. Chave para validação: EABMJZ.5RWZ5P.4D5JMT.U7XNI7.8JH18Z
+  </div>
+
+</div>
+
+</body>
+</html>
