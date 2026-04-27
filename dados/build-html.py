@@ -162,7 +162,7 @@ html = """<!DOCTYPE html>
 
   .footer-bar {
     position: absolute;
-    bottom: 25mm;
+    bottom: 30mm;
     left: 12mm;
     right: 12mm;
     background: #1a4080;
@@ -171,7 +171,7 @@ html = """<!DOCTYPE html>
     font-family: "Courier New", Courier, monospace;
     font-size: 11.5px;
     font-style: italic;
-    padding: 7px 12px;
+    padding: 3px 12px;
     line-height: 1.6;
   }
 
@@ -186,7 +186,7 @@ html = """<!DOCTYPE html>
     font-style: italic;
     line-height: 1.45;
     color: #000;
-    border: 0.8px solid #aaa;
+    border: none;
     padding: 4px 6px;
   }
 
