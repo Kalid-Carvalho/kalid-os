@@ -8,12 +8,12 @@ Formato: Tweet Card
 ## SLIDE 1 — Capa
 Tem 5 formas de usar IA no trabalho. Quatro delas não mudam nada.
 
-*A quinta é a única que importa.*
+*A quinta é a única que roda sem você.*
 
 ---
 
 ## SLIDE 2 — tweet 1/6
-A maioria usa IA pra rascunho de texto. Pra resumir reunião. Pra tirar dúvida rápida. Pra gerar imagem. É útil, mas não é transformador. Você ainda faz o mesmo trabalho, só um pouco mais rápido.
+A maioria usa IA pra rascunho de texto. Pra resumir reunião. Pra tirar dúvida rápida. Pra gerar imagem. É útil, mas não é transformador. Você dorme mais cedo na sexta. Na semana que vem, a fila é a mesma.
 
 ---
 
@@ -23,7 +23,7 @@ O problema das quatro é o mesmo: você continua sendo o operador. A IA executa 
 ---
 
 ## SLIDE 4 — tweet 3/6
-A quinta forma não é sobre tarefa. É sobre processo. Você para de usar IA pra fazer uma coisa. Começa a usar pra fazer uma coisa acontecer enquanto você faz outra.
+A quinta forma não é sobre tarefa. É sobre processo. Lead chega no WhatsApp. IA qualifica, agenda, confirma. Você só aparece na call. Você não fez nada disso. O processo fez.
 
 ---
 
@@ -43,7 +43,7 @@ Quando você para de ser operador e vira arquiteto, o tempo para de ser seu garg
 ---
 
 ## SLIDE 8 — CTA
-É sobre isso que eu posto. Não hype, não teoria. Como construir processos que rodam com IA no trabalho real. Me segue.
+É sobre isso que eu posto. Não hype, não teoria. Como sair do modo operador e construir processos que rodam sem você. Se isso faz sentido pro seu trabalho, me segue.
 
 ---
 
