@@ -199,8 +199,15 @@ html = """<!DOCTYPE html>
     body { background: #fff; margin: 0; padding: 0; }
     .page { margin: 0 auto; box-shadow: none; page-break-after: always; }
     .page:last-child { page-break-after: avoid; }
-    .body { -webkit-text-stroke: 0.22px #000; }
+    .body { font-size: 10.5px; line-height: 1.28; -webkit-text-stroke: 0.2px #000; }
+    .body p { margin-bottom: 4px; }
+    .section-title { font-size: 10.5px; margin-top: 6px; }
+    .sub-title { font-size: 10.5px; margin-top: 1px; }
+    .assinatura { font-size: 10.5px; line-height: 1.28; margin-top: 10px; page-break-inside: avoid; }
+    .fim { font-size: 10.5px; margin: 6px 0; }
     .body b, .body strong { -webkit-text-stroke: 0px; }
+    .page-ref { font-size: 11px; margin-bottom: 5px; }
+    .header { margin-bottom: 8px; padding-bottom: 6px; }
   }
 </style>
 </head>
