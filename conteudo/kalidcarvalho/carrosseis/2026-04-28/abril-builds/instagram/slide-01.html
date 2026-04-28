@@ -19,10 +19,10 @@ body { width: 1080px; height: 1350px; overflow: hidden; position: relative; font
   position: absolute; inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(13,21,38,0.45) 0%,
-    rgba(13,21,38,0.55) 40%,
-    rgba(13,21,38,0.85) 70%,
-    rgba(13,21,38,0.97) 100%
+    rgba(0,0,0,0.35) 0%,
+    rgba(0,0,0,0.50) 40%,
+    rgba(0,0,0,0.88) 70%,
+    rgba(0,0,0,0.98) 100%
   );
 }
 
@@ -36,10 +36,15 @@ body { width: 1080px; height: 1350px; overflow: hidden; position: relative; font
 .tag {
   font-family: 'JetBrains Mono', monospace;
   font-size: 18px; font-weight: 600;
-  color: #1A56DB;
+  color: #FFFFFF;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   margin-bottom: 28px;
+  background: rgba(26,86,219,0.25);
+  border: 1px solid rgba(26,86,219,0.6);
+  border-radius: 6px;
+  padding: 8px 16px;
+  display: inline-block;
 }
 
 .title {
@@ -50,10 +55,16 @@ body { width: 1080px; height: 1350px; overflow: hidden; position: relative; font
   margin-bottom: 32px;
 }
 
-.title span {
+.title .vscode {
   font-family: 'JetBrains Mono', monospace;
   font-size: 64px;
-  color: #9BB3E8;
+  color: #1A56DB;
+  font-weight: 600;
+}
+.title .claude {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 64px;
+  color: #D97757;
   font-weight: 600;
 }
 
@@ -103,7 +114,7 @@ body { width: 1080px; height: 1350px; overflow: hidden; position: relative; font
 <div class="overlay"></div>
 <div class="content">
   <div class="tag">Build in Public · Abril 2026</div>
-  <div class="title">30 dias,<br><span>VS Code + Claude,</span><br>3 sistemas do zero.</div>
+  <div class="title">30 dias,<br><span class="vscode">VS Code</span> + <span class="claude">Claude,</span><br>3 sistemas do zero.</div>
   <div class="divider"></div>
   <div class="subtitle">Aqui está o resultado.</div>
   <div class="author">
