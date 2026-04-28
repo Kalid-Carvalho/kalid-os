@@ -33,3 +33,23 @@ clientes:
   #   notas: "qualquer observacao relevante"
 
   # -- Suas contas abaixo --
+
+  zanin:
+    nome: "Zanin"
+    conta_anuncio: "act_1032135039976920"
+    pagina_facebook: "1030645920130074"
+    instagram_id: "17841457289444545"
+    instagram_username: "@zaninoficial"
+    moeda: "BRL"
+    bm_id: "1291635482184997"
+    notas: "conta principal Zanin"
+
+  rsmx:
+    nome: "RSMX.lab"
+    conta_anuncio: "act_1669232721101329"
+    pagina_facebook: "933160579890768"
+    instagram_id: "17841479640206951"
+    instagram_username: "@rsmx.lab"
+    moeda: "BRL"
+    bm_id: "1452836029805791"
+    notas: "agencia de marketing — conta CA01 RSMX"
