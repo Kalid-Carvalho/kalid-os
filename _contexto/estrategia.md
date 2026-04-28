@@ -16,7 +16,7 @@ Upsell: Gestão de Captação R$2.000–R$3.000/mês
 5. Crescer como criador de conteúdo tech no @kalidcarvalho (YouTube + Instagram)
 
 ## O que pode esperar
-- Zero clientes ativos no novo nicho — tudo começa do zero
+- Clientes ativos em entrega: Luan Manzoli (setup agência), RSMX (tráfego + automações)
 - Projetos fora do nicho de TI B2B por enquanto (exceto Smart Center, cliente antigo ativo)
 - Contratação de equipe não está no radar agora
 

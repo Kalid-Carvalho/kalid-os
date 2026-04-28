@@ -6,7 +6,7 @@
 **Perfil:** freelancer / solopreneur
 **Atende clientes:** Sim — foco atual em TI B2B, SaaS e Infraestrutura de TI (empresas de 10–50 funcionários)
 **Equipe:** Solo — opera tudo sozinho
-**Ferramentas:** N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright, Redis, Evolution API
+**Ferramentas:** N8N, Typebot, Cal.com, WordPress + Elementor, Antigravity, Claude Code, Cursor, Google Ads, Meta Ads, Playwright, Redis, Evolution API, RVOps
 **Funil de prospecção automatizado (N8N):** cold email B2B completo — Prospecção + FU1 (D+2, IA) + FU2 (D+7, estático). Conta ativa: kalidcarvalhomkt. Conta em warmup: grovwmkt (ativa em ~3 semanas).
 **MCPs conectados:** n8n-mcp (gerenciar workflows N8N direto do Claude Code), Gmail (leitura e rascunhos de email), Google Calendar (eventos e agenda)
 **Principais entregas:** Sites de alta conversão, landing pages, tráfego pago gerenciado, bots de qualificação WhatsApp, automações de captação, agentes de IA, reels e carrosséis de conteúdo
@@ -68,7 +68,7 @@ Parceria com amigo dono da página @choramanaus — página de conteúdo local d
 ## Outros clientes e projetos
 - **Smart Center** — gestão de tráfego pago, R$200/mês de retainer (ativo)
 - **Luan Manzoli** — contrato fechado em 10/04/2026, R$2.000 (entrega em andamento)
-- **Vinicius Zanin (RSMX)** — cliente ativo, contrato pendente de assinatura
+- **Vinicius Zanin (RSMX)** — cliente ativo, site + N8N + RVOps integrados, gestão de tráfego ativa
 - **Gilmar** — proposta enviada em 02/04/2026, aguardando retorno
 - **Produtores de eventos locais em Manaus** — apoio operacional, ticketing
 - **Plataforma de Ticketing White Label** — em desenvolvimento para gerenciamento de ingressos para eventos

@@ -1,47 +1,59 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=1080">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 1080px; height: 1350px; background: #0A0A0A; font-family: 'Space Grotesk', sans-serif; overflow: hidden; position: relative; }
-.slide { position: absolute; inset: 0; padding: 80px; display: flex; flex-direction: column; justify-content: space-between; }
-.top { display: flex; justify-content: space-between; align-items: center; }
-.slide-num { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
-.tag { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; text-transform: uppercase; }
-.middle { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; gap: 0; }
-.accent-line { width: 40px; height: 3px; background: #D97757; border-radius: 2px; margin-bottom: 48px; }
-.intro { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.4); line-height: 1.4; margin-bottom: 32px; }
-.highlight { font-size: 58px; font-weight: 700; color: #FFFFFF; line-height: 1.2; margin-bottom: 40px; }
-.highlight .num { font-family: 'JetBrains Mono', monospace; color: #D97757; }
-.detail { font-size: 38px; font-weight: 400; color: rgba(255,255,255,0.45); line-height: 1.5; }
-.callout { margin-top: 48px; border-left: 3px solid #D97757; padding-left: 28px; font-size: 36px; font-weight: 500; color: rgba(255,255,255,0.6); line-height: 1.45; font-style: italic; }
-.bottom { display: flex; align-items: center; justify-content: space-between; }
-.watermark { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.18); }
-.swipe { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.25); }
-</style>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1350px; background: #0D1526; font-family: 'Space Grotesk', sans-serif; color: #F0F4FF; position: relative; overflow: hidden; }
+    body::after { content: ''; position: absolute; inset: 0; opacity: 0.025; pointer-events: none; z-index: 20; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 300px; }
+    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px); background-size: 60px 60px; }
+    .glow { position: absolute; bottom: -120px; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; background: radial-gradient(circle, rgba(217,119,87,0.08) 0%, transparent 65%); z-index: 1; pointer-events: none; }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #D97757; z-index: 5; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.80); z-index: 15; }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
+    .content { position: absolute; inset: 0; padding: 80px 86px 148px 86px; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
+    .tag { display: inline-flex; align-items: center; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.35); border-radius: 4px; padding: 9px 18px; margin-bottom: 40px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #D97757; letter-spacing: 0.12em; text-transform: uppercase; }
+    .label { font-size: 26px; font-weight: 400; color: #8899BB; line-height: 1.4; margin-bottom: 20px; }
+    .headline { font-size: 60px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #F0F4FF; margin-bottom: 14px; }
+    .headline .num { color: #D97757; }
+    .subtitle { font-size: 26px; font-weight: 400; color: #8899BB; line-height: 1.5; margin-bottom: 52px; }
+    .divider { width: 56px; height: 3px; background: #D97757; margin-bottom: 44px; border-radius: 2px; }
+    .callout { background: rgba(217,119,87,0.06); border-left: 4px solid #D97757; border-radius: 0 8px 8px 0; padding: 36px 40px; }
+    .callout-text { font-size: 30px; font-style: italic; font-weight: 400; color: #C8A898; line-height: 1.55; }
+    .callout-text strong { color: #F0F4FF; font-style: normal; font-weight: 700; }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.70); z-index: 15; }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #D97757; overflow: hidden; flex-shrink: 0; background: #111D35; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 2px; }
+    .ba-name { font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name .check { color: #D97757; margin-left: 4px; }
+    .ba-handle { font-size: 16px; font-weight: 400; color: #8899BB; }
+    .ba-right { font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+  </style>
 </head>
 <body>
-<div class="slide">
-  <div class="top">
-    <span class="slide-num">04 / 09</span>
-    <span class="tag">O detalhe</span>
+  <div class="grid"></div><div class="glow"></div>
+  <div class="accent-bar"></div>
+  <div class="top-header"><span>@kalidcarvalho</span><span>Build in Public</span><span>© 2026</span></div>
+  <div class="content">
+    <div class="tag"><span>o detalhe</span></div>
+    <div class="label">O que quase quebrou tudo:</div>
+    <div class="headline">WhatsApp no Brasil<br>aceita <span class="num">12</span> e <span class="num">13</span> dígitos.</div>
+    <div class="subtitle">Mandar pro formato errado não entrega. Silenciosamente.</div>
+    <div class="divider"></div>
+    <div class="callout">
+      <div class="callout-text">Esse nó levou <strong>mais tempo que o resto do fluxo combinado.</strong> Sem erro visível. Só silêncio.</div>
+    </div>
   </div>
-  <div class="middle">
-    <div class="accent-line"></div>
-    <div class="intro">O detalhe que quase quebrou tudo:</div>
-    <div class="highlight">WhatsApp no Brasil aceita <span class="num">12</span> e <span class="num">13</span> dígitos.</div>
-    <div class="detail">Mandar pro formato errado não entrega.</div>
-    <div class="callout">Esse nó levou mais tempo que o resto do fluxo combinado.</div>
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info"><span class="ba-name">Kalid Carvalho <span class="check">✓</span></span><span class="ba-handle">@kalidcarvalho</span></div>
+    </div>
+    <span class="ba-right">Arrasta para o lado ▶</span>
   </div>
-  <div class="bottom">
-    <span class="watermark">@kalidcarvalho</span>
-    <span class="swipe">arrasta →</span>
-  </div>
-</div>
 </body>
 </html>
