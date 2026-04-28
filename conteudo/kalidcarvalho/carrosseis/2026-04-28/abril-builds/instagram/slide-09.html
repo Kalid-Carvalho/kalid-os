@@ -1,44 +1,57 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=1080">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
-<style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 1080px; height: 1350px; background: #0A0A0A; font-family: 'Space Grotesk', sans-serif; overflow: hidden; position: relative; }
-.slide { position: absolute; inset: 0; padding: 80px; display: flex; flex-direction: column; justify-content: space-between; }
-.top { display: flex; justify-content: space-between; align-items: center; }
-.slide-num { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
-.middle { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 0; }
-.cta-label { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #1A56DB; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 40px; }
-.cta-title { font-size: 68px; font-weight: 700; color: #FFFFFF; line-height: 1.1; margin-bottom: 32px; }
-.cta-sub { font-size: 36px; font-weight: 400; color: rgba(255,255,255,0.45); line-height: 1.5; margin-bottom: 64px; }
-.divider { width: 48px; height: 3px; background: #1A56DB; border-radius: 2px; margin-bottom: 48px; }
-.handle { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 700; color: #1A56DB; }
-.bottom { display: flex; align-items: center; justify-content: space-between; }
-.watermark { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.18); }
-.end { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.25); }
-</style>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { width: 1080px; height: 1350px; background: #F0F4FF; font-family: 'Space Grotesk', sans-serif; color: #0D1526; position: relative; overflow: hidden; }
+    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(13,21,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(13,21,38,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .glow-blue { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(26,86,219,0.07) 0%, transparent 55%); z-index: 1; pointer-events: none; }
+    .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #1A56DB; z-index: 5; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(13,21,38,0.35); letter-spacing: 0.02em; }
+    .content { position: absolute; inset: 0; padding: 80px 86px 148px 86px; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
+    .tag { display: inline-flex; align-items: center; background: rgba(26,86,219,0.10); border: 1px solid rgba(26,86,219,0.28); border-radius: 4px; padding: 9px 18px; margin-bottom: 52px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #1A56DB; letter-spacing: 0.12em; text-transform: uppercase; }
+    .headline { font-size: 80px; font-weight: 800; line-height: 1.05; letter-spacing: -0.03em; color: #0D1526; margin-bottom: 28px; }
+    .headline .accent { color: #1A56DB; }
+    .subtitle { font-size: 30px; font-weight: 400; color: #556080; line-height: 1.55; margin-bottom: 64px; }
+    .divider { width: 56px; height: 3px; background: #1A56DB; margin-bottom: 52px; border-radius: 2px; }
+    .handle-row { display: flex; align-items: center; gap: 20px; }
+    .handle { font-family: 'JetBrains Mono', monospace; font-size: 40px; font-weight: 700; color: #1A56DB; }
+    .follow-label { font-size: 22px; font-weight: 400; color: rgba(13,21,38,0.35); }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
+    .ba-left { display: flex; align-items: center; gap: 14px; }
+    .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #1A56DB; overflow: hidden; flex-shrink: 0; background: #111D35; }
+    .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+    .ba-info { display: flex; flex-direction: column; gap: 2px; }
+    .ba-name { font-size: 20px; font-weight: 700; color: #0D1526; }
+    .ba-name .check { color: #1A56DB; margin-left: 4px; }
+    .ba-handle { font-size: 16px; font-weight: 400; color: #556080; }
+    .ba-right { font-size: 18px; font-weight: 500; color: rgba(13,21,38,0.35); }
+  </style>
 </head>
 <body>
-<div class="slide">
-  <div class="top">
-    <span class="slide-num">09 / 09</span>
-  </div>
-  <div class="middle">
-    <div class="cta-label">Build in Public</div>
-    <div class="cta-title">Construindo<br>em público.</div>
-    <div class="cta-sub">Todo o processo, sem filtro.<br>Incluindo o que quebra no caminho.</div>
+  <div class="grid"></div><div class="glow-blue"></div>
+  <div class="accent-bar"></div>
+  <div class="top-header"><span>@kalidcarvalho</span><span>Build in Public</span><span>© 2026</span></div>
+  <div class="content">
+    <div class="tag"><span>build in public</span></div>
+    <div class="headline">Construindo<br>em <span class="accent">público.</span></div>
+    <div class="subtitle">Todo o processo, sem filtro.<br>Incluindo o que quebra no caminho.</div>
     <div class="divider"></div>
-    <div class="handle">@kalidcarvalho</div>
+    <div class="handle-row">
+      <span class="handle">@kalidcarvalho</span>
+    </div>
+    <div class="follow-label" style="margin-top:16px;">Segue pra acompanhar os próximos builds.</div>
   </div>
-  <div class="bottom">
-    <span class="watermark">@kalidcarvalho</span>
-    <span class="end">fim</span>
+  <div class="bottom-author">
+    <div class="ba-left">
+      <div class="ba-avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
+      <div class="ba-info"><span class="ba-name">Kalid Carvalho <span class="check">✓</span></span><span class="ba-handle">@kalidcarvalho</span></div>
+    </div>
+    <span class="ba-right">fim ■</span>
   </div>
-</div>
 </body>
 </html>
