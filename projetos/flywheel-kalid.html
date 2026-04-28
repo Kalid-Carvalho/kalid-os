@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flywheel — Kalid Carvalho</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --grovw-bg: #000000;
+    --grovw-accent: #cdff00;
+    --grovw-text: #ffffff;
+    --grovw-muted: #666;
+    --builder-bg: #0D1526;
+    --builder-accent: #1A56DB;
+    --builder-text: #ffffff;
+    --builder-muted: #4a6080;
+    --eu-bg: #0a0f1a;
+    --eu-accent: #3b82f6;
+    --section-pad: 100px 60px;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: #050810;
+    color: #fff;
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--builder-bg);
+    padding: 120px 60px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(26,86,219,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-label {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--builder-accent);
+    margin-bottom: 20px;
+    font-weight: 500;
+  }
+
+  .hero h1 {
+    font-size: clamp(36px, 5vw, 64px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+  }
+
+  .hero h1 span { color: var(--builder-accent); }
+
+  .hero p {
+    font-size: 18px;
+    color: #8899bb;
+    max-width: 600px;
+    margin: 0 auto 60px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ─── NAV PILLS ─── */
+  .nav-pills {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .nav-pill {
+    padding: 10px 24px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+    border: 1.5px solid;
+  }
+
+  .pill-grovw { border-color: #cdff00; color: #cdff00; font-family: 'Inter', sans-serif; }
+  .pill-grovw:hover { background: #cdff00; color: #000; }
+
+  .pill-kalid { border-color: #1A56DB; color: #1A56DB; }
+  .pill-kalid:hover { background: #1A56DB; color: #fff; }
+
+  .pill-eu { border-color: #3b82f6; color: #3b82f6; }
+  .pill-eu:hover { background: #3b82f6; color: #fff; }
+
+  .pill-eco { border-color: #a855f7; color: #a855f7; }
+  .pill-eco:hover { background: #a855f7; color: #fff; }
+
+  /* ─── SECTION WRAPPER ─── */
+  .section {
+    padding: 100px 60px;
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .section-header {
+    margin-bottom: 60px;
+  }
+
+  .brand-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(28px, 3.5vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    margin-bottom: 12px;
+  }
+
+  .section-header p {
+    font-size: 16px;
+    color: #8899bb;
+    max-width: 600px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ─── FLYWHEEL VISUAL ─── */
+  .flywheel-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 60px;
+  }
+
+  .wheel-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .wheel-svg {
+    width: 100%;
+    height: 100%;
+    animation: spin 18s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .wheel-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .wheel-center-icon {
+    font-size: 32px;
+    margin-bottom: 8px;
+  }
+
+  .wheel-center-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1.3;
+  }
+
+  .wheel-center-sub {
+    font-size: 11px;
+    color: #8899bb;
+    margin-top: 4px;
+    line-height: 1.4;
+  }
+
+  /* ─── PHASES LIST ─── */
+  .phases {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .phase-card {
+    padding: 24px 28px;
+    border-radius: 16px;
+    border: 1px solid;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px; height: 100%;
+  }
+
+  .phase-title {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .phase-h {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .phase-desc {
+    font-size: 13px;
+    color: #8899bb;
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: 12px;
+  }
+
+  .phase-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tag {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 100px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ─── FRICTION BOX ─── */
+  .friction-box {
+    padding: 28px 32px;
+    border-radius: 16px;
+    background: rgba(239,68,68,0.06);
+    border: 1px solid rgba(239,68,68,0.2);
+    margin-bottom: 32px;
+  }
+
+  .friction-box h4 {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #ef4444;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+
+  .friction-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .friction-list li {
+    font-size: 13px;
+    color: #cc8888;
+    line-height: 1.5;
+    padding-left: 16px;
+    position: relative;
+  }
+
+  .friction-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: #ef4444;
+  }
+
+  /* ─── ACELERATORS ─── */
+  .accel-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .accel-card {
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.07);
+    background: rgba(255,255,255,0.02);
+    text-align: center;
+  }
+
+  .accel-num {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .accel-label {
+    font-size: 12px;
+    color: #8899bb;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  /* ─── DIVIDER ─── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    margin: 0 60px;
+  }
+
+  /* ─── ECOSYSTEM ─── */
+  .ecosystem-section {
+    background: linear-gradient(180deg, #050810 0%, #0a0f1e 50%, #050810 100%);
+    padding: 100px 60px;
+  }
+
+  .ecosystem-inner {
+    max-width: 1300px;
+    margin: 0 auto;
+  }
+
+  .eco-diagram {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 0;
+    margin: 60px 0;
+    position: relative;
+  }
+
+  .eco-node {
+    padding: 28px;
+    border-radius: 20px;
+    border: 1px solid;
+    text-align: center;
+    position: relative;
+  }
+
+  .eco-node-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 12px;
+    font-size: 22px;
+  }
+
+  .eco-node h3 {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  .eco-node p {
+    font-size: 12px;
+    color: #8899bb;
+    line-height: 1.5;
+  }
+
+  .eco-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #333;
+    font-size: 20px;
+    padding: 0 12px;
+  }
+
+  .eco-arrow.down {
+    transform: rotate(90deg);
+    padding: 12px 0;
+  }
+
+  .eco-flow-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .eco-flow-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 20px 24px;
+    border-radius: 14px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .eco-flow-arrow {
+    font-size: 16px;
+    min-width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  .eco-flow-text h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .eco-flow-text p {
+    font-size: 12px;
+    color: #8899bb;
+    line-height: 1.5;
+  }
+
+  /* ─── TIMELINE / QUANDO ─── */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 40px;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 23px; top: 0; bottom: 0;
+    width: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .tl-item {
+    display: flex;
+    gap: 24px;
+    padding-bottom: 36px;
+    position: relative;
+  }
+
+  .tl-dot {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    border: 2px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    background: #050810;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tl-body h4 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    padding-top: 12px;
+  }
+
+  .tl-body p {
+    font-size: 13px;
+    color: #8899bb;
+    line-height: 1.6;
+  }
+
+  /* ─── GROVW COLORS ─── */
+  .g-accent { color: #cdff00; }
+  .g-bg-faint { background: rgba(205,255,0,0.04); border-color: rgba(205,255,0,0.15); }
+  .g-border { border-color: rgba(205,255,0,0.2); }
+  .g-tag { background: rgba(205,255,0,0.1); color: #cdff00; }
+  .g-bar::before { background: #cdff00; }
+  .g-badge { background: rgba(205,255,0,0.1); color: #cdff00; border: 1px solid rgba(205,255,0,0.2); }
+  .g-dot { border-color: #cdff00; color: #cdff00; }
+  .g-num { color: #cdff00; }
+
+  /* ─── BUILDER COLORS ─── */
+  .b-accent { color: #1A56DB; }
+  .b-bg-faint { background: rgba(26,86,219,0.04); border-color: rgba(26,86,219,0.15); }
+  .b-border { border-color: rgba(26,86,219,0.2); }
+  .b-tag { background: rgba(26,86,219,0.12); color: #6b9eff; }
+  .b-bar::before { background: #1A56DB; }
+  .b-badge { background: rgba(26,86,219,0.1); color: #6b9eff; border: 1px solid rgba(26,86,219,0.2); }
+  .b-dot { border-color: #1A56DB; color: #1A56DB; }
+  .b-num { color: #6b9eff; }
+
+  /* ─── EU COLORS ─── */
+  .e-accent { color: #3b82f6; }
+  .e-bg-faint { background: rgba(59,130,246,0.04); border-color: rgba(59,130,246,0.15); }
+  .e-border { border-color: rgba(59,130,246,0.2); }
+  .e-tag { background: rgba(59,130,246,0.1); color: #93c5fd; }
+  .e-bar::before { background: #3b82f6; }
+  .e-badge { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .e-dot { border-color: #3b82f6; color: #3b82f6; }
+  .e-num { color: #93c5fd; }
+
+  /* ─── PURPLE ECOSYSTEM ─── */
+  .p-accent { color: #a855f7; }
+  .p-badge { background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.2); }
+  .p-node { border-color: rgba(168,85,247,0.25); background: rgba(168,85,247,0.04); }
+  .p-icon { background: rgba(168,85,247,0.1); }
+  .p-arrow { background: rgba(168,85,247,0.12); color: #a855f7; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .flywheel-container { grid-template-columns: 1fr; }
+    .accel-grid { grid-template-columns: repeat(2, 1fr); }
+    .section { padding: 60px 24px; }
+    .hero { padding: 80px 24px 60px; }
+    .divider { margin: 0 24px; }
+    .ecosystem-section { padding: 60px 24px; }
+  }
+
+  @media (max-width: 600px) {
+    .accel-grid { grid-template-columns: 1fr; }
+  }
+
+  .inter { font-family: 'Inter', sans-serif; }
+</style>
+</head>
+<body>
+
+<!-- ─────────── HERO ─────────── -->
+<section class="hero">
+  <p class="hero-label">Modelo de Crescimento</p>
+  <h1>O <span>Flywheel</span> de<br>Kalid Carvalho</h1>
+  <p>Três marcas. Um sistema. Como GROVW, @kalidcarvalho e @eukalidcarvalho se alimentam e aceleram juntos.</p>
+  <div class="nav-pills">
+    <a href="#grovw" class="nav-pill pill-grovw inter">GROVW</a>
+    <a href="#kalid" class="nav-pill pill-kalid">@kalidcarvalho</a>
+    <a href="#eu" class="nav-pill pill-eu">@eukalidcarvalho</a>
+    <a href="#ecosystem" class="nav-pill pill-eco">Ecossistema</a>
+  </div>
+</section>
+
+<!-- ─────────── CONCEITO RÁPIDO ─────────── -->
+<div style="background:#0a0f1a; padding: 40px 60px; display:flex; gap:60px; align-items:center; flex-wrap:wrap; max-width:1300px; margin:0 auto;">
+  <div style="flex:1; min-width:220px; text-align:center; padding:20px 0; border-right:1px solid rgba(255,255,255,0.06);">
+    <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#8899bb; margin-bottom:8px;">Funil tradicional</div>
+    <div style="font-size:28px; font-weight:700; color:#ef4444; margin-bottom:6px;">Energia desperdiçada</div>
+    <div style="font-size:13px; color:#8899bb;">Cada novo cliente exige esforço do zero</div>
+  </div>
+  <div style="font-size:28px; color:#333; padding:0 20px;">→</div>
+  <div style="flex:1; min-width:220px; text-align:center; padding:20px 0; border-right:1px solid rgba(255,255,255,0.06);">
+    <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#8899bb; margin-bottom:8px;">Flywheel</div>
+    <div style="font-size:28px; font-weight:700; color:#a855f7; margin-bottom:6px;">Energia acumulada</div>
+    <div style="font-size:13px; color:#8899bb;">Clientes satisfeitos giram o volante</div>
+  </div>
+  <div style="font-size:28px; color:#333; padding:0 20px;">→</div>
+  <div style="flex:1; min-width:220px; text-align:center; padding:20px 0;">
+    <div style="font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#8899bb; margin-bottom:8px;">Seu caso</div>
+    <div style="font-size:28px; font-weight:700; color:#1A56DB; margin-bottom:6px;">3 volantes, 1 motor</div>
+    <div style="font-size:13px; color:#8899bb;">Cada marca alimenta as outras</div>
+  </div>
+</div>
+
+<div class="divider" style="margin:0;"></div>
+
+<!-- ─────────── GROVW ─────────── -->
+<section id="grovw" style="background:#000; padding:100px 0;">
+<div class="section" style="font-family:'Inter',sans-serif;">
+
+  <div class="section-header">
+    <div class="brand-badge g-badge inter">GROVW — Agência</div>
+    <h2 style="font-family:'Inter',sans-serif;">O Flywheel da <span class="g-accent">Máquina de Clientes</span></h2>
+    <p>Sistema de captação B2B onde cada cliente entregue com resultado vira combustível para o próximo contrato.</p>
+  </div>
+
+  <div class="flywheel-container">
+
+    <!-- WHEEL GROVW -->
+    <div class="wheel-wrap">
+      <svg class="wheel-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer ring -->
+        <circle cx="200" cy="200" r="185" stroke="rgba(205,255,0,0.08)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="155" stroke="rgba(205,255,0,0.05)" stroke-width="1"/>
+
+        <!-- ATRAIR arc — top -->
+        <path d="M 200 200 L 200 20 A 180 180 0 0 1 355.88 290 Z" fill="rgba(205,255,0,0.07)" stroke="rgba(205,255,0,0.3)" stroke-width="1.5"/>
+
+        <!-- ENGAJAR arc — bottom right -->
+        <path d="M 200 200 L 355.88 290 A 180 180 0 0 1 44.12 290 Z" fill="rgba(205,255,0,0.04)" stroke="rgba(205,255,0,0.2)" stroke-width="1.5"/>
+
+        <!-- ENCANTAR arc — bottom left -->
+        <path d="M 200 200 L 44.12 290 A 180 180 0 0 1 200 20 Z" fill="rgba(205,255,0,0.06)" stroke="rgba(205,255,0,0.25)" stroke-width="1.5"/>
+
+        <!-- Labels -->
+        <text x="230" y="95" fill="#cdff00" font-size="14" font-weight="700" font-family="Inter" transform="rotate(20, 230, 95)">ATRAIR</text>
+        <text x="310" y="290" fill="rgba(205,255,0,0.6)" font-size="13" font-weight="600" font-family="Inter" transform="rotate(0, 310, 290)">ENGAJAR</text>
+        <text x="55" y="200" fill="rgba(205,255,0,0.6)" font-size="13" font-weight="600" font-family="Inter" transform="rotate(-45, 55, 200)">ENCANTAR</text>
+
+        <!-- Arrows on ring -->
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="#cdff00" transform="rotate(60, 200, 200)"/>
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="rgba(205,255,0,0.5)" transform="rotate(180, 200, 200)"/>
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="rgba(205,255,0,0.5)" transform="rotate(300, 200, 200)"/>
+
+        <!-- Center circle -->
+        <circle cx="200" cy="200" r="80" fill="#000" stroke="rgba(205,255,0,0.2)" stroke-width="1.5"/>
+      </svg>
+      <div class="wheel-center inter">
+        <div class="wheel-center-icon">⚙️</div>
+        <div class="wheel-center-label g-accent">GROVW</div>
+        <div class="wheel-center-sub">Máquina de<br>Vendas B2B</div>
+      </div>
+    </div>
+
+    <!-- PHASES GROVW -->
+    <div class="phases">
+
+      <div class="phase-card g-bg-faint g-border g-bar" style="border-left:3px solid #cdff00;">
+        <div class="phase-title g-accent inter">
+          <span>01</span>
+          <span>ATRAIR</span>
+        </div>
+        <div class="phase-h inter">Gerar demanda qualificada</div>
+        <div class="phase-desc">Prospects de TI B2B chegam pelo outbound, tráfego e conteúdo. A rotação do Flywheel traz indicações dos clientes anteriores sem custo adicional.</div>
+        <div class="phase-tags">
+          <span class="tag g-tag inter">Cold Email N8N</span>
+          <span class="tag g-tag inter">Google Ads fundo de funil</span>
+          <span class="tag g-tag inter">LinkedIn outbound</span>
+          <span class="tag g-tag inter">Isca: Auditoria de Infra</span>
+          <span class="tag g-tag inter">Indicações (ciclos futuros)</span>
+        </div>
+      </div>
+
+      <div class="phase-card g-bg-faint g-border" style="border-left:3px solid rgba(205,255,0,0.5);">
+        <div class="phase-title" style="color:rgba(205,255,0,0.7); font-family:'Inter',sans-serif;">
+          <span>02</span>
+          <span>ENGAJAR</span>
+        </div>
+        <div class="phase-h inter">Converter e entregar</div>
+        <div class="phase-desc">Do primeiro contato ao onboarding. A transição rápida e clara de "prospect" para "cliente com setup rodando" é onde a rotação começa ou quebra.</div>
+        <div class="phase-tags">
+          <span class="tag g-tag inter">Reunião diagnóstico</span>
+          <span class="tag g-tag inter">Proposta com escada</span>
+          <span class="tag g-tag inter">Downsell R$600 Plano</span>
+          <span class="tag g-tag inter">Setup 15 dias</span>
+          <span class="tag g-tag inter">Relatório de entrega</span>
+        </div>
+      </div>
+
+      <div class="phase-card g-bg-faint g-border" style="border-left:3px solid rgba(205,255,0,0.3);">
+        <div class="phase-title" style="color:rgba(205,255,0,0.5); font-family:'Inter',sans-serif;">
+          <span>03</span>
+          <span>ENCANTAR</span>
+        </div>
+        <div class="phase-h inter">Resultado visível + expansão</div>
+        <div class="phase-desc">O cliente vê leads chegando. Você expande para gestão recorrente. Clientes satisfeitos indicam outros da mesma rede de TI B2B. O volante ganha velocidade própria.</div>
+        <div class="phase-tags">
+          <span class="tag g-tag inter">Gestão recorrente R$2–3k/mês</span>
+          <span class="tag g-tag inter">Check-in mensal</span>
+          <span class="tag g-tag inter">Case documentado</span>
+          <span class="tag g-tag inter">Indicação ativa</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FRICTION GROVW -->
+  <div class="friction-box">
+    <h4 class="inter">Atritos que travam o Flywheel da GROVW</h4>
+    <ul class="friction-list inter">
+      <li>Proposta enviada sem reunião prévia — prospect sem contexto, decide só pelo preço</li>
+      <li>Onboarding sem prazo claro — cliente fica sem saber o que esperar e quando</li>
+      <li>Resultado invisível — entregar o setup sem mostrar os leads que começaram a chegar quebra o encantamento</li>
+      <li>Não documentar o case — perde o ativo de indicação e de prova social para o conteúdo</li>
+    </ul>
+  </div>
+
+  <!-- ACCEL GROVW -->
+  <div style="padding:28px 32px; border-radius:16px; background:rgba(205,255,0,0.03); border:1px solid rgba(205,255,0,0.12);">
+    <h4 style="font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#cdff00; margin-bottom:20px; font-family:'Inter',sans-serif;">Quando o Flywheel acelera sozinho</h4>
+    <div class="accel-grid">
+      <div class="accel-card">
+        <div class="accel-num g-num inter">5–7</div>
+        <div class="accel-label inter">Clientes ativos com boa retenção para o ciclo ter rotação real</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-num g-num inter">1 case</div>
+        <div class="accel-label inter">Documentado com número de leads gerados vira ativo de 12 meses</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-num g-num inter">R$2–3k</div>
+        <div class="accel-label inter">Recorrente por cliente é a bateria que mantém o volante girando</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─────────── @KALIDCARVALHO ─────────── -->
+<section id="kalid" style="background:var(--builder-bg); padding:100px 0;">
+<div class="section">
+
+  <div class="section-header">
+    <div class="brand-badge b-badge">@kalidcarvalho</div>
+    <h2>O Flywheel da <span class="b-accent">Audiência Tech</span></h2>
+    <p>Cada conteúdo publicado no @kalidcarvalho é força de entrada no sistema. A audiência que cresce vira autoridade que reduz o custo de vender.</p>
+  </div>
+
+  <div class="flywheel-container">
+
+    <!-- WHEEL KALID -->
+    <div class="wheel-wrap">
+      <svg class="wheel-svg" viewBox="0 0 400 400" fill="none" style="animation-direction:reverse;">
+        <circle cx="200" cy="200" r="185" stroke="rgba(26,86,219,0.08)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="155" stroke="rgba(26,86,219,0.05)" stroke-width="1"/>
+
+        <path d="M 200 200 L 200 20 A 180 180 0 0 1 355.88 290 Z" fill="rgba(26,86,219,0.08)" stroke="rgba(26,86,219,0.3)" stroke-width="1.5"/>
+        <path d="M 200 200 L 355.88 290 A 180 180 0 0 1 44.12 290 Z" fill="rgba(26,86,219,0.05)" stroke="rgba(26,86,219,0.2)" stroke-width="1.5"/>
+        <path d="M 200 200 L 44.12 290 A 180 180 0 0 1 200 20 Z" fill="rgba(26,86,219,0.06)" stroke="rgba(26,86,219,0.25)" stroke-width="1.5"/>
+
+        <text x="225" y="90" fill="#1A56DB" font-size="14" font-weight="700" font-family="Space Grotesk" transform="rotate(20, 225, 90)">ATRAIR</text>
+        <text x="305" y="285" fill="rgba(107,158,255,0.7)" font-size="13" font-weight="600" font-family="Space Grotesk">ENGAJAR</text>
+        <text x="50" y="195" fill="rgba(107,158,255,0.7)" font-size="13" font-weight="600" font-family="Space Grotesk" transform="rotate(-45, 50, 195)">ENCANTAR</text>
+
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="#1A56DB" transform="rotate(60, 200, 200)"/>
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="rgba(26,86,219,0.5)" transform="rotate(180, 200, 200)"/>
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="rgba(26,86,219,0.5)" transform="rotate(300, 200, 200)"/>
+
+        <circle cx="200" cy="200" r="80" fill="#0D1526" stroke="rgba(26,86,219,0.2)" stroke-width="1.5"/>
+      </svg>
+      <div class="wheel-center">
+        <div class="wheel-center-icon">🚀</div>
+        <div class="wheel-center-label b-accent">@kalidcarvalho</div>
+        <div class="wheel-center-sub">Criador de<br>Conteúdo Tech</div>
+      </div>
+    </div>
+
+    <!-- PHASES KALID -->
+    <div class="phases">
+
+      <div class="phase-card b-bg-faint b-border" style="border-left:3px solid #1A56DB;">
+        <div class="phase-title b-accent">
+          <span>01</span>
+          <span>ATRAIR</span>
+        </div>
+        <div class="phase-h">Audiência de entrada</div>
+        <div class="phase-desc">Conteúdo que resolve dúvidas reais de criadores e empreendedores digitais sobre sites, apps e IA. Reels e Shorts são o topo: entrada de novos seguidores a custo zero.</div>
+        <div class="phase-tags">
+          <span class="tag b-tag">Reels Instagram</span>
+          <span class="tag b-tag">YouTube Shorts</span>
+          <span class="tag b-tag">Carrosséis educativos</span>
+          <span class="tag b-tag">SEO YouTube</span>
+          <span class="tag b-tag">Build in public</span>
+        </div>
+      </div>
+
+      <div class="phase-card b-bg-faint b-border" style="border-left:3px solid rgba(26,86,219,0.5);">
+        <div class="phase-title" style="color:rgba(107,158,255,0.8);">
+          <span>02</span>
+          <span>ENGAJAR</span>
+        </div>
+        <div class="phase-h">Transformar seguidor em comunidade</div>
+        <div class="phase-desc">Comentários respondidos, stories que perguntam, tutoriais completos que fazem o seguidor assistir do início ao fim. Cada sessão longa no YouTube aumenta o alcance orgânico.</div>
+        <div class="phase-tags">
+          <span class="tag b-tag">Comentários ativos</span>
+          <span class="tag b-tag">Stories interativos</span>
+          <span class="tag b-tag">Tutoriais completos</span>
+          <span class="tag b-tag">Newsletter</span>
+          <span class="tag b-tag">Polls e perguntas</span>
+        </div>
+      </div>
+
+      <div class="phase-card b-bg-faint b-border" style="border-left:3px solid rgba(26,86,219,0.3);">
+        <div class="phase-title" style="color:rgba(107,158,255,0.6);">
+          <span>03</span>
+          <span>ENCANTAR</span>
+        </div>
+        <div class="phase-h">Seguidor vira promotor</div>
+        <div class="phase-desc">Quando o conteúdo resolve de verdade, o seguidor compartilha, salva e manda pra alguém. Isso é o Flywheel girando: cada compartilhamento vale mais que qualquer impulsionamento.</div>
+        <div class="phase-tags">
+          <span class="tag b-tag">Saves e compartilhamentos</span>
+          <span class="tag b-tag">Colabs com outros criadores</span>
+          <span class="tag b-tag">DM espontânea ("você deveria ver isso")</span>
+          <span class="tag b-tag">Audiência → clientes GROVW</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FRICTION KALID -->
+  <div class="friction-box">
+    <h4>Atritos que travam o Flywheel do @kalidcarvalho</h4>
+    <ul class="friction-list">
+      <li>Postar sem Reels — o algoritmo prioriza vídeo curto para descoberta de novos seguidores</li>
+      <li>Posts genéricos de tech sem aplicação prática — não geram save, não retém audiência</li>
+      <li>Inconsistência de cadência — gaps de publicação destroem o momentum do algoritmo</li>
+      <li>Não conectar conteúdo à oferta — audiência cresce mas não vira pipeline</li>
+    </ul>
+  </div>
+
+  <!-- ACCEL KALID -->
+  <div style="padding:28px 32px; border-radius:16px; background:rgba(26,86,219,0.03); border:1px solid rgba(26,86,219,0.12);">
+    <h4 style="font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#6b9eff; margin-bottom:20px;">Quando o Flywheel acelera sozinho</h4>
+    <div class="accel-grid">
+      <div class="accel-card">
+        <div class="accel-num b-num">1 Reel</div>
+        <div class="accel-label">de qualidade gera mais alcance que 5 carrosséis sem vídeo</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-num b-num">3x/sem</div>
+        <div class="accel-label">Cadência mínima para o algoritmo tratar o perfil como ativo</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-num b-num">Colabs</div>
+        <div class="accel-label">Com criadores complementares dobram alcance sem pagar por ele</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─────────── @EUKALIDCARVALHO ─────────── -->
+<section id="eu" style="background:var(--eu-bg); padding:100px 0;">
+<div class="section">
+
+  <div class="section-header">
+    <div class="brand-badge e-badge">@eukalidcarvalho</div>
+    <h2>O Flywheel de <span class="e-accent">Autoridade B2B</span></h2>
+    <p>Canal de nicho para fundadores e diretores de TI. O conteúdo técnico constrói autoridade que reduz o ciclo de vendas da GROVW para zero fricção.</p>
+  </div>
+
+  <div class="flywheel-container">
+
+    <!-- WHEEL EU -->
+    <div class="wheel-wrap">
+      <svg class="wheel-svg" viewBox="0 0 400 400" fill="none">
+        <circle cx="200" cy="200" r="185" stroke="rgba(59,130,246,0.08)" stroke-width="1"/>
+        <circle cx="200" cy="200" r="155" stroke="rgba(59,130,246,0.05)" stroke-width="1"/>
+
+        <path d="M 200 200 L 200 20 A 180 180 0 0 1 355.88 290 Z" fill="rgba(59,130,246,0.08)" stroke="rgba(59,130,246,0.3)" stroke-width="1.5"/>
+        <path d="M 200 200 L 355.88 290 A 180 180 0 0 1 44.12 290 Z" fill="rgba(59,130,246,0.04)" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+        <path d="M 200 200 L 44.12 290 A 180 180 0 0 1 200 20 Z" fill="rgba(59,130,246,0.06)" stroke="rgba(59,130,246,0.25)" stroke-width="1.5"/>
+
+        <text x="225" y="90" fill="#3b82f6" font-size="14" font-weight="700" font-family="Space Grotesk" transform="rotate(20, 225, 90)">ATRAIR</text>
+        <text x="305" y="285" fill="rgba(147,197,253,0.7)" font-size="13" font-weight="600" font-family="Space Grotesk">ENGAJAR</text>
+        <text x="50" y="195" fill="rgba(147,197,253,0.7)" font-size="13" font-weight="600" font-family="Space Grotesk" transform="rotate(-45, 50, 195)">ENCANTAR</text>
+
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="#3b82f6" transform="rotate(60, 200, 200)"/>
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="rgba(59,130,246,0.5)" transform="rotate(180, 200, 200)"/>
+        <path d="M 200 18 L 210 30 L 200 26 L 190 30 Z" fill="rgba(59,130,246,0.5)" transform="rotate(300, 200, 200)"/>
+
+        <circle cx="200" cy="200" r="80" fill="#0a0f1a" stroke="rgba(59,130,246,0.2)" stroke-width="1.5"/>
+      </svg>
+      <div class="wheel-center">
+        <div class="wheel-center-icon">🧠</div>
+        <div class="wheel-center-label e-accent">@eukalidcarvalho</div>
+        <div class="wheel-center-sub">Engenharia de<br>Vendas B2B</div>
+      </div>
+    </div>
+
+    <!-- PHASES EU -->
+    <div class="phases">
+
+      <div class="phase-card e-bg-faint e-border" style="border-left:3px solid #3b82f6;">
+        <div class="phase-title e-accent">
+          <span>01</span>
+          <span>ATRAIR</span>
+        </div>
+        <div class="phase-h">Fundadores e diretores de TI</div>
+        <div class="phase-desc">Conteúdo técnico que só quem tem formação em ADS/Infra consegue produzir com profundidade. Isso filtra naturalmente: o ICP reconhece o nível e segue.</div>
+        <div class="phase-tags">
+          <span class="tag e-tag">Build in public N8N</span>
+          <span class="tag e-tag">Bastidores de automação</span>
+          <span class="tag e-tag">Carrossel técnico</span>
+          <span class="tag e-tag">LinkedIn outbound</span>
+          <span class="tag e-tag">Iscas técnicas (Meta/LinkedIn Ads)</span>
+        </div>
+      </div>
+
+      <div class="phase-card e-bg-faint e-border" style="border-left:3px solid rgba(59,130,246,0.5);">
+        <div class="phase-title" style="color:rgba(147,197,253,0.8);">
+          <span>02</span>
+          <span>ENGAJAR</span>
+        </div>
+        <div class="phase-h">Do conteúdo para a conversa de negócio</div>
+        <div class="phase-desc">Fundador de TI que acompanha o conteúdo chega na reunião já convicto. O processo de venda vira uma confirmação, não uma persuasão. Isso reduz o ciclo de vendas drasticamente.</div>
+        <div class="phase-tags">
+          <span class="tag e-tag">DM de LinkedIn</span>
+          <span class="tag e-tag">Comentários com fundadores</span>
+          <span class="tag e-tag">Auditoria como isca</span>
+          <span class="tag e-tag">Conteúdo que responde objeções</span>
+        </div>
+      </div>
+
+      <div class="phase-card e-bg-faint e-border" style="border-left:3px solid rgba(59,130,246,0.3);">
+        <div class="phase-title" style="color:rgba(147,197,253,0.6);">
+          <span>03</span>
+          <span>ENCANTAR</span>
+        </div>
+        <div class="phase-h">Autoridade que vira indicação</div>
+        <div class="phase-desc">Diretores de TI têm grupos, feiras e eventos de nicho. Um seguidor encantado que indica você para um colega de setor vale mais que qualquer campanha de ads neste mercado.</div>
+        <div class="phase-tags">
+          <span class="tag e-tag">Referência no nicho</span>
+          <span class="tag e-tag">Indicação entre pares do setor</span>
+          <span class="tag e-tag">Conteúdo compartilhado em grupos TI</span>
+          <span class="tag e-tag">Parcerias com integradores</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- FRICTION EU -->
+  <div class="friction-box">
+    <h4>Atritos que travam o Flywheel do @eukalidcarvalho</h4>
+    <ul class="friction-list">
+      <li>Posts superficiais de marketing sem profundidade técnica — não filtram o ICP certo</li>
+      <li>Arquivos antigos de advocacia ainda visíveis — contradizem o repositioning e confundem novos seguidores</li>
+      <li>Conteúdo sem CTA claro para a GROVW — audiência cresce sem gerar pipeline</li>
+      <li>Inconsistência: pivotagem exige volume de conteúdo nos primeiros 60 dias para criar massa crítica</li>
+    </ul>
+  </div>
+
+  <!-- ACCEL EU -->
+  <div style="padding:28px 32px; border-radius:16px; background:rgba(59,130,246,0.03); border:1px solid rgba(59,130,246,0.12);">
+    <h4 style="font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#93c5fd; margin-bottom:20px;">Quando o Flywheel acelera sozinho</h4>
+    <div class="accel-grid">
+      <div class="accel-card">
+        <div class="accel-num e-num">60 dias</div>
+        <div class="accel-label">de conteúdo consistente para o algoritmo começar a distribuir no nicho certo</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-num e-num">1 lead</div>
+        <div class="accel-label">Inbound via Instagram/LinkedIn já valida que o canal está convertendo</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-num e-num">Case</div>
+        <div class="accel-label">GROVW documentado → conteúdo @eukalidcarvalho → novo cliente GROVW</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─────────── ECOSSISTEMA ─────────── -->
+<section id="ecosystem" class="ecosystem-section">
+<div class="ecosystem-inner">
+
+  <div class="section-header">
+    <div class="brand-badge p-badge">Visão do Ecossistema</div>
+    <h2>Os 3 Flywheels que se <span class="p-accent">alimentam juntos</span></h2>
+    <p>Nenhum dos três funciona de forma isolada. A mágica está no fluxo entre eles: conteúdo gera autoridade, autoridade fecha clientes, clientes geram cases, cases viram conteúdo.</p>
+  </div>
+
+  <!-- DIAGRAM -->
+  <div style="display:grid; grid-template-columns:1fr 60px 1fr 60px 1fr; align-items:center; gap:0; margin:60px 0;">
+
+    <!-- @kalidcarvalho -->
+    <div class="eco-node" style="border-color:rgba(26,86,219,0.3); background:rgba(26,86,219,0.05); text-align:center; padding:32px 20px;">
+      <div class="eco-node-icon" style="background:rgba(26,86,219,0.15);">🚀</div>
+      <h3 style="font-size:16px; font-weight:700; margin-bottom:8px; color:#6b9eff;">@kalidcarvalho</h3>
+      <p style="font-size:12px; color:#8899bb; line-height:1.5;">Audiência ampla. Criadores e empreendedores digitais. Conteúdo de IA, sites, apps.</p>
+      <div style="margin-top:12px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:11px; background:rgba(26,86,219,0.1); color:#6b9eff; padding:3px 10px; border-radius:100px;">1.358 seguidores</span>
+        <span style="font-size:11px; background:rgba(26,86,219,0.08); color:#6b9eff; padding:3px 10px; border-radius:100px;">Crescimento: Reels</span>
+      </div>
+    </div>
+
+    <!-- Arrow 1 -->
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <div style="font-size:20px; color:#333;">→</div>
+      <div style="font-size:9px; color:#555; text-align:center; letter-spacing:1px; text-transform:uppercase; max-width:50px; line-height:1.4;">filtro de nicho</div>
+    </div>
+
+    <!-- @eukalidcarvalho -->
+    <div class="eco-node" style="border-color:rgba(59,130,246,0.3); background:rgba(59,130,246,0.05); text-align:center; padding:32px 20px;">
+      <div class="eco-node-icon" style="background:rgba(59,130,246,0.15);">🧠</div>
+      <h3 style="font-size:16px; font-weight:700; margin-bottom:8px; color:#93c5fd;">@eukalidcarvalho</h3>
+      <p style="font-size:12px; color:#8899bb; line-height:1.5;">Nicho TI B2B. Fundadores e diretores. Engenharia de Vendas técnica.</p>
+      <div style="margin-top:12px; display:flex; flex-direction:column; gap:4px;">
+        <span style="font-size:11px; background:rgba(59,130,246,0.1); color:#93c5fd; padding:3px 10px; border-radius:100px;">Pivotado abr/2026</span>
+        <span style="font-size:11px; background:rgba(59,130,246,0.08); color:#93c5fd; padding:3px 10px; border-radius:100px;">Autoridade técnica</span>
+      </div>
+    </div>
+
+    <!-- Arrow 2 -->
+    <div style="display:flex; flex-direction:column; align-items:center; gap:6px;">
+      <div style="font-size:20px; color:#333;">→</div>
+      <div style="font-size:9px; color:#555; text-align:center; letter-spacing:1px; text-transform:uppercase; max-width:50px; line-height:1.4;">confiança pré-venda</div>
+    </div>
+
+    <!-- GROVW -->
+    <div class="eco-node" style="border-color:rgba(205,255,0,0.25); background:rgba(205,255,0,0.03); text-align:center; padding:32px 20px; font-family:'Inter',sans-serif;">
+      <div class="eco-node-icon" style="background:rgba(205,255,0,0.1);">⚙️</div>
+      <h3 style="font-size:16px; font-weight:700; margin-bottom:8px; color:#cdff00; font-family:'Inter',sans-serif;">GROVW</h3>
+      <p style="font-size:12px; color:#8899bb; line-height:1.5; font-family:'Inter',sans-serif;">Receita real. Setup + recorrência. Casos documentados viram conteúdo.</p>
+      <div style="margin-top:12px; display:flex; flex-direction:column; gap:4px; font-family:'Inter',sans-serif;">
+        <span style="font-size:11px; background:rgba(205,255,0,0.08); color:#cdff00; padding:3px 10px; border-radius:100px;">R$3.500 setup</span>
+        <span style="font-size:11px; background:rgba(205,255,0,0.06); color:#cdff00; padding:3px 10px; border-radius:100px;">R$2–3k/mês recorrente</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FLOWS -->
+  <div style="margin-bottom:20px; font-size:13px; letter-spacing:2px; text-transform:uppercase; color:#8899bb; font-weight:600;">Fluxos do ecossistema</div>
+
+  <div class="eco-flow-list">
+
+    <div class="eco-flow-item">
+      <div class="eco-flow-arrow" style="background:rgba(26,86,219,0.12); color:#6b9eff;">→</div>
+      <div class="eco-flow-text">
+        <h4>@kalidcarvalho → @eukalidcarvalho</h4>
+        <p>Seguidores que acompanham conteúdo tech amplo e são fundadores de TI migram naturalmente para o canal de nicho quando encontram conteúdo mais específico. Você não precisa separar as audiências na força — o conteúdo filtra.</p>
+      </div>
+    </div>
+
+    <div class="eco-flow-item">
+      <div class="eco-flow-arrow" style="background:rgba(59,130,246,0.12); color:#93c5fd;">→</div>
+      <div class="eco-flow-text">
+        <h4>@eukalidcarvalho → GROVW (pipeline quente)</h4>
+        <p>Fundador que acompanha o conteúdo há 3 semanas chega na reunião já convicto. Você vira referência antes de virar fornecedor. O ciclo de vendas cai de 2 semanas para 1 chamada.</p>
+      </div>
+    </div>
+
+    <div class="eco-flow-item">
+      <div class="eco-flow-arrow p-arrow">→</div>
+      <div class="eco-flow-text">
+        <h4>GROVW → Conteúdo (case → post)</h4>
+        <p>Cada setup entregue é um case real. "Integrador de TI em Manaus gerou 12 leads qualificados em 30 dias" é o melhor conteúdo possível para @eukalidcarvalho. Case documentado → carrossel técnico → próximo lead inbound.</p>
+      </div>
+    </div>
+
+    <div class="eco-flow-item">
+      <div class="eco-flow-arrow" style="background:rgba(205,255,0,0.08); color:#cdff00; font-family:'Inter',sans-serif;">→</div>
+      <div class="eco-flow-text">
+        <h4 style="font-family:'Inter',sans-serif;">GROVW (clientes satisfeitos) → Indicação → GROVW</h4>
+        <p>Diretores de TI têm grupos de WhatsApp com outros diretores. Um cliente encantado que indica vale 0 em custo de aquisição. Esse é o ciclo interno da GROVW que começa a girar a partir do 5° cliente com retenção.</p>
+      </div>
+    </div>
+
+    <div class="eco-flow-item">
+      <div class="eco-flow-arrow" style="background:rgba(168,85,247,0.12); color:#c084fc;">↺</div>
+      <div class="eco-flow-text">
+        <h4>Autoridade acumulada → Redução de CAC geral</h4>
+        <p>Com os três volantes girando, seu custo de aquisição de cliente cai continuamente. Leads chegam inbound, ciclos de venda encurtam, indicações substituem parte do outbound. O sistema se torna menos dependente de budget e mais dependente de reputação.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TIMELINE: QUANDO CADA FLYWHEEL ATIVA -->
+  <div style="margin-top:80px;">
+    <div style="margin-bottom:40px;">
+      <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#a855f7; margin-bottom:12px; font-weight:600;">Linha do tempo</div>
+      <h3 style="font-size:28px; font-weight:700; letter-spacing:-0.3px;">Quando cada Flywheel ativa</h3>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#cdff00; color:#cdff00; font-family:'Inter',sans-serif;">1</div>
+        <div class="tl-body">
+          <h4 style="font-family:'Inter',sans-serif;">Agora — GROVW: montar o Flywheel de aquisição</h4>
+          <p>Cold email + Google Ads + reunião diagnóstico + proposta clara. Fechar 2–3 clientes TI B2B e documentar o primeiro case com número. Esse case é a semente de tudo.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#3b82f6; color:#3b82f6;">2</div>
+        <div class="tl-body">
+          <h4>Agora — @eukalidcarvalho: volume nos primeiros 60 dias</h4>
+          <p>Publicar 3x/semana conteúdo técnico B2B. Limpar posts de advocacia. Cada post deve ser específico o suficiente para que um diretor de TI sinta que é "pra ele". O algoritmo vai começar a distribuir para o nicho certo.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#1A56DB; color:#1A56DB;">3</div>
+        <div class="tl-body">
+          <h4>Mês 2 — @kalidcarvalho: ativar Reels</h4>
+          <p>Sem Reels o perfil não cresce. Um Reel de qualidade por semana sobre IA, apps ou automação. O algoritmo de descoberta do Instagram é quase todo Reels em 2025. Carrosséis educativos mantêm o engajamento da base existente.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#a855f7; color:#a855f7;">4</div>
+        <div class="tl-body">
+          <h4>Mês 3–4 — Conectar os fluxos</h4>
+          <p>Primeiro case GROVW documentado vira conteúdo @eukalidcarvalho. Seguidores @eukalidcarvalho começam a chegar como leads inbound na GROVW. O Flywheel do ecossistema começa a girar: conteúdo → autoridade → cliente → case → conteúdo.</p>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot" style="border-color:#22c55e; color:#22c55e;">5</div>
+        <div class="tl-body">
+          <h4>Mês 5+ — Flywheel em velocidade real</h4>
+          <p>Com 5–7 clientes ativos em recorrência, indicações começando a chegar e conteúdo gerando leads inbound, o custo de aquisição cai. O outbound deixa de ser urgência e vira complemento. Você escolhe os clientes que quer atender.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+</section>
+
+<!-- ─────────── FOOTER ─────────── -->
+<div style="background:#000; padding:60px; text-align:center; font-family:'Inter',sans-serif;">
+  <div style="font-size:11px; letter-spacing:3px; text-transform:uppercase; color:#333; margin-bottom:12px;">GROVW</div>
+  <p style="font-size:13px; color:#444; max-width:500px; margin:0 auto;">Documento estratégico interno. Gerado em abril/2026.</p>
+</div>
+
+</body>
+</html>
