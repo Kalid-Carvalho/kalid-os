@@ -21,14 +21,15 @@
 
   /* COVER */
   .cover {
-    min-height: 100vh;
+    width: 210mm;
+    height: 297mm;
     background: #0f0f23;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 60px 40px;
+    padding: 48px 40px;
     page-break-after: always;
     position: relative;
     overflow: hidden;
@@ -116,9 +117,13 @@
 
   /* OVERVIEW */
   .page {
-    padding: 56px 52px;
+    width: 210mm;
+    height: 297mm;
+    padding: 40px 44px;
     page-break-after: always;
-    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
   }
 
   .page-last {
@@ -599,6 +604,8 @@
   .page-break { page-break-after: always; }
 
   /* PRINT */
+  @page { size: A4; margin: 0; }
+
   @media print {
     body { font-size: 13px; }
     .cover { min-height: 297mm; }

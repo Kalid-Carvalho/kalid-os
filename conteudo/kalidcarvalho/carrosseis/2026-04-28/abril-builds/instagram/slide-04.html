@@ -5,33 +5,42 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { width: 1080px; height: 1350px; background: #0D1526; font-family: 'Space Grotesk', sans-serif; color: #F0F4FF; position: relative; overflow: hidden; }
-    body::after { content: ''; position: absolute; inset: 0; opacity: 0.025; pointer-events: none; z-index: 20; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 300px; }
-    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px); background-size: 60px 60px; }
-    .glow { position: absolute; bottom: -120px; left: 50%; transform: translateX(-50%); width: 900px; height: 600px; background: radial-gradient(circle, rgba(217,119,87,0.08) 0%, transparent 65%); z-index: 1; pointer-events: none; }
+    body { width: 1080px; height: 1350px; background: #F0F4FF; font-family: 'Space Grotesk', sans-serif; color: #0D1526; position: relative; overflow: hidden; }
+    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(13,21,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(13,21,38,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .glow { position: absolute; bottom: -80px; right: -80px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(217,119,87,0.08) 0%, transparent 60%); z-index: 1; pointer-events: none; }
     .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #D97757; z-index: 5; }
-    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.80); z-index: 15; }
-    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(13,21,38,0.35); letter-spacing: 0.02em; }
     .content { position: absolute; inset: 0; padding: 80px 86px 148px 86px; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
-    .tag { display: inline-flex; align-items: center; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.35); border-radius: 4px; padding: 9px 18px; margin-bottom: 40px; width: fit-content; }
-    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #D97757; letter-spacing: 0.12em; text-transform: uppercase; }
-    .label { font-size: 26px; font-weight: 400; color: #8899BB; line-height: 1.4; margin-bottom: 20px; }
-    .headline { font-size: 60px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #F0F4FF; margin-bottom: 14px; }
-    .headline .num { color: #D97757; }
-    .subtitle { font-size: 26px; font-weight: 400; color: #8899BB; line-height: 1.5; margin-bottom: 52px; }
-    .divider { width: 56px; height: 3px; background: #D97757; margin-bottom: 44px; border-radius: 2px; }
-    .callout { background: rgba(217,119,87,0.06); border-left: 4px solid #D97757; border-radius: 0 8px 8px 0; padding: 36px 40px; }
-    .callout-text { font-size: 30px; font-style: italic; font-weight: 400; color: #C8A898; line-height: 1.55; }
-    .callout-text strong { color: #F0F4FF; font-style: normal; font-weight: 700; }
-    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.70); z-index: 15; }
+    .tag { display: inline-flex; align-items: center; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.35); border-radius: 4px; padding: 9px 18px; margin-bottom: 36px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #C05E35; letter-spacing: 0.12em; text-transform: uppercase; }
+    .label { font-size: 26px; font-weight: 400; color: #556080; margin-bottom: 16px; }
+    .headline { font-size: 58px; font-weight: 800; line-height: 1.1; letter-spacing: -0.025em; color: #0D1526; margin-bottom: 12px; }
+    .headline .num { color: #D97757; font-family: 'JetBrains Mono', monospace; }
+    .subtitle { font-size: 24px; font-weight: 400; color: #556080; line-height: 1.5; margin-bottom: 44px; }
+    .divider { width: 56px; height: 3px; background: #D97757; margin-bottom: 40px; border-radius: 2px; }
+    .code-block { background: #FFFFFF; border: 1px solid rgba(13,21,38,0.10); border-radius: 10px; overflow: hidden; margin-bottom: 32px; box-shadow: 0 2px 16px rgba(13,21,38,0.06); }
+    .code-bar { background: #F5F7FF; padding: 10px 20px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(13,21,38,0.07); }
+    .c-dot { width: 9px; height: 9px; border-radius: 50%; }
+    .c-dot-r { background: #FF5F57; } .c-dot-y { background: #FFBD2E; } .c-dot-g { background: #28C840; }
+    .code-title { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: rgba(13,21,38,0.35); margin-left: 6px; }
+    .code-body { padding: 24px 28px; }
+    .code-line { font-family: 'JetBrains Mono', monospace; font-size: 22px; color: #556080; line-height: 1.8; }
+    .code-line .key { color: #D97757; font-weight: 600; }
+    .code-line .val { color: #1A56DB; font-weight: 600; }
+    .code-line .ok { color: #16A34A; font-weight: 600; }
+    .callout { background: rgba(217,119,87,0.07); border-left: 4px solid #D97757; border-radius: 0 8px 8px 0; padding: 28px 32px; }
+    .callout-text { font-size: 28px; font-style: italic; font-weight: 400; color: #6B5040; line-height: 1.5; }
+    .callout-text strong { font-style: normal; font-weight: 700; color: #0D1526; }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
     .ba-left { display: flex; align-items: center; gap: 14px; }
     .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #D97757; overflow: hidden; flex-shrink: 0; background: #111D35; }
     .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
     .ba-info { display: flex; flex-direction: column; gap: 2px; }
-    .ba-name { font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name { font-size: 20px; font-weight: 700; color: #0D1526; }
     .ba-name .check { color: #D97757; margin-left: 4px; }
-    .ba-handle { font-size: 16px; font-weight: 400; color: #8899BB; }
-    .ba-right { font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+    .ba-handle { font-size: 16px; font-weight: 400; color: #556080; }
+    .ba-right { font-size: 18px; font-weight: 500; color: rgba(13,21,38,0.35); }
   </style>
 </head>
 <body>
@@ -41,11 +50,22 @@
   <div class="content">
     <div class="tag"><span>o detalhe</span></div>
     <div class="label">O que quase quebrou tudo:</div>
-    <div class="headline">WhatsApp no Brasil<br>aceita <span class="num">12</span> e <span class="num">13</span> dígitos.</div>
-    <div class="subtitle">Mandar pro formato errado não entrega. Silenciosamente.</div>
+    <div class="headline">WhatsApp aceita <span class="num">12</span><br>e <span class="num">13</span> dígitos no Brasil.</div>
+    <div class="subtitle">Mandar pro formato errado não entrega. Sem erro visível.</div>
     <div class="divider"></div>
+    <div class="code-block">
+      <div class="code-bar">
+        <div class="c-dot c-dot-r"></div><div class="c-dot c-dot-y"></div><div class="c-dot c-dot-g"></div>
+        <span class="code-title">validar-whatsapp.js — n8n Code node</span>
+      </div>
+      <div class="code-body">
+        <div class="code-line"><span class="key">formato_12</span> = <span class="val">"5511987654321"</span>  <span class="ok">// ok</span></div>
+        <div class="code-line"><span class="key">formato_13</span> = <span class="val">"55119987654321"</span> <span class="ok">// ok</span></div>
+        <div class="code-line"><span class="key">sem_codigo</span> = <span class="val">"11987654321"</span>    <span style="color:#D97757;font-weight:600;">// fail</span></div>
+      </div>
+    </div>
     <div class="callout">
-      <div class="callout-text">Esse nó levou <strong>mais tempo que o resto do fluxo combinado.</strong> Sem erro visível. Só silêncio.</div>
+      <div class="callout-text">Esse nó levou <strong>mais tempo que o resto do fluxo combinado.</strong> Bug silencioso — zero erro no log.</div>
     </div>
   </div>
   <div class="bottom-author">
