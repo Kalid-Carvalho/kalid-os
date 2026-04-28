@@ -53,3 +53,33 @@ clientes:
     moeda: "BRL"
     bm_id: "1452836029805791"
     notas: "agencia de marketing — conta CA01 RSMX"
+
+  kalidcarvalho:
+    nome: "Kalid Carvalho | Builder"
+    conta_anuncio: "act_634950744322915"
+    pagina_facebook: "107452668882561"
+    instagram_id: "17841461839993632"
+    instagram_username: "@kalidcarvalho"
+    moeda: "BRL"
+    bm_id: "842686957073573"
+    notas: "marca pessoal — conteudo IA, Tech e Apps"
+
+  eukalidcarvalho:
+    nome: "Eu Kalid Carvalho"
+    conta_anuncio: "act_695689452260620"
+    pagina_facebook: "107452668882561"
+    instagram_id: "17841455325574237"
+    instagram_username: "@eukalidcarvalho"
+    moeda: "BRL"
+    bm_id: "842686957073573"
+    notas: "canal B2B — Engenharia de Vendas para TI, SaaS e Infraestrutura"
+
+  choramanaus:
+    nome: "Chora Manaus"
+    conta_anuncio: "act_946333300181013"
+    pagina_facebook: "108451595243919"
+    instagram_id: ""
+    instagram_username: "@choramanaus"
+    moeda: "BRL"
+    bm_id: "1001313693972003"
+    notas: "parceria Douglas Campos — somente leitura e insights por enquanto"
