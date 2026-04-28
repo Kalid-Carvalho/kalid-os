@@ -48,7 +48,8 @@
       "mcp__claude_ai_Google_Calendar__create_event",
       "mcp__n8n-mcp__n8n_manage_credentials",
       "PowerShell(curl.exe -s -X POST \"https://webhook.kalidcarvalho.com/webhook/importar-leads\" -H \"Content-Type: application/json\" --data-binary \"@$env:TEMP\\\\leads.json\")",
-      "mcp__n8n-mcp__n8n_delete_workflow"
+      "mcp__n8n-mcp__n8n_delete_workflow",
+      "PowerShell(curl -s -X POST \"https://webhook.kalidcarvalho.com/webhook/importar-leads\" -H \"Content-Type: application/json\" -d \"@C:/tmp/leads_payload.json\")"
     ]
   }
 }
