@@ -232,7 +232,8 @@
      SUPERCABEÇALHO (TOP BAR)
      ═══════════════════════════════════════════════ */
   .topbar{
-    background:#FF6A00;
+    background:linear-gradient(90deg,#060606 0%,#0d0d0d 50%,#060606 100%);
+    border-bottom:1px solid rgba(255,106,0,0.15);
     position:relative;
     overflow:hidden;
   }
@@ -240,7 +241,7 @@
     content:'';
     position:absolute;
     inset:0;
-    background:linear-gradient(90deg,transparent,rgba(255,255,255,0.08),transparent);
+    background:linear-gradient(90deg,transparent,rgba(255,106,0,0.06),transparent);
     background-size:200% 100%;
     animation:topbar-shimmer 4s linear infinite;
     pointer-events:none;
@@ -421,24 +422,24 @@
   <div class="absolute bottom-[10%] left-[15%] w-[500px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.06)_0%,transparent_70%)] pointer-events-none z-0"></div>
   <div class="absolute top-[60%] right-[30%] w-[300px] h-[300px] bg-[radial-gradient(ellipse_at_center,rgba(255,106,0,0.04)_0%,transparent_70%)] pointer-events-none z-0"></div>
 
-  <div class="max-w-7xl mx-auto relative z-10 w-full grid grid-cols-1 lg:grid-cols-2 lg:gap-16 lg:items-center lg:px-6 lg:pt-20 lg:pb-12">
+  <div class="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-16 pb-10 lg:pt-20 lg:pb-12 w-full">
 
-    <!-- ═══ TEXT COLUMN: order-2 mobile (abaixo da foto), order-1 desktop (esquerda) ═══ -->
-    <div class="order-2 lg:order-1 flex flex-col justify-center hero-content px-5 pt-5 pb-10 lg:px-0 lg:py-0">
+    <!-- ═══ LEFT COLUMN: Copy & CTA ═══ -->
+    <div class="flex flex-col justify-center hero-content">
 
       <!-- H1 Headline -->
-      <h1 class="hero-headline text-glow text-[1.75rem] sm:text-4xl md:text-[3rem] lg:text-[3.2rem] xl:text-[3.8rem] font-extrabold tracking-[-0.02em] leading-[1.2] text-white mb-5 text-center lg:text-left">
-        RECEBA O PLANO COMPLETO<br/>
-        PARA TER <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6A00] to-[#FF8C00]">LEADS QUALIFICADOS<br/>TODOS OS DIAS</span> NA SUA LOJA DE SMARTPHONE.
+      <h1 class="hero-headline text-glow text-4xl sm:text-5xl md:text-[3rem] lg:text-[3.2rem] xl:text-[3.8rem] font-extrabold tracking-[-0.03em] leading-[1.35] text-white mb-8">
+        Sua loja de iPhones pode ter<br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#FF6A00] to-[#FF8C00]">compradores qualificados<br/>chegando todo dia.</span>
       </h1>
 
       <!-- Sub-headline -->
-      <p class="hero-sub text-sm sm:text-base text-[#888] leading-[1.75] mb-7 font-secondary text-center lg:text-left max-w-xl mx-auto lg:mx-0">
-        Nosso time vai analisar seu negócio e criar um Plano Completo personalizado para estruturar um canal de vendas de leads qualificados, para você parar de depender de indicações e da compra de leads frios.
+      <p class="hero-sub text-base sm:text-lg text-[#999] leading-[1.8] mb-8 max-w-xl font-secondary">
+        Os especialistas da <strong class="text-white font-semibold">NEXTGEN-ADS</strong> analisam sua operação hoje e traçam o plano exato de anúncios para você ter um fluxo previsível de clientes qualificados, sem depender de indicação e sem atender quem nunca vai comprar.
       </p>
 
       <!-- CTA Button -->
-      <div class="hero-cta mb-5 flex justify-center lg:justify-start">
+      <div class="hero-cta mb-6">
         <a href="#formulario" class="button-custom group" id="cta-hero-plano" aria-label="Solicitar plano de escala">
           <div class="points_wrapper">
             <i class="point"></i><i class="point"></i><i class="point"></i><i class="point"></i>
@@ -448,20 +449,21 @@
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="opacity-80">
               <path d="M5 12h14m-7-7 7 7-7 7"/>
             </svg>
-            APLIQUE PARA UMA CONSULTORIA GRATUITA
+            QUERO RECEBER MEU PLANO DE ESCALA
           </span>
         </a>
       </div>
 
       <!-- Social Proof -->
-      <div class="hero-proof flex items-center gap-2 justify-center lg:justify-start">
-        <span class="font-secondary text-[13px] text-[#666]">
-          Mais de <strong class="text-white/60">200 lojas de smartphone</strong> já confiam na <strong style="color:#FF6A00">NEXTGEN-ADS</strong>
+      <div class="hero-proof flex items-center gap-2 text-sm text-white/40">
+        <span class="text-[#FF6A00] text-base">⚡</span>
+        <span class="font-secondary text-[13px]">
+          Mais de <strong class="text-white/60 counter-highlight">R$ 15 Milhões</strong> gerenciados em anúncios para Lojas de Smartphone.
         </span>
       </div>
 
-      <!-- Trust signals (desktop only) -->
-      <div class="hero-trust hidden lg:flex items-center gap-5 mt-6 flex-wrap">
+      <!-- Trust signals -->
+      <div class="hero-trust flex items-center gap-5 mt-6 flex-wrap">
         <div class="flex items-center gap-1.5 text-[0.72rem] text-white/35">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="opacity-50"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
           Dados Protegidos
@@ -477,55 +479,24 @@
       </div>
     </div>
 
-    <!-- ═══ IMAGE COLUMN: order-1 mobile (topo), order-2 desktop (direita) ═══ -->
-    <div class="order-1 lg:order-2 relative">
+    <!-- ═══ RIGHT COLUMN: Image ═══ -->
+    <div class="hero-image flex items-center justify-center relative">
+      <!-- Glow behind image -->
+      <div class="image-glow"></div>
 
-      <!-- Desktop glow -->
-      <div class="image-glow hidden lg:block"></div>
-
-      <!-- Image container -->
-      <div class="relative lg:hero-image-placeholder" style="">
-
-        <!-- Foto do Luan (placeholder até receber a imagem) -->
+      <!-- Image Container -->
+      <div class="hero-image-placeholder relative" style="animation:float 6s ease-in-out infinite">
+        <!-- Real client photo -->
         <img
           src="assets/img/luan-hero.jpg"
           alt="Especialista NEXTGEN-ADS em ação"
-          class="w-full object-cover object-top z-10 lg:absolute lg:inset-0 lg:h-full lg:rounded-xl"
-          style="max-height:520px;display:block"
+          class="absolute inset-0 w-full h-full object-cover object-top z-10 rounded-xl"
         />
 
-        <!-- Stat badge: top-left -->
-        <div class="absolute top-3 left-3 z-20 lg:hidden">
-          <div style="background:rgba(0,0,0,.78);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.5rem .875rem">
-            <p style="color:#FF6A00;font-size:1.15rem;font-weight:800;line-height:1">R$15M</p>
-            <p style="font-size:.58rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.09em;margin-top:.2rem">investidos em anúncios</p>
-          </div>
-        </div>
-
-        <!-- Stat badge: top-right -->
-        <div class="absolute top-3 right-3 z-20 lg:hidden" style="text-align:right">
-          <div style="background:rgba(0,0,0,.78);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.5rem .875rem;text-align:center">
-            <p style="color:#FF6A00;font-size:1.15rem;font-weight:800;line-height:1">+[X]</p>
-            <p style="font-size:.58rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.09em;margin-top:.2rem">lojas ativas</p>
-          </div>
-        </div>
-
-        <!-- Stat badge: bottom-right -->
-        <div class="absolute z-20 lg:hidden" style="bottom:4.5rem;right:.75rem">
-          <div style="background:rgba(0,0,0,.78);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.5rem .875rem;text-align:center">
-            <p style="color:#FF6A00;font-size:1.15rem;font-weight:800;line-height:1">[X] MIL</p>
-            <p style="font-size:.58rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.09em;margin-top:.2rem">aparelhos vendidos</p>
-          </div>
-        </div>
-
-        <!-- Gradient fade para o fundo escuro (mobile) -->
-        <div class="absolute bottom-0 left-0 right-0 h-36 bg-gradient-to-t from-[#060606] to-transparent z-10 lg:hidden"></div>
-
-        <!-- Beam border (desktop) -->
-        <div class="beam-border-v hidden lg:block"></div>
+        <!-- Beam border effect on the left -->
+        <div class="beam-border-v"></div>
       </div>
     </div>
-
   </div>
 
 <!-- ══════════════════════════════════════════════════════════════

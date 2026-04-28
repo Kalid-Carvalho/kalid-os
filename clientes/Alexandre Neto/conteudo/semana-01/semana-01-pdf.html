@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Semana 01 — @alexandreneto.english</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #ffffff;
+    color: #1a1a2e;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* COVER */
+  .cover {
+    min-height: 100vh;
+    background: #0f0f23;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 40px;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cover::before {
+    content: '';
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(74, 158, 255, 0.12) 0%, transparent 70%);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+  }
+
+  .cover-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #4A9EFF;
+    margin-bottom: 24px;
+  }
+
+  .cover-handle {
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 16px;
+    letter-spacing: 1px;
+  }
+
+  .cover-title {
+    font-size: 52px;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .cover-title span {
+    color: #4A9EFF;
+  }
+
+  .cover-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,0.5);
+    max-width: 420px;
+    line-height: 1.6;
+    margin-bottom: 48px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    justify-content: center;
+  }
+
+  .cover-meta-item {
+    text-align: center;
+  }
+
+  .cover-meta-item strong {
+    display: block;
+    font-size: 22px;
+    font-weight: 700;
+    color: #4A9EFF;
+  }
+
+  .cover-meta-item span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .cover-divider {
+    width: 48px;
+    height: 2px;
+    background: #4A9EFF;
+    margin: 0 auto 40px;
+  }
+
+  /* OVERVIEW */
+  .page {
+    padding: 56px 52px;
+    page-break-after: always;
+    min-height: 100vh;
+  }
+
+  .page-last {
+    page-break-after: avoid;
+  }
+
+  .section-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #4A9EFF;
+    margin-bottom: 8px;
+  }
+
+  .page-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: #0f0f23;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .page-desc {
+    font-size: 14px;
+    color: #6b7280;
+    margin-bottom: 40px;
+    max-width: 560px;
+  }
+
+  .divider {
+    width: 48px;
+    height: 3px;
+    background: #4A9EFF;
+    margin-bottom: 40px;
+  }
+
+  /* OVERVIEW CARDS */
+  .overview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .post-card {
+    background: #f8faff;
+    border: 1.5px solid #e8edf8;
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+  }
+
+  .post-card.highlight {
+    background: #0f0f23;
+    border-color: #0f0f23;
+  }
+
+  .post-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #4A9EFF;
+    margin-bottom: 8px;
+  }
+
+  .post-card.highlight .post-number {
+    color: rgba(74, 158, 255, 0.7);
+  }
+
+  .post-type-badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+
+  .badge-reel {
+    background: rgba(74, 158, 255, 0.12);
+    color: #4A9EFF;
+  }
+
+  .badge-carousel {
+    background: rgba(16, 185, 129, 0.12);
+    color: #10b981;
+  }
+
+  .post-card.highlight .badge-reel {
+    background: rgba(74, 158, 255, 0.2);
+  }
+
+  .post-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f0f23;
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  .post-card.highlight .post-card-title {
+    color: #ffffff;
+  }
+
+  .post-card-day {
+    font-size: 11px;
+    color: #9ca3af;
+    font-weight: 500;
+  }
+
+  .post-card.highlight .post-card-day {
+    color: rgba(255,255,255,0.4);
+  }
+
+  /* STRATEGY BOX */
+  .strategy-box {
+    background: #f0f6ff;
+    border-left: 4px solid #4A9EFF;
+    border-radius: 0 8px 8px 0;
+    padding: 20px 24px;
+    margin-bottom: 20px;
+  }
+
+  .strategy-box h4 {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #4A9EFF;
+    margin-bottom: 6px;
+  }
+
+  .strategy-box p {
+    font-size: 13px;
+    color: #374151;
+    line-height: 1.6;
+  }
+
+  /* ROTEIRO */
+  .roteiro-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 32px;
+    gap: 20px;
+  }
+
+  .roteiro-header-left h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f0f23;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+
+  .roteiro-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 10px;
+  }
+
+  .meta-pill {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .meta-pill.blue {
+    background: rgba(74, 158, 255, 0.1);
+    color: #2563eb;
+  }
+
+  .meta-pill.green {
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+  }
+
+  .meta-pill.gray {
+    background: #f3f4f6;
+    color: #6b7280;
+  }
+
+  /* HOOK */
+  .hook-box {
+    background: #0f0f23;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 28px;
+  }
+
+  .hook-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #4A9EFF;
+    margin-bottom: 10px;
+  }
+
+  .hook-text {
+    font-size: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.4;
+    font-style: italic;
+  }
+
+  /* SCRIPT BLOCK */
+  .script-block {
+    background: #f9fafb;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 24px;
+  }
+
+  .script-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 14px;
+  }
+
+  .script-text {
+    font-size: 14px;
+    color: #374151;
+    line-height: 1.8;
+    white-space: pre-line;
+  }
+
+  .script-text em {
+    color: #9ca3af;
+    font-style: italic;
+    font-size: 12px;
+  }
+
+  /* CTA */
+  .cta-box {
+    background: linear-gradient(135deg, #4A9EFF 0%, #2563eb 100%);
+    border-radius: 12px;
+    padding: 20px 24px;
+    margin-bottom: 24px;
+  }
+
+  .cta-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 8px;
+  }
+
+  .cta-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ffffff;
+    font-style: italic;
+  }
+
+  /* NOTES */
+  .notes-section {
+    margin-top: 8px;
+  }
+
+  .notes-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 12px;
+  }
+
+  .note-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    align-items: flex-start;
+  }
+
+  .note-dot {
+    width: 5px;
+    height: 5px;
+    background: #4A9EFF;
+    border-radius: 50%;
+    margin-top: 7px;
+    flex-shrink: 0;
+  }
+
+  .note-text {
+    font-size: 13px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  /* CAROUSEL SLIDES */
+  .carousel-grid {
+    display: grid;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .slide-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 16px;
+    align-items: start;
+  }
+
+  .slide-num {
+    width: 40px;
+    height: 40px;
+    background: #0f0f23;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #4A9EFF;
+    flex-shrink: 0;
+  }
+
+  .slide-content {
+    background: #f9fafb;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+
+  .slide-content.capa {
+    background: #0f0f23;
+    border-color: #0f0f23;
+  }
+
+  .slide-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 4px;
+  }
+
+  .slide-content.capa .slide-label {
+    color: rgba(74, 158, 255, 0.7);
+  }
+
+  .slide-headline {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f0f23;
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+
+  .slide-content.capa .slide-headline {
+    color: #ffffff;
+  }
+
+  .slide-body {
+    font-size: 12.5px;
+    color: #6b7280;
+    line-height: 1.5;
+    margin-top: 4px;
+  }
+
+  .slide-content.capa .slide-body {
+    color: rgba(255,255,255,0.45);
+  }
+
+  .slide-highlight {
+    color: #4A9EFF;
+    font-weight: 600;
+  }
+
+  /* HASHTAGS */
+  .hashtag-block {
+    background: #f3f4f6;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-top: 4px;
+  }
+
+  .hashtag-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 8px;
+  }
+
+  .hashtag-text {
+    font-size: 12px;
+    color: #2563eb;
+    line-height: 1.8;
+    word-break: break-all;
+  }
+
+  /* COMPETITOR */
+  .competitor-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 28px;
+  }
+
+  .competitor-table th {
+    background: #0f0f23;
+    color: rgba(255,255,255,0.6);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: left;
+  }
+
+  .competitor-table td {
+    padding: 12px 16px;
+    font-size: 13px;
+    border-bottom: 1px solid #f3f4f6;
+    color: #374151;
+    vertical-align: top;
+  }
+
+  .competitor-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .competitor-table tr:nth-child(even) td {
+    background: #fafafa;
+  }
+
+  .competitor-name {
+    font-weight: 700;
+    color: #0f0f23;
+  }
+
+  .tag-money {
+    display: inline-block;
+    background: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .tag-diff {
+    display: inline-block;
+    background: rgba(16, 185, 129, 0.1);
+    color: #059669;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 11px;
+    color: #d1d5db;
+  }
+
+  /* PAGE BREAK */
+  .page-break { page-break-after: always; }
+
+  /* PRINT */
+  @media print {
+    body { font-size: 13px; }
+    .cover { min-height: 297mm; }
+    .page { min-height: 297mm; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Estratégia de Conteúdo</div>
+  <div class="cover-handle">@alexandreneto.english</div>
+  <div class="cover-title">Semana <span>01</span></div>
+  <div class="cover-divider"></div>
+  <div class="cover-sub">Roteiros e conteúdo planejado para Instagram e TikTok — primeira semana no ar.</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <strong>1</strong>
+      <span>Reel</span>
+    </div>
+    <div class="cover-meta-item">
+      <strong>2</strong>
+      <span>Carrosséis</span>
+    </div>
+    <div class="cover-meta-item">
+      <strong>3x</strong>
+      <span>por semana</span>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<div class="page">
+  <div class="section-tag">Visão geral</div>
+  <div class="page-title">Plano da Semana 01</div>
+  <p class="page-desc">Três publicações estratégicas para lançar o perfil e estabelecer o posicionamento desde o primeiro dia.</p>
+  <div class="divider"></div>
+
+  <div class="overview-grid">
+    <div class="post-card highlight">
+      <div class="post-number">Post 01</div>
+      <div><span class="post-type-badge badge-reel">Reel</span></div>
+      <div class="post-card-title">Apresentação — quem sou, o que faço, para quem</div>
+      <div class="post-card-day">Segunda-feira · 45–60s</div>
+    </div>
+    <div class="post-card">
+      <div class="post-number">Post 02</div>
+      <div><span class="post-type-badge badge-carousel">Carrossel</span></div>
+      <div class="post-card-title">Por que você trava em inglês mesmo sabendo gramática</div>
+      <div class="post-card-day">Quarta-feira · 6 slides</div>
+    </div>
+    <div class="post-card">
+      <div class="post-number">Post 03</div>
+      <div><span class="post-type-badge badge-carousel">Carrossel</span></div>
+      <div class="post-card-title">3 frases que todo dev usa no trabalho (e ninguém ensinou)</div>
+      <div class="post-card-day">Sexta-feira · 6 slides</div>
+    </div>
+  </div>
+
+  <div class="strategy-box">
+    <h4>Objetivo da semana</h4>
+    <p>Estabelecer posicionamento, mostrar que o perfil tem conteúdo de valor e gerar os primeiros seguidores orgânicos. Nenhum anúncio. 100% orgânico.</p>
+  </div>
+
+  <div class="strategy-box">
+    <h4>Por que esse mix?</h4>
+    <p>O Reel de apresentação é o primeiro contato — precisa ser vídeo, rosto, presença. Os dois carrosséis são educativos e "salváveis" — formato com maior alcance orgânico no Instagram para conteúdo novo. A dica rápida (post 03) tem alto potencial de compartilhamento.</p>
+  </div>
+
+  <div class="strategy-box">
+    <h4>Posicionamento central</h4>
+    <p>Não falar em salário nem em "triplicar renda". Os concorrentes já fazem isso. O diferencial é <strong>confiança pra falar no trabalho</strong> — uma dor mais específica, mais emocional e mais honesta.</p>
+  </div>
+</div>
+
+<!-- REEL -->
+<div class="page">
+  <div class="section-tag">Post 01 · Reel · Segunda-feira</div>
+  <div class="page-title">Apresentação</div>
+  <p class="page-desc">Quem sou, o que faço e para quem. Primeiro vídeo do perfil — câmera, rosto, presença.</p>
+  <div class="divider"></div>
+
+  <div class="roteiro-meta" style="margin-bottom:28px;">
+    <span class="meta-pill blue">Reel</span>
+    <span class="meta-pill gray">45–60 segundos</span>
+    <span class="meta-pill gray">Face to camera</span>
+  </div>
+
+  <div class="hook-box">
+    <div class="hook-label">Hook — primeiros 3 segundos</div>
+    <div class="hook-text">"Se você sabe inglês mas trava na hora de falar, esse perfil é pra você."</div>
+  </div>
+
+  <div class="script-block">
+    <div class="script-label">Roteiro completo</div>
+    <div class="script-text"><em>[corte — olho na câmera, tom direto]</em>
+
+"Meu nome é Alexandre, sou professor de inglês. Mas provavelmente não do tipo que você está acostumado.
+
+Não ensino inglês pra quem quer viajar, passar em prova ou impressionar alguém no bar.
+
+Ensino pra dev. Pra analista. Pra QA. Pra quem já lê inglês no dia a dia, entende documentação, usa terminal em inglês — mas na hora de abrir a boca numa reunião com cliente internacional, trava.
+
+Isso acontece porque você aprendeu inglês pra ler, não pra falar. São habilidades diferentes. E ninguém te ensinou a falar no contexto que você precisa.
+
+Aqui eu vou mostrar como mudar isso. Vocabulário técnico, situações reais, sem enrolação.
+
+Se isso faz sentido pra você, segue o perfil."</div>
+  </div>
+
+  <div class="cta-box">
+    <div class="cta-label">Call to Action</div>
+    <div class="cta-text">"Segue o perfil — a gente vai falar sobre inglês do jeito que ninguém fala."</div>
+  </div>
+
+  <div class="notes-section">
+    <div class="notes-title">Notas de gravação</div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text">Fala pausada, sem pressa. Transmite autoridade, não simpatia forçada.</div></div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text">Não sorria o tempo todo — naturalidade e credibilidade.</div></div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text">Pausa de 0,5s antes de "trava" no hook — deixa a palavra pesar.</div></div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text">Legenda em todos os vídeos — CapCut gera automático. Destacar: "dev", "analista", "QA", "trava".</div></div>
+    <div class="note-item"><div class="note-dot"></div><div class="note-text">Luz frontal (natural ou ring light). Fundo limpo — parede ou estante com livros.</div></div>
+  </div>
+</div>
+
+<!-- CAROUSEL 1 -->
+<div class="page">
+  <div class="section-tag">Post 02 · Carrossel · Quarta-feira</div>
+  <div class="page-title">Por que você trava em inglês mesmo sabendo gramática</div>
+  <p class="page-desc">Conteúdo educativo. Explica o problema real por trás do bloqueio. 6 slides.</p>
+  <div class="divider"></div>
+
+  <div class="roteiro-meta" style="margin-bottom:28px;">
+    <span class="meta-pill green">Carrossel</span>
+    <span class="meta-pill gray">6 slides</span>
+    <span class="meta-pill gray">Educativo</span>
+    <span class="meta-pill gray">Salvar e compartilhar</span>
+  </div>
+
+  <div class="carousel-grid">
+    <div class="slide-row">
+      <div class="slide-num">1</div>
+      <div class="slide-content capa">
+        <div class="slide-label">Capa</div>
+        <div class="slide-headline">Você estudou inglês por anos — e ainda trava.</div>
+        <div class="slide-body">O problema não é o que você pensa.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">2</div>
+      <div class="slide-content">
+        <div class="slide-label">Slide 2 — O diagnóstico</div>
+        <div class="slide-headline">Você não tem problema de inglês.</div>
+        <div class="slide-body">Você tem problema com <span class="slide-highlight">inglês falado</span>. São habilidades diferentes. E provavelmente só treinou uma delas.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">3</div>
+      <div class="slide-content">
+        <div class="slide-label">Slide 3 — A explicação</div>
+        <div class="slide-headline">Leitura e fala usam caminhos diferentes no cérebro.</div>
+        <div class="slide-body">Quando você lê, tem tempo pra pensar. Quando fala, não tem. O cérebro precisa de um caminho automático — e você só constrói isso falando.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">4</div>
+      <div class="slide-content">
+        <div class="slide-label">Slide 4 — O erro comum</div>
+        <div class="slide-headline">Estudar mais gramática não resolve.</div>
+        <div class="slide-body">Você já sabe o suficiente. O que falta é treinar o <span class="slide-highlight">contexto certo</span>: a daily, a reunião com o cliente, o code review com o time gringro.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">5</div>
+      <div class="slide-content">
+        <div class="slide-label">Slide 5 — A solução</div>
+        <div class="slide-headline">Treinar o inglês que você vai usar de verdade.</div>
+        <div class="slide-body">Não é fluência C2. É conseguir se expressar com clareza nas situações que aparecem no seu trabalho. Isso é possível em meses, não anos.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">6</div>
+      <div class="slide-content capa">
+        <div class="slide-label">Slide 6 — CTA</div>
+        <div class="slide-headline">Esse é o tipo de coisa que trabalhamos nas aulas.</div>
+        <div class="slide-body">Me chama no direct se você quer falar sobre isso.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hashtag-block">
+    <div class="hashtag-label">Hashtags</div>
+    <div class="hashtag-text">#inglestecnico #inglesparadevs #inglesparaprogramadores #aprenderingles #developer #programador #reuniaoemingles #alexandreneto</div>
+  </div>
+</div>
+
+<!-- CAROUSEL 2 -->
+<div class="page">
+  <div class="section-tag">Post 03 · Carrossel · Sexta-feira</div>
+  <div class="page-title">3 frases que todo dev usa no trabalho (e ninguém ensinou)</div>
+  <p class="page-desc">Conteúdo prático. Vocabulário técnico situacional. Alto potencial de salvamento e compartilhamento. 6 slides.</p>
+  <div class="divider"></div>
+
+  <div class="roteiro-meta" style="margin-bottom:28px;">
+    <span class="meta-pill green">Carrossel</span>
+    <span class="meta-pill gray">6 slides</span>
+    <span class="meta-pill gray">Dica rápida</span>
+    <span class="meta-pill gray">Alta retenção</span>
+  </div>
+
+  <div class="carousel-grid">
+    <div class="slide-row">
+      <div class="slide-num">1</div>
+      <div class="slide-content capa">
+        <div class="slide-label">Capa</div>
+        <div class="slide-headline">3 frases que todo dev usa no trabalho — e ninguém ensinou pra você.</div>
+        <div class="slide-body">Salva esse carrossel.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">2</div>
+      <div class="slide-content">
+        <div class="slide-label">Frase 1</div>
+        <div class="slide-headline">"Let me circle back on this."</div>
+        <div class="slide-body">Quando você precisa de tempo pra pensar e não quer dizer "I don't know". Tradução prática: <span class="slide-highlight">vou voltar com a resposta</span>. Profissional, comum em reunião.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">3</div>
+      <div class="slide-content">
+        <div class="slide-label">Frase 2</div>
+        <div class="slide-headline">"I'm blocked on this."</div>
+        <div class="slide-body">Quando algo está travado do seu lado e você precisa comunicar isso pra equipe. <span class="slide-highlight">Simples, direto</span>. Todo time de tech entende.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">4</div>
+      <div class="slide-content">
+        <div class="slide-label">Frase 3</div>
+        <div class="slide-headline">"Can you walk me through this?"</div>
+        <div class="slide-body">Quando você precisa que alguém explique algo passo a passo — código, processo, decisão. Funciona em <span class="slide-highlight">code review, daily, onboarding</span>.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">5</div>
+      <div class="slide-content">
+        <div class="slide-label">Slide 5 — Contexto</div>
+        <div class="slide-headline">Essas 3 frases cobrem situações reais que todo dev enfrenta.</div>
+        <div class="slide-body">A maioria trava porque nunca treinou o inglês específico do trabalho. Não é vocabulário geral. É contexto profissional.</div>
+      </div>
+    </div>
+
+    <div class="slide-row">
+      <div class="slide-num">6</div>
+      <div class="slide-content capa">
+        <div class="slide-label">Slide 6 — CTA</div>
+        <div class="slide-headline">Manda esse carrossel pro seu grupo do time.</div>
+        <div class="slide-body">E me segue — toda semana tem conteúdo assim.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="hashtag-block">
+    <div class="hashtag-label">Hashtags</div>
+    <div class="hashtag-text">#inglestecnico #inglesparadevs #frasesemingles #inglesnotrabalho #developer #programador #aprenderingles #alexandreneto</div>
+  </div>
+</div>
+
+<!-- CONCORRENTES -->
+<div class="page page-last">
+  <div class="section-tag">Contexto de mercado</div>
+  <div class="page-title">Concorrentes e posicionamento</div>
+  <p class="page-desc">Mapeamento rápido do mercado de "inglês para devs" no Instagram para definir onde Alexandre pode se diferenciar.</p>
+  <div class="divider"></div>
+
+  <table class="competitor-table">
+    <thead>
+      <tr>
+        <th>Perfil</th>
+        <th>Seguidores</th>
+        <th>Ângulo</th>
+        <th>Produto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="competitor-name">@inglespdevs</span><br>Vitor Queiroz</td>
+        <td>8.413</td>
+        <td><span class="tag-money">Carreira internacional</span><br><small style="color:#9ca3af;">Conteúdo tech amplo, não só inglês</small></td>
+        <td>Curso online</td>
+      </tr>
+      <tr>
+        <td><span class="competitor-name">@devdoingles</span><br>Teacher Gabriel</td>
+        <td>4.042</td>
+        <td><span class="tag-money">Triplicar salário</span><br><small style="color:#9ca3af;">Hooks agressivos, reels pesados</small></td>
+        <td>FluencyPass Tech</td>
+      </tr>
+      <tr>
+        <td><span class="competitor-name">@priscila_katsurayama</span><br>Priscila</td>
+        <td>1.027</td>
+        <td><span class="tag-money">Faturar 3x em dólar</span><br><small style="color:#9ca3af;">Alto volume de posts, baixa conversão</small></td>
+        <td>PSK Course</td>
+      </tr>
+      <tr>
+        <td><span class="competitor-name">@alexandreneto.english</span><br><strong>Alexandre Neto</strong></td>
+        <td>—</td>
+        <td><span class="tag-diff">Confiança pra falar no trabalho</span><br><small style="color:#059669;">Ângulo emocional, específico, sem hype</small></td>
+        <td>Aulas 1:1 personalizadas</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="strategy-box">
+    <h4>O espaço de Alexandre</h4>
+    <p>Os três concorrentes vendem dinheiro. Alexandre pode ownar um ângulo diferente e mais profundo: <strong>não travar mais na reunião, na entrevista, no code review com o time gringo.</strong> É uma dor imediata, emocional e sem concorrência direta no mercado.</p>
+  </div>
+
+  <div class="strategy-box">
+    <h4>O que NÃO fazer</h4>
+    <p>Não mencionar salário nem "triplicar renda" nos posts. Não prometer fluência rápida. Não ampliar o nicho antes de construir audiência em devs. Consistência de 3 posts/semana vale mais que volume no início.</p>
+  </div>
+
+  <div style="margin-top: 48px; padding-top: 24px; border-top: 1px solid #e5e7eb; text-align: center;">
+    <div style="font-size: 11px; color: #9ca3af; letter-spacing: 1px;">Preparado por Kalid Carvalho · GROVW · Abril 2026</div>
+  </div>
+</div>
+
+</body>
+</html>
