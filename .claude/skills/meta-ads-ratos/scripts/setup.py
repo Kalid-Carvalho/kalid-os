@@ -11,6 +11,34 @@ import sys
 import shutil
 
 
+def _load_env_file():
+    """Carrega .env sem depender de python-dotenv."""
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    skill_dir = os.path.dirname(script_dir)
+    candidates = [
+        os.path.join(skill_dir, ".env"),
+        os.path.expanduser("~/.claude/skills/meta-ads-ratos/.env"),
+    ]
+    for path in candidates:
+        if os.path.isfile(path):
+            with open(path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line or line.startswith("#"):
+                        continue
+                    if line.startswith("export "):
+                        line = line[7:]
+                    if "=" not in line:
+                        continue
+                    key, _, value = line.partition("=")
+                    key = key.strip()
+                    value = value.strip().strip('"').strip("'")
+                    if key and value and not os.environ.get(key):
+                        os.environ[key] = value
+            return path
+    return None
+
+
 def check_python():
     v = sys.version_info
     ok = v.major >= 3 and v.minor >= 8
@@ -122,6 +150,11 @@ def main():
     print("=" * 55)
     print("  Meta Ads Ratos - Install Wizard")
     print("=" * 55)
+
+    # Carrega .env antes de checar token
+    env_file = _load_env_file()
+    if env_file:
+        print(f"\n  [INFO] .env carregado de: {env_file}")
 
     print("\n1. Dependencias:")
     py_ok = check_python()
