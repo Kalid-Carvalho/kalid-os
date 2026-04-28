@@ -1,7 +1,7 @@
 from PIL import Image
 import os
 
-base = 'c:/Users/kalid/Downloads/KalidCarvalho-os/dados'
+base = 'c:/Users/kalid/Downloads/KalidCarvalho-os/dados/certidao-uso-solo'
 
 # A4 at 2x deviceScaleFactor (96dpi * 2 = 192dpi)
 A4_W = 1588  # 794 * 2

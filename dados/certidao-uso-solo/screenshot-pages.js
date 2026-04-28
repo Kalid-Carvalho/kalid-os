@@ -9,7 +9,7 @@ const path = require('path');
   });
   const page = await context.newPage();
 
-  const filePath = 'file:///C:/Users/kalid/Downloads/KalidCarvalho-os/dados/certidao-template.html';
+  const filePath = 'file:///C:/Users/kalid/Downloads/KalidCarvalho-os/dados/certidao-uso-solo/certidao-template.html';
   await page.goto(filePath, { waitUntil: 'networkidle' });
   await page.waitForTimeout(800);
 
@@ -46,7 +46,7 @@ const path = require('path');
   });
 
   const pageEls = await page.$$('.page');
-  const outDir = 'C:/Users/kalid/Downloads/KalidCarvalho-os/dados';
+  const outDir = 'C:/Users/kalid/Downloads/KalidCarvalho-os/dados/certidao-uso-solo';
 
   for (let i = 0; i < pageEls.length; i++) {
     const outPath = path.join(outDir, `certidao-p${i + 1}.png`);
