@@ -5,64 +5,44 @@
 <meta name="viewport" content="width=1080">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-@font-face { font-family: 'Chirp'; src: url('../../../../../../marca/fontes/chirp-regular-web.woff') format('woff'); font-weight: 400; }
-@font-face { font-family: 'Chirp'; src: url('../../../../../../marca/fontes/chirp-medium-web.woff') format('woff'); font-weight: 500 600; }
-@font-face { font-family: 'Chirp'; src: url('../../../../../../marca/fontes/chirp-bold-web.woff') format('woff'); font-weight: 700; }
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { width: 1080px; height: 1350px; background: #FFFFFF; font-family: 'Chirp', sans-serif; overflow: hidden; position: relative; }
-.tweet-card { position: absolute; top: 0; left: 0; right: 0; bottom: 64px; background: #FFFFFF; padding: 72px 80px; display: flex; flex-direction: column; justify-content: center; gap: 48px; }
-.tweet-top { display: flex; flex-direction: column; }
-.card-header { display: flex; align-items: center; margin-bottom: 36px; gap: 20px; }
-.avatar { width: 88px; height: 88px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: #1C2D4A; }
-.avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
-.author-info { display: flex; flex-direction: column; gap: 4px; }
-.author-name { font-size: 28px; font-weight: 700; color: #0F1419; display: flex; align-items: center; gap: 8px; }
-.author-handle { font-size: 22px; font-weight: 400; color: #536471; }
-.tweet-text { font-size: 36px; font-weight: 400; color: #0F1419; line-height: 1.45; display: flex; flex-direction: column; gap: 18px; }
-.tweet-text p { margin: 0; }
-.mono { font-family: 'JetBrains Mono', monospace; font-size: 32px; font-weight: 600; color: #0F1419; }
-.tweet-timestamp { font-size: 19px; color: #536471; margin-top: 22px; }
-.tweet-timestamp span { margin: 0 6px; color: #D1D9E0; }
-.metrics { display: flex; align-items: center; gap: 0; padding-top: 24px; border-top: 1px solid #EFF3F4; }
-.metric { display: flex; align-items: center; gap: 12px; margin-right: 56px; color: #536471; }
-.metric svg { width: 22px; height: 22px; fill: none; stroke: #536471; stroke-width: 1.8; }
-.metric-views { margin-left: auto; color: #536471; display: flex; align-items: center; gap: 10px; }
-.metric-views svg { width: 22px; height: 22px; fill: none; stroke: #536471; stroke-width: 1.8; }
-.bottom-bar { position: absolute; bottom: 0; left: 0; right: 0; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; z-index: 15; }
-.progress { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: #CFD9E0; }
-.swipe { font-size: 15px; font-weight: 500; color: #CFD9E0; }
+body { width: 1080px; height: 1350px; background: #0A0A0A; font-family: 'Space Grotesk', sans-serif; overflow: hidden; position: relative; }
+.slide { position: absolute; inset: 0; padding: 80px; display: flex; flex-direction: column; justify-content: space-between; }
+.top { display: flex; justify-content: space-between; align-items: center; }
+.slide-num { font-family: 'JetBrains Mono', monospace; font-size: 16px; font-weight: 600; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; }
+.tag { font-family: 'JetBrains Mono', monospace; font-size: 14px; font-weight: 600; color: #1A56DB; letter-spacing: 0.1em; text-transform: uppercase; }
+.middle { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 40px 0; gap: 0; }
+.accent-line { width: 40px; height: 3px; background: #D97757; border-radius: 2px; margin-bottom: 48px; }
+.label { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #D97757; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px; }
+.stat { font-family: 'JetBrains Mono', monospace; font-size: 96px; font-weight: 700; color: #FFFFFF; line-height: 1; margin-bottom: 8px; }
+.stat-label { font-size: 28px; font-weight: 400; color: rgba(255,255,255,0.35); margin-bottom: 48px; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.05em; }
+.text-muted { font-size: 40px; font-weight: 400; color: rgba(255,255,255,0.45); line-height: 1.45; margin-bottom: 32px; }
+.highlight { font-size: 44px; font-weight: 700; color: #FFFFFF; line-height: 1.35; }
+.bottom { display: flex; align-items: center; justify-content: space-between; }
+.watermark { font-family: 'JetBrains Mono', monospace; font-size: 15px; font-weight: 500; color: rgba(255,255,255,0.18); }
+.swipe { font-size: 15px; font-weight: 400; color: rgba(255,255,255,0.25); }
 </style>
 </head>
 <body>
-<div class="tweet-card">
-  <div class="tweet-top">
-    <div class="card-header">
-      <div class="avatar"><img src="../../../../../../marca/foto-perfil.png" alt="Kalid Carvalho"></div>
-      <div class="author-info">
-        <span class="author-name">Kalid Carvalho
-          <svg width="24" height="24" viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" stroke="#1A56DB" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </span>
-        <span class="author-handle">@kalidcarvalho</span>
-      </div>
-    </div>
-    <div class="tweet-text">
-      <p>O terceiro foi o agente de atendimento. Quando um lead chega, o agente lê o histórico, entende o contexto e responde com a linguagem do negócio. <span class="mono">51 nodes</span> no n8n.</p>
-      <p>Não é um bot com menu. É um agente que raciocina antes de responder. Construído inteiramente descrevendo o que precisava acontecer.</p>
-    </div>
-    <div class="tweet-timestamp">9:05 AM <span>·</span> 28 abr. 2026</div>
+<div class="slide">
+  <div class="top">
+    <span class="slide-num">06 / 09</span>
+    <span class="tag">Sistema 03</span>
   </div>
-  <div class="metrics">
-    <div class="metric"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="metric"><svg viewBox="0 0 24 24"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="metric"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-    <div class="metric-views"><svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+  <div class="middle">
+    <div class="accent-line"></div>
+    <div class="label">Agente de Atendimento</div>
+    <div class="stat">51</div>
+    <div class="stat-label">nodes no n8n</div>
+    <div class="text-muted">Não é um bot com menu. Lê o histórico, entende o contexto, responde com a linguagem do negócio.</div>
+    <div class="highlight">Construído inteiramente descrevendo o que precisava acontecer.</div>
   </div>
-</div>
-<div class="bottom-bar">
-  <span class="progress">6 / 9</span>
-  <span class="swipe">arrasta →</span>
+  <div class="bottom">
+    <span class="watermark">@kalidcarvalho</span>
+    <span class="swipe">arrasta →</span>
+  </div>
 </div>
 </body>
 </html>
