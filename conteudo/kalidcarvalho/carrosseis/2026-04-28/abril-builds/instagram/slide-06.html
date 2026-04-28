@@ -5,32 +5,36 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { width: 1080px; height: 1350px; background: #0D1526; font-family: 'Space Grotesk', sans-serif; color: #F0F4FF; position: relative; overflow: hidden; }
-    body::after { content: ''; position: absolute; inset: 0; opacity: 0.025; pointer-events: none; z-index: 20; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E"); background-size: 300px; }
-    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(26,86,219,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(26,86,219,0.05) 1px, transparent 1px); background-size: 60px 60px; }
-    .glow { position: absolute; top: 20%; left: 50%; transform: translate(-50%,-50%); width: 900px; height: 900px; background: radial-gradient(circle, rgba(217,119,87,0.09) 0%, transparent 60%); z-index: 1; pointer-events: none; }
+    body { width: 1080px; height: 1350px; background: #F0F4FF; font-family: 'Space Grotesk', sans-serif; color: #0D1526; position: relative; overflow: hidden; }
+    .grid { position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(rgba(13,21,38,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(13,21,38,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+    .glow { position: absolute; top: 30%; right: -100px; width: 700px; height: 700px; background: radial-gradient(circle, rgba(217,119,87,0.07) 0%, transparent 60%); z-index: 1; pointer-events: none; }
     .accent-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: #D97757; z-index: 5; }
-    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.80); z-index: 15; }
-    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(240,244,255,0.40); letter-spacing: 0.02em; }
+    .top-header { position: absolute; top: 0; left: 0; right: 0; height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-bottom: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
+    .top-header span { font-family: 'Space Grotesk', sans-serif; font-size: 17px; font-weight: 400; color: rgba(13,21,38,0.35); letter-spacing: 0.02em; }
     .content { position: absolute; inset: 0; padding: 80px 86px 148px 86px; display: flex; flex-direction: column; justify-content: center; z-index: 10; }
-    .tag { display: inline-flex; align-items: center; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.35); border-radius: 4px; padding: 9px 18px; margin-bottom: 40px; width: fit-content; }
-    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #D97757; letter-spacing: 0.12em; text-transform: uppercase; }
-    .stat-row { display: flex; align-items: baseline; gap: 20px; margin-bottom: 8px; }
-    .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 160px; font-weight: 700; color: #F0F4FF; line-height: 0.9; letter-spacing: -0.04em; }
-    .stat-label { font-family: 'JetBrains Mono', monospace; font-size: 24px; font-weight: 500; color: rgba(240,244,255,0.35); letter-spacing: 0.06em; }
-    .headline { font-size: 40px; font-weight: 700; color: #D97757; margin-bottom: 12px; }
-    .divider { width: 56px; height: 3px; background: #D97757; margin-bottom: 40px; border-radius: 2px; }
-    .desc { font-size: 30px; font-weight: 400; color: #8899BB; line-height: 1.55; margin-bottom: 32px; }
-    .highlight { font-size: 34px; font-weight: 700; color: #F0F4FF; line-height: 1.35; }
-    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(255,255,255,0.07); background: rgba(13,21,38,0.70); z-index: 15; }
+    .tag { display: inline-flex; align-items: center; background: rgba(217,119,87,0.10); border: 1px solid rgba(217,119,87,0.35); border-radius: 4px; padding: 9px 18px; margin-bottom: 36px; width: fit-content; }
+    .tag span { font-family: 'JetBrains Mono', monospace; font-size: 18px; font-weight: 600; color: #C05E35; letter-spacing: 0.12em; text-transform: uppercase; }
+    .stat-block { display: flex; align-items: baseline; gap: 16px; margin-bottom: 4px; }
+    .stat-num { font-family: 'JetBrains Mono', monospace; font-size: 148px; font-weight: 700; color: #0D1526; line-height: 0.9; letter-spacing: -0.04em; }
+    .stat-unit { font-family: 'JetBrains Mono', monospace; font-size: 22px; font-weight: 500; color: rgba(13,21,38,0.30); letter-spacing: 0.06em; padding-bottom: 8px; }
+    .headline { font-size: 40px; font-weight: 700; color: #D97757; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .divider { width: 56px; height: 3px; background: #D97757; margin-bottom: 36px; border-radius: 2px; }
+    .features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 32px; }
+    .feature { display: flex; gap: 18px; align-items: flex-start; }
+    .feature-dot { width: 8px; height: 8px; border-radius: 50%; background: #D97757; flex-shrink: 0; margin-top: 12px; }
+    .feature-text { font-size: 26px; font-weight: 400; color: #556080; line-height: 1.4; }
+    .feature-text strong { color: #0D1526; font-weight: 700; }
+    .highlight-box { background: rgba(217,119,87,0.07); border-left: 4px solid #D97757; border-radius: 0 8px 8px 0; padding: 24px 28px; }
+    .highlight-text { font-size: 28px; font-weight: 700; color: #0D1526; line-height: 1.35; }
+    .bottom-author { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; display: flex; align-items: center; justify-content: space-between; padding: 0 80px; border-top: 1px solid rgba(13,21,38,0.08); background: rgba(240,244,255,0.95); z-index: 15; }
     .ba-left { display: flex; align-items: center; gap: 14px; }
     .ba-avatar { width: 68px; height: 68px; border-radius: 50%; border: 2px solid #D97757; overflow: hidden; flex-shrink: 0; background: #111D35; }
     .ba-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
     .ba-info { display: flex; flex-direction: column; gap: 2px; }
-    .ba-name { font-size: 20px; font-weight: 700; color: #F0F4FF; }
+    .ba-name { font-size: 20px; font-weight: 700; color: #0D1526; }
     .ba-name .check { color: #D97757; margin-left: 4px; }
-    .ba-handle { font-size: 16px; font-weight: 400; color: #8899BB; }
-    .ba-right { font-size: 18px; font-weight: 500; color: rgba(240,244,255,0.40); }
+    .ba-handle { font-size: 16px; font-weight: 400; color: #556080; }
+    .ba-right { font-size: 18px; font-weight: 500; color: rgba(13,21,38,0.35); }
   </style>
 </head>
 <body>
@@ -39,14 +43,20 @@
   <div class="top-header"><span>@kalidcarvalho</span><span>Build in Public</span><span>© 2026</span></div>
   <div class="content">
     <div class="tag"><span>sistema 03</span></div>
-    <div class="stat-row">
+    <div class="stat-block">
       <span class="stat-num">51</span>
+      <span class="stat-unit">NODES NO N8N</span>
     </div>
-    <div class="stat-label">NODES NO N8N</div>
     <div class="headline">Agente de Atendimento.</div>
     <div class="divider"></div>
-    <div class="desc">Não é um bot com menu. Lê o histórico, entende o contexto, responde com a linguagem do negócio.</div>
-    <div class="highlight">Construído inteiramente descrevendo o que precisava acontecer.</div>
+    <div class="features">
+      <div class="feature"><div class="feature-dot"></div><span class="feature-text">Lê o <strong>histórico completo</strong> da conversa antes de responder</span></div>
+      <div class="feature"><div class="feature-dot"></div><span class="feature-text">Entende o contexto. Responde com a <strong>linguagem do negócio</strong></span></div>
+      <div class="feature"><div class="feature-dot"></div><span class="feature-text">Não é bot com menu. <strong>É agente com memória</strong></span></div>
+    </div>
+    <div class="highlight-box">
+      <div class="highlight-text">Construído inteiramente descrevendo o que precisava acontecer.</div>
+    </div>
   </div>
   <div class="bottom-author">
     <div class="ba-left">
