@@ -11,8 +11,38 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-  <link href="/ads-grovw/assets/css/final.css" rel="stylesheet" />
-  <link href="/ads-grovw/assets/css/style.css" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace']
+          },
+          colors: {
+            grovw: {
+              bg: '#0A0711',
+              section: '#0f0f0f',
+              surface: '#32373c',
+              accent: '#cdff00',
+              accentHover: '#d0ff0f',
+              border: 'rgba(255,255,255,0.1)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #0A0711; color: #fff; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #0A0711; }
+    ::-webkit-scrollbar-thumb { background: #32373c; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #cdff00; }
+    .noise { position: fixed; top: 0; left: 0; width: 100%; height: 100%; opacity: 0.02; pointer-events: none; z-index: 9999; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E"); }
+  </style>
 </head>
 <body class="antialiased min-h-screen bg-grovw-bg text-white">
   <div class="noise"></div>
