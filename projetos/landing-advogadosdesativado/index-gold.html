@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagnóstico de Captação para Advogados | Kalid Carvalho</title>
+  <meta name="description" content="Pare de depender de indicação. Diagnóstico gratuito para advogados que querem um sistema de captação previsível, dentro do que a OAB permite." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400;1,600;1,700&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+
+  <!-- Meta Pixel -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1351179330395558');
+  fbq('track', 'PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=1351179330395558&ev=PageView&noscript=1"/></noscript>
+
+  <style>
+    :root {
+      --bg:          #0C1018;
+      --bg2:         #080D14;
+      --bg3:         #101620;
+      --surface:     #151D2A;
+      --blue:        #C9A84C;
+      --blue-mid:    #D4B45E;
+      --blue-light:  #D9BC72;
+      --blue-dim:    rgba(201,168,76,0.09);
+      --blue-border: rgba(201,168,76,0.28);
+      --cream:       #F0E8D0;
+      --text:        #F4F0E8;
+      --text-muted:  #9A9080;
+      --text-dim:    #4A4030;
+      --sep:         #1C1A14;
+      --serif:       'Cormorant Garamond', Georgia, serif;
+      --sans:        'DM Sans', system-ui, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Noise overlay */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 999;
+      opacity: 0.5;
+    }
+
+    ::-webkit-scrollbar { width: 2px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-light); }
+
+    .container { max-width: 1300px; margin: 0 auto; padding: 0 28px; }
+
+    /* ── REVEAL ── */
+    .r {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 0.75s cubic-bezier(.22,1,.36,1), transform 0.75s cubic-bezier(.22,1,.36,1);
+    }
+    .r.in { opacity: 1; transform: none; }
+    .r.d1 { transition-delay: 0.08s; }
+    .r.d2 { transition-delay: 0.16s; }
+    .r.d3 { transition-delay: 0.24s; }
+    .r.d4 { transition-delay: 0.36s; }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 0 80px;
+      border-bottom: 1px solid var(--sep);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Radial glow */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -10%;
+      left: -20%;
+      width: 80vw;
+      height: 80vw;
+      max-width: 700px;
+      max-height: 700px;
+      background: radial-gradient(ellipse at center, rgba(201,168,76,0.09) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    /* Dotted grid */
+    .hero-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(201,168,76,0.14) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    }
+
+    /* Tag top */
+    .hero-eyebrow {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 48px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .eyebrow-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      animation: blink 2.5s ease-in-out infinite;
+      box-shadow: 0 0 6px rgba(201,168,76,0.5);
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.2; }
+    }
+
+    .eyebrow-year {
+      font-family: var(--sans);
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    /* Main headline */
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .hero-rule {
+      height: 1px;
+      width: 100%;
+      background: linear-gradient(90deg, transparent 0%, var(--blue) 50%, transparent 100%);
+      margin-bottom: 40px;
+    }
+
+    .hero-title {
+      font-family: var(--serif);
+      font-size: clamp(52px, 10vw, 96px);
+      font-weight: 700;
+      line-height: 0.93;
+      letter-spacing: -0.02em;
+      margin-bottom: 48px;
+    }
+
+    .hero-title .line-normal {
+      display: block;
+      color: var(--text);
+    }
+
+    .hero-title .line-italic {
+      display: block;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--cream);
+    }
+
+    .hero-title .line-accent {
+      display: block;
+      color: var(--blue-light);
+    }
+
+    /* Underline draw animation */
+    .underline-draw {
+      position: relative;
+      display: inline;
+    }
+
+    .underline-draw::after {
+      content: '';
+      position: absolute;
+      bottom: 4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--blue-light);
+      transition: width 0.9s cubic-bezier(.22,1,.36,1) 1.2s;
+    }
+
+    .underline-draw.drawn::after { width: 100%; }
+
+    .hero-bottom {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 32px;
+      width: 100%;
+    }
+
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      max-width: 640px;
+      text-align: left;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .btn-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 28px;
+      background: var(--blue);
+      color: #0C1018;
+      font-family: var(--sans);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-cta:hover {
+      background: var(--blue-mid);
+      box-shadow: 0 6px 24px rgba(26,86,219,0.38);
+      transform: translateY(-1px);
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+      text-align: center;
+    }
+
+    /* ─── STRIP ─── */
+    .strip {
+      border-bottom: 1px solid var(--sep);
+      overflow: hidden;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      background: var(--bg2);
+    }
+
+    .strip-track {
+      display: flex;
+      animation: scroll 26s linear infinite;
+      white-space: nowrap;
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .strip-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 0 32px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--text-dim);
+    }
+
+    .strip-item b { color: var(--text-muted); font-weight: 600; }
+
+    .strip-sep {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--blue-light);
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 96px 0; border-bottom: 1px solid var(--sep); }
+
+    .label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--blue-light);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .label::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--blue-light);
+      flex-shrink: 0;
+    }
+
+    /* ─── PROBLEMA ─── */
+    .prob-bg { background: var(--bg2); }
+
+    .prob-headline {
+      font-family: var(--serif);
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 36px;
+    }
+
+    .prob-headline em {
+      font-style: italic;
+      font-weight: 600;
+      color: var(--cream);
+    }
+
+    .prob-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 0;
+    }
+
+    /* Two-column layout for prob section */
+    .prob-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .prob-cols > * { min-width: 0; }
+
+    @media (max-width: 860px) {
+      .prob-cols { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* Two-column layout for steps section */
+    .steps-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .steps-cols > * { min-width: 0; }
+
+    @media (max-width: 860px) {
+      .steps-cols { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* Two-column layout for para quem */
+    .quem-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .quem-cols > * { min-width: 0; }
+
+    @media (max-width: 860px) {
+      .quem-cols { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ─── SOBRE ─── */
+    .about-card {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: 340px 1fr;
+      gap: 0;
+      border: 1px solid var(--blue-border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--blue-dim);
+    }
+    .about-card > * { min-width: 0; }
+
+    .about-photo-wrap {
+      position: relative;
+      overflow: hidden;
+      min-height: 360px;
+    }
+
+    .about-photo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 8%;
+      display: block;
+    }
+
+    /* cobre o canto inferior direito onde está o watermark */
+    .about-photo-wrap::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: var(--bg2);
+    }
+
+    .about-right {
+      padding: 40px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      justify-content: center;
+      border-left: 1px solid var(--blue-border);
+    }
+
+    .about-name {
+      font-family: var(--serif);
+      font-size: clamp(32px, 3.5vw, 50px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+    }
+
+    .about-name em {
+      display: block;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--blue-light);
+    }
+
+    .about-role {
+      display: inline-block;
+      margin-top: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-dim);
+      border: 1px solid var(--sep);
+      border-radius: 100px;
+      padding: 5px 14px;
+    }
+
+    .about-p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .about-p strong { color: var(--text); font-weight: 600; }
+
+    .about-accent {
+      padding: 16px 20px;
+      background: rgba(201,168,76,0.06);
+      border-left: 2px solid var(--blue);
+      border-radius: 0 6px 6px 0;
+      font-size: 14px;
+      font-style: italic;
+      font-family: var(--serif);
+      color: var(--cream);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 820px) {
+      .about-card { grid-template-columns: 1fr; }
+      .about-photo-wrap { min-height: 280px; }
+      .about-right { border-left: none; border-top: 1px solid var(--blue-border); padding: 32px 28px; }
+    }
+
+    /* Pull quote */
+    .pull-quote {
+      margin: 0 0 36px;
+      padding: 0 0 0 24px;
+      border-left: 2px solid var(--blue);
+    }
+
+    .pull-quote p {
+      font-family: var(--serif);
+      font-size: clamp(20px, 3vw, 26px);
+      font-style: italic;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--cream);
+    }
+
+    .pull-quote p em {
+      font-style: normal;
+      color: var(--blue-light);
+    }
+
+    /* Pain items */
+    .pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      align-content: start;
+    }
+
+    .pain-card {
+      background: var(--bg3);
+      border: 1px solid var(--sep);
+      border-radius: 10px;
+      padding: 24px 22px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .pain-card:hover {
+      border-color: var(--blue-border);
+      background: var(--surface);
+    }
+
+    .pain-num {
+      font-family: var(--serif);
+      font-size: 13px;
+      font-style: italic;
+      color: var(--blue-light);
+      display: block;
+      margin-bottom: 12px;
+      letter-spacing: 0.04em;
+    }
+
+    .pain-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .pain-card p strong { color: var(--text); font-weight: 600; }
+
+    @media (max-width: 520px) {
+      .pain-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ─── STEPS ─── */
+    .steps-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      min-width: 0;
+    }
+
+    .step-item {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      border: 1px solid var(--sep);
+      border-bottom: none;
+      background: var(--bg3);
+      transition: background 0.2s;
+      overflow: hidden;
+    }
+
+    .step-item:first-child { border-radius: 8px 8px 0 0; }
+    .step-item:last-child { border-bottom: 1px solid var(--sep); border-radius: 0 0 8px 8px; }
+    .step-item:hover { background: var(--surface); }
+
+    .step-item.highlighted {
+      background: var(--blue-dim);
+      border-color: var(--blue-border);
+    }
+
+    .step-item.highlighted .step-n { color: var(--blue-light); border-right-color: var(--blue-border); }
+
+    .step-n {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--serif);
+      font-size: 28px;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--text-dim);
+      border-right: 1px solid var(--sep);
+      padding: 28px 0;
+    }
+
+    .step-body {
+      padding: 28px 24px;
+    }
+
+    .step-body h4 {
+      font-size: 15px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      letter-spacing: -0.01em;
+    }
+
+    .step-body p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ─── PARA QUEM ─── */
+    .check-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 100%;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 15px 18px;
+      background: var(--bg3);
+      border: 1px solid var(--sep);
+      border-radius: 6px;
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      transition: border-color 0.2s, background 0.2s;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .check-item:hover {
+      border-color: var(--blue-border);
+      background: var(--blue-dim);
+    }
+
+    .check-mark {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 2px;
+    }
+
+    .check-mark svg {
+      width: 18px;
+      height: 18px;
+      fill: none;
+      stroke: var(--blue-light);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .check-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .not-for {
+      margin-top: 10px;
+      padding: 16px 18px;
+      border: 1px solid var(--sep);
+      border-radius: 6px;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .not-for-tag {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-dim);
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .not-for p { font-size: 13px; color: var(--text-dim); line-height: 1.65; }
+
+    /* ─── FORM ─── */
+    .form-bg { background: var(--bg2); }
+
+    .form-shell {
+      margin-top: 48px;
+      border: 1px solid var(--sep);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .form-topbar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--sep);
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tb-dots { display: flex; gap: 6px; }
+    .tb-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+    .tb-label {
+      font-size: 11px;
+      color: var(--text-dim);
+      margin-left: 6px;
+      font-weight: 500;
+    }
+
+    .form-inner { padding: 32px 28px; }
+    .fg { margin-bottom: 18px; }
+
+    label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      background: var(--bg);
+      border: 1px solid var(--sep);
+      border-radius: 6px;
+      padding: 13px 16px;
+      font-family: var(--sans);
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder { color: #1E2D44; }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--blue-border);
+      box-shadow: 0 0 0 3px rgba(26,86,219,0.07);
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23445670' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+      cursor: pointer;
+    }
+
+    select option { background: var(--bg3); }
+    textarea { resize: vertical; min-height: 94px; }
+
+    .btn-submit {
+      width: 100%;
+      padding: 16px;
+      background: var(--blue);
+      color: #0C1018;
+      font-family: var(--sans);
+      font-size: 15px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+      letter-spacing: -0.01em;
+    }
+
+    .btn-submit:hover {
+      background: var(--blue-mid);
+      box-shadow: 0 6px 24px rgba(26,86,219,0.35);
+      transform: translateY(-1px);
+    }
+
+    .form-fine {
+      margin-top: 12px;
+      text-align: center;
+      font-size: 11px;
+      color: var(--text-dim);
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── OBRIGADO ─── */
+    #obrigado {
+      display: none;
+      min-height: 100svh;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #obrigado.active { display: flex; }
+
+    .ty-inner {
+      text-align: center;
+      padding: 80px 24px;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .ty-icon {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--blue-dim);
+      border: 1px solid var(--blue-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+    }
+
+    .ty-icon svg {
+      width: 24px;
+      height: 24px;
+      fill: none;
+      stroke: var(--blue-light);
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .ty-title {
+      font-family: var(--serif);
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 700;
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .ty-title em {
+      font-style: italic;
+      font-weight: 600;
+      color: var(--blue-light);
+    }
+
+    .ty-body {
+      font-size: 16px;
+      color: var(--text-muted);
+      line-height: 1.75;
+      margin-bottom: 8px;
+    }
+
+    .ty-note {
+      margin-top: 28px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--text-dim);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      padding: 28px 0;
+    }
+
+    footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .f-logo {
+      font-family: var(--serif);
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text-muted);
+    }
+
+    .f-logo em {
+      font-style: italic;
+      color: var(--blue-light);
+    }
+
+    .f-links {
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    .f-links a { color: var(--text-dim); text-decoration: none; transition: color 0.2s; }
+    .f-links a:hover { color: var(--text-muted); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 600px) {
+      section { padding: 64px 0; }
+      .hero { padding-bottom: 56px; }
+      .hero-title { font-size: clamp(38px, 10vw, 56px); }
+      footer .container { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<div id="pagina-principal">
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-dots"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-eyebrow">
+          <div class="eyebrow-tag">
+            <span class="eyebrow-dot"></span>
+            Diagnóstico · Advocacia
+          </div>
+          <span class="eyebrow-year">2026</span>
+        </div>
+        <div class="hero-rule r" style="transition-delay:0.1s"></div>
+        <h1 class="hero-title">
+          <span class="line-normal r d1">Pare de depender</span>
+          <span class="line-italic r d2"><span class="underline-draw">de indicação.</span></span>
+          <span class="line-normal r d3">Capte clientes</span>
+          <span class="line-accent r d4">todo mês.</span>
+        </h1>
+        <div class="hero-bottom r d4">
+          <p class="hero-sub">Um diagnóstico de 30 minutos para entender o que está travando a captação do seu escritório e o que pode mudar nos próximos 30 dias, dentro do que a OAB permite.</p>
+          <div class="hero-cta-group">
+            <a href="#formulario" class="btn-cta">
+              Quero meu diagnóstico
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+            </a>
+            <p class="hero-note">Sem custo. Sem compromisso.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STRIP ── -->
+  <div class="strip">
+    <div class="strip-track">
+      <div class="strip-item"><span class="strip-sep"></span> Captação Previsível</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Lead Qualificado</b></div>
+      <div class="strip-item"><span class="strip-sep"></span> Dentro da OAB</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Sem Dependência de Indicação</b></div>
+      <div class="strip-item"><span class="strip-sep"></span> Sistema de Captação</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Advocacia Digital</b></div>
+      <div class="strip-item"><span class="strip-sep"></span> Google Ads + Meta Ads</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Escritório Previsível</b></div>
+      <!-- loop -->
+      <div class="strip-item"><span class="strip-sep"></span> Captação Previsível</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Lead Qualificado</b></div>
+      <div class="strip-item"><span class="strip-sep"></span> Dentro da OAB</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Sem Dependência de Indicação</b></div>
+      <div class="strip-item"><span class="strip-sep"></span> Sistema de Captação</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Advocacia Digital</b></div>
+      <div class="strip-item"><span class="strip-sep"></span> Google Ads + Meta Ads</div>
+      <div class="strip-item"><span class="strip-sep"></span> <b>Escritório Previsível</b></div>
+    </div>
+  </div>
+
+  <!-- ── PROBLEMA ── -->
+  <section class="prob-bg">
+    <div class="container">
+      <p class="label r">O problema</p>
+      <div class="prob-cols">
+        <div class="prob-left">
+          <h2 class="prob-headline r d1">
+            Você é bom no que faz.<br>
+            O problema é <em>a previsibilidade.</em>
+          </h2>
+          <div class="pull-quote r d2">
+            <p>Todo mês é uma incógnita. Você depende de indicação, da sua rede estar ativa, da sorte. <em>Quando ela esfria, o caixa sente.</em></p>
+          </div>
+          <p class="prob-sub r d2">Quando tentou resolver por conta própria, não funcionou como esperava.</p>
+        </div>
+
+        <div class="pain-grid r d3">
+          <div class="pain-card">
+            <span class="pain-num">01</span>
+            <p>Criou Instagram, postou por <strong>duas semanas e parou</strong> porque não apareceu resultado.</p>
+          </div>
+          <div class="pain-card">
+            <span class="pain-num">02</span>
+            <p>Rodou tráfego pago e recebeu <strong>leads sem perfil</strong> nem intenção de contratar.</p>
+          </div>
+          <div class="pain-card">
+            <span class="pain-num">03</span>
+            <p>Contratou agência que entregou <strong>site bonito mas nenhum cliente</strong> novo.</p>
+          </div>
+          <div class="pain-card">
+            <span class="pain-num">04</span>
+            <p>Tem receio de fazer algo que <strong>a OAB possa questionar.</strong></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMO FUNCIONA ── -->
+  <section>
+    <div class="container">
+      <p class="label r">Como funciona</p>
+      <div class="steps-cols">
+        <div class="steps-left">
+          <h2 class="prob-headline r d1" style="font-size:clamp(30px,5vw,50px); margin-bottom:24px;">O diagnóstico</h2>
+          <p class="prob-sub r d2" style="margin-bottom:32px;">Uma conversa de 30 minutos para mapear o que está limitando a captação do seu escritório. Não é apresentação de serviços. É análise real da sua situação.</p>
+          <a href="#formulario" class="btn-cta r d3" style="display:inline-flex;">
+            Quero meu diagnóstico
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+          </a>
+        </div>
+
+        <div class="steps-wrap r d3">
+          <div class="step-item">
+            <span class="step-n">1</span>
+            <div class="step-body">
+              <h4>Você preenche o formulário</h4>
+              <p>Quatro perguntas sobre seu escritório, sua área e sua maior dificuldade hoje. Leva menos de 2 minutos.</p>
+            </div>
+          </div>
+          <div class="step-item highlighted">
+            <span class="step-n">2</span>
+            <div class="step-body">
+              <h4>Confirmamos em até 24h</h4>
+              <p>Analisamos sua resposta e entramos em contato pelo WhatsApp para confirmar o horário da call.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <span class="step-n">3</span>
+            <div class="step-body">
+              <h4>Call de diagnóstico</h4>
+              <p>30 minutos. Analisamos o que está travando a captação e o que faz sentido pra você, dentro do que a OAB permite.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARA QUEM ── -->
+  <section class="prob-bg">
+    <div class="container">
+      <p class="label r">Para quem é</p>
+      <div class="quem-cols">
+        <div class="quem-left">
+          <h2 class="prob-headline r d1" style="font-size:clamp(28px,4.5vw,46px); margin-bottom:24px;">Esse diagnóstico<br>é pra você se...</h2>
+          <p class="prob-sub r d2">Trabalho com escritórios que estão prontos para estruturar um sistema real de captação, não uma estratégia improvisada.</p>
+        </div>
+
+        <div class="quem-right">
+          <div class="check-list r d2">
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              <span class="check-text">Você é advogado autônomo ou tem um escritório de até 10 pessoas</span>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              <span class="check-text">A maior parte dos seus clientes vem de indicação e você quer mudar isso</span>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              <span class="check-text">Você quer clientes qualificados, não qualquer lead de formulário</span>
+            </div>
+            <div class="check-item">
+              <span class="check-mark"><svg viewBox="0 0 18 18"><polyline points="3,9 7,13 15,5"/></svg></span>
+              <span class="check-text">Você quer um sistema que funcione sem precisar postar todo dia</span>
+            </div>
+          </div>
+
+          <div class="not-for r d3">
+            <span class="not-for-tag">Não é pra você se:</span>
+            <p>Você está procurando curso de marketing jurídico ou quer gerenciar a captação por conta própria. Atendo escritórios que querem terceirizar esse processo por completo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SOBRE ── -->
+  <section>
+    <div class="container">
+      <p class="label r">Quem vai analisar</p>
+      <div class="about-card r d1">
+        <div class="about-photo-wrap">
+          <img src="avatar.png" alt="Kalid Carvalho" />
+        </div>
+        <div class="about-right">
+          <div>
+            <h2 class="about-name">Kalid<em>Carvalho</em></h2>
+            <span class="about-role">Marketing Jurídico</span>
+          </div>
+          <p class="about-p">
+            Especialista em captação digital para escritórios de advocacia. Estruturo sistemas de atração de clientes qualificados: <strong>site, tráfego pago e automação</strong>, dentro do que o Código de Ética da OAB permite.
+          </p>
+          <p class="about-p">
+            Trabalho exclusivamente com advogados porque <strong>marketing jurídico tem regras que agência generalista ignora.</strong> Não vendo pacote de seguidores nem post no feed. Vendo previsibilidade de caixa.
+          </p>
+          <div class="about-accent">
+            "O objetivo do diagnóstico não é vender. É entender se faz sentido trabalharmos juntos."
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FORMULÁRIO ── -->
+  <section id="formulario">
+    <div class="container">
+      <p class="label r">Agendar diagnóstico</p>
+      <h2 class="prob-headline r d1" style="font-size:clamp(30px,5vw,52px); margin-bottom:14px;">Garanta sua vaga.</h2>
+      <p class="prob-sub r d2">Analiso cada resposta antes da call. Quanto mais preciso você for, mais útil a conversa vai ser.</p>
+
+      <div class="form-shell r d3">
+        <div class="form-topbar">
+          <div class="tb-dots">
+            <div class="tb-dot" style="background:#FF5F57"></div>
+            <div class="tb-dot" style="background:#FEBC2E"></div>
+            <div class="tb-dot" style="background:#28C840"></div>
+          </div>
+          <span class="tb-label">diagnostico.form · kalidcarvalho.com</span>
+        </div>
+        <div class="form-inner">
+          <form id="form-diag" action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="d8b14bde-bcbf-45a9-a191-a55aa3fca1b3" />
+            <input type="hidden" name="subject" value="Novo diagnostico | kalidcarvalho.com/diagnostico" />
+            <input type="hidden" name="redirect" value="https://kalidcarvalho.com/diagnostico/obrigado/" />
+            <input type="checkbox" name="botcheck" style="display:none" />
+
+            <div class="fg">
+              <label for="nome">Nome completo</label>
+              <input type="text" id="nome" name="nome" placeholder="Dr. Rafael Souza" required />
+            </div>
+            <div class="fg">
+              <label for="email">E-mail</label>
+              <input type="email" id="email" name="email" placeholder="rafael@escritorio.com.br" required />
+            </div>
+            <div class="fg">
+              <label for="telefone">WhatsApp</label>
+              <input type="tel" id="telefone" name="telefone" placeholder="(11) 99999-9999" required />
+            </div>
+            <div class="fg">
+              <label for="area">Área de atuação</label>
+              <select id="area" name="area" required>
+                <option value="" disabled selected>Selecione sua área principal</option>
+                <option>Direito de Família e Sucessões</option>
+                <option>Direito Trabalhista</option>
+                <option>Direito do Consumidor</option>
+                <option>Direito Previdenciário</option>
+                <option>Direito Criminal</option>
+                <option>Direito Civil</option>
+                <option>Direito Empresarial</option>
+                <option>Outra</option>
+              </select>
+            </div>
+            <div class="fg" style="margin-bottom:28px">
+              <label for="dif">Qual é sua maior dificuldade com captação hoje?</label>
+              <textarea id="dif" name="dificuldade" placeholder="Ex: dependo só de indicação e o volume é imprevisível..." required></textarea>
+            </div>
+            <button type="submit" class="btn-submit">
+              Quero meu diagnóstico
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h8M8 4l3 3-3 3"/></svg>
+            </button>
+            <p class="form-fine">Sem custo. Respondemos em até 24h úteis.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="container">
+      <span class="f-logo">Kalid <em>Carvalho</em></span>
+      <p class="f-links">
+        <a href="https://kalidcarvalho.com" target="_blank">kalidcarvalho.com</a>
+        &ensp;&middot;&ensp;
+        <a href="https://instagram.com/eukalidcarvalho" target="_blank">@eukalidcarvalho</a>
+      </p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // Reveal
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+
+  // Underline draw after hero loads
+  setTimeout(() => {
+    const u = document.querySelector('.underline-draw');
+    if (u) u.classList.add('drawn');
+  }, 800);
+
+  // Form submit — feedback visual antes do redirect do Web3Forms
+  const form = document.getElementById('form-diag');
+  form.addEventListener('submit', () => {
+    const btn = form.querySelector('.btn-submit');
+    btn.innerHTML = 'Enviando...';
+    btn.disabled = true;
+  });
+
+</script>
+</body>
+</html>
